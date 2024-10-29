@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=4 uid="uid://dfdd8xbpcid00"]
+
+[ext_resource type="TileSet" uid="uid://bihhdpn1stemf" path="res://default_map.tres" id="1_wu72b"]
+[ext_resource type="Script" path="res://tile_map_test.gd" id="2_snidk"]
+
+[node name="TileMapTest" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAACAAAAAAADAAMAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAA=")
+tile_set = ExtResource("1_wu72b")
+script = ExtResource("2_snidk")
