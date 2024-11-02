@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=4 uid="uid://ctdvel1arygei"]
-
-[ext_resource type="TileSet" uid="uid://bihhdpn1stemf" path="res://default_map.tres" id="1_ofoco"]
-
-[node name="TileMap" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD/////AAACAAAAAAAAAP//AAACAAAAAAAAAAAAAAACAAAAAAABAP//AAACAAAAAAD//wAAAAACAAAAAAAAAAEAAAACAAAAAAABAAAAAAACAAAAAAABAP7/AAACAAAAAAACAP//AAACAAAAAAADAP//AAACAAAAAAADAAAAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAABAAEAAAACAAAAAAD//wEAAAACAAAAAAAAAAIAAAACAAAAAAABAAIAAAACAAAAAAACAAIAAAACAAAAAAADAAEAAAACAAAAAAA=")
-tile_set = ExtResource("1_ofoco")

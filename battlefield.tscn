@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://wyl7uecllbco"]
+[gd_scene load_steps=3 format=3 uid="uid://wyl7uecllbco"]
 
-[node name="Battlefield" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://tile_map_test.tscn" id="1_h80nl"]
+[ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
+
+[node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_ncysa")
+tile_map = NodePath("TileMapTest")
+
+[node name="TileMapTest" parent="." instance=ExtResource("1_h80nl")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(290, 264)
