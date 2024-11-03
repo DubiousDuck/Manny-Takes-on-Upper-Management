@@ -16,4 +16,4 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Navi="*res://navigation.gd"
+Navi="*res://Global/navigation.gd"

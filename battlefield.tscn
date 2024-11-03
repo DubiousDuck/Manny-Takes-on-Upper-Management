@@ -1,13 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://wyl7uecllbco"]
+[gd_scene load_steps=6 format=4 uid="uid://wyl7uecllbco"]
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://tile_map_test.tscn" id="1_h80nl"]
 [ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
+[ext_resource type="Script" path="res://UnitContainer.gd" id="3_r2aph"]
+[ext_resource type="Script" path="res://unit.gd" id="3_xlkm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 
 [node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_ncysa")
 tile_map = NodePath("TileMapTest")
 
 [node name="TileMapTest" parent="." instance=ExtResource("1_h80nl")]
+tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAADAP//AAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAEAAQAAAACAAAAAAABAAQAAAACAAAAAAAAAAQAAAACAAAAAAACAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAQAAAACAAAAAAAGAAMAAAACAAAAAAAGAAIAAAACAAAAAAAFAP//AAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAAAAAAAAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAAGAAUAAAACAAAAAAAHAAQAAAACAAAAAAAHAAMAAAACAAAAAAD//wMAAAACAAAAAAD+/wQAAAACAAAAAAD9/wMAAAACAAAAAAD9/wIAAAACAAAAAAD+/wIAAAACAAAAAAAIAAIAAAACAAAAAAAJAAEAAAACAAAAAAAIAAEAAAACAAAAAAA=")
+
+[node name="CellHighlights" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 264)
+
+[node name="PlayerGroup" type="Node2D" parent="."]
+script = ExtResource("3_r2aph")
+is_player_controlled = true
+
+[node name="Unit" type="CharacterBody2D" parent="PlayerGroup"]
+position = Vector2(90, 320)
+scale = Vector2(2.48, 2.96)
+script = ExtResource("3_xlkm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGroup/Unit"]
+shape = SubResource("RectangleShape2D_ly3a2")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGroup/Unit"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.27419
+offset_top = -9.12162
+offset_right = 30.7258
+offset_bottom = 30.8784
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.467742, 0.459459)
+mouse_filter = 2
+color = Color(0, 0.592157, 0.870588, 1)

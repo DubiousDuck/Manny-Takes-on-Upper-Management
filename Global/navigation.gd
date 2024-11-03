@@ -1,6 +1,6 @@
 extends Node
 
-class_name Navigation
+class_name Navigation #named Navi
 
 var current_map : TileMapLayer
 var astar = AStar2D.new()
@@ -26,6 +26,25 @@ func add_all_point():
 			var neighbor_id = astar.get_closest_point(neighbor)
 			astar.connect_points(point_id, neighbor_id)
 
+#general process of converting global position to a cell position
+	#1. convert global position to map node's local
+	#2. convert map node's local to map coordinates
+	#3. use the map coordinate to locate the closest cell in astar
+	#do the other way around to convert cell position to global position
+	
+func cell_to_global(cell_pos : Vector2): #returns another global position
+	return current_map.map_to_local(current_map.to_global(cell_pos))
+
+func global_to_cell(global_pos : Vector2): #returns local cell position
+	var closest_point_id = astar.get_closest_point(current_map.local_to_map(current_map.to_local(global_pos)))
+	return astar.get_point_position(closest_point_id)
+
+func get_navi_path(start_pos : Vector2i, end_pos : Vector2i):
+	var start_id = tile_to_id(start_pos)
+	var goal_id = tile_to_id(end_pos)
+	var path_taken = astar.get_point_path(start_id, goal_id)
+	return path_taken
+	
 func show_path(cell_pos : Vector2i):
 	var goal_id = tile_to_id(cell_pos)
 	var start_id = 0
@@ -47,10 +66,10 @@ func tile_to_id(pos : Vector2i) -> int: #assume that all available tiles are alr
 		return astar.get_closest_point(pos)
 	else: return -1
 
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			clear_path()
-			var pos_clicked = current_map.local_to_map(current_map.get_local_mouse_position())
-			print(pos_clicked)
-			show_path(pos_clicked)
+#func _unhandled_input(event):
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			#clear_path()
+			#var pos_clicked = current_map.local_to_map(current_map.get_local_mouse_position())
+			#print(pos_clicked)
+			#show_path(pos_clicked)
