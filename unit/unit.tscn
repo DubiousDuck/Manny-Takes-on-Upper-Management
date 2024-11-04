@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://s6hbciun8a1p"]
+
+[ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
+
+[node name="Unit" type="CharacterBody2D"]
+position = Vector2(90, 320)
+scale = Vector2(2.48, 2.96)
+script = ExtResource("1_5ne20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ly3a2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.27419
+offset_top = -9.12162
+offset_right = 30.7258
+offset_bottom = 30.8784
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.467742, 0.459459)
+mouse_filter = 2
+color = Color(0, 0.592157, 0.870588, 1)

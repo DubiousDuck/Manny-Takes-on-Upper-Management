@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bihhdpn1stemf"]
 
-[ext_resource type="Texture2D" uid="uid://clfva345no3fs" path="res://hex_grid.png" id="1_qxxhy"]
+[ext_resource type="Texture2D" uid="uid://clfva345no3fs" path="res://map/hex_grid.png" id="1_b06vb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pw1yh"]
 resource_name = "default"
-texture = ExtResource("1_qxxhy")
+texture = ExtResource("1_b06vb")
 margins = Vector2i(9, 8)
 separation = Vector2i(18, 0)
 texture_region_size = Vector2i(110, 94)

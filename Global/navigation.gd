@@ -73,3 +73,6 @@ func tile_to_id(pos : Vector2i) -> int: #assume that all available tiles are alr
 			#var pos_clicked = current_map.local_to_map(current_map.get_local_mouse_position())
 			#print(pos_clicked)
 			#show_path(pos_clicked)
+
+func get_random_tile_pos(): #for testing and placeholder purposes
+	return astar.get_point_position(randi_range(0, astar.get_point_count()))
