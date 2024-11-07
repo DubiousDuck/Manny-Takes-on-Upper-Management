@@ -17,3 +17,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Navi="*res://Global/navigation.gd"
+EventBus="*res://Global/event_bus.gd"

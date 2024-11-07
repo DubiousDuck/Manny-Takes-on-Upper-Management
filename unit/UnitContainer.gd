@@ -43,7 +43,8 @@ func disconnect_current_unit_signals():
 
 func move_unit():
 	#handle npc movement and attack logic here
-	var goal_cell = Navi.get_random_tile_pos() #TODO: placeholder movement
+	var all_possible_cell_ids = Navi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
+	var goal_cell = Navi.id_to_tile(all_possible_cell_ids.pick_random()) #TODO: placeholder movement
 	current_unit.move_along_path(Navi.get_navi_path(current_unit.cell, goal_cell))
 	return
 	
@@ -67,6 +68,7 @@ func _unhandled_input(event):
 		return
 		
 	if event is InputEventMouseButton and event.is_pressed():
+		EventBus.emit_signal("remove_all_cell_highlights")
 		if event.button_index == MOUSE_BUTTON_LEFT and is_waiting_unit_selection:
 			# if no units have been selected
 			var clicked_cell = Navi.global_to_cell(get_global_mouse_position())
@@ -78,6 +80,13 @@ func _unhandled_input(event):
 					connect_current_unit_signals()
 					print(current_unit)
 					is_waiting_unit_selection = false
+					
+					#would love to use map() but return type doesn't match
+					var all_neighbors = Navi.get_all_neighbors_in_range(unit.cell, unit.movement_range)
+					var all_neighbors_cell : Array[Vector2i] = []
+					for neighbor in all_neighbors:
+						all_neighbors_cell.append(Navi.id_to_tile(neighbor))
+					EventBus.emit_signal("show_cell_highlights", all_neighbors_cell)
 					return
 		
 		if event.button_index == MOUSE_BUTTON_LEFT and current_unit != null:
@@ -90,6 +99,9 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				return
 			#TODO: another condition to check if the cell is occupied/blocked
+			if Navi.get_distance(current_unit.cell, clicked_cell) > current_unit.movement_range:
+				deselect_current_unit()
+				return
 			if !in_progress:
 				current_unit.move_along_path(Navi.get_navi_path(current_unit.cell, clicked_cell))
 				in_progress = true

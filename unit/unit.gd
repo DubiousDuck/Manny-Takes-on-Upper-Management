@@ -4,7 +4,8 @@ class_name Unit
 
 signal movement_complete
 
-@export var move_speed_per_cell = 0.2
+@export var move_speed_per_cell := 0.2
+@export var movement_range : int = 2
 var cell : Vector2
 var moved : bool = false
 

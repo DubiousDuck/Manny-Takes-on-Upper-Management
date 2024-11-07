@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://co8sjf0b3c6n8"]
+
+[ext_resource type="Texture2D" uid="uid://ba14eauvdfb4k" path="res://OtherComponents/WhiteHexTile.png" id="1_tu2o7"]
+
+[node name="HighightTile" type="Sprite2D"]
+position = Vector2(-2, -3.8147e-06)
+scale = Vector2(0.679688, 0.679688)
+texture = ExtResource("1_tu2o7")

@@ -7,7 +7,7 @@ class_name UnitGroupController
 @onready var player_group = $PlayerGroup
 @onready var enemy_group = $EnemyGroup
 var is_player_turn : bool = true
-
+	
 func init():
 	connect_container_signal(player_group)
 	connect_container_signal(enemy_group)
