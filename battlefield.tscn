@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://wyl7uecllbco"]
+[gd_scene load_steps=9 format=4 uid="uid://wyl7uecllbco"]
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="1_h80nl"]
 [ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
@@ -6,13 +6,15 @@
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="3_o4i10"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="3_r2aph"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="4_c4dfy"]
+[ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_l8o4u"]
+[ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="8_ugu2x"]
 
 [node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_ncysa")
 tile_map = NodePath("TileMapTest")
 
 [node name="TileMapTest" parent="." instance=ExtResource("1_h80nl")]
-tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAADAP//AAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAEAAQAAAACAAAAAAABAAQAAAACAAAAAAAAAAQAAAACAAAAAAACAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAQAAAACAAAAAAAGAAMAAAACAAAAAAAGAAIAAAACAAAAAAAFAP//AAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAAAAAAAAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAAGAAUAAAACAAAAAAAHAAQAAAACAAAAAAAHAAMAAAACAAAAAAD//wMAAAACAAAAAAD+/wQAAAACAAAAAAD9/wMAAAACAAAAAAD9/wIAAAACAAAAAAD+/wIAAAACAAAAAAAIAAIAAAACAAAAAAAJAAEAAAACAAAAAAAIAAEAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAADAP//AAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAEAAQAAAACAAAAAAABAAQAAAACAAAAAAAAAAQAAAACAAAAAAACAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAQAAAACAAAAAAAGAAMAAAACAAAAAAAGAAIAAAACAAAAAAAFAP//AAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAAAAAAAAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAAGAAUAAAACAAAAAAAHAAQAAAACAAAAAAAHAAMAAAACAAAAAAD//wMAAAACAAAAAAD+/wQAAAACAAAAAAD9/wMAAAACAAAAAAD9/wIAAAACAAAAAAD+/wIAAAACAAAAAAAIAAIAAAACAAAAAAAJAAEAAAACAAAAAAAIAAEAAAACAAAAAAA=")
 
 [node name="CellHighlights" type="Node2D" parent="."]
 script = ExtResource("3_gevof")
@@ -29,30 +31,36 @@ is_player_controlled = true
 
 [node name="Unit" parent="Units/PlayerGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(-181, 282)
+script = ExtResource("7_l8o4u")
 
 [node name="Unit2" parent="Units/PlayerGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(53, 331)
+script = ExtResource("7_l8o4u")
 
 [node name="Unit3" parent="Units/PlayerGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(-23, 96)
+script = ExtResource("7_l8o4u")
 
 [node name="EnemyGroup" type="Node2D" parent="Units"]
 script = ExtResource("3_r2aph")
 
 [node name="Unit" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(510, 233)
+script = ExtResource("8_ugu2x")
 
 [node name="ColorRect" parent="Units/EnemyGroup/Unit" index="1"]
 color = Color(0.889663, 0.281273, 0.638634, 1)
 
 [node name="Unit2" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(513, 330)
+script = ExtResource("8_ugu2x")
 
 [node name="ColorRect" parent="Units/EnemyGroup/Unit2" index="1"]
 color = Color(0.890196, 0.282353, 0.639216, 1)
 
 [node name="Unit3" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(587, 96)
+script = ExtResource("8_ugu2x")
 
 [node name="ColorRect" parent="Units/EnemyGroup/Unit3" index="1"]
 color = Color(0.890196, 0.282353, 0.639216, 1)

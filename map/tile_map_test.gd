@@ -10,6 +10,9 @@ const RED_CELL := Vector2i(1, 0)
 
 var astar = AStar2D.new()
 
+func _ready():
+	EventBus.connect("occupy_cell", _on_occupy_cell)
+	
 func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
 	match id:
@@ -17,7 +20,17 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 		1: cell_variant = RED_CELL
 		2: cell_variant = BLUE_CELL
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant)
-	
+
+func _on_occupy_cell(pos : Vector2i, unit_type : String):
+	var color_cell : Vector2i
+	match unit_type:
+		"player":
+			color_cell = BLUE_CELL
+		"enemy":
+			color_cell = RED_CELL
+		_:
+			color_cell = WHITE_CELL
+	set_cell(pos, MAIN_ATLAS_ID, color_cell)
 #func _input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():

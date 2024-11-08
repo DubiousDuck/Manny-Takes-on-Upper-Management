@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=4 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kobe"]
 
 [node name="Unit" type="CharacterBody2D"]
 position = Vector2(90, 320)
@@ -27,3 +29,11 @@ grow_vertical = 2
 scale = Vector2(0.467742, 0.459459)
 mouse_filter = 2
 color = Color(0, 0.592157, 0.870588, 1)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_7kobe")
+
+[connection signal="mouse_entered" from="Hurtbox" to="." method="_on_hurtbox_mouse_entered"]
+[connection signal="mouse_exited" from="Hurtbox" to="." method="_on_hurtbox_mouse_exited"]

@@ -4,6 +4,8 @@ class_name UnitContainer
 
 signal all_units_moved
 
+const MOVE_RANGE_HIGHLIGHT : Color = Color(1, 1, 0, 0.5)
+
 @export var is_player_controlled : bool
 var units : Array[Unit] = []
 var current_unit : Unit
@@ -86,7 +88,7 @@ func _unhandled_input(event):
 					var all_neighbors_cell : Array[Vector2i] = []
 					for neighbor in all_neighbors:
 						all_neighbors_cell.append(Navi.id_to_tile(neighbor))
-					EventBus.emit_signal("show_cell_highlights", all_neighbors_cell)
+					EventBus.emit_signal("show_cell_highlights", all_neighbors_cell, MOVE_RANGE_HIGHLIGHT, name)
 					return
 		
 		if event.button_index == MOUSE_BUTTON_LEFT and current_unit != null:

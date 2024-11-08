@@ -8,6 +8,7 @@ signal movement_complete
 @export var movement_range : int = 2
 var cell : Vector2
 var moved : bool = false
+var is_player_controlled : bool
 
 func init():
 	cell = Navi.global_to_cell(global_position)
@@ -27,4 +28,16 @@ func move_along_path(full_path : Array[Vector2i]):
 		#tween will append all property tweeners first before executing
 	await move_tween.finished
 	cell = Navi.global_to_cell(global_position)
+	if is_player_controlled:
+		EventBus.emit_signal("occupy_cell", cell, "player")
+	else: EventBus.emit_signal("occupy_cell", cell, "enemy")
 	movement_complete.emit()
+
+func highlight_emit(): #virtual function for the base Unit class
+	pass
+	
+func _on_hurtbox_mouse_entered():
+	highlight_emit()
+
+func _on_hurtbox_mouse_exited():
+	EventBus.emit_signal("remove_cell_highlights", name)
