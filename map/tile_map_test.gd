@@ -12,6 +12,7 @@ var astar = AStar2D.new()
 
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
+	EventBus.connect("clear_cells", _on_clear_cells)
 	
 func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
@@ -31,6 +32,11 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 		_:
 			color_cell = WHITE_CELL
 	set_cell(pos, MAIN_ATLAS_ID, color_cell)
+
+func _on_clear_cells():
+	for pos in get_used_cells():
+		set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
+	
 #func _input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():

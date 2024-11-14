@@ -10,6 +10,14 @@ var cell : Vector2
 var moved : bool = false
 var is_player_controlled : bool
 
+func _process(delta):
+	if moved: #dim color if moved TODO Replace placeholder
+		if is_player_controlled: $ColorRect.color = Color(0, 0.305, 0.461)
+		else: $ColorRect.color = Color(0.51, 0.046, 0)
+	else:
+		if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
+		else: $ColorRect.color = Color(0.89, 0.281, 0.239)
+		
 func init():
 	cell = Navi.global_to_cell(global_position)
 	global_position = Navi.cell_to_global(cell)
@@ -28,16 +36,15 @@ func move_along_path(full_path : Array[Vector2i]):
 		#tween will append all property tweeners first before executing
 	await move_tween.finished
 	cell = Navi.global_to_cell(global_position)
-	if is_player_controlled:
-		EventBus.emit_signal("occupy_cell", cell, "player")
-	else: EventBus.emit_signal("occupy_cell", cell, "enemy")
+	EventBus.emit_signal("update_cell_status")
 	movement_complete.emit()
 
 func highlight_emit(): #virtual function for the base Unit class
 	pass
 	
 func _on_hurtbox_mouse_entered():
-	highlight_emit()
+	if !moved or !is_player_controlled:
+		highlight_emit()
 
 func _on_hurtbox_mouse_exited():
 	EventBus.emit_signal("remove_cell_highlights", name)

@@ -37,6 +37,13 @@ func global_to_cell(global_pos : Vector2): #returns local cell position
 	var closest_point_id = astar.get_closest_point(current_map.local_to_map(current_map.to_local(global_pos)))
 	return astar.get_point_position(closest_point_id)
 
+func is_cell_available(cell_pos : Vector2i) -> bool:
+	var data = current_map.get_cell_tile_data(cell_pos)
+	if data:
+		return !data.get_custom_data("occupied")
+	else:
+		return false
+	
 func get_navi_path(start_pos : Vector2i, end_pos : Vector2i): #returns an array of cell positions from start to goal
 	var start_id = tile_to_id(start_pos)
 	var goal_id = tile_to_id(end_pos)

@@ -28,7 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.467742, 0.459459)
 mouse_filter = 2
-color = Color(0, 0.592157, 0.870588, 1)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 

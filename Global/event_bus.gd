@@ -5,3 +5,5 @@ signal remove_cell_highlights(emitter_name : String)
 signal remove_all_cell_highlights()
 
 signal occupy_cell(pos : Vector2i, unit_type : String)
+signal clear_cells()
+signal update_cell_status()

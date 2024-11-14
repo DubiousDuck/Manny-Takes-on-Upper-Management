@@ -45,8 +45,14 @@ func disconnect_current_unit_signals():
 
 func move_unit():
 	#handle npc movement and attack logic here
+	#TODO: placeholder movement
 	var all_possible_cell_ids = Navi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
-	var goal_cell = Navi.id_to_tile(all_possible_cell_ids.pick_random()) #TODO: placeholder movement
+	var all_available_cells = [] 
+	for id in all_possible_cell_ids:
+		var tile = Navi.id_to_tile(id)
+		if Navi.is_cell_available(tile):
+			all_available_cells.append(tile)
+	var goal_cell = all_available_cells.pick_random() #TODO: Fix potential bug when the unit has no where to go
 	current_unit.move_along_path(Navi.get_navi_path(current_unit.cell, goal_cell))
 	return
 	
@@ -100,7 +106,10 @@ func _unhandled_input(event):
 			if current_unit.cell == clicked_cell:
 				deselect_current_unit()
 				return
-			#TODO: another condition to check if the cell is occupied/blocked
+			
+			if !Navi.is_cell_available(clicked_cell):
+				deselect_current_unit()
+				return
 			if Navi.get_distance(current_unit.cell, clicked_cell) > current_unit.movement_range:
 				deselect_current_unit()
 				return

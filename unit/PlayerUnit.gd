@@ -6,6 +6,7 @@ const MOVE_RANGE_HIGHLIGHT : Color = Color(1, 1, 0, 0.3)
 
 func _ready():
 	is_player_controlled = true
+	#EventBus.emit_signal("occupy_cell", cell, "player")
 	
 func highlight_emit():
 	var all_neighbors = Navi.get_all_neighbors_in_range(cell, movement_range)
