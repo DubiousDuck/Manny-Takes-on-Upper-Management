@@ -72,14 +72,6 @@ func id_to_tile(id: int) -> Vector2i:
 	if astar.has_point(id):
 		return astar.get_point_position(id)
 	return Vector2i(-1, -1)
-	
-#func _unhandled_input(event):
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			#clear_path()
-			#var pos_clicked = current_map.local_to_map(current_map.get_local_mouse_position())
-			#print(pos_clicked)
-			#show_path(pos_clicked)
 
 func get_distance(pos1: Vector2i, pos2: Vector2i):
 	var all_points = get_navi_path(pos1, pos2)

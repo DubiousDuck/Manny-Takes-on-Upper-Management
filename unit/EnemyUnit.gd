@@ -9,8 +9,8 @@ func _ready():
 	#EventBus.emit_signal("occupy_cell", cell, "enemy")
 	
 func highlight_emit():
-	var all_neighbors = Navi.get_all_neighbors_in_range(cell, movement_range)
+	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, movement_range)
 	var all_neighbors_cell : Array[Vector2i] = []
 	for neighbor in all_neighbors:
-		all_neighbors_cell.append(Navi.id_to_tile(neighbor))
+		all_neighbors_cell.append(HexNavi.id_to_tile(neighbor))
 	EventBus.emit_signal("show_cell_highlights", all_neighbors_cell, MOVE_RANGE_HIGHLIGHT, name)

@@ -14,7 +14,7 @@ func show_highlight_at(positions : Array[Vector2i], color : Color, emitter_name 
 	var highlight_group : Array = []
 	for pos in positions:
 		var a = highlight_tile.instantiate()
-		a.global_position = Navi.cell_to_global(pos)
+		a.global_position = HexNavi.cell_to_global(pos)
 		a.modulate = color
 		highlight_group.append(a)
 		add_child(a)

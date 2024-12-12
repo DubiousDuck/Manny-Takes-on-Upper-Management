@@ -19,8 +19,8 @@ func _process(delta):
 		else: $ColorRect.color = Color(0.89, 0.281, 0.239)
 		
 func init():
-	cell = Navi.global_to_cell(global_position)
-	global_position = Navi.cell_to_global(cell)
+	cell = HexNavi.global_to_cell(global_position)
+	global_position = HexNavi.cell_to_global(cell)
 
 func move_along_path(full_path : Array[Vector2i]):
 	var move_tween = get_tree().create_tween()
@@ -30,12 +30,12 @@ func move_along_path(full_path : Array[Vector2i]):
 		move_tween.tween_property(
 			self,
 			'global_position',
-			Navi.cell_to_global(next_point),
+			HexNavi.cell_to_global(next_point),
 			move_speed_per_cell
 		)
 		#tween will append all property tweeners first before executing
 	await move_tween.finished
-	cell = Navi.global_to_cell(global_position)
+	cell = HexNavi.global_to_cell(global_position)
 	EventBus.emit_signal("update_cell_status")
 	movement_complete.emit()
 

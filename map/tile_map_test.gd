@@ -8,8 +8,6 @@ const BLUE_CELL := Vector2i(0, 0)
 const WHITE_CELL := Vector2i(2, 0)
 const RED_CELL := Vector2i(1, 0)
 
-var astar = AStar2D.new()
-
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
 	EventBus.connect("clear_cells", _on_clear_cells)
