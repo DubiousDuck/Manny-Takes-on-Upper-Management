@@ -50,7 +50,7 @@ func move_unit():
 	var all_available_cells = [] 
 	for id in all_possible_cell_ids:
 		var tile = HexNavi.id_to_tile(id)
-		if HexNavi.is_cell_available(tile):
+		if !HexNavi.get_cell_custom_data(tile, "occupied"):
 			all_available_cells.append(tile)
 	var goal_cell = all_available_cells.pick_random() #TODO: Fix potential bug when the unit has no where to go
 	current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, goal_cell))
@@ -107,7 +107,7 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				return
 			
-			if !HexNavi.is_cell_available(clicked_cell):
+			if HexNavi.get_cell_custom_data(clicked_cell, "occupied"):
 				deselect_current_unit()
 				return
 			if HexNavi.get_distance(current_unit.cell, clicked_cell) > current_unit.movement_range:
@@ -117,6 +117,7 @@ func _unhandled_input(event):
 				current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, clicked_cell))
 				in_progress = true
 				await current_unit.movement_complete
+				#TODO: fix a bug where you clck the units too quickly before the previous one ends
 				current_unit.moved = true
 				deselect_current_unit()
 				in_progress = false
