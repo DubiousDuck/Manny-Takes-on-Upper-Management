@@ -2,7 +2,7 @@ extends Unit
 
 class_name PlayerUnit
 
-const MOVE_RANGE_HIGHLIGHT : Color = Color(1, 1, 0, 0.3)
+const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.3)
 
 func _ready():
 	is_player_controlled = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba14eauvdfb4k"
-path="res://.godot/imported/WhiteHexTile.png-35f54e9cf15c3ca45f35337b2a8f1532.ctex"
+uid="uid://b6atey8s6y4na"
+path="res://.godot/imported/hex_grid_white.png-2e23e2463b9b20f80ac30d093c312629.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OtherComponents/WhiteHexTile.png"
-dest_files=["res://.godot/imported/WhiteHexTile.png-35f54e9cf15c3ca45f35337b2a8f1532.ctex"]
+source_file="res://OtherComponents/hex_grid_white.png"
+dest_files=["res://.godot/imported/hex_grid_white.png-2e23e2463b9b20f80ac30d093c312629.ctex"]
 
 [params]
 

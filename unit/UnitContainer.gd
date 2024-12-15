@@ -4,7 +4,7 @@ class_name UnitContainer
 
 signal all_units_moved
 
-const MOVE_RANGE_HIGHLIGHT : Color = Color(1, 1, 0, 0.5)
+const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
 
 @export var is_player_controlled : bool
 var units : Array[Unit] = []
