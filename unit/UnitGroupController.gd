@@ -4,8 +4,8 @@ class_name UnitGroupController
 
 @export var player_goes_first : bool = true
 
-@onready var player_group = $PlayerGroup
-@onready var enemy_group = $EnemyGroup
+@onready var player_group: UnitContainer = $PlayerGroup
+@onready var enemy_group: UnitContainer = $EnemyGroup
 var is_player_turn : bool = true
 
 func _ready():

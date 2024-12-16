@@ -80,13 +80,17 @@ func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 	var all_points = get_navi_path(pos1, pos2)
 	return all_points.size() - 1 #excluding the first point
 
-func get_all_neighbors_in_range(start_pos: Vector2i, range: int) -> Array[int]:
+func get_all_neighbors_in_range(start_pos: Vector2i, range: int) -> Array[Vector2i]:
 	#returns an array of cell ID
 	#employs a depth first search
-	var all_neighbors : Array[int] = []
+	var all_neighbors_id : Array[int] = []
 	var starting_cell_id = tile_to_id(start_pos)
-	_dfs(range, starting_cell_id, starting_cell_id, all_neighbors)
-	return all_neighbors
+	_dfs(range, starting_cell_id, starting_cell_id, all_neighbors_id)
+	var all_neighbors_pos = all_neighbors_id.map(id_to_tile)
+	var answer: Array[Vector2i]
+	answer.assign(all_neighbors_pos)
+	return answer
+	
 func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array): #helper recursive function
 	#godot seems to pass array by reference by default
 	if k < 0 or node_id == -1:

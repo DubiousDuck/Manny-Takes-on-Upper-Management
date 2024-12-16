@@ -20,6 +20,16 @@ func show_highlight_at(positions : Array[Vector2i], color : Color, emitter_name 
 		add_child(a)
 	all_current_highlights[emitter_name] = highlight_group
 
+func ids_to_tile_pos(ids: Array) -> Array[Vector2i]: #function with no use now but kept just in case
+	var positions: Array[Vector2i] = []
+	for id in ids:
+		if id is int:
+			positions.append(HexNavi.id_to_tile(id))
+		elif id is Vector2i:
+			positions.append(id)
+		else: push_warning("id is not an int nor Vector2i!")
+	return positions
+
 func remove_cell_highlights(emitter_name : String):
 	var children = all_current_highlights.get(emitter_name)
 	if children != null:
