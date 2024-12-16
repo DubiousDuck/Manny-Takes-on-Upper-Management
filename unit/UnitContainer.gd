@@ -5,17 +5,22 @@ class_name UnitContainer
 signal all_units_moved
 
 const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
+const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
 
 #information
 @export var is_player_controlled: bool
 var units: Array[Unit] = []
 var current_unit: Unit
 var current_actions: Array[Unit.Action] = []
+var current_skills: Array[SkillInfo] = []
 var current_actionnable_cells: Dictionary = {}
 
 #flags
 var is_waiting_unit_selection: bool = true
 var in_progress: bool = false
+
+func _ready() -> void:
+	EventBus.connect("unit_died", _on_unit_died)
 
 func init():
 	for unit in get_children():
@@ -41,12 +46,14 @@ func select_unit(unit: Unit):
 	current_unit = unit
 	is_waiting_unit_selection = false
 	current_actions = current_unit.actions_avail
+	current_skills = current_unit.skills
 	connect_current_unit_signals()
 	
 func deselect_current_unit():
 	current_unit = null
 	is_waiting_unit_selection = true
 	current_actions = []
+	current_skills = []
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -114,9 +121,7 @@ func _unhandled_input(event):
 			if action_type == Unit.Action.NONE:
 				deselect_current_unit()
 				return
-			#for all possible actions in action list (moving, attacking, supporting, etc.)
-				#execute the action with top priority on the cell clicked
-				#emit necessary signals and move on
+				
 			if action_type == Unit.Action.MOVE and !in_progress:
 				current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, clicked_cell))
 				in_progress = true
@@ -124,6 +129,14 @@ func _unhandled_input(event):
 				#TODO: fix a bug where you clck the units too quickly before the previous one ends
 				deselect_current_unit()
 				in_progress = false
+			
+			if action_type == Unit.Action.ATTACK:
+				var skill_used = current_skills.front()
+				var outbound_array: Array[Vector2i] = [clicked_cell]
+				EventBus.emit_signal("attack_used", skill_used, current_unit, outbound_array)
+				current_unit.take_action(skill_used)
+				deselect_current_unit()
+				
 			if get_available_unit_count() <= 0:
 				all_units_moved.emit()
 
@@ -133,6 +146,14 @@ func highlight_handle():
 			Unit.Action.MOVE:
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				EventBus.emit_signal("show_cell_highlights", all_neighbors, MOVE_RANGE_HIGHLIGHT, name)
+			Unit.Action.ATTACK:
+				var all_targets: Array[Vector2i] = []
+				for skill in current_skills:
+					var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
+					for target in targets:
+						if HexNavi.get_cell_custom_data(target, "occupant_type") == skill.targets: #Only include if tile has the corresponding target
+							all_targets.append(target)
+				EventBus.emit_signal("show_cell_highlights", all_targets, ATTACK_HIGHLIGHT, name)
 			_:
 				pass
 
@@ -146,6 +167,12 @@ func get_actionnable_cells():
 				for neighbor in all_neighbors:
 					if !HexNavi.get_cell_custom_data(neighbor, "occupied"): #only actionnable if tile not occupied
 						tiles.append(neighbor)
+			Unit.Action.ATTACK:
+				for skill in current_skills:
+					var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
+					for target in targets:
+						if HexNavi.get_cell_custom_data(target, "occupant_type") == skill.targets: #Only include if tile has the corresponding target
+							tiles.append(target)
 			_:
 				pass
 		current_actionnable_cells[ac] = tiles
@@ -157,3 +184,10 @@ func find_action(cell: Vector2i) -> Unit.Action:
 		if cells.has(cell):
 			possible_ac.append(ac)
 	return possible_ac.max() #returns the action with highest priority
+
+func _on_unit_died():
+	#recount how many children unit this group has
+	units = []
+	for unit in get_children():
+		if unit.health > 0:
+			units.append(unit)

@@ -10,6 +10,8 @@ signal occupy_cell(pos : Vector2i, unit_type : String)
 signal clear_cells()
 signal update_cell_status()
 
-#Unit Actions
-signal add_action(action_name: String, action_strength: int, target_tile: Vector2i)
-signal execute_actions()
+#Attack/Skill System
+signal attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i])
+
+#Other Information
+signal unit_died()

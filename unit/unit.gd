@@ -13,7 +13,8 @@ enum Action {NONE, MOVE, ATTACK, SKILL}
 @export var attack_power: int = 1
 @export var move_speed_per_cell := 0.2
 @export var movement_range: int = 2
-@export var all_actions: Array[Action] = [Action.MOVE] #Master attribute of all available actions this unit can take in one turn
+@export var all_actions: Array[Action] = [Action.MOVE, Action.ATTACK] #Master attribute of all available actions this unit can take in one turn
+@export var skills: Array[SkillInfo] = []
 
 #unit internal information
 var cell: Vector2i
@@ -53,7 +54,8 @@ func move_along_path(full_path : Array[Vector2i]):
 	EventBus.emit_signal("update_cell_status")
 	movement_complete.emit()
 
-func take_action(): #where animations are handled
+func take_action(skill: SkillInfo): #where animations are handled
+	actions_avail.erase(Action.ATTACK)
 	pass
 
 func highlight_emit():
@@ -61,7 +63,13 @@ func highlight_emit():
 	EventBus.emit_signal("show_cell_highlights", all_neighbors, move_range_highlight, name)
 	
 func _on_hurtbox_mouse_entered():
-	highlight_emit()
+	if actions_avail.has(Action.MOVE):
+		highlight_emit()
 
 func _on_hurtbox_mouse_exited():
 	EventBus.emit_signal("remove_cell_highlights", name)
+
+func check_if_dead():
+	if health <= 0:
+		EventBus.emit_signal("unit_died")
+		queue_free.call_deferred()

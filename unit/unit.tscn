@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=6 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="2_w64s5"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_attack.tres" id="3_761ob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 
@@ -10,6 +12,7 @@
 position = Vector2(90, 320)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
+skills = Array[ExtResource("2_w64s5")]([ExtResource("3_761ob")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ly3a2")
