@@ -21,6 +21,7 @@ var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn
 var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
+var selected: bool = false
 
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
@@ -35,6 +36,7 @@ func init():
 	cell = HexNavi.global_to_cell(global_position)
 	global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
+	toggle_skill_ui(false)
 
 func move_along_path(full_path : Array[Vector2i]):
 	var move_tween = get_tree().create_tween()
@@ -56,6 +58,7 @@ func move_along_path(full_path : Array[Vector2i]):
 
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
+	#animation
 	pass
 
 func highlight_emit():
@@ -63,7 +66,7 @@ func highlight_emit():
 	EventBus.emit_signal("show_cell_highlights", all_neighbors, move_range_highlight, name)
 	
 func _on_hurtbox_mouse_entered():
-	if actions_avail.has(Action.MOVE):
+	if actions_avail.has(Action.MOVE) and !selected:
 		highlight_emit()
 
 func _on_hurtbox_mouse_exited():
@@ -73,3 +76,6 @@ func check_if_dead():
 	if health <= 0:
 		EventBus.emit_signal("unit_died")
 		queue_free.call_deferred()
+
+func toggle_skill_ui(state: bool):
+	$SkillSelect.visible = state

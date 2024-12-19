@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://kmkcpxlo5atd"]
+
+[ext_resource type="Script" path="res://unit/unit_ui/skill_icon.gd" id="1_a1oet"]
+
+[node name="SkillIcon" type="Button"]
+custom_minimum_size = Vector2(25, 12)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+text = "Sample Attack"
+script = ExtResource("1_a1oet")

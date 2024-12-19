@@ -89,6 +89,7 @@ func get_all_neighbors_in_range(start_pos: Vector2i, range: int) -> Array[Vector
 	var all_neighbors_pos = all_neighbors_id.map(id_to_tile)
 	var answer: Array[Vector2i]
 	answer.assign(all_neighbors_pos)
+	#print(answer, start_pos)
 	return answer
 	
 func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array): #helper recursive function

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=8 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Script" path="res://skills/skill_info.gd" id="2_w64s5"]
-[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_attack.tres" id="3_761ob"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_melee_attack.tres" id="3_761ob"]
+[ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
+[ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_mqqhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 
@@ -12,7 +14,7 @@
 position = Vector2(90, 320)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
-skills = Array[ExtResource("2_w64s5")]([ExtResource("3_761ob")])
+skills = Array[ExtResource("2_w64s5")]([ExtResource("3_761ob"), ExtResource("4_mqqhb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ly3a2")
@@ -52,6 +54,18 @@ grow_vertical = 2
 text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SkillSelect" parent="." node_paths=PackedStringArray("unit") instance=ExtResource("4_j4em8")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 15.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)
+unit = NodePath("..")
 
 [connection signal="mouse_entered" from="Hurtbox" to="." method="_on_hurtbox_mouse_entered"]
 [connection signal="mouse_exited" from="Hurtbox" to="." method="_on_hurtbox_mouse_exited"]

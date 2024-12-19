@@ -44,8 +44,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 		if targets.has(unit.cell):
 			affected_units.append(unit)
 	#for each skill effect, apply it on every affected units
-	for effect in attack.skill_effects:
-		match effect.x:
+	for effect in attack.skill_effects: 
+		match effect.x: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit):
@@ -62,6 +62,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var dir: Vector2i = unit.cell - attacker.cell
 						#apply the direction by strength of knockback
 						var new_location: Vector2i = unit.cell + dir*effect.y
+						print(dir, unit.cell, new_location)
 						move_tween.tween_property(
 							unit,
 							'global_position',
@@ -75,6 +76,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
 				
+			SkillInfo.EffectType.WAIT:
+				affected_units.map(
+					func(unit):
+						unit.actions_avail.erase(Unit.Action.MOVE)
+				)
 			_:
 				print("nothing happens yet")
 				
@@ -82,14 +88,13 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	affected_units.map(func(unit): unit.check_if_dead())
 
 func _on_update_cell_status(): #scan all units and update cell color accordingly
-	var units : Array[Unit] = []
+	all_units = []
 	EventBus.emit_signal("clear_cells")
-	units.append_array(player_group.units)
-	for unit in units:
+	all_units.append_array(player_group.units)
+	all_units.append_array(enemy_group.units)
+	for unit in player_group.units:
 		EventBus.emit_signal("occupy_cell", unit.cell, "player")
-	units.clear()
-	units.append_array(enemy_group.units)
-	for unit in units:
+	for unit in enemy_group.units:
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
 
 func _on_unit_died():

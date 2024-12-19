@@ -13,6 +13,7 @@ var units: Array[Unit] = []
 var current_unit: Unit
 var current_actions: Array[Unit.Action] = []
 var current_skills: Array[SkillInfo] = []
+var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
 #flags
@@ -21,6 +22,8 @@ var in_progress: bool = false
 
 func _ready() -> void:
 	EventBus.connect("unit_died", _on_unit_died)
+	if is_player_controlled:
+		EventBus.connect("skill_chosen", _on_skill_chosen)
 
 func init():
 	for unit in get_children():
@@ -43,17 +46,24 @@ func get_available_unit_count():
 	return count
 
 func select_unit(unit: Unit):
+	unit.selected = true
 	current_unit = unit
 	is_waiting_unit_selection = false
 	current_actions = current_unit.actions_avail
 	current_skills = current_unit.skills
+	if current_actions.has(Unit.Action.ATTACK):
+		current_unit.toggle_skill_ui(true)
+	skill_chosen = null
 	connect_current_unit_signals()
 	
 func deselect_current_unit():
+	current_unit.toggle_skill_ui(false)
+	current_unit.selected = false
 	current_unit = null
 	is_waiting_unit_selection = true
 	current_actions = []
 	current_skills = []
+	skill_chosen = null
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -101,7 +111,6 @@ func _unhandled_input(event):
 				if unit.cell == clicked_cell and !unit.actions_avail.is_empty(): #select this unit as the current_unit if the unit has actions remaining
 					get_viewport().set_input_as_handled()
 					select_unit(unit)
-					#call action UI
 					highlight_handle()
 					get_actionnable_cells()
 					return
@@ -111,10 +120,6 @@ func _unhandled_input(event):
 			var clicked_cell = HexNavi.global_to_cell(get_global_mouse_position())
 			
 			get_viewport().set_input_as_handled()
-			#deselect if unit is clicked on again
-			if current_unit.cell == clicked_cell:
-				deselect_current_unit()
-				return
 			
 			var action_type := find_action(clicked_cell)
 			
@@ -130,29 +135,34 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				in_progress = false
 			
-			if action_type == Unit.Action.ATTACK:
-				var skill_used = current_skills.front()
+			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
-				EventBus.emit_signal("attack_used", skill_used, current_unit, outbound_array)
-				current_unit.take_action(skill_used)
+				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+				current_unit.take_action(skill_chosen)
 				deselect_current_unit()
+			
+			#deselect if unit is clicked on again
+			if current_unit != null and current_unit.cell == clicked_cell:
+				deselect_current_unit()
+				return
 				
 			if get_available_unit_count() <= 0:
 				all_units_moved.emit()
 
 func highlight_handle():
+	EventBus.emit_signal("remove_cell_highlights", name)
 	for ac in current_actions:
 		match ac:
 			Unit.Action.MOVE:
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				EventBus.emit_signal("show_cell_highlights", all_neighbors, MOVE_RANGE_HIGHLIGHT, name)
 			Unit.Action.ATTACK:
-				var all_targets: Array[Vector2i] = []
-				for skill in current_skills:
-					var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
-					for target in targets:
-						if HexNavi.get_cell_custom_data(target, "occupant_type") == skill.targets: #Only include if tile has the corresponding target
-							all_targets.append(target)
+				if skill_chosen == null:
+					return
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
+				var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets)
+				if all_targets.size() == 0:
+					return
 				EventBus.emit_signal("show_cell_highlights", all_targets, ATTACK_HIGHLIGHT, name)
 			_:
 				pass
@@ -168,16 +178,16 @@ func get_actionnable_cells():
 					if !HexNavi.get_cell_custom_data(neighbor, "occupied"): #only actionnable if tile not occupied
 						tiles.append(neighbor)
 			Unit.Action.ATTACK:
-				for skill in current_skills:
-					var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
-					for target in targets:
-						if HexNavi.get_cell_custom_data(target, "occupant_type") == skill.targets: #Only include if tile has the corresponding target
-							tiles.append(target)
+				if skill_chosen == null:
+					return
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
+				tiles.append_array(get_targets_of_type(targets, skill_chosen.targets))
 			_:
 				pass
 		current_actionnable_cells[ac] = tiles
 
 func find_action(cell: Vector2i) -> Unit.Action:
+	#given a clicked cell, return the action with highest priority that is legal on that cell
 	var possible_ac: Array[Unit.Action] = [Unit.Action.NONE]
 	for ac in current_actionnable_cells.keys():
 		var cells = current_actionnable_cells.get(ac)
@@ -185,9 +195,37 @@ func find_action(cell: Vector2i) -> Unit.Action:
 			possible_ac.append(ac)
 	return possible_ac.max() #returns the action with highest priority
 
+func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells among targets that are of a specific target type
+	var correct_targets: Array[Vector2i] = []
+	var allied_cells: Array[Vector2i] = []
+	units.map(
+		func(unit):
+			allied_cells.append(unit.cell)
+	)
+	for target in targets:
+		if HexNavi.get_cell_custom_data(target, "occupied"):
+			match skill_chosen.targets:
+				SkillInfo.TargetType.ALLIES:
+					if allied_cells.has(target): correct_targets.append(target)
+				SkillInfo.TargetType.ENEMIES:
+					if !allied_cells.has(target): correct_targets.append(target)
+				SkillInfo.TargetType.SELF:
+					if target == current_unit.cell: correct_targets.append(target)
+				SkillInfo.TargetType.ANY:
+					correct_targets.append(target)
+				_:
+					pass
+	return correct_targets
+	
 func _on_unit_died():
 	#recount how many children unit this group has
 	units = []
 	for unit in get_children():
 		if unit.health > 0:
 			units.append(unit)
+
+func _on_skill_chosen(skill: SkillInfo):
+	current_unit.toggle_skill_ui(false)
+	skill_chosen = skill
+	highlight_handle()
+	get_actionnable_cells()
