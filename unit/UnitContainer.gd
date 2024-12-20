@@ -3,6 +3,7 @@ extends Node2D
 class_name UnitContainer
 
 signal all_units_moved
+signal unit_action_done
 
 const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
 const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
@@ -51,12 +52,14 @@ func select_unit(unit: Unit):
 	is_waiting_unit_selection = false
 	current_actions = current_unit.actions_avail
 	current_skills = current_unit.skills
-	if current_actions.has(Unit.Action.ATTACK):
+	if is_player_controlled and current_actions.has(Unit.Action.ATTACK):
 		current_unit.toggle_skill_ui(true)
 	skill_chosen = null
 	connect_current_unit_signals()
 	
 func deselect_current_unit():
+	if current_unit == null:
+		return
 	current_unit.toggle_skill_ui(false)
 	current_unit.selected = false
 	current_unit = null
@@ -72,16 +75,46 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
-func move_unit():
+func unit_action():
 	#handle npc movement and attack logic here
-	#TODO: placeholder movement
-	var possible_cells = HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
-	var available_cells = [] 
-	for cell in possible_cells:
-		if !HexNavi.get_cell_custom_data(cell, "occupied"):
-			available_cells.append(cell)
-	var goal_cell = available_cells.pick_random() #TODO: Fix potential bug when the unit has no where to go
-	current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, goal_cell))
+	#Place holder for now (largely identical to player logic)
+	
+	#check for attack targets; if none, choose wait
+	for skill in current_skills:
+		skill_chosen = skill #assumes that if all fail, wait is always an option
+		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
+		if get_targets_of_type(targets, skill_chosen.targets).size() > 0:
+			break
+	
+	#get all actionnable cells and pick a random one #TODO: Give weights to different actions so enemy can make better choices
+	get_actionnable_cells()
+	var all_actionnable_cells: Array[Vector2i] = []
+	current_actionnable_cells.values().map(
+		func(array):
+			all_actionnable_cells.append_array(array)
+	)
+	var clicked_cell: Vector2i = all_actionnable_cells.pick_random()
+	
+	#execute action according to the cell chosen
+	var action_type := find_action(clicked_cell)
+			
+	if action_type == Unit.Action.NONE:
+		deselect_current_unit()
+		return
+		
+	if action_type == Unit.Action.MOVE and !in_progress:
+		current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, clicked_cell))
+		in_progress = true
+		await current_unit.movement_complete
+		deselect_current_unit()
+		in_progress = false
+	
+	if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
+		var outbound_array: Array[Vector2i] = [clicked_cell]
+		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+		current_unit.take_action(skill_chosen)
+		deselect_current_unit()
+	
 	return
 	
 func _step_enemy():
@@ -90,11 +123,10 @@ func _step_enemy():
 		return
 	for unit in units:
 		if !unit.actions_avail.is_empty():
-			current_unit = unit
+			select_unit(unit)
 			break
 	if current_unit != null:
-		move_unit()
-		await current_unit.movement_complete
+		await unit_action()
 		_step_enemy()
 		return
 
@@ -146,7 +178,7 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				return
 				
-			if get_available_unit_count() <= 0:
+			if get_available_unit_count() <= 0: #TODO: fix logic where signal emitted before actions are fully resolved
 				all_units_moved.emit()
 
 func highlight_handle():

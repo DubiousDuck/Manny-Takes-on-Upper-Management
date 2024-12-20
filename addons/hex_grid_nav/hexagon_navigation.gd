@@ -37,7 +37,7 @@ func cell_to_global(cell_pos : Vector2i) -> Vector2: #returns another global pos
 	return current_map.to_global(current_map.map_to_local(cell_pos))
 
 func global_to_cell(global_pos : Vector2) -> Vector2i: #returns local cell position
-	var closest_point_id = astar.get_closest_point(current_map.local_to_map(current_map.to_local(global_pos)))
+	var closest_point_id = astar.get_closest_point(current_map.local_to_map(current_map.to_local(global_pos))) #TODO: Fix bug where clicking on an empty map will register as the closest tile
 	return astar.get_point_position(closest_point_id)
 
 func get_cell_custom_data(cell_pos: Vector2i, data_name: String):
@@ -100,6 +100,8 @@ func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array): #helpe
 		solution_arr.append(node_id)
 	for neighbor_pos in current_map.get_surrounding_cells(astar.get_point_position(node_id)):
 		var neighbor_id = tile_to_id(neighbor_pos)
+		if neighbor_id == null:
+			return
 		if neighbor_id != parent_id:
 			_dfs(k-1, neighbor_id, node_id, solution_arr)
 	

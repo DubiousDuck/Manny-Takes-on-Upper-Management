@@ -49,7 +49,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit):
-						unit.health -= effect.y
+						unit.health -= effect.y*attacker.attack_power
 				)
 				
 			SkillInfo.EffectType.KNOCKBACK:
