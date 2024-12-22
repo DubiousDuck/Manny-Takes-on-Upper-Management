@@ -54,15 +54,12 @@ script = ExtResource("3_r2aph")
 [node name="Unit" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(356, 420)
 script = ExtResource("8_ugu2x")
-attack_power = 2
 skills = Array[ExtResource("8_jrsfy")]([ExtResource("9_dy06p"), ExtResource("9_vlig1"), ExtResource("11_bry5o")])
 
 [node name="Unit2" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
-position = Vector2(128, 283)
+position = Vector2(434, 95)
 script = ExtResource("8_ugu2x")
-attack_power = 2
 
 [node name="Unit3" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(432, 284)
 script = ExtResource("8_ugu2x")
-attack_power = 2
