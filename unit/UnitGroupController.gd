@@ -30,6 +30,7 @@ func connect_container_signal(unit_group : UnitContainer):
 	
 func _on_unit_container_all_moved():
 	is_player_turn = !is_player_turn
+	#TODO: Fix bug where anonther group starts before all previous actions are resolved
 	if is_player_turn:
 		player_group.round_start()
 		print("player's turn")
@@ -57,18 +58,19 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				move_tween.set_ease(Tween.EASE_OUT)
 				move_tween.set_trans(Tween.TRANS_CUBIC)
 				affected_units.map(
-					func(unit):
+					func(unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
 						#calculate the direction of knockback
-						var dir: Vector2i = unit.cell - attacker.cell
+						var dir: Vector2 = unit.global_position - attacker.global_position
 						#apply the direction by strength of knockback
-						var new_location: Vector2i = unit.cell + dir*effect.y
-						print(dir, unit.cell, new_location)
+						var new_location: Vector2 = unit.global_position + dir*effect.y
+						print(dir, unit.global_position, new_location)
 						move_tween.tween_property(
 							unit,
 							'global_position',
-							HexNavi.cell_to_global(new_location),
+							new_location,
 							0.5
 						)
+						#Snap the unit to the cell if necessary (no need now)
 				)
 				await move_tween.finished
 				affected_units.map(
