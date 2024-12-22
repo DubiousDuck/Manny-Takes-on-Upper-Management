@@ -73,6 +73,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				await move_tween.finished
 				affected_units.map(
 					func(unit):
+						if unit == null:
+							return
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
 				
@@ -99,3 +101,23 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 
 func _on_unit_died():
 	_on_update_cell_status()
+	check_if_win()
+
+func check_if_win():
+	var win_flag: int = 0
+	if player_group.units.size() <= 0:
+		win_flag -=1
+	if enemy_group.units.size() <= 0:
+		win_flag += 2
+	match win_flag:
+		-1:	#Enemy won
+			EventBus.emit_signal("battle_ended", EventBus.BattleResult.ENEMY_VICTORY)
+			print("Enemy won!")
+		0:	#no result
+			print("no result yet")
+		1:	#Tie
+			EventBus.emit_signal("battle_ended", EventBus.BattleResult.TIE)
+			print("It is a tie")
+		2:	#Player won
+			EventBus.emit_signal("battle_ended", EventBus.BattleResult.PLAYER_VICTORY)
+			print("Player won!")
