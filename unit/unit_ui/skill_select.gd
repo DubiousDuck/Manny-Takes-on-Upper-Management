@@ -18,6 +18,10 @@ func _ready() -> void:
 	
 
 func init():
+	for child in hbox.get_children():
+		hbox.remove_child(child)
+	buttons.clear()
+	
 	for skill in unit.skills:
 		var a: SkillIcon = icon.instantiate()
 		a.skill = skill

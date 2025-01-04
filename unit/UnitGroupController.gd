@@ -85,6 +85,28 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					func(unit):
 						unit.actions_avail.erase(Unit.Action.MOVE)
 				)
+			SkillInfo.EffectType.DISPLACE:
+				match effect.y:
+					0: #displace to attacker position (pick up)
+						var v_offset: int = -30
+						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
+						affected_units.map(
+							func(unit):
+								attacker.unit_held.append(unit)
+								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset), 0.3)
+						)
+						attacker.actions_avail.append(Unit.Action.ATTACK) #give back attack token
+						#TODO: suspend picked up unit action
+						
+					1: #displace linearly target location (assumes only one affected target) (throw)
+						var projectile = attacker.unit_held.pop_front()
+						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+						a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3)
+						await a.finished
+						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
+					_:
+						print("nothing to displace yet")
+				attacker.check_if_can_throw()
 			_:
 				print("nothing happens yet")
 				

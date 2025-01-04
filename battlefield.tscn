@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://wyl7uecllbco"]
+[gd_scene load_steps=14 format=4 uid="uid://wyl7uecllbco"]
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="1_h80nl"]
 [ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_melee_attack.tres" id="9_dy06p"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/normal_ranged_attack.tres" id="9_vlig1"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="11_bry5o"]
+[ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="11_mpall"]
 
 [node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_ncysa")
@@ -38,6 +39,7 @@ is_player_controlled = true
 [node name="Unit" parent="Units/PlayerGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(-29, 281)
 script = ExtResource("7_l8o4u")
+skills = Array[ExtResource("8_jrsfy")]([ExtResource("9_dy06p"), ExtResource("11_bry5o"), ExtResource("11_mpall")])
 
 [node name="Unit2" parent="Units/PlayerGroup" instance=ExtResource("4_c4dfy")]
 position = Vector2(53, 331)
@@ -52,7 +54,7 @@ skills = Array[ExtResource("8_jrsfy")]([ExtResource("9_dy06p"), ExtResource("9_v
 script = ExtResource("3_r2aph")
 
 [node name="Unit" parent="Units/EnemyGroup" instance=ExtResource("4_c4dfy")]
-position = Vector2(356, 420)
+position = Vector2(53, 141)
 script = ExtResource("8_ugu2x")
 skills = Array[ExtResource("8_jrsfy")]([ExtResource("9_dy06p"), ExtResource("9_vlig1"), ExtResource("11_bry5o")])
 

@@ -22,6 +22,7 @@ var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't
 var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
+var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
@@ -78,4 +79,12 @@ func check_if_dead():
 		queue_free.call_deferred()
 
 func toggle_skill_ui(state: bool):
+	$SkillSelect.init()
 	$SkillSelect.visible = state
+
+func check_if_can_throw():
+	var throw_skill = load("res://skills/throw.tres")
+	if !unit_held.is_empty() and !skills.has(throw_skill):
+		skills.append(throw_skill)
+	else:
+		skills.erase(throw_skill)

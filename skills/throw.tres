@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://cpkttqerqokpf"]
+
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="1_wy4d6"]
+
+[resource]
+script = ExtResource("1_wy4d6")
+name = "Throw"
+type = 0
+targets = 1
+range = 2
+skill_effects = Array[Vector2i]([Vector2i(8, 1), Vector2i(0, 1), Vector2i(1, 1)])
