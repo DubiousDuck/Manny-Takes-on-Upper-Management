@@ -12,8 +12,6 @@ const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
 @export var is_player_controlled: bool
 var units: Array[Unit] = []
 var current_unit: Unit
-var current_actions: Array[Unit.Action] = []
-var current_skills: Array[SkillInfo] = []
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
@@ -50,9 +48,7 @@ func select_unit(unit: Unit):
 	unit.selected = true
 	current_unit = unit
 	is_waiting_unit_selection = false
-	current_actions = current_unit.actions_avail
-	current_skills = current_unit.skills
-	if is_player_controlled and current_actions.has(Unit.Action.ATTACK):
+	if is_player_controlled and current_unit.actions_avail.has(Unit.Action.ATTACK):
 		current_unit.toggle_skill_ui(true)
 	skill_chosen = null
 	connect_current_unit_signals()
@@ -64,8 +60,6 @@ func deselect_current_unit():
 	current_unit.selected = false
 	current_unit = null
 	is_waiting_unit_selection = true
-	current_actions = []
-	current_skills = []
 	skill_chosen = null
 	disconnect_current_unit_signals()
 
@@ -80,7 +74,7 @@ func unit_action():
 	#Place holder for now (largely identical to player logic)
 	
 	#check for attack targets; if none, choose wait
-	for skill in current_skills:
+	for skill in current_unit.skills:
 		skill_chosen = skill #assumes that if all fail, wait is always an option
 		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
 		if get_targets_of_type(targets, skill_chosen.targets).size() > 0:
@@ -103,7 +97,13 @@ func unit_action():
 		return
 		
 	if action_type == Unit.Action.MOVE and !in_progress:
-		current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, clicked_cell))
+		var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
+		current_unit.move_along_path(full_path)
+		if !current_unit.unit_held.is_empty(): #if unit is carrying other units
+			current_unit.unit_held.map(
+				func(unit): #assume all units held are of class Unit
+					unit.move_along_path(full_path)
+			)
 		in_progress = true
 		await current_unit.movement_complete
 		deselect_current_unit()
@@ -152,15 +152,12 @@ func _unhandled_input(event):
 			var clicked_cell = HexNavi.global_to_cell(get_global_mouse_position())
 			
 			get_viewport().set_input_as_handled()
-			
+				
 			var action_type := find_action(clicked_cell)
-			
-			if action_type == Unit.Action.NONE:
-				deselect_current_unit()
-				return
 				
 			if action_type == Unit.Action.MOVE and !in_progress:
-				current_unit.move_along_path(HexNavi.get_navi_path(current_unit.cell, clicked_cell))
+				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
+				current_unit.move_along_path(full_path)
 				in_progress = true
 				await current_unit.movement_complete
 				#TODO: fix a bug where you clck the units too quickly before the previous one ends
@@ -172,18 +169,28 @@ func _unhandled_input(event):
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 				current_unit.take_action(skill_chosen)
 				deselect_current_unit()
+				#TODO: Fix stuff where held unit wait would also affect parent
 			
-			#deselect if unit is clicked on again
+			#deselect if unit is clicked on again; select held units
 			if current_unit != null and current_unit.cell == clicked_cell:
+				var next_unit = get_next_unit_of_same_cell(current_unit)
+				deselect_current_unit()
+				if next_unit != null:
+					select_unit(next_unit)
+					highlight_handle()
+					get_actionnable_cells()
+				return
+			
+			if action_type == Unit.Action.NONE:
 				deselect_current_unit()
 				return
-				
+			
 			if get_available_unit_count() <= 0: #TODO: fix logic where signal emitted before actions are fully resolved
 				all_units_moved.emit()
 
 func highlight_handle():
 	EventBus.emit_signal("remove_cell_highlights", name)
-	for ac in current_actions:
+	for ac in current_unit.actions_avail:
 		match ac:
 			Unit.Action.MOVE:
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
@@ -201,7 +208,7 @@ func highlight_handle():
 
 func get_actionnable_cells():
 	current_actionnable_cells = {}
-	for ac in current_actions:
+	for ac in current_unit.actions_avail:
 		var tiles: Array[Vector2i] = []
 		match ac:
 			Unit.Action.MOVE:
@@ -245,6 +252,8 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 					if target == current_unit.cell: correct_targets.append(target)
 				SkillInfo.TargetType.ANY:
 					correct_targets.append(target)
+				SkillInfo.TargetType.EXCEPT_SELF:
+					if target != current_unit.cell: correct_targets.append(target)
 				_:
 					pass
 	return correct_targets
@@ -261,3 +270,9 @@ func _on_skill_chosen(skill: SkillInfo):
 	skill_chosen = skill
 	highlight_handle()
 	get_actionnable_cells()
+	
+func get_next_unit_of_same_cell(curr_unit: Unit):
+	for unit in units:
+		if unit.cell == curr_unit.cell and unit != curr_unit:
+			return unit
+	return null

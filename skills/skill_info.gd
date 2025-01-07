@@ -4,13 +4,13 @@ class_name SkillInfo
 
 enum EffectType {DAMAGE, KNOCKBACK, HEAL, BUFF, DEBUFF, STUN, ACTION_COMMAND, WAIT, DISPLACE}
 #DAMAGE = 0, KNOCKBACK = 1, HEAL = 2, BUFF = 3, DEBUFF = 4, STUN = 5, ACTION_COMMAND = 6, WAIT = 7, DISPLACE = 8
-
-enum TargetType {ALLIES, ENEMIES, SELF, ANY}
+enum TargetType {ALLIES, ENEMIES, SELF, ANY, EXCEPT_SELF}
+#ALLIES = 0, ENEMIES = 1, SELF = 2, ANY = 3, EXCEPT_SELF = 4
 
 @export_category("Basic Info")
 @export var name: String
 @export_enum("attack", "skill", "passive") var type
-@export_enum("allies", "enemies", "self", "any") var targets
+@export_enum("allies", "enemies", "self", "any", "except_self") var targets
 @export_range(0, 10) var range: int
 
 @export_category("Skill Detail")

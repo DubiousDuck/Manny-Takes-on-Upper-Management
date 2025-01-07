@@ -32,6 +32,11 @@ func _process(delta):
 		if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
 		else: $ColorRect.color = Color(0.89, 0.281, 0.239)
 	$Health.text = str(health) #TODO: Replace placeholder
+	
+	unit_held.map(
+		func(unit):
+			unit.global_position = global_position + Vector2(0, -30)
+	)
 		
 func init():
 	cell = HexNavi.global_to_cell(global_position)
@@ -54,6 +59,10 @@ func move_along_path(full_path : Array[Vector2i]):
 	await move_tween.finished
 	actions_avail.erase(Action.MOVE)
 	cell = HexNavi.global_to_cell(global_position)
+	unit_held.map( #update held unit cell info
+		func(unit):
+			unit.cell = cell
+	)
 	EventBus.emit_signal("update_cell_status")
 	movement_complete.emit()
 
@@ -68,9 +77,13 @@ func highlight_emit():
 	
 func _on_hurtbox_mouse_entered():
 	if actions_avail.has(Action.MOVE) and !selected:
+		if is_player_controlled: $ColorRect.color = Color(0, 0.420, 0.630)
+		else: $ColorRect.color = Color(0.51, 0.046, 0)
 		highlight_emit()
 
 func _on_hurtbox_mouse_exited():
+	if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
+	else: $ColorRect.color = Color(0.89, 0.281, 0.239)
 	EventBus.emit_signal("remove_cell_highlights", name)
 
 func check_if_dead():

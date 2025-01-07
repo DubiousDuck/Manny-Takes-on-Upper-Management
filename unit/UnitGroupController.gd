@@ -63,7 +63,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var dir: Vector2 = unit.global_position - attacker.global_position
 						#apply the direction by strength of knockback
 						var new_location: Vector2 = unit.global_position + dir*effect.y
-						print(dir, unit.global_position, new_location)
 						move_tween.tween_property(
 							unit,
 							'global_position',
@@ -91,12 +90,13 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var v_offset: int = -30
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
 						affected_units.map(
-							func(unit):
-								attacker.unit_held.append(unit)
+							func(unit): #TODO: Handle holding multiple units properly
 								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset), 0.3)
+								unit.cell = attacker.cell
 						)
+						await a.finished
+						attacker.unit_held.append_array(affected_units)
 						attacker.actions_avail.append(Unit.Action.ATTACK) #give back attack token
-						#TODO: suspend picked up unit action
 						
 					1: #displace linearly target location (assumes only one affected target) (throw)
 						var projectile = attacker.unit_held.pop_front()
