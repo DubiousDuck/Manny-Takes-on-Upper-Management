@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="1_h80nl"]
 [ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
-[ext_resource type="Script" path="res://OtherComponents/cell_highlights.gd" id="3_gevof"]
+[ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_gevof"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="3_o4i10"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="3_r2aph"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="4_c4dfy"]

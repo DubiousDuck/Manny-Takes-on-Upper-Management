@@ -70,6 +70,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							0.5
 						)
 						#Snap the unit to the cell if necessary (no need now)
+						#TODO: fix so that unit won't land on nothing
 				)
 				await move_tween.finished
 				affected_units.map(

@@ -34,7 +34,7 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 func _on_clear_cells():
 	for pos in get_used_cells():
 		set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
-	
+
 #func _input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():

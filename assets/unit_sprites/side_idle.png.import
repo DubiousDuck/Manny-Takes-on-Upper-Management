@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1odw8k6t1b0j"
-path="res://.godot/imported/hex_grid_yellow.png-1f39433dd8573aa1cdbc5d9b1fba4a31.ctex"
+uid="uid://3colr5os47jl"
+path="res://.godot/imported/side_idle.png-d12244a144e0311678cc500a16b4b5f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OtherComponents/hex_grid_yellow.png"
-dest_files=["res://.godot/imported/hex_grid_yellow.png-1f39433dd8573aa1cdbc5d9b1fba4a31.ctex"]
+source_file="res://assets/unit_sprites/side_idle.png"
+dest_files=["res://.godot/imported/side_idle.png-d12244a144e0311678cc500a16b4b5f8.ctex"]
 
 [params]
 

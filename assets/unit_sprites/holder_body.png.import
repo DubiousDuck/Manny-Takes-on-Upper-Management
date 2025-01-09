@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n0kv0is2h1k7"
-path="res://.godot/imported/hex_grid_red.png-67838efefb4e6a70261c4993f9810c4d.ctex"
+uid="uid://d2q7eanslgwcl"
+path="res://.godot/imported/holder_body.png-8510beba411edca059cd13e008421d67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://OtherComponents/hex_grid_red.png"
-dest_files=["res://.godot/imported/hex_grid_red.png-67838efefb4e6a70261c4993f9810c4d.ctex"]
+source_file="res://assets/unit_sprites/holder_body.png"
+dest_files=["res://.godot/imported/holder_body.png-8510beba411edca059cd13e008421d67.ctex"]
 
 [params]
 

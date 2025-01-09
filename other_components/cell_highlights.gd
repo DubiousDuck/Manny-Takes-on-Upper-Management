@@ -2,7 +2,7 @@ extends Node2D
 
 class_name CellHighlight
 
-@onready var highlight_tile = preload("res://OtherComponents/highight_tile.tscn")
+@onready var highlight_tile = preload("res://other_components/highight_tile.tscn")
 var all_current_highlights : Dictionary = {}
 
 func _ready():
