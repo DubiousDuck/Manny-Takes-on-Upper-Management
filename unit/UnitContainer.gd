@@ -72,6 +72,7 @@ func disconnect_current_unit_signals():
 func unit_action():
 	#handle npc movement and attack logic here
 	#Place holder for now (largely identical to player logic)
+	#TODO: Smarter enemy AI
 	
 	#check for attack targets; if none, choose wait
 	for skill in current_unit.skills:

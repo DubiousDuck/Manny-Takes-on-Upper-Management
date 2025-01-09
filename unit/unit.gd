@@ -6,7 +6,7 @@ signal movement_complete
 signal action_complete
 
 #unit constants
-enum Action {NONE, MOVE, ATTACK, SKILL}
+enum Action {NONE, MOVE, ATTACK, ITEM}
 
 #unit attributes (interface)
 @export var health: int = 2

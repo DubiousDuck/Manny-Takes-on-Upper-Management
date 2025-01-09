@@ -80,10 +80,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				)
 				
 			SkillInfo.EffectType.WAIT:
-				affected_units.map(
-					func(unit):
-						unit.actions_avail.erase(Unit.Action.MOVE)
-				)
+				attacker.actions_avail.erase(Unit.Action.MOVE)
+				attacker.actions_avail.erase(Unit.Action.ATTACK)
+				
 			SkillInfo.EffectType.DISPLACE:
 				match effect.y:
 					0: #displace to attacker position (pick up)
