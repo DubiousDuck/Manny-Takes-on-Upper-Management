@@ -24,6 +24,9 @@ var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 
+signal action_command_point
+signal attack_point
+
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
 		if is_player_controlled: $ColorRect.color = Color(0, 0.305, 0.461)
@@ -88,12 +91,15 @@ func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	match skill.name:
+		"Pick Up":
+			animation_state("holding_idle")
 		"Normal Melee Attack":
 			animation_state("punch")
 		"Normal Ranged Attack":
 			animation_state("shoot")
-	await $AnimationPlayer.animation_finished
-	animation_state("side_idle")
+		_:
+			print("Failed to match skill name " + skill.name + " (unit.gd)")
+			attack_point.emit()
 
 func highlight_emit():
 	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, movement_range)
@@ -132,3 +138,10 @@ func animation_state(animation : String):
 	$Sprite2D.hframes = 4
 	print("# NEW ANIMATION: " + animation + " (unit.gd)")
 	$AnimationPlayer.play(animation)
+
+func emit_attack_point():
+	print("Attack point emitted!")
+	attack_point.emit()
+	
+func emit_action_command_point():
+	action_command_point.emit()

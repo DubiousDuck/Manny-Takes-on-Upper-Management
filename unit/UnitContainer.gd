@@ -114,8 +114,10 @@ func unit_action():
 	
 	if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 		var outbound_array: Array[Vector2i] = [clicked_cell]
-		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 		current_unit.take_action(skill_chosen)
+		print("# Awaiting attack point (UnitContainer.gd)")
+		await current_unit.attack_point
+		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 		deselect_current_unit()
 	
 	return
@@ -169,8 +171,10 @@ func _unhandled_input(event):
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
-				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 				current_unit.take_action(skill_chosen)
+				print("# Awaiting attack point (UnitContainer.gd)")
+				await current_unit.attack_point
+				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 				deselect_current_unit()
 				#TODO: Fix stuff where held unit wait would also affect parent
 			
