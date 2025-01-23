@@ -17,37 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://ce10om6f2h4bb" path="res://assets/unit_sprites/thrown.png" id="15_m8uyx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
+size = Vector2(12.9032, 16.2162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kobe"]
-
-[sub_resource type="Animation" id="Animation_cdn1g"]
-resource_name = "side_idle"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_jkf6t")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
+size = Vector2(12.9032, 16.2162)
 
 [sub_resource type="Animation" id="Animation_bvfsh"]
 length = 0.001
@@ -86,35 +59,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_3ifqo"]
-resource_name = "side_walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_xw0kh")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_abic1"]
@@ -318,6 +262,64 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 2, 1, 0]
 }
 
+[sub_resource type="Animation" id="Animation_cdn1g"]
+resource_name = "side_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_jkf6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3ifqo"]
+resource_name = "side_walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_xw0kh")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="Animation" id="Animation_ddsa6"]
 resource_name = "thrown"
 tracks/0/type = "value"
@@ -361,65 +363,44 @@ _data = {
 }
 
 [node name="Unit" type="CharacterBody2D"]
-position = Vector2(90, 320)
+position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
 skills = Array[ExtResource("2_w64s5")]([ExtResource("3_761ob"), ExtResource("4_mqqhb")])
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -9.22581
+offset_top = -7.7027
+offset_right = 9.77419
+offset_bottom = 11.2973
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.05312e-06, 2.70271)
 shape = SubResource("RectangleShape2D_ly3a2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.27419
-offset_top = -9.12162
-offset_right = 30.7258
-offset_bottom = 30.8784
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.467742, 0.459459)
-mouse_filter = 2
-
 [node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(4.76837e-07, 1.66893e-06)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(3.84546e-07, 2.7027)
 shape = SubResource("RectangleShape2D_7kobe")
 
-[node name="Health" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "8"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="SkillSelect" parent="." node_paths=PackedStringArray("unit") instance=ExtResource("4_j4em8")]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 15.0
-offset_bottom = 15.0
+offset_left = 3.22581
+offset_top = 18.9189
+offset_right = 3.22581
+offset_bottom = 18.9189
 scale = Vector2(0.5, 0.5)
 unit = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.403227, -2.7027)
-scale = Vector2(1.25605, 1.25605)
+position = Vector2(1.19209e-06, 2.6226e-06)
+scale = Vector2(1, 1.06437)
 texture = ExtResource("6_jkf6t")
 hframes = 4
 
@@ -427,6 +408,24 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_m0vpr")
 }
+
+[node name="Health" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.129
+offset_top = 2.7027
+offset_right = 2.87097
+offset_bottom = 15.7027
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="Hurtbox" to="." method="_on_hurtbox_mouse_entered"]
 [connection signal="mouse_exited" from="Hurtbox" to="." method="_on_hurtbox_mouse_exited"]

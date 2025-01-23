@@ -27,3 +27,12 @@ window/stretch/mode="canvas_items"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/hex_grid_nav/plugin.cfg")
+
+[gui]
+
+theme/custom="res://ui/default.tres"
+theme/custom_font="res://assets/ui/m5x7.ttf"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
