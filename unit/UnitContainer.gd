@@ -37,12 +37,18 @@ func round_start():
 	if !is_player_controlled:
 		_step_enemy()
 	
-func get_available_unit_count():
+func get_available_unit_count() -> int:
 	var count = 0
 	for unit in units:
 		if !unit.actions_avail.is_empty():
 			count += 1
 	return count
+
+func is_all_unit_on_standby() -> bool:
+	for unit in units:
+		if unit.is_on_standby == false:
+			return false
+	return true
 
 func select_unit(unit: Unit):
 	unit.selected = true
@@ -93,8 +99,6 @@ func unit_action():
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
 	
-	print("# ENEMY USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
-	
 	if action_type == Unit.Action.NONE:
 		deselect_current_unit()
 		return
@@ -109,15 +113,22 @@ func unit_action():
 			)
 		in_progress = true
 		await current_unit.movement_complete
+		print("# " + str(current_unit.name) + " moved" + " (UnitContainer.gd)")
 		deselect_current_unit()
 		in_progress = false
 	
-	if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
+	if action_type == Unit.Action.ATTACK and !in_progress: #assumes that skill_chosen is not null
+		print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 		var outbound_array: Array[Vector2i] = [clicked_cell]
 		current_unit.take_action(skill_chosen)
+		print("# Awaiting attack point (UnitContainer.gd)")
+		in_progress = true
+		await current_unit.attack_point
+		in_progress = false
 		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 		deselect_current_unit()
 	
+	unit_action_done.emit()
 	return
 	
 func _step_enemy():
@@ -129,7 +140,8 @@ func _step_enemy():
 			select_unit(unit)
 			break
 	if current_unit != null:
-		await unit_action()
+		unit_action()
+		await unit_action_done
 		_step_enemy()
 		return
 
@@ -150,7 +162,7 @@ func _unhandled_input(event):
 					get_actionnable_cells()
 					return
 		
-		if event.button_index == MOUSE_BUTTON_LEFT and current_unit != null:
+		if event.button_index == MOUSE_BUTTON_LEFT and current_unit != null and !in_progress:
 			#if a unit has already been selected
 			var clicked_cell = HexNavi.global_to_cell(get_global_mouse_position())
 			
@@ -158,7 +170,7 @@ func _unhandled_input(event):
 				
 			var action_type := find_action(clicked_cell)
 				
-			if action_type == Unit.Action.MOVE and !in_progress:
+			if action_type == Unit.Action.MOVE:
 				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
 				current_unit.move_along_path(full_path)
 				in_progress = true
@@ -171,10 +183,11 @@ func _unhandled_input(event):
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				current_unit.take_action(skill_chosen)
 				print("# Awaiting attack point (UnitContainer.gd)")
+				in_progress = true
 				await current_unit.attack_point
+				in_progress = false
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 				deselect_current_unit()
-				#TODO: Fix stuff where held unit wait would also affect parent
 			
 			#deselect if unit is clicked on again; select held units
 			if current_unit != null and current_unit.cell == clicked_cell:
@@ -190,7 +203,9 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				return
 			
-			if get_available_unit_count() <= 0: #TODO: fix logic where signal emitted before actions are fully resolved
+			if get_available_unit_count() <= 0:
+				if !is_all_unit_on_standby():
+					await EventBus.unit_on_standby
 				all_units_moved.emit()
 
 func highlight_handle():
@@ -204,7 +219,8 @@ func highlight_handle():
 				if skill_chosen == null:
 					return
 				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
-				var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets)
+				#var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets)
+				var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
 				EventBus.emit_signal("show_cell_highlights", all_targets, ATTACK_HIGHLIGHT, name)

@@ -19,3 +19,4 @@ signal skill_chosen(skill: SkillInfo)
 #Battle Information
 signal unit_died()
 signal battle_ended(result: int)
+signal unit_on_standby()

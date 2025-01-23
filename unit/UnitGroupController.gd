@@ -3,6 +3,7 @@ extends Node2D
 class_name UnitGroupController
 
 signal effect_complete
+signal attack_process_complete
 
 @export var player_goes_first : bool = true
 
@@ -10,6 +11,9 @@ signal effect_complete
 @onready var enemy_group: UnitContainer = $EnemyGroup
 var is_player_turn : bool = true
 var all_units: Array[Unit] = []
+var in_progress: bool = false:
+	set(value):
+		if value == false: attack_process_complete.emit()
 
 func _ready():
 	EventBus.connect("update_cell_status", _on_update_cell_status)
@@ -29,17 +33,19 @@ func connect_container_signal(unit_group : UnitContainer):
 	unit_group.connect("all_units_moved", _on_unit_container_all_moved)
 	
 func _on_unit_container_all_moved():
+	check_if_win()
 	is_player_turn = !is_player_turn
 	#TODO: Fix bug where anonther group starts before all previous actions are resolved
 	if is_player_turn:
-		player_group.round_start()
 		print("player's turn")
+		player_group.round_start()
 	else:
-		enemy_group.round_start()
 		print("enemy's turn")
+		enemy_group.round_start()
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
-	print("# PLAYER USED: " + str(attack.name) + " (UnitGroupController.gd)")
+	print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
+	in_progress = true
 	#get all target units
 	var affected_units: Array[Unit] = []
 	for unit in all_units:
@@ -118,6 +124,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 		_on_update_cell_status()
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
 	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
+	in_progress = false
 
 func _on_update_cell_status(): #scan all units and update cell color accordingly
 	all_units = []

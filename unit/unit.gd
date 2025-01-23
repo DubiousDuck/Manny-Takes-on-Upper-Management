@@ -5,7 +5,6 @@ class_name Unit
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 
 signal movement_complete
-signal action_complete
 
 #unit constants
 enum Action {NONE, MOVE, ATTACK, ITEM}
@@ -45,6 +44,9 @@ var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
+var is_on_standby: bool = false: #true if no animations to be resolved
+	set(value):
+		if value == true: EventBus.emit_signal("unit_on_standby")
 
 signal attack_point
 
@@ -100,14 +102,15 @@ func move_along_path(full_path : Array[Vector2i]):
 			unit.cell = cell
 	)
 	EventBus.emit_signal("update_cell_status")
-	movement_complete.emit()
 	if diff.x == 0:
 		animation_state("front_idle")
 	else:
 		animation_state("side_idle")
+	movement_complete.emit()
 
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
+	is_on_standby = false
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	match skill.name:
 		"Throw":
@@ -125,7 +128,8 @@ func take_action(skill: SkillInfo): #where animations are handled
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
-			attack_point.emit()
+			emit_attack_point()
+	is_on_standby = true
 	animation_state("side_idle")
 
 func highlight_emit():
@@ -166,10 +170,12 @@ func animation_state(animation : String):
 	#print("# NEW ANIMATION: " + animation + " (unit.gd)")
 	$AnimationPlayer.play(animation)
 
+#in the animation player
 func emit_attack_point():
 	print("Attack point emitted!")
 	attack_point.emit()
 	
+#in the animation player
 func emit_action_command_point(game : String):
 	$AnimationPlayer.pause()
 	match game:
