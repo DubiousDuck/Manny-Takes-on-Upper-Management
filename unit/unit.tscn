@@ -322,6 +322,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ddsa6"]
 resource_name = "thrown"
+length = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -386,6 +388,8 @@ position = Vector2(3.84546e-07, 2.7027)
 shape = SubResource("RectangleShape2D_7kobe")
 
 [node name="SkillSelect" parent="." node_paths=PackedStringArray("unit") instance=ExtResource("4_j4em8")]
+z_index = 99
+z_as_relative = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -408,6 +412,7 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_m0vpr")
 }
+autoplay = "RESET"
 
 [node name="Health" type="Label" parent="."]
 anchors_preset = 8

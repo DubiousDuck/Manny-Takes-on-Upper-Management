@@ -33,7 +33,7 @@ func _on_button_pressed():
 	for button in buttons:
 		if button.button_pressed:
 			#do something
-			print(button.skill.name)
+			print("# SKILL CHOSEN: " + button.skill.name + " (skill_select.gd)")
 			EventBus.emit_signal("skill_chosen", button.skill)
 			button.button_pressed = false
 			return

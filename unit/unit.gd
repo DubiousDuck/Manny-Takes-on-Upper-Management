@@ -39,12 +39,26 @@ func _process(delta):
 	)
 		
 func init():
+	animation_state("front_idle")
 	cell = HexNavi.global_to_cell(global_position)
 	global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
 
-func move_along_path(full_path : Array[Vector2i]):
+func move_along_path(full_path : Array[Vector2i]):	
+	var start_pos = full_path[0]
+	var end_pos = full_path[-1]
+	var diff = end_pos - start_pos
+	print(diff)
+	
+	if diff.x == 0:
+		animation_state("front_walk")
+	elif diff.x > 0:
+		$Sprite2D.flip_h = false
+		animation_state("side_walk")
+	else:
+		$Sprite2D.flip_h = true
+		animation_state("side_walk")
 	var move_tween = get_tree().create_tween()
 	move_tween.set_ease(Tween.EASE_OUT)
 	move_tween.set_trans(Tween.TRANS_CUBIC)
@@ -65,11 +79,21 @@ func move_along_path(full_path : Array[Vector2i]):
 	)
 	EventBus.emit_signal("update_cell_status")
 	movement_complete.emit()
+	if diff.x == 0:
+		animation_state("front_idle")
+	else:
+		animation_state("side_idle")
 
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
-	#animation
-	pass
+	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
+	match skill.name:
+		"Normal Melee Attack":
+			animation_state("punch")
+		"Normal Ranged Attack":
+			animation_state("shoot")
+	await $AnimationPlayer.animation_finished
+	animation_state("side_idle")
 
 func highlight_emit():
 	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, movement_range)
@@ -101,3 +125,10 @@ func check_if_can_throw():
 		skills.append(throw_skill)
 	else:
 		skills.erase(throw_skill)
+
+##
+
+func animation_state(animation : String):
+	$Sprite2D.hframes = 4
+	print("# NEW ANIMATION: " + animation + " (unit.gd)")
+	$AnimationPlayer.play(animation)

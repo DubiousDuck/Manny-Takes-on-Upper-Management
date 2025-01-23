@@ -39,6 +39,7 @@ func _on_unit_container_all_moved():
 		print("enemy's turn")
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
+	print("# PLAYER USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	#get all target units
 	var affected_units: Array[Unit] = []
 	for unit in all_units:
@@ -49,8 +50,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 		match effect.x: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
-					func(unit):
+					func(unit : Unit):
 						unit.health -= effect.y*attacker.attack_power
+						unit.animation_state("hurt")
 				)
 				
 			SkillInfo.EffectType.KNOCKBACK:
@@ -58,7 +60,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				move_tween.set_ease(Tween.EASE_OUT)
 				move_tween.set_trans(Tween.TRANS_CUBIC)
 				affected_units.map(
-					func(unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
+					func(unit : Unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
 						#calculate the direction of knockback
 						var dir: Vector2 = unit.global_position - attacker.global_position
 						#apply the direction by strength of knockback
@@ -69,6 +71,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							new_location,
 							0.5
 						)
+						unit.animation_state("hurt")
 						#Snap the unit to the cell if necessary (no need now)
 						#TODO: fix so that unit won't land on nothing
 				)
@@ -90,9 +93,10 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var v_offset: int = -30
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
 						affected_units.map(
-							func(unit): #TODO: Handle holding multiple units properly
+							func(unit : Unit): #TODO: Handle holding multiple units properly
 								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset), 0.3)
 								unit.cell = attacker.cell
+								unit.animation_state("thrown")
 						)
 						await a.finished
 						attacker.unit_held.append_array(affected_units)
@@ -103,6 +107,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 						a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3)
 						await a.finished
+						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
 					_:
 						print("nothing to displace yet")
@@ -111,7 +116,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				print("nothing happens yet")
 				
 		_on_update_cell_status()
-	affected_units.map(func(unit): unit.check_if_dead())
+	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
+	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 
 func _on_update_cell_status(): #scan all units and update cell color accordingly
 	all_units = []

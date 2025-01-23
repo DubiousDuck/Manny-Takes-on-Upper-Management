@@ -92,7 +92,9 @@ func unit_action():
 	
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
-			
+	
+	print("# ENEMY USED: " + str(action_type) + " (UnitContainer.gd)")
+	
 	if action_type == Unit.Action.NONE:
 		deselect_current_unit()
 		return
