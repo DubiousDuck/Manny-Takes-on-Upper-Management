@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Unit
 
+const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
+
 signal movement_complete
 signal action_complete
 
@@ -23,7 +25,7 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 			var a = create_tween()
 			a.tween_property($BackupHealth, "position", $BackupHealth.position + Vector2(0,10), 2)
 			a = create_tween()
-			a.tween_property($BackupHealth, "modulate:a", 0, 2)
+			a.tween_property($BackupHealth, "modulate:a", .2, 2)
 		var b = create_tween()
 		b.tween_property($Health, "modulate", Color("ffffff"), 2)
 		await b.finished
@@ -44,7 +46,6 @@ var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 
-signal action_command_point
 signal attack_point
 
 func _process(delta):
@@ -169,5 +170,13 @@ func emit_attack_point():
 	print("Attack point emitted!")
 	attack_point.emit()
 	
-func emit_action_command_point():
-	action_command_point.emit()
+func emit_action_command_point(game : String):
+	$AnimationPlayer.pause()
+	match game:
+		"throw":
+			var a = THROW_ACTION_COMMAND.instantiate()
+			add_child(a)
+			get_tree().paused = true
+		_:
+			pass
+	$AnimationPlayer.play()
