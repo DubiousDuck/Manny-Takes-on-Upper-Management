@@ -9,7 +9,27 @@ signal action_complete
 enum Action {NONE, MOVE, ATTACK, ITEM}
 
 #unit attributes (interface)
-@export var health: int = 2
+@export var health: int = 2 :
+	set(new_health):
+		$BackupHealth.modulate = Color(0,0,0,0)
+		var old_health = health
+		health = new_health
+		$Health.text = str(health)
+		if new_health >= old_health:
+			$Health.modulate = Color("0ac863")
+		else:
+			$BackupHealth.text = str(new_health - old_health)
+			$BackupHealth.modulate = Color("b61d268b")
+			var a = create_tween()
+			a.tween_property($BackupHealth, "position", $BackupHealth.position + Vector2(0,10), 2)
+			a = create_tween()
+			a.tween_property($BackupHealth, "modulate:a", 0, 2)
+		var b = create_tween()
+		b.tween_property($Health, "modulate", Color("ffffff"), 2)
+		await b.finished
+		$BackupHealth.position = $Health.position
+		$BackupHealth.modulate = Color(0,0,0,0)
+
 @export var attack_power: int = 1
 @export var move_speed_per_cell := 0.2
 @export var movement_range: int = 2
@@ -34,7 +54,6 @@ func _process(delta):
 	else:
 		if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
 		else: $ColorRect.color = Color(0.89, 0.281, 0.239)
-	$Health.text = str(health) #TODO: Replace placeholder
 	
 	unit_held.map(
 		func(unit):
