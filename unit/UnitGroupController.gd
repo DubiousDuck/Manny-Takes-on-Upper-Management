@@ -4,7 +4,7 @@ class_name UnitGroupController
 
 signal effect_complete
 
-@export var player_goes_first : bool = true
+@export var player_goes_first : bool = false
 
 @onready var player_group: UnitContainer = $PlayerGroup
 @onready var enemy_group: UnitContainer = $EnemyGroup

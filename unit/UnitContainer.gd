@@ -93,7 +93,7 @@ func unit_action():
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
 	
-	print("# ENEMY USED: " + str(action_type) + " (UnitContainer.gd)")
+	print("# ENEMY USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 	
 	if action_type == Unit.Action.NONE:
 		deselect_current_unit()
@@ -115,8 +115,6 @@ func unit_action():
 	if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 		var outbound_array: Array[Vector2i] = [clicked_cell]
 		current_unit.take_action(skill_chosen)
-		print("# Awaiting attack point (UnitContainer.gd)")
-		await current_unit.attack_point
 		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 		deselect_current_unit()
 	

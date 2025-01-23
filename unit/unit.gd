@@ -52,7 +52,6 @@ func move_along_path(full_path : Array[Vector2i]):
 	var start_pos = full_path[0]
 	var end_pos = full_path[-1]
 	var diff = end_pos - start_pos
-	print(diff)
 	
 	if diff.x == 0:
 		animation_state("front_walk")
@@ -91,15 +90,23 @@ func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	match skill.name:
+		"Throw":
+			animation_state("throw")
+			await $AnimationPlayer.animation_finished
 		"Pick Up":
-			animation_state("holding_idle")
+			animation_state("hold_prep")
+			await $AnimationPlayer.animation_finished
 		"Normal Melee Attack":
 			animation_state("punch")
+			await $AnimationPlayer.animation_finished
 		"Normal Ranged Attack":
 			animation_state("shoot")
+			await $AnimationPlayer.animation_finished
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
+			await get_tree().create_timer(0.2).timeout
 			attack_point.emit()
+	animation_state("side_idle")
 
 func highlight_emit():
 	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, movement_range)
@@ -136,7 +143,7 @@ func check_if_can_throw():
 
 func animation_state(animation : String):
 	$Sprite2D.hframes = 4
-	print("# NEW ANIMATION: " + animation + " (unit.gd)")
+	#print("# NEW ANIMATION: " + animation + " (unit.gd)")
 	$AnimationPlayer.play(animation)
 
 func emit_attack_point():
