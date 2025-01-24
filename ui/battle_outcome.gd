@@ -14,5 +14,9 @@ func init(result: int):
 		EventBus.BattleResult.ENEMY_VICTORY:
 			$Label.text = "You lost..."
 
+func display():
+	get_tree().paused = true
+
 func _on_button_pressed():
+	get_tree().paused = false
 	get_tree().reload_current_scene()

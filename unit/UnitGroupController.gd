@@ -29,6 +29,11 @@ func init():
 	all_units.append_array(enemy_group.units)
 	_on_update_cell_status()
 	
+	is_player_turn = player_goes_first
+	if is_player_turn:
+		player_group.round_start()
+	else: enemy_group.round_start()
+	
 func connect_container_signal(unit_group : UnitContainer):
 	unit_group.connect("all_units_moved", _on_unit_container_all_moved)
 	

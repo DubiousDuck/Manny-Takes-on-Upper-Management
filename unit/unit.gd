@@ -5,6 +5,7 @@ class_name Unit
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 
 signal movement_complete
+signal attack_complete
 
 #unit constants
 enum Action {NONE, MOVE, ATTACK, ITEM}
@@ -30,6 +31,9 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 		await b.finished
 		$BackupHealth.position = $Health.position
 		$BackupHealth.modulate = Color(0,0,0,0)
+		if new_health == 0:
+			is_dead = true
+		else: is_dead = false #TODO: see if this line is necessary
 
 @export var attack_power: int = 1
 @export var move_speed_per_cell := 0.2
@@ -44,9 +48,7 @@ var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
-var is_on_standby: bool = false: #true if no animations to be resolved
-	set(value):
-		if value == true: EventBus.emit_signal("unit_on_standby")
+var is_dead: bool = false
 
 signal attack_point
 
@@ -110,7 +112,6 @@ func move_along_path(full_path : Array[Vector2i]):
 
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
-	is_on_standby = false
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	match skill.name:
 		"Throw":
@@ -129,7 +130,6 @@ func take_action(skill: SkillInfo): #where animations are handled
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
 			emit_attack_point()
-	is_on_standby = true
 	animation_state("side_idle")
 
 func highlight_emit():
@@ -149,8 +149,10 @@ func _on_hurtbox_mouse_exited():
 
 func check_if_dead():
 	if health <= 0 || cell == Vector2i(-999, -999): #if no health or out of bounds
+		is_dead = true
 		EventBus.emit_signal("unit_died")
 		queue_free.call_deferred()
+
 
 func toggle_skill_ui(state: bool):
 	$SkillSelect.init()

@@ -184,8 +184,8 @@ func _unhandled_input(event):
 				print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
 				await current_unit.attack_point
-				in_progress = false
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+				in_progress = false
 				deselect_current_unit()
 			
 			#deselect if unit is clicked on again; select held units
@@ -203,8 +203,6 @@ func _unhandled_input(event):
 				return
 			
 			if get_available_unit_count() <= 0:
-				if !is_all_unit_on_standby():
-					await EventBus.unit_on_standby
 				all_units_moved.emit()
 
 func highlight_handle():
@@ -283,12 +281,15 @@ func _on_unit_died():
 	#recount how many children unit this group has
 	units = []
 	for unit in get_children():
-		if unit.health > 0:
+		if !unit.is_dead:
 			units.append(unit)
 
 func _on_skill_chosen(skill: SkillInfo):
 	current_unit.toggle_skill_ui(false)
 	skill_chosen = skill
+	if skill_chosen.name == "Wait":
+		unit_wait()
+		return
 	highlight_handle()
 	get_actionnable_cells()
 	
@@ -297,3 +298,15 @@ func get_next_unit_of_same_cell(curr_unit: Unit):
 		if unit.cell == curr_unit.cell and unit != curr_unit:
 			return unit
 	return null
+
+func unit_wait(): #special case for when WAIT is chosen
+	var outbound_array: Array[Vector2i] = [current_unit.cell]
+	current_unit.take_action(skill_chosen)
+	in_progress = true
+	await current_unit.attack_point
+	in_progress = false
+	EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+	deselect_current_unit()
+	
+	if get_available_unit_count() <= 0:
+		all_units_moved.emit()
