@@ -175,7 +175,6 @@ func _unhandled_input(event):
 				current_unit.move_along_path(full_path)
 				in_progress = true
 				await current_unit.movement_complete
-				#TODO: fix a bug where you clck the units too quickly before the previous one ends
 				deselect_current_unit()
 				in_progress = false
 			
@@ -216,11 +215,12 @@ func highlight_handle():
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				EventBus.emit_signal("show_cell_highlights", all_neighbors, MOVE_RANGE_HIGHLIGHT, name)
 			Unit.Action.ATTACK:
+				#TODO: Highlights the range of attack when hovering over Skill Select
 				if skill_chosen == null:
 					return
 				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
-				#var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets)
-				var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
+				var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets) #shows only valid targets
+				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
 				EventBus.emit_signal("show_cell_highlights", all_targets, ATTACK_HIGHLIGHT, name)

@@ -37,3 +37,6 @@ func _on_button_pressed():
 			EventBus.emit_signal("skill_chosen", button.skill)
 			button.button_pressed = false
 			return
+
+func _on_mouse_entered():
+	pass

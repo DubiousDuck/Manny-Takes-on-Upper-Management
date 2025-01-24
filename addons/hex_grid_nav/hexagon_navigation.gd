@@ -37,8 +37,12 @@ func cell_to_global(cell_pos : Vector2i) -> Vector2: #returns another global pos
 	return current_map.to_global(current_map.map_to_local(cell_pos))
 
 func global_to_cell(global_pos : Vector2) -> Vector2i: #returns local cell position
-	var closest_point_id = astar.get_closest_point(current_map.local_to_map(current_map.to_local(global_pos))) #TODO: Fix bug where clicking on an empty map will register as the closest tile
-	return astar.get_point_position(closest_point_id)
+	var local_map_pos := current_map.local_to_map(current_map.to_local(global_pos))
+	var closest_point_id = astar.get_closest_point(local_map_pos) #TODO: Fix bug where clicking on an empty map will register as the closest tile
+	var closest_cell: Vector2i = astar.get_point_position(closest_point_id)
+	if local_map_pos != closest_cell: #prevents returning nonexistent cell #TODO: Prob not the most optimal solution
+		return Vector2i(-999, -999)
+	return closest_cell 
 
 func get_cell_custom_data(cell_pos: Vector2i, data_name: String):
 	var data = current_map.get_cell_tile_data(cell_pos)

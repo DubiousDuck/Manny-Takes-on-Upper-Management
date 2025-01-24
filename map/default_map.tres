@@ -6,7 +6,7 @@
 resource_name = "default"
 texture = ExtResource("1_b06vb")
 margins = Vector2i(9, 8)
-separation = Vector2i(18, 0)
+separation = Vector2i(18, 1)
 texture_region_size = Vector2i(110, 94)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
