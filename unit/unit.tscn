@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=38 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
+[ext_resource type="Shader" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
 [ext_resource type="Script" path="res://skills/skill_info.gd" id="2_w64s5"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_melee_attack.tres" id="3_761ob"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
@@ -23,6 +24,12 @@ size = Vector2(12.9032, 16.2162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kobe"]
 size = Vector2(12.9032, 16.2162)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcacr"]
+resource_local_to_scene = true
+shader = ExtResource("1_ipbkg")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/flash_state = 0.0
 
 [sub_resource type="Animation" id="Animation_bvfsh"]
 length = 0.001
@@ -73,6 +80,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.19209e-06, 2.6226e-06)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:material:shader_parameter/flash_state")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_abic1"]
@@ -565,6 +584,36 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_8nykl"]
+resource_name = "hurt_initial"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["hurt"],
+"method": &"animation_state"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m0vpr"]
 _data = {
 "RESET": SubResource("Animation_bvfsh"),
@@ -575,6 +624,7 @@ _data = {
 "holding_idle": SubResource("Animation_482o5"),
 "holding_launch_idle": SubResource("Animation_3ep5f"),
 "hurt": SubResource("Animation_m5btb"),
+"hurt_initial": SubResource("Animation_8nykl"),
 "punch": SubResource("Animation_h12pj"),
 "shoot": SubResource("Animation_s2nur"),
 "side_idle": SubResource("Animation_cdn1g"),
@@ -609,6 +659,7 @@ position = Vector2(3.84546e-07, 2.7027)
 shape = SubResource("RectangleShape2D_7kobe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gcacr")
 position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(1, 1.06437)
 texture = ExtResource("6_jkf6t")
