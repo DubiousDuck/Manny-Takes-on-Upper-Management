@@ -169,7 +169,8 @@ func _unhandled_input(event):
 			get_viewport().set_input_as_handled()
 				
 			var action_type := find_action(clicked_cell)
-				
+			
+			#FIXME: attack won't be carried out if enemy and ally are stacked on the same cell
 			if action_type == Unit.Action.MOVE:
 				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
 				current_unit.move_along_path(full_path)

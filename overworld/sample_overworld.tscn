@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl3rxfaj4snxv"]
+
+[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
+size = Vector2(561.75, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i12cs"]
+size = Vector2(376, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pulr4"]
+size = Vector2(306.75, 15)
+
+[node name="SampleOverworld" type="Node2D"]
+
+[node name="RoomLayout" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(206, 346)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall"]
+position = Vector2(80.125, 13.5)
+shape = SubResource("RectangleShape2D_ytewl")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall"]
+offset_left = -200.0
+offset_top = 7.0
+offset_right = 361.75
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="Wall2" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(550, 333)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall2"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall2"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="Wall3" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(1050, 346)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall3"]
+position = Vector2(-47, 13)
+shape = SubResource("RectangleShape2D_pulr4")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall3"]
+offset_left = -205.0
+offset_top = 6.00001
+offset_right = 171.0
+offset_bottom = 18.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="Wall4" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(844, 333)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall4"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall4"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_i2n66")]
+position = Vector2(264, 485)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 325)

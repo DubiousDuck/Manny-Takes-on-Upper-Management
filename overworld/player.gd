@@ -1,0 +1,54 @@
+extends CharacterBody2D
+
+class_name Player
+
+const SPEED = 100
+const SCALE := 3
+
+var dir = Vector2.RIGHT
+var turning = false
+
+func _physics_process(delta):
+	
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = Vector2(input_dir.x, input_dir.y).normalized()
+	
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.y = direction.y * SPEED
+		
+		var last_dir = dir
+		
+		if velocity.x > 0:
+			dir = Vector2.RIGHT
+		elif velocity.x < 0:
+			dir = Vector2.LEFT
+			
+		if dir != last_dir:
+			if dir == Vector2.RIGHT:
+				$Sprite2D.scale = Vector2(SCALE, SCALE)
+			else:
+				$Sprite2D.scale = Vector2(-SCALE, SCALE)
+			if not turning:
+				var a = create_tween()
+				turning = true
+				a.tween_property($Sprite2D, "position", $Sprite2D.position + Vector2(0,.1), 0.1)
+				await a.finished
+				a = create_tween()
+				a.tween_property($Sprite2D, "position", $Sprite2D.position - Vector2(0,.1), 0.1)
+				await a.finished
+				turning = false
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, SPEED)
+		
+	move_and_slide()
+	anim_handler()
+
+func anim_handler():
+	if velocity.y != 0:
+		$AnimationPlayer.play("unit_anim/front_walk")
+	elif velocity != Vector2.ZERO:
+		$AnimationPlayer.play("unit_anim/side_walk")
+	else:
+		$AnimationPlayer.play("unit_anim/front_idle")

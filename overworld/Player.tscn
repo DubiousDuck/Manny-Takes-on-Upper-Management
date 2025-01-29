@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://vjjenmk6qvnq"]
+
+[ext_resource type="Script" path="res://overworld/player.gd" id="1_1evci"]
+[ext_resource type="Texture2D" uid="uid://cunbssoawl1k6" path="res://assets/unit_sprites/side_walk.png" id="2_1plhx"]
+[ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="3_ywt1h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
+radius = 18.0
+height = 56.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_1evci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_7mksb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_1plhx")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"unit_anim": ExtResource("3_ywt1h")
+}
