@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
+[ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
+[ext_resource type="Script" path="res://overworld/door.gd" id="2_igj1o"]
+[ext_resource type="Texture2D" uid="uid://coy382quxt11e" path="res://assets/door.png" id="2_yeq1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
 size = Vector2(561.75, 15)
@@ -11,7 +14,11 @@ size = Vector2(376, 12.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pulr4"]
 size = Vector2(306.75, 15)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dktft"]
+radius = 42.107
+
 [node name="SampleOverworld" type="Node2D"]
+script = ExtResource("1_o2m1g")
 
 [node name="RoomLayout" type="Node2D" parent="."]
 
@@ -78,3 +85,20 @@ position = Vector2(264, 485)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 325)
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(436, 324)
+script = ExtResource("2_igj1o")
+scene_to_go = "res://stages/demo_field.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(2, 48)
+shape = SubResource("CircleShape2D_dktft")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+position = Vector2(3, 11)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_yeq1s")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

@@ -3,7 +3,6 @@ extends Control
 class_name BattleOutcome
 
 @onready var label = $Label #Not ready yet when init() is called?
-@onready var button = $Button
 
 func init(result: int):
 	match result:
@@ -17,6 +16,10 @@ func init(result: int):
 func display():
 	get_tree().paused = true
 
-func _on_button_pressed():
+func _on_play_again_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_previous_scene_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file(Global.get_last_overworld())
