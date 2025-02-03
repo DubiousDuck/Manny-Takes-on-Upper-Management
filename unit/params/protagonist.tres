@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://b2xolay11juv8"]
+
+[ext_resource type="Script" path="res://unit/params/unit_data.gd" id="1_g3jub"]
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="2_0r8qq"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_melee_attack.tres" id="3_7l4pl"]
+[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/normal_ranged_attack.tres" id="4_t6iqi"]
+[ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="5_a8aaf"]
+[ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="6_rlm2a"]
+
+[resource]
+script = ExtResource("1_g3jub")
+unit_class = "Protagonist"
+attributes = {
+0: 7,
+1: 2,
+2: 2,
+3: 3
+}
+skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("4_t6iqi"), ExtResource("5_a8aaf"), ExtResource("6_rlm2a")])
+rel = ""
+mood = 50
+money = 5

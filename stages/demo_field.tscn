@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bjc751e4ol5ld"]
+[gd_scene load_steps=11 format=4 uid="uid://bjc751e4ol5ld"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_1snh2"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
@@ -7,10 +7,8 @@
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="5_ypjfd"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="6_vkavw"]
 [ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_fxfs3"]
-[ext_resource type="Script" path="res://skills/skill_info.gd" id="8_bv0o2"]
-[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/normal_melee_attack.tres" id="9_6h1o1"]
-[ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="10_npm0a"]
-[ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="11_6gr3a"]
+[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="8_wudo6"]
+[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_mfhmk"]
 [ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="13_e31i5"]
 
 [node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
@@ -36,10 +34,10 @@ script = ExtResource("4_ifsfs")
 script = ExtResource("5_ypjfd")
 is_player_controlled = true
 
-[node name="PlayerUnit" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
+[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(129, 190)
 script = ExtResource("7_fxfs3")
-skills = Array[ExtResource("8_bv0o2")]([ExtResource("9_6h1o1"), ExtResource("10_npm0a"), ExtResource("11_6gr3a")])
+unit_data = ExtResource("8_wudo6")
 
 [node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(47, 238)
@@ -48,6 +46,7 @@ script = ExtResource("7_fxfs3")
 [node name="PlayerUnit3" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(52, 141)
 script = ExtResource("7_fxfs3")
+unit_data = ExtResource("9_mfhmk")
 
 [node name="EnemyGroup" type="Node2D" parent="Units"]
 script = ExtResource("5_ypjfd")
@@ -59,7 +58,9 @@ script = ExtResource("13_e31i5")
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(509, 232)
 script = ExtResource("13_e31i5")
+unit_data = ExtResource("9_mfhmk")
 
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(508, 328)
 script = ExtResource("13_e31i5")
+unit_data = ExtResource("9_mfhmk")

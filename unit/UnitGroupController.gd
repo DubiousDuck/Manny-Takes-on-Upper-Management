@@ -62,7 +62,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit : Unit):
-						unit.health -= effect.y*attacker.attack_power
+						unit.health -= (effect.y * attacker.attack_power)
 						unit.animation_state("hurt_initial")
 				)
 				

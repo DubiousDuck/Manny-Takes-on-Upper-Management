@@ -35,11 +35,15 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 			is_dead = true
 		else: is_dead = false #TODO: see if this line is necessary
 
-@export var attack_power: int = 1
+@export var unit_data: UnitData
 @export var move_speed_per_cell := 0.2
-@export var movement_range: int = 2
 @export var all_actions: Array[Action] = [Action.MOVE, Action.ATTACK] #Master attribute of all available actions this unit can take in one turn
-@export var skills: Array[SkillInfo] = []
+
+#unit battle attributes
+var attack_power: int = 1
+var magic_power: int = 1
+var movement_range: int = 2
+var skills: Array[SkillInfo] = []
 
 #unit internal information
 var cell: Vector2i
@@ -52,6 +56,19 @@ var is_dead: bool = false
 
 signal attack_point
 
+func _ready():
+	#read unit data and set attributes
+	health = unit_data.get_attribute("HP")
+	attack_power = unit_data.get_attribute("ATK")
+	magic_power = unit_data.get_attribute("MAG")
+	movement_range = unit_data.get_attribute("MOV")
+	
+	skills = unit_data.skill_list
+	_custom_ready()
+
+func _custom_ready(): #virtual functions for subclasses to do their own stuff
+	pass
+	
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
 		if is_player_controlled: $ColorRect.color = Color(0, 0.305, 0.461)
@@ -71,6 +88,8 @@ func init():
 	global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
+	
+	#FIXME: unit_held still contains reference to dead units when they died during held which produces error
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
