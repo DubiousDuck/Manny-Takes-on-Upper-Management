@@ -79,6 +79,8 @@ func _process(delta):
 	
 	unit_held.map(
 		func(unit):
+			if !unit:
+				return
 			unit.global_position = global_position + Vector2(0, -30)
 	)
 		
@@ -89,7 +91,13 @@ func init():
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
 	
-	#FIXME: unit_held still contains reference to dead units when they died during held which produces error
+	#check and remove dead held units
+	var valid_children: Array[Unit] = []
+	for child in unit_held:
+		if !child.is_dead:
+			valid_children.append(child)
+			print(child)
+	unit_held = valid_children
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
@@ -133,16 +141,16 @@ func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	match skill.name:
-		"Throw":
+		"Throw At":
 			animation_state("throw")
 			await $AnimationPlayer.animation_finished
 		"Pick Up":
 			animation_state("hold_prep")
 			await $AnimationPlayer.animation_finished
-		"Normal Melee Attack":
+		"Basic Punch":
 			animation_state("punch")
 			await $AnimationPlayer.animation_finished
-		"Normal Ranged Attack":
+		"Rubber Band Shoot":
 			animation_state("shoot")
 			await $AnimationPlayer.animation_finished
 		_:
@@ -179,8 +187,9 @@ func toggle_skill_ui(state: bool):
 
 func check_if_can_throw():
 	var throw_skill = load("res://skills/throw.tres")
-	if !unit_held.is_empty() and !skills.has(throw_skill):
-		skills.append(throw_skill)
+	if !unit_held.is_empty():
+		if !skills.has(throw_skill):
+			skills.append(throw_skill)
 	else:
 		skills.erase(throw_skill)
 

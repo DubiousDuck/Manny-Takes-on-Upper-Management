@@ -116,7 +116,10 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					1: #displace linearly target location (assumes only one affected target) (throw)
 						var projectile = attacker.unit_held.pop_front()
 						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-						a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3)
+						if affected_units.is_empty(): #if thrown at an empty cell
+							a.tween_property(projectile, "global_position", HexNavi.cell_to_global(targets.front()), 0.3) 
+							#FIXME: non game breaking error "started with no Tweeners"
+						else: a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3) 
 						await a.finished
 						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)

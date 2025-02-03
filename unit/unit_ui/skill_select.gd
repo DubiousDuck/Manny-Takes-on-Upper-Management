@@ -14,8 +14,7 @@ var buttons : Array = []
 func _ready() -> void:
 	test_icon.visible = false
 	unit = get_parent()
-	init()
-	
+	init()	
 
 func init():
 	for child in hbox.get_children():

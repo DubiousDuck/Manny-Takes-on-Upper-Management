@@ -270,12 +270,24 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 					if !allied_cells.has(target): correct_targets.append(target)
 				SkillInfo.TargetType.SELF:
 					if target == current_unit.cell: correct_targets.append(target)
-				SkillInfo.TargetType.ANY:
+				SkillInfo.TargetType.ANY_UNIT:
 					correct_targets.append(target)
 				SkillInfo.TargetType.EXCEPT_SELF:
 					if target != current_unit.cell: correct_targets.append(target)
+				SkillInfo.TargetType.ALLIES_EXCEPT_SELF:
+					if allied_cells.has(target) and target != current_unit.cell: correct_targets.append(target)
+				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
+					if target != current_unit.cell: correct_targets.append(target)
 				_:
 					pass
+		else:
+			match skill_chosen.targets:
+				SkillInfo.TargetType.ANY_CELL:
+					correct_targets.append(target)
+				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
+					if target != current_unit.cell: correct_targets.append(target)
+				_: pass
+	
 	return correct_targets
 	
 func _on_unit_died():

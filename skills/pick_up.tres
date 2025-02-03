@@ -6,6 +6,6 @@
 script = ExtResource("1_a8upa")
 name = "Pick Up"
 type = 1
-targets = 4
+targets = 5
 range = 1
 skill_effects = Array[Vector2i]([Vector2i(8, 0)])
