@@ -55,6 +55,7 @@ func select_unit(unit: Unit):
 	current_unit = unit
 	is_waiting_unit_selection = false
 	if is_player_controlled and current_unit.actions_avail.has(Unit.Action.ATTACK):
+		current_unit.check_if_can_throw()
 		current_unit.toggle_skill_ui(true)
 	skill_chosen = null
 	connect_current_unit_signals()
@@ -172,6 +173,8 @@ func _unhandled_input(event):
 			
 			#FIXME: attack won't be carried out if enemy and ally are stacked on the same cell
 			if action_type == Unit.Action.MOVE:
+				check_and_remove_unit_from_being_held(current_unit)
+				
 				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
 				current_unit.move_along_path(full_path)
 				in_progress = true
@@ -323,3 +326,8 @@ func unit_wait(): #special case for when WAIT is chosen
 	
 	if get_available_unit_count() <= 0:
 		all_units_moved.emit()
+
+func check_and_remove_unit_from_being_held(this_unit: Unit):
+	for unit in units:
+		if unit.unit_held.has(this_unit):
+			unit.unit_held.erase(this_unit)

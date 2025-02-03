@@ -67,6 +67,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				)
 				
 			SkillInfo.EffectType.KNOCKBACK:
+				if affected_units.is_empty(): return
+				
 				var move_tween = get_tree().create_tween()
 				move_tween.set_ease(Tween.EASE_OUT)
 				move_tween.set_trans(Tween.TRANS_CUBIC)
@@ -84,7 +86,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						)
 						unit.animation_state("hurt_initial")
 						#Snap the unit to the cell if necessary (no need now)
-						#TODO: fix so that unit won't land on nothing
 				)
 				await move_tween.finished
 				affected_units.map(
@@ -118,7 +119,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 						if affected_units.is_empty(): #if thrown at an empty cell
 							a.tween_property(projectile, "global_position", HexNavi.cell_to_global(targets.front()), 0.3) 
-							#FIXME: non game breaking error "started with no Tweeners"
 						else: a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3) 
 						await a.finished
 						projectile.animation_state("side_idle")
