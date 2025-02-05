@@ -69,7 +69,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.KNOCKBACK:
 				if affected_units.is_empty(): return
 				
-				var move_tween = get_tree().create_tween()
+				var move_tween = get_tree().create_tween().set_parallel()
 				move_tween.set_ease(Tween.EASE_OUT)
 				move_tween.set_trans(Tween.TRANS_CUBIC)
 				affected_units.map(

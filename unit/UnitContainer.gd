@@ -5,6 +5,7 @@ class_name UnitContainer
 signal all_units_moved
 signal unit_action_done
 
+#TODO convert highlight constants to enum of CellHighlight nodes
 const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
 const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
 

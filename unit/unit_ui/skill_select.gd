@@ -27,6 +27,8 @@ func init():
 		hbox.add_child(a)
 		buttons.append(a)
 		a.connect("pressed", _on_button_pressed)
+		a.connect("mouse_entered", _on_mouse_entered.bind(a)) #bind() is a useful function
+		a.connect("mouse_exited", _on_mouse_exit)
 	
 func _on_button_pressed():
 	for button in buttons:
@@ -37,5 +39,14 @@ func _on_button_pressed():
 			button.button_pressed = false
 			return
 
-func _on_mouse_entered():
-	pass
+## display highlights of skill range when hovered over
+func _on_mouse_entered(icon_hovered: SkillIcon):
+	print(icon_hovered.name + str(" is being hovered over!"))
+	#Prob unoptimal but convenient implmentation
+	EventBus.emit_signal("remove_cell_highlights", name)
+	
+	var all_neighbors := HexNavi.get_all_neighbors_in_range(HexNavi.global_to_cell(unit.global_position), icon_hovered.skill.range)
+	EventBus.emit_signal("show_cell_highlights", all_neighbors, Color(1, 1, 0, 0.5), name)
+
+func _on_mouse_exit():
+	EventBus.emit_signal("remove_cell_highlights", name)

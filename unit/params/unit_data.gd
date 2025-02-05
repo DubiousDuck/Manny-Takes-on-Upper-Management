@@ -25,7 +25,7 @@ enum ATTRIBUTES {HP, ATK, MAG, MOV}
 
 @export_category("Protagonist Only")
 #Protagonist only
-@export var money: int = 5
+@export var money: int = 5 #TODO: move to save file perhaps
 
 func get_attribute(name):
 	match name:
