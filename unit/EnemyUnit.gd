@@ -4,5 +4,4 @@ class_name EnemyUnit
 
 func _custom_ready():
 	is_player_controlled = false
-	move_range_highlight = Color(1, 0, 0, 0.3)
-	#EventBus.emit_signal("occupy_cell", cell, "enemy")
+	move_range_highlight = CellHighlight.ENEMY_RANGE_HIGHLIGHT

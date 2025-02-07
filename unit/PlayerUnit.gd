@@ -4,5 +4,4 @@ class_name PlayerUnit
 
 func _custom_ready():
 	is_player_controlled = true
-	move_range_highlight = Color(0, 0, 1, 0.3)
-	#EventBus.emit_signal("occupy_cell", cell, "player")
+	move_range_highlight = CellHighlight.MOVE_RANGE_HIGHLIGHT

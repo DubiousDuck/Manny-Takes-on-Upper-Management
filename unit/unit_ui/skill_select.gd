@@ -46,7 +46,7 @@ func _on_mouse_entered(icon_hovered: SkillIcon):
 	EventBus.emit_signal("remove_cell_highlights", name)
 	
 	var all_neighbors := HexNavi.get_all_neighbors_in_range(HexNavi.global_to_cell(unit.global_position), icon_hovered.skill.range)
-	EventBus.emit_signal("show_cell_highlights", all_neighbors, Color(1, 1, 0, 0.5), name)
+	EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.ATTACK_HIGHLIGHT, name)
 
 func _on_mouse_exit():
 	EventBus.emit_signal("remove_cell_highlights", name)

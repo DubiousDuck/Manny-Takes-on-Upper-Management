@@ -5,10 +5,6 @@ class_name UnitContainer
 signal all_units_moved
 signal unit_action_done
 
-#TODO convert highlight constants to enum of CellHighlight nodes
-const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
-const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
-
 #information
 @export var is_player_controlled: bool
 var units: Array[Unit] = []
@@ -216,7 +212,7 @@ func highlight_handle():
 		match ac:
 			Unit.Action.MOVE:
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
-				EventBus.emit_signal("show_cell_highlights", all_neighbors, MOVE_RANGE_HIGHLIGHT, name)
+				EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.MOVE_RANGE_HIGHLIGHT, name)
 			Unit.Action.ATTACK:
 				#TODO: Highlights the range of attack when hovering over Skill Select
 				if skill_chosen == null:
@@ -226,7 +222,7 @@ func highlight_handle():
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
-				EventBus.emit_signal("show_cell_highlights", all_targets, ATTACK_HIGHLIGHT, name)
+				EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_HIGHLIGHT, name)
 			_:
 				pass
 

@@ -52,7 +52,7 @@ unit_data = ExtResource("9_mfhmk")
 script = ExtResource("5_ypjfd")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(435, 280)
+position = Vector2(434, 180)
 script = ExtResource("13_e31i5")
 
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
