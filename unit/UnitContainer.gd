@@ -113,18 +113,24 @@ func unit_action():
 	)
 	
 	var clicked_cell: Vector2i
+	var action_options: Array[Vector2i]
 	
 	var action_roll: float = randf() * (aggro_probability + positional_probability + defensive_probability)
 	
 	if (action_roll < aggro_probability):
-		clicked_cell = aggro_actionnable_cells(all_actionnable_cells).pick_random()
+		action_options = aggro_actionnable_cells(all_actionnable_cells)
 		print("PICKED AGGRO MOVE")
 	elif (action_roll < aggro_probability + positional_probability):
-		clicked_cell = positional_actionnable_cells(all_actionnable_cells).pick_random()
+		action_options = positional_actionnable_cells(all_actionnable_cells)
 		print("PICKED POSITIONAL MOVE")
 	else:
-		clicked_cell = defensive_actionable_cells(all_actionnable_cells).pick_random()
+		action_options = defensive_actionable_cells(all_actionnable_cells)
 		print("PICKED DEFENSIVE MOVE")
+	
+	if !action_options.is_empty():
+		clicked_cell = action_options.pick_random()
+	else:
+		clicked_cell = all_actionnable_cells.pick_random()
 	
 	
 	#execute action according to the cell chosen
