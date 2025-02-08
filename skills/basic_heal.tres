@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://fdgf7o7phfwl"]
+
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="1_j4sim"]
+
+[resource]
+script = ExtResource("1_j4sim")
+name = "Give Milk"
+type = 1
+targets = 0
+range = 2
+skill_effects = Array[Vector2i]([Vector2i(2, 1)])

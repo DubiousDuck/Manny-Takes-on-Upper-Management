@@ -98,6 +98,16 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.WAIT:
 				attacker.actions_avail.erase(Unit.Action.MOVE)
 				attacker.actions_avail.erase(Unit.Action.ATTACK)
+			
+			SkillInfo.EffectType.HEAL:
+				affected_units.map(
+					func(unit : Unit):
+						if unit.health + effect.y *attacker.attack_power >= unit.unit_data.get_attribute("HP"):
+							unit.health = unit.unit_data.get_attribute("HP")
+						else:
+							unit.health += (effect.y * attacker.attack_power) # need heal power?
+						#need animation
+				)
 				
 			SkillInfo.EffectType.DISPLACE:
 				match effect.y:
