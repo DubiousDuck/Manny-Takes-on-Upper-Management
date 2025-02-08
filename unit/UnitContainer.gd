@@ -12,6 +12,10 @@ var current_unit: Unit
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
+@export var aggro_probability: float = 0.6       #Default weights for move decision of AI enemy
+@export var positional_probability: float = 0.2
+@export var defensive_probability: float = 0.2
+
 #flags
 var is_waiting_unit_selection: bool = true
 var in_progress: bool = false
@@ -73,6 +77,15 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
+func aggro_actionnable_cells(available_actionnable_cells):
+	return available_actionnable_cells
+
+func positional_actionnable_cells(available_actionnable_cells):
+	return available_actionnable_cells
+
+func defensive_actionable_cells(available_actionable_cells):
+	return available_actionable_cells
+
 func unit_action():
 	#handle npc movement and attack logic here
 	#Place holder for now (largely identical to player logic)
@@ -92,7 +105,21 @@ func unit_action():
 		func(array):
 			all_actionnable_cells.append_array(array)
 	)
-	var clicked_cell: Vector2i = all_actionnable_cells.pick_random()
+	
+	var clicked_cell: Vector2i
+	
+	var action_roll: float = randf() * (aggro_probability + positional_probability + defensive_probability)
+	
+	if (action_roll < aggro_probability):
+		clicked_cell = aggro_actionnable_cells(all_actionnable_cells).pick_random()
+		print("PICKED AGGRO MOVE")
+	elif (action_roll < aggro_probability + positional_probability):
+		clicked_cell = positional_actionnable_cells(all_actionnable_cells).pick_random()
+		print("PICKED POSITIONAL MOVE")
+	else:
+		clicked_cell = defensive_actionable_cells(all_actionnable_cells).pick_random()
+		print("PICKED DEFENSIVE MOVE")
+	
 	
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
