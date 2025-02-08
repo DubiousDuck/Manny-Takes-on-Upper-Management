@@ -12,9 +12,9 @@ var current_unit: Unit
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
-@export var aggro_probability: float = 0.6       #Default weights for move decision of AI enemy
-@export var positional_probability: float = 0.2
-@export var defensive_probability: float = 0.2
+@export var aggro_probability: float = 1.0       #Default weights for move decision of AI enemy
+@export var positional_probability: float = 0.0
+@export var defensive_probability: float = 0.0
 
 #flags
 var is_waiting_unit_selection: bool = true
@@ -78,7 +78,13 @@ func disconnect_current_unit_signals():
 	pass
 
 func aggro_actionnable_cells(available_actionnable_cells):
-	return available_actionnable_cells
+	var output_actionnable_cells: Array[Vector2i]
+	for vector in available_actionnable_cells:
+		if vector.x == 4:
+			output_actionnable_cells.append(vector)
+			print(vector)
+			
+	return output_actionnable_cells
 
 func positional_actionnable_cells(available_actionnable_cells):
 	return available_actionnable_cells
