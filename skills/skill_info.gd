@@ -7,11 +7,13 @@ enum EffectType {DAMAGE, KNOCKBACK, HEAL, BUFF, DEBUFF, STUN, ACTION_COMMAND, WA
 enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SELF, ANY_CELL, ANY_CELL_EXCEPT_SELF}
 #ALLIES = 0, ENEMIES = 1, SELF = 2, ANY_UNIT = 3, EXCEPT_SELF = 4, ALLIES_EXCEPT_SELF = 5, ANY_CELL = 6, ANY_CELL_EXCEPT_SELF = 7
 
+
 @export_category("Basic Info")
 @export var name: String
 @export_enum("attack", "skill", "passive") var type
 @export_enum("allies", "enemies", "self", "any_unit", 
 "except_self", "allies_except_self", "any_cell", "any_cell_except_self") var targets
+@export_enum("physical", "magic") var affinity
 @export_range(0, 10) var range: int
 
 @export_category("Skill Detail")

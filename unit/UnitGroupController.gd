@@ -51,6 +51,14 @@ func _on_unit_container_all_moved():
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	in_progress = true
+	
+	#get effect multiplier based on affinity
+	var attacker_power = 1
+	if attack.affinity == 0:
+		attacker_power = attacker.attack_power
+	elif attack.affinity == 1:
+		attacker_power = attacker.magic_power
+	
 	#get all target units
 	var affected_units: Array[Unit] = []
 	for unit in all_units:
@@ -62,7 +70,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit : Unit):
-						unit.health -= (effect.y * attacker.attack_power)
+						unit.health -= (effect.y * attacker_power)
 						unit.animation_state("hurt_initial")
 				)
 				
@@ -102,11 +110,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
 					func(unit : Unit):
-						if unit.health + effect.y *attacker.attack_power >= unit.unit_data.get_attribute("HP"):
+						if unit.health + effect.y * attacker_power >= unit.unit_data.get_attribute("HP"):
 							unit.health = unit.unit_data.get_attribute("HP")
 						else:
-							unit.health += (effect.y * attacker.attack_power) # need heal power?
-						#need animation
+							unit.health += (effect.y * attacker_power)
+						#TODO: needs animation
 				)
 				
 			SkillInfo.EffectType.DISPLACE:
