@@ -7,6 +7,9 @@ script = ExtResource("1_j4sim")
 name = "Give Milk"
 type = 1
 targets = 0
+<<<<<<< HEAD
 affinity = 1
+=======
+>>>>>>> 9ba15f5 (Added heal effect and healer class)
 range = 2
 skill_effects = Array[Vector2i]([Vector2i(2, 1)])

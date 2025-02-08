@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_fc3tt")
-unit_class = "Fighter"
+unit_class = "Healer"
 attributes = {
 0: 6,
 1: 2,

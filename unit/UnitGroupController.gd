@@ -110,11 +110,19 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
 					func(unit : Unit):
+<<<<<<< HEAD
 						if unit.health + effect.y * attacker_power >= unit.unit_data.get_attribute("HP"):
 							unit.health = unit.unit_data.get_attribute("HP")
 						else:
 							unit.health += (effect.y * attacker_power)
 						#TODO: needs animation
+=======
+						if unit.health + effect.y *attacker.attack_power >= unit.unit_data.get_attribute("HP"):
+							unit.health = unit.unit_data.get_attribute("HP")
+						else:
+							unit.health += (effect.y * attacker.attack_power) # need heal power?
+						#need animation
+>>>>>>> 9ba15f5 (Added heal effect and healer class)
 				)
 				
 			SkillInfo.EffectType.DISPLACE:
