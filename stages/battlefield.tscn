@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://wyl7uecllbco"]
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="1_h80nl"]
-[ext_resource type="Script" path="res://level.gd" id="1_ncysa"]
+[ext_resource type="Script" path="res://stages/level.gd" id="1_ncysa"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_gevof"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="3_o4i10"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="3_r2aph"]

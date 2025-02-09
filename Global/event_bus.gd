@@ -1,7 +1,7 @@
 extends Node
 
-enum BattleResult {PLAYER_VICTORY, ENEMY_VICTORY, TIE
-}
+enum BattleResult {PLAYER_VICTORY, ENEMY_VICTORY, TIE}
+
 #Cell Highlights
 signal show_cell_highlights(positions : Array, color : Color, emitter_name : String)
 signal remove_cell_highlights(emitter_name : String) #remove highlight requested by a specific entity
@@ -20,3 +20,8 @@ signal skill_chosen(skill: SkillInfo)
 signal unit_died()
 signal battle_ended(result: int)
 signal unit_on_standby()
+
+#Skill Tree
+signal talent_node_pressed()
+signal disable_all_nodes()
+signal reset_talent_levels()
