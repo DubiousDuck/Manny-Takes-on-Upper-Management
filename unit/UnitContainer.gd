@@ -92,7 +92,7 @@ func aggro_actionnable_cells(available_actionnable_cells):
 	
 	# This for loop considers every move and compiles a position_distances_array containing the resulting closest distance to players
 	for vector in available_actionnable_cells:
-		var dist_to_player: float = 9999
+		var dist_to_player: float = 99999
 		for player_vector in players_exhibiting_cells:
 			var dist_to_cur_player: float = sqrt(pow(player_vector.x-vector.x,2) + pow(player_vector.y-vector.y,2))
 			if dist_to_cur_player < dist_to_player: dist_to_player = dist_to_cur_player
