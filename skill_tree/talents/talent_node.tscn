@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b65vkeagk8n6r"]
+
+[ext_resource type="Script" path="res://skill_tree/talents/talent_node.gd" id="1_xpt0h"]
+[ext_resource type="Texture2D" uid="uid://b72ioykwqhufk" path="res://icon.svg" id="2_tdsw0"]
+
+[node name="TalentNode" type="TextureButton"]
+texture_normal = ExtResource("2_tdsw0")
+script = ExtResource("1_xpt0h")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 74.0
+offset_top = 85.0
+offset_right = 125.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 50
+text = "0/2"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+z_index = -1
+default_color = Color(0.867748, 0.590628, 0.128931, 1)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
