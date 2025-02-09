@@ -86,15 +86,20 @@ func disconnect_current_unit_signals():
 func aggro_actionnable_cells(available_actionnable_cells):
 	var output_actionnable_cells: Array[Vector2i]
 	var all_cells: Array[Vector2i] = tile_map_test.get_all_tilemap_cells()
-	var allies_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells,SkillInfo.TargetType.ALLIES)
+	var players_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.ENEMIES)
+	var own_cell_position: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.SELF)
+	var position_distances_array: Array[float]
 	
-	print("allies are here: " + str(allies_exhibiting_cells))
-	#print("all cells: " + str(all_cells))
-	
+	# This for loop considers every move and compiles a position_distances_array containing the resulting closest distance to players
 	for vector in available_actionnable_cells:
-		if vector.x == 4:
-			output_actionnable_cells.append(vector)
-			
+		var dist_to_player: float = 9999
+		for player_vector in players_exhibiting_cells:
+			var dist_to_cur_player: float = sqrt(pow(player_vector.x-vector.x,2) + pow(player_vector.y-vector.y,2))
+			if dist_to_cur_player < dist_to_player: dist_to_player = dist_to_cur_player
+		position_distances_array.append(dist_to_player)
+	
+	# This line is where the most aggressive (closest to player) move is selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
 	return output_actionnable_cells
 
 func positional_actionnable_cells(available_actionnable_cells):
@@ -313,7 +318,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 	)
 	for target in targets:
 		if HexNavi.get_cell_custom_data(target, "occupied"):
-			match skill_chosen.targets:
+			match type:
 				SkillInfo.TargetType.ALLIES:
 					if allied_cells.has(target): correct_targets.append(target)
 				SkillInfo.TargetType.ENEMIES:
@@ -331,7 +336,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 				_:
 					pass
 		else:
-			match skill_chosen.targets:
+			match type:
 				SkillInfo.TargetType.ANY_CELL:
 					correct_targets.append(target)
 				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
