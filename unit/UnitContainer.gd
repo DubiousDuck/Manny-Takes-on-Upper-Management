@@ -83,30 +83,39 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
-func aggro_actionnable_cells(available_actionnable_cells):
-	var output_actionnable_cells: Array[Vector2i]
+func distances_to_player_array(action_cells: Array[Vector2i]):
 	var all_cells: Array[Vector2i] = tile_map_test.get_all_tilemap_cells()
 	var players_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.ENEMIES)
-	var own_cell_position: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.SELF)
 	var position_distances_array: Array[float]
-	
 	# This for loop considers every move and compiles a position_distances_array containing the resulting closest distance to players
-	for vector in available_actionnable_cells:
+	for vector in action_cells:
 		var dist_to_player: float = 99999
 		for player_vector in players_exhibiting_cells:
 			var dist_to_cur_player: float = sqrt(pow(player_vector.x-vector.x,2) + pow(player_vector.y-vector.y,2))
 			if dist_to_cur_player < dist_to_player: dist_to_player = dist_to_cur_player
 		position_distances_array.append(dist_to_player)
-	
+	return position_distances_array
+
+func aggro_actionnable_cells(available_actionnable_cells):
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
 	# This line is where the most aggressive (closest to player) move is selected
 	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
 	return output_actionnable_cells
 
 func positional_actionnable_cells(available_actionnable_cells):
-	return available_actionnable_cells
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
+	# This line is where the positional (medium distance to player) moves are selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
+	return output_actionnable_cells
 
-func defensive_actionable_cells(available_actionable_cells):
-	return available_actionable_cells
+func defensive_actionable_cells(available_actionnable_cells):
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
+	# This line is where the most defensive (farthest distance to player) move is selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.max())])
+	return output_actionnable_cells
 
 func unit_action():
 	#handle npc movement and attack logic here
