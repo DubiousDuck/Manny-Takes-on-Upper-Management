@@ -49,7 +49,7 @@ func _on_unit_container_all_moved():
 		enemy_group.round_start()
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
-	print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
+	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	in_progress = true
 	
 	#get effect multiplier based on affinity

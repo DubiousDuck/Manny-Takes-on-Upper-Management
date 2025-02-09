@@ -41,7 +41,7 @@ func _on_button_pressed():
 
 ## display highlights of skill range when hovered over
 func _on_mouse_entered(icon_hovered: SkillIcon):
-	print(icon_hovered.name + str(" is being hovered over!"))
+	#print(icon_hovered.name + str(" is being hovered over!"))
 	#Prob unoptimal but convenient implmentation
 	EventBus.emit_signal("remove_cell_highlights", name)
 	
