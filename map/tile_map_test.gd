@@ -35,6 +35,12 @@ func _on_clear_cells():
 	for pos in get_used_cells():
 		set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
 
+func get_all_tilemap_cells() -> Array[Vector2i]:
+	var all_cells: Array[Vector2i] = []
+	for cell in get_used_cells():
+		all_cells.append(cell)
+	return all_cells
+
 #func _input(event):
 	#if event is InputEventMouseButton:
 		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():

@@ -16,6 +16,9 @@ var current_actionnable_cells: Dictionary = {}
 @export var positional_probability: float = 0.0
 @export var defensive_probability: float = 0.0
 
+@export var tilemap_path: NodePath = NodePath("../../TileMapTest") # Default value (can be overridden in the editor)
+@onready var tile_map_test: TileMapLayer = get_node(tilemap_path) as TileMapLayer
+
 #flags
 var is_waiting_unit_selection: bool = true
 var in_progress: bool = false
@@ -24,6 +27,9 @@ func _ready() -> void:
 	EventBus.connect("unit_died", _on_unit_died)
 	if is_player_controlled:
 		EventBus.connect("skill_chosen", _on_skill_chosen)
+	
+	if !tile_map_test: # Always check for null!
+		push_warning("TileMap not found at path: " + str(tilemap_path)) # More informative warning
 
 func init():
 	for unit in get_children():
@@ -79,10 +85,15 @@ func disconnect_current_unit_signals():
 
 func aggro_actionnable_cells(available_actionnable_cells):
 	var output_actionnable_cells: Array[Vector2i]
+	var all_cells: Array[Vector2i] = tile_map_test.get_all_tilemap_cells()
+	var allies_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells,SkillInfo.TargetType.ALLIES)
+	
+	print("allies are here: " + str(allies_exhibiting_cells))
+	#print("all cells: " + str(all_cells))
+	
 	for vector in available_actionnable_cells:
 		if vector.x == 4:
 			output_actionnable_cells.append(vector)
-			print(vector)
 			
 	return output_actionnable_cells
 
@@ -119,13 +130,13 @@ func unit_action():
 	
 	if (action_roll < aggro_probability):
 		action_options = aggro_actionnable_cells(all_actionnable_cells)
-		print("PICKED AGGRO MOVE")
+		#print("PICKED AGGRO MOVE")
 	elif (action_roll < aggro_probability + positional_probability):
 		action_options = positional_actionnable_cells(all_actionnable_cells)
-		print("PICKED POSITIONAL MOVE")
+		#print("PICKED POSITIONAL MOVE")
 	else:
 		action_options = defensive_actionable_cells(all_actionnable_cells)
-		print("PICKED DEFENSIVE MOVE")
+		#print("PICKED DEFENSIVE MOVE")
 	
 	if !action_options.is_empty():
 		clicked_cell = action_options.pick_random()
@@ -150,15 +161,15 @@ func unit_action():
 			)
 		in_progress = true
 		await current_unit.movement_complete
-		print("# " + str(current_unit.name) + " moved" + " (UnitContainer.gd)")
+		#print("# " + str(current_unit.name) + " moved" + " (UnitContainer.gd)")
 		deselect_current_unit()
 		in_progress = false
 	
 	if action_type == Unit.Action.ATTACK and !in_progress: #assumes that skill_chosen is not null
-		print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
+		#print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 		var outbound_array: Array[Vector2i] = [clicked_cell]
 		current_unit.take_action(skill_chosen)
-		print("# Awaiting attack point (UnitContainer.gd)")
+		#print("# Awaiting attack point (UnitContainer.gd)")
 		in_progress = true
 		await current_unit.attack_point
 		in_progress = false
@@ -221,7 +232,7 @@ func _unhandled_input(event):
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				current_unit.take_action(skill_chosen)
-				print("# Awaiting attack point (UnitContainer.gd)")
+				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
 				await current_unit.attack_point
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
