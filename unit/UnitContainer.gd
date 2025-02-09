@@ -13,7 +13,7 @@ var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
 @export var aggro_probability: float = 1.0       #Default weights for move decision of AI enemy
-@export var positional_probability: float = 0.0
+@export var neutral_probability: float = 0.0
 @export var defensive_probability: float = 0.0
 
 @export var tilemap_path: NodePath = NodePath("../../TileMapTest") # Default value (can be overridden in the editor)
@@ -103,11 +103,11 @@ func aggro_actionnable_cells(available_actionnable_cells):
 	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
 	return output_actionnable_cells
 
-func positional_actionnable_cells(available_actionnable_cells):
+func neutral_actionnable_cells(available_actionnable_cells):
 	var output_actionnable_cells: Array[Vector2i]
 	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
 	# This line is where the positional (medium distance to player) moves are selected
-	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(get_median(position_distances_array))])
 	return output_actionnable_cells
 
 func defensive_actionable_cells(available_actionnable_cells):
@@ -116,6 +116,16 @@ func defensive_actionable_cells(available_actionnable_cells):
 	# This line is where the most defensive (farthest distance to player) move is selected
 	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.max())])
 	return output_actionnable_cells
+
+# This was useful for the neutral_actionable_cells function
+func get_median(arr: Array[float]) -> float:
+	if arr.is_empty():
+		return 0.0  # Handle empty array case
+	var sorted_arr = arr.duplicate()  # Duplicate to avoid modifying the original array
+	sorted_arr.sort()  # Sort the array in ascending order
+	var n = sorted_arr.size()
+	var mid = n / 2
+	return sorted_arr[mid]  # Return middle element
 
 func unit_action():
 	#handle npc movement and attack logic here
@@ -140,13 +150,13 @@ func unit_action():
 	var clicked_cell: Vector2i
 	var action_options: Array[Vector2i]
 	
-	var action_roll: float = randf() * (aggro_probability + positional_probability + defensive_probability)
+	var action_roll: float = randf() * (aggro_probability + neutral_probability + defensive_probability)
 	
 	if (action_roll < aggro_probability):
 		action_options = aggro_actionnable_cells(all_actionnable_cells)
 		#print("PICKED AGGRO MOVE")
-	elif (action_roll < aggro_probability + positional_probability):
-		action_options = positional_actionnable_cells(all_actionnable_cells)
+	elif (action_roll < aggro_probability + neutral_probability):
+		action_options = neutral_actionnable_cells(all_actionnable_cells)
 		#print("PICKED POSITIONAL MOVE")
 	else:
 		action_options = defensive_actionable_cells(all_actionnable_cells)
