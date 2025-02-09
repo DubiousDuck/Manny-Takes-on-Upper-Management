@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://brud1l1y65nmt"]
+
+[ext_resource type="PackedScene" uid="uid://b65vkeagk8n6r" path="res://skill_tree/talents/talent_node.tscn" id="1_eampf"]
+[ext_resource type="Script" path="res://skill_tree/skill_tree.gd" id="1_iu12f"]
+
+[node name="SkillTree" type="Control" node_paths=PackedStringArray("top_node")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iu12f")
+max_points = 7
+top_node = NodePath("TalentNode")
+
+[node name="TalentNode" parent="." instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 483.0
+offset_right = 639.0
+offset_bottom = 611.0
+
+[node name="TalentNode2" parent="TalentNode" instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = -206.0
+offset_top = -178.0
+offset_right = -78.0
+offset_bottom = -50.0
+
+[node name="TalentNode4" parent="TalentNode/TalentNode2" instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = -178.0
+offset_top = -187.0
+offset_right = -50.0
+offset_bottom = -59.0
+
+[node name="TalentNode3" parent="TalentNode" instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = 212.0
+offset_top = -182.0
+offset_right = 340.0
+offset_bottom = -54.0
+
+[node name="TalentNode4" parent="TalentNode/TalentNode3" instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = -188.0
+offset_right = 295.0
+offset_bottom = -60.0
+
+[node name="TalentNode5" parent="TalentNode/TalentNode3" instance=ExtResource("1_eampf")]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -194.0
+offset_right = 8.0
+offset_bottom = -66.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 17.0
+offset_right = 391.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 50
+text = "Talent Points Left: X"
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 1
+offset_left = 930.0
+offset_top = 561.0
+offset_right = 1122.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 35
+text = "Reset Talent"
+
+[node name="SaveExit" type="Button" parent="."]
+layout_mode = 1
+offset_left = 39.0
+offset_top = 561.0
+offset_right = 231.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 35
+text = "Save and Exit"
+
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
