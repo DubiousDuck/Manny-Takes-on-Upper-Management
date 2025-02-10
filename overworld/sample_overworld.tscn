@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
 [ext_resource type="Script" path="res://overworld/door.gd" id="2_igj1o"]
 [ext_resource type="Texture2D" uid="uid://coy382quxt11e" path="res://assets/door.png" id="2_yeq1s"]
-[ext_resource type="PackedScene" uid="uid://cabi3s34sqtgq" path="res://overworld/Follower.tscn" id="3_74ojj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
 size = Vector2(561.75, 15)
@@ -80,12 +79,6 @@ offset_top = 5.00001
 offset_right = 343.0
 offset_bottom = 17.5
 color = Color(0.450648, 0.450648, 0.450648, 1)
-
-[node name="Follower" parent="." instance=ExtResource("3_74ojj")]
-position = Vector2(114, 465)
-
-[node name="Follower2" parent="." instance=ExtResource("3_74ojj")]
-position = Vector2(127, 537)
 
 [node name="Player" parent="." instance=ExtResource("1_i2n66")]
 position = Vector2(264, 485)
