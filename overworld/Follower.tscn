@@ -10,6 +10,7 @@ height = 56.0
 
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_n8ld1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,6 +18,7 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_7mksb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(3, 3)
 texture = ExtResource("2_ookn7")
 hframes = 4
