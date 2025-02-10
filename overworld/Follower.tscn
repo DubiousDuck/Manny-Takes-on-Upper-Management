@@ -9,6 +9,7 @@ radius = 18.0
 height = 56.0
 
 [node name="Follower" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_n8ld1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
