@@ -25,7 +25,7 @@ func _physics_process(delta):
 	var diff = player.position - position
 	var direction = diff.normalized()
 	
-	sort_z_layer()
+	#sort_z_layer()
 	
 	if (turn_timer <= 0):
 		if (diff.length() > FOLLOW_D or diff.length()<DISPERSE_D):
