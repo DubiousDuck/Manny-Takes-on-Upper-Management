@@ -34,9 +34,9 @@ func _physics_process(delta):
 				velocity = -velocity
 			
 			var last_dir = dir
-			if velocity.x > sqrt(2) / 2 + 1e-2:
+			if velocity.x > 0:
 				dir = Vector2.RIGHT
-			elif velocity.x < -sqrt(2) / 2 + 1e-2:
+			elif velocity.x < 0:
 				dir = Vector2.LEFT
 				
 			# Only update direction if it has changed and the cooldown timer has expired.
