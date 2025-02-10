@@ -5,8 +5,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="3_o1y3r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
-radius = 18.0
-height = 56.0
+radius = 15.0
+height = 38.0
 
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 2
@@ -14,7 +14,7 @@ collision_mask = 3
 script = ExtResource("1_n8ld1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_7mksb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

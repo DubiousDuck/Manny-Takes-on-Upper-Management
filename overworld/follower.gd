@@ -25,6 +25,8 @@ func _physics_process(delta):
 	var diff = player.position - position
 	var direction = diff.normalized()
 	
+	sort_z_layer()
+	
 	if (turn_timer <= 0):
 		if (diff.length() > FOLLOW_D or diff.length()<DISPERSE_D):
 			if (diff.length()>TELE_D):
@@ -66,7 +68,9 @@ func _physics_process(delta):
 	anim_handler(delta)
 	lastpos = position
 	move_and_slide()
-	
+
+func sort_z_layer():
+	z_index = int(position.y)
 
 func anim_handler(delta):
 	vel_moving_average = vel_moving_average*0.8 + 0.2*(lastpos-position) / delta
