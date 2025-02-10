@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Follower
 
+const TELE_D = 400
 const FOLLOW_D = 90
 const DISPERSE_D = 60
 
@@ -23,6 +24,8 @@ func _physics_process(delta):
 	
 	if (turn_timer <= 0):
 		if (diff.length() > FOLLOW_D or diff.length()<DISPERSE_D):
+			if (diff.length()>TELE_D):
+				position = player.position-direction*FOLLOW_D
 			velocity.x = direction.x * SPEED
 			velocity.y = direction.y * SPEED
 			
