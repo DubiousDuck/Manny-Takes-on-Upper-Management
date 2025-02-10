@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Follower
 
-const TELE_D = 400
+const TELE_D = 600
 const FOLLOW_D = 90
 const DISPERSE_D = 60
 
@@ -13,7 +13,9 @@ const TURN_COOLDOWN = 0.15  # seconds between allowed between steps
 var dir = Vector2.RIGHT
 var turn_timer = 0.0
 var turning = false
+
 var lastpos = Vector2(0,0)
+var vel_moving_average = Vector2(0,0)
 
 func _physics_process(delta):
 	# Decrease the cooldown timer.
@@ -61,16 +63,17 @@ func _physics_process(delta):
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 		turn_timer = TURN_COOLDOWN
 	
-	move_and_slide()
 	anim_handler(delta)
 	lastpos = position
+	move_and_slide()
 	
 
 func anim_handler(delta):
-	var idle = (lastpos-position).length() < SPEED*delta*0.1
-	if abs(velocity.y) > SPEED * sqrt(2) / 2 + 1e-2 and not idle:
+	vel_moving_average = vel_moving_average*0.8 + 0.2*(lastpos-position) / delta
+	var idle = (vel_moving_average.length() < SPEED*0.25)
+	if abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2 and not idle:
 		$AnimationPlayer.play("unit_anim/front_walk")
-	elif velocity != Vector2.ZERO and not idle:
+	elif vel_moving_average != Vector2.ZERO and not idle:
 		$AnimationPlayer.play("unit_anim/side_walk")
 	else:
 		$AnimationPlayer.play("unit_anim/front_idle")
