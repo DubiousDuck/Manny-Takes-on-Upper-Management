@@ -5,7 +5,7 @@ class_name Overworld
 
 @export var follower_count: int = 10
 
-var follower_spawn_radius: float = 150
+var follower_spawn_radius: float = 110
 
 func spawn_followers(num_followers: int) -> void:
 	# Get a reference to the player node. Adjust the node path as needed.
