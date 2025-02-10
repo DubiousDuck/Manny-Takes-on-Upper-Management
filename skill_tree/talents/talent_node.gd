@@ -8,9 +8,11 @@ const ACTIVATED_COLOR := Color(0.868, 0.591, 0.129)
 const DEACTIVATED_COLOR := Color(0.385, 0.385, 0.385)
 
 ## Node name should be in snake_case for consistency
-@export var node_name: String = ""
+@export var talent_name: String = ""
 ## The maximum level players can upgrade to on this talent node
 @export var max_level: int = 2
+## The parent talent node to this talent node
+@export var parent_talent: TalentNode
 
 @onready var label = $Label
 @onready var line = $Line2D
@@ -27,9 +29,6 @@ var right_click: bool = true
 func _ready():
 	EventBus.connect("disable_all_nodes", _on_disable_node)
 	EventBus.connect("reset_talent_levels", _on_level_reset)
-	if get_parent() is TalentNode:
-		line.add_point(global_position + size/2)
-		line.add_point(get_parent().global_position + size/2)
 	init()
 
 ## custom function to reset the state and level of the node
@@ -38,22 +37,26 @@ func init():
 	disabled = false
 	line.default_color = DEACTIVATED_COLOR
 	$Panel.show_behind_parent = false
+	
+	if parent_talent:
+		line.add_point(global_position + size/2)
+		line.add_point(parent_talent.global_position + size/2)
 
 func _process(delta):
-	if get_parent() is TalentNode:
-		if get_parent().disabled:
+	if parent_talent:
+		if parent_talent.disabled:
 			disabled = true
 			return
 		
-		if get_parent().level <= 0:
+		if parent_talent.level <= 0:
 			toggle_disabled(true)
 		else: 
 			toggle_disabled(false)
 
 func _on_pressed():
-	if level < max_level:
-		toggle_disabled(false)
+	if level < max_level and !disabled:
 		level += 1
+		toggle_disabled(false)
 		EventBus.emit_signal("talent_node_pressed")
 
 func toggle_disabled(state: bool):
