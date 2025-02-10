@@ -3,8 +3,9 @@ extends Node2D
 ## General class for any overworld
 class_name Overworld
 
-var follower_count = 10
-var follower_spawn_radius = 150
+@export var follower_count: int = 10
+
+var follower_spawn_radius: float = 150
 
 func spawn_followers(num_followers: int) -> void:
 	# Get a reference to the player node. Adjust the node path as needed.
@@ -23,4 +24,5 @@ func spawn_followers(num_followers: int) -> void:
 func _ready():
 	#make the game remember this is the last overworld loaded
 	Global.set_last_overworld(get_tree().current_scene.scene_file_path)
+	
 	spawn_followers(follower_count)
