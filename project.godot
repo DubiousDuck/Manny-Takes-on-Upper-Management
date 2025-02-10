@@ -23,7 +23,7 @@ HexNavi="*res://addons/hex_grid_nav/hexagon_navigation.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 

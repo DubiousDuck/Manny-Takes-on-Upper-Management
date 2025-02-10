@@ -26,3 +26,7 @@ func _ready():
 	Global.set_last_overworld(get_tree().current_scene.scene_file_path)
 	
 	spawn_followers(follower_count)
+
+func _on_to_talent_page_pressed():
+	var talent_scene = preload("res://skill_tree/company_skill_tree.tscn")
+	get_tree().change_scene_to_packed(talent_scene)

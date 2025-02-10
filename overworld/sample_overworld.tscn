@@ -21,6 +21,16 @@ radius = 42.107
 y_sort_enabled = true
 script = ExtResource("1_o2m1g")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ToTalentPage" type="Button" parent="CanvasLayer"]
+offset_left = 928.0
+offset_top = 565.0
+offset_right = 1133.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 45
+text = "To Skill Tree"
+
 [node name="RoomLayout" type="Node2D" parent="."]
 
 [node name="Wall" type="StaticBody2D" parent="RoomLayout"]
@@ -101,5 +111,6 @@ position = Vector2(3, 11)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_yeq1s")
 
+[connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]
