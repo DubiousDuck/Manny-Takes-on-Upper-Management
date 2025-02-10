@@ -13,7 +13,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector2(input_dir.x, input_dir.y).normalized()
 	
-	sort_z_layer()
+	#sort_z_layer()
 	
 	if direction:
 		velocity.x = direction.x * SPEED

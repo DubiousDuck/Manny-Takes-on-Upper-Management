@@ -18,6 +18,7 @@ size = Vector2(306.75, 15)
 radius = 42.107
 
 [node name="SampleOverworld" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_o2m1g")
 
 [node name="RoomLayout" type="Node2D" parent="."]
