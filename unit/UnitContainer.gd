@@ -12,6 +12,13 @@ var current_unit: Unit
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
+@export var aggro_probability: float = 1.0       #Default weights for move decision of AI enemy
+@export var neutral_probability: float = 0.0
+@export var defensive_probability: float = 0.0
+
+@export var tilemap_path: NodePath = NodePath("../../TileMapTest") # Default value (can be overridden in the editor)
+@onready var tile_map_test: TileMapLayer = get_node(tilemap_path) as TileMapLayer
+
 #flags
 var is_waiting_unit_selection: bool = true
 var in_progress: bool = false
@@ -20,6 +27,9 @@ func _ready() -> void:
 	EventBus.connect("unit_died", _on_unit_died)
 	if is_player_controlled:
 		EventBus.connect("skill_chosen", _on_skill_chosen)
+	
+	if !tile_map_test: # Always check for null!
+		push_warning("TileMap not found at path: " + str(tilemap_path)) # More informative warning
 
 func init():
 	for unit in get_children():
@@ -73,6 +83,50 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
+func distances_to_player_array(action_cells: Array[Vector2i]):
+	var all_cells: Array[Vector2i] = tile_map_test.get_all_tilemap_cells()
+	var players_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.ENEMIES)
+	var position_distances_array: Array[float]
+	# This for loop considers every move and compiles a position_distances_array containing the resulting closest distance to players
+	for vector in action_cells:
+		var dist_to_player: float = 99999
+		for player_vector in players_exhibiting_cells:
+			var dist_to_cur_player: float = sqrt(pow(player_vector.x-vector.x,2) + pow(player_vector.y-vector.y,2))
+			if dist_to_cur_player < dist_to_player: dist_to_player = dist_to_cur_player
+		position_distances_array.append(dist_to_player)
+	return position_distances_array
+
+func aggro_actionnable_cells(available_actionnable_cells):
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
+	# This line is where the most aggressive (closest to player) move is selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
+	return output_actionnable_cells
+
+func neutral_actionnable_cells(available_actionnable_cells):
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
+	# This line is where the positional (medium distance to player) moves are selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(get_median(position_distances_array))])
+	return output_actionnable_cells
+
+func defensive_actionable_cells(available_actionnable_cells):
+	var output_actionnable_cells: Array[Vector2i]
+	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
+	# This line is where the most defensive (farthest distance to player) move is selected
+	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.max())])
+	return output_actionnable_cells
+
+# This was useful for the neutral_actionable_cells function
+func get_median(arr: Array[float]) -> float:
+	if arr.is_empty():
+		return 0.0  # Handle empty array case
+	var sorted_arr = arr.duplicate()  # Duplicate to avoid modifying the original array
+	sorted_arr.sort()  # Sort the array in ascending order
+	var n = sorted_arr.size()
+	var mid = n / 2
+	return sorted_arr[mid]  # Return middle element
+
 func unit_action():
 	#handle npc movement and attack logic here
 	#Place holder for now (largely identical to player logic)
@@ -92,7 +146,27 @@ func unit_action():
 		func(array):
 			all_actionnable_cells.append_array(array)
 	)
-	var clicked_cell: Vector2i = all_actionnable_cells.pick_random()
+	
+	var clicked_cell: Vector2i
+	var action_options: Array[Vector2i]
+	
+	var action_roll: float = randf() * (aggro_probability + neutral_probability + defensive_probability)
+	
+	if (action_roll < aggro_probability):
+		action_options = aggro_actionnable_cells(all_actionnable_cells)
+		#print("PICKED AGGRO MOVE")
+	elif (action_roll < aggro_probability + neutral_probability):
+		action_options = neutral_actionnable_cells(all_actionnable_cells)
+		#print("PICKED POSITIONAL MOVE")
+	else:
+		action_options = defensive_actionable_cells(all_actionnable_cells)
+		#print("PICKED DEFENSIVE MOVE")
+	
+	if !action_options.is_empty():
+		clicked_cell = action_options.pick_random()
+	else:
+		clicked_cell = all_actionnable_cells.pick_random()
+	
 	
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
@@ -111,15 +185,15 @@ func unit_action():
 			)
 		in_progress = true
 		await current_unit.movement_complete
-		print("# " + str(current_unit.name) + " moved" + " (UnitContainer.gd)")
+		#print("# " + str(current_unit.name) + " moved" + " (UnitContainer.gd)")
 		deselect_current_unit()
 		in_progress = false
 	
 	if action_type == Unit.Action.ATTACK and !in_progress: #assumes that skill_chosen is not null
-		print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
+		#print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 		var outbound_array: Array[Vector2i] = [clicked_cell]
 		current_unit.take_action(skill_chosen)
-		print("# Awaiting attack point (UnitContainer.gd)")
+		#print("# Awaiting attack point (UnitContainer.gd)")
 		in_progress = true
 		await current_unit.attack_point
 		in_progress = false
@@ -182,7 +256,7 @@ func _unhandled_input(event):
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				current_unit.take_action(skill_chosen)
-				print("# Awaiting attack point (UnitContainer.gd)")
+				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
 				await current_unit.attack_point
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
@@ -263,7 +337,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 	)
 	for target in targets:
 		if HexNavi.get_cell_custom_data(target, "occupied"):
-			match skill_chosen.targets:
+			match type:
 				SkillInfo.TargetType.ALLIES:
 					if allied_cells.has(target): correct_targets.append(target)
 				SkillInfo.TargetType.ENEMIES:
@@ -281,7 +355,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 				_:
 					pass
 		else:
-			match skill_chosen.targets:
+			match type:
 				SkillInfo.TargetType.ANY_CELL:
 					correct_targets.append(target)
 				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:

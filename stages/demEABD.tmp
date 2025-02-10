@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://bjc751e4ol5ld"]
 
-[ext_resource type="Script" path="res://stages/level.gd" id="1_1snh2"]
+[ext_resource type="Script" path="res://level.gd" id="1_1snh2"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_v4sia"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ifsfs"]
