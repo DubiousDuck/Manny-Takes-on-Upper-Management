@@ -37,7 +37,7 @@ script = ExtResource("5_3d7nl")
 is_player_controlled = true
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(361, 333)
+position = Vector2(124, 193)
 script = ExtResource("7_r8r1u")
 unit_data = ExtResource("8_we6bo")
 
@@ -47,7 +47,7 @@ script = ExtResource("7_r8r1u")
 unit_data = ExtResource("9_o6vv7")
 
 [node name="PlayerUnit5" parent="Units/PlayerGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(49, 135)
+position = Vector2(52, 333)
 script = ExtResource("7_r8r1u")
 unit_data = ExtResource("11_qxhks")
 
@@ -55,7 +55,7 @@ unit_data = ExtResource("11_qxhks")
 script = ExtResource("5_3d7nl")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(130, 183)
+position = Vector2(121, 282)
 script = ExtResource("11_3pbfy")
 
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_ih3ny")]

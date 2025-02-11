@@ -160,6 +160,13 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 	in_progress = false
 
+func linspace(left,right,n):
+	var space = right-left / (n+1)
+	var pos = []
+	for i in range(n):
+		pos.append(i*space + space/2)
+	return pos
+
 func _on_update_cell_status(): #scan all units and update cell color accordingly
 	all_units = []
 	occupied_cells = {}
@@ -176,20 +183,24 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
-	
-	print("\n", occupied_cells)
-	
-	#checking if 2 or more units occupy same cell
+		
+	#adjusting position of units to accomodate for unit stacking
 	for cell in occupied_cells:
-		if occupied_cells[cell].size() > 1:
-			var displacement = 60/occupied_cells[cell].size();
-			print("Crowded Cell")
-			print(displacement)
-			for i in occupied_cells[cell].size(): #staggers positions
-				print(-15 + displacement*i)
-				occupied_cells[cell][i].global_position = occupied_cells[cell][i].global_position  + Vector2(-15 + displacement*i, 0)
-				#TODO tween the movement
-	
+		var displacement = 100/(occupied_cells[cell].size());
+		for i in occupied_cells[cell].size():
+			var unit = occupied_cells[cell][i]
+			var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
+			
+			var displace_tween = get_tree().create_tween()
+			displace_tween.set_ease(Tween.EASE_OUT)
+			displace_tween.set_trans(Tween.TRANS_CUBIC)
+			displace_tween.tween_property(
+							unit,
+							'global_position',
+							HexNavi.cell_to_global(cell) + vect,
+							0.5
+						)
+
 func _on_unit_died():
 	_on_update_cell_status()
 	check_if_win()
