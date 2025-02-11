@@ -54,6 +54,8 @@ var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 var is_dead: bool = false
 
+var damage_reduction: float = 0;
+
 signal attack_point
 
 func _ready():
@@ -90,6 +92,9 @@ func init():
 	global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
+	
+	#resets damage reduction
+	damage_reduction = 0
 	
 	#check and remove dead held units
 	var valid_children: Array[Unit] = []

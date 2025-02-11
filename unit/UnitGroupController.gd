@@ -51,6 +51,14 @@ func _on_unit_container_all_moved():
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	in_progress = true
+	
+	#get effect multiplier based on affinity
+	var attacker_power = 1
+	if attack.affinity == 0:
+		attacker_power = attacker.attack_power
+	elif attack.affinity == 1:
+		attacker_power = attacker.magic_power
+	
 	#get all target units
 	var affected_units: Array[Unit] = []
 	for unit in all_units:
@@ -62,7 +70,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit : Unit):
-						unit.health -= (effect.y * attacker.attack_power)
+						unit.health -= floor((effect.y * attacker_power) * (1-unit.damage_reduction))
 						unit.animation_state("hurt_initial")
 				)
 				
@@ -95,10 +103,26 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
 				
+			SkillInfo.EffectType.HEAL:
+				affected_units.map(
+					func(unit : Unit):
+						if unit.health + effect.y * attacker_power >= unit.unit_data.get_attribute("HP"):
+							unit.health = unit.unit_data.get_attribute("HP")
+						else:
+							unit.health += (effect.y * attacker_power)
+						#TODO: needs animation
+				)
+				
+			SkillInfo.EffectType.DAMAGE_REDUCTION:
+				affected_units.map(
+					func(unit: Unit):
+						unit.damage_reduction = 0.5
+				)
+			
 			SkillInfo.EffectType.WAIT:
 				attacker.actions_avail.erase(Unit.Action.MOVE)
 				attacker.actions_avail.erase(Unit.Action.ATTACK)
-				
+			
 			SkillInfo.EffectType.DISPLACE:
 				match effect.y:
 					0: #displace to attacker position (pick up)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://d2oqebe2dbpv"]
+
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="1_obn1n"]
+
+[resource]
+script = ExtResource("1_obn1n")
+name = "Rubber Band Shoot"
+type = 0
+targets = 1
+affinity = 0
+range = 2
+skill_effects = Array[Vector2i]([Vector2i(0, 1)])
