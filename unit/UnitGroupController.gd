@@ -11,6 +11,8 @@ signal attack_process_complete
 @onready var enemy_group: UnitContainer = $EnemyGroup
 var is_player_turn : bool = true
 var all_units: Array[Unit] = []
+var occupied_cells = {}
+
 var in_progress: bool = false:
 	set(value):
 		if value == false: attack_process_complete.emit()
@@ -160,14 +162,34 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 
 func _on_update_cell_status(): #scan all units and update cell color accordingly
 	all_units = []
+	occupied_cells = {}
 	EventBus.emit_signal("clear_cells")
 	all_units.append_array(player_group.units)
 	all_units.append_array(enemy_group.units)
 	for unit in player_group.units:
+		if !occupied_cells.has(unit.cell):
+			occupied_cells[unit.cell] = []
+		occupied_cells[unit.cell].append(unit)
 		EventBus.emit_signal("occupy_cell", unit.cell, "player")
 	for unit in enemy_group.units:
+		if !occupied_cells.has(unit.cell):
+			occupied_cells[unit.cell] = []
+		occupied_cells[unit.cell].append(unit)
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
-
+	
+	print("\n", occupied_cells)
+	
+	#checking if 2 or more units occupy same cell
+	for cell in occupied_cells:
+		if occupied_cells[cell].size() > 1:
+			var displacement = 60/occupied_cells[cell].size();
+			print("Crowded Cell")
+			print(displacement)
+			for i in occupied_cells[cell].size(): #staggers positions
+				print(-15 + displacement*i)
+				occupied_cells[cell][i].global_position = occupied_cells[cell][i].global_position  + Vector2(-15 + displacement*i, 0)
+				#TODO tween the movement
+	
 func _on_unit_died():
 	_on_update_cell_status()
 	check_if_win()
