@@ -160,13 +160,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 	in_progress = false
 
-func linspace(left,right,n):
-	var space = right-left / (n+1)
-	var pos = []
-	for i in range(n):
-		pos.append(i*space + space/2)
-	return pos
-
 func _on_update_cell_status(): #scan all units and update cell color accordingly
 	all_units = []
 	occupied_cells = {}
