@@ -117,7 +117,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				affected_units.map(
 					func(unit: Unit):
 						unit.damage_reduction = 0.5
-						print(unit, " is defended")
 				)
 			
 			SkillInfo.EffectType.WAIT:

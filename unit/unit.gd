@@ -93,8 +93,7 @@ func init():
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
 	
-	if(damage_reduction > 0	):
-		print("reset dr")
+	#resets damage reduction
 	damage_reduction = 0
 	
 	#check and remove dead held units
