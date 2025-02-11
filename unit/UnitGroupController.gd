@@ -70,7 +70,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.DAMAGE:
 				affected_units.map(
 					func(unit : Unit):
-						unit.health -= (effect.y * attacker_power)
+						unit.health -= floor((effect.y * attacker_power) * (1-unit.damage_reduction))
 						unit.animation_state("hurt_initial")
 				)
 				
@@ -103,28 +103,27 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
 				
-			SkillInfo.EffectType.WAIT:
-				attacker.actions_avail.erase(Unit.Action.MOVE)
-				attacker.actions_avail.erase(Unit.Action.ATTACK)
-			
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
 					func(unit : Unit):
-<<<<<<< HEAD
 						if unit.health + effect.y * attacker_power >= unit.unit_data.get_attribute("HP"):
 							unit.health = unit.unit_data.get_attribute("HP")
 						else:
 							unit.health += (effect.y * attacker_power)
 						#TODO: needs animation
-=======
-						if unit.health + effect.y *attacker.attack_power >= unit.unit_data.get_attribute("HP"):
-							unit.health = unit.unit_data.get_attribute("HP")
-						else:
-							unit.health += (effect.y * attacker.attack_power) # need heal power?
-						#need animation
->>>>>>> 9ba15f5 (Added heal effect and healer class)
 				)
 				
+			SkillInfo.EffectType.DAMAGE_REDUCTION:
+				affected_units.map(
+					func(unit: Unit):
+						unit.damage_reduction = 0.5
+						print(unit, " is defended")
+				)
+			
+			SkillInfo.EffectType.WAIT:
+				attacker.actions_avail.erase(Unit.Action.MOVE)
+				attacker.actions_avail.erase(Unit.Action.ATTACK)
+			
 			SkillInfo.EffectType.DISPLACE:
 				match effect.y:
 					0: #displace to attacker position (pick up)
