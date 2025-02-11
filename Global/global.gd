@@ -14,7 +14,7 @@ func get_last_overworld() -> String:
 
 
 # Skill Tree Related
-enum dict_code{PROTAG, COMPANY}
+enum talent_type{PROTAG, COMPANY}
 
 ## A dictionary of all protagonist talent nodes that have been activated.
 var _protag_talent: Dictionary = {}
@@ -23,30 +23,30 @@ var _company_talent: Dictionary = {}
 
 func get_talent_activated(code: int) -> Dictionary:
 	match code:
-		dict_code.PROTAG:
+		talent_type.PROTAG:
 			return _protag_talent
-		dict_code.COMPANY:
+		talent_type.COMPANY:
 			return _company_talent
 		_:
 			return {}
 
 func clear_talent(code: int) -> void:
 	match code:
-		dict_code.PROTAG:
+		talent_type.PROTAG:
 			_protag_talent.clear()
-		dict_code.COMPANY:
+		talent_type.COMPANY:
 			_company_talent.clear()
 
 func copy_talent_dict_from(code: int, from: Dictionary):
 	match code:
-		dict_code.PROTAG:
+		talent_type.PROTAG:
 			_protag_talent = from.duplicate()
-		dict_code.COMPANY:
+		talent_type.COMPANY:
 			_company_talent = from.duplicate()
 
 func merge_talent_dict_with(code: int, target: Dictionary):
 	match code:
-		dict_code.PROTAG:
+		talent_type.PROTAG:
 			_protag_talent.merge(target, true)
-		dict_code.COMPANY:
+		talent_type.COMPANY:
 			_company_talent.merge(target, true)

@@ -15,6 +15,7 @@ const DEACTIVATED_COLOR := Color(0.385, 0.385, 0.385)
 @export var parent_talent: TalentNode
 
 @onready var label = $Label
+@onready var name_label = $Label2
 @onready var line = $Line2D
 
 ## Current level of the talent node
@@ -30,6 +31,7 @@ func _ready():
 	EventBus.connect("disable_all_nodes", _on_disable_node)
 	EventBus.connect("reset_talent_levels", _on_level_reset)
 	init()
+	name_label.text = str(talent_name)
 
 ## custom function to reset the state and level of the node
 func init():
@@ -76,3 +78,5 @@ func _on_disable_node():
 
 func _on_level_reset():
 	init()
+
+# TODO: add hover state to display information about the talent node

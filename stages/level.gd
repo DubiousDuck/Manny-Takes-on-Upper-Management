@@ -12,9 +12,50 @@ func _ready():
 	
 	HexNavi.set_current_map(tile_map)
 	unit_group_control.init()
+	
+	read_talent_and_apply(Global.talent_type.PROTAG)
+	read_talent_and_apply(Global.talent_type.COMPANY)
 
 func _on_battle_ended(result: int):
 	var a = battle_outcome.instantiate()
 	a.init(result)
 	$CanvasLayer.add_child(a)
 	a.display()
+
+func read_talent_and_apply(talent_type: int):
+	#read the talent dictionary
+	var talent_dict: Dictionary = Global.get_talent_activated(talent_type)
+	
+	if talent_type == Global.talent_type.PROTAG: #NOTICE: it's required that the protagonist stays at this path
+		var protag_node: Unit = get_node_or_null("Units/PlayerGroup/Protag")
+		if !protag_node: return # Safety measure
+			
+		for talent in talent_dict.keys():
+			match talent:
+				"extra_range":
+					protag_node.movement_range += talent_dict["extra_range"]
+				"raise_power":
+					protag_node.attack_power += talent_dict["raise_power"]
+				"raise_magic":
+					protag_node.magic_power += talent_dict["raise_magic"]
+			
+	elif talent_type == Global.talent_type.COMPANY:
+		for talent in talent_dict.keys():
+			match talent:
+				"extra_health":
+					#FIXME: EWW Prob not the best way to implement this -- Oscar
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							unit.health += talent_dict["extra_health"]
+					)
+				"raise_power":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							unit.attack_power += talent_dict["raise_power"]
+					)
+				"raise_magic":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							unit.magic_power += talent_dict["raise_magic"]
+					)
+	#for each talent, match its name and apply its effect

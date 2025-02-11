@@ -1,0 +1,179 @@
+[gd_scene load_steps=3 format=3 uid="uid://brud1l1y65nmt"]
+
+[ext_resource type="Script" path="res://skill_tree/skill_tree.gd" id="1_ciwct"]
+[ext_resource type="PackedScene" uid="uid://b65vkeagk8n6r" path="res://skill_tree/talents/talent_node.tscn" id="2_sbq3o"]
+
+[node name="SkillTree" type="Control" node_paths=PackedStringArray("top_nodes")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ciwct")
+max_points = 7
+top_nodes = [NodePath("ProtagNodes/TalentNode"), NodePath("CompanyNodes/TalentNode")]
+
+[node name="ProtagNodes" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TalentNode" parent="ProtagNodes" instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 483.0
+offset_right = 639.0
+offset_bottom = 611.0
+talent_name = "extra_range"
+
+[node name="TalentNode2" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 341.0
+offset_top = 303.0
+offset_right = 469.0
+offset_bottom = 431.0
+talent_name = "raise_power"
+parent_talent = NodePath("../TalentNode")
+
+[node name="TalentNode3" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 691.0
+offset_top = 305.0
+offset_right = 819.0
+offset_bottom = 433.0
+talent_name = "raise_magic"
+parent_talent = NodePath("../TalentNode")
+
+[node name="TalentNode4" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 118.0
+offset_right = 255.0
+offset_bottom = 246.0
+talent_name = "talent_4"
+parent_talent = NodePath("../TalentNode2")
+
+[node name="TalentNode6" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 116.0
+offset_right = 531.0
+offset_bottom = 244.0
+talent_name = "talent_5"
+parent_talent = NodePath("../TalentNode2")
+
+[node name="TalentNode5" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 113.0
+offset_right = 1018.0
+offset_bottom = 241.0
+talent_name = "talent_6"
+parent_talent = NodePath("../TalentNode3")
+
+[node name="CompanyNodes" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TalentNode" parent="CompanyNodes" instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 483.0
+offset_right = 639.0
+offset_bottom = 611.0
+talent_name = "extra_health"
+max_level = 5
+
+[node name="TalentNode2" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 305.0
+offset_right = 433.0
+offset_bottom = 433.0
+talent_name = "raise_power"
+parent_talent = NodePath("../TalentNode")
+
+[node name="TalentNode3" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 301.0
+offset_right = 851.0
+offset_bottom = 429.0
+talent_name = "raise_magic"
+parent_talent = NodePath("../TalentNode")
+
+[node name="TalentNode4" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 118.0
+offset_right = 255.0
+offset_bottom = 246.0
+talent_name = "talent_4"
+parent_talent = NodePath("../TalentNode2")
+
+[node name="TalentNode6" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 107.0
+offset_right = 731.0
+offset_bottom = 235.0
+talent_name = "talent_5"
+parent_talent = NodePath("../TalentNode3")
+
+[node name="TalentNode5" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 113.0
+offset_right = 1018.0
+offset_bottom = 241.0
+talent_name = "talent_6"
+parent_talent = NodePath("../TalentNode3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 17.0
+offset_right = 391.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 50
+text = "Talent Points Left: X"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 17.0
+offset_right = 1136.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 50
+text = "Boss Benefits"
+horizontal_alignment = 2
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 1
+offset_left = 930.0
+offset_top = 561.0
+offset_right = 1122.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 35
+text = "Reset Talent"
+
+[node name="SaveExit" type="Button" parent="."]
+layout_mode = 1
+offset_left = 39.0
+offset_top = 561.0
+offset_right = 231.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 35
+text = "Save and Exit"
+
+[node name="SwitchTree" type="Button" parent="."]
+layout_mode = 1
+offset_left = 722.0
+offset_top = 561.0
+offset_right = 914.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 35
+text = "Switch Tree"
+
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="SaveExit" to="." method="_on_save_exit_pressed"]
+[connection signal="pressed" from="SwitchTree" to="." method="_on_switch_tree_pressed"]

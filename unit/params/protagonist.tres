@@ -14,7 +14,7 @@ attributes = {
 0: 7,
 1: 2,
 2: 2,
-3: 3
+3: 2
 }
 skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("4_t6iqi"), ExtResource("5_a8aaf"), ExtResource("6_rlm2a")])
 rel = ""
