@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var menuIsDisplayed: bool = false
 @onready var battle_menu_control = $BattleMenuControl
+@onready var label = $BattleMenuControl/Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +17,8 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"): # Recommended: Use action instead of direct key
 		menuIsDisplayed = !menuIsDisplayed
 		battle_menu_control.visible = menuIsDisplayed
+		
+		label.text = get_tree().current_scene.scene_file_path.get_file().replace(".tscn", "")
 		
 		#if menuIsDisplayed:
 			#get_tree().paused = true
