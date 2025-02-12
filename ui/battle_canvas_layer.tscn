@@ -93,4 +93,7 @@ offset_right = 1043.0
 offset_bottom = 584.0
 scale = Vector2(1.24538, 1.24538)
 
+[connection signal="pressed" from="BattleMenuControl/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="BattleMenuControl/HBoxContainer/ExitLevel" to="." method="_on_exit_level_pressed"]
+[connection signal="pressed" from="BattleMenuControl/HBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="value_changed" from="BattleMenuControl/VolumeSlider/HSlider" to="BattleMenuControl/VolumeSlider" method="_on_h_slider_value_changed"]
