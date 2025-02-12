@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bjc751e4ol5ld"]
+[gd_scene load_steps=12 format=4 uid="uid://bjc751e4ol5ld"]
 
 [ext_resource type="Script" path="res://stages/level.gd" id="1_1snh2"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="6_vkavw"]
 [ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_fxfs3"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="8_wudo6"]
+[ext_resource type="Resource" uid="uid://bvllti17umvmw" path="res://unit/params/healer.tres" id="9_8w4dy"]
 [ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_mfhmk"]
 [ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="13_e31i5"]
 
@@ -35,18 +36,18 @@ script = ExtResource("5_ypjfd")
 is_player_controlled = true
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(129, 190)
+position = Vector2(126, 184)
 script = ExtResource("7_fxfs3")
 unit_data = ExtResource("8_wudo6")
 
 [node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(47, 238)
+position = Vector2(50, 229)
 script = ExtResource("7_fxfs3")
 
 [node name="PlayerUnit3" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(52, 141)
+position = Vector2(52, 134)
 script = ExtResource("7_fxfs3")
-unit_data = ExtResource("9_mfhmk")
+unit_data = ExtResource("9_8w4dy")
 
 [node name="EnemyGroup" type="Node2D" parent="Units"]
 script = ExtResource("5_ypjfd")
@@ -61,6 +62,6 @@ script = ExtResource("13_e31i5")
 unit_data = ExtResource("9_mfhmk")
 
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(508, 328)
+position = Vector2(511, 230)
 script = ExtResource("13_e31i5")
 unit_data = ExtResource("9_mfhmk")

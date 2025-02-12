@@ -11,7 +11,7 @@ signal attack_process_complete
 @onready var enemy_group: UnitContainer = $EnemyGroup
 var is_player_turn : bool = true
 var all_units: Array[Unit] = []
-var occupied_cells = {}
+var occupied_cells: Dictionary = {}
 
 var in_progress: bool = false:
 	set(value):
@@ -186,7 +186,7 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 				num_stacked += 1
 		
 		if num_stacked > 1:
-			for i in occupied_cells[cell].size():
+			for i in range(occupied_cells[cell].size()):
 				var unit = occupied_cells[cell][i]
 				var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
 				
@@ -196,9 +196,14 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 				displace_tween.tween_property(
 								unit,
 								'global_position',
-								HexNavi.cell_to_global(cell) + vect,
+								HexNavi.cell_to_global(unit.cell) + vect,
 								0.5
 							)
+		else:
+			occupied_cells[cell].map(
+				func(unit):
+					unit.global_position = HexNavi.cell_to_global(unit.cell)
+			)
 
 func _on_unit_died():
 	_on_update_cell_status()

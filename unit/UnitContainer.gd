@@ -198,6 +198,7 @@ func unit_action():
 		await current_unit.attack_point
 		in_progress = false
 		EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+		await current_unit.all_complete
 		deselect_current_unit()
 	
 	unit_action_done.emit()
@@ -260,6 +261,7 @@ func _unhandled_input(event):
 				in_progress = true
 				await current_unit.attack_point
 				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+				await current_unit.all_complete
 				in_progress = false
 				deselect_current_unit()
 			

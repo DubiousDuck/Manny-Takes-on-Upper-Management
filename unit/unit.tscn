@@ -18,6 +18,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_ipbkg")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/flash_state = 0.0
+shader_parameter/transparency = 1.0
 
 [node name="Unit" type="CharacterBody2D"]
 position = Vector2(1.90735e-06, 1.90735e-06)
@@ -108,5 +109,7 @@ scale = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 unit = NodePath("..")
 
+[connection signal="anim_complete" from="." to="." method="_on_anim_complete"]
+[connection signal="attack_point" from="." to="." method="_on_attack_point"]
 [connection signal="mouse_entered" from="Hurtbox" to="." method="_on_hurtbox_mouse_entered"]
 [connection signal="mouse_exited" from="Hurtbox" to="." method="_on_hurtbox_mouse_exited"]

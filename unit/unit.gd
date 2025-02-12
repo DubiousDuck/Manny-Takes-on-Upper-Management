@@ -5,7 +5,9 @@ class_name Unit
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 
 signal movement_complete
-signal attack_complete
+signal attack_point
+signal anim_complete
+signal all_complete
 
 #unit constants
 enum Action {NONE, MOVE, ATTACK, ITEM}
@@ -55,8 +57,6 @@ var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 var is_dead: bool = false
 
 var damage_reduction: float = 0;
-
-signal attack_point
 
 func _ready():
 	#read unit data and set attributes
@@ -145,6 +145,7 @@ func move_along_path(full_path : Array[Vector2i]):
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
+	# NOTICE: It's imperical to have both `attack_point` and `anim_complete` emitted by the time each animation ends
 	match skill.name:
 		"Throw At":
 			animation_state("throw")
@@ -162,6 +163,7 @@ func take_action(skill: SkillInfo): #where animations are handled
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
 			emit_attack_point()
+			emit_anim_comlete()
 	animation_state("side_idle")
 
 func highlight_emit():
@@ -182,6 +184,8 @@ func _on_hurtbox_mouse_exited():
 func check_if_dead():
 	if health <= 0 || cell == Vector2i(-999, -999): #if no health or out of bounds
 		is_dead = true
+		animation_state("vanish")
+		await $AnimationPlayer.animation_finished
 		EventBus.emit_signal("unit_died")
 		queue_free.call_deferred()
 
@@ -198,7 +202,9 @@ func check_if_can_throw():
 	else:
 		skills.erase(throw_skill)
 
-##
+## Animation related
+
+var two_signals: Array[bool] = [false, false]
 
 func animation_state(animation : String):
 	$Sprite2D.hframes = 4
@@ -221,3 +227,20 @@ func emit_action_command_point(game : String):
 		_:
 			pass
 	$AnimationPlayer.play()
+
+#in the animation player
+func emit_anim_comlete():
+	print("anim complete emitted!")
+	anim_complete.emit()
+	
+## When receive the attack point signal, check to see if can emit "total_complete"
+func _on_attack_point():
+	two_signals[0] = true
+	if two_signals.count(true) == 2:
+		all_complete.emit()
+
+## When receive the anim complete signal, check to see if can emit "total_complete"
+func _on_anim_complete():
+	two_signals[1] = true
+	if two_signals.count(true) == 2:
+		all_complete.emit()
