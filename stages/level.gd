@@ -19,7 +19,7 @@ func _ready():
 func _on_battle_ended(result: int):
 	var a = battle_outcome.instantiate()
 	a.init(result)
-	$CanvasLayer.add_child(a)
+	$BattleCanvasLayer.add_child(a)
 	a.display()
 
 func read_talent_and_apply(talent_type: int):

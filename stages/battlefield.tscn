@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://wyl7uecllbco"]
+[gd_scene load_steps=10 format=4 uid="uid://wyl7uecllbco"]
 
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="1_h80nl"]
 [ext_resource type="Script" path="res://stages/level.gd" id="1_ncysa"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/battle_canvas_layer.tscn" id="2_pm0yv"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_gevof"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="3_o4i10"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="3_r2aph"]
@@ -13,7 +14,7 @@
 script = ExtResource("1_ncysa")
 tile_map = NodePath("TileMapTest")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BattleCanvasLayer" parent="." instance=ExtResource("2_pm0yv")]
 
 [node name="TileMapTest" parent="." instance=ExtResource("1_h80nl")]
 tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAACAAQAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAADAP//AAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAAEAAQAAAACAAAAAAADAAQAAAACAAAAAAABAAQAAAACAAAAAAAAAAQAAAACAAAAAAACAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAQAAAACAAAAAAAGAAMAAAACAAAAAAAGAAIAAAACAAAAAAAFAP//AAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAAAAAAAAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAAGAAUAAAACAAAAAAAHAAQAAAACAAAAAAAHAAMAAAACAAAAAAD//wMAAAACAAAAAAD+/wQAAAACAAAAAAD9/wMAAAACAAAAAAD9/wIAAAACAAAAAAD+/wIAAAACAAAAAAAIAAIAAAACAAAAAAAJAAEAAAACAAAAAAAIAAEAAAACAAAAAAAAAAUAAAACAAAAAAAIAAMAAAACAAAAAAD+/wEAAAACAAAAAAADAAUAAAACAAAAAAABAP//AAACAAAAAAAHAP//AAACAAAAAAAEAP//AAACAAAAAAA=")
