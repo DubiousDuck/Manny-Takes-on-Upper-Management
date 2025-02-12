@@ -180,19 +180,25 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 	#adjusting position of units to accomodate for unit stacking
 	for cell in occupied_cells:
 		var displacement = 100/(occupied_cells[cell].size());
-		for i in occupied_cells[cell].size():
-			var unit = occupied_cells[cell][i]
-			var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
-			
-			var displace_tween = get_tree().create_tween()
-			displace_tween.set_ease(Tween.EASE_OUT)
-			displace_tween.set_trans(Tween.TRANS_CUBIC)
-			displace_tween.tween_property(
-							unit,
-							'global_position',
-							HexNavi.cell_to_global(cell) + vect,
-							0.5
-						)
+		var num_stacked = 0
+		for unit in occupied_cells[cell]:
+			if(unit.unit_held.is_empty()):
+				num_stacked += 1
+		
+		if num_stacked > 1:
+			for i in occupied_cells[cell].size():
+				var unit = occupied_cells[cell][i]
+				var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
+				
+				var displace_tween = get_tree().create_tween()
+				displace_tween.set_ease(Tween.EASE_OUT)
+				displace_tween.set_trans(Tween.TRANS_CUBIC)
+				displace_tween.tween_property(
+								unit,
+								'global_position',
+								HexNavi.cell_to_global(cell) + vect,
+								0.5
+							)
 
 func _on_unit_died():
 	_on_update_cell_status()
