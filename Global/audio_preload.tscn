@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Global/audio_preload.gd" id="1_bgm7c"]
 
 [node name="AudioPreload" type="AudioStreamPlayer"]
+process_mode = 3
 autoplay = true
 script = ExtResource("1_bgm7c")
 

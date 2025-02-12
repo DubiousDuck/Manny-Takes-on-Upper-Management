@@ -18,12 +18,17 @@ func _input(event):
 		menuIsDisplayed = !menuIsDisplayed
 		battle_menu_control.visible = menuIsDisplayed
 		
-		label.text = get_tree().current_scene.scene_file_path.get_file().replace(".tscn", "")
+		var filename = get_tree().current_scene.scene_file_path.get_file().replace(".tscn", "")
+		var parts = filename.split("_")  # Split the string by underscores
+		var result = " ".join(parts)      # Join the parts with spaces
 		
-		#if menuIsDisplayed:
-			#get_tree().paused = true
-		#else:
-			#get_tree().paused = false
+		label.text = result
+		
+		
+		if menuIsDisplayed:
+			get_tree().paused = true
+		else:
+			get_tree().paused = false
 		
 		print("Escape key pressed! menu displayed = " + str(menuIsDisplayed))
 
