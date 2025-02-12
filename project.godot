@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 EventBus="*res://Global/event_bus.gd"
 Global="*res://Global/global.gd"
 HexNavi="*res://addons/hex_grid_nav/hexagon_navigation.gd"
+AudioPreload="*res://Global/audio_preload.tscn"
 
 [display]
 
