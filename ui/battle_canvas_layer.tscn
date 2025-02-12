@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://swx1ag0pr6hh"]
+[gd_scene load_steps=4 format=3 uid="uid://swx1ag0pr6hh"]
 
 [ext_resource type="Script" path="res://ui/battle_canvas_layer.gd" id="1_pg7py"]
+[ext_resource type="Script" path="res://ui/volume_slider.gd" id="2_k60nf"]
+[ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
 
 [node name="BattleCanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_pg7py")
 
 [node name="BattleMenuControl" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -66,3 +69,27 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Quit Game"
+
+[node name="VolumeSlider" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_k60nf")
+
+[node name="SpeakerImage" type="Sprite2D" parent="VolumeSlider"]
+position = Vector2(948, 520)
+scale = Vector2(0.170892, 0.170892)
+texture = ExtResource("3_y3cgx")
+
+[node name="HSlider" type="HSlider" parent="VolumeSlider"]
+layout_mode = 0
+offset_left = 761.0
+offset_top = 568.0
+offset_right = 1043.0
+offset_bottom = 584.0
+scale = Vector2(1.24538, 1.24538)
+
+[connection signal="value_changed" from="VolumeSlider/HSlider" to="VolumeSlider" method="_on_h_slider_value_changed"]
