@@ -41,6 +41,28 @@ text = "Demo Field"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VolumeSlider" type="Control" parent="BattleMenuControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_k60nf")
+
+[node name="SpeakerImage" type="Sprite2D" parent="BattleMenuControl/VolumeSlider"]
+position = Vector2(948, 520)
+scale = Vector2(0.170892, 0.170892)
+texture = ExtResource("3_y3cgx")
+
+[node name="HSlider" type="HSlider" parent="BattleMenuControl/VolumeSlider"]
+layout_mode = 0
+offset_left = 761.0
+offset_top = 568.0
+offset_right = 1043.0
+offset_bottom = 584.0
+scale = Vector2(1.24538, 1.24538)
+
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleMenuControl"]
 layout_mode = 1
 anchors_preset = 14
@@ -71,29 +93,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Quit Game"
 
-[node name="VolumeSlider" type="Control" parent="BattleMenuControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_k60nf")
-
-[node name="SpeakerImage" type="Sprite2D" parent="BattleMenuControl/VolumeSlider"]
-position = Vector2(948, 520)
-scale = Vector2(0.170892, 0.170892)
-texture = ExtResource("3_y3cgx")
-
-[node name="HSlider" type="HSlider" parent="BattleMenuControl/VolumeSlider"]
-layout_mode = 0
-offset_left = 761.0
-offset_top = 568.0
-offset_right = 1043.0
-offset_bottom = 584.0
-scale = Vector2(1.24538, 1.24538)
-
+[connection signal="value_changed" from="BattleMenuControl/VolumeSlider/HSlider" to="BattleMenuControl/VolumeSlider" method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/ExitLevel" to="." method="_on_exit_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
-[connection signal="value_changed" from="BattleMenuControl/VolumeSlider/HSlider" to="BattleMenuControl/VolumeSlider" method="_on_h_slider_value_changed"]

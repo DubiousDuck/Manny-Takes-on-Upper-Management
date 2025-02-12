@@ -28,14 +28,12 @@ func _input(event):
 func _on_restart_level_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	print("Restarting level")
 
 
 func _on_exit_level_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file(Global.get_last_overworld())
-	print("Exiting level")
 
 
 func _on_quit_game_pressed():
-	print("Quitting game")
+	get_tree().quit()
