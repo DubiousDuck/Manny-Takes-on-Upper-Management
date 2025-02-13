@@ -15,7 +15,8 @@ func set_current_map(map : TileMapLayer):
 func add_all_point(): #add and connect all cells
 	var all_used_cells = current_map.get_used_cells()
 	for cell in all_used_cells:
-		astar.add_point(astar.get_available_point_id(), cell)
+		var next_id := astar.get_available_point_id()
+		astar.add_point(next_id, cell)
 	for point_id in astar.get_point_ids():
 		var pos = astar.get_point_position(point_id)
 		var all_possible_neighbors = current_map.get_surrounding_cells(pos)

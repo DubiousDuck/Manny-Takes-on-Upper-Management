@@ -76,6 +76,10 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				affected_units.map(
 					func(unit : Unit):
 						unit.health -= floor((effect.y * attacker_power) * (1-unit.damage_reduction))
+						if !unit.unit_held.is_empty():
+							for held in unit.unit_held:
+								held.is_held = false
+						unit.unit_held.clear()
 						unit.animation_state("hurt_initial")
 				)
 				

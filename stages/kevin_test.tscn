@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://b66q45oqfwuf4"]
 
 [ext_resource type="Script" path="res://stages/level.gd" id="1_6p42v"]
-[ext_resource type="PackedScene" path="res://ui/pause_canvas_layer.tscn" id="2_83lvm"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_canvas_layer.tscn" id="2_83lvm"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_kqcs5"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_15yrc"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ene1a"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="11_3pbfy"]
 [ext_resource type="Resource" uid="uid://dj115e2fbsle6" path="res://unit/params/tank.tres" id="11_qxhks"]
 
-[node name="Battlefield2" type="Node2D" node_paths=PackedStringArray("tile_map")]
+[node name="Battlefield3" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_6p42v")
 tile_map = NodePath("TileMapTest")
 
