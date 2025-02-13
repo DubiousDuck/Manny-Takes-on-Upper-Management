@@ -91,6 +91,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - attacker.global_position
 						#apply the direction by strength of knockback
 						var new_location: Vector2 = unit.global_position + dir*effect.y
+						if HexNavi.global_to_cell(new_location) == Vector2i(-999, -999): ## pretends there's a wall
+							new_location = HexNavi.cell_to_global(HexNavi.get_closest_cell_by_global_pos(new_location))
 						move_tween.tween_property(
 							unit,
 							'global_position',
@@ -217,7 +219,7 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
 				)
 
-	#print("status update complete")	
+	print("status update complete")	
 	status_update_complete.emit()
 
 func _on_unit_died():

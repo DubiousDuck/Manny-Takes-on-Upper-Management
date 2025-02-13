@@ -33,7 +33,8 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 
 func _on_clear_cells():
 	for pos in get_used_cells():
-		set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
+		if !HexNavi.get_cell_custom_data(pos, "is_death_zone"):
+			set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
 
 func get_all_tilemap_cells() -> Array[Vector2i]:
 	var all_cells: Array[Vector2i] = []

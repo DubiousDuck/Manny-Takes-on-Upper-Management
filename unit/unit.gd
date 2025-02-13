@@ -184,7 +184,7 @@ func _on_hurtbox_mouse_exited():
 	EventBus.emit_signal("remove_cell_highlights", name)
 
 func check_if_dead():
-	if health <= 0 || cell == Vector2i(-999, -999): #if no health or out of bounds
+	if health <= 0 || cell == Vector2i(-999, -999) || HexNavi.get_cell_custom_data(cell, "is_death_zone"): #if no health or out of bounds
 		is_dead = true
 		animation_state("vanish")
 		await $AnimationPlayer.animation_finished
