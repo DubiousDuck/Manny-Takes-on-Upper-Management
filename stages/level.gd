@@ -51,6 +51,7 @@ func read_talent_and_apply(talent_type: int):
 					#FIXME: EWW Prob not the best way to implement this -- Oscar
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
+							unit.max_health += talent_dict["extra_health"]
 							unit.health += talent_dict["extra_health"]
 					)
 				"raise_power":

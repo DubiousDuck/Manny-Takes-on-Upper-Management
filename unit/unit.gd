@@ -13,6 +13,7 @@ signal all_complete
 enum Action {NONE, MOVE, ATTACK, ITEM}
 
 #unit attributes (interface)
+@export var max_health: int = 2
 @export var health: int = 2 :
 	set(new_health):
 		$BackupHealth.modulate = Color(0,0,0,0)
@@ -61,7 +62,8 @@ var damage_reduction: float = 0;
 
 func _ready():
 	#read unit data and set attributes
-	health = unit_data.get_attribute("HP")
+	max_health = unit_data.get_attribute("HP")
+	health = max_health
 	attack_power = unit_data.get_attribute("ATK")
 	magic_power = unit_data.get_attribute("MAG")
 	movement_range = unit_data.get_attribute("MOV")
