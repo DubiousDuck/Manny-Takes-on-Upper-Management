@@ -29,7 +29,8 @@ func flipMenuDisplay():
 	if menuIsDisplayed:
 		get_tree().paused = true
 	else:
-		get_tree().paused = false
+		if background_control.get_child_count() == 0:
+			get_tree().paused = false
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"): # Recommended: Use action instead of direct key
@@ -45,6 +46,10 @@ func updateLabelText():
 	var result = " ".join(parts)      # Join the parts with spaces
 	
 	label.text = result
+
+@onready var background_control = $BackgroundControl
+func add_in_background(object):
+	background_control.add_child(object)
 
 func _on_restart_level_pressed():
 	get_tree().paused = false

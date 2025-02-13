@@ -3,6 +3,7 @@ extends Node2D
 class_name Level
 
 @onready var battle_outcome = preload("res://ui/battle_outcome.tscn")
+@onready var pause_canvas_layer = $PauseCanvasLayer
 
 @export var tile_map : TileMapLayer
 @onready var unit_group_control : UnitGroupController = $Units
@@ -19,7 +20,8 @@ func _ready():
 func _on_battle_ended(result: int):
 	var a = battle_outcome.instantiate()
 	a.init(result)
-	$PauseCanvasLayer.add_child(a)
+	pause_canvas_layer.add_in_background(a)
+	#$PauseCanvasLayer.add_child(a)
 	a.display()
 
 func read_talent_and_apply(talent_type: int):

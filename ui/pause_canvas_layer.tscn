@@ -11,6 +11,15 @@
 process_mode = 3
 script = ExtResource("1_pg7py")
 
+[node name="BackgroundControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="BattleMenuControl" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -150,7 +159,7 @@ scale = Vector2(0.119471, 0.119471)
 texture_normal = ExtResource("6_r7iuc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
