@@ -265,6 +265,7 @@ func _unhandled_input(event):
 				current_unit.move_along_path(full_path)
 				in_progress = true
 				await current_unit.movement_complete
+				EventBus.emit_signal("update_cell_status", true)
 				deselect_current_unit()
 				in_progress = false
 			
@@ -278,8 +279,6 @@ func _unhandled_input(event):
 				await current_unit.all_complete
 				in_progress = false
 				deselect_current_unit()
-			
-			EventBus.emit_signal("update_cell_status", true)
 			
 			if get_available_unit_count() <= 0:
 				all_units_moved.emit()
