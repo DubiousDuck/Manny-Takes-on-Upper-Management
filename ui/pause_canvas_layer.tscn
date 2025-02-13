@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://swx1ag0pr6hh"]
+[gd_scene load_steps=7 format=3 uid="uid://swx1ag0pr6hh"]
 
 [ext_resource type="Script" path="res://ui/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Script" path="res://ui/volume_slider.gd" id="2_k60nf"]
 [ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
 [ext_resource type="Texture2D" uid="uid://c0d4uyifi4nqm" path="res://ui/pause_icon.png" id="4_77hvb"]
 [ext_resource type="Script" path="res://ui/brightness_slider.gd" id="4_kvqm7"]
+[ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 
 [node name="PauseCanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -51,21 +52,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 726.0
+offset_top = 553.0
+offset_right = -45.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_k60nf")
 
 [node name="SpeakerImage" type="Sprite2D" parent="BattleMenuControl/VolumeSlider"]
-position = Vector2(948, 520)
+position = Vector2(211, -50)
 scale = Vector2(0.170892, 0.170892)
 texture = ExtResource("3_y3cgx")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/VolumeSlider"]
 layout_mode = 0
-offset_left = 761.0
-offset_top = 568.0
-offset_right = 1043.0
-offset_bottom = 584.0
+offset_left = 24.0
+offset_top = 9.52111
+offset_right = 306.0
+offset_bottom = 25.5211
 scale = Vector2(1.24538, 1.24538)
 
 [node name="BrightnessSlider" type="Control" parent="BattleMenuControl"]
@@ -73,21 +78,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = 557.0
+offset_right = -711.0
+offset_bottom = -57.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_kvqm7")
 
 [node name="SunImage" type="Sprite2D" parent="BattleMenuControl/BrightnessSlider"]
-position = Vector2(249, 520)
+position = Vector2(191, -52)
 scale = Vector2(0.170892, 0.170892)
-texture = ExtResource("3_y3cgx")
+texture = ExtResource("5_xfvr8")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/BrightnessSlider"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 568.0
-offset_right = 344.0
-offset_bottom = 584.0
+offset_left = 4.0
+offset_top = 5.52119
+offset_right = 286.0
+offset_bottom = 21.5212
 scale = Vector2(1.24538, 1.24538)
 value = 100.0
 

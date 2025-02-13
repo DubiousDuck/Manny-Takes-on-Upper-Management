@@ -15,15 +15,15 @@ func _on_h_slider_value_changed(value):
 func setBrightness(value):
 	color_rect.color.a = min(1.0 - (float(value) / 100.0),0.95)
 	Global.brightness_val = value
-	if value <= 0:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider (4).png")
-	elif value <= 25:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider (3).png")
-	elif value <= 50:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider (2).png")
-	elif value <= 75:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider (1).png")
-	elif value < 100:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider.png")
+	if value <= 16.7:
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconPitchBlack.png")
+	elif value <= 33.3:
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconTeenyWeeny.png")
+	elif value <= 50.0:
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconVerySmall.png")
+	elif value <= 66.7:
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconSmall.png")
+	elif value <= 83.3:
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconMedium.png")
 	else:
-		sun_image.texture = preload("res://ui/VolumeSprites/Splatcho Volume Slider (6).png")
+		sun_image.texture = preload("res://ui/BrightnessSprites/BrightnessIconBig.png")
