@@ -73,6 +73,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	for effect in attack.skill_effects: 
 		match effect.x: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
+				if affected_units.is_empty(): break
+				
 				affected_units.map(
 					func(unit : Unit):
 						unit.health -= floor((effect.y * attacker_power) * (1-unit.damage_reduction))
@@ -84,7 +86,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				)
 				
 			SkillInfo.EffectType.KNOCKBACK:
-				if affected_units.is_empty(): return
+				if affected_units.is_empty(): break
 				
 				var move_tween = get_tree().create_tween().set_parallel()
 				move_tween.set_ease(Tween.EASE_OUT)
@@ -160,6 +162,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						projectile.is_held = false
 						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
+						print("shooting complete")
 					_:
 						print("nothing to displace yet")
 				attacker.check_if_can_throw()
@@ -167,7 +170,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				print("nothing happens yet")
 				
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
-	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
+	if !affected_units.is_empty(): affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 	_on_update_cell_status(true)
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly
