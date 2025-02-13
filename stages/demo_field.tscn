@@ -1,68 +1,68 @@
 [gd_scene load_steps=13 format=4 uid="uid://bjc751e4ol5ld"]
 
-[ext_resource type="Script" path="res://stages/level.gd" id="1_qdo7x"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/battle_canvas_layer.tscn" id="2_nf0r7"]
-[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="3_1xh2g"]
-[ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="4_8avah"]
-[ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="5_ucbhf"]
-[ext_resource type="Script" path="res://unit/UnitContainer.gd" id="6_r5wgq"]
-[ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="7_5rpx4"]
-[ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="8_em1jt"]
-[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="9_jy5n6"]
-[ext_resource type="Resource" uid="uid://bvllti17umvmw" path="res://unit/params/healer.tres" id="10_rl1g4"]
-[ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="11_pnftc"]
-[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="12_5si4x"]
+[ext_resource type="Script" path="res://stages/level.gd" id="1_1snh2"]
+[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/battle_canvas_layer.tscn" id="2_i3ck5"]
+[ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_v4sia"]
+[ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ifsfs"]
+[ext_resource type="Script" path="res://unit/UnitContainer.gd" id="5_ypjfd"]
+[ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="6_vkavw"]
+[ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_fxfs3"]
+[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="8_wudo6"]
+[ext_resource type="Resource" uid="uid://bvllti17umvmw" path="res://unit/params/healer.tres" id="9_8w4dy"]
+[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_mfhmk"]
+[ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="13_e31i5"]
 
 [node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
-script = ExtResource("1_qdo7x")
+script = ExtResource("1_1snh2")
 tile_map = NodePath("TileMapTest")
 
-[node name="BattleCanvasLayer" parent="." instance=ExtResource("2_nf0r7")]
+[node name="BattleCanvasLayer" parent="." instance=ExtResource("2_i3ck5")]
 
-[node name="TileMapTest" parent="." instance=ExtResource("3_1xh2g")]
+[node name="TileMapTest" parent="." instance=ExtResource("2_hegcs")]
 tile_map_data = PackedByteArray("AAAAAAEAAAACAAAAAAAAAAIAAAACAAAAAAAAAAMAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAAMAAAACAAAAAAADAAAAAAACAAAAAAADAAIAAAACAAAAAAADAAMAAAACAAAAAAAEAAEAAAACAAAAAAAEAAMAAAACAAAAAAAEAAIAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAFAAIAAAACAAAAAAAFAAMAAAACAAAAAAABAAQAAAACAAAAAAAAAAQAAAACAAAAAAAFAAQAAAACAAAAAAAGAAQAAAACAAAAAAAGAAMAAAACAAAAAAAGAAIAAAACAAAAAAAGAAEAAAACAAAAAAAAAAAAAAACAAAAAAD//wAAAAACAAAAAAD//wEAAAACAAAAAAD//wIAAAACAAAAAAD//wMAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAHAAEAAAACAAAAAAAHAAIAAAACAAAAAAAHAAMAAAACAAAAAAA=")
 
 [node name="CellHighlights" type="Node2D" parent="."]
-script = ExtResource("4_8avah")
+script = ExtResource("3_v4sia")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(290, 264)
 zoom = Vector2(1.25, 1.25)
 
 [node name="Units" type="Node2D" parent="."]
-script = ExtResource("5_ucbhf")
+script = ExtResource("4_ifsfs")
 
 [node name="PlayerGroup" type="Node2D" parent="Units"]
-script = ExtResource("6_r5wgq")
+script = ExtResource("5_ypjfd")
 is_player_controlled = true
 
-[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("7_5rpx4")]
+[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(126, 184)
-script = ExtResource("8_em1jt")
-unit_data = ExtResource("9_jy5n6")
+script = ExtResource("7_fxfs3")
+unit_data = ExtResource("8_wudo6")
 
-[node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("7_5rpx4")]
+[node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(50, 229)
-script = ExtResource("8_em1jt")
+script = ExtResource("7_fxfs3")
 
-[node name="PlayerUnit3" parent="Units/PlayerGroup" instance=ExtResource("7_5rpx4")]
+[node name="PlayerUnit3" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(52, 134)
-script = ExtResource("8_em1jt")
-unit_data = ExtResource("10_rl1g4")
+script = ExtResource("7_fxfs3")
+unit_data = ExtResource("9_8w4dy")
 
 [node name="EnemyGroup" type="Node2D" parent="Units"]
-script = ExtResource("6_r5wgq")
+script = ExtResource("5_ypjfd")
 
-[node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("7_5rpx4")]
+[node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(434, 180)
-script = ExtResource("11_pnftc")
+script = ExtResource("13_e31i5")
 
-[node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("7_5rpx4")]
+[node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(436, 279)
-script = ExtResource("11_pnftc")
-unit_data = ExtResource("12_5si4x")
+script = ExtResource("13_e31i5")
+unit_data = ExtResource("9_mfhmk")
 
-[node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("7_5rpx4")]
+[node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(511, 230)
-script = ExtResource("11_pnftc")
-unit_data = ExtResource("12_5si4x")
+script = ExtResource("13_e31i5")
+unit_data = ExtResource("9_mfhmk")

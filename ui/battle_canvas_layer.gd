@@ -20,6 +20,10 @@ func _input(event):
 		
 		var filename = get_tree().current_scene.scene_file_path.get_file().replace(".tscn", "")
 		var parts = filename.split("_")  # Split the string by underscores
+		var i = 0
+		for word in parts:
+			parts[i] = word.capitalize()
+			i += 1
 		var result = " ".join(parts)      # Join the parts with spaces
 		
 		label.text = result
