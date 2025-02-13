@@ -5,6 +5,7 @@ var menuIsDisplayed: bool = false
 @onready var label = $BattleMenuControl/Label
 @onready var exit_level = $BattleMenuControl/HBoxContainer/ExitLevel
 @onready var restart_level = $BattleMenuControl/HBoxContainer/RestartLevel
+@onready var pause_button = $PauseButton
 
 @export var isBattleScene: bool
 
@@ -19,15 +20,18 @@ func _ready():
 func _process(delta):
 	pass
 
+func flipMenuDisplay():
+	menuIsDisplayed = !menuIsDisplayed
+	battle_menu_control.visible = menuIsDisplayed
+	pause_button.visible = !menuIsDisplayed
+	if menuIsDisplayed:
+		get_tree().paused = true
+	else:
+		get_tree().paused = false
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"): # Recommended: Use action instead of direct key
-		menuIsDisplayed = !menuIsDisplayed
-		battle_menu_control.visible = menuIsDisplayed
-		
-		if menuIsDisplayed:
-			get_tree().paused = true
-		else:
-			get_tree().paused = false
+		flipMenuDisplay()
 
 func updateLabelText():
 	var filename = get_tree().current_scene.scene_file_path.get_file().replace(".tscn", "")
@@ -55,6 +59,8 @@ func _on_quit_game_pressed():
 
 
 func _on_resume_pressed():
-	get_tree().paused = false
-	menuIsDisplayed = false
-	battle_menu_control.visible = menuIsDisplayed
+	flipMenuDisplay()
+
+
+func _on_pause_button_pressed():
+	flipMenuDisplay()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://swx1ag0pr6hh"]
+[gd_scene load_steps=5 format=3 uid="uid://swx1ag0pr6hh"]
 
-[ext_resource type="Script" path="res://ui/battle_canvas_layer.gd" id="1_pg7py"]
+[ext_resource type="Script" path="res://ui/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Script" path="res://ui/volume_slider.gd" id="2_k60nf"]
 [ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
+[ext_resource type="Texture2D" uid="uid://c0d4uyifi4nqm" path="res://ui/pause_icon.png" id="4_77hvb"]
 
 [node name="PauseCanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -14,6 +15,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Backdrop" type="ColorRect" parent="BattleMenuControl"]
 layout_mode = 1
@@ -105,8 +108,16 @@ offset_bottom = 500.0
 theme_override_font_sizes/font_size = 45
 text = "Resume"
 
+[node name="PauseButton" type="TextureButton" parent="."]
+offset_left = 1075.0
+offset_right = 1587.0
+offset_bottom = 512.0
+scale = Vector2(0.150711, 0.150711)
+texture_normal = ExtResource("4_77hvb")
+
 [connection signal="value_changed" from="BattleMenuControl/VolumeSlider/HSlider" to="BattleMenuControl/VolumeSlider" method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/ExitLevel" to="." method="_on_exit_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="BattleMenuControl/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
