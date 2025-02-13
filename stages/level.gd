@@ -38,6 +38,9 @@ func read_talent_and_apply(talent_type: int):
 					protag_node.attack_power += talent_dict["raise_power"]
 				"raise_magic":
 					protag_node.magic_power += talent_dict["raise_magic"]
+				"heal_skill":
+					var heal: SkillInfo = preload("res://skills/basic_heal.tres")
+					protag_node.skills.append(heal)
 			
 	elif talent_type == Global.talent_type.COMPANY:
 		for talent in talent_dict.keys():

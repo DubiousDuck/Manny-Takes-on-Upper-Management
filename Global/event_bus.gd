@@ -10,7 +10,7 @@ signal remove_all_cell_highlights() #remove all highlight on the board
 #Cell Information
 signal occupy_cell(pos : Vector2i, unit_type : String)
 signal clear_cells()
-signal update_cell_status()
+signal update_cell_status(stacking: bool)
 
 #Attack/Skill System
 signal attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i])

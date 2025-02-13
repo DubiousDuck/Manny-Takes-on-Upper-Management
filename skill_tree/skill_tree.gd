@@ -13,7 +13,7 @@ class_name SkillTree
 var current_mode: int:
 	set(value):
 		if value == Global.talent_type.PROTAG:
-			mode_label.text = "Boss Benefits"
+			mode_label.text = "Leader Benefits"
 		else:
 			mode_label.text = "Company Benefits"
 		current_mode = value

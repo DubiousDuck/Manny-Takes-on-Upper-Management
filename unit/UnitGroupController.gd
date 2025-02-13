@@ -3,19 +3,18 @@ extends Node2D
 class_name UnitGroupController
 
 signal effect_complete
-signal attack_process_complete
+signal status_update_complete
 
 @export var player_goes_first : bool = true
 
 @onready var player_group: UnitContainer = $PlayerGroup
 @onready var enemy_group: UnitContainer = $EnemyGroup
+
 var is_player_turn : bool = true
+var waiting
 var all_units: Array[Unit] = []
 var occupied_cells: Dictionary = {}
-
-var in_progress: bool = false:
-	set(value):
-		if value == false: attack_process_complete.emit()
+var is_waiting_for_turn_switch: bool = false
 
 func _ready():
 	EventBus.connect("update_cell_status", _on_update_cell_status)
@@ -29,7 +28,7 @@ func init():
 	enemy_group.init()
 	all_units.append_array(player_group.units)
 	all_units.append_array(enemy_group.units)
-	_on_update_cell_status()
+	_on_update_cell_status(true)
 	
 	is_player_turn = player_goes_first
 	if is_player_turn:
@@ -41,19 +40,22 @@ func connect_container_signal(unit_group : UnitContainer):
 	
 func _on_unit_container_all_moved():
 	check_if_win()
-	is_player_turn = !is_player_turn
-	#TODO: Fix bug where anonther group starts before all previous actions are resolved
-	if is_player_turn:
-		print("player's turn")
-		player_group.round_start()
-	else:
-		print("enemy's turn")
-		enemy_group.round_start()
-	_on_update_cell_status()
+	is_waiting_for_turn_switch = true
+	_on_update_cell_status(true)	
+	
+func _on_status_update_complete():
+	if is_waiting_for_turn_switch:
+		is_player_turn = !is_player_turn
+		if is_player_turn:
+			player_group.round_start()
+			print("player's turn")
+		else:
+			enemy_group.round_start()
+			print("enemy's turn")
+		is_waiting_for_turn_switch = false
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
-	in_progress = true
 	
 	#get effect multiplier based on affinity
 	var attacker_power = 1
@@ -86,7 +88,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				affected_units.map(
 					func(unit : Unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
 						#calculate the direction of knockback
-						var dir: Vector2 = unit.global_position - attacker.global_position
+						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - attacker.global_position
 						#apply the direction by strength of knockback
 						var new_location: Vector2 = unit.global_position + dir*effect.y
 						move_tween.tween_property(
@@ -136,6 +138,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset), 0.3)
 								unit.cell = attacker.cell
 								unit.animation_state("thrown")
+								unit.is_held = true
 						)
 						await a.finished
 						attacker.unit_held.append_array(affected_units)
@@ -148,6 +151,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							a.tween_property(projectile, "global_position", HexNavi.cell_to_global(targets.front()), 0.3) 
 						else: a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3) 
 						await a.finished
+						projectile.is_held = false
 						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
 					_:
@@ -156,15 +160,16 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			_:
 				print("nothing happens yet")
 				
-		_on_update_cell_status()
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
 	affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
-	in_progress = false
+	_on_update_cell_status(true)
 
-func _on_update_cell_status(): #scan all units and update cell color accordingly
+func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly
 	all_units = []
 	occupied_cells = {}
 	EventBus.emit_signal("clear_cells")
+	player_group.refresh_units()
+	enemy_group.refresh_units()
 	all_units.append_array(player_group.units)
 	all_units.append_array(enemy_group.units)
 	for unit in player_group.units:
@@ -177,38 +182,46 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
+	
+	if stacking: #only stacks units if stacking is true
+		print("stacking")
+		#adjusting position of units to accomodate for unit stacking
 		
-	print("stacking")
-	#adjusting position of units to accomodate for unit stacking
-	for cell in occupied_cells:
-		var displacement = 100/(occupied_cells[cell].size());
-		var num_stacked = 0
-		for unit in occupied_cells[cell]:
-			if(unit.unit_held.is_empty()):
-				num_stacked += 1
-		
-		if num_stacked > 1:
-			for i in range(occupied_cells[cell].size()):
-				var unit = occupied_cells[cell][i]
-				var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
+		for cell in occupied_cells.keys():
+			var displacement = 100/(occupied_cells[cell].size());
+			var num_stacked = 0
+			for unit in occupied_cells[cell]:
+				if(unit.unit_held.is_empty()):
+					num_stacked += 1
+					
+			var displace_tween = get_tree().create_tween().set_parallel()
+			displace_tween.set_ease(Tween.EASE_OUT)
+			displace_tween.set_trans(Tween.TRANS_CUBIC)
 				
-				var displace_tween = get_tree().create_tween()
-				displace_tween.set_ease(Tween.EASE_OUT)
-				displace_tween.set_trans(Tween.TRANS_CUBIC)
-				displace_tween.tween_property(
-								unit,
-								'global_position',
-								HexNavi.cell_to_global(unit.cell) + vect,
-								0.5
-							)
-		else:
-			occupied_cells[cell].map(
-				func(unit):
-					unit.global_position = HexNavi.cell_to_global(unit.cell)
-			)
+			if num_stacked > 1:
+				for i in range(occupied_cells[cell].size()):
+					var unit = occupied_cells[cell][i]
+					var vect = Vector2(displacement/2 + displacement*i-100/2, 0)
+					
+					displace_tween.tween_property(
+									unit,
+									'global_position',
+									HexNavi.cell_to_global(cell) + vect,
+									0.5
+								)
+				await displace_tween.finished
+			else:
+				occupied_cells[cell].map(
+					func(unit: Unit):
+						#for some reason keeping the tween time to 0.1 is very important in not causing visual bug
+						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
+				)
+
+	#print("status update complete")	
+	status_update_complete.emit()
 
 func _on_unit_died():
-	_on_update_cell_status()
+	_on_update_cell_status(false)
 	check_if_win()
 
 func check_if_win():

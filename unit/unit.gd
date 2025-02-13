@@ -54,6 +54,7 @@ var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
+var is_held: bool = false
 var is_dead: bool = false
 
 var damage_reduction: float = 0;
@@ -89,7 +90,7 @@ func _process(delta):
 func init():
 	animation_state("front_idle")
 	cell = HexNavi.global_to_cell(global_position)
-	global_position = HexNavi.cell_to_global(cell)
+	#global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false)
 	
@@ -135,11 +136,12 @@ func move_along_path(full_path : Array[Vector2i]):
 		func(unit):
 			unit.cell = cell
 	)
-	EventBus.emit_signal("update_cell_status")
 	if diff.x == 0:
 		animation_state("front_idle")
 	else:
 		animation_state("side_idle")
+	#print(name + " moved!")
+	EventBus.emit_signal("update_cell_status", false)
 	movement_complete.emit()
 
 func take_action(skill: SkillInfo): #where animations are handled
@@ -230,7 +232,7 @@ func emit_action_command_point(game : String):
 
 #in the animation player
 func emit_anim_comlete():
-	print("anim complete emitted!")
+	#print("anim complete emitted!")
 	anim_complete.emit()
 	
 ## When receive the attack point signal, check to see if can emit "total_complete"

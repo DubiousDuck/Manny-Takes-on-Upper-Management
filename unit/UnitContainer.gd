@@ -367,12 +367,8 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 	return correct_targets
 	
 func _on_unit_died():
-	#recount how many children unit this group has
-	units = []
-	for unit in get_children():
-		if !unit.is_dead:
-			units.append(unit)
-
+	refresh_units()
+	
 func _on_skill_chosen(skill: SkillInfo):
 	current_unit.toggle_skill_ui(false)
 	skill_chosen = skill
@@ -404,3 +400,11 @@ func check_and_remove_unit_from_being_held(this_unit: Unit):
 	for unit in units:
 		if unit.unit_held.has(this_unit):
 			unit.unit_held.erase(this_unit)
+			this_unit.is_held = false
+
+func refresh_units():
+	#recount how many children unit this group has
+	units = []
+	for unit in get_children():
+		if !unit.is_dead:
+			units.append(unit)
