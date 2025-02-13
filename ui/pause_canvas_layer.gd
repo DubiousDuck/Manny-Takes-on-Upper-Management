@@ -6,11 +6,13 @@ var menuIsDisplayed: bool = false
 @onready var exit_level = $BattleMenuControl/HBoxContainer/ExitLevel
 @onready var restart_level = $BattleMenuControl/HBoxContainer/RestartLevel
 @onready var pause_button = $PauseButton
+@onready var brightness_slider = $BattleMenuControl/BrightnessSlider
 
 @export var isBattleScene: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	brightness_slider.setBrightness(Global.brightness_val)
 	updateLabelText()
 	if !isBattleScene:
 		exit_level.visible = false

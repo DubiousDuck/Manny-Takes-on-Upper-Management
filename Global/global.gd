@@ -5,6 +5,8 @@ extends Node
 # Overworld
 var _last_overworld: String = ""
 
+var brightness_val: float = 100.0
+
 func set_last_overworld(file_name: String):
 	#TODO: check if the file_name is a valid scene path
 	_last_overworld = file_name
