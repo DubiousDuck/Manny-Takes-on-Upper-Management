@@ -21,6 +21,8 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant)
 
 func _on_occupy_cell(pos : Vector2i, unit_type : String):
+	if !HexNavi.get_cell_custom_data(pos, "traversible"):
+		return
 	var color_cell : Vector2i
 	match unit_type:
 		"player":

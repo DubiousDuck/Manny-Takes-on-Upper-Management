@@ -78,7 +78,7 @@ func clear_path(): #clear all markings on the map; debugging function
 
 func tile_to_id(pos: Vector2i) -> int: #using a tile position to get the id for AStar usage
 	#assuming that all available tiles are already mapped in astar
-	if current_map.get_cell_source_id(pos) != -1 and get_cell_custom_data(pos, "traversible"):
+	if current_map.get_cell_source_id(pos) != -1:
 		return astar.get_closest_point(pos)
 	else: return -1
 
@@ -91,30 +91,31 @@ func get_distance(pos1: Vector2i, pos2: Vector2i) -> int:
 	var all_points = get_navi_path(pos1, pos2)
 	return all_points.size() - 1 #excluding the first point
 
-func get_all_neighbors_in_range(start_pos: Vector2i, range: int) -> Array[Vector2i]:
+func get_all_neighbors_in_range(start_pos: Vector2i, range: int, traversible_only: bool = true) -> Array[Vector2i]:
 	#returns an array of cell ID
 	#employs a depth first search
 	var all_neighbors_id : Array[int] = []
 	var starting_cell_id = tile_to_id(start_pos)
-	_dfs(range, starting_cell_id, starting_cell_id, all_neighbors_id)
+	_dfs(range, starting_cell_id, starting_cell_id, all_neighbors_id, traversible_only)
 	var all_neighbors_pos = all_neighbors_id.map(id_to_tile)
 	var answer: Array[Vector2i]
 	answer.assign(all_neighbors_pos)
 	#print(answer, start_pos)
 	return answer
 	
-func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array): #helper recursive function
+func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array, traversible_only : bool): #helper recursive function
 	#godot seems to pass array by reference by default
 	if k < 0 or node_id == -1:
 		return
+	if traversible_only:
+		if !get_cell_custom_data(id_to_tile(node_id), "traversible"):
+			return
 	if !solution_arr.has(node_id):
 		solution_arr.append(node_id)
 	for neighbor_pos in current_map.get_surrounding_cells(astar.get_point_position(node_id)):
 		var neighbor_id = tile_to_id(neighbor_pos)
-		if neighbor_id == null:
-			return
 		if neighbor_id != parent_id:
-			_dfs(k-1, neighbor_id, node_id, solution_arr)
+			_dfs(k-1, neighbor_id, node_id, solution_arr, traversible_only)
 	
 func get_random_tile_pos() -> Vector2: #for testing and placeholder purposes
 	return astar.get_point_position(randi_range(0, astar.get_point_count()))

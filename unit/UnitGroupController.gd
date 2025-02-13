@@ -170,7 +170,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				print("nothing happens yet")
 				
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
-	if !affected_units.is_empty(): affected_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
+	if !all_units.is_empty(): all_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 	_on_update_cell_status(true)
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly

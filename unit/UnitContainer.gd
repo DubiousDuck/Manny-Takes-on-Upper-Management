@@ -295,7 +295,7 @@ func highlight_handle():
 				#TODO: Highlights the range of attack when hovering over Skill Select
 				if skill_chosen == null:
 					return
-				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
 				var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets) #shows only valid targets
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
@@ -317,7 +317,7 @@ func get_actionnable_cells():
 			Unit.Action.ATTACK:
 				if skill_chosen == null:
 					return
-				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
 				tiles.append_array(get_targets_of_type(targets, skill_chosen.targets))
 			_:
 				pass
