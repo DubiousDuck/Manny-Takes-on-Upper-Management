@@ -49,6 +49,7 @@ func _on_unit_container_all_moved():
 	else:
 		print("enemy's turn")
 		enemy_group.round_start()
+	_on_update_cell_status()
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
@@ -177,6 +178,7 @@ func _on_update_cell_status(): #scan all units and update cell color accordingly
 		occupied_cells[unit.cell].append(unit)
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
 		
+	print("stacking")
 	#adjusting position of units to accomodate for unit stacking
 	for cell in occupied_cells:
 		var displacement = 100/(occupied_cells[cell].size());
