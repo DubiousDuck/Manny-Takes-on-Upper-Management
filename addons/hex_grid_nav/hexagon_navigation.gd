@@ -78,7 +78,7 @@ func clear_path(): #clear all markings on the map; debugging function
 
 func tile_to_id(pos: Vector2i) -> int: #using a tile position to get the id for AStar usage
 	#assuming that all available tiles are already mapped in astar
-	if current_map.get_cell_source_id(pos) != -1:
+	if current_map.get_cell_source_id(pos) != -1 and get_cell_custom_data(pos, "traversible"):
 		return astar.get_closest_point(pos)
 	else: return -1
 
