@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
 [ext_resource type="Script" path="res://overworld/door.gd" id="2_igj1o"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/battle_canvas_layer.tscn" id="2_ss2h4"]
 [ext_resource type="Texture2D" uid="uid://coy382quxt11e" path="res://assets/door.png" id="2_yeq1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
@@ -31,6 +32,8 @@ offset_right = 1133.0
 offset_bottom = 628.0
 theme_override_font_sizes/font_size = 45
 text = "To Skill Tree"
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("2_ss2h4")]
 
 [node name="RoomLayout" type="Node2D" parent="."]
 
