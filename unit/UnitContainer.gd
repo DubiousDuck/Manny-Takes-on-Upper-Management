@@ -243,6 +243,20 @@ func _unhandled_input(event):
 				
 			var action_type := find_action(clicked_cell)
 			
+			#deselect if unit is clicked on again; select held units
+			if current_unit != null and current_unit.cell == clicked_cell:
+				var next_unit = get_next_unit_of_same_cell(current_unit)
+				deselect_current_unit()
+				if next_unit != null:
+					select_unit(next_unit)
+					highlight_handle()
+					get_actionnable_cells()
+				return
+			
+			if action_type == Unit.Action.NONE:
+				deselect_current_unit()
+				return
+			
 			#FIXME: attack won't be carried out if enemy and ally are stacked on the same cell
 			if action_type == Unit.Action.MOVE:
 				check_and_remove_unit_from_being_held(current_unit)
@@ -265,22 +279,11 @@ func _unhandled_input(event):
 				in_progress = false
 				deselect_current_unit()
 			
-			#deselect if unit is clicked on again; select held units
-			if current_unit != null and current_unit.cell == clicked_cell:
-				var next_unit = get_next_unit_of_same_cell(current_unit)
-				deselect_current_unit()
-				if next_unit != null:
-					select_unit(next_unit)
-					highlight_handle()
-					get_actionnable_cells()
-				return
-			
-			if action_type == Unit.Action.NONE:
-				deselect_current_unit()
-				return
+			EventBus.emit_signal("update_cell_status", true)
 			
 			if get_available_unit_count() <= 0:
 				all_units_moved.emit()
+			
 
 func highlight_handle():
 	EventBus.emit_signal("remove_cell_highlights", name)

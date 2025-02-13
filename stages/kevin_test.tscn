@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://b66q45oqfwuf4"]
+[gd_scene load_steps=13 format=4 uid="uid://b66q45oqfwuf4"]
 
 [ext_resource type="Script" path="res://stages/level.gd" id="1_6p42v"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_canvas_layer.tscn" id="2_83lvm"]
+[ext_resource type="PackedScene" path="res://ui/pause_canvas_layer.tscn" id="2_83lvm"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_kqcs5"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_15yrc"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ene1a"]
@@ -10,11 +10,10 @@
 [ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_r8r1u"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="8_we6bo"]
 [ext_resource type="Resource" uid="uid://bvllti17umvmw" path="res://unit/params/healer.tres" id="9_o6vv7"]
-[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_rph7b"]
 [ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="11_3pbfy"]
 [ext_resource type="Resource" uid="uid://dj115e2fbsle6" path="res://unit/params/tank.tres" id="11_qxhks"]
 
-[node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
+[node name="Battlefield2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_6p42v")
 tile_map = NodePath("TileMapTest")
 
@@ -49,7 +48,7 @@ script = ExtResource("7_r8r1u")
 unit_data = ExtResource("9_o6vv7")
 
 [node name="PlayerUnit5" parent="Units/PlayerGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(52, 333)
+position = Vector2(201, 132)
 script = ExtResource("7_r8r1u")
 unit_data = ExtResource("11_qxhks")
 
@@ -57,17 +56,7 @@ unit_data = ExtResource("11_qxhks")
 script = ExtResource("5_3d7nl")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(121, 282)
+position = Vector2(51, 233)
 script = ExtResource("11_3pbfy")
-
-[node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(202, 235)
-script = ExtResource("11_3pbfy")
-unit_data = ExtResource("9_rph7b")
-
-[node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("6_ih3ny")]
-position = Vector2(280, 288)
-script = ExtResource("11_3pbfy")
-unit_data = ExtResource("9_rph7b")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

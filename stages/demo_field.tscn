@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://stages/level.gd" id="1_1snh2"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_canvas_layer.tscn" id="2_i3ck5"]
+[ext_resource type="PackedScene" path="res://ui/pause_canvas_layer.tscn" id="2_i3ck5"]
 [ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_v4sia"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ifsfs"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="5_ypjfd"]
@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_mfhmk"]
 [ext_resource type="Script" path="res://unit/EnemyUnit.gd" id="13_e31i5"]
 
-[node name="Battlefield" type="Node2D" node_paths=PackedStringArray("tile_map")]
+[node name="Battlefield2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_1snh2")
 tile_map = NodePath("TileMapTest")
 
