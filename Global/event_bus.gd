@@ -25,3 +25,18 @@ signal unit_on_standby()
 signal talent_node_pressed()
 signal disable_all_nodes()
 signal reset_talent_levels()
+
+#UI
+signal ui_element_started
+signal ui_element_ended
+signal dialogue(text : Array[String])
+
+#global player inputs
+signal input_advance
+signal input_back
+
+func _input(event):
+	if event.is_action_pressed("Advance"):
+		input_advance.emit()
+	elif event.is_action_pressed("Back"):
+		input_back.emit()
