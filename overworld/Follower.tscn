@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cabi3s34sqtgq"]
+[gd_scene load_steps=6 format=3 uid="uid://cabi3s34sqtgq"]
 
 [ext_resource type="Script" path="res://overworld/follower.gd" id="1_n8ld1"]
-[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="2_ookn7"]
-[ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="3_o1y3r"]
+[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="2_32w04"]
+[ext_resource type="AnimationLibrary" uid="uid://cvdigoi4kc573" path="res://overworld/ow_anim.res" id="3_w1yvo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
 radius = 15.0
 height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpde0"]
 
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 2
@@ -20,10 +22,26 @@ shape = SubResource("CapsuleShape2D_7mksb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(3, 3)
-texture = ExtResource("2_ookn7")
+texture = ExtResource("2_32w04")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"unit_anim": ExtResource("3_o1y3r")
+"ow_anim": ExtResource("3_w1yvo")
 }
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+position = Vector2(0, 7)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_gpde0")
+
+[connection signal="mouse_entered" from="Control/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Area2D" to="." method="_on_area_2d_mouse_exited"]

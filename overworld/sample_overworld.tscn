@@ -39,6 +39,8 @@ text = "To Skill Tree"
 
 [node name="Wall" type="StaticBody2D" parent="RoomLayout"]
 position = Vector2(206, 346)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall"]
 position = Vector2(80.125, 13.5)
@@ -50,10 +52,13 @@ offset_top = 7.0
 offset_right = 361.75
 offset_bottom = 22.0
 color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Wall2" type="StaticBody2D" parent="RoomLayout"]
 position = Vector2(550, 333)
 rotation = -1.5708
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall2"]
 position = Vector2(153, 9.75)
@@ -65,9 +70,12 @@ offset_top = 5.00001
 offset_right = 343.0
 offset_bottom = 17.5
 color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Wall3" type="StaticBody2D" parent="RoomLayout"]
 position = Vector2(1050, 346)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall3"]
 position = Vector2(-47, 13)
@@ -79,10 +87,13 @@ offset_top = 6.00001
 offset_right = 171.0
 offset_bottom = 18.5
 color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Wall4" type="StaticBody2D" parent="RoomLayout"]
 position = Vector2(844, 333)
 rotation = -1.5708
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall4"]
 position = Vector2(153, 9.75)
@@ -94,15 +105,19 @@ offset_top = 5.00001
 offset_right = 343.0
 offset_bottom = 17.5
 color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_i2n66")]
 position = Vector2(264, 485)
+collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 325)
 
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(436, 324)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("2_igj1o")
 scene_to_go = "res://stages/demo_field.tscn"
 

@@ -8,6 +8,8 @@ const SCALE := 3
 var dir = Vector2.RIGHT
 var turning = false
 
+var holding = 0
+
 func _physics_process(delta):
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -51,9 +53,13 @@ func sort_z_layer():
 	z_index = int(position.y)
 
 func anim_handler():
+	if holding>0:
+		$AnimationPlayer.play("ow_anim/holding_empty")
+		return
+	
 	if velocity.y != 0:
-		$AnimationPlayer.play("unit_anim/front_walk")
+		$AnimationPlayer.play("ow_anim/front_walk")
 	elif velocity != Vector2.ZERO:
-		$AnimationPlayer.play("unit_anim/side_walk")
+		$AnimationPlayer.play("ow_anim/side_walk")
 	else:
-		$AnimationPlayer.play("unit_anim/front_idle")
+		$AnimationPlayer.play("ow_anim/front_idle")
