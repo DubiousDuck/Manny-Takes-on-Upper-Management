@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Unit
 
+const UNIT_PREVIEW = preload("res://ui/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 
 signal movement_complete
@@ -179,11 +180,19 @@ func _on_hurtbox_mouse_entered():
 		if is_player_controlled: $ColorRect.color = Color(0, 0.420, 0.630)
 		else: $ColorRect.color = Color(0.51, 0.046, 0)
 		highlight_emit()
+	var a = UNIT_PREVIEW.instantiate()
+	add_child(a)
+	a.global_position = Vector2(global_position.x + 50, global_position.y - 50)
+	a.init(self)
 
 func _on_hurtbox_mouse_exited():
 	if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
 	else: $ColorRect.color = Color(0.89, 0.281, 0.239)
 	EventBus.emit_signal("remove_cell_highlights", name)
+	
+	#TODO: Lazy implementation
+	for node in get_children():
+		if node is UnitPreview: node.queue_free()
 
 func check_if_dead():
 	if health <= 0 || cell == Vector2i(-999, -999) || HexNavi.get_cell_custom_data(cell, "is_death_zone"): #if no health or out of bounds

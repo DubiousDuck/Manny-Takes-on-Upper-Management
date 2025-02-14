@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://pk22c3kx6qrk"]
+
+[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="1_dwm5a"]
+[ext_resource type="Script" path="res://ui/unit_preview.gd" id="1_l3n3g"]
+
+[node name="UnitPreview" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3n3g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 83.0
+offset_bottom = 103.0
+color = Color(0, 0, 0, 1)
+
+[node name="Class" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.037
+anchor_right = 0.037
+offset_left = -13.624
+offset_top = 5.0
+offset_right = 13.376
+offset_bottom = 18.0
+grow_horizontal = 2
+text = "Class"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(42, 37)
+scale = Vector2(2.1875, 2.1875)
+texture = ExtResource("1_dwm5a")
+hframes = 4
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 97.0
+offset_bottom = 98.0
+columns = 4
+
+[node name="HP2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "HP:"
+horizontal_alignment = 1
+
+[node name="HP" type="Label" parent="GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MOV2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "MOV:"
+horizontal_alignment = 1
+
+[node name="MOV" type="Label" parent="GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ATK2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "ATK:"
+horizontal_alignment = 1
+
+[node name="ATK" type="Label" parent="GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MAG2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "MAG:"
+horizontal_alignment = 1
+
+[node name="MAG" type="Label" parent="GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
