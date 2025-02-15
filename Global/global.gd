@@ -73,3 +73,26 @@ func start_battle(overworld_rid, classes : Array[UnitData]):
 	current_enemies = classes
 	
 ## Save and load
+
+var save_path = "user://save/"
+var player_save_file = "player"
+var global_save_file = "global"
+var save_extension = ".tres"
+
+func _ready():
+	verify_directory(save_path)
+		
+func verify_directory(path : String):
+	DirAccess.make_dir_absolute(path)
+	
+#######################################################
+
+var player_data = PlayerData.new()
+
+func load_player_data(save : int):
+	player_data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension).duplicate(true)
+	print("- Loaded player data")
+	
+func save_player_data(save : int):
+	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
+	print("- Saved player data")
