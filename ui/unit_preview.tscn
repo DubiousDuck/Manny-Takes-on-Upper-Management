@@ -49,8 +49,7 @@ columns = 4
 
 [node name="HP2" type="Label" parent="GridContainer"]
 layout_mode = 2
-text = "HP:"
-horizontal_alignment = 1
+text = "MHP:"
 
 [node name="HP" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -59,7 +58,6 @@ horizontal_alignment = 1
 [node name="MOV2" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "MOV:"
-horizontal_alignment = 1
 
 [node name="MOV" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -68,7 +66,6 @@ horizontal_alignment = 1
 [node name="ATK2" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "ATK:"
-horizontal_alignment = 1
 
 [node name="ATK" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -77,7 +74,6 @@ horizontal_alignment = 1
 [node name="MAG2" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "MAG:"
-horizontal_alignment = 1
 
 [node name="MAG" type="Label" parent="GridContainer"]
 layout_mode = 2

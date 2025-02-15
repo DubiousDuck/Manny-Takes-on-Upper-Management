@@ -162,7 +162,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						projectile.is_held = false
 						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
-						print("shooting complete")
+						#print("shooting complete")
 					_:
 						print("nothing to displace yet")
 				attacker.check_if_can_throw()
@@ -193,7 +193,7 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
 	
 	if stacking: #only stacks units if stacking is true
-		print("stacking")
+		#print("stacking")
 		#adjusting position of units to accomodate for unit stacking
 		
 		for cell in occupied_cells.keys():
@@ -226,7 +226,7 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
 				)
 
-	print("status update complete")	
+	#print("status update complete")	
 	status_update_complete.emit()
 
 func _on_unit_died():

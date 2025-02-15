@@ -83,6 +83,13 @@ func _ready():
 	verify_directory(save_path)
 	EventBus.connect("ui_element_started", ui_element_start)
 	EventBus.connect("ui_element_ended", ui_element_end)
+	
+	#load data
+	load_player_data(DEBUG_INT)
+	#read and copy talents
+	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
+	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
+	print(_protag_talent)
 		
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -106,12 +113,21 @@ func start_dialogue(text : Array[String]):
 	
 ## Save and load #####################################################
 
+const DEBUG_INT := 999
+
 var player_data = PlayerData.new()
 
 func load_player_data(save : int):
-	player_data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension).duplicate(true)
+	var data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension)
+	if !data:
+		return
+	player_data = data.duplicate(true)
 	print("- Loaded player data")
 	
 func save_player_data(save : int):
+	#save talents
+	player_data.protag_talents = _protag_talent.duplicate(true)
+	player_data.company_talents = _company_talent.duplicate(true)
+	print(player_data.protag_talents)
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data")

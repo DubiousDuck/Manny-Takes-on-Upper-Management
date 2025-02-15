@@ -33,6 +33,14 @@ offset_bottom = 628.0
 theme_override_font_sizes/font_size = 45
 text = "To Skill Tree"
 
+[node name="Save" type="Button" parent="CanvasLayer"]
+offset_left = 965.0
+offset_top = 506.0
+offset_right = 1131.0
+offset_bottom = 556.0
+theme_override_font_sizes/font_size = 40
+text = "Save Game"
+
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_ss2h4")]
 
 [node name="RoomLayout" type="Node2D" parent="."]
@@ -131,5 +139,6 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_yeq1s")
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
+[connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

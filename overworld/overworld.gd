@@ -30,3 +30,7 @@ func _ready():
 func _on_to_talent_page_pressed():
 	var talent_scene = preload("res://skill_tree/skill_tree.tscn")
 	get_tree().change_scene_to_packed(talent_scene)
+
+func _on_save_pressed():
+	# TODO: change DEBUG_INT
+	Global.save_player_data(Global.DEBUG_INT)
