@@ -246,12 +246,12 @@ func _unhandled_input(event):
 			#deselect if unit is clicked on again; select held units
 			if current_unit != null and current_unit.cell == clicked_cell:
 				var next_unit = get_next_unit_of_same_cell(current_unit)
-				deselect_current_unit()
 				if next_unit != null:
+					deselect_current_unit()
 					select_unit(next_unit)
 					highlight_handle()
 					get_actionnable_cells()
-				return
+					return
 			
 			if action_type == Unit.Action.NONE:
 				deselect_current_unit()
