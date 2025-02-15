@@ -56,8 +56,11 @@ func anim_handler():
 		$AnimationPlayer.play("ow_anim/holding_empty")
 		return
 	
-	if velocity.y != 0:
-		$AnimationPlayer.play("ow_anim/front_walk")
+	if abs(velocity.y) >= abs(velocity.x):
+		if velocity.y >= 0:
+			$AnimationPlayer.play("ow_anim/front_walk")
+		elif velocity.y < 0:
+			$AnimationPlayer.play("ow_anim/back_walk")
 	elif velocity != Vector2.ZERO:
 		$AnimationPlayer.play("ow_anim/side_walk")
 	else:

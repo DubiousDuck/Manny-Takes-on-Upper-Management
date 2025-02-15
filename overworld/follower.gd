@@ -140,7 +140,10 @@ func anim_handler(delta):
 	$Sprite2D.hframes = 4
 	var idle = (vel_moving_average.length() < SPEED*0.25)
 	if (abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2) and not idle:
-		$AnimationPlayer.play("ow_anim/front_walk")
+		if vel_moving_average.y >= 0:
+			$AnimationPlayer.play("ow_anim/front_walk")
+		else:
+			$AnimationPlayer.play("ow_anim/back_walk")
 	elif vel_moving_average != Vector2.ZERO and not idle:
 		$AnimationPlayer.play("ow_anim/side_walk")
 	else:

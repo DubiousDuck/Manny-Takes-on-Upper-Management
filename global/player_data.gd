@@ -1,9 +1,9 @@
 class_name PlayerData extends Resource
 
-var player_name : String = "A"
+@export var player_name : String = "A"
 
 # include party details here
 
 ## Activated talents
-var protag_talents: Dictionary = {}
-var company_talents: Dictionary = {}
+@export var protag_talents: Dictionary = {}
+@export var company_talents: Dictionary = {}

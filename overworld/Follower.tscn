@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://overworld/follower.gd" id="1_n8ld1"]
 [ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="2_32w04"]
-[ext_resource type="AnimationLibrary" uid="uid://cvdigoi4kc573" path="res://overworld/ow_anim.res" id="3_w1yvo"]
+[ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_w1yvo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
 radius = 15.0

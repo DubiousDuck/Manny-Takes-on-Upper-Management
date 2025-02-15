@@ -89,7 +89,6 @@ func _ready():
 	#read and copy talents
 	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
 	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
-	print(_protag_talent)
 		
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -128,6 +127,5 @@ func save_player_data(save : int):
 	#save talents
 	player_data.protag_talents = _protag_talent.duplicate(true)
 	player_data.company_talents = _company_talent.duplicate(true)
-	print(player_data.protag_talents)
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data")
