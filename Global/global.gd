@@ -55,3 +55,21 @@ func merge_talent_dict_with(code: int, target: Dictionary):
 			_protag_talent.merge(target, true)
 		talent_type.COMPANY:
 			_company_talent.merge(target, true)
+
+## Player input signals
+
+func _input(event):
+	if event.is_action_pressed("Advance"):
+		EventBus.input_advance.emit()
+	elif event.is_action_pressed("Back"):
+		EventBus.input_back.emit()
+
+## Scene transition
+
+var current_enemies : Array[UnitData] = []
+
+func start_battle(overworld_rid, classes : Array[UnitData]):
+	print(overworld_rid, classes)
+	current_enemies = classes
+	
+## Save and load

@@ -34,9 +34,3 @@ signal dialogue(text : Array[String])
 #global player inputs
 signal input_advance
 signal input_back
-
-func _input(event):
-	if event.is_action_pressed("Advance"):
-		input_advance.emit()
-	elif event.is_action_pressed("Back"):
-		input_back.emit()
