@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dtt3xcsbt848i"]
+
+[node name="UiLayer" type="CanvasLayer"]
+process_mode = 3

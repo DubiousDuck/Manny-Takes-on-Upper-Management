@@ -81,11 +81,30 @@ var save_extension = ".tres"
 
 func _ready():
 	verify_directory(save_path)
+	EventBus.connect("ui_element_started", ui_element_start)
+	EventBus.connect("ui_element_ended", ui_element_end)
 		
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
 	
-#######################################################
+## UI
+
+const DIALOGUE = preload("res://ui/dialogue.tscn")
+
+func ui_element_start():
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+
+func ui_element_end():
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_ALWAYS
+
+func start_dialogue(text : Array[String]):
+	var a = DIALOGUE.instantiate()
+	UiLayer.add_child(a)
+	a.read_text(text)
+	await EventBus.ui_element_ended
+	a.queue_free()
+	
+## Save and load #####################################################
 
 var player_data = PlayerData.new()
 
