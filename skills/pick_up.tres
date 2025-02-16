@@ -9,4 +9,5 @@ type = 1
 targets = 5
 affinity = null
 range = 1
+area = 0
 skill_effects = Array[Vector2i]([Vector2i(8, 0)])

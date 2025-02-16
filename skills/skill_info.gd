@@ -15,6 +15,7 @@ enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SEL
 "except_self", "allies_except_self", "any_cell", "any_cell_except_self") var targets
 @export_enum("physical", "magic") var affinity
 @export_range(0, 10) var range: int
+@export_range(0, 10) var area: int = 0
 
 @export_category("Skill Detail")
 @export var skill_effects: Array[Vector2i] #Structure --> Vector2i(EffectType, Value)

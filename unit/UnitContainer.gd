@@ -22,6 +22,7 @@ var current_actionnable_cells: Dictionary = {}
 #flags
 var is_waiting_unit_selection: bool = true
 var in_progress: bool = false
+var is_aoe_skill: bool = false
 
 func _ready() -> void:
 	EventBus.connect("unit_died", _on_unit_died)
@@ -221,7 +222,18 @@ func _step_enemy():
 func _unhandled_input(event):
 	if !is_player_controlled:
 		return
-		
+	
+	if is_aoe_skill and skill_chosen != null:
+		EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
+		var mouse_cell :=  HexNavi.global_to_cell(get_global_mouse_position())
+		var skill_range := HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
+		if mouse_cell in skill_range and mouse_cell in get_targets_of_type(skill_range, skill_chosen.targets):
+			var outbound: Array[Vector2i] = [mouse_cell]
+			var skill_area := HexNavi.get_all_neighbors_in_range(mouse_cell, skill_chosen.area, false)
+			outbound.append_array(skill_area)
+			EventBus.emit_signal("show_cell_highlights", outbound, CellHighlight.ATTACK_HIGHLIGHT, name+"_AOE")
+	else: EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
+	
 	if event is InputEventMouseButton and event.is_pressed():
 		EventBus.emit_signal("remove_all_cell_highlights")
 		if event.button_index == MOUSE_BUTTON_LEFT and is_waiting_unit_selection:
@@ -271,6 +283,7 @@ func _unhandled_input(event):
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
+				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area))
 				current_unit.take_action(skill_chosen)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
@@ -377,6 +390,9 @@ func _on_skill_chosen(skill: SkillInfo):
 	if skill_chosen.name == "Wait":
 		unit_wait()
 		return
+	if skill_chosen.area > 0:
+		is_aoe_skill = true
+	else: is_aoe_skill = false
 	highlight_handle()
 	get_actionnable_cells()
 	
