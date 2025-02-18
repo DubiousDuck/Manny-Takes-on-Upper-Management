@@ -2,12 +2,11 @@ extends Resource
 
 class_name UnitData
 
-enum ATTRIBUTES {HP, ATK, MAG, MOV}
-
 #Battle related
 @export_enum("Protagonist", "Tank", "Fighter", 
 	"Ranger", "Healer", "Mage") var unit_class: String
 
+enum ATTRIBUTES {HP, ATK, MAG, MOV}
 @export var attributes: Dictionary = {
 	ATTRIBUTES.HP: 2,
 	ATTRIBUTES.ATK: 1,

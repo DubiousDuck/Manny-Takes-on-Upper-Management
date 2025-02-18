@@ -86,10 +86,10 @@ max_level = 5
 
 [node name="TalentNode2" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
 layout_mode = 0
-offset_left = 305.0
-offset_top = 305.0
-offset_right = 433.0
-offset_bottom = 433.0
+offset_left = 272.0
+offset_top = 306.0
+offset_right = 400.0
+offset_bottom = 434.0
 talent_name = "raise_power"
 parent_talent = NodePath("../TalentNode")
 
@@ -108,15 +108,25 @@ offset_left = 127.0
 offset_top = 118.0
 offset_right = 255.0
 offset_bottom = 246.0
+talent_name = "arrow_rain"
+max_level = 1
+parent_talent = NodePath("../TalentNode2")
+
+[node name="TalentNode7" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 118.0
+offset_right = 478.0
+offset_bottom = 246.0
 talent_name = "talent_4"
 parent_talent = NodePath("../TalentNode2")
 
 [node name="TalentNode6" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
 layout_mode = 0
-offset_left = 603.0
-offset_top = 107.0
-offset_right = 731.0
-offset_bottom = 235.0
+offset_left = 619.0
+offset_top = 120.0
+offset_right = 747.0
+offset_bottom = 248.0
 talent_name = "talent_5"
 parent_talent = NodePath("../TalentNode3")
 

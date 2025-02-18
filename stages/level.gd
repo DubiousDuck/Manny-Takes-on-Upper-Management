@@ -64,4 +64,11 @@ func read_talent_and_apply(talent_type: int):
 						func(unit: Unit):
 							unit.magic_power += talent_dict["raise_magic"]
 					)
+				"arrow_rain":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							if unit.unit_data.unit_class == "Ranger":
+								var arrow_rain: SkillInfo = preload("res://skills/arrow_rain.tres")
+								unit.skills.append(arrow_rain)
+					)
 	#for each talent, match its name and apply its effect

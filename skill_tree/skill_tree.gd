@@ -56,6 +56,7 @@ func _ready():
 	) # Always light up the top node (will be dimmed later if all points used)
 	if current_points <= 0:
 		EventBus.emit_signal("disable_all_nodes")
+	switch_mode(Global.talent_type.PROTAG) #defaults to protag tree
 
 func switch_mode(mode: int):
 	current_mode = mode
