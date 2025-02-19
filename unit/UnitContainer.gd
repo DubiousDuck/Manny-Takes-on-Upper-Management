@@ -44,12 +44,16 @@ func _ready() -> void:
 		
 		for index in range(unit_data_array.size()):
 			unassigned[index].unit_data = unit_data_array[index]
-			
+		
+		var valid_units: Array[Unit] = []
 		for unit in units:
 			if unit.unit_data == null:
+				unit.hide()
 				unit.queue_free()
 			else:
 				unit.load_unit_data()
+				valid_units.append(unit)
+		units = valid_units
 	else:
 		#TODO: Dynamically set enemies based on parameters
 		for unit in units:
@@ -447,5 +451,5 @@ func refresh_units():
 	#recount how many children unit this group has
 	units = []
 	for unit in get_children():
-		if !unit.is_dead:
+		if !unit.is_dead and unit.unit_data != null:
 			units.append(unit)
