@@ -26,6 +26,10 @@ signal talent_node_pressed()
 signal disable_all_nodes()
 signal reset_talent_levels()
 
+#Party management
+signal dragging_start()
+signal dragging_stop()
+
 #UI
 signal ui_element_started
 signal ui_element_ended

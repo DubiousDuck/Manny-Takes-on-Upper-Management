@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6atey8s6y4na"
-path="res://.godot/imported/hex_grid_white.png-da71bd6d2e5d9850806bb7b4fc197b5d.ctex"
+uid="uid://dl341facetgqg"
+path="res://.godot/imported/hex_grid_blue.png-13cbe8f2791a1b1140e3faf981df612e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://other_components/hex_grid_white.png"
-dest_files=["res://.godot/imported/hex_grid_white.png-da71bd6d2e5d9850806bb7b4fc197b5d.ctex"]
+source_file="res://other_map_components/hex_grid_blue.png"
+dest_files=["res://.godot/imported/hex_grid_blue.png-13cbe8f2791a1b1140e3faf981df612e.ctex"]
 
 [params]
 

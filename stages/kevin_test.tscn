@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://stages/level.gd" id="1_6p42v"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_83lvm"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_kqcs5"]
-[ext_resource type="Script" path="res://other_components/cell_highlights.gd" id="3_15yrc"]
+[ext_resource type="Script" path="res://other_map_components/cell_highlights.gd" id="3_15yrc"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ene1a"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="5_3d7nl"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="6_ih3ny"]

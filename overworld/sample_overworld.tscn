@@ -21,7 +21,6 @@ radius = 42.107
 [node name="SampleOverworld" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_o2m1g")
-follower_count = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -40,6 +39,18 @@ offset_right = 1131.0
 offset_bottom = 556.0
 theme_override_font_sizes/font_size = 40
 text = "Save Game"
+
+[node name="PartyManage" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -83.0
+offset_right = 226.0
+offset_bottom = -23.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Manage Party"
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_ss2h4")]
 
@@ -140,5 +151,6 @@ texture = ExtResource("2_yeq1s")
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_exited" from="Door" to="Door" method="_on_body_exited"]

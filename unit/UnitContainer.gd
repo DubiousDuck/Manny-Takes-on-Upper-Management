@@ -31,13 +31,36 @@ func _ready() -> void:
 	
 	if !tile_map_test: # Always check for null!
 		push_warning("TileMap not found at path: " + str(tilemap_path)) # More informative warning
-
-func init():
+	
 	for unit in get_children():
 		units.append(unit)
+		
+	##Read and assign unit data
+	if is_player_controlled:
+		var unit_data_array: Array[UnitData] = Global.current_party.duplicate(true)
+		unit_data_array.erase(preload("res://unit/params/protagonist.tres"))
+		var unassigned: Array[Unit] = units.duplicate(true)
+		unassigned.erase(find_child("Protag")) #NOTICE Assumes that protag has been set up in the editor already
+		
+		for index in range(unit_data_array.size()):
+			unassigned[index].unit_data = unit_data_array[index]
+			
+		for unit in units:
+			if unit.unit_data == null:
+				unit.queue_free()
+			else:
+				unit.load_unit_data()
+	else:
+		#TODO: Dynamically set enemies based on parameters
+		for unit in units:
+			unit.load_unit_data()
+		
+	print(name + " has " + str(units.size()) + " units")
+
+func init():
+	for unit in units:
 		if unit is Unit:
 			unit.init()
-	print(name + " has " + str(units.size()) + " units")
 	
 func round_start():
 	for unit in units:

@@ -55,6 +55,14 @@ func merge_talent_dict_with(code: int, target: Dictionary):
 			_protag_talent.merge(target, true)
 		talent_type.COMPANY:
 			_company_talent.merge(target, true)
+			
+## Current Party related
+
+## Determines the maximum amount of party members
+var max_party_num: int = 3
+
+var current_party: Array[UnitData] = []
+var reserves: Array[UnitData] = []
 
 ## Player input signals
 
@@ -86,10 +94,17 @@ func _ready():
 	
 	#load data
 	load_player_data(DEBUG_INT)
-	#read and copy talents
-	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
-	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
-		
+	
+	# TODO REMOVE ME after party management system done
+	if current_party.size() <= 0:
+		var protag = preload("res://unit/params/protagonist.tres")
+		var fighter = preload("res://unit/params/fighter.tres")
+		current_party.append_array([protag, fighter])
+	if reserves.size() <= 0:
+		var mage = preload("res://unit/params/mage.tres")
+		var ranger = preload("res://unit/params/ranger.tres")
+		reserves.append_array([mage, ranger])
+
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
 	
@@ -121,11 +136,27 @@ func load_player_data(save : int):
 	if !data:
 		return
 	player_data = data.duplicate(true)
+	
+	#read and copy talents
+	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
+	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
+	
+	#copy current_party
+	max_party_num = player_data.max_party_num
+	current_party = player_data.current_party
+	reserves = player_data.reserves
+
 	print("- Loaded player data")
 	
 func save_player_data(save : int):
 	#save talents
 	player_data.protag_talents = _protag_talent.duplicate(true)
 	player_data.company_talents = _company_talent.duplicate(true)
+	
+	#save current party
+	player_data.max_party_num = max_party_num
+	player_data.current_party = current_party
+	player_data.reserves = reserves
+	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data")

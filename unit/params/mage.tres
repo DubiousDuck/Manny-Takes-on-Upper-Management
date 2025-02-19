@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" path="res://unit/params/unit_data.gd" id="1_tf2ja"]
 [ext_resource type="Script" path="res://skills/skill_info.gd" id="2_voedd"]
-[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="3_64h04"]
+[ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="3_e1a4x"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_k42ak"]
 
 [resource]
 script = ExtResource("1_tf2ja")
-unit_class = "Ranger"
+unit_class = "Mage"
 attributes = {
 0: 4,
-1: 3,
-2: 1,
+1: 1,
+2: 3,
 3: 2
 }
-skill_list = Array[ExtResource("2_voedd")]([ExtResource("3_64h04"), ExtResource("4_k42ak")])
+skill_list = Array[ExtResource("2_voedd")]([ExtResource("3_e1a4x"), ExtResource("4_k42ak")])
 rel = ""
 mood = 50
 money = 5

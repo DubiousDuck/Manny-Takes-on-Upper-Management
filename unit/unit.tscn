@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=9 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="2_j55d8"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="6_jkf6t"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
@@ -24,7 +23,6 @@ shader_parameter/transparency = 1.0
 position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
-unit_data = ExtResource("2_j55d8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.392157)

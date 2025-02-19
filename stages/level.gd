@@ -12,10 +12,11 @@ func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	
 	HexNavi.set_current_map(tile_map)
-	unit_group_control.init()
 	
 	read_talent_and_apply(Global.talent_type.PROTAG)
 	read_talent_and_apply(Global.talent_type.COMPANY)
+	
+	unit_group_control.init()
 
 func _on_battle_ended(result: int):
 	var a = battle_outcome.instantiate()

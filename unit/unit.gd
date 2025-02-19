@@ -62,6 +62,13 @@ var is_dead: bool = false
 var damage_reduction: float = 0;
 
 func _ready():
+	_custom_ready()
+
+func _custom_ready(): #virtual functions for subclasses to do their own stuff
+	pass
+	
+## read unit_data and set attributes
+func load_unit_data():
 	#read unit data and set attributes
 	max_health = unit_data.get_attribute("HP")
 	health = max_health
@@ -70,11 +77,7 @@ func _ready():
 	movement_range = unit_data.get_attribute("MOV")
 	
 	skills = unit_data.skill_list
-	_custom_ready()
 
-func _custom_ready(): #virtual functions for subclasses to do their own stuff
-	pass
-	
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
 		if is_player_controlled: $ColorRect.color = Color(0, 0.305, 0.461)

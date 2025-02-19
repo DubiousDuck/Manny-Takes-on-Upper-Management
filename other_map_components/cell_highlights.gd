@@ -7,7 +7,7 @@ const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
 const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.5)
 const ENEMY_RANGE_HIGHLIGHT: Color = Color(1, 0, 0, 0.3)
 
-@onready var highlight_tile = preload("res://other_components/highight_tile.tscn")
+@onready var highlight_tile = preload("res://other_map_components/highight_tile.tscn")
 var all_current_highlights : Dictionary = {}
 
 func _ready():
