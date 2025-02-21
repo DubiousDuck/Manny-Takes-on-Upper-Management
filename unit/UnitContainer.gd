@@ -315,7 +315,11 @@ func _unhandled_input(event):
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
 				await current_unit.attack_point
-				EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+				if Global.attack_successful:
+					EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
+				else:
+					current_unit.unit_held.map(check_and_remove_unit_from_being_held)
+					EventBus.emit_signal("attack_used", preload("res://skills/wait.tres"), current_unit, outbound_array)
 				await current_unit.all_complete
 				in_progress = false
 				deselect_current_unit()
@@ -446,6 +450,7 @@ func check_and_remove_unit_from_being_held(this_unit: Unit):
 		if unit.unit_held.has(this_unit):
 			unit.unit_held.erase(this_unit)
 			this_unit.is_held = false
+			this_unit.animation_state("side_idle")
 
 func refresh_units():
 	#recount how many children unit this group has

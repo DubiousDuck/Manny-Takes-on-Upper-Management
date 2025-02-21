@@ -15,6 +15,8 @@ signal update_cell_status(stacking: bool)
 #Attack/Skill System
 signal attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i])
 signal skill_chosen(skill: SkillInfo)
+signal action_command_used(position: Vector2)
+signal camera_done()
 
 #Battle Information
 signal unit_died()

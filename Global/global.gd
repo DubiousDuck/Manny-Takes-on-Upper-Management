@@ -2,6 +2,9 @@ extends Node
 
 ## Global script with utility functions
 
+# Battle related
+var attack_successful: bool
+
 # Overworld
 var _last_overworld: String = ""
 

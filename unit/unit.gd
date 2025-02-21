@@ -152,6 +152,7 @@ func move_along_path(full_path : Array[Vector2i]):
 
 func take_action(skill: SkillInfo): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
+	Global.attack_successful = true #False only when action command fails
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	# NOTICE: It's imperical to have both `attack_point` and `anim_complete` emitted by the time each animation ends
 	match skill.name:
@@ -239,6 +240,7 @@ func emit_action_command_point(game : String):
 		"throw":
 			var a = THROW_ACTION_COMMAND.instantiate()
 			add_child(a)
+			#EventBus.emit_signal("action_command_used", global_position)
 			get_tree().paused = true
 		_:
 			pass
