@@ -240,7 +240,10 @@ func emit_action_command_point(game : String):
 		"throw":
 			var a = THROW_ACTION_COMMAND.instantiate()
 			add_child(a)
-			#EventBus.emit_signal("action_command_used", global_position)
+			if global_position.y <= Global.camera_top:
+				a.position = Vector2(-(a.size.x)/2, 20) #need to comensate for the size of the bars
+			elif global_position.y >= Global.camera_low:
+				a.position = Vector2(-(a.size.x)/2, -20-(a.size.y))
 			get_tree().paused = true
 		_:
 			pass

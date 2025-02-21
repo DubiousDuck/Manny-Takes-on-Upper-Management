@@ -4,6 +4,8 @@ extends Node
 
 # Battle related
 var attack_successful: bool
+var camera_top: int #y position
+var camera_low: int #y position
 
 # Overworld
 var _last_overworld: String = ""
