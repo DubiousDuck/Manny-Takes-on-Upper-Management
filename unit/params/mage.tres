@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://k5gy8n00eull"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://k5gy8n00eull"]
 
 [ext_resource type="Script" path="res://unit/params/unit_data.gd" id="1_tf2ja"]
 [ext_resource type="Script" path="res://skills/skill_info.gd" id="2_voedd"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="3_e1a4x"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_k42ak"]
+[ext_resource type="Resource" uid="uid://c2i03afm4n334" path="res://skills/big_barrel.tres" id="4_ny5ro"]
 
 [resource]
 script = ExtResource("1_tf2ja")
@@ -14,7 +15,7 @@ attributes = {
 2: 3,
 3: 2
 }
-skill_list = Array[ExtResource("2_voedd")]([ExtResource("3_e1a4x"), ExtResource("4_k42ak")])
+skill_list = Array[ExtResource("2_voedd")]([ExtResource("3_e1a4x"), ExtResource("4_ny5ro"), ExtResource("4_k42ak")])
 rel = ""
 mood = 50
 money = 5

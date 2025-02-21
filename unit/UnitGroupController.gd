@@ -88,13 +88,18 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.KNOCKBACK:
 				if affected_units.is_empty(): break
 				
+				#treats the first target as the knockback origin if it's an AOE knockback
+				var knockback_origin: Vector2 = attacker.global_position
+				if attack.area > 0:
+					knockback_origin = HexNavi.cell_to_global(targets.front())
+					
 				var move_tween = get_tree().create_tween().set_parallel()
 				move_tween.set_ease(Tween.EASE_OUT)
 				move_tween.set_trans(Tween.TRANS_CUBIC)
 				affected_units.map(
 					func(unit : Unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
 						#calculate the direction of knockback
-						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - attacker.global_position
+						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - knockback_origin
 						#apply the direction by strength of knockback
 						var new_location: Vector2 = unit.global_position + dir*effect.y
 						if HexNavi.global_to_cell(new_location) == Vector2i(-999, -999): ## pretends there's a wall

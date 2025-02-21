@@ -310,7 +310,7 @@ func _unhandled_input(event):
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
-				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area))
+				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area, false))
 				current_unit.take_action(skill_chosen)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
@@ -398,6 +398,8 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 					if target != current_unit.cell: correct_targets.append(target)
 				SkillInfo.TargetType.ALLIES_EXCEPT_SELF:
 					if allied_cells.has(target) and target != current_unit.cell: correct_targets.append(target)
+				SkillInfo.TargetType.ANY_CELL:
+					correct_targets.append(target)
 				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
 					if target != current_unit.cell: correct_targets.append(target)
 				_:
