@@ -9,6 +9,7 @@ var dir = Vector2.RIGHT
 var turning = false
 
 var holding = 0
+var throwing = false
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -52,6 +53,10 @@ func sort_z_layer():
 	z_index = int(position.y)
 
 func anim_handler():
+	# enable below for throwing animation
+	#if throwing:
+		#$AnimationPlayer.play("ow_anim/throw")
+		#return
 	if holding>0:
 		$AnimationPlayer.play("ow_anim/holding_empty")
 		return
@@ -67,3 +72,7 @@ func anim_handler():
 		$AnimationPlayer.play("ow_anim/side_walk")
 	else:
 		$AnimationPlayer.play("ow_anim/front_idle")
+
+
+func _throwing_done() -> void:
+	throwing=false

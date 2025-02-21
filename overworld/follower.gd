@@ -51,6 +51,7 @@ func process_hold():
 			get_node("CollisionShape2D").disabled=true
 		if (not free) and (player.holding==1) and (time_since_hold>1):
 			thrown=true
+			player.throwing=true
 			player.holding-=1
 			var throw_direction = get_global_mouse_position()-player.global_position
 			var throw_angle = deg_to_rad(min(45,throw_direction.length()))
