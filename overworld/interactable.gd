@@ -29,9 +29,7 @@ func _on_body_exited(body):
 		is_in_range = false
 
 func _on_area_2d_mouse_entered() -> void:
-	print(mouse_selected)
 	mouse_selected=true
 
 func _on_area_2d_mouse_exited() -> void:
-	print(mouse_selected)
 	mouse_selected=false

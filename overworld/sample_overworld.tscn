@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_ss2h4"]
 [ext_resource type="PackedScene" uid="uid://dia222bicit4v" path="res://overworld/door.tscn" id="4_712br"]
+[ext_resource type="Script" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
 size = Vector2(561.75, 15)
@@ -127,7 +128,8 @@ position = Vector2(264, 485)
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(580, 325)
+position_smoothing_enabled = true
+script = ExtResource("4_u7vk1")
 
 [node name="Door" parent="." instance=ExtResource("4_712br")]
 position = Vector2(453, 336)

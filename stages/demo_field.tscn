@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_i3ck5"]
 [ext_resource type="Script" path="res://other_map_components/cell_highlights.gd" id="3_v4sia"]
 [ext_resource type="Script" path="res://unit/UnitGroupController.gd" id="4_ifsfs"]
-[ext_resource type="Script" path="res://stages/camera_2d.gd" id="5_ubm3c"]
+[ext_resource type="Script" path="res://overworld/camera_ow.gd" id="5_ubm3c"]
 [ext_resource type="Script" path="res://unit/UnitContainer.gd" id="5_ypjfd"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="6_vkavw"]
 [ext_resource type="Script" path="res://unit/PlayerUnit.gd" id="7_fxfs3"]
