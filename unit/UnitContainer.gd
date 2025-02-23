@@ -356,7 +356,7 @@ func get_actionnable_cells():
 			Unit.Action.MOVE:
 				var all_neighbors = HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				for neighbor in all_neighbors:
-					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversible"): #only actionnable if tile not occupied
+					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversable"): #only actionnable if tile not occupied
 						tiles.append(neighbor)
 			Unit.Action.ATTACK:
 				if skill_chosen == null:

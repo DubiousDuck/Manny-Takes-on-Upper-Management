@@ -120,6 +120,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							return
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
+				# FIXME: when knockback is the last action before player turn ends, weird things happen
 				
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(

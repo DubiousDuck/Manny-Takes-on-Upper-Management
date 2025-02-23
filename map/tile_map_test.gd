@@ -21,7 +21,7 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant)
 
 func _on_occupy_cell(pos : Vector2i, unit_type : String):
-	if !HexNavi.get_cell_custom_data(pos, "traversible"):
+	if !HexNavi.get_cell_custom_data(pos, "traversable"):
 		return
 	var color_cell : Vector2i
 	match unit_type:
@@ -35,7 +35,7 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 
 func _on_clear_cells():
 	for pos in get_used_cells():
-		if HexNavi.get_cell_custom_data(pos, "traversible"):
+		if HexNavi.get_cell_custom_data(pos, "traversable"):
 			set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
 	
 func get_all_tilemap_cells() -> Array[Vector2i]:
