@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Level
 
+const INTRAVERSABLE_WEIGHT: float = 999
+
 @onready var battle_outcome = preload("res://ui/battle_outcome.tscn")
 @onready var pause_canvas_layer = $PauseCanvasLayer
 
@@ -12,6 +14,7 @@ func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	
 	HexNavi.set_current_map(tile_map)
+	HexNavi.set_weight_of_layer(INTRAVERSABLE_WEIGHT, "traversable", false)
 	
 	read_talent_and_apply(Global.talent_type.PROTAG)
 	read_talent_and_apply(Global.talent_type.COMPANY)
