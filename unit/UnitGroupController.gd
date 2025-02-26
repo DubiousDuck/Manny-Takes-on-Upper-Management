@@ -48,6 +48,7 @@ func _on_unit_container_all_moved():
 func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
 		is_player_turn = !is_player_turn
+		round_end_actions()
 		if is_player_turn:
 			player_group.round_start()
 			print("player's turn")
@@ -197,12 +198,14 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 		if !occupied_cells.has(unit.cell):
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
-		EventBus.emit_signal("occupy_cell", unit.cell, "player")
+		if HexNavi.get_cell_custom_data(unit.cell, "effect") == "":
+			EventBus.emit_signal("occupy_cell", unit.cell, "player")
 	for unit in enemy_group.units:
 		if !occupied_cells.has(unit.cell):
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
-		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
+		if HexNavi.get_cell_custom_data(unit.cell, "effect") == "":
+			EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
 	
 	if stacking: #only stacks units if stacking is true
 		#print("stacking")
@@ -263,3 +266,13 @@ func check_if_win():
 		2:	#Player won
 			EventBus.emit_signal("battle_ended", EventBus.BattleResult.PLAYER_VICTORY)
 			print("Player won!")
+
+func round_end_actions():
+	#examine the cells occupied by each unit and execute the cell passives
+	for unit in all_units:
+		var cell_effect: String = HexNavi.get_cell_custom_data(unit.cell, "effect")
+		match cell_effect:
+			"heal":
+				if unit.health < unit.max_health: unit.health += 1
+			_:
+				pass

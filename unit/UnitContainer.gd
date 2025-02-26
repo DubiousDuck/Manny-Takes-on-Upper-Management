@@ -282,17 +282,16 @@ func _unhandled_input(event):
 				
 			var action_type := find_action(clicked_cell)
 			
-			#deselect if unit is clicked on again; select held units
-			if current_unit != null and current_unit.cell == clicked_cell:
-				var next_unit = get_next_unit_of_same_cell(current_unit)
-				if next_unit != null:
-					deselect_current_unit()
-					select_unit(next_unit)
-					highlight_handle()
-					get_actionnable_cells()
-					return
-			
 			if action_type == Unit.Action.NONE:
+				#deselect if unit is clicked on again; select held units
+				if current_unit != null and current_unit.cell == clicked_cell:
+					var next_unit = get_next_unit_of_same_cell(current_unit)
+					if next_unit != null:
+						deselect_current_unit()
+						select_unit(next_unit)
+						highlight_handle()
+						get_actionnable_cells()
+						return
 				deselect_current_unit()
 				return
 			
@@ -354,9 +353,9 @@ func get_actionnable_cells():
 		var tiles: Array[Vector2i] = []
 		match ac:
 			Unit.Action.MOVE:
-				var all_neighbors = HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
+				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				for neighbor in all_neighbors:
-					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversable"): #only actionnable if tile not occupied
+					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != current_unit.cell: #only actionnable if tile not occupied
 						tiles.append(neighbor)
 			Unit.Action.ATTACK:
 				if skill_chosen == null:

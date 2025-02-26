@@ -35,7 +35,7 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 
 func _on_clear_cells():
 	for pos in get_used_cells():
-		if HexNavi.get_cell_custom_data(pos, "traversable"):
+		if HexNavi.get_cell_custom_data(pos, "effect") == "":
 			set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
 	
 func get_all_tilemap_cells() -> Array[Vector2i]:

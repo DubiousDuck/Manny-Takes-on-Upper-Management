@@ -136,6 +136,3 @@ func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array, max_wei
 	
 func get_random_tile_pos() -> Vector2: #for testing and placeholder purposes
 	return astar.get_point_position(randi_range(0, astar.get_point_count()))
-	
-func get_random_tile_from(start: Vector2i, range : int):
-	pass
