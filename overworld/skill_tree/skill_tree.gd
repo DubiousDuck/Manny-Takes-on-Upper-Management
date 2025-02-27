@@ -96,8 +96,9 @@ func _on_save_exit_pressed():
 	print(Global.get_talent_activated(Global.talent_type.COMPANY))
 	
 	
-	if Global.get_last_overworld() != "":
-		get_tree().change_scene_to_file(Global.get_last_overworld())
+	if Global.get_last_overworld_scene():
+		#get_tree().change_scene_to_file(Global.get_last_overworld_name())
+		get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 func _on_switch_tree_pressed():
 	if current_mode == Global.talent_type.PROTAG:

@@ -72,7 +72,10 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	var affected_units: Array[Unit] = []
 	for unit in all_units:
 		if targets.has(unit.cell):
-			affected_units.append(unit)
+			if attack.area < 0 and unit.cell == attacker.cell: #if the skill should exclude origin
+				pass
+			else:
+				affected_units.append(unit)
 	#for each skill effect, apply it on every affected units
 	for effect in attack.skill_effects: 
 		match effect.x: #Skill effect translator
@@ -94,7 +97,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				
 				#treats the first target as the knockback origin if it's an AOE knockback
 				var knockback_origin: Vector2 = attacker.global_position
-				if attack.area > 0:
+				if abs(attack.area) > 0:
 					knockback_origin = HexNavi.cell_to_global(targets.front())
 					
 				var move_tween = get_tree().create_tween().set_parallel()
@@ -176,7 +179,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					2: #displace to target location (blackhole)
 						if affected_units.is_empty(): break
 						var displace_origin: Vector2 = attacker.global_position
-						if attack.area > 0:
+						if abs(attack.area) > 0:
 							displace_origin = HexNavi.cell_to_global(targets.front())
 
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)

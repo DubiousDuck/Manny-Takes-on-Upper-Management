@@ -90,4 +90,11 @@ func read_talent_and_apply(talent_type: int):
 								var skill: SkillInfo = preload("res://skills/throw_candy.tres")
 								if !(skill in unit.skills): unit.skills.append(skill)
 					)
+				"whirlwind":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							if unit.unit_data.unit_class == "Fighter":
+								var skill: SkillInfo = preload("res://skills/whirlwind.tres")
+								if !(skill in unit.skills): unit.skills.append(skill)
+					)
 	#for each talent, match its name and apply its effect

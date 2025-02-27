@@ -22,12 +22,25 @@ var brightness_val: float = 100.0
 func start():
 	brightness_val = 100.0
 
-func set_last_overworld(file_name: String):
-	#TODO: check if the file_name is a valid scene path
-	_last_overworld = file_name
+# Overworld
+var _last_overworld_name: String = ""
 
-func get_last_overworld() -> String:
-	return _last_overworld
+func set_last_overworld_name(file_name: String):
+	#TODO: check if the file_name is a valid scene path
+	_last_overworld_name = file_name
+
+func get_last_overworld_name() -> String:
+	return _last_overworld_name
+	
+	
+# Overworld
+var _last_overworld_scene: PackedScene = PackedScene.new()
+
+func set_last_overworld_scene(scene: Node):
+	_last_overworld_scene.pack(scene)
+
+func get_last_overworld_scene() -> PackedScene:
+	return _last_overworld_scene
 
 
 # Skill Tree Related
