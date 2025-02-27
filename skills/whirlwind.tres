@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://djy537r81hp18"]
+
+[ext_resource type="Script" path="res://skills/skill_info.gd" id="1_u08bw"]
+
+[resource]
+script = ExtResource("1_u08bw")
+name = "Whirlwind"
+type = 0
+targets = 2
+affinity = 0
+range = 0
+area = -1
+skill_effects = Array[Vector2i]([Vector2i(0, 1), Vector2i(1, 1)])
