@@ -4,9 +4,9 @@ extends TileMapLayer
 
 const GRID_SIZE = 5
 const MAIN_ATLAS_ID = 0
-const BLUE_CELL := Vector2i(0, 0)
-const WHITE_CELL := Vector2i(2, 0)
-const RED_CELL := Vector2i(1, 0)
+const BLUE_CELL := Vector2i(1, 0)
+const WHITE_CELL := Vector2i(0, 0)
+const RED_CELL := Vector2i(2, 0)
 
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)

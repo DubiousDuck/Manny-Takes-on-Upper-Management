@@ -1,0 +1,36 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cgvkwqe7w6p5h"]
+
+[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inqtn"]
+texture = ExtResource("1_tre3t")
+texture_region_size = Vector2i(128, 128)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/1 = 1
+0:0/1/modulate = Color(0.0308664, 0.888827, 0.470958, 1)
+0:0/1/custom_data_0 = true
+0:0/1/custom_data_2 = "heal"
+1:0/0 = 0
+1:0/0/custom_data_0 = true
+1:0/0/custom_data_1 = true
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/0/custom_data_0 = true
+2:0/0/custom_data_1 = true
+2:0/1 = 1
+2:0/1/modulate = Color(0.704991, 0.0471962, 0.182532, 1)
+2:0/1/custom_data_2 = "death"
+
+[resource]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(123, 101)
+custom_data_layer_0/name = "traversable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "occupied"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "effect"
+custom_data_layer_2/type = 4
+sources/0 = SubResource("TileSetAtlasSource_inqtn")

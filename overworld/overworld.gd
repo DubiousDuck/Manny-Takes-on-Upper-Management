@@ -20,6 +20,7 @@ func _set_owner_recursive(node : Node, new_owner : Node, old_paths : Dictionary)
 			node.scene_file_path = ""
 	for c in node.get_children():
 		_set_owner_recursive(c, new_owner, old_paths)
+
 func update_followers() -> void:
 	# Get a reference to the player node. Adjust the node path as needed.
 	var player = get_node("Player")

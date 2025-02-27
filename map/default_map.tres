@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bihhdpn1stemf"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bihhdpn1stemf"]
 
 [ext_resource type="Texture2D" uid="uid://clfva345no3fs" path="res://map/hex_grid.png" id="1_b06vb"]
+[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="2_m833y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pw1yh"]
 resource_name = "default"
@@ -38,6 +39,13 @@ texture_region_size = Vector2i(110, 94)
 2:1/0/custom_data_2 = 2
 3:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jsi4s"]
+texture = ExtResource("2_m833y")
+texture_region_size = Vector2i(102, 94)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
 [resource]
 tile_shape = 3
 tile_offset_axis = 1
@@ -51,3 +59,4 @@ custom_data_layer_2/type = 2
 custom_data_layer_3/name = "effect"
 custom_data_layer_3/type = 4
 sources/0 = SubResource("TileSetAtlasSource_pw1yh")
+sources/1 = SubResource("TileSetAtlasSource_jsi4s")

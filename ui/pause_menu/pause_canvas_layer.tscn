@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
 [ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 [ext_resource type="Texture2D" uid="uid://b5npyleamaofs" path="res://assets/ui/pause_icon.png" id="6_b6mne"]
-[ext_resource type="Theme" path="res://ui/genereal_ui_theme.tres" id="6_erp37"]
+[ext_resource type="Theme" uid="uid://dvthhxqu5hqcj" path="res://ui/general_ui_theme.tres" id="6_erp37"]
 
 [node name="PauseCanvasLayer" type="CanvasLayer"]
 process_mode = 3

@@ -200,6 +200,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	_on_update_cell_status(true)
 	attack_processing = false
 	attack_complete.emit()
+	#FIXME: turn freezes after unit hitting own cell
 	
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly

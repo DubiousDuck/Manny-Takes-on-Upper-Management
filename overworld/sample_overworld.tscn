@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
-[ext_resource type="Theme" path="res://ui/genereal_ui_theme.tres" id="2_nt2ja"]
+[ext_resource type="Theme" uid="uid://dvthhxqu5hqcj" path="res://ui/general_ui_theme.tres" id="2_nt2ja"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_ss2h4"]
 [ext_resource type="Script" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
 [ext_resource type="PackedScene" uid="uid://dia222bicit4v" path="res://overworld/interactables/door.tscn" id="5_tiegx"]

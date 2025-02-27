@@ -12,7 +12,7 @@ func _process(delta):
 
 
 func back_to_overworld():
-	get_tree().change_scene_to_file(Global.get_last_overworld())
+	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 func _on_mage_pressed():
 	back_to_overworld()
