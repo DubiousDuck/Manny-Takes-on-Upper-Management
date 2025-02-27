@@ -13,22 +13,25 @@ const TURN_COOLDOWN = 0.15  # seconds between allowed between steps
 
 var player
 
-var move_timer = 0.0
-var turning = false
+# unit attributes
+@export var unit_data:UnitData
 
-var turn_dir = Vector2.RIGHT
-var lastpos = Vector2(0,0)
-var vel_moving_average = Vector2(0,0)
-var diff = Vector2(0,0)
+@export var move_timer = 0.0
+@export var turning = false
 
-var thrown = false
-var free = true
-var selected = false
+@export var turn_dir = Vector2.RIGHT
+@export var lastpos = Vector2(0,0)
+@export var vel_moving_average = Vector2(0,0)
+@export var diff = Vector2(0,0)
 
-var throw_dir = Vector2(0,0)
-var throw_time = 0
-var time_since_hold = 0
-var time_since_throw = 0
+@export var thrown = false
+@export var free = true
+@export var selected = false
+
+@export var throw_dir = Vector2(0,0)
+@export var throw_time = 0
+@export var time_since_hold = 0
+@export var time_since_throw = 0
 
 
 func free_hold():

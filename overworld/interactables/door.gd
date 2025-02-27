@@ -3,7 +3,7 @@ extends Interactable
 class_name Door
 
 @export_file("*.tscn") var scene_to_go
-@export var locked=false
+@export var locked=true
 
 func _interact_call_back():
 	if locked:

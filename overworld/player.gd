@@ -5,11 +5,11 @@ class_name Player
 const SPEED = 100
 const SCALE := 3
 
-var dir = Vector2.RIGHT
-var turning = false
+@export var dir = Vector2.RIGHT
+@export var turning = false
 
-var holding = 0
-var throwing = false
+@export var holding = 0
+@export var throwing = false
 
 func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

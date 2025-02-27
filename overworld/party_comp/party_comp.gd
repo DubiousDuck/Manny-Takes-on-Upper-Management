@@ -33,5 +33,6 @@ func _process(delta):
 func _on_button_pressed():
 	Global.current_party = $CurrParty.get_members_unit_data()
 	Global.reserves = $Reserves.get_members_unit_data()
-	if Global.get_last_overworld() != "":
-		get_tree().change_scene_to_file(Global.get_last_overworld())
+	
+	if Global.get_last_overworld_scene():
+		get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
