@@ -3,7 +3,7 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = false
+var dev_mode: bool = true
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 var player_has_initialized: bool = true
@@ -37,7 +37,7 @@ func get_last_overworld_name() -> String:
 var _last_overworld_scene: PackedScene = PackedScene.new()
 
 func set_last_overworld_scene(scene: Node):
-	_last_overworld_scene.pack(scene)
+	return _last_overworld_scene.pack(scene)
 
 func get_last_overworld_scene() -> PackedScene:
 	return _last_overworld_scene
