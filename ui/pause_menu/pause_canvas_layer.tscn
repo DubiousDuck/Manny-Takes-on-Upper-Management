@@ -150,6 +150,16 @@ offset_bottom = 500.0
 theme_override_font_sizes/font_size = 45
 text = "Resume"
 
+[node name="DevButton" type="Button" parent="BattleMenuControl"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+offset_left = 73.0
+offset_top = 48.0
+offset_right = 373.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 45
+text = "Dev Button"
+
 [node name="PauseButton" type="TextureButton" parent="."]
 offset_left = 1058.0
 offset_top = 10.0
@@ -174,4 +184,5 @@ color = Color(0, 0, 0, 0)
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/ExitLevel" to="." method="_on_exit_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="BattleMenuControl/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="BattleMenuControl/DevButton" to="." method="_on_dev_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

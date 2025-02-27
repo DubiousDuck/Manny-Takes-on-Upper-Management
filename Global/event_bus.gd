@@ -20,7 +20,7 @@ signal camera_done()
 
 #Battle Information
 signal unit_died()
-signal battle_ended(result: int)
+signal battle_ended(result: int)  #0 is win, 1 is lose
 signal unit_on_standby()
 
 #Skill Tree

@@ -71,3 +71,8 @@ func _on_resume_pressed():
 
 func _on_pause_button_pressed():
 	flipMenuDisplay()
+
+
+func _on_dev_button_pressed():
+	EventBus.battle_ended.emit(0)
+	flipMenuDisplay()
