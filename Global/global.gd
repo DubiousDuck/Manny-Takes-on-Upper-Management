@@ -3,8 +3,10 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = true
+var dev_mode: bool = false
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
+
+var player_has_initialized: bool = true
 
 # Battle related
 var attack_successful: bool
@@ -13,6 +15,7 @@ var camera_low: int #y position
 
 # Overworld
 var _last_overworld: String = ""
+var _last_overworld_position: Vector2 = Vector2(0,0)
 
 var brightness_val: float = 100.0
 

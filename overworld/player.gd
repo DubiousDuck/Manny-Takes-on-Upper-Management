@@ -12,6 +12,11 @@ var holding = 0
 var throwing = false
 
 func _physics_process(delta):
+	
+	if !Global.player_has_initialized:
+		position = Global._last_overworld_position
+		Global.player_has_initialized = true
+	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector2(input_dir.x, input_dir.y).normalized()
 	
@@ -49,8 +54,8 @@ func _physics_process(delta):
 	move_and_slide()
 	anim_handler()
 
-func sort_z_layer():
-	z_index = int(position.y)
+#func sort_z_layer():
+	#z_index = int(position.y)
 
 func anim_handler():
 	# enable below for throwing animation

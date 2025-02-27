@@ -8,10 +8,13 @@ var menuIsDisplayed: bool = false
 @onready var pause_button = $PauseButton
 @onready var brightness_slider = $BattleMenuControl/BrightnessSlider
 
+@onready var dev_button = $BattleMenuControl/DevButton
+
 @export var isBattleScene: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	dev_button.visible = Global.dev_mode
 	brightness_slider.setBrightness(Global.brightness_val)
 	updateLabelText()
 	if !isBattleScene:
@@ -71,7 +74,6 @@ func _on_resume_pressed():
 
 func _on_pause_button_pressed():
 	flipMenuDisplay()
-
 
 func _on_dev_button_pressed():
 	EventBus.battle_ended.emit(0)

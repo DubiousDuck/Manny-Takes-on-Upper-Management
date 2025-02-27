@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg4a4sd0edp4f"]
+[gd_scene load_steps=6 format=3 uid="uid://dg4a4sd0edp4f"]
 
 [ext_resource type="Script" path="res://overworld/interactables/recruit.gd" id="1_88f8k"]
 [ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="2_issuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dktft"]
-radius = 42.107
+radius = 55.0091
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_04yjj"]
 radius = 22.0
 height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qag4w"]
+radius = 15.0
 
 [node name="Recruit" type="Area2D"]
 collision_layer = 3
@@ -17,10 +20,10 @@ script = ExtResource("1_88f8k")
 scene_to_go = "res://overworld/draft_scene/draft_scene.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 30)
+position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_dktft")
 
-[node name="FrontIdle" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
 scale = Vector2(3.73913, 3.73913)
 texture = ExtResource("2_issuo")
@@ -36,10 +39,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Area2D" type="Area2D" parent="Control"]
 position = Vector2(0, -2)
 scale = Vector2(1, 0.639999)
+disable_mode = 1
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
 shape = SubResource("CapsuleShape2D_04yjj")
 metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_qag4w")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

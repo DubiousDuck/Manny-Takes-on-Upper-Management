@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_ss2h4"]
 [ext_resource type="Script" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
 [ext_resource type="PackedScene" uid="uid://dia222bicit4v" path="res://overworld/interactables/door.tscn" id="5_tiegx"]
+[ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="6_2jdyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
 size = Vector2(561.75, 15)
@@ -134,8 +135,8 @@ script = ExtResource("4_u7vk1")
 [node name="Door" parent="." instance=ExtResource("5_tiegx")]
 position = Vector2(434, 334)
 
-[node name="Recruit" parent="." instance=ExtResource("5_tiegx")]
-position = Vector2(437, 36)
+[node name="Recruit" parent="." instance=ExtResource("6_2jdyq")]
+position = Vector2(640, 292)
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
