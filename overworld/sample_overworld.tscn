@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bl3rxfaj4snxv"]
+[gd_scene load_steps=10 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
 [ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
+[ext_resource type="Theme" uid="uid://dvthhxqu5hqcj" path="res://ui/general_ui_theme.tres" id="2_nt2ja"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_ss2h4"]
 [ext_resource type="Script" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
 [ext_resource type="PackedScene" uid="uid://dia222bicit4v" path="res://overworld/interactables/door.tscn" id="5_tiegx"]
@@ -22,18 +23,20 @@ script = ExtResource("1_o2m1g")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ToTalentPage" type="Button" parent="CanvasLayer"]
-offset_left = 928.0
+offset_left = 906.0
 offset_top = 565.0
 offset_right = 1133.0
 offset_bottom = 628.0
+theme = ExtResource("2_nt2ja")
 theme_override_font_sizes/font_size = 45
 text = "To Skill Tree"
 
 [node name="Save" type="Button" parent="CanvasLayer"]
-offset_left = 965.0
+offset_left = 940.0
 offset_top = 506.0
 offset_right = 1131.0
 offset_bottom = 556.0
+theme = ExtResource("2_nt2ja")
 theme_override_font_sizes/font_size = 40
 text = "Save Game"
 
@@ -43,9 +46,10 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0
 offset_top = -83.0
-offset_right = 226.0
-offset_bottom = -23.0
+offset_right = 253.0
+offset_bottom = -17.0
 grow_vertical = 0
+theme = ExtResource("2_nt2ja")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 

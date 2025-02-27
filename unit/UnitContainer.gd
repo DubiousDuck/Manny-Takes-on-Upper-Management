@@ -260,7 +260,7 @@ func _unhandled_input(event):
 		var skill_range := HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, 999)
 		if mouse_cell in skill_range and mouse_cell in get_targets_of_type(skill_range, skill_chosen.targets):
 			var outbound: Array[Vector2i] = [mouse_cell]
-			var skill_area := HexNavi.get_all_neighbors_in_range(mouse_cell, skill_chosen.area, 999)
+			var skill_area := HexNavi.get_all_neighbors_in_range(mouse_cell, abs(skill_chosen.area), 999)
 			outbound.append_array(skill_area)
 			EventBus.emit_signal("show_cell_highlights", outbound, CellHighlight.ATTACK_HIGHLIGHT, name+"_AOE")
 	else: EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
@@ -313,7 +313,7 @@ func _unhandled_input(event):
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
-				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area, 999))
+				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
 				current_unit.take_action(skill_chosen)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
@@ -397,7 +397,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 				SkillInfo.TargetType.ALLIES:
 					if allied_cells.has(target): correct_targets.append(target)
 				SkillInfo.TargetType.ENEMIES:
-					if !allied_cells.has(target): correct_targets.append(target)
+					if enemy_cells.has(target): correct_targets.append(target)
 				SkillInfo.TargetType.SELF:
 					if target == current_unit.cell: correct_targets.append(target)
 				SkillInfo.TargetType.ANY_UNIT:
@@ -431,7 +431,7 @@ func _on_skill_chosen(skill: SkillInfo):
 	if skill_chosen.name == "Wait":
 		unit_wait()
 		return
-	if skill_chosen.area > 0:
+	if abs(skill_chosen.area) > 0:
 		is_aoe_skill = true
 	else: is_aoe_skill = false
 	highlight_handle()
