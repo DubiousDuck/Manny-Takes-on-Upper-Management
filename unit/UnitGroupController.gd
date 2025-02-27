@@ -173,6 +173,19 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						projectile.animation_state("side_idle")
 						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
 						#print("shooting complete")
+					2: #displace to target location (blackhole)
+						if affected_units.is_empty(): break
+						var displace_origin: Vector2 = attacker.global_position
+						if attack.area > 0:
+							displace_origin = HexNavi.cell_to_global(targets.front())
+
+						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+						affected_units.map(
+							func(unit : Unit): #TODO: Handle holding multiple units properly
+								a.tween_property(unit, 'global_position', displace_origin, 0.3)
+								unit.cell = HexNavi.global_to_cell(displace_origin)
+						)
+						await a.finished
 					_:
 						print("nothing to displace yet")
 				attacker.check_if_can_throw()

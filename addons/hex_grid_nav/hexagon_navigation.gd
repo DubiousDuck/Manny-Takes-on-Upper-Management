@@ -31,7 +31,7 @@ func add_all_point():
 			astar.connect_points(point_id, neighbor_id)
 
 ## Set the [member weight_scale] of all tiles in the data layer with [param layer_name] that meet [param condition] to [param new_weight]
-func set_weight_of_layer(new_weight: float, layer_name: String, condition: Variant) -> void:
+func set_weight_of_layer(layer_name: String, condition: Variant, new_weight: float) -> void:
 	var all_point_id = astar.get_point_ids()
 	for id in all_point_id:
 		var tile = id_to_tile(id)

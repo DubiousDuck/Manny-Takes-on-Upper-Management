@@ -22,6 +22,7 @@ offset_top = 483.0
 offset_right = 639.0
 offset_bottom = 611.0
 talent_name = "extra_range"
+max_level = 1
 
 [node name="TalentNode2" parent="ProtagNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
 layout_mode = 0
@@ -127,7 +128,8 @@ offset_left = 619.0
 offset_top = 120.0
 offset_right = 747.0
 offset_bottom = 248.0
-talent_name = "talent_5"
+talent_name = "stink_bomb"
+max_level = 1
 parent_talent = NodePath("../TalentNode3")
 
 [node name="TalentNode5" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
@@ -136,7 +138,8 @@ offset_left = 890.0
 offset_top = 113.0
 offset_right = 1018.0
 offset_bottom = 241.0
-talent_name = "talent_6"
+talent_name = "throw_candy"
+max_level = 1
 parent_talent = NodePath("../TalentNode3")
 
 [node name="Label" type="Label" parent="."]

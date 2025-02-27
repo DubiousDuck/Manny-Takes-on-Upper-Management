@@ -14,7 +14,7 @@ func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	
 	HexNavi.set_current_map(tile_map)
-	HexNavi.set_weight_of_layer(INTRAVERSABLE_WEIGHT, "traversable", false)
+	HexNavi.set_weight_of_layer("traversable", false, INTRAVERSABLE_WEIGHT)
 	
 	read_talent_and_apply(Global.talent_type.PROTAG)
 	read_talent_and_apply(Global.talent_type.COMPANY)
@@ -46,7 +46,8 @@ func read_talent_and_apply(talent_type: int):
 					protag_node.magic_power += talent_dict["raise_magic"]
 				"heal_skill":
 					var heal: SkillInfo = preload("res://skills/basic_heal.tres")
-					protag_node.skills.append(heal)
+					if !(heal in protag_node.skills):
+						protag_node.skills.append(heal)
 			
 	elif talent_type == Global.talent_type.COMPANY:
 		for talent in talent_dict.keys():
@@ -72,7 +73,21 @@ func read_talent_and_apply(talent_type: int):
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
 							if unit.unit_data.unit_class == "Ranger":
-								var arrow_rain: SkillInfo = preload("res://skills/arrow_rain.tres")
-								unit.skills.append(arrow_rain)
+								var skill: SkillInfo = preload("res://skills/arrow_rain.tres")
+								if !(skill in unit.skills): unit.skills.append(skill)
+					)
+				"stink_bomb":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							if unit.unit_data.unit_class == "Mage":
+								var skill: SkillInfo = preload("res://skills/stink_bomb.tres")
+								if !(skill in unit.skills): unit.skills.append(skill)
+					)
+				"throw_candy":
+					$Units/PlayerGroup.get_children().map(
+						func(unit: Unit):
+							if unit.unit_data.unit_class == "Healer":
+								var skill: SkillInfo = preload("res://skills/throw_candy.tres")
+								if !(skill in unit.skills): unit.skills.append(skill)
 					)
 	#for each talent, match its name and apply its effect

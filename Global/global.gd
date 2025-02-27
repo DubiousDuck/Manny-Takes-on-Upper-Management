@@ -112,7 +112,8 @@ func _ready():
 	if reserves.size() <= 0:
 		var mage = preload("res://unit/params/mage.tres")
 		var ranger = preload("res://unit/params/ranger.tres")
-		reserves.append_array([mage, ranger])
+		var healer = preload("res://unit/params/healer.tres")
+		reserves.append_array([mage, ranger, healer])
 
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)

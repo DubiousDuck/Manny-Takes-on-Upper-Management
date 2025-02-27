@@ -33,6 +33,9 @@ func _ready() -> void:
 	if !tile_map_test: # Always check for null!
 		push_warning("TileMap not found at path: " + str(tilemap_path)) # More informative warning
 	
+	if !enemy_container:
+		push_warning("No enemy container assigned to " + name)
+	
 	for unit in get_children():
 		units.append(unit)
 		
