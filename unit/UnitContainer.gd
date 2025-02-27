@@ -253,10 +253,10 @@ func _unhandled_input(event):
 	if is_aoe_skill and skill_chosen != null:
 		EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
 		var mouse_cell :=  HexNavi.global_to_cell(get_global_mouse_position())
-		var skill_range := HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
+		var skill_range := HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, 999)
 		if mouse_cell in skill_range and mouse_cell in get_targets_of_type(skill_range, skill_chosen.targets):
 			var outbound: Array[Vector2i] = [mouse_cell]
-			var skill_area := HexNavi.get_all_neighbors_in_range(mouse_cell, skill_chosen.area, false)
+			var skill_area := HexNavi.get_all_neighbors_in_range(mouse_cell, skill_chosen.area, 999)
 			outbound.append_array(skill_area)
 			EventBus.emit_signal("show_cell_highlights", outbound, CellHighlight.ATTACK_HIGHLIGHT, name+"_AOE")
 	else: EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
@@ -282,17 +282,16 @@ func _unhandled_input(event):
 				
 			var action_type := find_action(clicked_cell)
 			
-			#deselect if unit is clicked on again; select held units
-			if current_unit != null and current_unit.cell == clicked_cell:
-				var next_unit = get_next_unit_of_same_cell(current_unit)
-				if next_unit != null:
-					deselect_current_unit()
-					select_unit(next_unit)
-					highlight_handle()
-					get_actionnable_cells()
-					return
-			
 			if action_type == Unit.Action.NONE:
+				#deselect if unit is clicked on again; select held units
+				if current_unit != null and current_unit.cell == clicked_cell:
+					var next_unit = get_next_unit_of_same_cell(current_unit)
+					if next_unit != null:
+						deselect_current_unit()
+						select_unit(next_unit)
+						highlight_handle()
+						get_actionnable_cells()
+						return
 				deselect_current_unit()
 				return
 			
@@ -310,7 +309,7 @@ func _unhandled_input(event):
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
-				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area, false))
+				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, skill_chosen.area, 999))
 				current_unit.take_action(skill_chosen)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
@@ -339,7 +338,7 @@ func highlight_handle():
 				#TODO: Highlights the range of attack when hovering over Skill Select
 				if skill_chosen == null:
 					return
-				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, 999)
 				var all_targets: Array[Vector2i] = get_targets_of_type(targets, skill_chosen.targets) #shows only valid targets
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
@@ -354,14 +353,14 @@ func get_actionnable_cells():
 		var tiles: Array[Vector2i] = []
 		match ac:
 			Unit.Action.MOVE:
-				var all_neighbors = HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
+				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
 				for neighbor in all_neighbors:
-					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversible"): #only actionnable if tile not occupied
+					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != current_unit.cell: #only actionnable if tile not occupied
 						tiles.append(neighbor)
 			Unit.Action.ATTACK:
 				if skill_chosen == null:
 					return
-				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, false)
+				var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range, 999)
 				tiles.append_array(get_targets_of_type(targets, skill_chosen.targets))
 			_:
 				pass

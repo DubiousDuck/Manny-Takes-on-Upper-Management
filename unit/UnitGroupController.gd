@@ -2,7 +2,7 @@ extends Node2D
 
 class_name UnitGroupController
 
-signal effect_complete
+signal attack_complete
 signal status_update_complete
 
 @export var player_goes_first : bool = true
@@ -11,9 +11,9 @@ signal status_update_complete
 @onready var enemy_group: UnitContainer = $EnemyGroup
 
 var is_player_turn : bool = true
-var waiting
 var all_units: Array[Unit] = []
 var occupied_cells: Dictionary = {}
+var attack_processing: bool = false
 var is_waiting_for_turn_switch: bool = false
 
 func _ready():
@@ -39,6 +39,8 @@ func connect_container_signal(unit_group : UnitContainer):
 	unit_group.connect("all_units_moved", _on_unit_container_all_moved)
 	
 func _on_unit_container_all_moved():
+	if attack_processing:
+		await attack_complete
 	check_if_win()
 	is_waiting_for_turn_switch = true
 	_on_update_cell_status(true)	
@@ -46,6 +48,7 @@ func _on_unit_container_all_moved():
 func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
 		is_player_turn = !is_player_turn
+		round_end_actions()
 		if is_player_turn:
 			player_group.round_start()
 			print("player's turn")
@@ -55,6 +58,7 @@ func _on_status_update_complete():
 		is_waiting_for_turn_switch = false
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
+	attack_processing = true
 	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	
 	#get effect multiplier based on affinity
@@ -120,6 +124,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							return
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 				)
+				# FIXME: when knockback is the last action before player turn ends, weird things happen
 				
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
@@ -177,6 +182,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
 	if !all_units.is_empty(): all_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
 	_on_update_cell_status(true)
+	attack_processing = false
+	attack_complete.emit()
+	
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly
 	all_units = []
@@ -190,12 +198,14 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 		if !occupied_cells.has(unit.cell):
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
-		EventBus.emit_signal("occupy_cell", unit.cell, "player")
+		if HexNavi.get_cell_custom_data(unit.cell, "effect") == "":
+			EventBus.emit_signal("occupy_cell", unit.cell, "player")
 	for unit in enemy_group.units:
 		if !occupied_cells.has(unit.cell):
 			occupied_cells[unit.cell] = []
 		occupied_cells[unit.cell].append(unit)
-		EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
+		if HexNavi.get_cell_custom_data(unit.cell, "effect") == "":
+			EventBus.emit_signal("occupy_cell", unit.cell, "enemy")
 	
 	if stacking: #only stacks units if stacking is true
 		#print("stacking")
@@ -231,7 +241,7 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
 				)
 
-	#print("status update complete")	
+	print("status update complete")	
 	status_update_complete.emit()
 
 func _on_unit_died():
@@ -256,3 +266,13 @@ func check_if_win():
 		2:	#Player won
 			EventBus.emit_signal("battle_ended", EventBus.BattleResult.PLAYER_VICTORY)
 			print("Player won!")
+
+func round_end_actions():
+	#examine the cells occupied by each unit and execute the cell passives
+	for unit in all_units:
+		var cell_effect: String = HexNavi.get_cell_custom_data(unit.cell, "effect")
+		match cell_effect:
+			"heal":
+				if unit.health < unit.max_health: unit.health += 1
+			_:
+				pass
