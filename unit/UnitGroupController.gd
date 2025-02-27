@@ -179,10 +179,10 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						if attack.area > 0:
 							displace_origin = HexNavi.cell_to_global(targets.front())
 
-						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
 						affected_units.map(
 							func(unit : Unit): #TODO: Handle holding multiple units properly
-								a.tween_property(unit, 'global_position', displace_origin, 0.3)
+								a.tween_property(unit, 'global_position', displace_origin, 0.4)
 								unit.cell = HexNavi.global_to_cell(displace_origin)
 						)
 						await a.finished
