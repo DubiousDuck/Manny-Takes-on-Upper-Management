@@ -134,6 +134,9 @@ script = ExtResource("4_u7vk1")
 [node name="Door" parent="." instance=ExtResource("5_tiegx")]
 position = Vector2(434, 334)
 
+[node name="Recruit" parent="." instance=ExtResource("5_tiegx")]
+position = Vector2(437, 36)
+
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
