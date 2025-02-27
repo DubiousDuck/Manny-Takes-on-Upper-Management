@@ -7,6 +7,7 @@ signal unit_action_done
 
 #information
 @export var is_player_controlled: bool
+@export var enemy_container: UnitContainer #NOTICE: New feature!
 var units: Array[Unit] = []
 var current_unit: Unit
 var skill_chosen: SkillInfo = null
@@ -378,12 +379,17 @@ func find_action(cell: Vector2i) -> Unit.Action:
 func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells among targets that are of a specific target type
 	var correct_targets: Array[Vector2i] = []
 	var allied_cells: Array[Vector2i] = []
+	var enemy_cells: Array[Vector2i] = []
 	units.map(
 		func(unit):
 			allied_cells.append(unit.cell)
 	)
+	enemy_container.units.map(
+		func(unit):
+			enemy_cells.append(unit.cell)
+	)
 	for target in targets:
-		if HexNavi.get_cell_custom_data(target, "occupied"):
+		if target in allied_cells or target in enemy_cells:
 			match type:
 				SkillInfo.TargetType.ALLIES:
 					if allied_cells.has(target): correct_targets.append(target)

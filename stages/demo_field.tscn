@@ -41,9 +41,10 @@ position = Vector2(0, 146)
 [node name="Units" type="Node2D" parent="."]
 script = ExtResource("4_ifsfs")
 
-[node name="PlayerGroup" type="Node2D" parent="Units"]
+[node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("5_ypjfd")
 is_player_controlled = true
+enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(125, 186)
@@ -58,8 +59,9 @@ script = ExtResource("7_fxfs3")
 position = Vector2(54, 146)
 script = ExtResource("7_fxfs3")
 
-[node name="EnemyGroup" type="Node2D" parent="Units"]
+[node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("5_ypjfd")
+enemy_container = NodePath("../PlayerGroup")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
 position = Vector2(430, 181)
