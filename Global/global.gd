@@ -2,6 +2,10 @@ extends Node
 
 ## Global script with utility functions
 
+# Gives god mode to devs
+var dev_mode: bool = true
+######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
+
 # Battle related
 var attack_successful: bool
 var camera_top: int #y position
