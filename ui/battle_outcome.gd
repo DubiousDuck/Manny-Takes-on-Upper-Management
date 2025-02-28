@@ -22,4 +22,4 @@ func _on_play_again_pressed():
 
 func _on_previous_scene_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file(Global._last_overworld_name)
+	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())

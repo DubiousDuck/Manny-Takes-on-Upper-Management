@@ -13,10 +13,6 @@ const SCALE := 3
 
 func _physics_process(delta):
 	
-	if !Global.player_has_initialized:
-		position = Global._last_overworld_position
-		Global.player_has_initialized = true
-	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector2(input_dir.x, input_dir.y).normalized()
 	

@@ -6,33 +6,16 @@ extends Node
 var dev_mode: bool = true
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
-var player_has_initialized: bool = true
-
 # Battle related
 var attack_successful: bool
 var camera_top: int #y position
 var camera_low: int #y position
-
-# Overworld
-var _last_overworld: String = ""
-var _last_overworld_position: Vector2 = Vector2(0,0)
 
 var brightness_val: float = 100.0
 
 func start():
 	brightness_val = 100.0
 
-# Overworld
-var _last_overworld_name: String = ""
-
-func set_last_overworld_name(file_name: String):
-	#TODO: check if the file_name is a valid scene path
-	_last_overworld_name = file_name
-
-func get_last_overworld_name() -> String:
-	return _last_overworld_name
-	
-	
 # Overworld
 var _last_overworld_scene: PackedScene = PackedScene.new()
 

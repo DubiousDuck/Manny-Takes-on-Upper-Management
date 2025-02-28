@@ -61,8 +61,7 @@ func _on_restart_level_pressed():
 
 func _on_exit_level_pressed():
 	get_tree().paused = false
-	print(Global._last_overworld_name)
-	get_tree().change_scene_to_file(Global._last_overworld_name)
+	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 
 func _on_quit_game_pressed():
