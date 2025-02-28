@@ -54,6 +54,7 @@ offset_left = -32.0
 offset_right = 32.0
 offset_bottom = 16.0
 script = ExtResource("1_efgp6")
+action_command_type = "throw"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0

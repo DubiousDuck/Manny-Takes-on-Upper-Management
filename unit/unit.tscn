@@ -54,7 +54,6 @@ hframes = 4
 libraries = {
 "": ExtResource("8_4dskx")
 }
-autoplay = "RESET"
 
 [node name="BackupHealth" type="Label" parent="."]
 modulate = Color(0.713726, 0.113725, 0.14902, 0.545098)

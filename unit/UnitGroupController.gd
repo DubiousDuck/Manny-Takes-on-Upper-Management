@@ -59,7 +59,7 @@ func _on_status_update_complete():
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	attack_processing = true
-	#print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
+	print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	
 	#get effect multiplier based on affinity
 	var attacker_power = 1

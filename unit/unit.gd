@@ -4,6 +4,7 @@ class_name Unit
 
 const UNIT_PREVIEW = preload("res://ui/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
+const MASH_ACTION_COMMAND = preload("res://skills/action_commands/mash_action_command.tscn")
 
 signal movement_complete
 signal attack_point
@@ -168,6 +169,9 @@ func take_action(skill: SkillInfo): #where animations are handled
 		"Rubber Band Shoot":
 			animation_state("shoot")
 			await $AnimationPlayer.animation_finished
+		"Magical Shot":
+			animation_state("magic_shoot")
+			await $AnimationPlayer.animation_finished
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
@@ -220,7 +224,6 @@ func check_if_can_throw():
 		skills.erase(throw_skill)
 
 ## Animation related
-
 var two_signals: Array[bool] = [false, false]
 
 func animation_state(animation : String):
@@ -245,13 +248,21 @@ func emit_action_command_point(game : String):
 			elif global_position.y >= Global.camera_low:
 				a.position = Vector2(-(a.size.x)/2, -20-(a.size.y))
 			get_tree().paused = true
+		"mash":
+			var a = MASH_ACTION_COMMAND.instantiate()
+			add_child(a)
+			if global_position.y <= Global.camera_top:
+				a.position = Vector2(-(a.size.x)/2, 20) #need to comensate for the size of the bars
+			elif global_position.y >= Global.camera_low:
+				a.position = Vector2(-(a.size.x)/2, -20-(a.size.y))
+			get_tree().paused = true
 		_:
 			pass
 	$AnimationPlayer.play()
 
 #in the animation player
 func emit_anim_comlete():
-	#print("anim complete emitted!")
+	print("anim complete emitted!")
 	anim_complete.emit()
 	
 ## When receive the attack point signal, check to see if can emit "total_complete"
