@@ -28,8 +28,6 @@ func _process(delta):
 		if(timer.time_left <= 0):
 			action_command_completed(false)
 
-	
-
 func _input(event):
 	match action_command_type:
 		"throw":
