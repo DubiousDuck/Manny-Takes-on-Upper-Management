@@ -229,6 +229,8 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 		#adjusting position of units to accomodate for unit stacking
 		
 		for cell in occupied_cells.keys():
+			if !occupied_cells.keys().has(cell):
+				continue
 			var displacement = 100/(occupied_cells[cell].size())
 			var num_stacked = 0
 			for unit in occupied_cells[cell]:

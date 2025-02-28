@@ -29,7 +29,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/hex_grid_nav/plugin.cfg")
+enabled=PackedStringArray("res://addons/hex_grid_nav/plugin.cfg")
 
 [gui]
 
