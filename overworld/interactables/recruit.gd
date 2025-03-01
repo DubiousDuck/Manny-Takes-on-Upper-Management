@@ -10,7 +10,7 @@ func _interact_call_back():
 		Global.start_dialogue(["this door is locked"])
 		await EventBus.ui_element_ended
 	else:
-		Global.start_dialogue(["Hi there!", "Who do you like to recruit?"])
+		Global.start_dialogue(["Hi there!", "Who do you like to recruit?[a][b]"])
 		await EventBus.ui_element_ended
 		Global.set_last_overworld_scene(get_tree().current_scene)
 		get_tree().change_scene_to_file(scene_to_go)

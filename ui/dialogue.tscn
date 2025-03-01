@@ -74,15 +74,15 @@ script = ExtResource("1_sirea")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_top = -128.0
 offset_right = 1152.0
+offset_bottom = 128.0
 color = Color(0.0728426, 0.0728426, 0.0728426, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_top = 640.0
+offset_top = 448.0
 offset_right = 1152.0
-offset_bottom = 832.0
+offset_bottom = 640.0
 color = Color(0.0728426, 0.0728426, 0.0728426, 1)
 
 [node name="Label" type="Label" parent="."]
@@ -92,8 +92,17 @@ offset_top = 480.0
 offset_right = 1080.0
 offset_bottom = 577.0
 theme_override_font_sizes/font_size = 64
+text = "Who would you like to recruit?"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_kb48l")
 }
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 554.0
+offset_right = 704.0
+offset_bottom = 594.0
+theme_override_constants/separation = 32

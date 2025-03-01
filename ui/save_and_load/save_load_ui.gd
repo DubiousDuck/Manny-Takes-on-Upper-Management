@@ -1,0 +1,22 @@
+extends Control
+
+@onready var save_container : VBoxContainer = $VScrollBar/VBoxContainer
+
+const SAVE_FILE = preload("res://ui/save_and_load/save_file.tscn")
+
+func _ready():
+	var loaded_saves = Global.find_all_saves()
+	
+	for i in loaded_saves.size():
+		print(i)
+		var a = SAVE_FILE.instantiate()
+		a.index = i
+		print(loaded_saves[i])
+		if loaded_saves[i] != null: a.initialize(loaded_saves[i])
+		save_container.add_child(a)
+		a.connect("save_pressed", save)
+
+func save(index : int):
+	Global.save_player_data(index)
+	for i in save_container.get_children(): i.queue_free()
+	_ready()

@@ -90,7 +90,7 @@ func start_battle(overworld_rid, classes : Array[UnitData]):
 	
 ## Save and load
 
-var save_path = "user://save/"
+var save_path = "user://hr_saves/"
 var player_save_file = "player"
 var global_save_file = "global"
 var save_extension = ".tres"
@@ -155,9 +155,29 @@ func load_player_data(save : int):
 	current_party = player_data.current_party
 	reserves = player_data.reserves
 
-	print("- Loaded player data")
+	print("- Loaded player data from index ", str(save))
+	
+func find_all_saves():
+	var resources := Array()
+	resources.resize(30)
+	
+	var dir = DirAccess.open(save_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".tres") or file_name.ends_with(".res"):
+				var resource = ResourceLoader.load(save_path + file_name)
+				if resource and resource.has_method("get") and resource.get("index") != null:
+					resources[resource.get("index")] = resource
+			file_name = dir.get_next()
+		dir.list_dir_end()
+			
+	return resources
 	
 func save_player_data(save : int):
+	player_data.index = save
+	
 	#save talents
 	player_data.protag_talents = _protag_talent.duplicate(true)
 	player_data.company_talents = _company_talent.duplicate(true)
@@ -168,4 +188,4 @@ func save_player_data(save : int):
 	player_data.reserves = reserves
 	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
-	print("- Saved player data")
+	print("- Saved player data to index ", str(save))

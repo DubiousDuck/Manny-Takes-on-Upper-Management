@@ -1,5 +1,7 @@
 class_name PlayerData extends Resource
 
+@export var index : int = -99
+
 @export var player_name : String = "A"
 
 # include party details here
