@@ -68,17 +68,17 @@ script = ExtResource("5_ypjfd")
 enemy_container = NodePath("../PlayerGroup")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(430, 181)
+position = Vector2(430, 145)
 script = ExtResource("13_e31i5")
 unit_data = ExtResource("11_ycujn")
 
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(508, 228)
+position = Vector2(526, 194)
 script = ExtResource("13_e31i5")
 unit_data = ExtResource("9_mfhmk")
 
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(359, 139)
+position = Vector2(429, 248)
 script = ExtResource("13_e31i5")
 unit_data = ExtResource("9_mfhmk")
 

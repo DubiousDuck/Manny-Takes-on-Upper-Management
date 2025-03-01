@@ -83,7 +83,7 @@ offset_top = 483.0
 offset_right = 639.0
 offset_bottom = 611.0
 talent_name = "extra_health"
-max_level = 5
+max_level = 3
 
 [node name="TalentNode2" parent="CompanyNodes" node_paths=PackedStringArray("parent_talent") instance=ExtResource("2_sbq3o")]
 layout_mode = 0

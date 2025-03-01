@@ -48,6 +48,7 @@ func update_followers() -> void:
 			child.queue_free()  # Properly delete the follower
 			
 func _ready():
+	EventBus.emit_signal("back_to_overworld")
 	#make the game remember this is the last overworld loaded
 	Global.set_last_overworld_scene(get_tree().current_scene)
 	update_followers()

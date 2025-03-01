@@ -10,7 +10,7 @@ func _interact_call_back():
 		Global.start_dialogue(["this door is locked"])
 		await EventBus.ui_element_ended
 	else:
-		Global.start_dialogue(["test", "hello", "test again"])
+		Global.start_dialogue(["Hello", "Are you sure you want to enter this level?[YES][NO]"])
 		await EventBus.ui_element_ended
 		Global.start_battle(self.name, [load("res://unit/params/healer.tres")])
 		Global.set_last_overworld_scene(get_tree().current_scene)

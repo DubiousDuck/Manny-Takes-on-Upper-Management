@@ -85,6 +85,7 @@ func _input(event):
 var current_enemies : Array[UnitData] = []
 
 func start_battle(overworld_rid, classes : Array[UnitData]):
+	EventBus.emit_signal("start_battle")
 	print(overworld_rid, classes)
 	current_enemies = classes
 	
@@ -136,7 +137,7 @@ func start_dialogue(text : Array[String]):
 	
 ## Save and load #####################################################
 
-const DEBUG_INT := 999
+const DEBUG_INT := 29
 
 var player_data = PlayerData.new()
 

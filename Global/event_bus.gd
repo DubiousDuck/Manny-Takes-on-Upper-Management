@@ -40,3 +40,7 @@ signal dialogue(text : Array[String])
 #global player inputs
 signal input_advance
 signal input_back
+
+#Transition
+signal start_battle
+signal back_to_overworld

@@ -247,6 +247,7 @@ func _step_enemy():
 	if current_unit != null:
 		unit_action()
 		await unit_action_done
+		await get_tree().create_timer(0.75).timeout
 		_step_enemy()
 		return
 
