@@ -8,10 +8,8 @@ func _ready():
 	var loaded_saves = Global.find_all_saves()
 	
 	for i in loaded_saves.size():
-		print(i)
 		var a = SAVE_FILE.instantiate()
 		a.index = i
-		print(loaded_saves[i])
 		if loaded_saves[i] != null: a.initialize(loaded_saves[i])
 		save_container.add_child(a)
 		a.connect("save_pressed", save)
