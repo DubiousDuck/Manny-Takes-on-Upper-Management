@@ -24,14 +24,6 @@ position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.392157)
-offset_left = -9.22581
-offset_top = -7.7027
-offset_right = 9.77419
-offset_bottom = 11.2973
-mouse_filter = 2
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.05312e-06, 2.70271)
 shape = SubResource("RectangleShape2D_ly3a2")

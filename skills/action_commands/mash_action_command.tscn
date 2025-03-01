@@ -53,3 +53,16 @@ offset_top = 3.0
 offset_right = 60.0
 offset_bottom = 16.0
 text = "5s"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = 18.0
+offset_right = 40.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Mash SPACE!"
+horizontal_alignment = 1

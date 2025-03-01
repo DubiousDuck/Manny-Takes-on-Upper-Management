@@ -81,11 +81,9 @@ func load_unit_data():
 
 func _process(delta):
 	if actions_avail.is_empty(): #if there are no available actions left
-		if is_player_controlled: $ColorRect.color = Color(0, 0.305, 0.461)
-		else: $ColorRect.color = Color(0.51, 0.046, 0)
+		$Health.self_modulate = Color(0.5, 0.5, 0.5)
 	else:
-		if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
-		else: $ColorRect.color = Color(0.89, 0.281, 0.239)
+		$Health.self_modulate = Color(1, 1, 1)
 	
 	unit_held.map(
 		func(unit):
@@ -185,8 +183,8 @@ func highlight_emit():
 	
 func _on_hurtbox_mouse_entered():
 	if actions_avail.has(Action.MOVE) and !selected:
-		if is_player_controlled: $ColorRect.color = Color(0, 0.420, 0.630)
-		else: $ColorRect.color = Color(0.51, 0.046, 0)
+		#if is_player_controlled: $ColorRect.color = Color(0, 0.420, 0.630)
+		#else: $ColorRect.color = Color(0.51, 0.046, 0)
 		highlight_emit()
 	var a = UNIT_PREVIEW.instantiate()
 	add_child(a)
@@ -194,8 +192,8 @@ func _on_hurtbox_mouse_entered():
 	a.init(self)
 
 func _on_hurtbox_mouse_exited():
-	if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
-	else: $ColorRect.color = Color(0.89, 0.281, 0.239)
+	#if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
+	#else: $ColorRect.color = Color(0.89, 0.281, 0.239)
 	EventBus.emit_signal("remove_cell_highlights", name)
 	
 	#TODO: Lazy implementation
@@ -214,6 +212,9 @@ func check_if_dead():
 func toggle_skill_ui(state: bool):
 	$SkillSelect.init()
 	$SkillSelect.visible = state
+	if global_position.y >= Global.camera_low:
+		$SkillSelect.position.y = -14.159 #TODO Turn this into constant
+	else: $SkillSelect.position.y = 14.159
 
 func check_if_can_throw():
 	var throw_skill = load("res://skills/throw.tres")

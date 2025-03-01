@@ -50,16 +50,16 @@ is_player_controlled = true
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(125, 186)
+position = Vector2(152, 193)
 script = ExtResource("7_fxfs3")
 unit_data = ExtResource("8_wudo6")
 
 [node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(127, 285)
+position = Vector2(152, 296)
 script = ExtResource("7_fxfs3")
 
 [node name="PlayerUnit3" parent="Units/PlayerGroup" instance=ExtResource("6_vkavw")]
-position = Vector2(54, 146)
+position = Vector2(61, 139)
 script = ExtResource("7_fxfs3")
 unit_data = ExtResource("12_eeavb")
 
