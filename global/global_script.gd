@@ -27,6 +27,9 @@ func get_last_overworld_scene() -> PackedScene:
 
 
 # Skill Tree Related
+var inital_talent_points : int  = 3
+var max_talent_points : int = inital_talent_points
+
 enum talent_type{PROTAG, COMPANY}
 
 ## A dictionary of all protagonist talent nodes that have been activated.
@@ -64,6 +67,23 @@ func merge_talent_dict_with(code: int, target: Dictionary):
 		talent_type.COMPANY:
 			_company_talent.merge(target, true)
 			
+			
+
+##Leveling System related
+
+## Experience Gained
+var max_exp : int = 6
+var current_exp : int = 0
+var level : int = 1
+
+func gain_exp(value) -> int:
+	print("Exp Gained: ", value)
+	if(current_exp + value > max_exp):
+		level += int((current_exp + value)/max_exp)
+		max_talent_points = inital_talent_points + level - 1
+		current_exp = (current_exp + value) % max_exp
+	return int((current_exp + value)/max_exp)
+
 ## Current Party related
 
 ## Determines the maximum amount of party members

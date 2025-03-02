@@ -19,6 +19,8 @@
 [node name="Battlefield2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_1snh2")
 tile_map = NodePath("TileMapTest")
+inital_exp = 20
+repeat_exp = 1
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_i3ck5")]
 isBattleScene = true

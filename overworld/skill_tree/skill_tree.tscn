@@ -7,7 +7,6 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ciwct")
-max_points = 7
 top_nodes = [NodePath("ProtagNodes/TalentNode"), NodePath("CompanyNodes/TalentNode")]
 
 [node name="ProtagNodes" type="Control" parent="."]

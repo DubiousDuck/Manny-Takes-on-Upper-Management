@@ -2,7 +2,7 @@ extends Control
 
 class_name SkillTree
 
-@export var max_points: int = 3
+@export var max_points: int = Global.max_talent_points
 @export var top_nodes: Array[TalentNode]
 
 @onready var point_label: Label = $Label

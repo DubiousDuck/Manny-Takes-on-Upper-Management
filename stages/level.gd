@@ -10,6 +10,9 @@ const INTRAVERSABLE_WEIGHT: float = 999
 @export var tile_map : TileMapLayer
 @onready var unit_group_control : UnitGroupController = $Units
 
+@export var inital_exp : int
+@export var repeat_exp : int
+
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	
@@ -22,11 +25,16 @@ func _ready():
 	unit_group_control.init()
 
 func _on_battle_ended(result: int):
+	##exp gain
 	var a = battle_outcome.instantiate()
 	a.init(result)
+	var num_level_ups : int
+	if(result == EventBus.BattleResult.PLAYER_VICTORY):
+		num_level_ups = Global.gain_exp(inital_exp)
 	pause_canvas_layer.add_in_background(a)
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
+	a.animate_exp(Global.current_exp, num_level_ups)
 
 func read_talent_and_apply(talent_type: int):
 	#read the talent dictionary
