@@ -47,15 +47,16 @@ func _on_unit_container_all_moved():
 	
 func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
+		is_waiting_for_turn_switch = false
 		is_player_turn = !is_player_turn
 		round_end_actions()
 		if is_player_turn:
 			player_group.round_start()
 			print("player's turn")
 		else:
+			await get_tree().create_timer(0.5).timeout
 			enemy_group.round_start()
 			print("enemy's turn")
-		is_waiting_for_turn_switch = false
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	attack_processing = true

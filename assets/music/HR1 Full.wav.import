@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/HR1 Full.wav-218b8c321c75d4dd28f55763f369dd28
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

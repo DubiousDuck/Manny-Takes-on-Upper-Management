@@ -224,7 +224,8 @@ func unit_action():
 	if action_type == Unit.Action.ATTACK and !in_progress: #assumes that skill_chosen is not null
 		#print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 		var outbound_array: Array[Vector2i] = [clicked_cell]
-		current_unit.take_action(skill_chosen)
+		outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
+		current_unit.take_action(skill_chosen, clicked_cell)
 		#print("# Awaiting attack point (UnitContainer.gd)")
 		in_progress = true
 		await current_unit.attack_point
@@ -315,7 +316,7 @@ func _unhandled_input(event):
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
-				current_unit.take_action(skill_chosen)
+				current_unit.take_action(skill_chosen, clicked_cell)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true
 				await current_unit.attack_point

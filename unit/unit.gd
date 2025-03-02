@@ -149,11 +149,16 @@ func move_along_path(full_path : Array[Vector2i]):
 	EventBus.emit_signal("update_cell_status", false)
 	movement_complete.emit()
 
-func take_action(skill: SkillInfo): #where animations are handled
+func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
 	Global.attack_successful = true #False only when action command fails
 	#print("# ANIMATION STARTED: " + skill.name + " (unit.gd)")
 	# NOTICE: It's imperical to have both `attack_point` and `anim_complete` emitted by the time each animation ends
+	if target_cell != Vector2i.MIN: #Flip sprite as needed
+		if target_cell.x - cell.x > 0:
+			$Sprite2D.flip_h = false
+		elif target_cell.x - cell.x < 0:
+			$Sprite2D.flip_h = true
 	match skill.name:
 		"Throw At":
 			animation_state("throw")
