@@ -16,13 +16,15 @@ func _ready() -> void:
 	unit = get_parent()
 	init()	
 
-func init():
+func init(wait_only: bool = false):
 	for child in hbox.get_children():
 		hbox.remove_child(child)
 	buttons.clear()
 	
 	for skill in unit.skills:
 		var a: SkillIcon = icon.instantiate()
+		if wait_only and skill.name != "Wait":
+			continue
 		a.skill = skill
 		hbox.add_child(a)
 		buttons.append(a)

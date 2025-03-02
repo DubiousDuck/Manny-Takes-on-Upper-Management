@@ -10,12 +10,12 @@
 script = ExtResource("1_ur7bd")
 unit_class = "Tank"
 attributes = {
-0: 8,
+0: 5,
 1: 2,
 2: 1,
 3: 2
 }
-skill_list = Array[ExtResource("2_r35iw")]([ExtResource("3_goe2f"), ExtResource("4_m7tql"), ExtResource("5_8kc7s")])
+skill_list = Array[ExtResource("2_r35iw")]([ExtResource("3_goe2f"), ExtResource("5_8kc7s"), ExtResource("4_m7tql")])
 rel = ""
 mood = 50
 money = 5

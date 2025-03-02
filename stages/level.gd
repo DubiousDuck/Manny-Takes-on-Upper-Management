@@ -80,28 +80,28 @@ func read_talent_and_apply(talent_type: int):
 				"arrow_rain":
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
-							if unit.unit_data.unit_class == "Ranger":
+							if unit != null and unit.unit_data.unit_class == "Ranger":
 								var skill: SkillInfo = preload("res://skills/arrow_rain.tres")
 								if !(skill in unit.skills): unit.skills.append(skill)
 					)
 				"stink_bomb":
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
-							if unit.unit_data.unit_class == "Mage":
+							if unit != null and unit.unit_data.unit_class == "Mage":
 								var skill: SkillInfo = preload("res://skills/stink_bomb.tres")
 								if !(skill in unit.skills): unit.skills.append(skill)
 					)
 				"throw_candy":
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
-							if unit.unit_data.unit_class == "Healer":
+							if unit != null and unit.unit_data.unit_class == "Healer":
 								var skill: SkillInfo = preload("res://skills/throw_candy.tres")
 								if !(skill in unit.skills): unit.skills.append(skill)
 					)
 				"whirlwind":
 					$Units/PlayerGroup.get_children().map(
 						func(unit: Unit):
-							if unit.unit_data.unit_class == "Fighter":
+							if unit != null and unit.unit_data.unit_class == "Fighter":
 								var skill: SkillInfo = preload("res://skills/whirlwind.tres")
 								if !(skill in unit.skills): unit.skills.append(skill)
 					)

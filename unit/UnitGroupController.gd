@@ -90,7 +90,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							for held in unit.unit_held:
 								held.is_held = false
 						unit.unit_held.clear()
-						unit.animation_state("hurt_initial")
+						if unit != attacker:
+							unit.animation_state("hurt_initial")
 				)
 				
 			SkillInfo.EffectType.KNOCKBACK:
@@ -118,7 +119,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							new_location,
 							0.5
 						)
-						unit.animation_state("hurt_initial")
 						#Snap the unit to the cell if necessary (no need now)
 				)
 				await move_tween.finished

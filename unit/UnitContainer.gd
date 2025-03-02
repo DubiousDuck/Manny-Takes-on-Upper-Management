@@ -47,6 +47,8 @@ func _ready() -> void:
 		unassigned.erase(find_child("Protag")) #NOTICE Assumes that protag has been set up in the editor already
 		
 		for index in range(unit_data_array.size()):
+			if index >= unassigned.size():
+				break
 			unassigned[index].unit_data = unit_data_array[index]
 		
 		var valid_units: Array[Unit] = []
@@ -93,9 +95,12 @@ func select_unit(unit: Unit):
 	unit.selected = true
 	current_unit = unit
 	is_waiting_unit_selection = false
-	if is_player_controlled and current_unit.actions_avail.has(Unit.Action.ATTACK):
-		current_unit.check_if_can_throw()
-		current_unit.toggle_skill_ui(true)
+	if is_player_controlled:
+		if current_unit.actions_avail.has(Unit.Action.ATTACK):
+			current_unit.check_if_can_throw()
+			current_unit.toggle_skill_ui(true)
+		else:
+			current_unit.toggle_skill_ui(true, true)
 	skill_chosen = null
 	connect_current_unit_signals()
 	
@@ -107,6 +112,7 @@ func deselect_current_unit():
 	current_unit = null
 	is_waiting_unit_selection = true
 	skill_chosen = null
+	EventBus.emit_signal("remove_cell_highlights", name)
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -360,8 +366,13 @@ func get_actionnable_cells():
 		match ac:
 			Unit.Action.MOVE:
 				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
+				var enemy_cell: Array[Vector2i] = []
+				enemy_container.units.map(
+					func(unit: Unit):
+						if unit != null: enemy_cell.append(unit.cell)
+				)
 				for neighbor in all_neighbors:
-					if !HexNavi.get_cell_custom_data(neighbor, "occupied") and HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != current_unit.cell: #only actionnable if tile not occupied
+					if HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != current_unit.cell and !(neighbor in enemy_cell): #only actionnable if tile not occupied
 						tiles.append(neighbor)
 			Unit.Action.ATTACK:
 				if skill_chosen == null:
@@ -391,7 +402,8 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 	)
 	enemy_container.units.map(
 		func(unit):
-			enemy_cells.append(unit.cell)
+			if unit != null:
+				enemy_cells.append(unit.cell)
 	)
 	for target in targets:
 		if target in allied_cells or target in enemy_cells:

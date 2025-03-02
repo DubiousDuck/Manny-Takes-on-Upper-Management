@@ -146,7 +146,7 @@ func move_along_path(full_path : Array[Vector2i]):
 	else:
 		animation_state("side_idle")
 	#print(name + " moved!")
-	EventBus.emit_signal("update_cell_status", false)
+	EventBus.emit_signal("update_cell_status", true)
 	movement_complete.emit()
 
 func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where animations are handled
@@ -174,6 +174,9 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 			await $AnimationPlayer.animation_finished
 		"Magical Shot":
 			animation_state("magic_shoot")
+			await $AnimationPlayer.animation_finished
+		"Shove":
+			animation_state("shove")
 			await $AnimationPlayer.animation_finished
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
@@ -214,12 +217,13 @@ func check_if_dead():
 		queue_free.call_deferred()
 
 
-func toggle_skill_ui(state: bool):
-	$SkillSelect.init()
+func toggle_skill_ui(state: bool, wait_only: bool = false):
+	if state:
+		$SkillSelect.init(wait_only)
+		if global_position.y >= Global.camera_low:
+			$SkillSelect.position.y = -14.159 #TODO Turn this into constant
+		else: $SkillSelect.position.y = 14.159
 	$SkillSelect.visible = state
-	if global_position.y >= Global.camera_low:
-		$SkillSelect.position.y = -14.159 #TODO Turn this into constant
-	else: $SkillSelect.position.y = 14.159
 
 func check_if_can_throw():
 	var throw_skill = load("res://skills/throw.tres")
