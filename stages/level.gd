@@ -13,6 +13,9 @@ const INTRAVERSABLE_WEIGHT: float = 999
 @export var inital_exp : int
 @export var repeat_exp : int
 
+## Array of of tutorials to show
+@export var tutorial_queue: Array[TutorialContent]
+
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	
@@ -21,6 +24,9 @@ func _ready():
 	
 	read_talent_and_apply(Global.talent_type.PROTAG)
 	read_talent_and_apply(Global.talent_type.COMPANY)
+	
+	if !tutorial_queue.is_empty():
+		Global.start_tutorial(tutorial_queue)
 	
 	unit_group_control.init()
 

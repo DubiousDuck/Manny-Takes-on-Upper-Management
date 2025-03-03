@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://becme38i40qd1"]
+
+[ext_resource type="Script" path="res://ui/tutorial/contents/content_template.gd" id="1_34sbj"]
+
+[resource]
+script = ExtResource("1_34sbj")
+title = "Testing"
+body_text = "[center]This is a testing description for the tutorial system.[/center]
+
+
+[center][/center]"
+image_file = "res://icon.svg"
+image_param = {}

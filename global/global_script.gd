@@ -141,6 +141,7 @@ func verify_directory(path : String):
 ## UI
 
 const DIALOGUE = preload("res://ui/dialogue.tscn")
+const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
 
 func ui_element_start():
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
@@ -152,6 +153,13 @@ func start_dialogue(text : Array[String]):
 	var a = DIALOGUE.instantiate()
 	UiLayer.add_child(a)
 	a.read_text(text)
+	await EventBus.ui_element_ended
+	a.queue_free()
+
+func start_tutorial(page_queue: Array[TutorialContent]):
+	var a = TUTORIAL.instantiate()
+	UiLayer.add_child(a)
+	a.init(page_queue)
 	await EventBus.ui_element_ended
 	a.queue_free()
 	
