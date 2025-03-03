@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brud1l1y65nmt"]
 
-[ext_resource type="Script" path="res://overworld/skill_tree/skill_tree.gd" id="1_ciwct"]
+[ext_resource type="Script" uid="uid://cmwus4u5p24k0" path="res://overworld/skill_tree/skill_tree.gd" id="1_ciwct"]
 [ext_resource type="PackedScene" uid="uid://b65vkeagk8n6r" path="res://overworld/skill_tree/talents/talent_node.tscn" id="2_sbq3o"]
 
 [node name="SkillTree" type="Control" node_paths=PackedStringArray("top_nodes")]

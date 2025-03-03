@@ -10,7 +10,7 @@ var mouse_selected: bool = false
 func _interact_call_back():
 	pass
 
-func _input(event):
+func _input(_event):
 	if is_in_range:
 		if Input.is_action_just_pressed("ui_accept"):
 			_interact_call_back()

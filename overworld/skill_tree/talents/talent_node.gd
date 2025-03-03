@@ -44,7 +44,7 @@ func init():
 		line.add_point(global_position + size/2)
 		line.add_point(parent_talent.global_position + size/2)
 
-func _process(delta):
+func _process(_delta):
 	if parent_talent:
 		if parent_talent.disabled:
 			disabled = true

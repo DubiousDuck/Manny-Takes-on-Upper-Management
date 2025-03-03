@@ -4,7 +4,7 @@ class_name Level
 
 const INTRAVERSABLE_WEIGHT: float = 999
 
-@onready var battle_outcome = preload("res://ui/battle_outcome.tscn")
+@onready var battle_outcome = preload("uid://ct4t683r6jn78")
 @onready var pause_canvas_layer = $PauseCanvasLayer
 
 @export var tile_map : TileMapLayer

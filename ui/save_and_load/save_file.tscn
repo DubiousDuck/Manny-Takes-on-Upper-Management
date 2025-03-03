@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://yavb2yry0764"]
 
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="1_mltwr"]
-[ext_resource type="Script" path="res://ui/save_and_load/save_file.gd" id="2_05mqr"]
+[ext_resource type="Script" uid="uid://b05rg8xh84aat" path="res://ui/save_and_load/save_file.gd" id="2_05mqr"]
 
 [node name="SaveFile" type="Button"]
 custom_minimum_size = Vector2(504, 96)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bn48gasoxpaks"]
 
-[ext_resource type="Script" path="res://unit/unit_ui/skill_select.gd" id="1_uiple"]
+[ext_resource type="Script" uid="uid://ddyyfd6bjr5c6" path="res://unit/unit_ui/skill_select.gd" id="1_uiple"]
 [ext_resource type="PackedScene" uid="uid://kmkcpxlo5atd" path="res://unit/unit_ui/skill_icon.tscn" id="1_vbvja"]
 
 [node name="SkillSelect" type="Control"]

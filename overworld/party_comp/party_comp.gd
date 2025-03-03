@@ -24,7 +24,7 @@ func _ready():
 	$Reserves.init(reserves)
 	$CurrParty.init(party)
 
-func _process(delta):
+func _process(_delta):
 	#default all members that are not in CurrParty to reserves
 	for member in $MemberFolder.get_children():
 		if !$CurrParty.members.has(member) and !$Reserves.members.has(member):

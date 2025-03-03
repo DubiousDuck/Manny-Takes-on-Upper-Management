@@ -135,7 +135,7 @@ func _physics_process(delta):
 func sort_z_layer():
 	z_index = int(position.y)
 
-func anim_handler(delta):
+func anim_handler(_delta):
 	if not free:
 		$Sprite2D.hframes = 1
 		$AnimationPlayer.play("ow_anim/thrown")

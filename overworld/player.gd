@@ -11,7 +11,7 @@ const SCALE := 3
 @export var holding = 0
 @export var throwing = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector2(input_dir.x, input_dir.y).normalized()

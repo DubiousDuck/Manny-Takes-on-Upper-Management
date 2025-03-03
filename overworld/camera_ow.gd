@@ -8,7 +8,7 @@ func after_ready() -> void:
 	if not (player == null):
 		offset = player.position
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player = get_parent().get_node("Player")
 	#print("offset",offset)
 	if not (player == null):

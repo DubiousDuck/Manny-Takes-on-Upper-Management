@@ -21,10 +21,6 @@ func _ready():
 		exit_level.visible = false
 		restart_level.visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func flipMenuDisplay():
 	menuIsDisplayed = !menuIsDisplayed
 	battle_menu_control.visible = menuIsDisplayed

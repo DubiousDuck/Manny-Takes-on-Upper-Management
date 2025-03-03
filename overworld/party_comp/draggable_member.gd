@@ -10,7 +10,7 @@ var is_dragging := false
 func _ready():
 	$Label.text = unit_data.unit_class
 	
-func _process(delta):
+func _process(_delta):
 	#if unit is protanoist, can't be dragged out of current party
 	if unit_data.unit_class == "Protagonist":
 		return

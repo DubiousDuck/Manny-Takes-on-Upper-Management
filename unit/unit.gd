@@ -79,7 +79,7 @@ func load_unit_data():
 	
 	skills = unit_data.skill_list
 
-func _process(delta):
+func _process(_delta):
 	if actions_avail.is_empty(): #if there are no available actions left
 		$Health.self_modulate = Color(0.5, 0.5, 0.5)
 	else:

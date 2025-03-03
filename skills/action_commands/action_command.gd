@@ -11,7 +11,7 @@ var timer : SceneTreeTimer
 
 var is_visible: bool = false
 
-func _process(delta):
+func _process(_delta):
 	if $ProgressBar.value <= 69:
 		$ProgressBar.get("theme_override_styles/fill").bg_color = Color("ff5847")
 	else:
@@ -28,7 +28,7 @@ func _process(delta):
 		if(timer.time_left <= 0):
 			action_command_completed(false)
 
-func _input(event):
+func _input(_event):
 	match action_command_type:
 		"throw":
 			if Input.is_action_just_pressed("LMB"):

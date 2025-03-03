@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://s6hbciun8a1p"]
 
-[ext_resource type="Script" path="res://unit/unit.gd" id="1_5ne20"]
-[ext_resource type="Shader" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
+[ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
+[ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="6_jkf6t"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
@@ -44,7 +44,7 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": ExtResource("8_4dskx")
+&"": ExtResource("8_4dskx")
 }
 
 [node name="BackupHealth" type="Label" parent="."]

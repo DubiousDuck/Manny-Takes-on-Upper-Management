@@ -15,9 +15,9 @@ func read_text(text : Array[String]):
 			var options : PackedStringArray = extract_bracketed(i)
 			i = remove_bracketed(i)
 			for k in options:
-				var a = CHOICE.instantiate()
-				a.text = k
-				choice_container.add_child(a)
+				var b = CHOICE.instantiate()
+				b.text = k
+				choice_container.add_child(b)
 			assert(options.size() > 0)
 		label.visible_ratio = 0
 		label.text = i
