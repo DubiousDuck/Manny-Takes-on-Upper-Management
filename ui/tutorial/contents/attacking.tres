@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://ghwb608wl1i2"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_0ge5i"]
+
+[resource]
+script = ExtResource("1_0ge5i")
+title = "Attacking"
+body_text = "Using attacks and skills can damage your enemies (along with other effects)
+
+Click on the unit to see what attacks are available. When you hover over them, you can see the range that each attack can be used in.
+
+To use an attack, choose one on the list and select a valid target (highlighted in [color=yellow]YELLOW[/color]).
+If you don't see any yellow highlights, that means there are no valid targets yet. Consider moving the unit to a closer square or select another skill.
+
+"
+image_file = "uid://noad2rcbno0d"
+image_param = {
+"height": 30,
+"size_in_percent": true,
+"width": 30
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

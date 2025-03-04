@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://8r502q2im3jc"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_m1a3v"]
+
+[resource]
+script = ExtResource("1_m1a3v")
+title = "Healing Tile"
+body_text = "The [color=green]GREEN[/color] tiles are [color=green]Healing Tiles[/color].
+Units standing in them will be healed for 1 HP at the end of each turn.
+
+Try to have your units stand in these tiles whenever possible.
+Maybe that one extra health point is all you need to defeat the enemies.
+
+"
+image_file = "uid://kvn2f11o6w7o"
+image_param = {
+"height": 30,
+"size_in_percent": true,
+"width": 45
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

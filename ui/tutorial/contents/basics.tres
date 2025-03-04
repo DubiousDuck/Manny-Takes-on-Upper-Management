@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://d786b0uuepmc"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_agqo6"]
+
+[resource]
+script = ExtResource("1_agqo6")
+title = "Basics"
+body_text = "Defeat your enemies by damaging them and make their health point [color=yellow]drop below 0![/color]
+
+But watch out. You lose if [color=yellow]all your units[/color] run out of health points!
+
+Plan your actions carefully to outsmart your opponent!"
+image_file = ""
+image_param = {}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://d2oeemu5nubl2"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_w61jc"]
+
+[resource]
+script = ExtResource("1_w61jc")
+title = "Taking Your Turn"
+body_text = "For each turn, each of your units can [color=yellow]move once[/color] and [color=yellow]attack once[/color].
+
+When all of your units have moved and attacked, your turn ends.
+
+When you click on a unit, the [color=blue]BLUE highlights[/color] are the tiles that the unit can go to. Click on any of them to move the unit to that tile.
+
+"
+image_file = "uid://ccfrsf6p2hpq6"
+image_param = {
+"height": 28,
+"size_in_percent": true,
+"width": 25
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

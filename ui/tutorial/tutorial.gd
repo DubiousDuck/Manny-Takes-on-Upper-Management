@@ -18,12 +18,20 @@ func init(page_queue: Array[TutorialContent]):
 	EventBus.ui_element_started.emit()
 	content.clear()
 	for index in range(page_queue.size()):
+		content.clear()
 		var page: TutorialContent = page_queue[index]
 		title.text = page.title
 		content.append_text(page.body_text)
-		var image = load(page.image_file)
-		#TODO: Read and apply image parameters
-		content.add_image(image)
+		if page.image_file:
+			var image = load(page.image_file)
+			#TODO: Read and apply image parameters
+			if page.image_param.size() != 0:
+				var img_width: int = page.image_param["width"]
+				var img_height: int = page.image_param["height"]
+				var size_in_percent: bool = page.image_param["size_in_percent"]
+				content.add_image(image, img_width, img_height,Color(1, 1, 1, 1),5,Rect2(0,0,0,0),null,false,"",size_in_percent)
+			else:
+				content.add_image(image)
 		if index == page_queue.size() - 1:
 			next.text = LAST_PAGE
 		else: next.text = NORMAL_PAGE

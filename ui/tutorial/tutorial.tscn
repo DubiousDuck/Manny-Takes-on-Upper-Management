@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.294118, 0.294118, 0.294118, 0.4)
+color = Color(0, 0, 0, 0.4)
 
 [node name="Window" type="ColorRect" parent="."]
 layout_mode = 1
@@ -69,7 +69,7 @@ theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center] Body Text Goes Here [/center]
 "
-fit_content = true
+horizontal_alignment = 1
 
 [node name="Next" type="Button" parent="Window/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
