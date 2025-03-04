@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=4 uid="uid://dmiskhfx3cmdg"]
+
+[ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_imwcb"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="7_iynos"]
+[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="8_5wd2o"]
+[ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="9_eiuv0"]
+[ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="10_5tsjb"]
+[ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="11_bp7lx"]
+[ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="12_xckln"]
+[ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="13_xu228"]
+[ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="14_anbpg"]
+[ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="15_i6d7f"]
+[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="16_kl2v3"]
+[ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="17_4b1l1"]
+[ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="18_bcfk4"]
+[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="19_m72qg"]
+
+[node name="Level1-2" type="Node2D" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_imwcb")
+tile_map = NodePath("TileMapTest")
+inital_exp = 16
+repeat_exp = 2
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("7_iynos")]
+isBattleScene = true
+
+[node name="TileMapTest" parent="." instance=ExtResource("8_5wd2o")]
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAQABAAMAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAQAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
+tile_set = ExtResource("9_eiuv0")
+
+[node name="CellHighlights" type="Node2D" parent="."]
+script = ExtResource("10_5tsjb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(347, 277)
+zoom = Vector2(1.25, 1.25)
+script = ExtResource("11_bp7lx")
+
+[node name="top_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, -146)
+
+[node name="low_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, 146)
+
+[node name="Units" type="Node2D" parent="."]
+script = ExtResource("12_xckln")
+
+[node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("13_xu228")
+is_player_controlled = true
+enemy_container = NodePath("../EnemyGroup")
+
+[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("14_anbpg")]
+position = Vector2(244, 246)
+script = ExtResource("15_i6d7f")
+unit_data = ExtResource("16_kl2v3")
+
+[node name="PlayerUnit" parent="Units/PlayerGroup" instance=ExtResource("14_anbpg")]
+position = Vector2(244, 351)
+script = ExtResource("15_i6d7f")
+
+[node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("13_xu228")
+enemy_container = NodePath("../PlayerGroup")
+
+[node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("14_anbpg")]
+position = Vector2(429, 248)
+script = ExtResource("17_4b1l1")
+unit_data = ExtResource("18_bcfk4")
+
+[node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("14_anbpg")]
+position = Vector2(517, 195)
+script = ExtResource("17_4b1l1")
+unit_data = ExtResource("19_m72qg")
+
+[connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
