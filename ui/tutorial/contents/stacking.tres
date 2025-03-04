@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://ckgubaajjft1p"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_r0wdv"]
+
+[resource]
+script = ExtResource("1_r0wdv")
+title = "Stacking Units"
+body_text = "Units can stand on the same tile through different means (ex: [color=tomato]Fighter's Shove[/color] or [color=khaki]Protag's Throw[/color]).
+
+Units on the same tile will all be affected by the attack/skills that target that individual tile.
+
+This means that if you can stack two enemies on the same tile, [color=khaki]Basic Punch[/color] will hit both enemies.
+
+"
+image_file = "uid://bmbhr1qhbkgek"
+image_param = {
+"height": 30,
+"size_in_percent": true,
+"width": 45
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://dv6hkequ4au45"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_yqj5i"]
+
+[resource]
+script = ExtResource("1_yqj5i")
+title = "Pick Up and Throw"
+body_text = "[color=khaki]Pick Up[/color] is a special skill that only [color=khaki]the Protag[/color] can use.
+
+Upon using this skill, the Protag will pick an allied unit up and carries it. When the Protag moves when carrying a unit, the unit will move with the Protag.
+
+Carrying a unit also unlocks the [color=khaki]Throw[/color] skill, which throws the carried unit at a target location.
+If there is an enemy at the target location, it will be knocked back.
+
+"
+image_file = "uid://dj6kckwlsepdp"
+image_param = {
+"height": 30,
+"size_in_percent": true,
+"width": 50
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"
