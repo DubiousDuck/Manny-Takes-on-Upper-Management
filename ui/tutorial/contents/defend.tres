@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://c0gsrldtwajs2"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_shuqy"]
+
+[resource]
+script = ExtResource("1_shuqy")
+title = "Tank and Defend"
+body_text = "The [color=medium_blue]Tank[/color] is a class that focuses on taking hits from the enemy while reducing damage taken.
+
+Their signature skill [color=medium_blue]Defend[/color] makes them take only [b]half[/b] the damage directed to them, making them extra [i]tanky[/i].
+
+Consider pushing tanks into [color=firebrick]The Pit[/color] or quickly take out other units first.
+
+"
+image_file = "uid://cs0qaw4eomio8"
+image_param = {
+"height": 25,
+"size_in_percent": true,
+"width": 40
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

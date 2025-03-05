@@ -1,6 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=19 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
+[ext_resource type="Resource" uid="uid://pqfv7v3eumv8" path="res://ui/tutorial/contents/pit.tres" id="3_t8occ"]
+[ext_resource type="Resource" uid="uid://c0gsrldtwajs2" path="res://ui/tutorial/contents/defend.tres" id="4_7nx3r"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_jkwc2"]
@@ -21,6 +24,7 @@ script = ExtResource("1_t8occ")
 tile_map = NodePath("TileMapTest")
 inital_exp = 9
 repeat_exp = 2
+tutorial_queue = Array[ExtResource("2_7nx3r")]([ExtResource("3_t8occ"), ExtResource("4_7nx3r")])
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_cje7n")]
 isBattleScene = true

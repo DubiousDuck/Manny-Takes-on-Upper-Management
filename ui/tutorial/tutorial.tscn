@@ -65,7 +65,9 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/italics_font_size = 28
 theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
 bbcode_enabled = true
 text = "[center] Body Text Goes Here [/center]
 "

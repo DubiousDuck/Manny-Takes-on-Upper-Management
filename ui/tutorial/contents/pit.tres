@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://pqfv7v3eumv8"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_yrkhx"]
+
+[resource]
+script = ExtResource("1_yrkhx")
+title = "The Pit"
+body_text = "[color=firebrick]The Pit[/color] is a dangerous tile. Units that got pushed into it is removed from the battle immediately.
+
+You cannot directly step on it, but you can use different skills and attacks to push enemies into [color=firebrick]the Pit[/color]
+
+If an enemy has a very high health, consider pushing them into [color=firebrick]the Pit[/color]
+
+"
+image_file = "uid://xkorf5dpk23f"
+image_param = {
+"height": 30,
+"size_in_percent": true,
+"width": 40
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"
