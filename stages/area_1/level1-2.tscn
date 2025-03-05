@@ -21,7 +21,7 @@
 [node name="Level1-2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_imwcb")
 tile_map = NodePath("TileMapTest")
-inital_exp = 16
+inital_exp = 6
 repeat_exp = 2
 tutorial_queue = Array[ExtResource("2_d7y36")]([ExtResource("3_hpvmt"), ExtResource("4_hpvmt")])
 

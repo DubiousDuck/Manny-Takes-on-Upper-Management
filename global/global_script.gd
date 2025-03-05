@@ -27,8 +27,7 @@ func get_last_overworld_scene() -> PackedScene:
 
 
 # Skill Tree Related
-var inital_talent_points : int  = 3
-var max_talent_points : int = inital_talent_points
+var max_talent_points : int = 0
 
 enum talent_type{PROTAG, COMPANY}
 
@@ -78,11 +77,12 @@ var level : int = 1
 
 func gain_exp(value) -> int:
 	print("Exp Gained: ", value)
+	var original_level: int = level
 	if(current_exp + value > max_exp):
 		level += int((current_exp + value)/max_exp)
-		max_talent_points = inital_talent_points + level - 1
-		current_exp = (current_exp + value) % max_exp
-	return int((current_exp + value)/max_exp)
+		max_talent_points += level - original_level
+	current_exp = (current_exp + value) % max_exp
+	return level - original_level
 
 ## Current Party related
 
@@ -123,17 +123,6 @@ func _ready():
 	
 	#load data
 	load_player_data(DEBUG_INT)
-	
-	# TODO REMOVE ME after party management system done
-	if current_party.size() <= 0:
-		var protag = preload("res://unit/params/protagonist.tres")
-		var fighter = preload("res://unit/params/fighter.tres")
-		current_party.append_array([protag, fighter])
-	if reserves.size() <= 0:
-		var mage = preload("res://unit/params/mage.tres")
-		var ranger = preload("res://unit/params/ranger.tres")
-		var healer = preload("res://unit/params/healer.tres")
-		reserves.append_array([mage, ranger, healer])
 
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -172,12 +161,18 @@ var player_data = PlayerData.new()
 func load_player_data(save : int):
 	var data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension)
 	if !data:
+		load_new_save()
 		return
 	player_data = data.duplicate(true)
+	
+	#load player level
+	current_exp = player_data.current_exp
+	level = player_data.level
 	
 	#read and copy talents
 	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
 	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
+	max_talent_points = player_data.max_talent_points
 	
 	#copy current_party
 	max_party_num = player_data.max_party_num
@@ -207,9 +202,14 @@ func find_all_saves():
 func save_player_data(save : int):
 	player_data.index = save
 	
+	#save player level
+	player_data.current_exp = current_exp
+	player_data.level = level
+	
 	#save talents
 	player_data.protag_talents = _protag_talent.duplicate(true)
 	player_data.company_talents = _company_talent.duplicate(true)
+	player_data.max_talent_points = max_talent_points
 	
 	#save current party
 	player_data.max_party_num = max_party_num
@@ -218,3 +218,11 @@ func save_player_data(save : int):
 	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data to index ", str(save))
+
+func load_new_save():
+	current_exp = 0
+	level = 1
+	max_talent_points = 0
+	
+	var protag = preload("res://unit/params/protagonist.tres")
+	current_party.append_array([protag])

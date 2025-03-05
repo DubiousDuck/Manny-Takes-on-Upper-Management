@@ -84,6 +84,8 @@ func _process(_delta):
 		$Health.self_modulate = Color(0.5, 0.5, 0.5)
 	else:
 		$Health.self_modulate = Color(1, 1, 1)
+	if damage_reduction > 0:
+		$Health.self_modulate = Color(0, 0.35, 1)
 	
 	unit_held.map(
 		func(unit):

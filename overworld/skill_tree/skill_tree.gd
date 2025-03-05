@@ -76,9 +76,14 @@ func _on_talent_node_pressed():
 func _on_reset_pressed():
 	current_points = max_points
 	EventBus.emit_signal("reset_talent_levels")
-	top_nodes.map(
-		func(node: TalentNode): node.toggle_disabled(false)
-	)
+	if current_points > 0:
+		top_nodes.map(
+			func(node: TalentNode): node.toggle_disabled(false)
+		)
+	else:
+		top_nodes.map(
+			func(node: TalentNode): node.toggle_disabled(true)
+		)
 
 func _on_save_exit_pressed():
 	temp_dict_protag.clear()

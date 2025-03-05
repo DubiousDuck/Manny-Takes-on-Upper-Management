@@ -36,6 +36,7 @@ func _on_battle_ended(result: int):
 	a.init(result)
 	var num_level_ups : int
 	if(result == EventBus.BattleResult.PLAYER_VICTORY):
+		#TODO: gain repeat exp if level already beaten
 		num_level_ups = Global.gain_exp(inital_exp)
 	pause_canvas_layer.add_in_background(a)
 	#$PauseCanvasLayer.add_child(a)

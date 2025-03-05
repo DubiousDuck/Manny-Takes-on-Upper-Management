@@ -138,15 +138,19 @@ position_smoothing_enabled = true
 script = ExtResource("4_u7vk1")
 
 [node name="Door" parent="." instance=ExtResource("5_tiegx")]
-position = Vector2(434, 334)
+position = Vector2(929, 333)
 
 [node name="Door2" parent="." instance=ExtResource("5_tiegx")]
-position = Vector2(180, 337)
+position = Vector2(102, 337)
 scene_to_go = "res://stages/area_1/level1-1.tscn"
 
 [node name="Door3" parent="." instance=ExtResource("5_tiegx")]
-position = Vector2(65, 437)
+position = Vector2(206, 336)
 scene_to_go = "uid://dmiskhfx3cmdg"
+
+[node name="Door4" parent="." instance=ExtResource("5_tiegx")]
+position = Vector2(300, 336)
+scene_to_go = "uid://cjp0ijwpjsn8r"
 
 [node name="Recruit" parent="." instance=ExtResource("6_2jdyq")]
 position = Vector2(640, 292)

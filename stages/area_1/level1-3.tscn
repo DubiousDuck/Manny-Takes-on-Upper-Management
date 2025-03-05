@@ -1,0 +1,86 @@
+[gd_scene load_steps=16 format=4 uid="uid://cjp0ijwpjsn8r"]
+
+[ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
+[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
+[ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_jkwc2"]
+[ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="8_gakst"]
+[ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="9_3pueo"]
+[ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="10_svx28"]
+[ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="11_xhi0s"]
+[ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="12_t610e"]
+[ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="13_k22tc"]
+[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="14_iigxo"]
+[ext_resource type="Resource" uid="uid://dj115e2fbsle6" path="res://unit/params/tank.tres" id="15_13kin"]
+[ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="15_fa8xf"]
+[ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="16_phfro"]
+[ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="17_xmqv0"]
+
+[node name="Level1-3" type="Node2D" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_t8occ")
+tile_map = NodePath("TileMapTest")
+inital_exp = 9
+repeat_exp = 2
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("5_cje7n")]
+isBattleScene = true
+
+[node name="TileMapTest" parent="." instance=ExtResource("6_5cycl")]
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAQABAAEAAAAAAAAAAAABAAIAAAACAAAAAQABAAMAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAACAAAAAQAFAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAFAAQAAAAAAAAAAQAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
+tile_set = ExtResource("7_jkwc2")
+
+[node name="CellHighlights" type="Node2D" parent="."]
+script = ExtResource("8_gakst")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(338, 303)
+zoom = Vector2(1.25, 1.25)
+script = ExtResource("9_3pueo")
+
+[node name="top_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, -146)
+
+[node name="low_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, 146)
+
+[node name="Units" type="Node2D" parent="."]
+script = ExtResource("10_svx28")
+
+[node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("11_xhi0s")
+is_player_controlled = true
+enemy_container = NodePath("../EnemyGroup")
+
+[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("12_t610e")]
+position = Vector2(241, 344)
+script = ExtResource("13_k22tc")
+unit_data = ExtResource("14_iigxo")
+
+[node name="PlayerUnit" parent="Units/PlayerGroup" instance=ExtResource("12_t610e")]
+position = Vector2(151, 402)
+script = ExtResource("13_k22tc")
+
+[node name="PlayerUnit2" parent="Units/PlayerGroup" instance=ExtResource("12_t610e")]
+position = Vector2(153, 193)
+script = ExtResource("13_k22tc")
+
+[node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("11_xhi0s")
+enemy_container = NodePath("../PlayerGroup")
+
+[node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
+position = Vector2(523, 193)
+script = ExtResource("15_fa8xf")
+unit_data = ExtResource("17_xmqv0")
+
+[node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
+position = Vector2(519, 401)
+script = ExtResource("15_fa8xf")
+unit_data = ExtResource("16_phfro")
+
+[node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
+position = Vector2(429, 245)
+script = ExtResource("15_fa8xf")
+unit_data = ExtResource("15_13kin")
+
+[connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
