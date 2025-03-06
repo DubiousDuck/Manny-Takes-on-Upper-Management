@@ -136,7 +136,7 @@ func ui_element_start():
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ui_element_end():
-	get_tree().current_scene.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
 
 func start_dialogue(text : Array[String]):
 	var a = DIALOGUE.instantiate()

@@ -20,7 +20,6 @@ shader_parameter/flash_state = 0.0
 shader_parameter/transparency = 1.0
 
 [node name="Unit" type="CharacterBody2D"]
-position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
 

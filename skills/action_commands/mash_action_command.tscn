@@ -42,7 +42,7 @@ show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0rw2e")
+&"": SubResource("AnimationLibrary_0rw2e")
 }
 autoplay = "play"
 
