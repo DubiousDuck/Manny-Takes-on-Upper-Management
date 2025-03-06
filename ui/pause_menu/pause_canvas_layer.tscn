@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://swx1ag0pr6hh"]
+[gd_scene load_steps=9 format=3 uid="uid://swx1ag0pr6hh"]
 
 [ext_resource type="Script" uid="uid://cgqpt5abxnbl1" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
+[ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_711h1"]
 [ext_resource type="Script" uid="uid://c15wrh0vsu7ie" path="res://ui/pause_menu/volume_slider.gd" id="2_k60nf"]
 [ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
 [ext_resource type="Script" uid="uid://rljuks17biw4" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
@@ -22,7 +23,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BattleMenuControl" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +39,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.342207, 0.342207, 0.342207, 0.475)
 
+[node name="Window" type="TextureRect" parent="BattleMenuControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.5
+offset_top = -315.5
+offset_right = 476.5
+offset_bottom = 315.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_711h1")
+
 [node name="Label" type="Label" parent="BattleMenuControl"]
 layout_mode = 1
 anchors_preset = 8
@@ -52,6 +67,7 @@ offset_right = 238.0
 offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 85
 text = "Demo Field"
 horizontal_alignment = 1
@@ -62,25 +78,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 726.0
-offset_top = 553.0
-offset_right = -45.0
-offset_bottom = -61.0
+offset_left = 697.0
+offset_top = 532.0
+offset_right = -74.0
+offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_k60nf")
 
 [node name="SpeakerImage" type="Sprite2D" parent="BattleMenuControl/VolumeSlider"]
-position = Vector2(211, -50)
+position = Vector2(170, -50)
 scale = Vector2(0.170892, 0.170892)
 texture = ExtResource("3_y3cgx")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/VolumeSlider"]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 9.52111
-offset_right = 306.0
-offset_bottom = 25.5211
+offset_top = 10.0
+offset_right = 218.0
+offset_bottom = 26.0
 scale = Vector2(1.24538, 1.24538)
 
 [node name="BrightnessSlider" type="Control" parent="BattleMenuControl"]
@@ -88,57 +104,61 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = 557.0
-offset_right = -711.0
-offset_bottom = -57.0
+offset_left = 178.0
+offset_top = 537.0
+offset_right = -582.0
+offset_bottom = -77.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_kvqm7")
 
 [node name="SunImage" type="Sprite2D" parent="BattleMenuControl/BrightnessSlider"]
-position = Vector2(191, -52)
+position = Vector2(118, -53)
 scale = Vector2(0.170892, 0.170892)
 texture = ExtResource("5_xfvr8")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/BrightnessSlider"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 5.52119
-offset_right = 286.0
-offset_bottom = 21.5212
+offset_top = 6.0
+offset_right = 198.0
+offset_bottom = 22.0
 scale = Vector2(1.24538, 1.24538)
 value = 100.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleMenuControl"]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -108.0
-offset_bottom = 13.0
+offset_left = -285.5
+offset_top = -83.0
+offset_right = 285.5
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="RestartLevel" type="Button" parent="BattleMenuControl/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
 text = "Restart Level"
+text_overrun_behavior = 2
 
 [node name="ExitLevel" type="Button" parent="BattleMenuControl/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
 text = "Exit Level"
 
 [node name="QuitGame" type="Button" parent="BattleMenuControl/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
@@ -146,22 +166,35 @@ text = "Quit Game"
 
 [node name="Resume" type="Button" parent="BattleMenuControl"]
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-offset_left = 424.0
-offset_top = 379.0
-offset_right = 724.0
-offset_bottom = 500.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 49.0
+offset_right = 150.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
 text = "Resume"
 
 [node name="DevButton" type="Button" parent="BattleMenuControl"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-offset_left = 73.0
-offset_top = 48.0
-offset_right = 373.0
-offset_bottom = 169.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 214.0
+offset_top = -541.0
+offset_right = 391.0
+offset_bottom = -489.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
 text = "Dev Button"

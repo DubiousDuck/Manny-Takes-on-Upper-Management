@@ -4,7 +4,7 @@ class_name Tutorial
 
 @onready var test_page = preload("res://ui/tutorial/contents/test_tutorial.tres")
 
-@onready var title = $Window/MarginContainer/VBoxContainer/Title
+@onready var title = $Window/Title
 @onready var content = $Window/MarginContainer/VBoxContainer/Content
 @onready var next = $Window/MarginContainer/VBoxContainer/Next
 

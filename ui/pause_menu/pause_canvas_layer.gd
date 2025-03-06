@@ -14,6 +14,7 @@ var menuIsDisplayed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$BattleMenuControl.visible = false
 	dev_button.visible = Global.dev_mode
 	brightness_slider.setBrightness(Global.brightness_val)
 	updateLabelText()

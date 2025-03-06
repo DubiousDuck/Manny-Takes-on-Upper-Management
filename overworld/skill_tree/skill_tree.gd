@@ -5,8 +5,10 @@ class_name SkillTree
 @export var max_points: int = Global.max_talent_points
 @export var top_nodes: Array[TalentNode]
 
-@onready var point_label: Label = $Label
-@onready var mode_label: Label = $Label2
+@onready var point_label: Label = $Window/Label
+@onready var mode_label: Label = $Window/Label2
+@onready var protag_nodes = $Window/ProtagNodes
+@onready var company_nodes = $Window/CompanyNodes
 @onready var protag_folder: Array[TalentNode] = []
 @onready var company_folder: Array[TalentNode] = []
 
@@ -29,9 +31,9 @@ var temp_dict_company: Dictionary = {}
 func _ready():
 	EventBus.connect("talent_node_pressed", _on_talent_node_pressed)
 	current_points = max_points
-	for node in $ProtagNodes.get_children():
+	for node in protag_nodes.get_children():
 		if node is TalentNode: protag_folder.append(node)
-	for node in $CompanyNodes.get_children():
+	for node in company_nodes.get_children():
 		if node is TalentNode: company_folder.append(node)
 	
 	temp_dict_protag = Global.get_talent_activated(Global.talent_type.PROTAG)
@@ -62,11 +64,11 @@ func switch_mode(mode: int):
 	current_mode = mode
 	match current_mode:
 		Global.talent_type.PROTAG:
-			$ProtagNodes.show()
-			$CompanyNodes.hide()
+			protag_nodes.show()
+			company_nodes.hide()
 		Global.talent_type.COMPANY:
-			$CompanyNodes.show()
-			$ProtagNodes.hide()
+			company_nodes.show()
+			protag_nodes.hide()
 
 func _on_talent_node_pressed():
 	current_points -= 1

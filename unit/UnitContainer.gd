@@ -165,13 +165,12 @@ func get_median(arr: Array[float]) -> float:
 	var mid = n / 2
 	return sorted_arr[mid]  # Return middle element
 
+## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action():
-	#handle npc movement and attack logic here
-	#Place holder for now (largely identical to player logic)
 	#TODO: Smarter enemy AI
 	
 	#check for attack targets; if none, choose wait
-	for skill in current_unit.skills:
+	for skill in current_unit.skills: #FIXME: enemy will always choose the first valid skill; not good!
 		skill_chosen = skill #assumes that if all fail, wait is always an option
 		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
 		if get_targets_of_type(targets, skill_chosen.targets).size() > 0:
