@@ -43,7 +43,7 @@ func _on_unit_container_all_moved():
 		await attack_complete
 	check_if_win()
 	is_waiting_for_turn_switch = true
-	_on_update_cell_status(true)	
+	_on_update_cell_status(true)
 	
 func _on_status_update_complete():
 	if is_waiting_for_turn_switch:

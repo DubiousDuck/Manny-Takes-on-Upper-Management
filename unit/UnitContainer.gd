@@ -26,6 +26,7 @@ var in_progress: bool = false
 var is_aoe_skill: bool = false
 
 func _ready() -> void:
+	EventBus.connect("pass_turn", _on_turn_passed)
 	EventBus.connect("unit_died", _on_unit_died)
 	if is_player_controlled:
 		EventBus.connect("skill_chosen", _on_skill_chosen)
@@ -435,7 +436,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 	
 func _on_unit_died():
 	refresh_units()
-	
+
 func _on_skill_chosen(skill: SkillInfo):
 	current_unit.toggle_skill_ui(false)
 	skill_chosen = skill
@@ -465,6 +466,11 @@ func unit_wait(): #special case for when WAIT is chosen
 	
 	if get_available_unit_count() <= 0:
 		all_units_moved.emit()
+
+func _on_turn_passed():
+	all_units_moved.emit()
+	
+	print("passing turn")
 
 func check_and_remove_unit_from_being_held(this_unit: Unit):
 	for unit in units:

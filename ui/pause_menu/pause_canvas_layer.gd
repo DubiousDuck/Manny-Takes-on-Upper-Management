@@ -78,6 +78,6 @@ func _on_dev_button_pressed():
 	EventBus.battle_ended.emit(0)
 	flipMenuDisplay()
 
-signal all_units_moved
 func _on_pass_button_pressed():
-	all_units_moved.emit()
+	print("hitting the button")
+	EventBus.pass_turn.emit()
