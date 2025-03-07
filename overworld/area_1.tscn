@@ -1,0 +1,359 @@
+[gd_scene load_steps=14 format=3 uid="uid://c8qibn8b170i0"]
+
+[ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_emvcp"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_xmci8"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="3_v73oa"]
+[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_pwake"]
+[ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="5_goldk"]
+[ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]
+[ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="8_ba6uy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i12cs"]
+size = Vector2(376, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pulr4"]
+size = Vector2(306.75, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
+size = Vector2(561.75, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujynv"]
+size = Vector2(370, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emvcp"]
+size = Vector2(292.75, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmci8"]
+size = Vector2(846, 15)
+
+[node name="Area1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_emvcp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ToTalentPage" type="Button" parent="CanvasLayer"]
+offset_left = 906.0
+offset_top = 565.0
+offset_right = 1133.0
+offset_bottom = 628.0
+theme = ExtResource("2_xmci8")
+theme_override_font_sizes/font_size = 45
+text = "To Skill Tree"
+
+[node name="Save" type="Button" parent="CanvasLayer"]
+offset_left = 940.0
+offset_top = 506.0
+offset_right = 1131.0
+offset_bottom = 556.0
+theme = ExtResource("2_xmci8")
+theme_override_font_sizes/font_size = 40
+text = "Save Game"
+
+[node name="PartyManage" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -83.0
+offset_right = 253.0
+offset_bottom = -17.0
+grow_vertical = 0
+mouse_filter = 1
+theme = ExtResource("2_xmci8")
+theme_override_font_sizes/font_size = 40
+text = "Manage Party"
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("3_v73oa")]
+
+[node name="RoomLayout" type="Node2D" parent="."]
+
+[node name="Wall2" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(550, 333)
+rotation = -1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall2"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall2"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall3" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(868, 487)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall3"]
+position = Vector2(-47, 13)
+shape = SubResource("RectangleShape2D_pulr4")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall3"]
+offset_left = -205.0
+offset_top = 6.00001
+offset_right = 171.0
+offset_bottom = 18.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall4" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(844, 333)
+rotation = -1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall4"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall4"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall10" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(259, -357)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall10"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall10"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall15" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(1461, -357)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall15"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall15"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall16" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(1461, -535)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall16"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall16"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall11" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(258, -544)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall11"]
+position = Vector2(153, 9.75)
+shape = SubResource("RectangleShape2D_i12cs")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall11"]
+offset_left = -33.0
+offset_top = 5.00001
+offset_right = 343.0
+offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall5" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(574, 293)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall5"]
+position = Vector2(80.125, 13.5)
+shape = SubResource("RectangleShape2D_ytewl")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall5"]
+offset_left = -200.0
+offset_top = 7.0
+offset_right = 361.75
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall8" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(1143, -365)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall8"]
+position = Vector2(176, 15)
+shape = SubResource("RectangleShape2D_ujynv")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall8"]
+offset_left = -9.0
+offset_top = 6.99999
+offset_right = 361.0
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall9" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(299, -365)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall9"]
+position = Vector2(176, 15)
+shape = SubResource("RectangleShape2D_ujynv")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall9"]
+offset_left = -9.0
+offset_top = 6.99999
+offset_right = 361.0
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall12" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(299, -914)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall12"]
+position = Vector2(176, 15)
+shape = SubResource("RectangleShape2D_ujynv")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall12"]
+offset_left = -9.0
+offset_top = 6.99999
+offset_right = 361.0
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall14" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(1144, -914)
+rotation = 1.5708
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall14"]
+position = Vector2(176, 15)
+shape = SubResource("RectangleShape2D_ujynv")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall14"]
+offset_left = -9.0
+offset_top = 6.99999
+offset_right = 361.0
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall6" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(371, 3)
+rotation = 3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall6"]
+position = Vector2(-54.375, 13.5)
+shape = SubResource("RectangleShape2D_emvcp")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall6"]
+offset_left = -200.0
+offset_top = 7.0
+offset_right = 92.75
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall7" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(935, 3)
+rotation = 3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall7"]
+position = Vector2(-54.375, 13.5)
+shape = SubResource("RectangleShape2D_emvcp")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall7"]
+offset_left = -200.0
+offset_top = 7.0
+offset_right = 92.75
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall13" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(383, -899)
+rotation = 3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall13"]
+position = Vector2(-331, 13.5)
+shape = SubResource("RectangleShape2D_xmci8")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall13"]
+offset_left = -756.0
+offset_top = 7.00005
+offset_right = 90.0
+offset_bottom = 22.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("4_pwake")]
+position = Vector2(687, 499)
+collision_mask = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+script = ExtResource("5_goldk")
+
+[node name="Recruit" parent="." instance=ExtResource("7_hq1u4")]
+position = Vector2(403, -802)
+
+[node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
+position = Vector2(858, -432)
+scene_to_go = "uid://bjc751e4ol5ld"
+level_name = "sol1"
+
+[connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
+[connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
