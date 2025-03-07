@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bl3rxfaj4snxv"]
 
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="1_i2n66"]
-[ext_resource type="Script" path="res://overworld/overworld.gd" id="1_o2m1g"]
+[ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_o2m1g"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_nt2ja"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_ss2h4"]
-[ext_resource type="Script" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
+[ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="4_u7vk1"]
 [ext_resource type="PackedScene" uid="uid://dia222bicit4v" path="res://overworld/interactables/door.tscn" id="5_tiegx"]
 [ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="6_2jdyq"]
 [ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="8_6snc4"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://swx1ag0pr6hh"]
 
-[ext_resource type="Script" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
+[ext_resource type="Script" uid="uid://cgqpt5abxnbl1" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_711h1"]
-[ext_resource type="Script" path="res://ui/pause_menu/volume_slider.gd" id="2_k60nf"]
+[ext_resource type="Script" uid="uid://c15wrh0vsu7ie" path="res://ui/pause_menu/volume_slider.gd" id="2_k60nf"]
 [ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
-[ext_resource type="Script" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
+[ext_resource type="Script" uid="uid://rljuks17biw4" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
 [ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 [ext_resource type="Texture2D" uid="uid://b5npyleamaofs" path="res://assets/ui/pause_icon.png" id="6_b6mne"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="6_erp37"]
