@@ -468,6 +468,13 @@ func unit_wait(): #special case for when WAIT is chosen
 		all_units_moved.emit()
 
 func _on_turn_passed():
+	if !is_player_controlled:
+		return
+	#Remove all tokens
+	units.map(
+		func(unit: Unit):
+			unit.actions_avail.clear()
+	)
 	all_units_moved.emit()
 	
 	print("passing turn")

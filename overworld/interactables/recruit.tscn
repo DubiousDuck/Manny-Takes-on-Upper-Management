@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dg4a4sd0edp4f"]
 
-[ext_resource type="Script" path="res://overworld/interactables/recruit.gd" id="1_88f8k"]
+[ext_resource type="Script" uid="uid://bthr6kk2sd57i" path="res://overworld/interactables/recruit.gd" id="1_88f8k"]
 [ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="2_issuo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dktft"]
