@@ -143,14 +143,19 @@ position = Vector2(929, 333)
 [node name="Door2" parent="." instance=ExtResource("5_tiegx")]
 position = Vector2(102, 337)
 scene_to_go = "res://stages/area_1/level1-1.tscn"
+level_name = "1"
 
 [node name="Door3" parent="." instance=ExtResource("5_tiegx")]
 position = Vector2(206, 336)
 scene_to_go = "uid://dmiskhfx3cmdg"
+req = Array[String](["1"])
+level_name = "2"
 
 [node name="Door4" parent="." instance=ExtResource("5_tiegx")]
 position = Vector2(300, 336)
 scene_to_go = "uid://cjp0ijwpjsn8r"
+req = Array[String](["1", "2"])
+level_name = "3"
 
 [node name="Recruit" parent="." instance=ExtResource("6_2jdyq")]
 position = Vector2(640, 292)

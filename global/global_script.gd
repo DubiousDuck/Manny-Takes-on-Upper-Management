@@ -17,6 +17,12 @@ func start():
 	brightness_val = 100.0
 
 # Overworld
+var current_level : String
+var finished_levels := {}  # Acts as a HashSet
+func finished_level():
+	finished_levels[current_level]=true
+	current_level=""
+
 var _last_overworld_scene: PackedScene = PackedScene.new()
 
 func set_last_overworld_scene(scene: Node):

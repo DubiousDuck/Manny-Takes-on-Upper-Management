@@ -14,6 +14,7 @@ const INTRAVERSABLE_WEIGHT: float = 999
 @export var repeat_exp : int
 
 ## Array of of tutorials to show
+@export var level_name : String
 @export var tutorial_queue: Array[TutorialContent]
 
 func _ready():
@@ -37,6 +38,7 @@ func _on_battle_ended(result: int):
 	var num_level_ups : int
 	if(result == EventBus.BattleResult.PLAYER_VICTORY):
 		#TODO: gain repeat exp if level already beaten
+		Global.finished_level()
 		num_level_ups = Global.gain_exp(inital_exp)
 	pause_canvas_layer.add_in_background(a)
 	#$PauseCanvasLayer.add_child(a)
