@@ -10,11 +10,16 @@ const INTRAVERSABLE_WEIGHT: float = 999
 @export var tile_map : TileMapLayer
 @onready var unit_group_control : UnitGroupController = $Units
 
+@export_category("Experience Points")
 @export var inital_exp : int
 @export var repeat_exp : int
 
+@export_category("Other Parameters")
 ## Array of of tutorials to show
 @export var tutorial_queue: Array[TutorialContent]
+
+## Whether to give a recruit token or not after initial victory
+@export var give_token: bool = true
 
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
@@ -38,6 +43,8 @@ func _on_battle_ended(result: int):
 	if(result == EventBus.BattleResult.PLAYER_VICTORY):
 		#TODO: gain repeat exp if level already beaten
 		num_level_ups = Global.gain_exp(inital_exp)
+		if give_token:
+			Global.recruit_token += 1
 	pause_canvas_layer.add_in_background(a)
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
