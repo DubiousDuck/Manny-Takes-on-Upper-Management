@@ -1,55 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6pye0w0cqmw7"]
+[gd_scene load_steps=3 format=3 uid="uid://b6pye0w0cqmw7"]
 
 [ext_resource type="Script" uid="uid://wg7e2yhwuc16" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_mu8pm"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_uhj5c")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 600.0
-offset_top = 300.0
-offset_right = -122.0
-offset_bottom = -48.0
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="load" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Load"
-
-[node name="credits" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Credits"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 300.0
-offset_right = -602.0
-offset_bottom = -48.0
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="start" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Start"
-
-[node name="options" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Options"
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 15
@@ -59,9 +14,60 @@ offset_top = 91.0
 offset_bottom = -344.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_mu8pm")
 theme_override_font_sizes/font_size = 150
 text = "BABIES BATTLE BOSS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer2/start" to="." method="_on_start_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="start" type="Button" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 100
+text = "Start"
+
+[node name="options" type="Button" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(1, 100)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 100
+text = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="load" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 100
+text = "Load"
+
+[node name="credits" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 100)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 100
+text = "Credits"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/load" to="." method="_on_load_pressed"]
