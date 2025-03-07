@@ -5,6 +5,7 @@ class_name BattleOutcome
 @onready var label = $Label #Not ready yet when init() is called
 @onready var exp_bar : ProgressBar = $HSplitContainer/HSplitContainer/ExpBar
 @onready var level_label : Label = $HSplitContainer/HSplitContainer/LevelLabel
+@onready var xp_label = $Label2
 
 func _ready() -> void:
 	exp_bar = $HSplitContainer/HSplitContainer/ExpBar
@@ -20,6 +21,9 @@ func init(result: int):
 		EventBus.BattleResult.ENEMY_VICTORY:
 			$Label.text = "You lost..."
 	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
+
+func update_xp_label(xp: int):
+	xp_label.text = "You gained " + str(xp) + " XP!"
 
 func animate_exp(final_exp : int, num_level_ups : int):
 	##animation for level ups

@@ -39,13 +39,16 @@ func _on_battle_ended(result: int):
 	##exp gain
 	var a = battle_outcome.instantiate()
 	a.init(result)
+	pause_canvas_layer.add_in_background(a)
 	var num_level_ups : int
 	if(result == EventBus.BattleResult.PLAYER_VICTORY):
-		#TODO: gain repeat exp if level already beaten
-		num_level_ups = Global.gain_exp(inital_exp)
+		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
+		num_level_ups = Global.gain_exp(xp_gained)
 		if give_token:
 			Global.recruit_token += 1
-	pause_canvas_layer.add_in_background(a)
+		a.update_xp_label(xp_gained)
+	else:
+		a.update_xp_label(0)
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
 	a.animate_exp(Global.current_exp, num_level_ups)
