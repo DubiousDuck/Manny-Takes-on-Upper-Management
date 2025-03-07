@@ -39,6 +39,7 @@ signal dragging_stop()
 signal ui_element_started
 signal ui_element_ended
 signal dialogue(text : Array[String])
+signal ui_choice_chosen(text :String)
 
 #global player inputs
 signal input_advance

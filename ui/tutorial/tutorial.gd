@@ -39,3 +39,9 @@ func init(page_queue: Array[TutorialContent]):
 		await next.pressed
 	content.clear()
 	EventBus.ui_element_ended.emit()
+	
+	
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		content.clear()
+		EventBus.ui_element_ended.emit()

@@ -28,7 +28,7 @@ frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"ow_anim": ExtResource("3_w1yvo")
+&"ow_anim": ExtResource("3_w1yvo")
 }
 
 [node name="Control" type="Control" parent="."]

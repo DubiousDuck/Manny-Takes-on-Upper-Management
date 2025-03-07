@@ -25,7 +25,7 @@ frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"ow_anim": ExtResource("3_408ea")
+&"ow_anim": ExtResource("3_408ea")
 }
 autoplay = "overworld_anim/holding_empty"
 

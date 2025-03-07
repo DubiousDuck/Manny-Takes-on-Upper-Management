@@ -5,6 +5,7 @@ class_name Dialogue extends Control
 @onready var choice_container = $HBoxContainer
 
 const CHOICE = preload("res://ui/dialogue_choice.tscn")
+var chosen:String = ""
 
 func read_text(text : Array[String]):
 	EventBus.ui_element_started.emit()
@@ -17,7 +18,9 @@ func read_text(text : Array[String]):
 			for k in options:
 				var b = CHOICE.instantiate()
 				b.text = k
+				b.pressed.connect(_on_choice_pressed.bind(k))  # Connect button press signal
 				choice_container.add_child(b)
+				choice_container.add_spacer(true)
 			assert(options.size() > 0)
 		label.visible_ratio = 0
 		label.text = i
@@ -28,7 +31,11 @@ func read_text(text : Array[String]):
 	anim_player.play_backwards("BarsDown")
 	await anim_player.animation_finished
 	EventBus.ui_element_ended.emit()
-
+	EventBus.ui_choice_chosen.emit(chosen)
+	
+func _on_choice_pressed(choice_text: String):
+	chosen = choice_text
+	
 func extract_bracketed(text: String) -> Array:
 	var regex = RegEx.new()
 	regex.compile("\\[([^\\]]+)\\]")
