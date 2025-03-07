@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct4t683r6jn78"]
+[gd_scene load_steps=4 format=3 uid="uid://ct4t683r6jn78"]
 
 [ext_resource type="Script" uid="uid://uljqfllywrdw" path="res://ui/battle_outcome.gd" id="1_revyg"]
+[ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_bh2jv"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_qftn7"]
 
 [node name="BattleOutcome" type="Control"]
 process_mode = 3
@@ -22,6 +24,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.342207, 0.342207, 0.342207, 0.475)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -399.5
+offset_top = -279.0
+offset_right = 399.5
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bh2jv")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -35,8 +52,28 @@ offset_right = 238.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 85
 text = "Result Here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = 11.0
+offset_right = 238.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_qftn7")
+theme_override_font_sizes/font_size = 30
+text = "You've gained X HP!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -56,12 +93,14 @@ alignment = 1
 [node name="PlayAgain" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 45
 text = "Play Again"
 
 [node name="PreviousScene" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 45
 text = "Return"
 
@@ -73,15 +112,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -322.0
-offset_top = -49.0
+offset_top = -87.0
 offset_right = 322.0
-offset_bottom = 30.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ExpLabel1" type="Label" parent="HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 30
 text = "Exp"
 
@@ -99,6 +139,7 @@ theme_override_font_sizes/font_size = 30
 [node name="LevelLabel" type="Label" parent="HSplitContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 30
 text = "+0"
 

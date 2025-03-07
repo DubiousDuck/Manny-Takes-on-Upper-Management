@@ -92,6 +92,9 @@ func gain_exp(value) -> int:
 
 ## Current Party related
 
+## token necessary for recruiting new members
+var recruit_token: int = 1
+
 ## Determines the maximum amount of party members
 var max_party_num: int = 3
 
@@ -181,6 +184,7 @@ func load_player_data(save : int):
 	max_talent_points = player_data.max_talent_points
 	
 	#copy current_party
+	recruit_token = player_data.recruit_token
 	max_party_num = player_data.max_party_num
 	current_party = player_data.current_party
 	reserves = player_data.reserves
@@ -218,6 +222,7 @@ func save_player_data(save : int):
 	player_data.max_talent_points = max_talent_points
 	
 	#save current party
+	player_data.recruit_token = recruit_token
 	player_data.max_party_num = max_party_num
 	player_data.current_party = current_party
 	player_data.reserves = reserves
@@ -226,6 +231,8 @@ func save_player_data(save : int):
 	print("- Saved player data to index ", str(save))
 
 func load_new_save():
+	recruit_token = 0
+	
 	current_exp = 0
 	level = 1
 	max_talent_points = 0
