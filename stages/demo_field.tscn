@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bjc751e4ol5ld"]
+[gd_scene load_steps=15 format=4 uid="uid://bjc751e4ol5ld"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_1snh2"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="2_hegcs"]
@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="9_mfhmk"]
 [ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="11_ycujn"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="13_e31i5"]
-[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="15_idbi6"]
 
 [node name="Battlefield2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_1snh2")
@@ -83,7 +82,5 @@ unit_data = ExtResource("9_mfhmk")
 position = Vector2(429, 248)
 script = ExtResource("13_e31i5")
 unit_data = ExtResource("9_mfhmk")
-
-[node name="Player" parent="Units" instance=ExtResource("15_idbi6")]
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

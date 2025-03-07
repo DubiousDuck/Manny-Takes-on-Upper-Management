@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyplvjxqhq6y0"]
+
+[ext_resource type="Script" uid="uid://b6nrjbhhd5ol7" path="res://overworld/interactables/solliciter.gd" id="1_7bwdx"]
+[ext_resource type="Texture2D" uid="uid://v1khfkssrdpn" path="res://assets/unit_sprites/hold_no_guy.png" id="2_iudix"]
+[ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_ufyjy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
+radius = 15.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpde0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bwdx"]
+radius = 42.107
+
+[node name="Sollicitor" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_7bwdx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_7mksb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-06, 2.6226e-06)
+scale = Vector2(3, 3)
+texture = ExtResource("2_iudix")
+hframes = 4
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"ow_anim": ExtResource("3_ufyjy")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+position = Vector2(0, 7)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_gpde0")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="InteractiveArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7bwdx")
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_entered" from="Control/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
