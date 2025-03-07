@@ -9,6 +9,7 @@ var menuIsDisplayed: bool = false
 @onready var brightness_slider = $BattleMenuControl/BrightnessSlider
 
 @onready var dev_button = $BattleMenuControl/DevButton
+@onready var pass_button = $PassButton
 
 @export var isBattleScene: bool
 
@@ -21,6 +22,7 @@ func _ready():
 	if !isBattleScene:
 		exit_level.visible = false
 		restart_level.visible = false
+		pass_button.visible = false
 
 func flipMenuDisplay():
 	menuIsDisplayed = !menuIsDisplayed
@@ -75,3 +77,7 @@ func _on_pause_button_pressed():
 func _on_dev_button_pressed():
 	EventBus.battle_ended.emit(0)
 	flipMenuDisplay()
+
+signal all_units_moved
+func _on_pass_button_pressed():
+	all_units_moved.emit()

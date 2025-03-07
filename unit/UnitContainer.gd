@@ -167,8 +167,6 @@ func get_median(arr: Array[float]) -> float:
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action():
-	#TODO: Smarter enemy AI
-	
 	#check for attack targets; if none, choose wait
 	for skill in current_unit.skills: #FIXME: enemy will always choose the first valid skill; not good!
 		skill_chosen = skill #assumes that if all fail, wait is always an option
