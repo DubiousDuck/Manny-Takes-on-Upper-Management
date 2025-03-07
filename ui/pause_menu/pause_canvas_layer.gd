@@ -28,6 +28,7 @@ func flipMenuDisplay():
 	menuIsDisplayed = !menuIsDisplayed
 	battle_menu_control.visible = menuIsDisplayed
 	pause_button.visible = !menuIsDisplayed
+	pass_button.visible = !menuIsDisplayed
 	if menuIsDisplayed:
 		get_tree().paused = true
 	else:
