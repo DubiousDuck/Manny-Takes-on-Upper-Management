@@ -339,7 +339,8 @@ color = Color(0.450648, 0.450648, 0.450648, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_pwake")]
-position = Vector2(687, 499)
+position = Vector2(709, 89)
+scale = Vector2(1.5, 1.5)
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -351,8 +352,8 @@ position = Vector2(403, -802)
 
 [node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(858, -432)
-scene_to_go = "uid://bjc751e4ol5ld"
-level_name = "sol1"
+scale = Vector2(1.5, 1.5)
+scene_to_go = "uid://dmiskhfx3cmdg"
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]

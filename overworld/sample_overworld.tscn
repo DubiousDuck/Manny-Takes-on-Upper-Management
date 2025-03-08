@@ -163,8 +163,6 @@ position = Vector2(640, 292)
 
 [node name="Sollicitor" parent="." instance=ExtResource("8_6snc4")]
 position = Vector2(487, 604)
-scene_to_go = "uid://bjc751e4ol5ld"
-level_name = "sol1"
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
