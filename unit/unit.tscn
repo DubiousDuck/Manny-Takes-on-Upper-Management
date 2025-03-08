@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://bbuicgv3flgjb" path="res://assets/unit_sprites/healer/front_idle.png" id="3_7oxhv"]
+[ext_resource type="Texture2D" uid="uid://b57surgk1kwmg" path="res://assets/unit_sprites/healer/side_idle.png" id="3_7oxhv"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_2ul3e"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
@@ -41,7 +41,6 @@ position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(1, 1.06437)
 texture = ExtResource("3_7oxhv")
 hframes = 4
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
