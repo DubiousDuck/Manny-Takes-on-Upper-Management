@@ -4,6 +4,17 @@ class_name Recruit
 
 @export_file("*.tscn") var scene_to_go
 
+@onready var warning = $Warning
+
+func _process(delta):
+	if Global.recruit_token > 0:
+		warning.visible = true
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play("warning_idle")
+	else:
+		warning.visible = false
+		$AnimationPlayer.pause()
+
 func _interact_call_back():
 	if Global.recruit_token <= 0:
 		Global.start_dialogue(["I'm sorry, you don't have enough recruit tokens."])

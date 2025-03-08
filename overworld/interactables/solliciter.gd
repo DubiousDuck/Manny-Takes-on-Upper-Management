@@ -22,6 +22,8 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 @export_file("*.tscn") var scene_to_go
 
 @onready var sprite_2d = $Area2D/Sprite2D
+@onready var warning = $Warning
+
 
 func _ready():
 	spawn_position = position  # Store initial position as reference
@@ -43,8 +45,10 @@ func _physics_process(delta):
 			if to_spawn.dot(diff) >0:
 				velocity = diff.normalized() * SPEED
 		elif diff.length() < FOLLOW_D:
+			$Warning.visible = false
 			velocity = -diff.normalized() * SPEED
 		else:
+			$Warning.visible = true
 			velocity = diff.normalized() * SPEED
 		move_timer = TURN_COOLDOWN
 
