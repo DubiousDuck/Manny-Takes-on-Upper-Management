@@ -32,3 +32,9 @@ func _on_ranger_pressed():
 	var ranger = preload("res://unit/params/ranger.tres")
 	Global.reserves.append(ranger)
 	back_to_overworld()
+
+
+func _on_healer_pressed():
+	var healer = preload("res://unit/params/healer.tres")
+	Global.reserves.append(healer)
+	back_to_overworld()

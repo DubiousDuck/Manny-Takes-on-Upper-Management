@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8qibn8b170i0"]
+[gd_scene load_steps=16 format=3 uid="uid://c8qibn8b170i0"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_emvcp"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_xmci8"]
@@ -14,6 +14,9 @@ size = Vector2(376, 12.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pulr4"]
 size = Vector2(306.75, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v73oa"]
+size = Vector2(200, 12.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytewl"]
 size = Vector2(561.75, 15)
 
@@ -25,6 +28,9 @@ size = Vector2(292.75, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmci8"]
 size = Vector2(846, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujynv"]
+radius = 81.3442
 
 [node name="Area1" type="Node2D"]
 y_sort_enabled = true
@@ -155,6 +161,60 @@ offset_left = -33.0
 offset_top = 5.00001
 offset_right = 343.0
 offset_bottom = 17.5
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall17" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(699, -301)
+rotation = -3.14159
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall17"]
+position = Vector2(-2.00003, -1.75013)
+shape = SubResource("RectangleShape2D_v73oa")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall17"]
+offset_left = -101.0
+offset_top = -7.50028
+offset_right = 99.0
+offset_bottom = 4.99972
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall18" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(603, -391)
+rotation = -4.71238
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall18"]
+position = Vector2(-2.00003, -1.75013)
+shape = SubResource("RectangleShape2D_v73oa")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall18"]
+offset_left = -101.0
+offset_top = -7.50028
+offset_right = 99.0
+offset_bottom = 4.99972
+color = Color(0.450648, 0.450648, 0.450648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Wall19" type="StaticBody2D" parent="RoomLayout"]
+position = Vector2(799, -390)
+rotation = -4.71238
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomLayout/Wall19"]
+position = Vector2(-2.00003, -1.75013)
+shape = SubResource("RectangleShape2D_v73oa")
+
+[node name="ColorRect" type="ColorRect" parent="RoomLayout/Wall19"]
+offset_left = -101.0
+offset_top = -7.50028
+offset_right = 99.0
+offset_bottom = 4.99972
 color = Color(0.450648, 0.450648, 0.450648, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -348,13 +408,23 @@ position_smoothing_enabled = true
 script = ExtResource("5_goldk")
 
 [node name="Recruit" parent="." instance=ExtResource("7_hq1u4")]
-position = Vector2(403, -802)
+position = Vector2(561, -69)
 
 [node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
-position = Vector2(858, -432)
+position = Vector2(928, -700)
 scale = Vector2(1.5, 1.5)
 scene_to_go = "uid://dmiskhfx3cmdg"
+
+[node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
+position = Vector2(700, -365)
+scale = Vector2(1.5, 1.5)
+scene_to_go = "uid://cwvvpfius26vd"
+
+[node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]
+shape = SubResource("CircleShape2D_ujynv")
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
+
+[editable path="Receptionist"]

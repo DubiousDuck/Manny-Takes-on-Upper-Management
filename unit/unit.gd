@@ -78,6 +78,7 @@ func load_unit_data():
 	movement_range = unit_data.get_attribute("MOV")
 	
 	skills = unit_data.skill_list
+	_set_anim_lib()
 
 func _process(_delta):
 	if actions_avail.is_empty(): #if there are no available actions left
@@ -241,7 +242,8 @@ var two_signals: Array[bool] = [false, false]
 func animation_state(animation : String):
 	$Sprite2D.hframes = 4
 	#print("# NEW ANIMATION: " + animation + " (unit.gd)")
-	$AnimationPlayer.play(animation)
+	$AnimationPlayer.play("%s/%s" %[anim_lib, animation])
+	print("%s/%s" %[anim_lib, animation])
 
 #in the animation player
 func emit_attack_point():
@@ -288,3 +290,13 @@ func _on_anim_complete():
 	two_signals[1] = true
 	if two_signals.count(true) == 2:
 		all_complete.emit()
+
+var anim_lib: String = "unit_anim"
+## Find matching animation library
+func _set_anim_lib():
+	if unit_data:
+		match unit_data.unit_class:
+			"Healer":
+				anim_lib = "Healer"
+			_:
+				anim_lib = "unit_anim"
