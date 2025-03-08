@@ -616,9 +616,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bwdx"]
-radius = 42.107
+radius = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gpde0"]
+radius = 10.3333
 
 [node name="Sollicitor" type="CharacterBody2D"]
 collision_layer = 2

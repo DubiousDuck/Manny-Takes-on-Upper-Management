@@ -30,7 +30,7 @@ size = Vector2(292.75, 15)
 size = Vector2(846, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujynv"]
-radius = 81.3442
+radius = 60.9007
 
 [node name="Area1" type="Node2D"]
 y_sort_enabled = true
