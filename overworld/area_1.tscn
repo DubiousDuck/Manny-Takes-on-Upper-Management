@@ -400,7 +400,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_pwake")]
 position = Vector2(709, 89)
-scale = Vector2(1.5, 1.5)
 collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -412,12 +411,10 @@ position = Vector2(561, -69)
 
 [node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(928, -700)
-scale = Vector2(1.5, 1.5)
 scene_to_go = "uid://dmiskhfx3cmdg"
 
 [node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(700, -365)
-scale = Vector2(1.5, 1.5)
 scene_to_go = "uid://cwvvpfius26vd"
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]
