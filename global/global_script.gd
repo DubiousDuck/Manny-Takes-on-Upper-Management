@@ -10,6 +10,7 @@ var dev_mode: bool = true
 var attack_successful: bool
 var camera_top: int #y position
 var camera_low: int #y position
+var isPlayerTurn: bool = true
 
 var brightness_val: float = 100.0
 

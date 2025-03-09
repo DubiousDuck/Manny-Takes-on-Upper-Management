@@ -80,5 +80,7 @@ func _on_dev_button_pressed():
 	flipMenuDisplay()
 
 func _on_pass_button_pressed():
-	print("hitting the button")
-	EventBus.pass_turn.emit()
+	print("---------------------- : " + str(Global.isPlayerTurn))
+	if Global.isPlayerTurn:
+		print("hitting the button")
+		EventBus.pass_turn.emit()

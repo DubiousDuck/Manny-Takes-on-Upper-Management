@@ -74,6 +74,7 @@ func init():
 			unit.init()
 	
 func round_start():
+	Global.isPlayerTurn = true
 	for unit in units:
 		unit.init()
 	if !is_player_controlled:

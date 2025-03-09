@@ -39,6 +39,8 @@ func connect_container_signal(unit_group : UnitContainer):
 	unit_group.connect("all_units_moved", _on_unit_container_all_moved)
 	
 func _on_unit_container_all_moved():
+	Global.isPlayerTurn = is_player_turn
+	print("is player turn: " + str(is_player_turn))
 	if attack_processing:
 		await attack_complete
 	check_if_win()
