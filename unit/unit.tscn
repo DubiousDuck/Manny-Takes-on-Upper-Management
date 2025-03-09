@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=11 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://b57surgk1kwmg" path="res://assets/unit_sprites/healer/side_idle.png" id="3_7oxhv"]
+[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="3_2ul3e"]
 [ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="4_7oxhv"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
+[ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_a3q01"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
@@ -39,12 +40,13 @@ shape = SubResource("RectangleShape2D_7kobe")
 material = SubResource("ShaderMaterial_gcacr")
 position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(1, 1.06437)
-texture = ExtResource("3_7oxhv")
+texture = ExtResource("3_2ul3e")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"Healer": ExtResource("4_7oxhv"),
+&"Mage": ExtResource("5_a3q01"),
 &"unit_anim": ExtResource("8_4dskx")
 }
 

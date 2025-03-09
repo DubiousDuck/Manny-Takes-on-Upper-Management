@@ -297,5 +297,7 @@ func _set_anim_lib():
 		match unit_data.unit_class:
 			"Healer":
 				anim_lib = "Healer"
+			"Mage":
+				anim_lib = "Mage"
 			_:
 				anim_lib = "unit_anim"
