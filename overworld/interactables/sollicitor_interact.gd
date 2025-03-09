@@ -19,7 +19,8 @@ func _interact_call_back():
 		await EventBus.ui_element_ended
 	else:
 		Global.start_dialogue(["Hello good sir", "GIVE ME YOUR MONEY![NO][YES]"])
-		var choice = await EventBus.ui_choice_chosen
+		await EventBus.ui_element_ended
+		var choice = Global.dialogue_choice
 		print("choice: " + str(choice))
 		if choice=="NO":
 			Global.current_level = level_name

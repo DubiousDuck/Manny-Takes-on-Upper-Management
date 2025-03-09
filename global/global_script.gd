@@ -104,7 +104,7 @@ var reserves: Array[UnitData] = []
 
 ## Player input signals
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("Advance"):
 		EventBus.input_advance.emit()
 	elif event.is_action_pressed("Back"):
@@ -141,6 +141,8 @@ func verify_directory(path : String):
 
 const DIALOGUE = preload("res://ui/dialogue.tscn")
 const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
+
+var dialogue_choice: String = ""
 
 func ui_element_start():
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED

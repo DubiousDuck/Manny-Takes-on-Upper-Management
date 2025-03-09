@@ -36,10 +36,8 @@ func read_text(text : Array[String]):
 	
 	
 func _on_choice_pressed(choice_text: String):
-	chosen = choice_text
-	
-	EventBus.ui_element_ended.emit()
-	EventBus.ui_choice_chosen.emit(chosen)
+	Global.dialogue_choice = choice_text
+	EventBus.input_advance.emit()
 	
 func extract_bracketed(text: String) -> Array:
 	var regex = RegEx.new()
