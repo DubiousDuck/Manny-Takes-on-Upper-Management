@@ -26,39 +26,42 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 
 
 func _ready():
-	spawn_position = position  # Store initial position as reference
+	spawn_position = global_position  # Store initial position as reference
 	$Area2D.scene_to_go = scene_to_go
 
 func _physics_process(delta):
 	if player == null:
 		player = get_parent().get_node("Player")
 
-	diff = player.position - position
-	var to_spawn = spawn_position- position   # Distance from spawn
+	diff = player.global_position - global_position
+	var to_spawn = spawn_position - global_position   # Distance from spawn
 
 	move_timer -= delta
 
 	if move_timer <= 0:
 		# If too far from spawn, move back toward it
-		if to_spawn.length() > MAX_RADIUS:
-			velocity = Vector2.ZERO  # Stay still if within range
-			if to_spawn.dot(diff) >0:
-				velocity = diff.normalized() * SPEED
-		elif diff.length() < FOLLOW_D:
-			$Warning.visible = false
-			velocity = -diff.normalized() * SPEED
-		else:
+		if diff.length() > FOLLOW_D and diff.length() < MAX_RADIUS:
 			$Warning.visible = true
 			velocity = diff.normalized() * SPEED
+		elif to_spawn.length() > MAX_RADIUS:
+			$Warning.visible = false
+			velocity = to_spawn.normalized() * SPEED
+			#velocity = Vector2.ZERO  # Stay still if within range
+			#if to_spawn.dot(diff) >0:
+				#velocity = diff.normalized() * SPEED
+		elif to_spawn.length() < MAX_RADIUS/2:
+			velocity = Vector2.ZERO
+		#elif diff.length() <= FOLLOW_D:
+			#velocity = -diff.normalized() * SPEED
 		move_timer = TURN_COOLDOWN
 
 	process_rot(delta)
-	anim_handler(delta)
-	lastpos = position
+	anim_handler()
+	lastpos = global_position
 	move_and_slide()
 
 func process_rot(delta):
-	vel_moving_average = vel_moving_average * 0.8 + 0.2 * (position - lastpos) / delta
+	vel_moving_average = vel_moving_average * 0.8 + 0.2 * (global_position - lastpos) / delta
 
 	var last_dir = turn_dir
 	turn_dir = Vector2.RIGHT if vel_moving_average.x > 0 else Vector2.LEFT
@@ -75,7 +78,7 @@ func process_rot(delta):
 		await a.finished
 		turning = false
 
-func anim_handler(_delta):
+func anim_handler():
 	sprite_2d.hframes = 4
 	var idle = (vel_moving_average.length() < SPEED * 0.25)
 	if abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2 and not idle:
