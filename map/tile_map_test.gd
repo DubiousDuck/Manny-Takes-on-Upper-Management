@@ -11,14 +11,19 @@ const RED_CELL := Vector2i(2, 0)
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
 	EventBus.connect("clear_cells", _on_clear_cells)
+	EventBus.connect("set_cell", _on_set_cell)
 	
 func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
+	var alternative: int = 0
 	match id:
 		0: cell_variant = WHITE_CELL
 		1: cell_variant = RED_CELL
 		2: cell_variant = BLUE_CELL
-	set_cell(cell, MAIN_ATLAS_ID, cell_variant)
+		3:
+			cell_variant = WHITE_CELL
+			alternative = 1
+	set_cell(cell, MAIN_ATLAS_ID, cell_variant, alternative)
 
 func _on_occupy_cell(pos : Vector2i, unit_type : String):
 	if !HexNavi.get_cell_custom_data(pos, "traversable"):
@@ -43,6 +48,9 @@ func get_all_tilemap_cells() -> Array[Vector2i]:
 	for cell in get_used_cells():
 		all_cells.append(cell)
 	return all_cells
+
+func _on_set_cell(pos: Vector2i, id: int):
+	set_cell_to_variant(id, pos)
 
 #func _input(event):
 	#if event is InputEventMouseButton:

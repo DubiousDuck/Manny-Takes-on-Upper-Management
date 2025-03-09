@@ -294,5 +294,11 @@ func round_end_actions():
 		match cell_effect:
 			"heal":
 				if unit.health < unit.max_health: unit.health += 1
+				var new_cell := HexNavi.get_random_tile_pos()
+				while Vector2i(new_cell) == unit.cell:
+					new_cell = HexNavi.get_random_tile_pos()
+				EventBus.emit_signal("set_cell", new_cell, 3)
+				EventBus.emit_signal("set_cell", unit.cell, 0)
+				
 			_:
 				pass
