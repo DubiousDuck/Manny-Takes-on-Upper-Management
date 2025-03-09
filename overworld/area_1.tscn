@@ -412,18 +412,25 @@ position = Vector2(561, -69)
 [node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(928, -700)
 scene_to_go = "uid://dmiskhfx3cmdg"
+level_name = "level1-2"
+req = Array[String](["level1-1"])
 
 [node name="Sollicitor2" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(434, -598)
 scene_to_go = "uid://cjp0ijwpjsn8r"
+level_name = "level1-3"
+req = Array[String](["level1-1"])
 
 [node name="Sollicitor3" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(86, -458)
 scene_to_go = "uid://ci1jr6gkdbdkw"
+level_name = "level1-4"
+req = Array[String](["level1-2", "level1-3"])
 
 [node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
-position = Vector2(700, -365)
+position = Vector2(700, -340)
 scene_to_go = "uid://cwvvpfius26vd"
+level_name = "level1-1"
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]
 shape = SubResource("CircleShape2D_ujynv")

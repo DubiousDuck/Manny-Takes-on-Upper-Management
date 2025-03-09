@@ -9,11 +9,12 @@ class_name Recruit
 func _process(delta):
 	if Global.recruit_token > 0:
 		warning.visible = true
-		if !$AnimationPlayer.is_playing():
+		if !$AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != "warning_idle":
 			$AnimationPlayer.play("warning_idle")
 	else:
 		warning.visible = false
-		$AnimationPlayer.pause()
+		if !$AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != "idle":
+			$AnimationPlayer.play("idle")
 
 func _interact_call_back():
 	if Global.recruit_token <= 0:

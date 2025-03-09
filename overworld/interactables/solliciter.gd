@@ -11,6 +11,7 @@ const MAX_RADIUS = 100  # Maximum movement radius from spawn
 var player
 var spawn_position = Vector2.ZERO  # Initial spawn position
 
+@export_category("Character Parameters")
 @export var unit_data: UnitData
 @export var move_timer = 0.0
 @export var turning = false
@@ -19,7 +20,10 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 @export var vel_moving_average = Vector2(0, 0)
 @export var diff = Vector2(0, 0)
 
+@export_category("Level Parameters")
 @export_file("*.tscn") var scene_to_go
+@export var level_name: String
+@export var req: Array[String] = []
 
 @onready var sprite_2d = $Area2D/Sprite2D
 @onready var warning = $Warning
@@ -28,6 +32,8 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 func _ready():
 	spawn_position = global_position  # Store initial position as reference
 	$Area2D.scene_to_go = scene_to_go
+	$Area2D.level_name = level_name
+	$Area2D.req = req
 
 func _physics_process(delta):
 	if player == null:
@@ -41,7 +47,8 @@ func _physics_process(delta):
 	if move_timer <= 0:
 		# If too far from spawn, move back toward it
 		if diff.length() > FOLLOW_D and diff.length() < MAX_RADIUS:
-			$Warning.visible = true
+			if !Global.finished_levels.has(level_name):
+				$Warning.visible = true
 			velocity = diff.normalized() * SPEED
 		elif to_spawn.length() > MAX_RADIUS:
 			$Warning.visible = false
@@ -49,7 +56,7 @@ func _physics_process(delta):
 			#velocity = Vector2.ZERO  # Stay still if within range
 			#if to_spawn.dot(diff) >0:
 				#velocity = diff.normalized() * SPEED
-		elif to_spawn.length() < MAX_RADIUS/2:
+		elif diff.length() < FOLLOW_D or to_spawn.length() < MAX_RADIUS/3:
 			velocity = Vector2.ZERO
 		#elif diff.length() <= FOLLOW_D:
 			#velocity = -diff.normalized() * SPEED
