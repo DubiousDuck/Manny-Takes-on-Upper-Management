@@ -405,33 +405,30 @@ func get_targets_of_type(targets: Array[Vector2i], type: int): #return cells amo
 				enemy_cells.append(unit.cell)
 	)
 	for target in targets:
-		if target in allied_cells or target in enemy_cells:
-			match type:
-				SkillInfo.TargetType.ALLIES:
-					if allied_cells.has(target): correct_targets.append(target)
-				SkillInfo.TargetType.ENEMIES:
-					if enemy_cells.has(target): correct_targets.append(target)
-				SkillInfo.TargetType.SELF:
-					if target == current_unit.cell: correct_targets.append(target)
-				SkillInfo.TargetType.ANY_UNIT:
+		match type:
+			SkillInfo.TargetType.ALLIES:
+				if allied_cells.has(target): correct_targets.append(target)
+			SkillInfo.TargetType.ENEMIES:
+				if enemy_cells.has(target): correct_targets.append(target)
+			SkillInfo.TargetType.SELF:
+				if target == current_unit.cell: correct_targets.append(target)
+			SkillInfo.TargetType.ANY_UNIT:
+				if target in allied_cells or target in enemy_cells:
 					correct_targets.append(target)
-				SkillInfo.TargetType.EXCEPT_SELF:
+			SkillInfo.TargetType.EXCEPT_SELF:
+				if target in allied_cells or target in enemy_cells:
 					if target != current_unit.cell: correct_targets.append(target)
-				SkillInfo.TargetType.ALLIES_EXCEPT_SELF:
-					if allied_cells.has(target) and target != current_unit.cell: correct_targets.append(target)
-				SkillInfo.TargetType.ANY_CELL:
+			SkillInfo.TargetType.ALLIES_EXCEPT_SELF:
+				if allied_cells.has(target) and target != current_unit.cell: correct_targets.append(target)
+			SkillInfo.TargetType.ANY_CELL:
+				correct_targets.append(target)
+			SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
+				if target != current_unit.cell: correct_targets.append(target)
+			SkillInfo.TargetType.ANY_CELL_EXCEPT_ALLIES:
+				if !(target in allied_cells):
 					correct_targets.append(target)
-				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
-					if target != current_unit.cell: correct_targets.append(target)
-				_:
-					pass
-		else:
-			match type:
-				SkillInfo.TargetType.ANY_CELL:
-					correct_targets.append(target)
-				SkillInfo.TargetType.ANY_CELL_EXCEPT_SELF:
-					if target != current_unit.cell: correct_targets.append(target)
-				_: pass
+			_:
+				pass
 	
 	return correct_targets
 	

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://bjt330wi86rkh"]
 
-[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_65l1b"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_ptiey"]
 
 [resource]
-script = ExtResource("1_65l1b")
+script = ExtResource("1_ptiey")
 name = "Random Pits"
 type = 1
-targets = 7
+targets = 8
 affinity = 1
 range = 2
 area = 0
