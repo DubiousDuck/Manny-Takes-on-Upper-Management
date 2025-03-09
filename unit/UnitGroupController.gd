@@ -195,6 +195,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					_:
 						print("nothing to displace yet")
 				attacker.check_if_can_throw()
+			SkillInfo.EffectType.SET_TILE:
+				match effect.y:
+					1:
+						for tile in targets:
+							EventBus.emit_signal("set_cell", tile, 4)
 			_:
 				print("nothing happens yet")
 				
@@ -301,6 +306,6 @@ func round_end_actions():
 					new_cell = HexNavi.get_random_tile_pos()
 				EventBus.emit_signal("set_cell", new_cell, 3)
 				EventBus.emit_signal("set_cell", unit.cell, 0)
-				
+				_on_update_cell_status(true)
 			_:
 				pass

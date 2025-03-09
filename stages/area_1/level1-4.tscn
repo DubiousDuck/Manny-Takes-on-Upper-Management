@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="12_d3ym4"]
 [ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="13_bp82l"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="14_jkbq3"]
+[ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/special_enemies/boss_1.tres" id="15_5o3ts"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="15_jxpqp"]
 [ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="16_s0xsk"]
 [ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="17_m1pkm"]
-[ext_resource type="Resource" uid="uid://dj115e2fbsle6" path="res://unit/params/tank.tres" id="18_fbkqk"]
 
 [node name="Level1-4" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_dv56f")
@@ -81,6 +81,6 @@ unit_data = ExtResource("17_m1pkm")
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("12_d3ym4")]
 position = Vector2(429, 245)
 script = ExtResource("15_jxpqp")
-unit_data = ExtResource("18_fbkqk")
+unit_data = ExtResource("15_5o3ts")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

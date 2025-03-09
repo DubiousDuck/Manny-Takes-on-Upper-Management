@@ -23,7 +23,13 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 		3:
 			cell_variant = WHITE_CELL
 			alternative = 1
+		4:
+			cell_variant = RED_CELL
+			alternative = 1
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant, alternative)
+	#Update cell weights
+	HexNavi.set_weight_of_layer("traversable", true, 1)
+	HexNavi.set_weight_of_layer("traversable", false, 999)
 
 func _on_occupy_cell(pos : Vector2i, unit_type : String):
 	if !HexNavi.get_cell_custom_data(pos, "traversable"):

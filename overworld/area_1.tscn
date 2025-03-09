@@ -413,6 +413,14 @@ position = Vector2(561, -69)
 position = Vector2(928, -700)
 scene_to_go = "uid://dmiskhfx3cmdg"
 
+[node name="Sollicitor2" parent="." instance=ExtResource("8_ba6uy")]
+position = Vector2(434, -598)
+scene_to_go = "uid://cjp0ijwpjsn8r"
+
+[node name="Sollicitor3" parent="." instance=ExtResource("8_ba6uy")]
+position = Vector2(86, -458)
+scene_to_go = "uid://ci1jr6gkdbdkw"
+
 [node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(700, -365)
 scene_to_go = "uid://cwvvpfius26vd"
