@@ -5,7 +5,8 @@ extends TileMapLayer
 const GRID_SIZE = 5
 const MAIN_ATLAS_ID = 0
 const BLUE_CELL := Vector2i(1, 0)
-const WHITE_CELL := Vector2i(0, 0)
+const WHITE_CELL := Vector2i(0, 1)
+const YELLOW_CELL := Vector2i(0, 0)
 const RED_CELL := Vector2i(2, 0)
 
 func _ready():
@@ -17,11 +18,11 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
 	var alternative: int = 0
 	match id:
-		0: cell_variant = WHITE_CELL
+		0: cell_variant = YELLOW_CELL
 		1: cell_variant = RED_CELL
 		2: cell_variant = BLUE_CELL
 		3:
-			cell_variant = WHITE_CELL
+			cell_variant = YELLOW_CELL
 			alternative = 1
 		4:
 			cell_variant = RED_CELL
@@ -41,13 +42,13 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 		"enemy":
 			color_cell = RED_CELL
 		_:
-			color_cell = WHITE_CELL
+			color_cell = YELLOW_CELL
 	set_cell(pos, MAIN_ATLAS_ID, color_cell)
 
 func _on_clear_cells():
 	for pos in get_used_cells():
 		if HexNavi.get_cell_custom_data(pos, "effect") == "":
-			set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
+			set_cell(pos, MAIN_ATLAS_ID, YELLOW_CELL)
 	
 func get_all_tilemap_cells() -> Array[Vector2i]:
 	var all_cells: Array[Vector2i] = []
