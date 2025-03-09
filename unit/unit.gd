@@ -243,7 +243,6 @@ func animation_state(animation : String):
 	$Sprite2D.hframes = 4
 	#print("# NEW ANIMATION: " + animation + " (unit.gd)")
 	$AnimationPlayer.play("%s/%s" %[anim_lib, animation])
-	print("%s/%s" %[anim_lib, animation])
 
 #in the animation player
 func emit_attack_point():
