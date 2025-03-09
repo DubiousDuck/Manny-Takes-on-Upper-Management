@@ -36,6 +36,7 @@ func update_followers() -> void:
 		var follower = follower_scene.instantiate()
 		follower.position = player_pos + offset
 		follower.unit_data = unit_data
+		follower.set_anim_lib()
 		add_child(follower)
 		_set_owner_recursive(follower,self,{})
 		followers[unit_data] = follower

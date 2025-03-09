@@ -12,6 +12,7 @@ const SCALE := 3
 const TURN_COOLDOWN = 0.15  # seconds between allowed between steps
 
 var player
+var anim_lib: String = "ow_anim"
 
 # unit attributes
 @export var unit_data:UnitData
@@ -138,20 +139,20 @@ func sort_z_layer():
 func anim_handler(_delta):
 	if not free:
 		$Sprite2D.hframes = 1
-		$AnimationPlayer.play("ow_anim/thrown")
+		$AnimationPlayer.play("%s/thrown" %anim_lib)
 		return
 	
 	$Sprite2D.hframes = 4
 	var idle = (vel_moving_average.length() < SPEED*0.25)
 	if (abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2) and not idle:
 		if vel_moving_average.y >= 0:
-			$AnimationPlayer.play("ow_anim/front_walk")
+			$AnimationPlayer.play("%s/front_walk" %anim_lib)
 		else:
-			$AnimationPlayer.play("ow_anim/back_walk")
+			$AnimationPlayer.play("%s/back_walk" %anim_lib)
 	elif vel_moving_average != Vector2.ZERO and not idle:
-		$AnimationPlayer.play("ow_anim/side_walk")
+		$AnimationPlayer.play("%s/side_walk" %anim_lib)
 	else:
-		$AnimationPlayer.play("ow_anim/front_idle")
+		$AnimationPlayer.play("%s/front_idle" %anim_lib)
 
 func _on_area_2d_mouse_entered() -> void:
 	if (diff.length()<PLAYER_HOLD_D):
@@ -159,3 +160,11 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	selected=false
+
+func set_anim_lib(): #TODO: Make separate animation library for each class
+	if unit_data:
+		match unit_data.unit_class:
+			"Healer":
+				anim_lib = "Healer_ow"
+			_:
+				anim_lib = "ow_anim"
