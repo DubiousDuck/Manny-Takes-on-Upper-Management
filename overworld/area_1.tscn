@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8qibn8b170i0"]
+[gd_scene load_steps=19 format=3 uid="uid://c8qibn8b170i0"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_emvcp"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_xmci8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="5_goldk"]
 [ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]
 [ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="8_ba6uy"]
+[ext_resource type="Texture2D" uid="uid://wb3tjon17og6" path="res://assets/overworld/walls.png" id="8_emvcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i12cs"]
 size = Vector2(376, 12.5)
@@ -31,6 +32,58 @@ size = Vector2(846, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujynv"]
 radius = 60.9007
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xmci8"]
+texture = ExtResource("8_emvcp")
+margins = Vector2i(8, 0)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+0:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+1:2/0 = 0
+2:3/0 = 0
+8:2/0 = 0
+8:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v73oa"]
+sources/0 = SubResource("TileSetAtlasSource_xmci8")
 
 [node name="Area1" type="Node2D"]
 y_sort_enabled = true
@@ -434,6 +487,9 @@ level_name = "level1-1"
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]
 shape = SubResource("CircleShape2D_ujynv")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_v73oa")
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
