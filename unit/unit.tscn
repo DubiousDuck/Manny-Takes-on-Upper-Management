@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=14 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="3_2ul3e"]
-[ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="4_7oxhv"]
+[ext_resource type="Texture2D" uid="uid://bbuicgv3flgjb" path="res://assets/unit_sprites/healer/front_idle.png" id="3_a3q01"]
+[ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_a3q01"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
+[ext_resource type="AudioStream" uid="uid://xyo038n54hg1" path="res://assets/sfx/fist-punch-or-kick-7171.mp3" id="8_4xbu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 size = Vector2(12.9032, 16.2162)
@@ -20,6 +21,42 @@ shader = ExtResource("1_ipbkg")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/flash_state = 0.0
 shader_parameter/transparency = 1.0
+shader_parameter/progress = 0.0
+shader_parameter/noise_desnity = 60.0
+shader_parameter/beam_size = 0.029
+shader_parameter/teleport_color = Color(0, 1.02, 1.2, 1)
+
+[sub_resource type="Animation" id="Animation_j0e0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_gcacr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dfwp"]
+_data = {
+&"RESET": SubResource("Animation_j0e0d")
+}
 
 [node name="Unit" type="CharacterBody2D"]
 scale = Vector2(2.48, 2.96)
@@ -40,12 +77,13 @@ shape = SubResource("RectangleShape2D_7kobe")
 material = SubResource("ShaderMaterial_gcacr")
 position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(1, 1.06437)
-texture = ExtResource("3_2ul3e")
+texture = ExtResource("3_a3q01")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"Healer": ExtResource("4_7oxhv"),
+&"": SubResource("AnimationLibrary_5dfwp"),
+&"Healer": ExtResource("4_4xbu7"),
 &"Mage": ExtResource("5_a3q01"),
 &"unit_anim": ExtResource("8_4dskx")
 }
@@ -102,6 +140,7 @@ mouse_default_cursor_shape = 2
 unit = NodePath("..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4xbu7")
 
 [connection signal="anim_complete" from="." to="." method="_on_anim_complete"]
 [connection signal="attack_point" from="." to="." method="_on_attack_point"]

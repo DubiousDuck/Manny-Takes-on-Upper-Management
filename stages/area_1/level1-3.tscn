@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=20 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="15_fa8xf"]
 [ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="16_phfro"]
 [ext_resource type="Resource" uid="uid://d35bvyq0lgfdj" path="res://unit/params/ranger.tres" id="17_xmqv0"]
+[ext_resource type="Resource" uid="uid://k5gy8n00eull" path="res://unit/params/mage.tres" id="19_bmv3h"]
 
 [node name="Level1-3" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_t8occ")
@@ -86,5 +87,10 @@ unit_data = ExtResource("16_phfro")
 position = Vector2(429, 245)
 script = ExtResource("15_fa8xf")
 unit_data = ExtResource("15_13kin")
+
+[node name="EnemyUnit4" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
+position = Vector2(611, 346)
+script = ExtResource("15_fa8xf")
+unit_data = ExtResource("19_bmv3h")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

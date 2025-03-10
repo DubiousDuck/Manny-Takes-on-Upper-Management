@@ -314,7 +314,6 @@ func _unhandled_input(event):
 				current_unit.move_along_path(full_path)
 				in_progress = true
 				await current_unit.movement_complete
-				EventBus.emit_signal("update_cell_status", true)
 				deselect_current_unit()
 				in_progress = false
 			

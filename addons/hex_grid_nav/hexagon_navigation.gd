@@ -133,6 +133,17 @@ func _dfs(k : int, node_id : int, parent_id : int, solution_arr : Array, max_wei
 		var neighbor_id = tile_to_id(neighbor_pos)
 		if neighbor_id != parent_id:
 			_dfs(k-1, neighbor_id, node_id, solution_arr, max_weight)
-	
+
+## Return all tiles with [param value] in the custom data value with name [param custom_data_name]
+func get_all_tile_with_layer(custom_data_name: String, value: Variant) -> Array[Vector2i]:
+	var valid_tiles: Array[Vector2i] = []
+	var all_point_id = astar.get_point_ids()
+	for id in all_point_id:
+		var tile = id_to_tile(id)
+		if get_cell_custom_data(tile, custom_data_name) == value:
+			valid_tiles.append(tile)
+	return valid_tiles
+
+## Returns a random tile from the registered tile set
 func get_random_tile_pos() -> Vector2: #for testing and placeholder purposes
 	return astar.get_point_position(randi_range(0, astar.get_point_count()-1))

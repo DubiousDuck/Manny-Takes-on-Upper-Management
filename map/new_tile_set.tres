@@ -22,8 +22,13 @@ texture_region_size = Vector2i(128, 128)
 2:0/1 = 1
 2:0/1/modulate = Color(0.704991, 0.0471962, 0.182532, 1)
 2:0/1/custom_data_2 = "death"
+0:1/next_alternative_id = 2
 0:1/0 = 0
 0:1/0/custom_data_0 = true
+0:1/1 = 1
+0:1/1/modulate = Color(0.0117647, 1, 1, 1)
+0:1/1/custom_data_0 = true
+0:1/1/custom_data_2 = "teleport"
 
 [resource]
 tile_shape = 3
