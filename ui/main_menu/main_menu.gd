@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 
+func _ready():
+	$AnimationPlayer.play("looping_background")
+
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://overworld/area_1.tscn")
 

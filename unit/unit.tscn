@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://bbuicgv3flgjb" path="res://assets/unit_sprites/healer/front_idle.png" id="3_a3q01"]
+[ext_resource type="Texture2D" uid="uid://bbr2r08ee52fv" path="res://assets/unit_sprites/mage/front_idle.png" id="3_a3q01"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_a3q01"]
@@ -23,7 +23,7 @@ shader_parameter/flash_state = 0.0
 shader_parameter/transparency = 1.0
 shader_parameter/progress = 0.0
 shader_parameter/noise_desnity = 60.0
-shader_parameter/beam_size = 0.029
+shader_parameter/beam_size = 0.15
 shader_parameter/teleport_color = Color(0, 1.02, 1.2, 1)
 
 [sub_resource type="Animation" id="Animation_j0e0d"]

@@ -129,6 +129,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						if unit == null:
 							return
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
+						await unit.tile_action()
 				)
 				# FIXME: when knockback is the last action before player turn ends, weird things happen
 				
@@ -204,7 +205,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				print("nothing happens yet")
 				
 	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
-	if !all_units.is_empty(): all_units.map(func(unit : Unit): unit.check_if_dead()) # TODO: rare bug here? trying to call on already freed node
+	if !all_units.is_empty():
+		all_units.map(
+			func(unit : Unit): 
+				unit.check_if_dead()
+		) # TODO: rare bug here? trying to call on already freed node
 	_on_update_cell_status(true)
 	attack_processing = false
 	attack_complete.emit()
@@ -220,12 +225,6 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 	enemy_group.refresh_units()
 	all_units.append_array(player_group.units)
 	all_units.append_array(enemy_group.units)
-	
-	# Check for any tile effects
-	for unit in all_units:
-		var cell_effect: String = HexNavi.get_cell_custom_data(unit.cell, "effect")
-		if cell_effect != "":
-			await tile_stepped_on_action(unit, cell_effect)
 			#print("signal received")
 	
 	for unit in player_group.units:
@@ -318,28 +317,3 @@ func round_end_actions():
 				_on_update_cell_status(true)
 			_:
 				pass
-
-func tile_stepped_on_action(unit: Unit, effect: String):
-	match effect:
-		"teleport":
-			var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
-			#print(end_points)
-			if end_points.size() > 1: #if there are no other teleport tiles
-				var random_tile: Vector2i = end_points.pick_random()
-				while random_tile == unit.cell:
-					random_tile = end_points.pick_random()
-				
-				#transport unit
-				unit.animation_state("teleported")
-				await unit.anim_complete
-				unit.cell = random_tile
-				unit.global_position = HexNavi.cell_to_global(unit.cell)
-				unit.animation_state("teleported_reversed")
-				await unit.anim_complete
-				unit.animation_state("front_idle")
-				
-				#give an attack token back
-				unit.actions_avail.append(unit.Action.MOVE)
-		_:
-			pass
-	#print("signal emitted")

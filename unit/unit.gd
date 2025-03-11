@@ -140,8 +140,10 @@ func move_along_path(full_path : Array[Vector2i]):
 	await move_tween.finished
 	actions_avail.erase(Action.MOVE)
 	cell = HexNavi.global_to_cell(global_position)
+	await tile_action()
 	unit_held.map( #update held unit cell info
 		func(unit):
+			unit.global_position = HexNavi.cell_to_global(cell)
 			unit.cell = cell
 	)
 	if diff.x == 0:
@@ -149,6 +151,7 @@ func move_along_path(full_path : Array[Vector2i]):
 	else:
 		animation_state("side_idle")
 	#print(name + " moved!")
+	
 	EventBus.emit_signal("update_cell_status", true)
 	movement_complete.emit()
 
@@ -219,6 +222,27 @@ func check_if_dead():
 		EventBus.emit_signal("unit_died")
 		queue_free.call_deferred()
 
+func tile_action():
+	var cell_effect: String =  HexNavi.get_cell_custom_data(cell, "effect")
+	match cell_effect:
+		"teleport":
+			var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
+			#print(end_points)
+			if end_points.size() <= 1:
+				return #if there are no other teleport tiles
+			var random_tile: Vector2i = end_points.pick_random()
+			while random_tile == cell:
+				random_tile = end_points.pick_random()
+			#transport unit
+			animation_state("teleported")
+			await anim_complete
+			cell = random_tile
+			global_position = HexNavi.cell_to_global(cell)
+			animation_state("teleported_reversed")
+			await anim_complete
+			animation_state("front_idle")
+		_:
+			return
 
 func toggle_skill_ui(state: bool, wait_only: bool = false):
 	if state:

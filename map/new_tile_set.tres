@@ -26,7 +26,7 @@ texture_region_size = Vector2i(128, 128)
 0:1/0 = 0
 0:1/0/custom_data_0 = true
 0:1/1 = 1
-0:1/1/modulate = Color(0.0117647, 1, 1, 1)
+0:1/1/modulate = Color(0.0117647, 0.72549, 1, 1)
 0:1/1/custom_data_0 = true
 0:1/1/custom_data_2 = "teleport"
 

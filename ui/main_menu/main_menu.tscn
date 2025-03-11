@@ -1,10 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6pye0w0cqmw7"]
+[gd_scene load_steps=7 format=3 uid="uid://b6pye0w0cqmw7"]
 
 [ext_resource type="Script" uid="uid://wg7e2yhwuc16" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_mu8pm"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_omy8q"]
+
+[sub_resource type="Animation" id="Animation_omy8q"]
+resource_name = "looping_background"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1150, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i5wg5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1150, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3c04x"]
+_data = {
+&"RESET": SubResource("Animation_i5wg5"),
+&"looping_background": SubResource("Animation_omy8q")
+}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_uhj5c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1150.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_omy8q")
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 15
@@ -68,6 +118,11 @@ layout_mode = 2
 theme = ExtResource("2_mu8pm")
 theme_override_font_sizes/font_size = 100
 text = "Credits"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3c04x")
+}
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/load" to="." method="_on_load_pressed"]
