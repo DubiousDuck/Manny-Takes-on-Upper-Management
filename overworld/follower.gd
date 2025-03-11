@@ -166,5 +166,7 @@ func set_anim_lib(): #TODO: Make separate animation library for each class
 		match unit_data.unit_class:
 			"Healer":
 				anim_lib = "Healer_ow"
+			"Fighter":
+				anim_lib = "Fighter_ow"
 			_:
 				anim_lib = "ow_anim"

@@ -1,6 +1,7 @@
 extends AudioStreamPlayer
 
 const _battle_music = preload("res://assets/music/HR1 Full.wav")
+const _OW_ONE_MUSIC = preload("res://assets/music/HR Overworld 1.wav")
 
 const _47 = preload("res://assets/test_songs/4758872798134272.wav")
 const _53 = preload("res://assets/test_songs/5388408074141696.wav")
@@ -14,38 +15,11 @@ var volValue: int = 69
 func _ready():
 	EventBus.connect("start_battle", _on_start_battle)
 	EventBus.connect("back_to_overworld", _on_back_to_overworld)
-	var i: int = randi_range(0,4)
-	if i == 0:
-		stream = _47
-	elif i == 1:
-		stream = _53
-	elif i == 2:
-		stream = _54
-	elif i == 3:
-		stream = _59
-	elif i == 4:
-		stream = _64
-	lastTrack = i
+	stream = _OW_ONE_MUSIC
 	play()
 
 func _on_finished():
-	var i: int = randi_range(0,4)
-	
-	while i == lastTrack:
-		i = randi_range(0,4)
-	
-	if i == 0:
-		stream = _47
-	elif i == 1:
-		stream = _53
-	elif i == 2:
-		stream = _54
-	elif i == 3:
-		stream = _59
-	elif i == 4:
-		stream = _64
-	
-	lastTrack = i
+	stream = _OW_ONE_MUSIC
 	
 	play()
 

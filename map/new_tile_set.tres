@@ -1,6 +1,15 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://od08ebdovrmi"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://od08ebdovrmi"]
 
+[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/teleport_particles.gdshader" id="1_2nufh"]
 [ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nufh"]
+shader = ExtResource("1_2nufh")
+shader_parameter/original_color = Color(0.705882, 0.0470588, 0.184314, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_desnity = 15.0
+shader_parameter/beam_size = 0.05
+shader_parameter/color = Color(0.630183, 0.300069, 0.0618299, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inqtn"]
 texture = ExtResource("1_tre3t")
@@ -21,6 +30,7 @@ texture_region_size = Vector2i(128, 128)
 2:0/0/custom_data_1 = true
 2:0/1 = 1
 2:0/1/modulate = Color(0.704991, 0.0471962, 0.182532, 1)
+2:0/1/material = SubResource("ShaderMaterial_2nufh")
 2:0/1/custom_data_2 = "death"
 0:1/next_alternative_id = 2
 0:1/0 = 0

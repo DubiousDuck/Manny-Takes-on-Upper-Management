@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cabi3s34sqtgq"]
+[gd_scene load_steps=8 format=3 uid="uid://cabi3s34sqtgq"]
 
 [ext_resource type="Script" uid="uid://b0gviuh3w6w0r" path="res://overworld/follower.gd" id="1_n8ld1"]
-[ext_resource type="Texture2D" uid="uid://b57surgk1kwmg" path="res://assets/unit_sprites/healer/side_idle.png" id="2_lqu6b"]
+[ext_resource type="Texture2D" uid="uid://rlrr0057i4se" path="res://assets/unit_sprites/fighter/Fighter_Walk_Side.png" id="2_xhlmu"]
+[ext_resource type="AnimationLibrary" uid="uid://c5oy41wj0p72v" path="res://overworld/Fighter_ow.res" id="3_j2knc"]
 [ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_w1yvo"]
 [ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="3_xhlmu"]
 
@@ -23,11 +24,12 @@ shape = SubResource("CapsuleShape2D_7mksb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(3, 3)
-texture = ExtResource("2_lqu6b")
+texture = ExtResource("2_xhlmu")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
+&"Fighter_ow": ExtResource("3_j2knc"),
 &"Healer_ow": ExtResource("3_xhlmu"),
 &"ow_anim": ExtResource("3_w1yvo")
 }

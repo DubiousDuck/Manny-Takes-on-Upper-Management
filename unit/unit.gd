@@ -323,5 +323,7 @@ func _set_anim_lib():
 				anim_lib = "Healer"
 			"Mage":
 				anim_lib = "Mage"
+			"Fighter":
+				anim_lib = "Fighter"
 			_:
 				anim_lib = "unit_anim"

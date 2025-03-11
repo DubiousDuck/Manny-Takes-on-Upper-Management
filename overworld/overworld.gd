@@ -37,6 +37,7 @@ func update_followers() -> void:
 		follower.position = player_pos + offset
 		follower.unit_data = unit_data
 		follower.set_anim_lib()
+		follower.scale = Vector2(0.5, 0.5)
 		add_child(follower)
 		_set_owner_recursive(follower,self,{})
 		followers[unit_data] = follower
