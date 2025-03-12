@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Solliciter
 
-const FOLLOW_D = 20   # Distance at which it follows the player
+const FOLLOW_D = 30   # Distance at which it follows the player
 const SPEED = 60
 const SCALE := 3
 const TURN_COOLDOWN = 0.01  # seconds between allowed between steps
