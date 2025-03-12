@@ -4,7 +4,7 @@ class_name UnitData
 
 #Battle related
 @export_enum("Protagonist", "Tank", "Fighter", 
-	"Ranger", "Healer", "Mage") var unit_class: String
+	"Ranger", "Healer", "Mage", "Boss") var unit_class: String
 
 enum ATTRIBUTES {HP, ATK, MAG, MOV}
 @export var attributes: Dictionary = {

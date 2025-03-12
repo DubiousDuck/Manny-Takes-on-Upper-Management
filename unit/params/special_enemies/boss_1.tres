@@ -1,20 +1,21 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://dxxemof4tvpsa"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://dxxemof4tvpsa"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_dtjrn"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_71wds"]
 [ext_resource type="Resource" uid="uid://bjt330wi86rkh" path="res://skills/boss_skills/random_death_tile.tres" id="3_1u4rb"]
+[ext_resource type="Resource" uid="uid://bao7vfdy1qt2i" path="res://skills/basic_heal.tres" id="4_5jn2n"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_el7v1"]
 
 [resource]
 script = ExtResource("1_dtjrn")
-unit_class = "Healer"
+unit_class = "Boss"
 attributes = {
 0: 10,
 1: 2,
 2: 2,
 3: 2
 }
-skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("4_el7v1")])
+skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
 rel = ""
 mood = 50
 money = 5

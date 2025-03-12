@@ -27,6 +27,7 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 
 @onready var sprite_2d = $Area2D/Sprite2D
 @onready var warning = $Warning
+@onready var area_2d = $Area2D
 
 
 func _ready():
@@ -45,11 +46,16 @@ func _physics_process(delta):
 
 	move_timer -= delta
 
-	var chase = true
-	var child = $Area2D # Replace "ChildNode" with the actual name of the child
-	if child:
-		child.check_locked()
-		chase = not child.locked # Call the function from the child's script
+	var chase = false
+	
+	# Check if level requirement is met and if the level is completed
+	area_2d.check_locked()
+	area_2d.check_completed()
+	if !area_2d.locked:
+		chase = true
+		if area_2d.completed:
+			chase = false
+	
 	
 	if move_timer <= 0 and chase:
 		# If too far from spawn, move back toward it

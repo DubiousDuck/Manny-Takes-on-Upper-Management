@@ -173,7 +173,7 @@ func unit_action():
 	
 	for skill in current_unit.skills:
 		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
-		if get_targets_of_type(targets, skill.targets).size() > 0:
+		if skill != preload("res://skills/wait.tres") and get_targets_of_type(targets, skill.targets).size() > 0:
 			valid_skills.append(skill)
 
 	# If we have valid skills, pick a random one

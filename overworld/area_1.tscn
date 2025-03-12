@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="2_v73oa"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_xmci8"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="3_pwake"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="3_v73oa"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://assets/ui/pause_canvas_layer.tscn" id="3_v73oa"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_pwake"]
 [ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="5_goldk"]
 [ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]

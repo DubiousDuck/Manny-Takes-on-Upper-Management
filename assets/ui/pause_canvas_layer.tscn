@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://swx1ag0pr6hh"]
+[gd_scene load_steps=11 format=3 uid="uid://swx1ag0pr6hh"]
 
 [ext_resource type="Script" uid="uid://cgqpt5abxnbl1" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_711h1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 [ext_resource type="Texture2D" uid="uid://b5npyleamaofs" path="res://assets/ui/pause_icon.png" id="6_b6mne"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="6_erp37"]
+[ext_resource type="Texture2D" uid="uid://dt0wdl62xgcew" path="res://assets/ui/restart_level_icon.png" id="8_f6ecg"]
+[ext_resource type="Texture2D" uid="uid://cfahyusqmlmqo" path="res://assets/ui/exit_icon.png" id="9_6vq0s"]
 
 [node name="PauseCanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -148,15 +150,16 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
-text = "Restart Level"
-text_overrun_behavior = 2
+text = "Restart"
+icon = ExtResource("8_f6ecg")
 
 [node name="ExitLevel" type="Button" parent="BattleMenuControl/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
-text = "Exit Level"
+text = "Exit"
+icon = ExtResource("9_6vq0s")
 
 [node name="QuitGame" type="Button" parent="BattleMenuControl/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)

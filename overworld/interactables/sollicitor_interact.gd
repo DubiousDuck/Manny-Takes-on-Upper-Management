@@ -5,12 +5,18 @@ class_name SollicitorInteract
 @export_file("*.tscn") var scene_to_go
 
 @export var locked=true
+@export var completed = false
 @export var req :Array[String] = []
 @export var level_name :String
 
 func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
 		locked=false
+
+func check_completed():
+	if Global.finished_levels.has(level_name):
+		completed = true
+
 func _interact_call_back():
 	if locked:
 		check_locked()
