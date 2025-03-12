@@ -1,18 +1,17 @@
-[gd_scene load_steps=25 format=4 uid="uid://c8qibn8b170i0"]
+[gd_scene load_steps=24 format=4 uid="uid://bsrapbg4oahc8"]
 
-[ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_emvcp"]
-[ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="2_v73oa"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_xmci8"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="3_v73oa"]
-[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_pwake"]
-[ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="5_goldk"]
-[ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]
-[ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="8_ba6uy"]
-[ext_resource type="Texture2D" uid="uid://wb3tjon17og6" path="res://assets/overworld/walls.png" id="8_emvcp"]
-[ext_resource type="PackedScene" uid="uid://dldkxju4niopg" path="res://overworld/interactables/elevator.tscn" id="10_v73oa"]
+[ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_cbm2g"]
+[ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="2_n71iy"]
+[ext_resource type="Texture2D" uid="uid://wb3tjon17og6" path="res://assets/overworld/walls.png" id="3_tbaiv"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="4_ivycp"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_ay40q"]
+[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="6_o88bp"]
+[ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="7_t1l4q"]
+[ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="8_7en5a"]
+[ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="9_rt1we"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwake"]
-texture = ExtResource("2_v73oa")
+texture = ExtResource("2_n71iy")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -31,7 +30,7 @@ texture = ExtResource("2_v73oa")
 3:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_goldk"]
-texture = ExtResource("8_emvcp")
+texture = ExtResource("3_tbaiv")
 1:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -97,7 +96,7 @@ radius = 60.9007
 
 [node name="Area1" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_emvcp")
+script = ExtResource("1_cbm2g")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -119,7 +118,7 @@ offset_left = 906.0
 offset_top = 565.0
 offset_right = 1133.0
 offset_bottom = 628.0
-theme = ExtResource("2_xmci8")
+theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 45
 text = "To Skill Tree"
 
@@ -128,7 +127,7 @@ offset_left = 940.0
 offset_top = 506.0
 offset_right = 1131.0
 offset_bottom = 556.0
-theme = ExtResource("2_xmci8")
+theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
 text = "Save Game"
 
@@ -142,11 +141,11 @@ offset_right = 253.0
 offset_bottom = -17.0
 grow_vertical = 0
 mouse_filter = 1
-theme = ExtResource("2_xmci8")
+theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
-[node name="PauseCanvasLayer" parent="." instance=ExtResource("3_v73oa")]
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
 
 [node name="RoomLayout" type="Node2D" parent="."]
 
@@ -442,7 +441,7 @@ grow_vertical = 2
 scale = Vector2(0.480005, 1)
 color = Color(0.450648, 0.450648, 0.450648, 1)
 
-[node name="Player" parent="." instance=ExtResource("4_pwake")]
+[node name="Player" parent="." instance=ExtResource("6_o88bp")]
 position = Vector2(632, 360)
 scale = Vector2(0.5, 0.5)
 collision_mask = 3
@@ -450,34 +449,34 @@ collision_mask = 3
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
-script = ExtResource("5_goldk")
+script = ExtResource("7_t1l4q")
 
-[node name="Recruit" parent="." instance=ExtResource("7_hq1u4")]
+[node name="Recruit" parent="." instance=ExtResource("8_7en5a")]
 position = Vector2(547, 249)
 scale = Vector2(0.5, 0.5)
 
-[node name="Sollicitor" parent="." instance=ExtResource("8_ba6uy")]
+[node name="Sollicitor" parent="." instance=ExtResource("9_rt1we")]
 position = Vector2(736, 29)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://dmiskhfx3cmdg"
 level_name = "level1-2"
 req = Array[String](["level1-1"])
 
-[node name="Sollicitor2" parent="." instance=ExtResource("8_ba6uy")]
+[node name="Sollicitor2" parent="." instance=ExtResource("9_rt1we")]
 position = Vector2(508, 29)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1"])
 
-[node name="Sollicitor3" parent="." instance=ExtResource("8_ba6uy")]
+[node name="Sollicitor3" parent="." instance=ExtResource("9_rt1we")]
 position = Vector2(336, 71)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://ci1jr6gkdbdkw"
 level_name = "level1-4"
 req = Array[String](["level1-2", "level1-3"])
 
-[node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
+[node name="Receptionist" parent="." instance=ExtResource("9_rt1we")]
 position = Vector2(622, 140)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cwvvpfius26vd"
@@ -486,11 +485,6 @@ metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]
 shape = SubResource("CircleShape2D_ujynv")
-
-[node name="Elevator" parent="." instance=ExtResource("10_v73oa")]
-position = Vector2(-2, 71)
-scene_to_go = "uid://bsrapbg4oahc8"
-req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]

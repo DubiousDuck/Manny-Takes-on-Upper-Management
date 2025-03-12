@@ -18,6 +18,7 @@ func start():
 	brightness_val = 100.0
 
 # Overworld
+var current_scene : String
 var current_level : String
 var finished_levels := {}  # Acts as a HashSet
 func finished_level():

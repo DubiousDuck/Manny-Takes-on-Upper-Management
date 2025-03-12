@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 class_name Follower
 
-const PLAYER_HOLD_D = 50
-const TELE_D = 300
-const FOLLOW_D = 60
-const DISPERSE_D = 20
+const PLAYER_HOLD_D = 80
+const TELE_D = 600
+const FOLLOW_D = 90
+const DISPERSE_D = 60
 
 const SPEED = 80
 const SCALE := 3
@@ -42,14 +42,12 @@ func free_hold():
 	set_collision_mask_value(1,true)
 	player.set_collision_mask_value(2,true)
 	player.set_collision_layer_value(2,true)
-
 func process_hold():
 	if (selected and diff.length()>PLAYER_HOLD_D):
 		free_hold()
 	if not free and not thrown and (player.holding!=1):
 		free_hold()
 	if (Input.is_action_just_pressed("LMB")):
-		print("picked!")
 		if selected and (player.holding==0):
 			free=false
 			player.holding+=1
@@ -159,11 +157,9 @@ func anim_handler(_delta):
 func _on_area_2d_mouse_entered() -> void:
 	if (diff.length()<PLAYER_HOLD_D):
 		selected=true
-		modulate = Color(1, 1, 1, 0.5)
 
 func _on_area_2d_mouse_exited() -> void:
 	selected=false
-	modulate = Color(1, 1, 1, 1)
 
 func set_anim_lib(): #TODO: Make separate animation library for each class
 	if unit_data:

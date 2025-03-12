@@ -20,6 +20,7 @@ func read_text(text : Array[String]):
 	await anim_player.animation_finished
 	for i : String in text:
 		if i.contains("["):
+			question_given=true
 			var options : PackedStringArray = extract_bracketed(i)
 			i = remove_bracketed(i)
 			for k in options:
@@ -29,7 +30,6 @@ func read_text(text : Array[String]):
 				choice_container.add_child(b)
 				choice_container.add_spacer(true)
 			assert(options.size() > 0)
-			question_given=true
 		label.visible_ratio = 0
 		label.text = i
 		var a = create_tween()
