@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Solliciter
 
-const FOLLOW_D = 60   # Distance at which it follows the player
+const FOLLOW_D = 20   # Distance at which it follows the player
 const SPEED = 60
 const SCALE := 3
 const TURN_COOLDOWN = 0.01  # seconds between allowed between steps
@@ -30,6 +30,7 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 
 
 func _ready():
+	animate_warning()
 	spawn_position = global_position  # Store initial position as reference
 	$Area2D.scene_to_go = scene_to_go
 	$Area2D.level_name = level_name
@@ -44,7 +45,13 @@ func _physics_process(delta):
 
 	move_timer -= delta
 
-	if move_timer <= 0:
+	var chase = true
+	var child = $Area2D # Replace "ChildNode" with the actual name of the child
+	if child:
+		child.check_locked()
+		chase = not child.locked # Call the function from the child's script
+	
+	if move_timer <= 0 and chase:
 		# If too far from spawn, move back toward it
 		if diff.length() > FOLLOW_D and diff.length() < MAX_RADIUS:
 			if !Global.finished_levels.has(level_name):
@@ -85,7 +92,15 @@ func process_rot(delta):
 		await a.finished
 		turning = false
 
+
+func animate_warning():
+	var a = warning.create_tween()
+	a.set_loops() # Makes the tween loop indefinitely
+	a.tween_property(warning, "scale", Vector2(1.5, 2), 0.25).set_trans(Tween.TRANS_SINE)
+	a.tween_property(warning, "scale", Vector2(1, 1), 0.25).set_trans(Tween.TRANS_SINE)
+	
 func anim_handler():
+	
 	sprite_2d.hframes = 4
 	var idle = (vel_moving_average.length() < SPEED * 0.25)
 	if abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2 and not idle:
