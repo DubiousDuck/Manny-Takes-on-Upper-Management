@@ -12,12 +12,14 @@ signal occupy_cell(pos : Vector2i, unit_type : String)
 signal clear_cells()
 signal update_cell_status(stacking: bool)
 signal set_cell(pos: Vector2i, id: int)
+signal set_cell_done()
 
 #Attack/Skill System
 signal attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i])
 signal skill_chosen(skill: SkillInfo)
 signal action_command_used(position: Vector2)
 signal camera_done()
+signal attack_resolved()
 
 #Battle Information
 signal unit_died()

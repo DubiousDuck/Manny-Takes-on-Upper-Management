@@ -243,6 +243,8 @@ func unit_action():
 	return
 	
 func _step_enemy():
+	if !Global.is_attack_resolved:
+		await EventBus.attack_resolved
 	if get_available_unit_count() <= 0:
 		all_units_moved.emit()
 		return
@@ -258,7 +260,7 @@ func _step_enemy():
 		return
 
 func _unhandled_input(event):
-	if !is_player_controlled:
+	if !is_player_controlled or !Global.is_attack_resolved:
 		return
 	
 	if is_aoe_skill and skill_chosen != null:

@@ -41,7 +41,7 @@ func connect_container_signal(unit_group : UnitContainer):
 func _on_unit_container_all_moved():
 	Global.isPlayerTurn = is_player_turn
 	print("is player turn: " + str(is_player_turn))
-	if attack_processing:
+	if !Global.is_attack_resolved:
 		await attack_complete
 	check_if_win()
 	is_waiting_for_turn_switch = true
@@ -51,7 +51,7 @@ func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
 		is_waiting_for_turn_switch = false
 		is_player_turn = !is_player_turn
-		round_end_actions()
+		await round_end_actions()
 		if is_player_turn:
 			player_group.round_start()
 			print("player's turn")
@@ -61,7 +61,7 @@ func _on_status_update_complete():
 			print("enemy's turn")
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
-	attack_processing = true
+	Global.is_attack_resolved = false
 	print("# " + str(attacker.name) + " USED: " + str(attack.name) + " (UnitGroupController.gd)")
 	
 	#get effect multiplier based on affinity
@@ -201,6 +201,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					1:
 						for tile in targets:
 							EventBus.emit_signal("set_cell", tile, 4)
+						await EventBus.set_cell_done
 			_:
 				print("nothing happens yet")
 				
@@ -211,9 +212,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				unit.check_if_dead()
 		) # TODO: rare bug here? trying to call on already freed node
 	_on_update_cell_status(true)
-	attack_processing = false
+	Global.is_attack_resolved = true
 	attack_complete.emit()
-	#FIXME: turn freezes after unit hitting own cell
 	
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly
@@ -313,6 +313,7 @@ func round_end_actions():
 				while Vector2i(new_cell) == unit.cell:
 					new_cell = HexNavi.get_random_tile_pos()
 				EventBus.emit_signal("set_cell", new_cell, 3)
+				await EventBus.set_cell_done
 				EventBus.emit_signal("set_cell", unit.cell, 0)
 				_on_update_cell_status(true)
 			_:

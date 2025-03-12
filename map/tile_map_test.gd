@@ -9,6 +9,11 @@ const WHITE_CELL := Vector2i(0, 1)
 const YELLOW_CELL := Vector2i(0, 0)
 const RED_CELL := Vector2i(2, 0)
 
+const SCENE_COLLECTION_ID = 1
+const SCENE_COORDS := Vector2i(0, 0)
+const PIT_ID: int = 1
+const HEAL_ID: int = 2
+
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
 	EventBus.connect("clear_cells", _on_clear_cells)
@@ -31,6 +36,7 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 	#Update cell weights
 	HexNavi.set_weight_of_layer("traversable", true, 1)
 	HexNavi.set_weight_of_layer("traversable", false, 999)
+	EventBus.emit_signal("set_cell_done")
 
 func _on_occupy_cell(pos : Vector2i, unit_type : String):
 	if !HexNavi.get_cell_custom_data(pos, "traversable"):
@@ -57,7 +63,16 @@ func get_all_tilemap_cells() -> Array[Vector2i]:
 	return all_cells
 
 func _on_set_cell(pos: Vector2i, id: int):
+	if id == 4: #if the pit
+		single_tile_appear(pos, PIT_ID)
+		await get_tree().create_timer(2).timeout
+	if id == 3: #if the heal
+		single_tile_appear(pos, HEAL_ID)
+		await get_tree().create_timer(1.5).timeout
 	set_cell_to_variant(id, pos)
+
+func single_tile_appear(pos: Vector2i, tile_ID: int):
+	set_cell(pos, SCENE_COLLECTION_ID, SCENE_COORDS, tile_ID)
 
 #func _input(event):
 	#if event is InputEventMouseButton:
