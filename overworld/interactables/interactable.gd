@@ -13,7 +13,8 @@ func _interact_call_back():
 func _input(_event):
 	#print(mouse_selected)
 	if is_in_range:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and not Input.is_action_just_pressed("Space"):
+			#get_viewport().set_input_as_handled()
 			_interact_call_back()
 		elif Input.is_action_just_pressed("LMB") and mouse_selected:
 			_interact_call_back()

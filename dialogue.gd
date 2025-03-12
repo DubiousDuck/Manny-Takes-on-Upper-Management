@@ -10,7 +10,7 @@ var question_given = false
 		
 func _input(_event):
 	if not question_given:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_pressed("ui_accept"):
 			EventBus.input_advance.emit()
 		elif Input.is_action_just_pressed("LMB"):
 			EventBus.input_advance.emit()
