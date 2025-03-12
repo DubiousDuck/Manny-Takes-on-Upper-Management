@@ -8,12 +8,12 @@ const CHOICE = preload("res://ui/dialogue_choice.tscn")
 var chosen:String = ""
 var question_given = false
 		
-func _input(_event):
+func _unhandled_input(_event):
 	if not question_given:
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_just_pressed("Advance"):
 			EventBus.input_advance.emit()
-		elif Input.is_action_just_pressed("LMB"):
-			EventBus.input_advance.emit()
+			get_viewport().set_input_as_handled()
+
 func read_text(text : Array[String]):
 	EventBus.ui_element_started.emit()
 	anim_player.play("BarsDown")

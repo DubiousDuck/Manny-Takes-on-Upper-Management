@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Solliciter
 
 const FOLLOW_D = 60   # Distance at which it follows the player
-const SPEED = 80
+const SPEED = 60
 const SCALE := 3
 const TURN_COOLDOWN = 0.01  # seconds between allowed between steps
 const MAX_RADIUS = 100  # Maximum movement radius from spawn

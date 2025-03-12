@@ -114,8 +114,10 @@ var reserves: Array[UnitData] = []
 func _unhandled_input(event):
 	if event.is_action_pressed("Advance"):
 		EventBus.input_advance.emit()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("Back"):
 		EventBus.input_back.emit()
+		get_viewport().set_input_as_handled()
 
 ## Scene transition
 
