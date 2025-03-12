@@ -8,6 +8,8 @@ class_name Door
 @export var req :Array[String] = []
 @export var level_name :String
 
+var mouse_on = false
+
 func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
 		locked=false
@@ -27,3 +29,11 @@ func _interact_call_back():
 			Global.set_last_overworld_scene(get_tree().current_scene)
 			get_tree().change_scene_to_file(scene_to_go)
 		
+
+
+func _on_control_mouse_entered() -> void:
+	mouse_on = true
+
+
+func _on_control_mouse_exited() -> void:
+	mouse_on = false

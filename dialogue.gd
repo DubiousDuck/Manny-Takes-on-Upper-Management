@@ -6,8 +6,14 @@ class_name Dialogue extends Control
 
 const CHOICE = preload("res://ui/dialogue_choice.tscn")
 var chosen:String = ""
-
+var question_given = false
 		
+func _input(_event):
+	if not question_given:
+		if Input.is_action_just_pressed("ui_accept"):
+			EventBus.input_advance.emit()
+		elif Input.is_action_just_pressed("LMB"):
+			EventBus.input_advance.emit()
 func read_text(text : Array[String]):
 	EventBus.ui_element_started.emit()
 	anim_player.play("BarsDown")
@@ -23,20 +29,22 @@ func read_text(text : Array[String]):
 				choice_container.add_child(b)
 				choice_container.add_spacer(true)
 			assert(options.size() > 0)
+			question_given=true
 		label.visible_ratio = 0
 		label.text = i
 		var a = create_tween()
 		a.tween_property(label, "visible_ratio", 1, i.length() * 0.02)
 		await EventBus.input_advance
+		print("ANIM PLAY BACK")
 	label.queue_free()
 	anim_player.play_backwards("BarsDown")
 	await anim_player.animation_finished
+	print("ANIM FINISHED")
 	EventBus.ui_element_ended.emit()
-	
-	
 	
 func _on_choice_pressed(choice_text: String):
 	Global.dialogue_choice = choice_text
+	question_given=true
 	EventBus.input_advance.emit()
 	
 func extract_bracketed(text: String) -> Array:

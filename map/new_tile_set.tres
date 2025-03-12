@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://od08ebdovrmi"]
 
-[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/teleport_particles.gdshader" id="1_2nufh"]
+[ext_resource type="Shader" path="res://stages/area_1/teleport_particles.gdshader" id="1_2nufh"]
 [ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nufh"]
