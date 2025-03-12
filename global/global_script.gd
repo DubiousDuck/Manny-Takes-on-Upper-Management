@@ -11,6 +11,12 @@ var attack_successful: bool
 var camera_top: int #y position
 var camera_low: int #y position
 var isPlayerTurn: bool = true
+var is_attack_resolved: bool = true:
+	set(value):
+		is_attack_resolved = value
+		print(is_attack_resolved)
+		if value:
+			EventBus.emit_signal("attack_resolved")
 
 var brightness_val: float = 100.0
 

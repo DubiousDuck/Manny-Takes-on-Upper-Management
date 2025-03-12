@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cabi3s34sqtgq"]
 
 [ext_resource type="Script" uid="uid://b0gviuh3w6w0r" path="res://overworld/follower.gd" id="1_n8ld1"]
-[ext_resource type="Texture2D" uid="uid://c7meyg4aq48pp" path="res://assets/unit_sprites/back_walk.png" id="2_xhlmu"]
+[ext_resource type="Texture2D" uid="uid://do8xu6qvjyvn8" path="res://assets/unit_sprites/fighter/Fighter_Walk_Up.png" id="2_xhlmu"]
 [ext_resource type="AnimationLibrary" uid="uid://c5oy41wj0p72v" path="res://overworld/Fighter_ow.res" id="3_j2knc"]
 [ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_w1yvo"]
 [ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="3_xhlmu"]

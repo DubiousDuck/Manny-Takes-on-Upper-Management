@@ -1,7 +1,9 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://od08ebdovrmi"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://od08ebdovrmi"]
 
-[ext_resource type="Shader" path="res://stages/area_1/teleport_particles.gdshader" id="1_2nufh"]
+[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/disappear.gdshader" id="1_2nufh"]
 [ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
+[ext_resource type="PackedScene" uid="uid://j3k37ayrcnr2" path="res://other_map_components/individual_tile/pit_tile.tscn" id="3_prhqk"]
+[ext_resource type="PackedScene" uid="uid://cx7yp45iqipwq" path="res://other_map_components/individual_tile/heal_tile.tscn" id="4_e02vg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nufh"]
 shader = ExtResource("1_2nufh")
@@ -15,6 +17,8 @@ shader_parameter/color = Color(0.630183, 0.300069, 0.0618299, 1)
 texture = ExtResource("1_tre3t")
 texture_region_size = Vector2i(128, 128)
 0:0/next_alternative_id = 2
+0:0/animation_separation = Vector2i(4, 0)
+0:0/animation_mode = 1
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 0:0/1 = 1
@@ -25,6 +29,7 @@ texture_region_size = Vector2i(128, 128)
 1:0/0/custom_data_0 = true
 1:0/0/custom_data_1 = true
 2:0/next_alternative_id = 4
+2:0/animation_columns = 2
 2:0/0 = 0
 2:0/0/custom_data_0 = true
 2:0/0/custom_data_1 = true
@@ -40,6 +45,10 @@ texture_region_size = Vector2i(128, 128)
 0:1/1/custom_data_0 = true
 0:1/1/custom_data_2 = "teleport"
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e02vg"]
+scenes/1/scene = ExtResource("3_prhqk")
+scenes/2/scene = ExtResource("4_e02vg")
+
 [resource]
 tile_shape = 3
 tile_offset_axis = 1
@@ -51,3 +60,4 @@ custom_data_layer_1/type = 1
 custom_data_layer_2/name = "effect"
 custom_data_layer_2/type = 4
 sources/0 = SubResource("TileSetAtlasSource_inqtn")
+sources/1 = SubResource("TileSetScenesCollectionSource_e02vg")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://j3k37ayrcnr2"]
+
+[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/disappear.gdshader" id="1_c6ewy"]
+[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_gd8kn"]
+[ext_resource type="Script" uid="uid://cnp7cm1b6tb7e" path="res://other_map_components/individual_tile/pit_tile.gd" id="1_vycfi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vycfi"]
+shader = ExtResource("1_c6ewy")
+shader_parameter/original_color = Color(0.705882, 0.0470588, 0.184314, 1)
+shader_parameter/progress = 0.0
+shader_parameter/noise_desnity = 15.0
+shader_parameter/beam_size = 0.05
+shader_parameter/color = Color(0.664094, 0.229076, 0.0667928, 1)
+
+[sub_resource type="Animation" id="Animation_vycfi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c6ewy"]
+resource_name = "disappear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhhpr"]
+_data = {
+&"RESET": SubResource("Animation_vycfi"),
+&"disappear": SubResource("Animation_c6ewy")
+}
+
+[node name="PitTile2" type="Node2D"]
+script = ExtResource("1_vycfi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vycfi")
+texture = ExtResource("1_gd8kn")
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hhhpr")
+}
