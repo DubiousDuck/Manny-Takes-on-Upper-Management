@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cabi3s34sqtgq"]
 
 [ext_resource type="Script" uid="uid://b0gviuh3w6w0r" path="res://overworld/follower.gd" id="1_n8ld1"]
-[ext_resource type="Texture2D" uid="uid://rlrr0057i4se" path="res://assets/unit_sprites/fighter/Fighter_Walk_Side.png" id="2_xhlmu"]
+[ext_resource type="Texture2D" uid="uid://c7meyg4aq48pp" path="res://assets/unit_sprites/back_walk.png" id="2_xhlmu"]
 [ext_resource type="AnimationLibrary" uid="uid://c5oy41wj0p72v" path="res://overworld/Fighter_ow.res" id="3_j2knc"]
 [ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_w1yvo"]
 [ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="3_xhlmu"]
@@ -15,6 +15,7 @@ height = 38.0
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
+input_pickable = true
 script = ExtResource("1_n8ld1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,6 +40,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="Area2D" type="Area2D" parent="Control"]
 

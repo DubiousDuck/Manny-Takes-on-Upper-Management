@@ -103,6 +103,7 @@ z_index = -2
 offset_top = -97.0
 offset_right = 1148.0
 offset_bottom = 658.0
+mouse_filter = 2
 color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
