@@ -169,12 +169,19 @@ func get_median(arr: Array[float]) -> float:
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action():
-	#check for attack targets; if none, choose wait
-	for skill in current_unit.skills: #FIXME: enemy will always choose the first valid skill; not good!
-		skill_chosen = skill #assumes that if all fail, wait is always an option
-		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill_chosen.range)
-		if get_targets_of_type(targets, skill_chosen.targets).size() > 0:
-			break
+	var valid_skills: Array = []
+	
+	for skill in current_unit.skills:
+		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
+		if get_targets_of_type(targets, skill.targets).size() > 0:
+			valid_skills.append(skill)
+
+	# If we have valid skills, pick a random one
+	if valid_skills.size() > 0:
+		skill_chosen = valid_skills.pick_random()
+	else:
+		# Default to wait if no valid skills found
+		skill_chosen = preload("res://skills/wait.tres")  # Assuming this is the wait skill
 	
 	#get all actionnable cells and pick a random one #TODO: Give weights to different actions so enemy can make better choices
 	get_actionnable_cells()

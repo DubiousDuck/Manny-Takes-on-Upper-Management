@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=8 format=3 uid="uid://od08ebdovrmi"]
 
-[ext_resource type="Shader" path="res://stages/area_1/disappear.gdshader" id="1_2nufh"]
+[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/disappear.gdshader" id="1_2nufh"]
 [ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
 [ext_resource type="PackedScene" uid="uid://j3k37ayrcnr2" path="res://other_map_components/individual_tile/pit_tile.tscn" id="3_prhqk"]
 [ext_resource type="PackedScene" uid="uid://cx7yp45iqipwq" path="res://other_map_components/individual_tile/heal_tile.tscn" id="4_e02vg"]
