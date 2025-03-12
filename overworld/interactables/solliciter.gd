@@ -57,20 +57,21 @@ func _physics_process(delta):
 			chase = false
 	
 	
-	if move_timer <= 0 and chase:
+	if move_timer <= 0:
 		# If too far from spawn, move back toward it
-		if diff.length() > FOLLOW_D and diff.length() < MAX_RADIUS:
+		if diff.length() > FOLLOW_D and diff.length() < MAX_RADIUS and chase:
 			if !Global.finished_levels.has(level_name):
 				$Warning.visible = true
 			velocity = diff.normalized() * SPEED
+		elif diff.length() < FOLLOW_D or to_spawn.length() < MAX_RADIUS/3:
+			velocity = Vector2.ZERO
 		elif to_spawn.length() > MAX_RADIUS:
 			$Warning.visible = false
 			velocity = to_spawn.normalized() * SPEED
 			#velocity = Vector2.ZERO  # Stay still if within range
 			#if to_spawn.dot(diff) >0:
 				#velocity = diff.normalized() * SPEED
-		elif diff.length() < FOLLOW_D or to_spawn.length() < MAX_RADIUS/3:
-			velocity = Vector2.ZERO
+		
 		#elif diff.length() <= FOLLOW_D:
 			#velocity = -diff.normalized() * SPEED
 		move_timer = TURN_COOLDOWN
