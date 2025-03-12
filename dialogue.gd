@@ -8,7 +8,7 @@ const CHOICE = preload("res://ui/dialogue_choice.tscn")
 var chosen:String = ""
 var question_given = false
 		
-func _unhandled_input(_event):
+func _input(_event):
 	if not question_given:
 		if Input.is_action_just_pressed("Advance"):
 			EventBus.input_advance.emit()

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]
 [ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="8_ba6uy"]
 [ext_resource type="Texture2D" uid="uid://wb3tjon17og6" path="res://assets/overworld/walls.png" id="8_emvcp"]
-[ext_resource type="PackedScene" path="res://overworld/interactables/elevator.tscn" id="10_v73oa"]
+[ext_resource type="PackedScene" uid="uid://dldkxju4niopg" path="res://overworld/interactables/elevator.tscn" id="10_v73oa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwake"]
 texture = ExtResource("2_v73oa")
