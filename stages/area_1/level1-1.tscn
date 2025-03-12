@@ -65,7 +65,7 @@ script = ExtResource("6_axwgq")
 enemy_container = NodePath("../PlayerGroup")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("7_vmn3i")]
-position = Vector2(335, 191)
+position = Vector2(614, 136)
 script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
 

@@ -8,8 +8,8 @@
 shader = ExtResource("1_c6ewy")
 shader_parameter/original_color = Color(0.705882, 0.0470588, 0.184314, 1)
 shader_parameter/progress = 0.0
-shader_parameter/noise_desnity = 15.0
-shader_parameter/beam_size = 0.05
+shader_parameter/noise_desnity = 80.0
+shader_parameter/beam_size = 0.1
 shader_parameter/color = Color(0.664094, 0.229076, 0.0667928, 1)
 
 [sub_resource type="Animation" id="Animation_vycfi"]

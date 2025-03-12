@@ -16,7 +16,7 @@ func _ready():
 	EventBus.connect("start_battle", _on_start_battle)
 	EventBus.connect("back_to_overworld", _on_back_to_overworld)
 	stream = _OW_ONE_MUSIC
-	#play()
+	play()
 
 func _on_finished():
 	stream = _OW_ONE_MUSIC
