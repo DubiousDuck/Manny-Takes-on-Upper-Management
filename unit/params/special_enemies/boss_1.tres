@@ -15,7 +15,7 @@ attributes = {
 2: 2,
 3: 2
 }
-skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
+skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
 rel = ""
 mood = 50
 money = 5
