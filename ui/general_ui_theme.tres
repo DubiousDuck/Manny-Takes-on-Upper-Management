@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dgmt8ko4oq3ew"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://dgmt8ko4oq3ew"]
 
 [ext_resource type="Texture2D" uid="uid://t4dmyddyewlg" path="res://assets/ui/base_button.png" id="1_af56d"]
 [ext_resource type="FontFile" uid="uid://ew14e5fetvtx" path="res://assets/ui/m5x7.ttf" id="1_igkra"]
@@ -47,6 +47,8 @@ border_width_left = 8
 border_width_right = 8
 border_color = Color(0.647059, 0.541176, 0.478431, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sow78"]
+
 [sub_resource type="FontVariation" id="FontVariation_sow78"]
 base_font = ExtResource("1_igkra")
 variation_embolden = 1.2
@@ -59,33 +61,6 @@ variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 [sub_resource type="FontVariation" id="FontVariation_wmxsi"]
 base_font = ExtResource("1_igkra")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3hedt"]
-texture = ExtResource("2_sow78")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wmxsi"]
-texture = ExtResource("2_sow78")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nelek"]
-texture = ExtResource("2_sow78")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-expand_margin_left = 4.0
-expand_margin_right = 4.0
 
 [resource]
 Button/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
@@ -116,6 +91,16 @@ HeaderLarge/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
 HeaderLarge/styles/normal = SubResource("StyleBoxFlat_igkra")
 HeaderMedium/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
 Label/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_igkra")
+Label/styles/normal = SubResource("StyleBoxEmpty_sow78")
 RichTextLabel/colors/default_color = Color(0.203922, 0.14902, 0.141176, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)
@@ -143,6 +128,3 @@ RichTextLabel/fonts/bold_italics_font = SubResource("FontVariation_s0s25")
 RichTextLabel/fonts/italics_font = SubResource("FontVariation_wmxsi")
 RichTextLabel/fonts/mono_font = ExtResource("1_igkra")
 RichTextLabel/fonts/normal_font = ExtResource("1_igkra")
-RichTextLabel/styles/background = SubResource("StyleBoxTexture_3hedt")
-RichTextLabel/styles/focus = SubResource("StyleBoxTexture_wmxsi")
-RichTextLabel/styles/normal = SubResource("StyleBoxTexture_nelek")
