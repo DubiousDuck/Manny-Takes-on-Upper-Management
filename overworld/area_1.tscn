@@ -202,6 +202,16 @@ theme = ExtResource("2_xmci8")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
+[node name="PlayerInfo" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 231.0
+offset_bottom = 98.0
+theme = ExtResource("2_xmci8")
+theme_override_font_sizes/normal_font_size = 40
+text = "Player 1
+Level 1"
+
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("3_v73oa")]
 
 [node name="Player" parent="." instance=ExtResource("4_pwake")]

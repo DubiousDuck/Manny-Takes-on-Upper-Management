@@ -3,7 +3,7 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = false
+var dev_mode: bool = true
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 # Battle related
@@ -79,24 +79,43 @@ func merge_talent_dict_with(code: int, target: Dictionary):
 			_protag_talent.merge(target, true)
 		talent_type.COMPANY:
 			_company_talent.merge(target, true)
-			
-			
 
 ##Leveling System related
 
-## Experience Gained
-var max_exp : int = 6
+## calculated in steps of 5 (i.e. lvl 0-4 need 6 xp, 5-10 needs 12 etc.)
+var exp_requirments = { 
+	0:3,
+	1:6,
+	2:12,
+	3:24
+}
+
+var max_level_ind = 3
+
+##helper for getting exp reqs, checks if max level reached and indexes by every 5th level
+func get_exp_requirment(level:int):
+	var ind = int(level/5)
+	if(ind > max_level_ind):
+		ind = max_level_ind
+	return exp_requirments[ind]
+
 var current_exp : int = 0
 var level : int = 1
 
-func gain_exp(value) -> int:
+## Experience Gained
+func gain_exp(value):
 	print("Exp Gained: ", value)
+	current_exp += value
+	var exp_req = get_exp_requirment(level)
+	print("exp req: ", exp_req)
+	
 	var original_level: int = level
-	if(current_exp + value > max_exp):
-		level += int((current_exp + value)/max_exp)
-		max_talent_points += level - original_level
-	current_exp = (current_exp + value) % max_exp
-	return level - original_level
+	
+	while(current_exp >= exp_req):
+		level += 1
+		current_exp -= exp_req
+	
+	max_talent_points += level - original_level
 
 ## Current Party related
 
@@ -200,7 +219,8 @@ func load_player_data(save : int):
 	max_party_num = player_data.max_party_num
 	current_party = player_data.current_party
 	reserves = player_data.reserves
-
+	
+	print(OS.get_user_data_dir())
 	print("- Loaded player data from index ", str(save))
 	
 func find_all_saves():

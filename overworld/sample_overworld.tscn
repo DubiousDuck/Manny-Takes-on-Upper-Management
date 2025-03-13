@@ -55,6 +55,21 @@ theme = ExtResource("2_nt2ja")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
+<<<<<<< Updated upstream
+=======
+[node name="PlayerInfo" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 231.0
+offset_bottom = 98.0
+theme = ExtResource("2_nt2ja")
+theme_override_font_sizes/normal_font_size = 40
+text = "Player 1
+Level 1"
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("2_ss2h4")]
+
+>>>>>>> Stashed changes
 [node name="RoomLayout" type="Node2D" parent="."]
 
 [node name="Wall" type="StaticBody2D" parent="RoomLayout"]

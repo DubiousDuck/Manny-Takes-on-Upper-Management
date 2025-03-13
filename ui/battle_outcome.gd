@@ -9,7 +9,7 @@ class_name BattleOutcome
 
 func _ready() -> void:
 	exp_bar = $HSplitContainer/HSplitContainer/ExpBar
-	exp_bar.max_value = Global.max_exp
+	exp_bar.max_value = Global.get_exp_requirment(Global.level)
 	pass
 
 func init(result: int):
@@ -25,9 +25,9 @@ func init(result: int):
 func update_xp_label(xp: int):
 	xp_label.text = "You gained " + str(xp) + " XP!"
 
-func animate_exp(final_exp : int, num_level_ups : int):
-	##animation for level ups
-	for i in range(num_level_ups):
+func animate_exp(final_exp : int, initial_level : int, final_level: int):
+	var exp_req = Global.get_exp_requirment(Global.level);
+	for i in range(initial_level, final_level):
 		var exp_tween = create_tween()
 		exp_tween.set_ease(Tween.EASE_IN)
 		exp_tween.set_trans(Tween.TRANS_QUAD)
@@ -35,6 +35,8 @@ func animate_exp(final_exp : int, num_level_ups : int):
 		exp_tween.tween_property(level_label, "text" , "+" + str(int(level_label.text.substr(1))+1), 0.05).set_delay(0.1)
 		exp_tween.tween_property(exp_bar, "value", 0, 0.01)
 		await exp_tween.finished
+		
+		exp_bar.max_value = Global.get_exp_requirment(i+1)
 	
 	##animation for exp gain
 	var exp_tween = create_tween()
