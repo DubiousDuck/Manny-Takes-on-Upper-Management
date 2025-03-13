@@ -3,6 +3,7 @@ extends Resource
 class_name UnitData
 
 #Battle related
+@export var id:int
 @export_enum("Protagonist", "Tank", "Fighter", 
 	"Ranger", "Healer", "Mage", "Boss") var unit_class: String
 
@@ -38,3 +39,11 @@ func _set_attributes(delta: Array[int]):
 	attributes[ATTRIBUTES.ATK] = delta[ATTRIBUTES.ATK]
 	attributes[ATTRIBUTES.MAG] = delta[ATTRIBUTES.MAG]
 	attributes[ATTRIBUTES.MOV] = delta[ATTRIBUTES.MOV]
+#
+#@export var unique_id: int
+#func _init():
+	#unique_id = generate_unique_id()
+#static var next_unique_id = 0
+#static func generate_unique_id() -> int:
+	#next_unique_id += 1
+	#return next_unique_id

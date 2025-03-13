@@ -7,6 +7,7 @@ class_name Recruit
 @onready var warning = $Warning
 
 func _process(delta):
+	#print(Global.recruit_token)
 	if Global.recruit_token > 0:
 		warning.visible = true
 		if !$AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != "warning_idle":

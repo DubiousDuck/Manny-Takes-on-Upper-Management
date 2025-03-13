@@ -11,6 +11,7 @@ func _ready():
 	for unit_data in Global.reserves:
 		var a = MEMBER.instantiate()
 		a.unit_data = unit_data
+		print("reserve",unit_data.id)
 		reserves.append(a)
 		member_folder.add_child(a)
 	
@@ -18,6 +19,7 @@ func _ready():
 	for unit_data in Global.current_party:
 		var	a = MEMBER.instantiate()
 		a.unit_data = unit_data
+		#print("party",unit_data.id)
 		party.append(a)
 		member_folder.add_child(a)
 	

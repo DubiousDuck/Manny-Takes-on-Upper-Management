@@ -175,7 +175,7 @@ func start_tutorial(page_queue: Array[TutorialContent]):
 	
 ## Save and load #####################################################
 
-const DEBUG_INT := 29
+const DEBUG_INT := 28
 
 var player_data = PlayerData.new()
 
@@ -243,7 +243,7 @@ func save_player_data(save : int):
 	print("- Saved player data to index ", str(save))
 
 func load_new_save():
-	recruit_token = 0
+	recruit_token = 100
 	
 	current_exp = 0
 	level = 1
