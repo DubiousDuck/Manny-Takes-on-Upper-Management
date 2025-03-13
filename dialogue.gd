@@ -2,7 +2,7 @@ class_name Dialogue extends Control
 
 @onready var label = $Label
 @onready var anim_player = $AnimationPlayer
-@onready var choice_container = $HBoxContainer
+@onready var choice_container = $Choices
 
 const CHOICE = preload("res://ui/dialogue_choice.tscn")
 var chosen:String = ""
@@ -20,6 +20,7 @@ func read_text(text : Array[String]):
 	await anim_player.animation_finished
 	for i : String in text:
 		if i.contains("["):
+			label.hide()
 			question_given=true
 			var options : PackedStringArray = extract_bracketed(i)
 			i = remove_bracketed(i)
@@ -46,6 +47,7 @@ func read_text(text : Array[String]):
 	
 func _on_choice_pressed(choice_text: String):
 	Global.dialogue_choice = choice_text
+	for i in $Choices.get_children(): i.queue_free()
 	question_given=true
 	EventBus.input_advance.emit()
 	

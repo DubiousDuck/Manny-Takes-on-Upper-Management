@@ -15,6 +15,8 @@ var menuIsDisplayed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventBus.connect("ui_element_started", other_ui_started)
+	EventBus.connect("ui_element_ended", other_ui_ended)
 	$BattleMenuControl.visible = false
 	dev_button.visible = Global.dev_mode
 	brightness_slider.setBrightness(Global.brightness_val)
@@ -23,6 +25,12 @@ func _ready():
 		exit_level.visible = false
 		restart_level.visible = false
 		pass_button.visible = false
+
+func other_ui_started():
+	pass
+	
+func other_ui_ended():
+	pass
 
 func flipMenuDisplay():
 	menuIsDisplayed = !menuIsDisplayed
