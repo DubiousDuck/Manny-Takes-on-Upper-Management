@@ -18,6 +18,7 @@ radius = 16.0
 height = 40.0
 
 [node name="Sollicitor" type="CharacterBody2D"]
+process_mode = 3
 collision_layer = 2
 collision_mask = 3
 safe_margin = 0.001

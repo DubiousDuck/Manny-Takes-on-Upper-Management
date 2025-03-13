@@ -88,7 +88,8 @@ func _physics_process(delta):
 	process_rot(delta)
 	anim_handler()
 	lastpos = global_position
-	move_and_slide()
+	if Global.can_actors_move: move_and_slide()
+	else: velocity = Vector2.ZERO
 
 func process_rot(delta):
 	vel_moving_average = vel_moving_average * 0.8 + 0.2 * (global_position - lastpos) / delta

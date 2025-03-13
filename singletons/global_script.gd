@@ -159,9 +159,6 @@ func _ready():
 	verify_directory(save_path)
 	EventBus.connect("ui_element_started", ui_element_start)
 	EventBus.connect("ui_element_ended", ui_element_end)
-	
-	#load data
-	load_player_data(DEBUG_INT)
 
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -171,6 +168,8 @@ func verify_directory(path : String):
 const DIALOGUE = preload("res://ui/dialogue.tscn")
 const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
 const SCREEN_WIPE = preload("res://ui/screen_wipe.tscn")
+const SAVE_UI = preload("res://ui/save_and_load/save_ui.tscn")
+const LOAD_UI = preload("res://ui/save_and_load/load_ui.tscn")
 
 var dialogue_choice: String = ""
 
@@ -178,9 +177,11 @@ var can_actors_move : bool = true
 var ui_busy : bool = false
 
 func ui_element_start():
+	can_actors_move = false
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ui_element_end():
+	can_actors_move = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
 
 func scene_transition(scene : String):
@@ -208,6 +209,18 @@ func start_tutorial(page_queue: Array[TutorialContent]):
 	a.init(page_queue)
 	await EventBus.ui_element_ended
 	a.queue_free()
+	
+func save_screen():
+	EventBus.ui_element_started.emit()
+	var a = SAVE_UI.instantiate()
+	GlobalUI.add_child(a)
+	await EventBus.ui_element_ended
+	
+func load_screen():
+	EventBus.ui_element_started.emit()
+	var a = LOAD_UI.instantiate()
+	GlobalUI.add_child(a)
+	await EventBus.ui_element_ended
 	
 ## Save and load #####################################################
 

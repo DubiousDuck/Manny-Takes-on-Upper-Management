@@ -67,7 +67,7 @@ func _on_to_talent_page_pressed():
 
 func _on_save_pressed():
 	# TODO: change DEBUG_INT
-	Global.save_player_data(Global.DEBUG_INT)
+	Global.save_screen()
 
 func _on_party_manage_pressed():
 	Global.set_last_overworld_scene(get_tree().current_scene)
