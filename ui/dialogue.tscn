@@ -100,8 +100,9 @@ libraries = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 6.0
 offset_top = 554.0
-offset_right = 704.0
+offset_right = 1150.0
 offset_bottom = 594.0
 theme_override_constants/separation = 32
+alignment = 1

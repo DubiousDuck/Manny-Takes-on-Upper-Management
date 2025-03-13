@@ -237,6 +237,9 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://dmiskhfx3cmdg"
 level_name = "level1-2"
 req = Array[String](["level1-1"])
+locked_dialogue = Array[String](["Don't bother me.", "You're still too weak."])
+interact_dialogue = Array[String](["You look like a worthy opponent!", "Let's ddddddduel![Come on!][No thanks]"])
+correct_choice = "Come on!"
 
 [node name="Sollicitor2" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(508, 29)
@@ -244,6 +247,9 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1"])
+locked_dialogue = Array[String](["Why are you here?", "Can't see I'm busy standing here doing nothing?", "Now move along."])
+interact_dialogue = Array[String](["I cannot let you pass.", "Or else my boss will think I'm slacking off.", "Let's just get this over with, OK?[Alright!][Uh nope]"])
+correct_choice = "Alright!"
 
 [node name="Sollicitor3" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(336, 71)
@@ -251,12 +257,18 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://ci1jr6gkdbdkw"
 level_name = "level1-4"
 req = Array[String](["level1-2", "level1-3"])
+locked_dialogue = Array[String](["If you can't defeat my lackeys,", "don't come challenge me.", "I'm a very busy person you know."])
+interact_dialogue = Array[String](["The elevator is just ahead.", "Unfortunately, your journey stops right here.", "I will make you cry for your mama![Try me!][omg sorry I'll take my leave]"])
+correct_choice = "Try me!"
 
 [node name="Receptionist" parent="." instance=ExtResource("8_ba6uy")]
 position = Vector2(622, 140)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cwvvpfius26vd"
 level_name = "level1-1"
+locked_dialogue = Array[String](["Sorry sir, the desk is closed."])
+interact_dialogue = Array[String](["Welcome to Sweatshop.Inc!", "If you are looking to work here,", "you will have to fight all of us here...", "Starting with me![Fight!][Never mind]"])
+correct_choice = "Fight!"
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]

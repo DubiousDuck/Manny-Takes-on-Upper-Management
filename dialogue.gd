@@ -28,7 +28,7 @@ func read_text(text : Array[String]):
 				b.text = k
 				b.pressed.connect(_on_choice_pressed.bind(k))  # Connect button press signal
 				choice_container.add_child(b)
-				choice_container.add_spacer(true)
+				#choice_container.add_spacer(true)
 			assert(options.size() > 0)
 		label.visible_ratio = 0
 		label.text = i

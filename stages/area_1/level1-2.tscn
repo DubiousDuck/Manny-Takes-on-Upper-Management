@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://dmiskhfx3cmdg"]
+[gd_scene load_steps=19 format=4 uid="uid://dmiskhfx3cmdg"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_imwcb"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_d7y36"]
 [ext_resource type="Resource" uid="uid://ckgubaajjft1p" path="res://ui/tutorial/contents/stacking.tres" id="3_hpvmt"]
 [ext_resource type="Resource" uid="uid://dv6hkequ4au45" path="res://ui/tutorial/contents/pick_up.tres" id="4_hpvmt"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_imwcb"]
 [ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://assets/ui/pause_canvas_layer.tscn" id="7_iynos"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="8_5wd2o"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="9_eiuv0"]
@@ -24,6 +25,13 @@ tile_map = NodePath("TileMapTest")
 inital_exp = 6
 repeat_exp = 2
 tutorial_queue = Array[ExtResource("2_d7y36")]([ExtResource("3_hpvmt"), ExtResource("4_hpvmt")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -720.0
+offset_top = -290.0
+offset_right = 3120.0
+offset_bottom = 790.0
+texture = ExtResource("5_imwcb")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("7_iynos")]
 isBattleScene = true
