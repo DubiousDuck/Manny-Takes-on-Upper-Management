@@ -46,7 +46,7 @@ func _ready():
 	if correct_choice:
 		$Area2D.correct_choice = correct_choice
 
-func _physics_process(delta):
+func _process(delta):
 	if player == null:
 		player = get_parent().get_node("Player")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c8qibn8b170i0"]
+[gd_scene load_steps=20 format=4 uid="uid://c8qibn8b170i0"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_emvcp"]
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="2_v73oa"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="3_v73oa"]
 [ext_resource type="Texture2D" uid="uid://wb3tjon17og6" path="res://assets/overworld/walls.png" id="4_goldk"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_pwake"]
-[ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="5_goldk"]
 [ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="6_6ihvn"]
 [ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="6_goldk"]
 [ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="7_hq1u4"]
@@ -224,10 +223,14 @@ position = Vector2(632, 360)
 scale = Vector2(0.5, 0.5)
 collision_mask = 3
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(632, 360)
+scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
-script = ExtResource("5_goldk")
 
 [node name="Recruit" parent="." instance=ExtResource("7_hq1u4")]
 position = Vector2(547, 249)
