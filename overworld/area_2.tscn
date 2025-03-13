@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://bognra8xq838a"]
+[gd_scene load_steps=25 format=4 uid="uid://bsrapbg4oahc8"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_cbm2g"]
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="2_n71iy"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="3_n71iy"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="4_ivycp"]
-[ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_ay40q"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_ay40q"]
 [ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="5_n71iy"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="6_o88bp"]
 [ext_resource type="Script" uid="uid://cbddak16pjv6h" path="res://overworld/camera_ow.gd" id="7_t1l4q"]
