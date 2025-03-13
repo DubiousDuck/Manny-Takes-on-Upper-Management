@@ -35,11 +35,13 @@ func read_text(text : Array[String]):
 		var a = create_tween()
 		a.tween_property(label, "visible_ratio", 1, i.length() * 0.02)
 		await EventBus.input_advance
-		print("ANIM PLAY BACK")
+		if label.visible_ratio != 1:
+			a.stop()
+			label.visible_ratio = 1
+			await EventBus.input_advance
 	label.queue_free()
 	anim_player.play_backwards("BarsDown")
 	await anim_player.animation_finished
-	print("ANIM FINISHED")
 	EventBus.ui_element_ended.emit()
 	
 func _on_choice_pressed(choice_text: String):

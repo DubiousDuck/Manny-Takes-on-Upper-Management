@@ -178,12 +178,10 @@ var can_actors_move : bool = true
 var ui_busy : bool = false
 
 func ui_element_start():
-	can_actors_move = false
-	ui_busy = true
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ui_element_end():
-	can_actors_move = true
-	ui_busy = false
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
 
 func scene_transition(scene : String):
 	EventBus.ui_element_started.emit()
@@ -191,7 +189,7 @@ func scene_transition(scene : String):
 	GlobalUI.add_child(a)
 	a.get_node("AnimationPlayer").play("In")
 	await a.get_node("AnimationPlayer").animation_finished
-	Global.scene)
+	get_tree().change_scene_to_file(scene)
 	a.get_node("AnimationPlayer").play("Out")
 	await a.get_node("AnimationPlayer").animation_finished
 	a.queue_free()

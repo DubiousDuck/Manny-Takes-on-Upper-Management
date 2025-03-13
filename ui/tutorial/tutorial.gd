@@ -18,6 +18,7 @@ func init(page_queue: Array[TutorialContent]):
 	EventBus.ui_element_started.emit()
 	content.clear()
 	for index in range(page_queue.size()):
+		$Window/MarginContainer/VBoxContainer/Content.scroll_to_line(0)
 		content.clear()
 		var page: TutorialContent = page_queue[index]
 		title.text = page.title

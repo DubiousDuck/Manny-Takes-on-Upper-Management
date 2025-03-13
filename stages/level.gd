@@ -32,6 +32,7 @@ func _ready():
 	read_talent_and_apply(Global.talent_type.COMPANY)
 	
 	if !tutorial_queue.is_empty():
+		await EventBus.ui_element_ended # wait for fade
 		Global.start_tutorial(tutorial_queue)
 	
 	unit_group_control.init()
