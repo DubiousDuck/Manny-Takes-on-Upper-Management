@@ -20,3 +20,6 @@ class_name PlayerData extends Resource
 @export var max_party_num: int = 3
 @export var current_party: Array[UnitData] = []
 @export var reserves: Array[UnitData] = []
+
+## Level Progess
+@export var finished_levels := {}

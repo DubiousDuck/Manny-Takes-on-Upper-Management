@@ -27,6 +27,7 @@ func start():
 var current_scene : String
 var current_level : String
 var finished_levels := {}  # Acts as a HashSet
+
 func finished_level():
 	finished_levels[current_level]=true
 	current_level=""
@@ -220,6 +221,9 @@ func load_player_data(save : int):
 	current_party = player_data.current_party
 	reserves = player_data.reserves
 	
+	#load level progress
+	finished_levels = player_data.finished_levels
+	
 	print(OS.get_user_data_dir())
 	print("- Loaded player data from index ", str(save))
 	
@@ -258,6 +262,9 @@ func save_player_data(save : int):
 	player_data.max_party_num = max_party_num
 	player_data.current_party = current_party
 	player_data.reserves = reserves
+	
+	#save level progress
+	player_data.finished_levels = finished_levels
 	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data to index ", str(save))
