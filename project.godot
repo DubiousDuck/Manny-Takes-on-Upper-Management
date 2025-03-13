@@ -21,7 +21,7 @@ EventBus="*res://global/event_bus.gd"
 Global="*res://global/global_script.gd"
 HexNavi="*res://addons/hex_grid_nav/hexagon_navigation.gd"
 AudioPreload="*res://global/audio_preload.tscn"
-UiLayer="*res://global/ui_layer.tscn"
+GlobalUI="*res://global/ui_layer.tscn"
 
 [display]
 

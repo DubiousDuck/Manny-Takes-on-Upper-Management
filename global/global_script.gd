@@ -170,25 +170,43 @@ func verify_directory(path : String):
 
 const DIALOGUE = preload("res://ui/dialogue.tscn")
 const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
+const SCREEN_WIPE = preload("res://ui/screen_wipe.tscn")
 
 var dialogue_choice: String = ""
 
+var can_actors_move : bool = true
+var ui_busy : bool = false
+
 func ui_element_start():
-	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+	can_actors_move = false
+	ui_busy = true
 
 func ui_element_end():
-	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
+	can_actors_move = true
+	ui_busy = false
+
+func scene_transition(scene : String):
+	EventBus.ui_element_started.emit()
+	var a = SCREEN_WIPE.instantiate()
+	GlobalUI.add_child(a)
+	a.get_node("AnimationPlayer").play("In")
+	await a.get_node("AnimationPlayer").animation_finished
+	get_tree().change_scene_to_file(scene)
+	a.get_node("AnimationPlayer").play("Out")
+	await a.get_node("AnimationPlayer").animation_finished
+	a.queue_free()
+	EventBus.ui_element_ended.emit()
 
 func start_dialogue(text : Array[String]):
 	var a = DIALOGUE.instantiate()
-	UiLayer.add_child(a)
+	GlobalUI.add_child(a)
 	a.read_text(text)
 	await EventBus.ui_element_ended
 	a.queue_free()
 
 func start_tutorial(page_queue: Array[TutorialContent]):
 	var a = TUTORIAL.instantiate()
-	UiLayer.add_child(a)
+	GlobalUI.add_child(a)
 	a.init(page_queue)
 	await EventBus.ui_element_ended
 	a.queue_free()
