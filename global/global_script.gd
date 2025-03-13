@@ -3,7 +3,7 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = true
+var dev_mode: bool = false
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 # Battle related
