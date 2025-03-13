@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0iadyqw7ovf7"]
+[gd_scene load_steps=4 format=3 uid="uid://b0iadyqw7ovf7"]
 
 [ext_resource type="Script" uid="uid://cjcmr7rxjdoql" path="res://ui/save_and_load/load_ui.gd" id="1_7ljn4"]
 [ext_resource type="Texture2D" uid="uid://cfahyusqmlmqo" path="res://assets/ui/exit_icon.png" id="2_l2n2c"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_vant8"]
 
 [node name="LoadUI" type="Control"]
 layout_mode = 3
@@ -11,6 +12,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7ljn4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1344.0
+offset_top = -216.0
+offset_right = 1344.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vant8")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 0

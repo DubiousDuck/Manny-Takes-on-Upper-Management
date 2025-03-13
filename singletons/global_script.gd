@@ -3,7 +3,7 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = true
+var dev_mode: bool = false
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 # Battle related
@@ -121,7 +121,7 @@ func gain_exp(value):
 ## Current Party related
 
 ## token necessary for recruiting new members
-var recruit_token: int = 1
+var recruit_token: int = 0
 
 ## Determines the maximum amount of party members
 var max_party_num: int = 3
@@ -159,6 +159,9 @@ func _ready():
 	verify_directory(save_path)
 	EventBus.connect("ui_element_started", ui_element_start)
 	EventBus.connect("ui_element_ended", ui_element_end)
+	## NOTICE: Not sure if this will corrupr save files but we'll see
+	load_new_save()
+	
 
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -177,10 +180,12 @@ var can_actors_move : bool = true
 var ui_busy : bool = false
 
 func ui_element_start():
+	ui_busy = true ## prevent accidental freeze when launching a specific scene from the editor
 	can_actors_move = false
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ui_element_end():
+	ui_busy = false
 	can_actors_move = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
 
@@ -298,6 +303,7 @@ func save_player_data(save : int):
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data to index ", str(save))
 
+## Set parameters of a new save file
 func load_new_save():
 	recruit_token = 0
 	

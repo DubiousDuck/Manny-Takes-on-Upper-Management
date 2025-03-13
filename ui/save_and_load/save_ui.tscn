@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dctfkywkthhff"]
+[gd_scene load_steps=5 format=3 uid="uid://dctfkywkthhff"]
 
 [ext_resource type="Script" uid="uid://dfmig8tj0kcu4" path="res://ui/save_and_load/save_ui.gd" id="1_wlsta"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_nsye5"]
 [ext_resource type="Texture2D" uid="uid://cfahyusqmlmqo" path="res://assets/ui/exit_icon.png" id="2_w8ink"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_b88av"]
 
 [node name="SaveUI" type="Control"]
 layout_mode = 3
@@ -11,6 +13,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlsta")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nsye5")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 0
@@ -36,6 +47,7 @@ offset_left = 896.0
 offset_top = 48.0
 offset_right = 944.0
 offset_bottom = 96.0
+theme = ExtResource("3_b88av")
 texture_normal = ExtResource("2_w8ink")
 texture_pressed = ExtResource("2_w8ink")
 texture_hover = ExtResource("2_w8ink")
