@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=17 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://cwmsmt02tuqqg" path="res://assets/unit_sprites/tank/side_idle.png" id="3_a2j7n"]
+[ext_resource type="Texture2D" uid="uid://djk2yvxr8jonx" path="res://assets/unit_sprites/ranger/Ranger_Band_Attack.png" id="3_j0e0d"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="AnimationLibrary" uid="uid://bvd8i4afxw3kl" path="res://unit/Fighter.res" id="4_a2j7n"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
@@ -10,6 +10,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dm5jvuhr1opyh" path="res://unit/Ranger.res" id="7_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 [ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="8_j0e0d"]
+[ext_resource type="AudioStream" uid="uid://dnflp533k0gyw" path="res://assets/sfx/pew-pew-81279.mp3" id="11_5dfwp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 size = Vector2(12.9032, 16.2162)
@@ -54,6 +55,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5dfwp"]
 _data = {
@@ -78,7 +91,7 @@ shape = SubResource("RectangleShape2D_7kobe")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gcacr")
 scale = Vector2(1, 1.06437)
-texture = ExtResource("3_a2j7n")
+texture = ExtResource("3_j0e0d")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -144,6 +157,7 @@ mouse_default_cursor_shape = 2
 unit = NodePath("..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5dfwp")
 
 [connection signal="anim_complete" from="." to="." method="_on_anim_complete"]
 [connection signal="attack_point" from="." to="." method="_on_attack_point"]

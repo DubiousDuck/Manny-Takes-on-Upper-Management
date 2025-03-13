@@ -184,6 +184,9 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 		"Shove":
 			animation_state("shove")
 			await $AnimationPlayer.animation_finished
+		"Arrow Rain":
+			animation_state("arrow_rain")
+			await $AnimationPlayer.animation_finished
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
