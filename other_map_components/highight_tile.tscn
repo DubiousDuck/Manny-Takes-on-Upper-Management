@@ -1,9 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://co8sjf0b3c6n8"]
 
-[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_1pwao"]
+[ext_resource type="Texture2D" uid="uid://eokknymieg0y" path="res://map/new_tiles.png" id="1_4h0qg"]
 
 [node name="HighightTile" type="Sprite2D"]
-texture = ExtResource("1_1pwao")
-hframes = 3
-vframes = 2
-frame = 3
+texture = ExtResource("1_4h0qg")
+hframes = 6

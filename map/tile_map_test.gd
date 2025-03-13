@@ -2,17 +2,22 @@ extends TileMapLayer
 
 #tile map set up tutorial by https://www.youtube.com/watch?v=1qmXFIJU1QE
 
+class_name MyMapLayer
+
 const GRID_SIZE = 5
 const MAIN_ATLAS_ID = 0
-const BLUE_CELL := Vector2i(1, 0)
-const WHITE_CELL := Vector2i(0, 1)
-const YELLOW_CELL := Vector2i(0, 0)
-const RED_CELL := Vector2i(2, 0)
+const BLUE_CELL := Vector2i(2, 0)
+const WHITE_CELL := Vector2i(0, 0)
+const RED_CELL := Vector2i(1, 0)
+const HEAL_CELL := Vector2i(3, 0)
+const PIT_CELL := Vector2i(4, 0)
 
 const SCENE_COLLECTION_ID = 1
 const SCENE_COORDS := Vector2i(0, 0)
 const PIT_ID: int = 1
 const HEAL_ID: int = 2
+
+enum CELL_TYPE {WHITE, RED, BLUE, HEAL, PIT, TELEPORT}
 
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
@@ -23,14 +28,13 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
 	var alternative: int = 0
 	match id:
-		0: cell_variant = YELLOW_CELL
-		1: cell_variant = RED_CELL
-		2: cell_variant = BLUE_CELL
-		3:
-			cell_variant = YELLOW_CELL
-			alternative = 1
-		4:
-			cell_variant = RED_CELL
+		CELL_TYPE.WHITE: cell_variant = WHITE_CELL
+		CELL_TYPE.RED: cell_variant = RED_CELL
+		CELL_TYPE.BLUE: cell_variant = BLUE_CELL
+		CELL_TYPE.HEAL: cell_variant = HEAL_CELL
+		CELL_TYPE.PIT: cell_variant = PIT_CELL
+		CELL_TYPE.TELEPORT:
+			cell_variant = WHITE_CELL
 			alternative = 1
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant, alternative)
 	#Update cell weights
@@ -48,13 +52,13 @@ func _on_occupy_cell(pos : Vector2i, unit_type : String):
 		"enemy":
 			color_cell = RED_CELL
 		_:
-			color_cell = YELLOW_CELL
+			color_cell = WHITE_CELL
 	set_cell(pos, MAIN_ATLAS_ID, color_cell)
 
 func _on_clear_cells():
 	for pos in get_used_cells():
 		if HexNavi.get_cell_custom_data(pos, "effect") == "":
-			set_cell(pos, MAIN_ATLAS_ID, YELLOW_CELL)
+			set_cell(pos, MAIN_ATLAS_ID, WHITE_CELL)
 	
 func get_all_tilemap_cells() -> Array[Vector2i]:
 	var all_cells: Array[Vector2i] = []
@@ -63,10 +67,10 @@ func get_all_tilemap_cells() -> Array[Vector2i]:
 	return all_cells
 
 func _on_set_cell(pos: Vector2i, id: int):
-	if id == 4: #if the pit
+	if id == CELL_TYPE.PIT: #if the pit
 		single_tile_appear(pos, PIT_ID)
 		await get_tree().create_timer(2).timeout
-	if id == 3: #if the heal
+	if id == CELL_TYPE.HEAL: #if the heal
 		single_tile_appear(pos, HEAL_ID)
 		await get_tree().create_timer(1.5).timeout
 	set_cell_to_variant(id, pos)
