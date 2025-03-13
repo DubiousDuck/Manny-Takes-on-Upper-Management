@@ -191,7 +191,7 @@ func scene_transition(scene : String):
 	GlobalUI.add_child(a)
 	a.get_node("AnimationPlayer").play("In")
 	await a.get_node("AnimationPlayer").animation_finished
-	get_tree().change_scene_to_file(scene)
+	Global.scene)
 	a.get_node("AnimationPlayer").play("Out")
 	await a.get_node("AnimationPlayer").animation_finished
 	a.queue_free()
