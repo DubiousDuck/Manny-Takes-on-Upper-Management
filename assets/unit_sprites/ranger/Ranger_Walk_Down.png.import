@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dje0gcpy72ke4"
-path="res://.godot/imported/holding_launch_idle.png-f35999219390e3309c9c3da60b14f4a9.ctex"
+uid="uid://cu03j0tc1ewxi"
+path="res://.godot/imported/Ranger_Walk_Down.png-7a0d2ac316d1942c7d528776e7de48d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/holding_launch_idle.png"
-dest_files=["res://.godot/imported/holding_launch_idle.png-f35999219390e3309c9c3da60b14f4a9.ctex"]
+source_file="res://assets/unit_sprites/ranger/Ranger_Walk_Down.png"
+dest_files=["res://.godot/imported/Ranger_Walk_Down.png-7a0d2ac316d1942c7d528776e7de48d9.ctex"]
 
 [params]
 
