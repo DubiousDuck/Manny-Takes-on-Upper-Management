@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=20 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
-[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://assets/ui/pause_canvas_layer.tscn" id="2_jumuj"]
+[ext_resource type="PackedScene" uid="uid://swx1ag0pr6hh" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_jumuj"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="3_hq3re"]
 [ext_resource type="Resource" uid="uid://d786b0uuepmc" path="res://ui/tutorial/contents/basics.tres" id="3_uvm5h"]
 [ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="4_4jh7s"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://8r502q2im3jc" path="res://ui/tutorial/contents/healing_tile.tres" id="6_2paab"]
 [ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="6_axwgq"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="6_mkisl"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="7_desty"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="7_vmn3i"]
 [ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="8_ken88"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="9_kyd2c"]
@@ -26,11 +27,18 @@ inital_exp = 4
 repeat_exp = 1
 tutorial_queue = Array[ExtResource("2_drabk")]([ExtResource("3_uvm5h"), ExtResource("4_baid3"), ExtResource("5_kp1jm"), ExtResource("6_2paab")])
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -720.0
+offset_top = -290.0
+offset_right = 3120.0
+offset_bottom = 790.0
+texture = ExtResource("7_desty")
+
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_jumuj")]
 isBattleScene = true
 
 [node name="TileMapTest" parent="." instance=ExtResource("3_hq3re")]
-tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAEAAQABAAMAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAQADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAEAAQAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAQABAAMAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAADAAAAAAADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAQAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
 tile_set = ExtResource("4_rygkc")
 
 [node name="CellHighlights" type="Node2D" parent="."]
@@ -56,7 +64,7 @@ is_player_controlled = true
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("7_vmn3i")]
-position = Vector2(61, 349)
+position = Vector2(61, 365)
 script = ExtResource("8_ken88")
 unit_data = ExtResource("11_s4umw")
 
@@ -65,7 +73,7 @@ script = ExtResource("6_axwgq")
 enemy_container = NodePath("../PlayerGroup")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("7_vmn3i")]
-position = Vector2(614, 136)
+position = Vector2(640, 152)
 script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
 

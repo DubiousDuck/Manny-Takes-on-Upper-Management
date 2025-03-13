@@ -9,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
+tracks/0/path = NodePath("MovingBackground:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +26,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
+tracks/0/path = NodePath("MovingBackground:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,26 +42,41 @@ _data = {
 &"looping_background": SubResource("Animation_omy8q")
 }
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_uhj5c")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.533333, 0.486275, 0.486275, 1)
+
+[node name="MovingBackground" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.356863)
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1150.0
-offset_right = 2.0
+offset_right = 1154.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_omy8q")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 91.0
-offset_bottom = -344.0
+offset_left = 88.0
+offset_top = 111.0
+offset_right = 1082.0
+offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_mu8pm")
@@ -71,10 +86,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 301.0
+offset_left = 260.0
+offset_top = 335.0
+offset_right = 910.0
+offset_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -123,6 +142,7 @@ text = "Credits"
 libraries = {
 &"": SubResource("AnimationLibrary_3c04x")
 }
+autoplay = "looping_background"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/load" to="." method="_on_load_pressed"]

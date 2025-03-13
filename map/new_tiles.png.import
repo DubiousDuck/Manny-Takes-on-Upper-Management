@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beh5usfneukm"
-path="res://.godot/imported/holder_body.png-fc6f3d9451acce28f365f37199aa9861.ctex"
+uid="uid://eokknymieg0y"
+path="res://.godot/imported/new_tiles.png-a50667a4b4fe8499a1eb75693dd3b2c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/holder_body.png"
-dest_files=["res://.godot/imported/holder_body.png-fc6f3d9451acce28f365f37199aa9861.ctex"]
+source_file="res://map/new_tiles.png"
+dest_files=["res://.godot/imported/new_tiles.png-a50667a4b4fe8499a1eb75693dd3b2c8.ctex"]
 
 [params]
 

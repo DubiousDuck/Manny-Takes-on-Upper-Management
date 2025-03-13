@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://prnw62kcbaq8"
-path="res://.godot/imported/hold_no_guy.png-6c7b06db00803923eabf8127fdf33fb2.ctex"
+uid="uid://djk2yvxr8jonx"
+path="res://.godot/imported/Ranger_Band_Attack.png-7ff96f7dbadc7b2083bbab1600b62657.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/hold_no_guy.png"
-dest_files=["res://.godot/imported/hold_no_guy.png-6c7b06db00803923eabf8127fdf33fb2.ctex"]
+source_file="res://assets/unit_sprites/ranger/Ranger_Band_Attack.png"
+dest_files=["res://.godot/imported/Ranger_Band_Attack.png-7ff96f7dbadc7b2083bbab1600b62657.ctex"]
 
 [params]
 

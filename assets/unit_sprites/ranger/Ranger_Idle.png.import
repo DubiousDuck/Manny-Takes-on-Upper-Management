@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fbggnn4slggk"
-path="res://.godot/imported/shoot.png-52ea1e2f4cfd61ee7a8064109890dc05.ctex"
+uid="uid://c7u1dsg23e17n"
+path="res://.godot/imported/Ranger_Idle.png-1e40eefc4778d9ebc0c33867da5afff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/shoot.png"
-dest_files=["res://.godot/imported/shoot.png-52ea1e2f4cfd61ee7a8064109890dc05.ctex"]
+source_file="res://assets/unit_sprites/ranger/Ranger_Idle.png"
+dest_files=["res://.godot/imported/Ranger_Idle.png-1e40eefc4778d9ebc0c33867da5afff8.ctex"]
 
 [params]
 

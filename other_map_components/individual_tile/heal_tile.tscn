@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cnp7cm1b6tb7e" path="res://other_map_components/individual_tile/pit_tile.gd" id="1_krmpw"]
 [ext_resource type="Shader" uid="uid://cji833vgp77ov" path="res://stages/area_1/disappear_1.gdshader" id="2_krmpw"]
-[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="3_aao4x"]
+[ext_resource type="Texture2D" uid="uid://eokknymieg0y" path="res://map/new_tiles.png" id="3_krmpw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_krmpw"]
 shader = ExtResource("2_krmpw")
-shader_parameter/original_color = Color(0, 1, 0, 1)
+shader_parameter/original_color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
 shader_parameter/noise_desnity = 10.0
 shader_parameter/beam_size = 0.03
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.1]
+"values": [0.0, 0.4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhhpr"]
@@ -54,9 +54,9 @@ script = ExtResource("1_krmpw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_krmpw")
-texture = ExtResource("3_aao4x")
-hframes = 3
-vframes = 2
+texture = ExtResource("3_krmpw")
+hframes = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

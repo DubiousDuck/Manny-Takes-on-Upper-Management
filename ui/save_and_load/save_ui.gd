@@ -18,3 +18,7 @@ func save(index : int):
 	Global.save_player_data(index)
 	for i in save_container.get_children(): i.queue_free()
 	_ready()
+
+func _on_close_pressed():
+	EventBus.ui_element_ended.emit()
+	queue_free()

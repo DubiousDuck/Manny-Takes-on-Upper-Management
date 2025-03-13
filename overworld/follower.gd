@@ -140,9 +140,7 @@ func process_rot(delta):
 		await a.finished
 		turning = false
 		# Reset the turn cooldown.
-
-# Handle movement and death check
-func _physics_process(delta):
+func _process(delta):
 	player = get_parent().get_node("Player")
 
 	process_kill()

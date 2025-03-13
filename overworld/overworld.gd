@@ -63,6 +63,11 @@ func _ready():
 	EventBus.emit_signal("back_to_overworld")
 	#make the game remember this is the last overworld loaded
 	Global.set_last_overworld_scene(get_tree().current_scene)
+	
+	##update player info
+	#TODO replace A with player name when able to access
+	#$CanvasLayer/PlayerInfo.text = "Player " + "A" + "\nLevel " + str(Global.level)
+	
 	update_followers()
 
 func _on_to_talent_page_pressed():
@@ -72,7 +77,7 @@ func _on_to_talent_page_pressed():
 
 func _on_save_pressed():
 	# TODO: change DEBUG_INT
-	Global.save_player_data(Global.DEBUG_INT)
+	Global.save_screen()
 
 func _on_party_manage_pressed():
 	Global.set_last_overworld_scene(get_tree().current_scene)

@@ -1,9 +1,39 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://od08ebdovrmi"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://od08ebdovrmi"]
 
 [ext_resource type="Shader" path="res://stages/area_1/disappear.gdshader" id="1_2nufh"]
+[ext_resource type="Texture2D" uid="uid://eokknymieg0y" path="res://map/new_tiles.png" id="1_gl8xq"]
 [ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
 [ext_resource type="PackedScene" uid="uid://j3k37ayrcnr2" path="res://other_map_components/individual_tile/pit_tile.tscn" id="3_prhqk"]
 [ext_resource type="PackedScene" uid="uid://cx7yp45iqipwq" path="res://other_map_components/individual_tile/heal_tile.tscn" id="4_e02vg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_prhk1"]
+texture = ExtResource("1_gl8xq")
+texture_region_size = Vector2i(128, 128)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/1 = 1
+0:0/1/modulate = Color(0.501961, 1, 1, 1)
+0:0/1/custom_data_0 = true
+0:0/1/custom_data_2 = "teleport"
+1:0/0 = 0
+1:0/0/custom_data_0 = true
+1:0/0/custom_data_1 = true
+2:0/0 = 0
+2:0/0/custom_data_0 = true
+2:0/0/custom_data_1 = true
+3:0/0 = 0
+3:0/0/custom_data_0 = true
+3:0/0/custom_data_2 = "heal"
+4:0/0 = 0
+4:0/0/custom_data_2 = "death"
+5:0/0 = 0
+5:0/0/custom_data_0 = true
+5:0/0/custom_data_2 = "heal"
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e02vg"]
+scenes/1/scene = ExtResource("3_prhqk")
+scenes/2/scene = ExtResource("4_e02vg")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nufh"]
 shader = ExtResource("1_2nufh")
@@ -45,19 +75,16 @@ texture_region_size = Vector2i(128, 128)
 0:1/1/custom_data_0 = true
 0:1/1/custom_data_2 = "teleport"
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e02vg"]
-scenes/1/scene = ExtResource("3_prhqk")
-scenes/2/scene = ExtResource("4_e02vg")
-
 [resource]
 tile_shape = 3
 tile_offset_axis = 1
-tile_size = Vector2i(123, 101)
+tile_size = Vector2i(128, 108)
 custom_data_layer_0/name = "traversable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "occupied"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "effect"
 custom_data_layer_2/type = 4
-sources/0 = SubResource("TileSetAtlasSource_inqtn")
 sources/1 = SubResource("TileSetScenesCollectionSource_e02vg")
+sources/3 = SubResource("TileSetAtlasSource_inqtn")
+sources/0 = SubResource("TileSetAtlasSource_prhk1")

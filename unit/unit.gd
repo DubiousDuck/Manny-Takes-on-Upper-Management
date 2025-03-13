@@ -184,6 +184,18 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 		"Shove":
 			animation_state("shove")
 			await $AnimationPlayer.animation_finished
+		"Arrow Rain":
+			animation_state("arrow_rain")
+			await $AnimationPlayer.animation_finished
+		"Whirlwind":
+			animation_state("whirlwind")
+			await $AnimationPlayer.animation_finished
+		"Defend":
+			animation_state("defend")
+			await $AnimationPlayer.animation_finished
+		"Give Milk":
+			animation_state("heal")
+			await $AnimationPlayer.animation_finished
 		_:
 			print("Failed to match skill name " + skill.name + " (unit.gd)")
 			await get_tree().create_timer(0.2).timeout
@@ -325,5 +337,9 @@ func _set_anim_lib():
 				anim_lib = "Mage"
 			"Fighter":
 				anim_lib = "Fighter"
+			"Ranger":
+				anim_lib = "Ranger"
+			"Tank":
+				anim_lib = "Tank"
 			_:
 				anim_lib = "unit_anim"

@@ -3,7 +3,7 @@ extends Node
 ## Global script with utility functions
 
 # Gives god mode to devs
-var dev_mode: bool = true
+var dev_mode: bool = false
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 # Battle related
@@ -27,6 +27,7 @@ func start():
 var current_scene : String
 var current_level : String
 var finished_levels := {}  # Acts as a HashSet
+
 func finished_level():
 	finished_levels[current_level]=true
 	current_level=""
@@ -79,29 +80,48 @@ func merge_talent_dict_with(code: int, target: Dictionary):
 			_protag_talent.merge(target, true)
 		talent_type.COMPANY:
 			_company_talent.merge(target, true)
-			
-			
 
 ##Leveling System related
 
-## Experience Gained
-var max_exp : int = 6
+## calculated in steps of 5 (i.e. lvl 0-4 need 6 xp, 5-10 needs 12 etc.)
+var exp_requirments = { 
+	0:3,
+	1:6,
+	2:12,
+	3:24
+}
+
+var max_level_ind = 3
+
+##helper for getting exp reqs, checks if max level reached and indexes by every 5th level
+func get_exp_requirment(level:int):
+	var ind = int(level/5)
+	if(ind > max_level_ind):
+		ind = max_level_ind
+	return exp_requirments[ind]
+
 var current_exp : int = 0
 var level : int = 1
 
-func gain_exp(value) -> int:
+## Experience Gained
+func gain_exp(value):
 	print("Exp Gained: ", value)
+	current_exp += value
+	var exp_req = get_exp_requirment(level)
+	print("exp req: ", exp_req)
+	
 	var original_level: int = level
-	if(current_exp + value > max_exp):
-		level += int((current_exp + value)/max_exp)
-		max_talent_points += level - original_level
-	current_exp = (current_exp + value) % max_exp
-	return level - original_level
+	
+	while(current_exp >= exp_req):
+		level += 1
+		current_exp -= exp_req
+	
+	max_talent_points += level - original_level
 
 ## Current Party related
 
 ## token necessary for recruiting new members
-var recruit_token: int = 1
+var recruit_token: int = 0
 
 ## Determines the maximum amount of party members
 var max_party_num: int = 3
@@ -139,9 +159,9 @@ func _ready():
 	verify_directory(save_path)
 	EventBus.connect("ui_element_started", ui_element_start)
 	EventBus.connect("ui_element_ended", ui_element_end)
+	## NOTICE: Not sure if this will corrupr save files but we'll see
+	load_new_save()
 	
-	#load data
-	load_player_data(DEBUG_INT)
 
 func verify_directory(path : String):
 	DirAccess.make_dir_absolute(path)
@@ -150,28 +170,62 @@ func verify_directory(path : String):
 
 const DIALOGUE = preload("res://ui/dialogue.tscn")
 const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
+const SCREEN_WIPE = preload("res://ui/screen_wipe.tscn")
+const SAVE_UI = preload("res://ui/save_and_load/save_ui.tscn")
+const LOAD_UI = preload("res://ui/save_and_load/load_ui.tscn")
 
 var dialogue_choice: String = ""
 
+var can_actors_move : bool = true
+var ui_busy : bool = false
+
 func ui_element_start():
+	ui_busy = true ## prevent accidental freeze when launching a specific scene from the editor
+	can_actors_move = false
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ui_element_end():
+	ui_busy = false
+	can_actors_move = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
+
+func scene_transition(scene : String):
+	EventBus.ui_element_started.emit()
+	var a = SCREEN_WIPE.instantiate()
+	GlobalUI.add_child(a)
+	a.get_node("AnimationPlayer").play("In")
+	await a.get_node("AnimationPlayer").animation_finished
+	get_tree().change_scene_to_file(scene)
+	a.get_node("AnimationPlayer").play("Out")
+	await a.get_node("AnimationPlayer").animation_finished
+	a.queue_free()
+	EventBus.ui_element_ended.emit()
 
 func start_dialogue(text : Array[String]):
 	var a = DIALOGUE.instantiate()
-	UiLayer.add_child(a)
+	GlobalUI.add_child(a)
 	a.read_text(text)
 	await EventBus.ui_element_ended
 	a.queue_free()
 
 func start_tutorial(page_queue: Array[TutorialContent]):
 	var a = TUTORIAL.instantiate()
-	UiLayer.add_child(a)
+	GlobalUI.add_child(a)
 	a.init(page_queue)
 	await EventBus.ui_element_ended
 	a.queue_free()
+	
+func save_screen():
+	EventBus.ui_element_started.emit()
+	var a = SAVE_UI.instantiate()
+	GlobalUI.add_child(a)
+	await EventBus.ui_element_ended
+	
+func load_screen():
+	EventBus.ui_element_started.emit()
+	var a = LOAD_UI.instantiate()
+	GlobalUI.add_child(a)
+	await EventBus.ui_element_ended
 	
 ## Save and load #####################################################
 
@@ -200,7 +254,11 @@ func load_player_data(save : int):
 	max_party_num = player_data.max_party_num
 	current_party = player_data.current_party
 	reserves = player_data.reserves
-
+	
+	#load level progress
+	finished_levels = player_data.finished_levels
+	
+	print(OS.get_user_data_dir())
 	print("- Loaded player data from index ", str(save))
 	
 func find_all_saves():
@@ -239,11 +297,15 @@ func save_player_data(save : int):
 	player_data.current_party = current_party
 	player_data.reserves = reserves
 	
+	#save level progress
+	player_data.finished_levels = finished_levels
+	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data to index ", str(save))
 
+## Set parameters of a new save file
 func load_new_save():
-	recruit_token = 100
+	recruit_token = 0
 	
 	current_exp = 0
 	level = 1

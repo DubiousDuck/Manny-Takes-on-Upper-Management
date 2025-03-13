@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_j4sim")
-name = "Give MIlk"
+name = "Give Milk"
 type = 1
 targets = 0
 affinity = 1

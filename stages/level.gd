@@ -32,6 +32,8 @@ func _ready():
 	read_talent_and_apply(Global.talent_type.COMPANY)
 	
 	if !tutorial_queue.is_empty():
+		if Global.ui_busy:
+			await EventBus.ui_element_ended # wait for fade
 		Global.start_tutorial(tutorial_queue)
 	
 	unit_group_control.init()
@@ -41,14 +43,12 @@ func _on_battle_ended(result: int):
 	var a = battle_outcome.instantiate()
 	a.init(result)
 	pause_canvas_layer.add_in_background(a)
-	var num_level_ups : int
+	var init_level : int = Global.level
 	if(result == EventBus.BattleResult.PLAYER_VICTORY):
-		#TODO: gain repeat exp if level already beaten
 		Global.finished_level()
-		num_level_ups = Global.gain_exp(inital_exp)
 		pause_canvas_layer.add_in_background(a)
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
-		num_level_ups = Global.gain_exp(xp_gained)
+		Global.gain_exp(xp_gained)
 		if give_token:
 			Global.recruit_token += 1
 		a.update_xp_label(xp_gained)
@@ -56,7 +56,7 @@ func _on_battle_ended(result: int):
 		a.update_xp_label(0)
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
-	a.animate_exp(Global.current_exp, num_level_ups)
+	a.animate_exp(Global.current_exp, init_level, Global.level)
 
 func read_talent_and_apply(talent_type: int):
 	#read the talent dictionary

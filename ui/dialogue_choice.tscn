@@ -4,9 +4,9 @@
 
 [node name="DialogueChoice" type="Button"]
 custom_minimum_size = Vector2(128, 64)
-offset_right = 128.0
-offset_bottom = 64.0
+offset_right = 256.0
+offset_bottom = 96.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_ylypa")
-theme_override_font_sizes/font_size = 32
-text = "Mage"
+theme_override_font_sizes/font_size = 64
+text = "Hello"

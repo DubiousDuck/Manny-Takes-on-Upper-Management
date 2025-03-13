@@ -200,7 +200,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				match effect.y:
 					1:
 						for tile in targets:
-							EventBus.emit_signal("set_cell", tile, 4)
+							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.PIT)
 						await EventBus.set_cell_done
 			_:
 				print("nothing happens yet")
@@ -312,9 +312,9 @@ func round_end_actions():
 				var new_cell := HexNavi.get_random_tile_pos()
 				while Vector2i(new_cell) == unit.cell:
 					new_cell = HexNavi.get_random_tile_pos()
-				EventBus.emit_signal("set_cell", new_cell, 3)
+				EventBus.emit_signal("set_cell", new_cell, MyMapLayer.CELL_TYPE.HEAL)
 				await EventBus.set_cell_done
-				EventBus.emit_signal("set_cell", unit.cell, 0)
+				EventBus.emit_signal("set_cell", unit.cell, MyMapLayer.CELL_TYPE.WHITE)
 				_on_update_cell_status(true)
 			_:
 				pass

@@ -104,7 +104,7 @@ func _on_save_exit_pressed():
 	
 	
 	if Global.get_last_overworld_scene():
-		#get_tree().change_scene_to_file(Global.get_last_overworld_name())
+		#Global.scene_transition(Global.get_last_overworld_name())
 		get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 func _on_switch_tree_pressed():

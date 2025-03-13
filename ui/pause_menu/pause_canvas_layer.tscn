@@ -158,6 +158,13 @@ theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 45
 text = "Exit Level"
 
+[node name="ToMainMenu" type="Button" parent="BattleMenuControl/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("6_erp37")
+theme_override_font_sizes/font_size = 45
+text = "Main Menu"
+
 [node name="QuitGame" type="Button" parent="BattleMenuControl/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -231,6 +238,7 @@ color = Color(0, 0, 0, 0)
 [connection signal="value_changed" from="BattleMenuControl/BrightnessSlider/HSlider" to="BattleMenuControl/BrightnessSlider" method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/ExitLevel" to="." method="_on_exit_level_pressed"]
+[connection signal="pressed" from="BattleMenuControl/HBoxContainer/ToMainMenu" to="." method="_on_to_main_menu_pressed"]
 [connection signal="pressed" from="BattleMenuControl/HBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="BattleMenuControl/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="BattleMenuControl/DevButton" to="." method="_on_dev_button_pressed"]

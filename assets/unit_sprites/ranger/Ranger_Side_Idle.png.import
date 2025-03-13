@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lpdj4vjsvfge"
-path="res://.godot/imported/holder_hand.png-cc4795d8d3dfd936901ff4f80a0e0886.ctex"
+uid="uid://ced3dmpl1alre"
+path="res://.godot/imported/Ranger_Side_Idle.png-971d47a57d2b5cc36e253dc450603047.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/holder_hand.png"
-dest_files=["res://.godot/imported/holder_hand.png-cc4795d8d3dfd936901ff4f80a0e0886.ctex"]
+source_file="res://assets/unit_sprites/ranger/Ranger_Side_Idle.png"
+dest_files=["res://.godot/imported/Ranger_Side_Idle.png-971d47a57d2b5cc36e253dc450603047.ctex"]
 
 [params]
 

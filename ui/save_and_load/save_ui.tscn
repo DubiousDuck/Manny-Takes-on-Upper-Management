@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dctfkywkthhff"]
+[gd_scene load_steps=5 format=3 uid="uid://dctfkywkthhff"]
 
 [ext_resource type="Script" uid="uid://dfmig8tj0kcu4" path="res://ui/save_and_load/save_ui.gd" id="1_wlsta"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_nsye5"]
+[ext_resource type="Texture2D" uid="uid://cfahyusqmlmqo" path="res://assets/ui/exit_icon.png" id="2_w8ink"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_b88av"]
 
 [node name="SaveUI" type="Control"]
 layout_mode = 3
@@ -11,11 +14,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlsta")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nsye5")
+
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1152.0
-offset_bottom = 640.0
-color = Color(0.341176, 0.341176, 0.341176, 0.47451)
+offset_bottom = 656.0
+color = Color(0.144063, 0.144063, 0.144063, 0.47451)
 
 [node name="VScrollBar" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -28,3 +40,18 @@ offset_bottom = 576.0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
+
+[node name="Close" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 48.0
+offset_right = 944.0
+offset_bottom = 96.0
+theme = ExtResource("3_b88av")
+texture_normal = ExtResource("2_w8ink")
+texture_pressed = ExtResource("2_w8ink")
+texture_hover = ExtResource("2_w8ink")
+texture_disabled = ExtResource("2_w8ink")
+texture_focused = ExtResource("2_w8ink")
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

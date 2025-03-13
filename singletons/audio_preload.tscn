@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2twbcvjbm1vw"]
 
-[ext_resource type="Script" uid="uid://cgvi4bomeo6hl" path="res://global/audio_preload.gd" id="1_bgm7c"]
+[ext_resource type="Script" uid="uid://cgvi4bomeo6hl" path="res://singletons/audio_preload.gd" id="1_bgm7c"]
 
 [node name="AudioPreload" type="AudioStreamPlayer"]
 process_mode = 3

@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp2rymmbewjrq"]
+
+[sub_resource type="Animation" id="Animation_uhjyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenWipe/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -656)]
+}
+
+[sub_resource type="Animation" id="Animation_xi8y8"]
+resource_name = "In"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenWipe/ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -656), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t06dp"]
+resource_name = "Out"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenWipe/ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 656)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxbra"]
+_data = {
+&"In": SubResource("Animation_xi8y8"),
+&"Out": SubResource("Animation_t06dp"),
+&"RESET": SubResource("Animation_uhjyk")
+}
+
+[node name="ScreenWipe" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_sxbra")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -656.0
+offset_right = 1152.0
+offset_bottom = -8.0
+color = Color(0.0646965, 0.0646965, 0.0646965, 1)

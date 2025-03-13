@@ -5,18 +5,22 @@ class_name UnitContainer
 signal all_units_moved
 signal unit_action_done
 
-#information
+@export_category("General Parameters")
 @export var is_player_controlled: bool
+## If false, ally parties will not be read from Save Data but instead loaded from the scene editor
+@export var read_class_from_data: bool = true
 @export var enemy_container: UnitContainer #NOTICE: New feature!
 var units: Array[Unit] = []
 var current_unit: Unit
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 
+@export_category("Enemy AI Parameters")
 @export var aggro_probability: float = 1.0       #Default weights for move decision of AI enemy
 @export var neutral_probability: float = 0.0
 @export var defensive_probability: float = 0.0
 
+@export_category("TilpMapLayer Related")
 @export var tilemap_path: NodePath = NodePath("../../TileMapTest") # Default value (can be overridden in the editor)
 @onready var tile_map_test: TileMapLayer = get_node(tilemap_path) as TileMapLayer
 
@@ -41,7 +45,7 @@ func _ready() -> void:
 		units.append(unit)
 		
 	##Read and assign unit data
-	if is_player_controlled:
+	if is_player_controlled and read_class_from_data:
 		var unit_data_array: Array[UnitData] = Global.current_party.duplicate(true)
 		unit_data_array.erase(preload("res://unit/params/protagonist.tres"))
 		var unassigned: Array[Unit] = units.duplicate(true)

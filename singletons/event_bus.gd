@@ -32,9 +32,6 @@ signal talent_node_pressed()
 signal disable_all_nodes()
 signal reset_talent_levels()
 
-#Leveling System
-signal give_experience(value)
-
 #Party management
 signal dragging_start()
 signal dragging_stop()

@@ -5,6 +5,7 @@ var menuIsDisplayed: bool = false
 @onready var label = $BattleMenuControl/Label
 @onready var exit_level = $BattleMenuControl/HBoxContainer/ExitLevel
 @onready var restart_level = $BattleMenuControl/HBoxContainer/RestartLevel
+@onready var to_main_menu = $BattleMenuControl/HBoxContainer/ToMainMenu
 @onready var pause_button = $PauseButton
 @onready var brightness_slider = $BattleMenuControl/BrightnessSlider
 
@@ -15,6 +16,8 @@ var menuIsDisplayed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventBus.connect("ui_element_started", other_ui_started)
+	EventBus.connect("ui_element_ended", other_ui_ended)
 	$BattleMenuControl.visible = false
 	dev_button.visible = Global.dev_mode
 	brightness_slider.setBrightness(Global.brightness_val)
@@ -23,12 +26,22 @@ func _ready():
 		exit_level.visible = false
 		restart_level.visible = false
 		pass_button.visible = false
+		to_main_menu.visible = true
+	else:
+		to_main_menu.visible = false
+
+func other_ui_started():
+	pass
+	
+func other_ui_ended():
+	pass
 
 func flipMenuDisplay():
 	menuIsDisplayed = !menuIsDisplayed
 	battle_menu_control.visible = menuIsDisplayed
 	pause_button.visible = !menuIsDisplayed
-	pass_button.visible = !menuIsDisplayed
+	if isBattleScene:
+		pass_button.visible = !menuIsDisplayed
 	if menuIsDisplayed:
 		get_tree().paused = true
 	else:
@@ -84,3 +97,7 @@ func _on_pass_button_pressed():
 	if Global.isPlayerTurn:
 		print("hitting the button")
 		EventBus.pass_turn.emit()
+
+func _on_to_main_menu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")

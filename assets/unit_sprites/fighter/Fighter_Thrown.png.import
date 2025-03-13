@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4rufil1mvwq"
-path="res://.godot/imported/holding_idle.png-d0349934db148d52645b385afdf707f9.ctex"
+uid="uid://cwlmqsjma1p7i"
+path="res://.godot/imported/Fighter_Thrown.png-a05e297991db15349de6231939fa0d81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/tank/holding_idle.png"
-dest_files=["res://.godot/imported/holding_idle.png-d0349934db148d52645b385afdf707f9.ctex"]
+source_file="res://assets/unit_sprites/fighter/Fighter_Thrown.png"
+dest_files=["res://.godot/imported/Fighter_Thrown.png-a05e297991db15349de6231939fa0d81.ctex"]
 
 [params]
 
