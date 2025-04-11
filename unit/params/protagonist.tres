@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_g3jub")
+id = 0
 unit_class = "Protagonist"
 attributes = {
 0: 4,
