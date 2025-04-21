@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=17 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -10,6 +10,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dm5jvuhr1opyh" path="res://unit/Ranger.res" id="7_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 [ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="8_j0e0d"]
+[ext_resource type="Script" uid="uid://bxa8n2ssfba55" path="res://unit/item_reader.gd" id="11_j0e0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3a2"]
 size = Vector2(12.9032, 16.2162)
@@ -216,6 +217,9 @@ mouse_default_cursor_shape = 2
 unit = NodePath("..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ItemReader" type="Node2D" parent="."]
+script = ExtResource("11_j0e0d")
 
 [connection signal="anim_complete" from="." to="." method="_on_anim_complete"]
 [connection signal="attack_point" from="." to="." method="_on_attack_point"]

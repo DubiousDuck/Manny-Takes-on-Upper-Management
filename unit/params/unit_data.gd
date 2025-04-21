@@ -17,16 +17,6 @@ enum ATTRIBUTES {HP, ATK, MAG, MOV}
 
 @export var skill_list: Array[SkillInfo] = []
 
-#Non-player units only
-@export_category("Non-Player Unit")
-@export_enum("Hostile", "Resentful", 
-	"Indifferent", "Respectful", "Loyal") var rel: String
-@export_range(-50, 50) var mood: int = 50
-
-@export_category("Protagonist Only")
-#Protagonist only
-@export var money: int = 5 #TODO: move to save file perhaps
-
 func get_attribute(name):
 	match name:
 		"HP": return attributes[ATTRIBUTES.HP]
@@ -39,11 +29,9 @@ func _set_attributes(delta: Array[int]):
 	attributes[ATTRIBUTES.ATK] = delta[ATTRIBUTES.ATK]
 	attributes[ATTRIBUTES.MAG] = delta[ATTRIBUTES.MAG]
 	attributes[ATTRIBUTES.MOV] = delta[ATTRIBUTES.MOV]
-#
-#@export var unique_id: int
-#func _init():
-	#unique_id = generate_unique_id()
-#static var next_unique_id = 0
-#static func generate_unique_id() -> int:
-	#next_unique_id += 1
-	#return next_unique_id
+
+# Item related
+@export var item_list: Array[ItemData] = []
+
+func add_item(item: ItemData):
+	item_list.append(item)

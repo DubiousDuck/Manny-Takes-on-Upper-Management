@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsbua00tufaw3"]
+
+[ext_resource type="Script" uid="uid://10itgf8qtmm7" path="res://overworld/party_comp/member_draggable.gd" id="1_e0v4q"]
+[ext_resource type="PackedScene" uid="uid://k72ihh2m8ggt" path="res://overworld/party_comp/base_draggable.tscn" id="1_fvf3a"]
+[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="1_o2cwy"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_po6nx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2sir"]
+radius = 37.0
+height = 116.0
+
+[node name="MemberDraggable" instance=ExtResource("1_fvf3a")]
+script = ExtResource("1_e0v4q")
+unit_data = null
+type = "Member"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(5.5625, 5.5625)
+texture = ExtResource("1_o2cwy")
+hframes = 4
+
+[node name="Label" type="Label" parent="." index="2"]
+offset_left = -39.0
+offset_top = -46.0
+offset_right = 39.0
+offset_bottom = -23.0
+theme = ExtResource("3_po6nx")
+horizontal_alignment = 1
+
+[node name="ItemDetector" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector" index="0"]
+shape = SubResource("CapsuleShape2D_a2sir")
+
+[connection signal="area_entered" from="ItemDetector" to="." method="_on_item_detector_area_entered"]
+[connection signal="area_exited" from="ItemDetector" to="." method="_on_item_detector_area_exited"]

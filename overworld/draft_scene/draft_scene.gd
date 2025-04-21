@@ -11,7 +11,7 @@ func _process(delta):
 	pass
 
 
-const MEMBER = preload("res://overworld/party_comp/draggable_member.tscn")
+const MEMBER = preload("res://overworld/party_comp/member_draggable.tscn")
 
 func back_to_overworld():
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())

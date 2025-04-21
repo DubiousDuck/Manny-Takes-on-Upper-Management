@@ -27,10 +27,14 @@ func snap_to_queue():
 		var offset = Vector2(displacement/2 + displacement*i-GAP/2, 0)
 		members[i].global_position = anchor.global_position + offset
 	
-func _on_drag_start():
+func _on_drag_start(type: String):
+	if type != "Member":
+		return
 	$ColorRect.show()
 
-func _on_drag_stop():
+func _on_drag_stop(type: String):
+	if type != "Member":
+		return
 	$ColorRect.hide()
 	snap_to_queue()
 

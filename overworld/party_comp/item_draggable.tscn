@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://7jmihj2fsaie"]
+
+[ext_resource type="PackedScene" uid="uid://k72ihh2m8ggt" path="res://overworld/party_comp/base_draggable.tscn" id="1_y45db"]
+[ext_resource type="Texture2D" uid="uid://b72ioykwqhufk" path="res://icon.svg" id="2_l8xyj"]
+[ext_resource type="Script" uid="uid://d1gr2dqm8libo" path="res://overworld/party_comp/item_draggable.gd" id="2_t1gi2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8xyj"]
+radius = 42.0
+
+[node name="ItemDraggable" instance=ExtResource("1_y45db")]
+script = ExtResource("2_t1gi2")
+item_data = null
+type = "Item"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(0.617188, 0.585938)
+texture = ExtResource("2_l8xyj")
+
+[node name="Hitbox" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_l8xyj")

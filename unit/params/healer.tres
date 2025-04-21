@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("1_kp1fd")
+id = 0
 unit_class = "Healer"
 attributes = {
 0: 4,
@@ -16,6 +17,3 @@ attributes = {
 3: 2
 }
 skill_list = Array[ExtResource("2_4bsfd")]([ExtResource("3_8bpra"), ExtResource("4_t6r3d"), ExtResource("4_pg5q1")])
-rel = ""
-mood = 50
-money = 5

@@ -33,8 +33,8 @@ signal disable_all_nodes()
 signal reset_talent_levels()
 
 #Party management
-signal dragging_start()
-signal dragging_stop()
+signal dragging_start(type: String)
+signal dragging_stop(type: String)
 
 #UI
 signal ui_element_started

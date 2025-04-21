@@ -11,8 +11,7 @@ enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SEL
 @export_category("Basic Info")
 @export var name: String
 @export_enum("attack", "skill", "passive") var type
-@export_enum("allies", "enemies", "self", "any_unit", 
-"except_self", "allies_except_self", "any_cell", "any_cell_except_self", "any_cell_except_allies") var targets
+@export var targets: TargetType
 @export_enum("physical", "magic") var affinity
 @export_range(0, 10) var range: int
 @export_range(-10, 10) var area: int = 0 #negative area covers the same as positive but excludes origin

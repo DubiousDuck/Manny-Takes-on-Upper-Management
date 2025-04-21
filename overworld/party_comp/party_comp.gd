@@ -2,7 +2,7 @@ extends Node2D
 
 class_name PartyComp
 
-const MEMBER = preload("res://overworld/party_comp/draggable_member.tscn")
+const MEMBER = preload("res://overworld/party_comp/member_draggable.tscn")
 
 @onready var member_folder = $MemberFolder
 

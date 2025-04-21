@@ -47,9 +47,9 @@ func _ready() -> void:
 	##Read and assign unit data
 	if is_player_controlled and read_class_from_data:
 		var unit_data_array: Array[UnitData] = Global.current_party.duplicate(true)
-		unit_data_array.erase(preload("res://unit/params/protagonist.tres"))
+		#unit_data_array.erase(preload("res://unit/params/protagonist.tres"))
 		var unassigned: Array[Unit] = units.duplicate(true)
-		unassigned.erase(find_child("Protag")) #NOTICE Assumes that protag has been set up in the editor already
+		#unassigned.erase(find_child("Protag")) #NOTICE Assumes that protag has been set up in the editor already
 		
 		for index in range(unit_data_array.size()):
 			if index >= unassigned.size():

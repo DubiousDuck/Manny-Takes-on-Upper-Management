@@ -173,6 +173,7 @@ tile_set = SubResource("TileSet_hq1u4")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ToTalentPage" type="Button" parent="CanvasLayer"]
+visible = false
 offset_left = 906.0
 offset_top = 565.0
 offset_right = 1133.0

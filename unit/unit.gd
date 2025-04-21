@@ -63,9 +63,6 @@ var is_dead: bool = false
 var damage_reduction: float = 0;
 
 func _ready():
-	_custom_ready()
-
-func _custom_ready(): #virtual functions for subclasses to do their own stuff
 	pass
 	
 ## read unit_data and set attributes
@@ -78,6 +75,19 @@ func load_unit_data():
 	movement_range = unit_data.get_attribute("MOV")
 	
 	skills = unit_data.skill_list
+	
+	#read from item list and apply effects
+	#delegates to the ItemReader to make organization cleaner
+	for item in unit_data.item_list:
+		var effects: Dictionary = $ItemReader.get_item_effects(item)
+		max_health += effects["HP"]
+		health = max_health
+		attack_power += effects["ATK"]
+		magic_power += effects["MAG"]
+		movement_range += effects["MOV"]
+		if effects["NEW_SKILL"]:
+			skills.append(effects["NEW_SKILL"])
+	
 	_set_anim_lib()
 
 func _process(_delta):
@@ -234,6 +244,7 @@ func check_if_dead():
 		EventBus.emit_signal("unit_died")
 		queue_free.call_deferred()
 
+## check and execute effect of the tile that the unit lands on
 func tile_action():
 	var cell_effect: String =  HexNavi.get_cell_custom_data(cell, "effect")
 	match cell_effect:
