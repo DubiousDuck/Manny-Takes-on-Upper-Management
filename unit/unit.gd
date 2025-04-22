@@ -85,7 +85,7 @@ func load_unit_data():
 		attack_power += effects["ATK"]
 		magic_power += effects["MAG"]
 		movement_range += effects["MOV"]
-		if effects["NEW_SKILL"]:
+		if effects["NEW_SKILL"] and !skills.has(effects["NEW_SKILL"]):
 			skills.append(effects["NEW_SKILL"])
 	
 	_set_anim_lib()

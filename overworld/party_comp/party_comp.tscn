@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwbm8ftgxtwma"]
+[gd_scene load_steps=16 format=3 uid="uid://bwbm8ftgxtwma"]
 
 [ext_resource type="Script" uid="uid://qpe6h30h7oxq" path="res://overworld/party_comp/party_comp.gd" id="1_2gams"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_dwnhv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://7jmihj2fsaie" path="res://overworld/party_comp/item_draggable.tscn" id="7_jokxe"]
 [ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="8_tp2wy"]
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="9_sulhy"]
+[ext_resource type="Resource" uid="uid://bokt53sha513s" path="res://items/golden_gloves.tres" id="10_sulhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85k4d"]
 size = Vector2(995, 203)
@@ -197,6 +198,10 @@ item_data = ExtResource("8_tp2wy")
 [node name="ItemDraggable2" parent="." instance=ExtResource("7_jokxe")]
 position = Vector2(913, 500)
 item_data = ExtResource("9_sulhy")
+
+[node name="ItemDraggable3" parent="." instance=ExtResource("7_jokxe")]
+position = Vector2(700, 509)
+item_data = ExtResource("10_sulhy")
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="area_entered" from="CurrParty" to="CurrParty" method="_on_area_entered"]

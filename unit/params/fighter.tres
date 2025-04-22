@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://khrwg3mnex64"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://khrwg3mnex64"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_fc3tt"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_j2f37"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_ve8l4"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="3_ye2rj"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_5ll2x"]
@@ -17,6 +18,4 @@ attributes = {
 3: 2
 }
 skill_list = Array[ExtResource("2_ve8l4")]([ExtResource("3_ye2rj"), ExtResource("4_iwujq"), ExtResource("4_5ll2x")])
-rel = ""
-mood = 50
-money = 5
+item_list = Array[ExtResource("1_j2f37")]([])
