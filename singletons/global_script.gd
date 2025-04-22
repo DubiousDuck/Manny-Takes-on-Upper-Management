@@ -40,47 +40,6 @@ func set_last_overworld_scene(scene: Node):
 func get_last_overworld_scene() -> PackedScene:
 	return _last_overworld_scene
 
-
-# Skill Tree Related
-var max_talent_points : int = 0
-
-enum talent_type{PROTAG, COMPANY}
-
-## A dictionary of all protagonist talent nodes that have been activated.
-var _protag_talent: Dictionary = {}
-## A dictionary of all company talent nodes that have been activated.
-var _company_talent: Dictionary = {}
-
-func get_talent_activated(code: int) -> Dictionary:
-	match code:
-		talent_type.PROTAG:
-			return _protag_talent
-		talent_type.COMPANY:
-			return _company_talent
-		_:
-			return {}
-
-func clear_talent(code: int) -> void:
-	match code:
-		talent_type.PROTAG:
-			_protag_talent.clear()
-		talent_type.COMPANY:
-			_company_talent.clear()
-
-func copy_talent_dict_from(code: int, from: Dictionary):
-	match code:
-		talent_type.PROTAG:
-			_protag_talent = from.duplicate()
-		talent_type.COMPANY:
-			_company_talent = from.duplicate()
-
-func merge_talent_dict_with(code: int, target: Dictionary):
-	match code:
-		talent_type.PROTAG:
-			_protag_talent.merge(target, true)
-		talent_type.COMPANY:
-			_company_talent.merge(target, true)
-
 ##Leveling System related
 
 ## calculated in steps of 5 (i.e. lvl 0-4 need 6 xp, 5-10 needs 12 etc.)
@@ -115,8 +74,6 @@ func gain_exp(value):
 	while(current_exp >= exp_req):
 		level += 1
 		current_exp -= exp_req
-	
-	max_talent_points += level - original_level
 
 ## Current Party related
 
@@ -244,11 +201,6 @@ func load_player_data(save : int):
 	current_exp = player_data.current_exp
 	level = player_data.level
 	
-	#read and copy talents
-	copy_talent_dict_from(talent_type.PROTAG, player_data.protag_talents)
-	copy_talent_dict_from(talent_type.COMPANY, player_data.company_talents)
-	max_talent_points = player_data.max_talent_points
-	
 	#copy current_party
 	recruit_token = player_data.recruit_token
 	max_party_num = player_data.max_party_num
@@ -286,11 +238,6 @@ func save_player_data(save : int):
 	player_data.current_exp = current_exp
 	player_data.level = level
 	
-	#save talents
-	player_data.protag_talents = _protag_talent.duplicate(true)
-	player_data.company_talents = _company_talent.duplicate(true)
-	player_data.max_talent_points = max_talent_points
-	
 	#save current party
 	player_data.recruit_token = recruit_token
 	player_data.max_party_num = max_party_num
@@ -309,7 +256,6 @@ func load_new_save():
 	
 	current_exp = 0
 	level = 1
-	max_talent_points = 0
 	
 	var protag = preload("res://unit/params/protagonist.tres")
 	current_party.append_array([protag])

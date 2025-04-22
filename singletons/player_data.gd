@@ -10,11 +10,6 @@ class_name PlayerData extends Resource
 @export var current_exp: int
 @export var level: int
 
-## Activated talents
-@export var max_talent_points: int
-@export var protag_talents: Dictionary = {}
-@export var company_talents: Dictionary = {}
-
 ## Current party
 @export var recruit_token: int = 0
 @export var max_party_num: int = 3

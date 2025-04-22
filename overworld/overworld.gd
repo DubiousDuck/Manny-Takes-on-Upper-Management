@@ -7,7 +7,8 @@ var follower_spawn_radius: float = 50
 
 @export var followers = {}
 
-func _set_owner_recursive(node : Node, new_owner : Node, old_paths : Dictionary):
+## Deprecated for now since we're respawning followers every time (not saving them into the packed scene)
+func _set_owner_recursive(node : Node, new_owner : Node):
 	if new_owner == null:
 		return
 		
@@ -15,23 +16,26 @@ func _set_owner_recursive(node : Node, new_owner : Node, old_paths : Dictionary)
 	
 	if should_set:
 		node.owner = new_owner
-		if node.scene_file_path:
-			old_paths[new_owner.get_path_to(node)] = node.scene_file_path
-			node.scene_file_path = ""
 	for c in node.get_children():
-		_set_owner_recursive(c, new_owner, old_paths)
+		_set_owner_recursive(c, new_owner)
 
 func update_followers() -> void:
 	# Get a reference to the player node. Adjust the node path as needed.
 	var player = get_node("Player")
 	var player_pos = player.position
 	var follower_scene = preload("res://overworld/Follower.tscn")
+	
+	# Clear existing followers since we're creating followers everytime
+	for child in get_children():
+		if child is Follower:
+			child.queue_free()
+	followers.clear()
 
 	# Add new followers for party members who don't already have a follower
 	for unit_data in Global.current_party:
 		if unit_data in followers or unit_data.unit_class == 'Protagonist':
 			continue
-
+			
 		# Generate random position around the player
 		var angle = randf_range(0, 2 * PI)
 		var distance = randf_range(0, follower_spawn_radius)
@@ -44,20 +48,21 @@ func update_followers() -> void:
 		follower.set_anim_lib()  # Assuming this is a function that sets animation for the follower
 		follower.scale = Vector2(0.5, 0.5)
 		add_child(follower)
-		_set_owner_recursive(follower, self, {})
+		#_set_owner_recursive(follower, self)
 		
 		followers[unit_data] = follower
 	
-	# Clean up followers who are no longer in the current party
-	for child in get_children():
-		if child is Follower:
-			# Check if the follower's unit_data is still in the current party
-			if not child.unit_data in Global.current_party:
-				var unit_data = child.unit_data
-				followers.erase(unit_data)  # Remove from dictionary
-				child.queue_free()  # Properly delete the follower
-
-	print(followers)
+	#TODO: Remove this section once we confirm the new approach is stable
+	## Clean up followers who are no longer in the current party
+	#for child in get_children():
+		#if child is Follower:
+			## Check if the follower's unit_data is still in the current party
+			#if !(child.unit_data in Global.current_party):
+				#var unit_data = child.unit_data
+				#followers.erase(unit_data)  # Remove from dictionary
+				#print("removing child... -- overworld.gd")
+				#child.queue_free()  # Properly delete the follower
+	#print(str(followers) + " -- overworld.gd")
 
 func _ready():
 	EventBus.emit_signal("back_to_overworld")
@@ -68,6 +73,7 @@ func _ready():
 	#TODO replace A with player name when able to access
 	#$CanvasLayer/PlayerInfo.text = "Player " + "A" + "\nLevel " + str(Global.level)
 	
+	#print("update followers... -- overworld.gd")
 	update_followers()
 
 func _on_to_talent_page_pressed():
@@ -76,7 +82,6 @@ func _on_to_talent_page_pressed():
 	get_tree().change_scene_to_packed(talent_scene)
 
 func _on_save_pressed():
-	# TODO: change DEBUG_INT
 	Global.save_screen()
 
 func _on_party_manage_pressed():
