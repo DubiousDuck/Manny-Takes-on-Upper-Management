@@ -193,6 +193,7 @@ var player_data = PlayerData.new()
 func load_player_data(save : int):
 	var data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension)
 	if !data:
+		push_warning("no valid data found. initializing a new save... -- Global.gd")
 		load_new_save()
 		return
 	player_data = data.duplicate(true)
@@ -204,8 +205,8 @@ func load_player_data(save : int):
 	#copy current_party
 	recruit_token = player_data.recruit_token
 	max_party_num = player_data.max_party_num
-	current_party = player_data.current_party
-	reserves = player_data.reserves
+	current_party = player_data.current_party.duplicate(true)
+	reserves = player_data.reserves.duplicate(true)
 	
 	#load level progress
 	finished_levels = player_data.finished_levels
@@ -241,8 +242,8 @@ func save_player_data(save : int):
 	#save current party
 	player_data.recruit_token = recruit_token
 	player_data.max_party_num = max_party_num
-	player_data.current_party = current_party
-	player_data.reserves = reserves
+	player_data.current_party = current_party.duplicate(true)
+	player_data.reserves = reserves.duplicate(true)
 	
 	#save level progress
 	player_data.finished_levels = finished_levels
@@ -258,4 +259,4 @@ func load_new_save():
 	level = 1
 	
 	var protag = preload("res://unit/params/protagonist.tres")
-	current_party.append_array([protag])
+	current_party.append_array([protag.duplicate(true)])
