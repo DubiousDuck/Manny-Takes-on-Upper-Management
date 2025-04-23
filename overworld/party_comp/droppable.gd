@@ -26,6 +26,8 @@ func snap_to_queue():
 	for i in range(members.size()):
 		var offset = Vector2(displacement/2 + displacement*i-GAP/2, 0)
 		members[i].global_position = anchor.global_position + offset
+		members[i].snap_items()
+		members[i].update_status_and_items(is_current_member)
 	
 func _on_drag_start(type: String):
 	if type != "Member":

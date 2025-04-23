@@ -27,14 +27,10 @@ signal battle_ended(result: int)  #0 is win, 1 is lose
 signal unit_on_standby()
 signal pass_turn()
 
-#Skill Tree
-signal talent_node_pressed()
-signal disable_all_nodes()
-signal reset_talent_levels()
-
 #Party management
 signal dragging_start(type: String)
 signal dragging_stop(type: String)
+signal remove_item()
 
 #UI
 signal ui_element_started

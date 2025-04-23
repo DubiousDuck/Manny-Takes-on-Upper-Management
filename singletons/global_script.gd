@@ -2,8 +2,8 @@ extends Node
 
 ## Global script with utility functions
 
-# Gives god mode to devs
-var dev_mode: bool = false
+# Gives god mode to devs TODO: CHANGE IT BACK BEFORE EXPORTING
+var dev_mode: bool = true
 ######################       SET TO FALSE BEFORE EXPORTING !!!!!          #######################
 
 # Battle related
@@ -85,6 +85,7 @@ var max_party_num: int = 3
 
 var current_party: Array[UnitData] = []
 var reserves: Array[UnitData] = []
+var unequipped_items: Array[ItemData] = []
 
 ## Player input signals
 
@@ -207,6 +208,7 @@ func load_player_data(save : int):
 	max_party_num = player_data.max_party_num
 	current_party = player_data.current_party.duplicate(true)
 	reserves = player_data.reserves.duplicate(true)
+	unequipped_items = player_data.unequipped_items.duplicate(true)
 	
 	#load level progress
 	finished_levels = player_data.finished_levels
@@ -244,6 +246,7 @@ func save_player_data(save : int):
 	player_data.max_party_num = max_party_num
 	player_data.current_party = current_party.duplicate(true)
 	player_data.reserves = reserves.duplicate(true)
+	player_data.unequipped_items = unequipped_items.duplicate(true)
 	
 	#save level progress
 	player_data.finished_levels = finished_levels

@@ -1,12 +1,15 @@
-[gd_scene load_steps=20 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=23 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="2_jumuj"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_qadan"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="3_hq3re"]
+[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="3_umfdv"]
 [ext_resource type="Resource" uid="uid://d786b0uuepmc" path="res://ui/tutorial/contents/basics.tres" id="3_uvm5h"]
 [ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="4_4jh7s"]
 [ext_resource type="Resource" uid="uid://d2oeemu5nubl2" path="res://ui/tutorial/contents/taking_turn.tres" id="4_baid3"]
+[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_hvujv"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="4_rygkc"]
 [ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="5_k6pgt"]
 [ext_resource type="Resource" uid="uid://ghwb608wl1i2" path="res://ui/tutorial/contents/attacking.tres" id="5_kp1jm"]
@@ -25,6 +28,7 @@ script = ExtResource("1_fta11")
 tile_map = NodePath("TileMapTest")
 inital_exp = 4
 repeat_exp = 1
+dropped_items = Array[ExtResource("2_qadan")]([ExtResource("3_umfdv"), ExtResource("4_hvujv")])
 tutorial_queue = Array[ExtResource("2_drabk")]([ExtResource("3_uvm5h"), ExtResource("4_baid3"), ExtResource("5_kp1jm"), ExtResource("6_2paab")])
 
 [node name="TextureRect" type="TextureRect" parent="."]

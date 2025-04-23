@@ -2,8 +2,7 @@ extends Draggable
 
 class_name DraggableMember
 
-const drag_item = preload("res://overworld/party_comp/item_draggable.tscn")
-const GAP = 100
+const GAP = 150
 
 @onready var item_folder = $ItemFolder
 
@@ -11,11 +10,21 @@ const GAP = 100
 var current_item: DraggableItem
 var equipped_items: Array[DraggableItem]
 
+## A boolean variable representing whether this member is in current party or not
+var in_curr_party: bool = false
+
 func _ready():
 	$Label.text = unit_data.unit_class
-	load_all_items_from_data()
 	EventBus.connect("dragging_stop", _on_dragging_stop)
-	
+	EventBus.connect("remove_item", _on_remove_item)
+
+func init(items: Array[DraggableItem]):
+	equipped_items.append_array(items)
+	equipped_items.map(func(item: DraggableItem):
+		item.equipper = self
+	)
+	snap_items()
+
 func _process(_delta):
 	#if unit is protanoist, can't be dragged out of current party
 	if unit_data.unit_class == "Protagonist":
@@ -28,37 +37,51 @@ func _on_dragging_stop(type: String):
 	if current_item:
 		add_item_to_equipped(current_item)
 		current_item = null
+	snap_items()
 
+func update_status_and_items(new_state: bool):
+	in_curr_party = new_state
+	# if no longer in current pary, release all items
+	if !in_curr_party:
+		for item in equipped_items:
+			item.clear_equipper_and_reset()
+	
 func add_item_to_equipped(item: DraggableItem):
 	if equipped_items.has(item):
-		print("I already have this item. -- " + name)
 		return
 	else:
-		print("equipping item... -- " + name)
 		equipped_items.append(item)
+		item.equipper = self
 		snap_items()
 
+func _on_remove_item():
+	for item in equipped_items:
+		if item is DraggableItem and item.remove_button.button_pressed:
+			item.remove_button.button_pressed = false
+			equipped_items.erase(item)
+			item.back_to_origin()
+			item.equipper = null
+			break
+	snap_items()
+			
 func save_all_items_to_data():
+	unit_data.item_list.clear()
 	for item in equipped_items:
 		if !(unit_data.item_list.has(item.item_data)):
 			unit_data.add_item(item.item_data)
 
-func load_all_items_from_data():
-	equipped_items.clear()
-	for child in item_folder.get_children():
-		child.queue_free()
-	if unit_data:
-		for item in unit_data.item_list:
-			var a = drag_item.instantiate()
-			a.item_data = item
-			equipped_items.append(a)
-			item_folder.add_child(a)
-		snap_items()
-
 func snap_items():
+	
+	#scan through array and clean off those that are no longer equipped by this member
+	var cleaned_items: Array[DraggableItem] = []
+	for item in equipped_items:
+		if item.equipper == self:
+			cleaned_items.append(item)
+	equipped_items = cleaned_items.duplicate()
+	
+	#queueing
 	if equipped_items.size() <= 0:
 		return
-
 	var displacement = GAP/equipped_items.size()
 	for i in range(equipped_items.size()):
 		var offset = Vector2(displacement/2 + displacement*i-GAP/2, 0)
