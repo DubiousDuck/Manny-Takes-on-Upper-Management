@@ -32,5 +32,10 @@ horizontal_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector" index="0"]
 shape = SubResource("CapsuleShape2D_a2sir")
 
+[node name="ItemMarker" type="Marker2D" parent="." index="4"]
+position = Vector2(0, 78)
+
+[node name="ItemFolder" type="Node2D" parent="." index="5"]
+
 [connection signal="area_entered" from="ItemDetector" to="." method="_on_item_detector_area_entered"]
 [connection signal="area_exited" from="ItemDetector" to="." method="_on_item_detector_area_exited"]

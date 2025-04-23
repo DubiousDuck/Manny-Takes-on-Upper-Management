@@ -35,3 +35,6 @@ func _set_attributes(delta: Array[int]):
 
 func add_item(item: ItemData):
 	item_list.append(item)
+
+func remove_item(item: ItemData):
+	item_list.erase(item)
