@@ -131,41 +131,14 @@ func disconnect_current_unit_signals():
 func get_closest_enemy(unit: Unit) -> Unit:
 	var closest_distance = INF
 	var closest_enemy: Unit
-	for enemy in enemy_container.units:
+	var target_container = enemy_container
+	if unit.is_player_controlled:
+		target_container = self
+	for enemy in target_container.units:
 		if (unit.cell - enemy.cell).length() < closest_distance:
 			closest_distance = (unit.cell - enemy.cell).length()
 			closest_enemy = enemy
 	return closest_enemy
-
-func tile_score(unit: Unit, target_unit: Unit, target_cell: Vector2i) -> int:
-	var tile_score = 0
-	
-	# if target is on the same team
-	if target_unit.is_player_controlled == unit.is_player_controlled:
-		var effect = HexNavi.get_cell_custom_data(target_cell, "effect")
-		match effect:
-			"heal":
-				if target_unit.health <= target_unit.max_health:
-					tile_score += 5
-				else: tile_score += 2
-			"death":
-				tile_score -= 10
-			"teleport":
-				tile_score += 1
-			_:
-				tile_score -= 3
-	else:
-		var effect = HexNavi.get_cell_custom_data(target_cell, "effect")
-		match effect:
-			"heal":
-				tile_score -= 5
-			"death":
-				tile_score += 10
-			"teleport":
-				tile_score -= 1
-			_:
-				tile_score += 2
-	return tile_score
 
 func estimate_knockback(attacker, target: Vector2i, skill: SkillInfo, kb_distance: int) -> Dictionary[Unit, Vector2i]:
 	var dict: Dictionary[Unit, Vector2i] = {}
@@ -189,70 +162,107 @@ func estimate_knockback(attacker, target: Vector2i, skill: SkillInfo, kb_distanc
 	)
 	return dict
 
-func estimate_damage(attacker: Unit, target: Vector2i, skill: SkillInfo, damage: int = 1, reversed: bool = false) -> int:
-	var damage_score = 0
-
+func estimate_damage(attacker: Unit, skill: SkillInfo, damage: int = 1, reversed: bool = false) -> int:
 	var attack_power = 0
 	if skill.affinity == 0:
 		attack_power = attacker.attack_power * damage
 	else: attack_power = attacker.magic_power * damage
 	
-	var affected_area := HexNavi.get_all_neighbors_in_range(target, abs(skill.area), 999)
-	for unit in enemy_container.units:
-		if affected_area.has(unit.cell):
-			if reversed:
-				damage_score -= attack_power
-			else: 
-				var hp_remain = unit.health - attack_power
-				if hp_remain <= 0:
-					damage_score += attack_power * 2
-				else:
-					damage_score += attack_power
-	for unit in units:
-		if affected_area.has(unit.cell):
-			if reversed:
-				damage_score += attack_power
-			else: damage_score -= attack_power
-	
-	return damage_score
+	return attack_power
 
-## Helper function that returns a score of an aciton #TODO: 1. Set up class param so diff unit does different things 2. light prediction
-func score_action(target_cell: Vector2i, action_type: Unit.Action, unit: Unit, skill: SkillInfo) -> float:
-	var score = 0
+func construct_state() -> GameState:
+	var all_units: Array[Unit] = []
+	all_units.append_array(units)
+	all_units.append_array(enemy_container.units)
+	var all_pos: Array[Vector2i] = []
+	var all_health: Array[int] = []
+	all_units.map(
+		func(unit: Unit):
+			all_pos.append(unit.cell)
+			all_health.append(unit.health)
+	)
+	var state := GameState.new()
+	state.set_state(all_units, all_pos, all_health)
+	return state
+
+## Helper function that returns a state after simulating the outcome of an action #TODO: 1. Set up class param so diff unit does different things 2. light prediction
+func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action_type: Unit.Action, skill: SkillInfo = null) -> GameState:
+	var new_state := GameState.new()
+	new_state.position = state.position.duplicate(true)
+	new_state.health = state.health.duplicate(true)
+	
+	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
-		#Encourages moving into enemies if still has attack token; encourages moving away if not
-		if unit.actions_avail.has(Unit.Action.ATTACK):
-			score += (unit.cell - get_closest_enemy(unit).cell).length() - (target_cell - get_closest_enemy(unit).cell).length()
-		else: score += (target_cell - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
-		
-		#Encourages moving into if HP is high; encourages moving away if HP is low
-		if unit.health <= unit.max_health/3:
-			score += (target_cell - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
-		else: score += (unit.cell - get_closest_enemy(unit).cell).length() - (target_cell - get_closest_enemy(unit).cell).length()
+		new_state.position[unit] = target_cell
 	if action_type == Unit.Action.ATTACK:
 		#Go through all of the skill's effect and calculate score
 		for effect in skill.skill_effects:
 			match effect.x:
 				SkillInfo.EffectType.DAMAGE:
-					score += estimate_damage(unit, target_cell, skill, effect.y)
+					var damage = estimate_damage(unit, skill, effect.y)
+					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+					for victim in new_state.position.keys():
+						if affected_area.has(new_state.position[victim]):
+							new_state.health[victim] -= damage
 				SkillInfo.EffectType.KNOCKBACK:
-					var predicted_result := estimate_knockback(unit, target_cell, skill, effect.y)
-					for victim in predicted_result.keys():
-						score += tile_score(unit, victim, predicted_result[victim])
+					var displacement := estimate_knockback(unit, target_cell, skill, effect.y)
+					for victim in displacement.keys():
+						new_state.position[victim] = displacement[victim]
 				SkillInfo.EffectType.HEAL:
-					score += estimate_damage(unit, target_cell, skill, effect.y)
+					var healing = estimate_damage(unit, skill, effect.y)
+					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+					for healed in new_state.position.keys():
+						if affected_area.has(new_state.position[healed]):
+							new_state.health[healed] += healing
 				SkillInfo.EffectType.DAMAGE_REDUCTION:
-					if (target_cell - get_closest_enemy(unit).cell).length() < unit.movement_range:
-						if unit.health <= unit.max_health/3:
-							score += 5
-						else: score += 2
-					else: score += 1
+					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+					for buffed in new_state.position.keys():
+						if affected_area.has(new_state.position[buffed]):
+							new_state.health[buffed] *= 1.5
 				#SkillInfo.EffectType.SET_TILE:
+	
+	return new_state
+
+func evaluate_state(state: GameState) -> int:
+	var score = 0
+	
+	for unit in state.position.keys():
+		if unit.actions_avail.has(Unit.Action.ATTACK):
+			score += (unit.cell - get_closest_enemy(unit).cell).length() - (state.position[unit] - get_closest_enemy(unit).cell).length()
+		else: score += (state.position[unit] - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
+		
+		#Encourages moving into if HP is high; encourages moving away if HP is low
+		if state.health[unit] <= unit.max_health/3:
+			score += (state.position[unit] - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
+		else: score += (unit.cell - get_closest_enemy(unit).cell).length() - (state.position[unit] - get_closest_enemy(unit).cell).length()
+		
+		if enemy_container.units.has(unit):
+			score += unit.health - state.health[unit]
+		else:
+			score -= unit.health - state.health[unit]
+		
+		var nearby_cell := HexNavi.get_all_neighbors_in_range(state.position[unit], 1, 999)
+		for cell in nearby_cell:
+			var effect = HexNavi.get_cell_custom_data(cell, "effect")
+			match effect:
+				"death":
+					if enemy_container.units.has(unit): 
+						if cell == state.position[unit]: score += 10
+						else: score += 3
+					else:
+						if cell == state.position[unit]: score -= 10
+						else: score -= 3
+				"heal":
+					if enemy_container.units.has(unit): 
+						if cell == state.position[unit]: score -= 5
+						else: score -= 2
+					else:
+						if cell == state.position[unit]: score -= 5
+						else: score -= 2
 				_:
 					score += 0
-	
 	return score
-		
+
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action():
 	var valid_skills: Array = []
@@ -262,6 +272,8 @@ func unit_action():
 		if get_targets_of_type(targets, skill.targets).size() > 0:
 			valid_skills.append(skill)
 	
+	#initialize GameState
+	var current_state = construct_state()
 	#find the best skill
 	var best_score = -INF
 	var best_cell: Vector2i
@@ -276,7 +288,8 @@ func unit_action():
 		)
 		for cell in all_actionnable_cells:
 			print("calculating score of " + str(cell))
-			var score = score_action(cell, find_action(cell), current_unit, skill_chosen)
+			var new_state := simulate_action(current_state, current_unit, cell, find_action(cell), skill_chosen)
+			var score = evaluate_state(new_state)
 			if score > best_score:
 				best_score = score
 				best_cell = cell
