@@ -127,6 +127,7 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
+# ---- Enemy AI related ----
 func get_closest_enemy(unit: Unit) -> Unit:
 	var closest_distance = INF
 	var closest_enemy: Unit
@@ -136,24 +137,86 @@ func get_closest_enemy(unit: Unit) -> Unit:
 			closest_enemy = enemy
 	return closest_enemy
 
-func estimate_damage(attacker: Unit, target: Vector2i, skill: SkillInfo) -> int:
-	var damage_score = 0
+func tile_score(unit: Unit, target_unit: Unit, target_cell: Vector2i) -> int:
+	var tile_score = 0
 	
-	# TODO: tune this a bit more to not just look at damage
+	# if target is on the same team
+	if target_unit.is_player_controlled == unit.is_player_controlled:
+		var effect = HexNavi.get_cell_custom_data(target_cell, "effect")
+		match effect:
+			"heal":
+				if target_unit.health <= target_unit.max_health:
+					tile_score += 5
+				else: tile_score += 2
+			"death":
+				tile_score -= 10
+			"teleport":
+				tile_score += 1
+			_:
+				tile_score -= 3
+	else:
+		var effect = HexNavi.get_cell_custom_data(target_cell, "effect")
+		match effect:
+			"heal":
+				tile_score -= 5
+			"death":
+				tile_score += 10
+			"teleport":
+				tile_score -= 1
+			_:
+				tile_score += 2
+	return tile_score
+
+func estimate_knockback(attacker, target: Vector2i, skill: SkillInfo, kb_distance: int) -> Dictionary[Unit, Vector2i]:
+	var dict: Dictionary[Unit, Vector2i] = {}
+	var affected_area := HexNavi.get_all_neighbors_in_range(target, abs(skill.area), 999)
+	var knockback_origin: Vector2 = affected_area.front() if skill.area > 0 else attacker.cell
+	var affected_units: Array[Unit] = []
+	
+	for unit in enemy_container.units:
+		if affected_area.has(unit.cell): affected_units.append(unit)
+	for unit in units:
+		if affected_area.has(unit.cell): affected_units.append(unit)
+	
+	affected_units.map(
+		func(unit: Unit):
+			var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - knockback_origin
+			#apply the direction by strength of knockback
+			var new_location: Vector2 = unit.global_position + dir*kb_distance
+			if HexNavi.global_to_cell(new_location) == Vector2i(-999, -999): ## pretends there's a wall
+				new_location = HexNavi.cell_to_global(HexNavi.get_closest_cell_by_global_pos(new_location))
+			dict[unit] = Vector2i(new_location)
+	)
+	return dict
+
+func estimate_damage(attacker: Unit, target: Vector2i, skill: SkillInfo, damage: int = 1, reversed: bool = false) -> int:
+	var damage_score = 0
+
 	var attack_power = 0
 	if skill.affinity == 0:
-		attack_power = attacker.attack_power
-	else: attack_power = attacker.magic_power
+		attack_power = attacker.attack_power * damage
+	else: attack_power = attacker.magic_power * damage
 	
 	var affected_area := HexNavi.get_all_neighbors_in_range(target, abs(skill.area), 999)
 	for unit in enemy_container.units:
-		if affected_area.has(unit.cell): damage_score += attack_power
+		if affected_area.has(unit.cell):
+			if reversed:
+				damage_score -= attack_power
+			else: 
+				var hp_remain = unit.health - attack_power
+				if hp_remain <= 0:
+					damage_score += attack_power * 2
+				else:
+					damage_score += attack_power
 	for unit in units:
-		if affected_area.has(unit.cell): damage_score -= attack_power
+		if affected_area.has(unit.cell):
+			if reversed:
+				damage_score += attack_power
+			else: damage_score -= attack_power
 	
 	return damage_score
-			
-## Helper function that returns a score of an aciton
+
+## Helper function that returns a score of an aciton #TODO: 1. Set up class param so diff unit does different things 2. light prediction
 func score_action(target_cell: Vector2i, action_type: Unit.Action, unit: Unit, skill: SkillInfo) -> float:
 	var score = 0
 	if action_type == Unit.Action.MOVE:
@@ -167,7 +230,26 @@ func score_action(target_cell: Vector2i, action_type: Unit.Action, unit: Unit, s
 			score += (target_cell - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
 		else: score += (unit.cell - get_closest_enemy(unit).cell).length() - (target_cell - get_closest_enemy(unit).cell).length()
 	if action_type == Unit.Action.ATTACK:
-		score += estimate_damage(unit, target_cell, skill)
+		#Go through all of the skill's effect and calculate score
+		for effect in skill.skill_effects:
+			match effect.x:
+				SkillInfo.EffectType.DAMAGE:
+					score += estimate_damage(unit, target_cell, skill, effect.y)
+				SkillInfo.EffectType.KNOCKBACK:
+					var predicted_result := estimate_knockback(unit, target_cell, skill, effect.y)
+					for victim in predicted_result.keys():
+						score += tile_score(unit, victim, predicted_result[victim])
+				SkillInfo.EffectType.HEAL:
+					score += estimate_damage(unit, target_cell, skill, effect.y)
+				SkillInfo.EffectType.DAMAGE_REDUCTION:
+					if (target_cell - get_closest_enemy(unit).cell).length() < unit.movement_range:
+						if unit.health <= unit.max_health/3:
+							score += 5
+						else: score += 2
+					else: score += 1
+				#SkillInfo.EffectType.SET_TILE:
+				_:
+					score += 0
 	
 	return score
 		
@@ -275,7 +357,8 @@ func unit_pos_score(unit: Unit):
 		if distance > largest_distance:
 			largest_distance = distance
 	return largest_distance
-		
+
+# ---- Player Input ----
 func _unhandled_input(event):
 	if !is_player_controlled or !Global.is_attack_resolved:
 		return

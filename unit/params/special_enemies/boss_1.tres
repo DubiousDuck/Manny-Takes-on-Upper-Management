@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://dxxemof4tvpsa"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://dxxemof4tvpsa"]
 
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_5jn2n"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_dtjrn"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_71wds"]
 [ext_resource type="Resource" uid="uid://bjt330wi86rkh" path="res://skills/boss_skills/random_death_tile.tres" id="3_1u4rb"]
@@ -8,6 +9,7 @@
 
 [resource]
 script = ExtResource("1_dtjrn")
+id = 0
 unit_class = "Boss"
 attributes = {
 0: 10,
@@ -15,8 +17,6 @@ attributes = {
 2: 2,
 3: 2
 }
-skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
-rel = ""
-mood = 50
-money = 5
+skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
+item_list = Array[ExtResource("1_5jn2n")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ci1jr6gkdbdkw"]
+[gd_scene load_steps=25 format=4 uid="uid://ci1jr6gkdbdkw"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_dv56f"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_4un2p"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="13_bp82l"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="14_4un2p"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="14_jkbq3"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="14_sshki"]
 [ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/special_enemies/boss_1.tres" id="15_5o3ts"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="15_jxpqp"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="15_sshki"]
@@ -24,6 +25,7 @@
 
 [sub_resource type="Resource" id="Resource_1qk5m"]
 script = ExtResource("13_6i534")
+id = 0
 unit_class = "Ranger"
 attributes = {
 0: 6,
@@ -32,13 +34,12 @@ attributes = {
 3: 1
 }
 skill_list = Array[ExtResource("14_4un2p")]([ExtResource("15_sshki"), ExtResource("16_lv8x0"), ExtResource("17_rpv7r")])
-rel = ""
-mood = 50
-money = 5
+item_list = Array[ExtResource("14_sshki")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
 [sub_resource type="Resource" id="Resource_16hu4"]
 script = ExtResource("13_6i534")
+id = 0
 unit_class = "Fighter"
 attributes = {
 0: 8,
@@ -47,9 +48,7 @@ attributes = {
 3: 2
 }
 skill_list = Array[ExtResource("14_4un2p")]([ExtResource("18_grulp"), ExtResource("19_26ose"), ExtResource("17_rpv7r")])
-rel = ""
-mood = 50
-money = 5
+item_list = Array[ExtResource("14_sshki")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
 [node name="Level1-4" type="Node2D" node_paths=PackedStringArray("tile_map")]
