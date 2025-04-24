@@ -127,100 +127,89 @@ func connect_current_unit_signals():
 func disconnect_current_unit_signals():
 	pass
 
-func distances_to_player_array(action_cells: Array[Vector2i]):
-	var all_cells: Array[Vector2i] = tile_map_test.get_all_tilemap_cells()
-	var players_exhibiting_cells: Array[Vector2i] = get_targets_of_type(all_cells, SkillInfo.TargetType.ENEMIES)
-	var position_distances_array: Array[float]
-	# This for loop considers every move and compiles a position_distances_array containing the resulting closest distance to players
-	for vector in action_cells:
-		var dist_to_player: float = 99999
-		for player_vector in players_exhibiting_cells:
-			var dist_to_cur_player: float = sqrt(pow(player_vector.x-vector.x,2) + pow(player_vector.y-vector.y,2))
-			if dist_to_cur_player < dist_to_player: dist_to_player = dist_to_cur_player
-		position_distances_array.append(dist_to_player)
-	return position_distances_array
+func get_closest_enemy(unit: Unit) -> Unit:
+	var closest_distance = INF
+	var closest_enemy: Unit
+	for enemy in enemy_container.units:
+		if (unit.cell - enemy.cell).length() < closest_distance:
+			closest_distance = (unit.cell - enemy.cell).length()
+			closest_enemy = enemy
+	return closest_enemy
 
-func aggro_actionnable_cells(available_actionnable_cells):
-	var output_actionnable_cells: Array[Vector2i]
-	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
-	# This line is where the most aggressive (closest to player) move is selected
-	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.min())])
-	return output_actionnable_cells
-
-func neutral_actionnable_cells(available_actionnable_cells):
-	var output_actionnable_cells: Array[Vector2i]
-	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
-	# This line is where the positional (medium distance to player) moves are selected
-	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(get_median(position_distances_array))])
-	return output_actionnable_cells
-
-func defensive_actionable_cells(available_actionnable_cells):
-	var output_actionnable_cells: Array[Vector2i]
-	var position_distances_array: Array[float] = distances_to_player_array(available_actionnable_cells)
-	# This line is where the most defensive (farthest distance to player) move is selected
-	output_actionnable_cells.append(available_actionnable_cells[position_distances_array.find(position_distances_array.max())])
-	return output_actionnable_cells
-
-# This was useful for the neutral_actionable_cells function
-func get_median(arr: Array[float]) -> float:
-	if arr.is_empty():
-		return 0.0  # Handle empty array case
-	var sorted_arr = arr.duplicate()  # Duplicate to avoid modifying the original array
-	sorted_arr.sort()  # Sort the array in ascending order
-	var n = sorted_arr.size()
-	var mid = n / 2
-	return sorted_arr[mid]  # Return middle element
-
+func estimate_damage(attacker: Unit, target: Vector2i, skill: SkillInfo) -> int:
+	var damage_score = 0
+	
+	# TODO: tune this a bit more to not just look at damage
+	var attack_power = 0
+	if skill.affinity == 0:
+		attack_power = attacker.attack_power
+	else: attack_power = attacker.magic_power
+	
+	var affected_area := HexNavi.get_all_neighbors_in_range(target, abs(skill.area), 999)
+	for unit in enemy_container.units:
+		if affected_area.has(unit.cell): damage_score += attack_power
+	for unit in units:
+		if affected_area.has(unit.cell): damage_score -= attack_power
+	
+	return damage_score
+			
+## Helper function that returns a score of an aciton
+func score_action(target_cell: Vector2i, action_type: Unit.Action, unit: Unit, skill: SkillInfo) -> float:
+	var score = 0
+	if action_type == Unit.Action.MOVE:
+		#Encourages moving into enemies if still has attack token; encourages moving away if not
+		if unit.actions_avail.has(Unit.Action.ATTACK):
+			score += (unit.cell - get_closest_enemy(unit).cell).length() - (target_cell - get_closest_enemy(unit).cell).length()
+		else: score += (target_cell - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
+		
+		#Encourages moving into if HP is high; encourages moving away if HP is low
+		if unit.health <= unit.max_health/3:
+			score += (target_cell - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
+		else: score += (unit.cell - get_closest_enemy(unit).cell).length() - (target_cell - get_closest_enemy(unit).cell).length()
+	if action_type == Unit.Action.ATTACK:
+		score += estimate_damage(unit, target_cell, skill)
+	
+	return score
+		
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action():
 	var valid_skills: Array = []
 	
 	for skill in current_unit.skills:
 		var targets = HexNavi.get_all_neighbors_in_range(current_unit.cell, skill.range)
-		if skill != preload("res://skills/wait.tres") and get_targets_of_type(targets, skill.targets).size() > 0:
+		if get_targets_of_type(targets, skill.targets).size() > 0:
 			valid_skills.append(skill)
-
-	# If we have valid skills, pick a random one
-	if valid_skills.size() > 0:
-		skill_chosen = valid_skills.pick_random()
-	else:
-		# Default to wait if no valid skills found
-		skill_chosen = preload("res://skills/wait.tres")  # Assuming this is the wait skill
 	
-	#get all actionnable cells and pick a random one #TODO: Give weights to different actions so enemy can make better choices
+	#find the best skill
+	var best_score = -INF
+	var best_cell: Vector2i
+	var best_skill: SkillInfo
+	for skill in valid_skills:
+		skill_chosen = skill
+		get_actionnable_cells()
+		var all_actionnable_cells: Array[Vector2i] = []
+		current_actionnable_cells.values().map(
+			func(array):
+				all_actionnable_cells.append_array(array)
+		)
+		for cell in all_actionnable_cells:
+			print("calculating score of " + str(cell))
+			var score = score_action(cell, find_action(cell), current_unit, skill_chosen)
+			if score > best_score:
+				best_score = score
+				best_cell = cell
+				best_skill = skill_chosen
+	
+	skill_chosen = best_skill
 	get_actionnable_cells()
-	var all_actionnable_cells: Array[Vector2i] = []
-	current_actionnable_cells.values().map(
-		func(array):
-			all_actionnable_cells.append_array(array)
-	)
-	
-	var clicked_cell: Vector2i
-	var action_options: Array[Vector2i]
-	
-	var action_roll: float = randf() * (aggro_probability + neutral_probability + defensive_probability)
-	
-	if (action_roll < aggro_probability):
-		action_options = aggro_actionnable_cells(all_actionnable_cells)
-		#print("PICKED AGGRO MOVE")
-	elif (action_roll < aggro_probability + neutral_probability):
-		action_options = neutral_actionnable_cells(all_actionnable_cells)
-		#print("PICKED POSITIONAL MOVE")
-	else:
-		action_options = defensive_actionable_cells(all_actionnable_cells)
-		#print("PICKED DEFENSIVE MOVE")
-	
-	if !action_options.is_empty():
-		clicked_cell = action_options.pick_random()
-	else:
-		clicked_cell = all_actionnable_cells.pick_random()
-	
-	
+	var clicked_cell: Vector2i = best_cell
 	#execute action according to the cell chosen
 	var action_type := find_action(clicked_cell)
 	
+	print("the chosen cell is " + str(clicked_cell) + ", which is of action type: " + str(action_type))
 	if action_type == Unit.Action.NONE:
 		deselect_current_unit()
+		unit_action_done.emit()
 		return
 		
 	if action_type == Unit.Action.MOVE and !in_progress:
@@ -259,10 +248,18 @@ func _step_enemy():
 	if get_available_unit_count() <= 0:
 		all_units_moved.emit()
 		return
+		
+	var best_score: int = -INF
+	var best_unit: Unit
 	for unit in units:
 		if !unit.actions_avail.is_empty():
-			select_unit(unit)
-			break
+			var score = unit_pos_score(unit)
+			if score > best_score:
+				best_score = score
+				best_unit = unit
+	if best_unit:
+		select_unit(best_unit)
+	
 	if current_unit != null:
 		unit_action()
 		await unit_action_done
@@ -270,6 +267,15 @@ func _step_enemy():
 		_step_enemy()
 		return
 
+## Helper function to determine which enemy unit to move; prioritize furtherest unit
+func unit_pos_score(unit: Unit):
+	var largest_distance: int = -INF
+	for enemy in enemy_container.units:
+		var distance := (unit.cell - enemy.cell).length()
+		if distance > largest_distance:
+			largest_distance = distance
+	return largest_distance
+		
 func _unhandled_input(event):
 	if !is_player_controlled or !Global.is_attack_resolved:
 		return

@@ -61,6 +61,7 @@ position = Vector2(0, 146)
 
 [node name="Units" type="Node2D" parent="."]
 script = ExtResource("5_k6pgt")
+player_goes_first = null
 
 [node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("6_axwgq")
@@ -71,6 +72,8 @@ enemy_container = NodePath("../EnemyGroup")
 position = Vector2(61, 365)
 script = ExtResource("8_ken88")
 unit_data = ExtResource("11_s4umw")
+move_speed_per_cell = null
+all_actions = null
 
 [node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("6_axwgq")
@@ -80,5 +83,7 @@ enemy_container = NodePath("../PlayerGroup")
 position = Vector2(640, 152)
 script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
+move_speed_per_cell = null
+all_actions = null
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
