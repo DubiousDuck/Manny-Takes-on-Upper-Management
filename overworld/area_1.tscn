@@ -275,8 +275,8 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cwvvpfius26vd"
 level_name = "level1-1"
 locked_dialogue = Array[String](["Sorry sir, the desk is closed."])
-interact_dialogue = Array[String](["Welcome to Sweatshop Inc.!", "If you are looking to work here,", "you will have to fight all of us...", "Starting with me!", "[Fight!][Never mind]"])
-correct_choice = "Fight!"
+interact_dialogue = Array[String](["Oh hi, <name>...", "welcome back to work...", "Sorry, this place is awful,", "but I don't think anyone can stand up againt THAT MAN...", "Wait, you're trying to fight your way up to the company?", "That's ruthless...", "THAT MAN and his lackeys are far more powerful than you think.", "What? You're still willing to fight?", "You sure are interesting, huh?", "Well in that case, let me teach you some basics,", "so at least you will have a chance defending yourself.", "[Let's do this][Give me a sec...]"])
+correct_choice = "Let's do this"
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="Receptionist/Area2D" index="0"]

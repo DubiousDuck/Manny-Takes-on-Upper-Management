@@ -37,4 +37,5 @@ func _interact_call_back():
 			print("ENTERED LEVEL", level_name)
 			Global.start_battle(self.name, [load("res://unit/params/healer.tres")])
 			Global.set_last_overworld_scene(get_tree().current_scene)
+			Global.dialogue_on_scene_ready = interact_dialogue.duplicate()
 			Global.scene_transition(scene_to_go)

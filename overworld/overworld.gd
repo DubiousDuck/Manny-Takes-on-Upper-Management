@@ -75,6 +75,12 @@ func _ready():
 	
 	#print("update followers... -- overworld.gd")
 	update_followers()
+	
+	# Play stored dialogue if not empty
+	if Global.dialogue_on_scene_ready:
+		Global.start_dialogue(Global.dialogue_on_scene_ready)
+		await EventBus.ui_element_ended
+		Global.dialogue_on_scene_ready.clear()
 
 func _on_to_talent_page_pressed():
 	Global.set_last_overworld_scene(get_tree().current_scene)

@@ -27,6 +27,7 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 @export_multiline var locked_dialogue: Array[String]
 @export_multiline var interact_dialogue: Array[String]
 @export var correct_choice: String
+@export_multiline var post_battle_dialogue: Array[String]
 
 @onready var sprite_2d = $Area2D/Sprite2D
 @onready var warning = $Warning

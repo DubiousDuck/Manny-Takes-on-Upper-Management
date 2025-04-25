@@ -27,6 +27,8 @@ func start():
 var current_scene : String
 var current_level : String
 var finished_levels := {}  # Acts as a HashSet
+## Dialogue that plays automatically upon scene ready; good for scene transitions
+var dialogue_on_scene_ready: Array[String]
 
 func finished_level():
 	finished_levels[current_level]=true
