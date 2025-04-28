@@ -17,7 +17,7 @@ func _process(_delta):
 	
 	#sort_z_layer()
 	
-	if direction:
+	if direction and Global.can_actors_move:
 		velocity.x = direction.x * SPEED
 		velocity.y = direction.y * SPEED
 		

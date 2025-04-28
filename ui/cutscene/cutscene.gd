@@ -3,6 +3,7 @@ class_name Cutscene extends Area2D
 @export var animations : Array[String]
 
 func _on_body_entered(body):
+	$CollisionShape2D.disabled = true
 	if body is Player:
 		if has_node("AnimationPlayer"):
 			for i in animations:
