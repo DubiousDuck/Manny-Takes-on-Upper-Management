@@ -1,6 +1,6 @@
 class_name Cutscene extends Area2D
 
-@export var animations : Array[String]
+@export_multiline var animations : Array[String]
 
 func _on_body_entered(body):
 	$CollisionShape2D.disabled = true
