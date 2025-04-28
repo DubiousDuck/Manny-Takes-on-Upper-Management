@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vjjenmk6qvnq"]
 
 [ext_resource type="Script" uid="uid://bohejktnt7ory" path="res://overworld/player.gd" id="1_1evci"]
-[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="2_aqryr"]
+[ext_resource type="Texture2D" uid="uid://cunbssoawl1k6" path="res://assets/unit_sprites/side_walk.png" id="2_aqryr"]
 [ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_408ea"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]

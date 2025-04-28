@@ -15,6 +15,12 @@ func _input(_event):
 			get_viewport().set_input_as_handled()
 
 func read_text(text : Array[String], in_cutscene : bool = false):
+	# check if text is empty
+	if text.size() <= 0:
+		print("ending the parsing early...")
+		if !in_cutscene: EventBus.ui_element_ended.emit()
+		else: EventBus.dialogue_finished.emit()
+		return
 	if !in_cutscene: EventBus.ui_element_started.emit()
 	anim_player.play("BarsDown")
 	await anim_player.animation_finished

@@ -12,6 +12,7 @@ class_name SollicitorInteract
 @export var locked_dialogue: Array[String] = ["this door is locked"]
 @export var interact_dialogue: Array[String] = ["Hello good sir", "GIVE ME YOUR MONEY![NO][YES]"]
 @export var correct_choice: String = "NO"
+@export var post_battle_dialogue: Array[String] = []
 
 func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
@@ -37,5 +38,5 @@ func _interact_call_back():
 			print("ENTERED LEVEL", level_name)
 			Global.start_battle(self.name, [load("res://unit/params/healer.tres")])
 			Global.set_last_overworld_scene(get_tree().current_scene)
-			Global.dialogue_on_scene_ready = interact_dialogue.duplicate()
+			Global.dialogue_on_scene_ready = post_battle_dialogue.duplicate()
 			Global.scene_transition(scene_to_go)

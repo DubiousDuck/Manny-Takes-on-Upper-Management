@@ -25,14 +25,12 @@ func _process(_delta):
 		
 		if velocity.x > 0:
 			dir = Vector2.RIGHT
+			$Sprite2D.flip_h = 0
 		elif velocity.x < 0:
 			dir = Vector2.LEFT
+			$Sprite2D.flip_h = 1
 			
 		if dir != last_dir:
-			if dir == Vector2.RIGHT:
-				$Sprite2D.scale = Vector2(SCALE, SCALE)
-			else:
-				$Sprite2D.scale = Vector2(-SCALE, SCALE)
 			if not turning:
 				var a = create_tween()
 				turning = true

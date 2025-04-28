@@ -163,11 +163,13 @@ func scene_transition(scene : String):
 	a.queue_free()
 	EventBus.ui_element_ended.emit()
 
-func start_dialogue(text : Array[String], in_cutscene : bool = false):
+func start_dialogue(text : Array[String], in_cutscene : bool = false): 
 	var a = DIALOGUE.instantiate()
 	GlobalUI.add_child(a)
 	a.read_text(text, in_cutscene)
-	await EventBus.ui_element_ended
+	if in_cutscene:
+		await EventBus.dialogue_finished
+	else: await EventBus.ui_element_ended
 	a.queue_free()
 
 func start_tutorial(page_queue: Array[TutorialContent]):

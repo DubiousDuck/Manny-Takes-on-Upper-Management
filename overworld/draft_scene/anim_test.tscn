@@ -1,10 +1,78 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgrjrh4kqh3ar"]
+[gd_scene load_steps=10 format=3 uid="uid://cgrjrh4kqh3ar"]
 
 [ext_resource type="Script" uid="uid://dwofpqt7bueu1" path="res://overworld/flag.gd" id="1_aayuf"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="2_e1jwn"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="2_y4vib"]
 
+[sub_resource type="Animation" id="Animation_3ix3q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(153, 92)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y4vib"]
+_data = {
+&"RESET": SubResource("Animation_3ix3q")
+}
+
+[sub_resource type="Animation" id="Animation_xrs65"]
+resource_name = "End"
+step = 1.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_cutscene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y4vib"]
+resource_name = "Start"
+step = 1.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_cutscene"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["ow_anim/side_idle"],
+"method": &"set_anim"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_x5u85"]
 resource_name = "Test"
@@ -53,56 +121,6 @@ tracks/1/keys = {
 "values": [Vector2(624, 324), Vector2(624, 324), Vector2(800, 324)]
 }
 
-[sub_resource type="Animation" id="Animation_y4vib"]
-resource_name = "Start"
-step = 1.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Player")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"start_cutscene"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Player")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["ow_anim/side_idle"],
-"method": &"set_anim"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_xrs65"]
-resource_name = "End"
-step = 1.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../Player")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"end_cutscene"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrs65"]
 _data = {
 &"End": SubResource("Animation_xrs65"),
@@ -130,4 +148,4 @@ libraries = {
 }
 
 [node name="Player" parent="." instance=ExtResource("2_e1jwn")]
-position = Vector2(280, 288)
+position = Vector2(624, 324)

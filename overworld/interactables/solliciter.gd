@@ -46,10 +46,12 @@ func _ready():
 		$Area2D.interact_dialogue = interact_dialogue
 	if correct_choice:
 		$Area2D.correct_choice = correct_choice
+	if post_battle_dialogue:
+		$Area2D.post_battle_dialogue = post_battle_dialogue
 
 func _process(delta):
 	if player == null:
-		player = get_parent().get_node("Player")
+		player = get_parent().get_parent().get_node("Player")
 
 	diff = player.global_position - global_position
 	var to_spawn = spawn_position - global_position   # Distance from spawn
