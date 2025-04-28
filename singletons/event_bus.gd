@@ -35,7 +35,10 @@ signal remove_item()
 #UI
 signal ui_element_started
 signal ui_element_ended
+
 signal dialogue(text : Array[String])
+signal dialogue_finished
+
 signal ui_choice_chosen(text : String)
 
 #global player inputs

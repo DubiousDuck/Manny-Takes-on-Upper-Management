@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvj480s01tuxn"]
+[gd_scene load_steps=4 format=3 uid="uid://dvj480s01tuxn"]
 
 [ext_resource type="Script" uid="uid://byvwlxi75l2aq" path="res://dialogue.gd" id="1_sirea"]
 
@@ -30,37 +30,9 @@ tracks/1/keys = {
 "values": [Vector2(0, 656), Vector2(0, 456)]
 }
 
-[sub_resource type="Animation" id="Animation_4qc1y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -128)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 640)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kb48l"]
 _data = {
-&"BarsDown": SubResource("Animation_xq45a"),
-&"RESET": SubResource("Animation_4qc1y")
+&"BarsDown": SubResource("Animation_xq45a")
 }
 
 [node name="Dialogue" type="Control"]
@@ -74,15 +46,15 @@ script = ExtResource("1_sirea")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
+offset_top = -128.0
 offset_right = 1152.0
-offset_bottom = 128.0
 color = Color(0.0728426, 0.0728426, 0.0728426, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 0
-offset_top = 456.0
+offset_top = 656.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 848.0
 color = Color(0.0728426, 0.0728426, 0.0728426, 1)
 
 [node name="Label" type="Label" parent="."]

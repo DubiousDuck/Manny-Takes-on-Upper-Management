@@ -14,8 +14,8 @@ func _input(_event):
 			EventBus.input_advance.emit()
 			get_viewport().set_input_as_handled()
 
-func read_text(text : Array[String]):
-	EventBus.ui_element_started.emit()
+func read_text(text : Array[String], in_cutscene : bool = false):
+	if !in_cutscene: EventBus.ui_element_started.emit()
 	anim_player.play("BarsDown")
 	await anim_player.animation_finished
 	for i : String in text:
@@ -43,7 +43,8 @@ func read_text(text : Array[String]):
 	label.queue_free()
 	anim_player.play_backwards("BarsDown")
 	await anim_player.animation_finished
-	EventBus.ui_element_ended.emit()
+	if !in_cutscene: EventBus.ui_element_ended.emit()
+	else: EventBus.dialogue_finished.emit()
 	
 func _on_choice_pressed(choice_text: String):
 	Global.dialogue_choice = choice_text
