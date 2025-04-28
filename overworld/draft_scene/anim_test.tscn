@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgrjrh4kqh3ar"]
+
+[ext_resource type="Script" uid="uid://dwofpqt7bueu1" path="res://overworld/flag.gd" id="1_aayuf"]
+[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="2_e1jwn"]
+[ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="2_y4vib"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4vib"]
+
+[sub_resource type="Animation" id="Animation_x5u85"]
+resource_name = "Test"
+length = 10.0
+step = 1.0
+capture_included = true
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 5, 6, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"start_cutscene"
+}, {
+"args": ["ow_anim/side_idle"],
+"method": &"set_anim"
+}, {
+"args": [],
+"method": &"face_left"
+}, {
+"args": [],
+"method": &"face_right"
+}, {
+"args": ["ow_anim/side_walk"],
+"method": &"set_anim"
+}, {
+"args": [],
+"method": &"end_cutscene"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 6, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 2,
+"values": [Vector2(336, 152), Vector2(336, 152), Vector2(440, 152)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrs65"]
+_data = {
+&"Test": SubResource("Animation_x5u85")
+}
+
+[node name="AnimTest" type="Node2D"]
+
+[node name="Flag" type="Node" parent="."]
+script = ExtResource("1_aayuf")
+event = "TestCutscene"
+trigger = 0
+frequency = 0
+metadata/_custom_type_script = "uid://dwofpqt7bueu1"
+
+[node name="TestCutscene" parent="Flag" instance=ExtResource("2_y4vib")]
+position = Vector2(274, 91)
+animations = Array[String](["Test"])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flag/TestCutscene"]
+libraries = {
+&"": SubResource("AnimationLibrary_y4vib"),
+&"Cutscenes": SubResource("AnimationLibrary_xrs65")
+}
+
+[node name="Player" parent="." instance=ExtResource("2_e1jwn")]
+position = Vector2(216, 152)

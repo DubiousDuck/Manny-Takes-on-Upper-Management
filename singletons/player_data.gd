@@ -19,3 +19,4 @@ class_name PlayerData extends Resource
 
 ## Level Progess
 @export var finished_levels := {}
+@export var events : Array[String] = []

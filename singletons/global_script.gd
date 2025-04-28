@@ -89,6 +89,8 @@ var current_party: Array[UnitData] = []
 var reserves: Array[UnitData] = []
 var unequipped_items: Array[ItemData] = []
 
+var events: Array[String] = []
+
 ## Player input signals
 
 func _unhandled_input(event):
@@ -214,6 +216,7 @@ func load_player_data(save : int):
 	
 	#load level progress
 	finished_levels = player_data.finished_levels
+	events = player_data.events
 	
 	print(OS.get_user_data_dir())
 	print("- Loaded player data from index ", str(save))
@@ -252,6 +255,7 @@ func save_player_data(save : int):
 	
 	#save level progress
 	player_data.finished_levels = finished_levels
+	player_data.events = events
 	
 	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
 	print("- Saved player data to index ", str(save))
