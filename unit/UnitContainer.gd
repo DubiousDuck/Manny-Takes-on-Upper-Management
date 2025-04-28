@@ -190,7 +190,6 @@ func construct_state() -> GameState:
 	)
 	var state := GameState.new()
 	state.set_state(all_units, all_pos, all_health)
-	state.init_cell_effects()
 	return state
 
 ## Helper function that returns a state after simulating the outcome of an action #TODO: set up tile info parameter
@@ -198,6 +197,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	var new_state := GameState.new()
 	new_state.position = state.position.duplicate(true)
 	new_state.health = state.health.duplicate(true)
+	new_state.cell_effects = state.cell_effects.duplicate(true)
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
@@ -228,7 +228,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
 					for buffed in new_state.position.keys():
 						if affected_area.has(new_state.position[buffed]):
-							new_state.health[buffed] *= 1.5
+							new_state.health[buffed] = int(float(new_state.health[buffed]) * 1.5)
 				SkillInfo.EffectType.SET_TILE:
 					match effect.y:
 						1:
@@ -242,16 +242,23 @@ func evaluate_state(state: GameState) -> int:
 	var score = 0
 	
 	for unit in state.position.keys():
-		if !unit: continue
-		if unit.actions_avail.has(Unit.Action.ATTACK):
-			score += (unit.cell - get_closest_enemy(unit).cell).length() - (state.position[unit] - get_closest_enemy(unit).cell).length()
-		else: score += (state.position[unit] - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
+		if !is_instance_valid(unit):
+			continue
 		
-		#Encourages moving into if HP is high; encourages moving away if HP is low
-		if state.health[unit] <= unit.max_health/3:
-			score += (state.position[unit] - get_closest_enemy(unit).cell).length() - (unit.cell - get_closest_enemy(unit).cell).length()
-		else: score += (unit.cell - get_closest_enemy(unit).cell).length() - (state.position[unit] - get_closest_enemy(unit).cell).length()
+		# Distance related score
+		var enemy := get_closest_enemy(unit)
+		if is_instance_valid(enemy):
+			var distance_score = 0
+			if unit.actions_avail.has(Unit.Action.ATTACK):
+				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()
+			elif state.health[unit] <= unit.max_health/3:
+				distance_score = (state.position[unit] - enemy.cell).length() - (unit.cell - enemy.cell).length()
+			else: distance_score += (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length() * 0.5
+			if enemy_container.units.has(unit):
+				score -= distance_score
+			else: score += distance_score
 		
+		# HP related score
 		if enemy_container.units.has(unit):
 			score += unit.health - state.health[unit]
 		else:

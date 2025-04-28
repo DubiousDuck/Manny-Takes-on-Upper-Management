@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=24 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
@@ -13,6 +13,7 @@
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="4_rygkc"]
 [ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="5_k6pgt"]
 [ext_resource type="Resource" uid="uid://ghwb608wl1i2" path="res://ui/tutorial/contents/attacking.tres" id="5_kp1jm"]
+[ext_resource type="Resource" uid="uid://cc83k8b4im4d" path="res://items/golden_bow.tres" id="5_umfdv"]
 [ext_resource type="Resource" uid="uid://8r502q2im3jc" path="res://ui/tutorial/contents/healing_tile.tres" id="6_2paab"]
 [ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="6_axwgq"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="6_mkisl"]
@@ -28,7 +29,7 @@ script = ExtResource("1_fta11")
 tile_map = NodePath("TileMapTest")
 inital_exp = 4
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_qadan")]([ExtResource("3_umfdv"), ExtResource("4_hvujv")])
+dropped_items = Array[ExtResource("2_qadan")]([ExtResource("3_umfdv"), ExtResource("4_hvujv"), ExtResource("5_umfdv")])
 tutorial_queue = Array[ExtResource("2_drabk")]([ExtResource("3_uvm5h"), ExtResource("4_baid3"), ExtResource("5_kp1jm"), ExtResource("6_2paab")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -61,7 +62,6 @@ position = Vector2(0, 146)
 
 [node name="Units" type="Node2D" parent="."]
 script = ExtResource("5_k6pgt")
-player_goes_first = null
 
 [node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("6_axwgq")
@@ -72,8 +72,6 @@ enemy_container = NodePath("../EnemyGroup")
 position = Vector2(61, 365)
 script = ExtResource("8_ken88")
 unit_data = ExtResource("11_s4umw")
-move_speed_per_cell = null
-all_actions = null
 
 [node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("6_axwgq")
@@ -83,7 +81,5 @@ enemy_container = NodePath("../PlayerGroup")
 position = Vector2(640, 152)
 script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
-move_speed_per_cell = null
-all_actions = null
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

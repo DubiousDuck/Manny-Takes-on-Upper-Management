@@ -15,6 +15,7 @@ var all_units: Array[Unit] = []
 var occupied_cells: Dictionary = {}
 var attack_processing: bool = false
 var is_waiting_for_turn_switch: bool = false
+var is_battle_over: bool = false
 
 func _ready():
 	EventBus.connect("update_cell_status", _on_update_cell_status)
@@ -28,6 +29,11 @@ func init():
 	enemy_group.init()
 	all_units.append_array(player_group.units)
 	all_units.append_array(enemy_group.units)
+	
+	# assign unit id
+	for id in all_units.size():
+		all_units[id].unit_id = id
+
 	_on_update_cell_status(true)
 	
 	is_player_turn = player_goes_first
@@ -43,9 +49,14 @@ func _on_unit_container_all_moved():
 	print("is player turn: " + str(is_player_turn))
 	if !Global.is_attack_resolved:
 		await attack_complete
-	check_if_win()
-	is_waiting_for_turn_switch = true
-	_on_update_cell_status(true)
+	var should_cont: bool =  check_if_win()
+	if should_cont:
+		is_waiting_for_turn_switch = true
+		_on_update_cell_status(true)
+	else:
+		# if the level should end, disable all children processing to prevent bugs
+		for child in get_children():
+			child.process_mode = Node.PROCESS_MODE_DISABLED
 	
 func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
@@ -280,10 +291,15 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 	status_update_complete.emit()
 
 func _on_unit_died():
-	_on_update_cell_status(false)
-	check_if_win()
+	var should_cont := check_if_win()
+	if !should_cont:
+		# if the level should end, disable all children processing to prevent bugs
+		for child in get_children():
+			child.process_mode = Node.PROCESS_MODE_DISABLED
 
-func check_if_win():
+func check_if_win() -> bool:
+	if is_battle_over:
+		return false
 	var win_flag: int = 0
 	if player_group.units.size() <= 0:
 		win_flag -=1
@@ -293,14 +309,24 @@ func check_if_win():
 		-1:	#Enemy won
 			EventBus.emit_signal("battle_ended", EventBus.BattleResult.ENEMY_VICTORY)
 			print("Enemy won!")
+			is_battle_over = true
+			return false
 		0:	#no result
 			print("no result yet")
+			return true
 		1:	#Tie
 			EventBus.emit_signal("battle_ended", EventBus.BattleResult.TIE)
 			print("It is a tie")
+			is_battle_over = true
+			return false
 		2:	#Player won
 			EventBus.emit_signal("battle_ended", EventBus.BattleResult.PLAYER_VICTORY)
 			print("Player won!")
+			is_battle_over = true
+			return false
+		_:
+			print("winflag is " + str(win_flag) + ", which shouldn't happen. Something is wrong with UnitGroupController.gd!")
+			return false
 
 func round_end_actions():
 	#examine the cells occupied by each unit and execute the cell passives

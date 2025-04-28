@@ -11,6 +11,7 @@ func set_state(units: Array[Unit], pos: Array[Vector2i], hp: Array[int]):
 		var unit: Unit = units[id]
 		position[unit] = pos[id]
 		health[unit] = hp[id]
+	init_cell_effects()
 
 func init_cell_effects():
 	var all_cells := HexNavi.get_all_tiles()

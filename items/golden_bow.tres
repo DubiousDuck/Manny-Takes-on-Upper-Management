@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cc83k8b4im4d"]
+
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_a4nqi"]
+[ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="1_f8y1m"]
+
+[resource]
+script = ExtResource("1_a4nqi")
+item_name = "Golden Bow"
+description = "Grants the Ranger the skill: Arrow Rain"
+effect_dict = Dictionary[int, Variant]({
+4: ExtResource("1_f8y1m")
+})
+metadata/_custom_type_script = "uid://djvdtgfogyblr"

@@ -15,6 +15,7 @@ signal all_complete
 enum Action {NONE, MOVE, ATTACK, ITEM}
 
 #unit attributes (interface)
+@export var unit_id: int
 @export var max_health: int = 2
 @export var health: int = 2 :
 	set(new_health):
@@ -242,6 +243,7 @@ func check_if_dead():
 		animation_state("vanish")
 		await $AnimationPlayer.animation_finished
 		EventBus.emit_signal("unit_died")
+		all_complete.emit()
 		queue_free.call_deferred()
 
 ## check and execute effect of the tile that the unit lands on

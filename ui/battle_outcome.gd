@@ -13,6 +13,7 @@ func _ready() -> void:
 	pass
 
 func init(result: int):
+	EventBus.ui_element_started.emit()
 	match result:
 		EventBus.BattleResult.PLAYER_VICTORY:
 			$Label.text = "You won!"
@@ -48,9 +49,11 @@ func display():
 	get_tree().paused = true
 
 func _on_play_again_pressed():
+	EventBus.ui_element_ended.emit()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_previous_scene_pressed():
+	EventBus.ui_element_ended.emit()
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
