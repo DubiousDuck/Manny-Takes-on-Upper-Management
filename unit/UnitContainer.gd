@@ -5,6 +5,9 @@ class_name UnitContainer
 signal all_units_moved
 signal unit_action_done
 
+# Constants
+const WAIT_SKILL = preload("res://skills/wait.tres")
+
 @export_category("General Parameters")
 @export var is_player_controlled: bool
 ## If false, ally parties will not be read from Save Data but instead loaded from the scene editor
@@ -247,22 +250,29 @@ func evaluate_state(state: GameState) -> int:
 		
 		# Distance related score
 		var enemy := get_closest_enemy(unit)
+		var distance_score = 0
 		if is_instance_valid(enemy):
-			var distance_score = 0
 			if unit.actions_avail.has(Unit.Action.ATTACK):
 				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()
 			elif state.health[unit] <= unit.max_health/3:
 				distance_score = (state.position[unit] - enemy.cell).length() - (unit.cell - enemy.cell).length()
-			else: distance_score += (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length() * 0.5
+			else: distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length() * 0.5
+			
+			#clamping distance score
+			distance_score = clamp(distance_score, -5, 5)
+			
 			if enemy_container.units.has(unit):
 				score -= distance_score
 			else: score += distance_score
 		
 		# HP related score
 		if enemy_container.units.has(unit):
-			score += unit.health - state.health[unit]
+			if unit.health <= 0:
+				score += 25
+			else:
+				score += (unit.health - state.health[unit]) * 5
 		else:
-			score -= (unit.health - state.health[unit]) * 0.5
+			score -= (unit.health - state.health[unit]) * 2
 		
 		var nearby_cell := HexNavi.get_all_neighbors_in_range(state.position[unit], 1, 999)
 		for cell in nearby_cell:
@@ -285,13 +295,16 @@ func evaluate_state(state: GameState) -> int:
 						else: score -= 3
 				"heal":
 					if enemy_container.units.has(unit): 
-						if cell == state.position[unit]: score -= 5
-						else: score -= 2
+						if cell == state.position[unit]: score -= 1
 					else:
-						if cell == state.position[unit]: score += 5
-						else: score += 2
+						if cell == state.position[unit]: score += 1
 				_:
 					score += 0
+		#print("Evaluating ", unit.name)
+		#print("  Pos delta score:", distance_score)
+		#print("  HP delta:", unit.health - state.health[unit])
+		#print("  Death tile effect:", cell_effect_bonus)
+
 	return score
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
@@ -349,14 +362,31 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 	#find the best skill
 	var best_score = -INF
 	var best_cell: Vector2i = unit.cell
-	var best_skill: SkillInfo = preload("res://skills/wait.tres")
+	var best_skill: SkillInfo = WAIT_SKILL
 	var best_state: GameState = current_state
+	
+	# Test for move and attack
+	if unit.actions_avail.has(Unit.Action.MOVE) and unit.actions_avail.has(Unit.Action.ATTACK):
+		for move_cell in get_actionnable_cells(unit, Unit.Action.MOVE):
+			var moved_state = simulate_action(current_state, unit, move_cell, Unit.Action.MOVE)
+			for skill in valid_skills:
+				for attack_cell in get_actionnable_cells(unit, Unit.Action.ATTACK, skill, move_cell):
+					var final_state = simulate_action(moved_state, unit, attack_cell, Unit.Action.ATTACK, skill)
+					var combo_score = evaluate_state(final_state)
+					if combo_score > best_score:
+						best_score = combo_score
+						best_cell = move_cell
+						best_skill = WAIT_SKILL
+						best_state = final_state
+	
+	# Test for only attacking
 	if unit.actions_avail.has(Unit.Action.ATTACK):
 		for skill in valid_skills:
 			var actionnable_cells := get_actionnable_cells(unit, Unit.Action.ATTACK, skill)
 			for cell in actionnable_cells:
 				var new_state := simulate_action(current_state, unit, cell, Unit.Action.ATTACK, skill)
 				var score = evaluate_state(new_state)
+				print("Score of " + str(skill.name) + ": " + str(score))
 				if score > best_score:
 					best_score = score
 					best_cell = cell
@@ -371,7 +401,7 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 			if score > best_score:
 				best_score = score
 				best_cell = cell
-				best_skill = preload("res://skills/wait.tres")
+				best_skill = WAIT_SKILL
 				best_state = new_state
 	return {"score": best_score, "cell": best_cell, "skill": best_skill, "state": best_state}
 
@@ -506,6 +536,10 @@ func _unhandled_input(event):
 				in_progress = false
 			
 			if action_type == Unit.Action.ATTACK: #assumes that skill_chosen is not null
+				if !skill_chosen:
+					in_progress = false
+					deselect_current_unit()
+					return
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
 				current_unit.take_action(skill_chosen, clicked_cell)
@@ -516,7 +550,7 @@ func _unhandled_input(event):
 					EventBus.emit_signal("attack_used", skill_chosen, current_unit, outbound_array)
 				else:
 					current_unit.unit_held.map(check_and_remove_unit_from_being_held)
-					EventBus.emit_signal("attack_used", preload("res://skills/wait.tres"), current_unit, outbound_array)
+					EventBus.emit_signal("attack_used", WAIT_SKILL, current_unit, outbound_array)
 				await current_unit.all_complete
 				in_progress = false
 				deselect_current_unit()
@@ -545,23 +579,24 @@ func highlight_handle():
 			_:
 				pass
 
-func get_actionnable_cells(this_unit: Unit, action_type: Unit.Action, skill: SkillInfo = null) -> Array[Vector2i]:
+func get_actionnable_cells(this_unit: Unit, action_type: Unit.Action, skill: SkillInfo = null, from_cell: Vector2i = Vector2i.MIN) -> Array[Vector2i]:
+	if from_cell == Vector2i.MIN: from_cell = this_unit.cell
 	var tiles: Array[Vector2i] = []
 	match action_type:
 		Unit.Action.MOVE:
-			var all_neighbors := HexNavi.get_all_neighbors_in_range(this_unit.cell, this_unit.movement_range)
+			var all_neighbors := HexNavi.get_all_neighbors_in_range(from_cell, this_unit.movement_range)
 			var enemy_cell: Array[Vector2i] = []
 			enemy_container.units.map(
 				func(unit: Unit):
 					if unit != null: enemy_cell.append(unit.cell)
 			)
 			for neighbor in all_neighbors:
-				if HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != this_unit.cell and !(neighbor in enemy_cell): #only actionnable if tile not occupied
+				if HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != from_cell and !(neighbor in enemy_cell): #only actionnable if tile not occupied
 					tiles.append(neighbor)
 		Unit.Action.ATTACK:
 			if skill == null:
 				return []
-			var targets = HexNavi.get_all_neighbors_in_range(this_unit.cell, skill.range, 999)
+			var targets = HexNavi.get_all_neighbors_in_range(from_cell, skill.range, 999)
 			tiles.append_array(get_targets_of_type(targets, skill.targets, this_unit))
 		_:
 			pass
@@ -578,7 +613,7 @@ func update_actionnable_cells(unit: Unit, skill: SkillInfo = null):
 					return
 				current_actionnable_cells[ac] = get_actionnable_cells(unit, ac, skill)
 	if !(unit.actions_avail.has(Unit.Action.ATTACK)):
-		current_actionnable_cells[Unit.Action.ATTACK] = get_actionnable_cells(unit, Unit.Action.ATTACK, preload("res://skills/wait.tres"))
+		current_actionnable_cells[Unit.Action.ATTACK] = get_actionnable_cells(unit, Unit.Action.ATTACK, WAIT_SKILL)
 	print(current_actionnable_cells)
 	
 func find_action(cell: Vector2i) -> Unit.Action:
