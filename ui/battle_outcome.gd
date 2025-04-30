@@ -17,10 +17,13 @@ func init(result: int):
 	match result:
 		EventBus.BattleResult.PLAYER_VICTORY:
 			$Label.text = "You won!"
+			Global.battle_result = "win"
 		EventBus.BattleResult.TIE:
 			$Label.text = "It's a tie."
+			Global.battle_result = "none"
 		EventBus.BattleResult.ENEMY_VICTORY:
 			$Label.text = "You lost..."
+			Global.battle_result = "lose"
 	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
 
 func update_xp_label(xp: int):

@@ -37,6 +37,8 @@ func read_text(text : Array[String], in_cutscene : bool = false):
 				choice_container.add_child(b)
 				#choice_container.add_spacer(true)
 			assert(options.size() > 0)
+			# make the first option as the default choice
+			Global.dialogue_choice = options[0]
 		label.visible_ratio = 0
 		label.text = i
 		var a = create_tween()

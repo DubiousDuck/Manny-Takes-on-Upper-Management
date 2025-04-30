@@ -81,6 +81,15 @@ func _ready():
 		Global.start_dialogue(Global.dialogue_on_scene_ready)
 		await EventBus.ui_element_ended
 		Global.dialogue_on_scene_ready.clear()
+	if Global.battle_result == "win":
+		Global.start_dialogue(Global.win_dialogue)
+		await EventBus.ui_element_ended
+		Global.win_dialogue.clear()
+	elif Global.battle_result == "lose":
+		Global.start_dialogue(Global.lose_dialogue)
+		await EventBus.ui_element_ended
+		Global.lose_dialogue.clear()
+	Global.battle_result = "none"
 
 func _on_to_talent_page_pressed():
 	Global.set_last_overworld_scene(get_tree().current_scene)

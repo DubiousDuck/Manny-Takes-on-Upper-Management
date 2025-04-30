@@ -24,10 +24,13 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 @export_file("*.tscn") var scene_to_go
 @export var level_name: String
 @export var req: Array[String] = []
+
+@export_category("Dialogues")
 @export_multiline var locked_dialogue: Array[String]
 @export_multiline var interact_dialogue: Array[String]
 @export var correct_choice: String
-@export_multiline var post_battle_dialogue: Array[String]
+@export_multiline var win_dialogue: Array[String]
+@export_multiline var lose_dialogue: Array[String]
 
 @onready var sprite_2d = $Area2D/Sprite2D
 @onready var warning = $Warning
@@ -46,8 +49,10 @@ func _ready():
 		$Area2D.interact_dialogue = interact_dialogue
 	if correct_choice:
 		$Area2D.correct_choice = correct_choice
-	if post_battle_dialogue:
-		$Area2D.post_battle_dialogue = post_battle_dialogue
+	if win_dialogue:
+		$Area2D.win_dialogue = win_dialogue
+	if lose_dialogue:
+		$Area2D.lose_dialogue = lose_dialogue
 
 func _process(delta):
 	if player == null:

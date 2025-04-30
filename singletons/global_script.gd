@@ -19,6 +19,8 @@ var is_attack_resolved: bool = true:
 			EventBus.emit_signal("attack_resolved")
 
 var brightness_val: float = 100.0
+## Three possible values: "win", "lose", "none"
+var battle_result: String = "none"
 
 func start():
 	brightness_val = 100.0
@@ -29,6 +31,8 @@ var current_level : String
 var finished_levels := {}  # Acts as a HashSet
 ## Dialogue that plays automatically upon scene ready; good for scene transitions
 var dialogue_on_scene_ready: Array[String]
+var win_dialogue: Array[String]
+var lose_dialogue: Array[String]
 
 func finished_level():
 	finished_levels[current_level]=true

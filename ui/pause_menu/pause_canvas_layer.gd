@@ -74,6 +74,7 @@ func _on_restart_level_pressed():
 
 func _on_exit_level_pressed():
 	get_tree().paused = false
+	Global.battle_result = "lose"
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 
