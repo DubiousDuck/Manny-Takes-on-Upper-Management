@@ -24,6 +24,8 @@ var spawn_position = Vector2.ZERO  # Initial spawn position
 @export_file("*.tscn") var scene_to_go
 @export var level_name: String
 @export var req: Array[String] = []
+@export var level_info: LevelInfo
+@export var need_preview: bool = false
 
 @export_category("Dialogues")
 @export_multiline var locked_dialogue: Array[String]
@@ -53,6 +55,10 @@ func _ready():
 		$Area2D.win_dialogue = win_dialogue
 	if lose_dialogue:
 		$Area2D.lose_dialogue = lose_dialogue
+	if level_info:
+		$Area2D.level_info = level_info
+	if need_preview:
+		$Area2D.need_preview = need_preview
 
 func _process(delta):
 	if player == null:

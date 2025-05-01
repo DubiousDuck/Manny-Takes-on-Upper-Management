@@ -8,6 +8,8 @@ class_name SollicitorInteract
 @export var completed = false
 @export var req :Array[String] = []
 @export var level_name :String
+@export var level_info: LevelInfo
+@export var need_preview: bool
 
 @export var locked_dialogue: Array[String] = ["this door is locked"]
 @export var interact_dialogue: Array[String] = ["Hello good sir", "GIVE ME YOUR MONEY![NO][YES]"]
@@ -41,4 +43,11 @@ func _interact_call_back():
 			Global.set_last_overworld_scene(get_tree().current_scene)
 			Global.win_dialogue = win_dialogue.duplicate()
 			Global.lose_dialogue = lose_dialogue.duplicate()
-			Global.scene_transition(scene_to_go)
+			# Assumes need_preview is true when scene_to_go is LevelPreview
+			# Assumes need_preview is false when scene_to_go is a Level
+			if need_preview:
+				var a = load(scene_to_go).instantiate()
+				GlobalUI.add_child(a)
+				a.init(level_info)
+			else:
+				Global.scene_transition(scene_to_go)
