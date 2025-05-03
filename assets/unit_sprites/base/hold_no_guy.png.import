@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxvywmlxekbt"
-path="res://.godot/imported/hurt.png-a4a60b80e09f105932991b7f0f465715.ctex"
+uid="uid://v1khfkssrdpn"
+path="res://.godot/imported/hold_no_guy.png-3ce2c6f040c838d4b4ff9a7df1f05ed1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/hurt.png"
-dest_files=["res://.godot/imported/hurt.png-a4a60b80e09f105932991b7f0f465715.ctex"]
+source_file="res://assets/unit_sprites/base/hold_no_guy.png"
+dest_files=["res://.godot/imported/hold_no_guy.png-3ce2c6f040c838d4b4ff9a7df1f05ed1.ctex"]
 
 [params]
 

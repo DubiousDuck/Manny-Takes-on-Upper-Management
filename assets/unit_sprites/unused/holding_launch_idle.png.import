@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdshnv0qn17e"
-path="res://.godot/imported/shoot.png-9ac4c45a6315db87949e030031ed2e0d.ctex"
+uid="uid://bwellp282hl61"
+path="res://.godot/imported/holding_launch_idle.png-b40e0e38f0733f571c32a9f36fd80d04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/shoot.png"
-dest_files=["res://.godot/imported/shoot.png-9ac4c45a6315db87949e030031ed2e0d.ctex"]
+source_file="res://assets/unit_sprites/unused/holding_launch_idle.png"
+dest_files=["res://.godot/imported/holding_launch_idle.png-b40e0e38f0733f571c32a9f36fd80d04.ctex"]
 
 [params]
 

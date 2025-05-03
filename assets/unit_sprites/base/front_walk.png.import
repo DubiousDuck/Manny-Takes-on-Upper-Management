@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v1khfkssrdpn"
-path="res://.godot/imported/hold_no_guy.png-2fd9b06f586ae92fa2babc9bba2a2154.ctex"
+uid="uid://cf1bgrdgk30ur"
+path="res://.godot/imported/front_walk.png-d3190179f566349b1ceebe0f9e929465.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/hold_no_guy.png"
-dest_files=["res://.godot/imported/hold_no_guy.png-2fd9b06f586ae92fa2babc9bba2a2154.ctex"]
+source_file="res://assets/unit_sprites/base/front_walk.png"
+dest_files=["res://.godot/imported/front_walk.png-d3190179f566349b1ceebe0f9e929465.ctex"]
 
 [params]
 

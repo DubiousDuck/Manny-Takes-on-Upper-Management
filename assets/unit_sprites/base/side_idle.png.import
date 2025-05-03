@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhbdttwlofs3x"
-path="res://.godot/imported/punch.png-8c77d680883ab099b067cca2c46b0262.ctex"
+uid="uid://3colr5os47jl"
+path="res://.godot/imported/side_idle.png-173fde82e7f59252eadca4aafa28b0a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/punch.png"
-dest_files=["res://.godot/imported/punch.png-8c77d680883ab099b067cca2c46b0262.ctex"]
+source_file="res://assets/unit_sprites/base/side_idle.png"
+dest_files=["res://.godot/imported/side_idle.png-173fde82e7f59252eadca4aafa28b0a5.ctex"]
 
 [params]
 

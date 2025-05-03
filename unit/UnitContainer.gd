@@ -123,6 +123,7 @@ func select_unit(unit: Unit):
 		else:
 			current_unit.toggle_skill_ui(true, true)
 	skill_chosen = null
+	current_unit.toggle_outline(true)
 	connect_current_unit_signals()
 	
 func deselect_current_unit():
@@ -130,6 +131,7 @@ func deselect_current_unit():
 		return
 	current_unit.toggle_skill_ui(false)
 	current_unit.selected = false
+	current_unit.toggle_outline(false)
 	current_unit = null
 	is_waiting_unit_selection = true
 	skill_chosen = null
@@ -463,6 +465,7 @@ func _step_enemy():
 		print("Unit: ", best_unit.name, "; Skill: ", best_skill.name, "; Cell: ", best_cell)
 		
 		select_unit(best_unit)
+		await get_tree().create_timer(0.75).timeout
 		if current_unit != null:
 			unit_action(best_skill, best_cell)
 			await unit_action_done

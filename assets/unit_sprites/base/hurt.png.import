@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunbssoawl1k6"
-path="res://.godot/imported/side_walk.png-be14939683f7f28763bd4f5e104bd151.ctex"
+uid="uid://dxvywmlxekbt"
+path="res://.godot/imported/hurt.png-e55c8bad582d2f18be231c7980c7708a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/side_walk.png"
-dest_files=["res://.godot/imported/side_walk.png-be14939683f7f28763bd4f5e104bd151.ctex"]
+source_file="res://assets/unit_sprites/base/hurt.png"
+dest_files=["res://.godot/imported/hurt.png-e55c8bad582d2f18be231c7980c7708a.ctex"]
 
 [params]
 

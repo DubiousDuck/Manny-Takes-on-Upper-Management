@@ -1,5 +1,13 @@
 shader_type canvas_item;
 
+// Controlling effect mode
+uniform int effect_mode = 0; //0 = outline, 1 = flash, 2 = teleport
+
+// Controlling outline
+uniform vec4 line_color : source_color = vec4(1);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+// Controlling flash effect
 uniform vec4 color: source_color;
 uniform float flash_state: hint_range(0.0, 1.0, 0.1);
 uniform float transparency: hint_range(0.0, 1.0, 0.1);
@@ -31,9 +39,29 @@ float noise(vec2 uv) {
 }
 
 void fragment() {
+	// outline effect
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+
+	float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+	outline = min(outline, 1.0);
+
 	vec4 pixelColor = texture(TEXTURE, UV);
-	COLOR = mix(pixelColor, color, flash_state);
-	COLOR.a *= pixelColor.a * transparency; //preserves parent material transparency
+
+	COLOR = mix(pixelColor, line_color, outline - pixelColor.a);
+
+	// flash effect
+	if (effect_mode == 1){
+		vec4 pixelColor = texture(TEXTURE, UV);
+		COLOR = mix(pixelColor, color, flash_state);
+		COLOR.a *= pixelColor.a * transparency; //preserves parent material transparency
+	}
 
 	//teleport effect
 	if (progress > 0.0){

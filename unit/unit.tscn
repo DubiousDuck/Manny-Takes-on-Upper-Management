@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
-[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="3_a2j7n"]
+[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="3_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="AnimationLibrary" uid="uid://bvd8i4afxw3kl" path="res://unit/Fighter.res" id="4_a2j7n"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
@@ -21,6 +21,9 @@ size = Vector2(12.9032, 16.2162)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcacr"]
 resource_local_to_scene = true
 shader = ExtResource("1_ipbkg")
+shader_parameter/effect_mode = 0
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.0
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/flash_state = 0.0
 shader_parameter/transparency = 1.0

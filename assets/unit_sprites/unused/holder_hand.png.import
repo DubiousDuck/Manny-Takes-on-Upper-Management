@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce10om6f2h4bb"
-path="res://.godot/imported/thrown.png-6f190ce2341aa8083a8f93ec28d46097.ctex"
+uid="uid://2dil5y2ia8ws"
+path="res://.godot/imported/holder_hand.png-e4f92d6726753ab694d29777e7883e64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/thrown.png"
-dest_files=["res://.godot/imported/thrown.png-6f190ce2341aa8083a8f93ec28d46097.ctex"]
+source_file="res://assets/unit_sprites/unused/holder_hand.png"
+dest_files=["res://.godot/imported/holder_hand.png-e4f92d6726753ab694d29777e7883e64.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7meyg4aq48pp"
-path="res://.godot/imported/back_walk.png-e080ba67abd4fca68c32827a80f5736e.ctex"
+uid="uid://uob3lv0yjpqk"
+path="res://.godot/imported/base_sheet.png-62492717318848a1eaa30e7dc516fa22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/back_walk.png"
-dest_files=["res://.godot/imported/back_walk.png-e080ba67abd4fca68c32827a80f5736e.ctex"]
+source_file="res://assets/unit_sprites/full_sheets/base_sheet.png"
+dest_files=["res://.godot/imported/base_sheet.png-62492717318848a1eaa30e7dc516fa22.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ class_name Unit
 const UNIT_PREVIEW = preload("res://ui/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 const MASH_ACTION_COMMAND = preload("res://skills/action_commands/mash_action_command.tscn")
+const OUTLINE_WIDTH := 0.75
 
 signal movement_complete
 signal attack_point
@@ -56,6 +57,7 @@ var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn
 var is_player_controlled: bool
 var move_range_highlight := Color(1, 1, 1, 1)
+var outline_col := Color(1, 1, 1, 1)
 var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 var is_held: bool = false
@@ -93,11 +95,11 @@ func load_unit_data():
 
 func _process(_delta):
 	if actions_avail.is_empty(): #if there are no available actions left
-		$Health.self_modulate = Color(0.5, 0.5, 0.5)
+		modulate = Color(0.5, 0.5, 0.5)
 	else:
-		$Health.self_modulate = Color(1, 1, 1)
+		modulate = Color(1, 1, 1)
 	if damage_reduction > 0:
-		$Health.self_modulate = Color(0, 0.35, 1)
+		modulate = Color(0, 0.35, 1)
 	
 	unit_held.map(
 		func(unit):
@@ -356,3 +358,11 @@ func _set_anim_lib():
 				anim_lib = "Tank"
 			_:
 				anim_lib = "unit_anim"
+
+## toggle_outline
+func toggle_outline(state: bool):
+	$Sprite2D.material.set_shader_parameter("line_color", outline_col)
+	if state:
+		$Sprite2D.material.set_shader_parameter("line_thickness", OUTLINE_WIDTH)
+	else:
+		$Sprite2D.material.set_shader_parameter("line_thickness", 0)

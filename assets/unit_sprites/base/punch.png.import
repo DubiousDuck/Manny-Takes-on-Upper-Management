@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2dil5y2ia8ws"
-path="res://.godot/imported/holder_hand.png-0b72209390bd08b8897b81a226f01752.ctex"
+uid="uid://bhbdttwlofs3x"
+path="res://.godot/imported/punch.png-9f2e6ac26c0dc2b6cd6dfeaa5c12050d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/holder_hand.png"
-dest_files=["res://.godot/imported/holder_hand.png-0b72209390bd08b8897b81a226f01752.ctex"]
+source_file="res://assets/unit_sprites/base/punch.png"
+dest_files=["res://.godot/imported/punch.png-9f2e6ac26c0dc2b6cd6dfeaa5c12050d.ctex"]
 
 [params]
 

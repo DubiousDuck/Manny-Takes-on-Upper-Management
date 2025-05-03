@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwellp282hl61"
-path="res://.godot/imported/holding_launch_idle.png-b59c0906bbb2a3c5bc0dd056b75e00b4.ctex"
+uid="uid://c7meyg4aq48pp"
+path="res://.godot/imported/back_walk.png-a489639e9bd2fb2472e3a9628facb59e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/unit_sprites/holding_launch_idle.png"
-dest_files=["res://.godot/imported/holding_launch_idle.png-b59c0906bbb2a3c5bc0dd056b75e00b4.ctex"]
+source_file="res://assets/unit_sprites/base/back_walk.png"
+dest_files=["res://.godot/imported/back_walk.png-a489639e9bd2fb2472e3a9628facb59e.ctex"]
 
 [params]
 
