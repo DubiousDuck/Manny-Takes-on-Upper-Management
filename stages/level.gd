@@ -78,3 +78,9 @@ func _on_battle_ended(result: int):
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
 	a.animate_exp(Global.current_exp, init_level, Global.level)
+
+func _on_units_switch_turn(is_player):
+	await pause_canvas_layer.play_top_bar_slide_in(false, is_player)
+	await get_tree().create_timer(0.75).timeout
+	await pause_canvas_layer.play_top_bar_slide_in(true, is_player)
+	unit_group_control.start_next_turn()

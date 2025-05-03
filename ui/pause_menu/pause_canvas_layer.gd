@@ -109,7 +109,6 @@ func _on_to_main_menu_pressed():
 	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
 
 # -- Prebattle related functions -- #
-
 func _on_battle_start_pressed():
 	for child in pre_battle_box.get_children():
 		child.disabled = true
@@ -120,8 +119,16 @@ func _on_party_comp_pressed():
 	Global.last_scene_type = "battle"
 	get_tree().change_scene_to_packed(a)
 
-func play_top_bar_slide_in(reversed: bool = false):
-	$AnimationPlayer.play("top_bar_slide_up",-1, 1.0, reversed)
+func play_top_bar_slide_in(reversed: bool = false, is_player_label: bool = true):
+	if is_player_label:
+		$BackgroundRect/BackgroundTopBar/TurnIndicator.text = "Player's Turn"
+	else:
+		$BackgroundRect/BackgroundTopBar/TurnIndicator.text = "Enemy's Turn"
+		
+	if reversed:
+		$AnimationPlayer.play("top_bar_slide_up")
+	else: $AnimationPlayer.play("top_bar_slide_down")
+	
 	await $AnimationPlayer.animation_finished
 	return
 

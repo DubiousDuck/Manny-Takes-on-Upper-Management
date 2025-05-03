@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1ig65m78igxg"]
+[gd_scene load_steps=16 format=3 uid="uid://1ig65m78igxg"]
 
 [ext_resource type="Script" uid="uid://cgqpt5abxnbl1" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_711h1"]
@@ -38,22 +38,6 @@ tracks/1/keys = {
 "values": [Vector2(423, 552)]
 }
 
-[sub_resource type="Animation" id="Animation_g23os"]
-resource_name = "top_bar_slide_up"
-length = 0.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BackgroundRect/BackgroundTopBar:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -60)]
-}
-
 [sub_resource type="Animation" id="Animation_h3q8i"]
 resource_name = "both_bars_slide_out"
 length = 0.75
@@ -82,11 +66,43 @@ tracks/1/keys = {
 "values": [Vector2(423, 552), Vector2(423, 647)]
 }
 
+[sub_resource type="Animation" id="Animation_g23os"]
+resource_name = "top_bar_slide_down"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundRect/BackgroundTopBar:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -60), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hr47c"]
+resource_name = "top_bar_slide_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundRect/BackgroundTopBar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -60)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hr47c"]
 _data = {
 &"RESET": SubResource("Animation_0u3dg"),
 &"both_bars_slide_out": SubResource("Animation_h3q8i"),
-&"top_bar_slide_up": SubResource("Animation_g23os")
+&"top_bar_slide_down": SubResource("Animation_g23os"),
+&"top_bar_slide_up": SubResource("Animation_hr47c")
 }
 
 [node name="PauseCanvasLayer" type="CanvasLayer"]
@@ -133,6 +149,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PauseButton" type="TextureButton" parent="BattleBox"]
+layout_mode = 0
 offset_left = 1050.0
 offset_top = 17.0
 offset_right = 1734.0
@@ -142,6 +159,7 @@ texture_normal = ExtResource("6_b6mne")
 stretch_mode = 5
 
 [node name="PassButton" type="Button" parent="BattleBox"]
+layout_mode = 0
 offset_left = 27.0
 offset_top = 562.0
 offset_right = 246.0

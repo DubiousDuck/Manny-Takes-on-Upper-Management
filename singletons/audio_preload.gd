@@ -10,7 +10,8 @@ const _59 = preload("res://assets/test_songs/5946900010893312.wav")
 const _64 = preload("res://assets/test_songs/6405233909039104.wav")
 
 var lastTrack: int = 99
-var volValue: int = 69
+# Sorry I have listened to the music too many times. I will change it back later QAQ
+var volValue: int = 0
 
 func _ready():
 	EventBus.connect("start_battle", _on_start_battle)

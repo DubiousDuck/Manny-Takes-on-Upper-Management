@@ -11,7 +11,7 @@ func set_current_map(map : TileMapLayer):
 	if current_map != null:
 		astar.clear()
 		add_all_point()
-	print("there are " + str(astar.get_point_count()) + " points in this map")
+	#print("there are " + str(astar.get_point_count()) + " points in this map")
 
 ## Adds and connects all cells in the [TileMapLayer]
 func add_all_point(): 

@@ -76,7 +76,6 @@ func _ready() -> void:
 		for unit in units:
 			unit.load_unit_data()
 		
-	print(name + " has " + str(units.size()) + " units")
 
 func init():
 	for unit in units:

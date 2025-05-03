@@ -83,3 +83,4 @@ script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
+[connection signal="switch_turn" from="Units" to="." method="_on_units_switch_turn"]

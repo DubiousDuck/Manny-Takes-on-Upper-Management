@@ -4,6 +4,7 @@ class_name UnitGroupController
 
 signal attack_complete
 signal status_update_complete
+signal switch_turn(is_player: bool)
 
 @export var player_goes_first : bool = true
 
@@ -46,8 +47,6 @@ func connect_container_signal(unit_group : UnitContainer):
 	unit_group.connect("all_units_moved", _on_unit_container_all_moved)
 	
 func _on_unit_container_all_moved():
-	Global.isPlayerTurn = is_player_turn
-	print("is player turn: " + str(is_player_turn))
 	if !Global.is_attack_resolved:
 		await attack_complete
 	var should_cont: bool =  check_if_win()
@@ -63,14 +62,18 @@ func _on_status_update_complete():
 	if is_waiting_for_turn_switch:
 		is_waiting_for_turn_switch = false
 		is_player_turn = !is_player_turn
+		Global.isPlayerTurn = is_player_turn
 		await round_end_actions()
 		if is_player_turn:
-			player_group.round_start()
-			print("player's turn")
+			switch_turn.emit(true)
 		else:
-			await get_tree().create_timer(0.5).timeout
-			enemy_group.round_start()
-			print("enemy's turn")
+			switch_turn.emit(false)
+
+## Called by Level.gd to start next turn
+func start_next_turn():
+	if is_player_turn:
+		player_group.round_start()
+	else: enemy_group.round_start()
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	Global.is_attack_resolved = false
@@ -229,7 +232,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	
 
 func _on_update_cell_status(stacking: bool): #scan all units and update cell color accordingly
-	print("updating")
 	all_units = []
 	occupied_cells = {}
 	EventBus.emit_signal("clear_cells")
@@ -288,7 +290,6 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
 				)
 
-	print("status update complete")	
 	status_update_complete.emit()
 
 func _on_unit_died():
