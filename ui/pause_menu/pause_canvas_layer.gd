@@ -6,11 +6,14 @@ var menuIsDisplayed: bool = false
 @onready var exit_level = $BattleMenuControl/HBoxContainer/ExitLevel
 @onready var restart_level = $BattleMenuControl/HBoxContainer/RestartLevel
 @onready var to_main_menu = $BattleMenuControl/HBoxContainer/ToMainMenu
-@onready var pause_button = $PauseButton
+@onready var pause_button = $BattleBox/PauseButton
 @onready var brightness_slider = $BattleMenuControl/BrightnessSlider
+@onready var background_rect = $BackgroundRect
 
 @onready var dev_button = $BattleMenuControl/DevButton
-@onready var pass_button = $PassButton
+@onready var pass_button = $BattleBox/PassButton
+@onready var battle_box = $BattleBox
+@onready var pre_battle_box = $PreBattleBox
 
 @export var isBattleScene: bool
 
@@ -27,6 +30,8 @@ func _ready():
 		restart_level.visible = false
 		pass_button.visible = false
 		to_main_menu.visible = true
+		background_rect.visible = false
+		pre_battle_box.visible = false
 	else:
 		to_main_menu.visible = false
 
@@ -102,3 +107,25 @@ func _on_pass_button_pressed():
 func _on_to_main_menu_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
+
+# -- Prebattle related functions -- #
+
+func _on_battle_start_pressed():
+	for child in pre_battle_box.get_children():
+		child.disabled = true
+	EventBus.emit_signal("battle_started")
+
+func _on_party_comp_pressed():
+	var a = preload("res://overworld/party_comp/party_comp.tscn")
+	Global.last_scene_type = "battle"
+	get_tree().change_scene_to_packed(a)
+
+func play_top_bar_slide_in(reversed: bool = false):
+	$AnimationPlayer.play("top_bar_slide_up",-1, 1.0, reversed)
+	await $AnimationPlayer.animation_finished
+	return
+
+func play_both_bar_slide_out(reversed: bool = false):
+	$AnimationPlayer.play("both_bars_slide_out",-1, 1.0, reversed)
+	await $AnimationPlayer.animation_finished
+	return

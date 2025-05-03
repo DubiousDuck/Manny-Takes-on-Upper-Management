@@ -13,10 +13,6 @@ const WAIT_SKILL = preload("res://skills/wait.tres")
 ## If false, ally parties will not be read from Save Data but instead loaded from the scene editor
 @export var read_class_from_data: bool = true
 @export var enemy_container: UnitContainer #NOTICE: New feature!
-var units: Array[Unit] = []
-var current_unit: Unit
-var skill_chosen: SkillInfo = null
-var current_actionnable_cells: Dictionary = {}
 
 @export_category("Enemy AI Parameters")
 @export var aggro_probability: float = 1.0       #Default weights for move decision of AI enemy
@@ -26,6 +22,13 @@ var current_actionnable_cells: Dictionary = {}
 @export_category("TilpMapLayer Related")
 @export var tilemap_path: NodePath = NodePath("../../TileMapTest") # Default value (can be overridden in the editor)
 @onready var tile_map_test: TileMapLayer = get_node(tilemap_path) as TileMapLayer
+
+# General vars
+var units: Array[Unit] = []
+var current_unit: Unit
+var skill_chosen: SkillInfo = null
+var current_actionnable_cells: Dictionary = {}
+var in_battle: bool = false
 
 #flags
 var is_waiting_unit_selection: bool = true
@@ -81,10 +84,13 @@ func init():
 			unit.init()
 	
 func round_start():
-	Global.isPlayerTurn = true
+	in_battle = true
 	for unit in units:
 		unit.init()
-	if !is_player_controlled:
+	if is_player_controlled:
+		Global.isPlayerTurn = true
+	else:
+		Global.isPlayerTurn = false
 		_step_enemy()
 	
 func get_available_unit_count() -> int:
@@ -437,6 +443,10 @@ func find_best_team_sequence(units: Array[Unit], state: GameState) -> Dictionary
 func _step_enemy():
 	if !Global.is_attack_resolved:
 		await EventBus.attack_resolved
+	# Safeguar condition
+	if !in_battle:
+		push_warning("Enemy turn called even when it's not in battle! Something's wrong w the code... -- UnitContainer.gd")
+		return
 	if get_available_unit_count() <= 0:
 		all_units_moved.emit()
 		return
@@ -476,7 +486,7 @@ func unit_pos_score(unit: Unit):
 
 # ---- Player Input ----
 func _unhandled_input(event):
-	if !is_player_controlled or !Global.is_attack_resolved:
+	if !is_player_controlled or !Global.is_attack_resolved or !in_battle:
 		return
 	
 	if is_aoe_skill and skill_chosen != null:

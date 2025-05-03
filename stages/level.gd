@@ -25,25 +25,38 @@ const INTRAVERSABLE_WEIGHT: float = 999
 
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
+	EventBus.connect("battle_started", _on_battle_started)
 	
 	HexNavi.set_current_map(tile_map)
 	HexNavi.set_weight_of_layer("traversable", false, INTRAVERSABLE_WEIGHT)
 	
-	#read_talent_and_apply(Global.talent_type.PROTAG)
-	#read_talent_and_apply(Global.talent_type.COMPANY)
+	unit_group_control.init()
+	
+	pause_canvas_layer.battle_box.visible = false
+	pause_canvas_layer.pre_battle_box.visible = true
+	
+	Global.set_last_battle_scene(get_tree().current_scene.scene_file_path)
+
+func battle_start():
+	await pause_canvas_layer.play_both_bar_slide_out()
 	
 	if !tutorial_queue.is_empty():
 		if Global.ui_busy:
 			await EventBus.ui_element_ended # wait for fade
 		Global.start_tutorial(tutorial_queue)
+		await EventBus.ui_element_ended
 	
-	unit_group_control.init()
+	pause_canvas_layer.battle_box.visible = true
+	unit_group_control.battle_start()
 
+func _on_battle_started():
+	battle_start()
+	
 func _on_battle_ended(result: int):
 	##exp gain
 	var a = battle_outcome.instantiate()
 	a.init(result)
-	pause_canvas_layer.add_in_background(a)
+	GlobalUI.add_child(a)
 	var init_level : int = Global.level
 	if result == EventBus.BattleResult.PLAYER_VICTORY:
 		Global.finished_level()

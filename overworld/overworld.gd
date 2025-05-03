@@ -81,11 +81,11 @@ func _ready():
 		Global.start_dialogue(Global.dialogue_on_scene_ready)
 		await EventBus.ui_element_ended
 		Global.dialogue_on_scene_ready.clear()
-	if Global.battle_result == "win":
+	if Global.battle_result == "win" and Global.win_dialogue:
 		Global.start_dialogue(Global.win_dialogue)
 		await EventBus.ui_element_ended
 		Global.win_dialogue.clear()
-	elif Global.battle_result == "lose":
+	elif Global.battle_result == "lose" and Global.lose_dialogue:
 		Global.start_dialogue(Global.lose_dialogue)
 		await EventBus.ui_element_ended
 		Global.lose_dialogue.clear()
@@ -101,5 +101,6 @@ func _on_save_pressed():
 
 func _on_party_manage_pressed():
 	Global.set_last_overworld_scene(get_tree().current_scene)
+	Global.last_scene_type = "overworld"
 	var party_manage = preload("res://overworld/party_comp/party_comp.tscn")
 	get_tree().change_scene_to_packed(party_manage)

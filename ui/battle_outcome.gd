@@ -54,9 +54,12 @@ func display():
 func _on_play_again_pressed():
 	EventBus.ui_element_ended.emit()
 	get_tree().paused = false
+	queue_free()
 	get_tree().reload_current_scene()
 
 func _on_previous_scene_pressed():
 	EventBus.ui_element_ended.emit()
 	get_tree().paused = false
+	queue_free()
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
+	

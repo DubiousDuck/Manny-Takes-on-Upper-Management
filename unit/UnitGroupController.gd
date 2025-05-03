@@ -35,7 +35,8 @@ func init():
 		all_units[id].unit_id = id
 
 	_on_update_cell_status(true)
-	
+
+func battle_start():
 	is_player_turn = player_goes_first
 	if is_player_turn:
 		player_group.round_start()

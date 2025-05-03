@@ -8,6 +8,9 @@ const ITEM = preload("res://overworld/party_comp/item_draggable.tscn")
 @onready var member_folder = $MemberFolder
 @onready var item_folder = $ItemFolder
 
+## Two possible values: "overworld", "battle"
+var last_scene_type: String = "overworld"
+
 func _ready():
 	var reserves: Array[DraggableMember] = []
 	for unit_data in Global.reserves:
@@ -69,5 +72,7 @@ func _on_button_pressed():
 		if child is DraggableItem and child.equipper == null:
 			Global.unequipped_items.append(child.item_data)
 	
-	if Global.get_last_overworld_scene():
+	if Global.get_last_overworld_scene() and Global.last_scene_type == "overworld":
 		get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
+	elif Global.get_last_battle_scene() and Global.last_scene_type == "battle":
+		get_tree().change_scene_to_file(Global.get_last_battle_scene())

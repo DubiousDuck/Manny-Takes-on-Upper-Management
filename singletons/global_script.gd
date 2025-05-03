@@ -39,12 +39,23 @@ func finished_level():
 	current_level=""
 
 var _last_overworld_scene: PackedScene = PackedScene.new()
+var _last_battle_scene: String
+## Two values: "overworld", "battle"
+var last_scene_type: String
 
 func set_last_overworld_scene(scene: Node):
 	return _last_overworld_scene.pack(scene)
 
 func get_last_overworld_scene() -> PackedScene:
 	return _last_overworld_scene
+
+# Using scene path instead of path because I want to re-initiate everything each time we load the battle (for now)
+func set_last_battle_scene(scene_path: String):
+	_last_battle_scene = scene_path
+	return true
+	
+func get_last_battle_scene() -> String:
+	return _last_battle_scene
 
 ##Leveling System related
 
