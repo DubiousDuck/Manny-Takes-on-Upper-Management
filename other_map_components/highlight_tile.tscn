@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co8sjf0b3c6n8"]
+
+[ext_resource type="Texture2D" uid="uid://xwy6g0lqyn6w" path="res://other_map_components/highlight_inner.png" id="1_uoeln"]
+
+[node name="HighightTile" type="Sprite2D"]
+texture = ExtResource("1_uoeln")

@@ -51,11 +51,12 @@ func _on_mouse_entered(icon_hovered: SkillIcon):
 	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 	
 	var all_neighbors := HexNavi.get_all_neighbors_in_range(HexNavi.global_to_cell(unit.global_position), icon_hovered.skill.range, 999)
-	EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.ATTACK_HIGHLIGHT, name)
+	EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.ATTACK_PREVIEW_HIGHLIGHT, name)
 	if container:
 		var valid_targets = container.get_targets_of_type(all_neighbors, icon_hovered.skill.targets, unit)
 		if valid_targets.size() > 0:
-			EventBus.emit_signal("show_cell_highlights", valid_targets, CellHighlight.VALID_TARGET_HIGHLIGHT, name+"_valid_targets")
+			if icon_hovered.skill.targets in [SkillInfo.TargetType.ENEMIES, SkillInfo.TargetType.ANY_UNIT, SkillInfo.TargetType.ALLIES, SkillInfo.TargetType.EXCEPT_SELF, SkillInfo.TargetType.ALLIES_EXCEPT_SELF]:
+				EventBus.emit_signal("show_cell_highlights", valid_targets, CellHighlight.ATTACK_HIGHLIGHT, name+"_valid_targets")
 
 func _on_mouse_exit():
 	EventBus.emit_signal("remove_cell_highlights", name)

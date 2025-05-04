@@ -3,12 +3,14 @@ extends Node2D
 class_name CellHighlight
 
 ## Color constants
-const ATTACK_HIGHLIGHT: Color = Color(1, 1, 0, 0.5)
+const ATTACK_HIGHLIGHT: Color = Color(0.996, 0.663, 0.0, 0.8)
+const ATTACK_PREVIEW_HIGHLIGHT: Color = Color(0.35, 0.35, 0, 0.5)
 const MOVE_RANGE_HIGHLIGHT : Color = Color(0, 0, 1, 0.3)
 const ENEMY_RANGE_HIGHLIGHT: Color = Color(1, 0, 0, 0.3)
-const VALID_TARGET_HIGHLIGHT: Color = Color(1, 0.2, 0, 0.7)
+const VALID_TARGET_HIGHLIGHT: Color = Color(1, 0.2, 0, 0.6)
+const VALID_ALLY_HIGHLIGHT: Color = Color(0, 0.2, 1, 0.6)
 
-@onready var highlight_tile = preload("res://other_map_components/highight_tile.tscn")
+@onready var highlight_tile = preload("res://other_map_components/highlight_tile.tscn")
 var all_current_highlights : Dictionary = {}
 
 func _ready():

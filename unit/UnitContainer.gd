@@ -586,7 +586,9 @@ func highlight_handle():
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
-				EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.VALID_TARGET_HIGHLIGHT, name)
+				if abs(skill_chosen.area) > 0:
+					EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_PREVIEW_HIGHLIGHT, name)
+				else: EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_HIGHLIGHT, name)
 			_:
 				pass
 
@@ -596,13 +598,18 @@ func get_actionnable_cells(this_unit: Unit, action_type: Unit.Action, skill: Ski
 	match action_type:
 		Unit.Action.MOVE:
 			var all_neighbors := HexNavi.get_all_neighbors_in_range(from_cell, this_unit.movement_range)
+			
+			var ally_cell: Array[Vector2i] = []
+			for ally in units:
+				ally_cell.append(ally.cell)
+				
 			var enemy_cell: Array[Vector2i] = []
 			enemy_container.units.map(
 				func(unit: Unit):
 					if unit != null: enemy_cell.append(unit.cell)
 			)
 			for neighbor in all_neighbors:
-				if HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != from_cell and !(neighbor in enemy_cell): #only actionnable if tile not occupied
+				if HexNavi.get_cell_custom_data(neighbor, "traversable") and neighbor != from_cell and !(neighbor in ally_cell) and !(neighbor in enemy_cell): #only actionnable if tile not occupied
 					tiles.append(neighbor)
 		Unit.Action.ATTACK:
 			if skill == null:

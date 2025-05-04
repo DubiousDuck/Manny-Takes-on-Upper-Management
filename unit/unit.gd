@@ -222,19 +222,15 @@ func highlight_emit():
 	EventBus.emit_signal("show_cell_highlights", all_neighbors, move_range_highlight, name)
 	
 func _on_hurtbox_mouse_entered():
-	if actions_avail.has(Action.MOVE) and !selected:
-		#if is_player_controlled: $ColorRect.color = Color(0, 0.420, 0.630)
-		#else: $ColorRect.color = Color(0.51, 0.046, 0)
-		highlight_emit()
+	toggle_outline(true)
 	var a = UNIT_PREVIEW.instantiate()
 	add_child(a)
 	a.global_position = Vector2(global_position.x + 50, global_position.y - 50)
 	a.init(self)
 
 func _on_hurtbox_mouse_exited():
-	#if is_player_controlled: $ColorRect.color = Color(0, 0.592, 0.871)
-	#else: $ColorRect.color = Color(0.89, 0.281, 0.239)
-	EventBus.emit_signal("remove_cell_highlights", name)
+	if !selected:
+		toggle_outline(false)
 	
 	#TODO: Lazy implementation
 	for node in get_children():
