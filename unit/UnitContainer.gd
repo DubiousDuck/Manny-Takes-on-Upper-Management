@@ -119,9 +119,7 @@ func select_unit(unit: Unit):
 	if is_player_controlled:
 		if current_unit.actions_avail.has(Unit.Action.ATTACK):
 			current_unit.check_if_can_throw()
-			current_unit.toggle_skill_ui(true)
-		else:
-			current_unit.toggle_skill_ui(true, true)
+		current_unit.toggle_skill_ui(true, get_usable_skills(current_unit))
 	skill_chosen = null
 	current_unit.toggle_outline(true)
 	connect_current_unit_signals()
@@ -129,7 +127,7 @@ func select_unit(unit: Unit):
 func deselect_current_unit():
 	if current_unit == null:
 		return
-	current_unit.toggle_skill_ui(false)
+	current_unit.toggle_skill_ui(false, [])
 	current_unit.selected = false
 	current_unit.toggle_outline(false)
 	current_unit = null
@@ -682,7 +680,7 @@ func _on_unit_died():
 	refresh_units()
 
 func _on_skill_chosen(skill: SkillInfo):
-	current_unit.toggle_skill_ui(false)
+	current_unit.toggle_skill_ui(false, [])
 	skill_chosen = skill
 	if skill_chosen.name == "Wait":
 		unit_wait()
@@ -736,3 +734,13 @@ func refresh_units():
 	for unit in get_children():
 		if !unit.is_dead and unit.unit_data != null:
 			units.append(unit)
+
+## Returns an array of skills that can be used at a given unit's cell
+func get_usable_skills(unit: Unit):
+	var usable_skills: Array[SkillInfo] = []
+	for skill in unit.skills:
+		var range = HexNavi.get_all_neighbors_in_range(unit.cell, skill.range, 999)
+		var valid_targets = get_targets_of_type(range, skill.targets, unit)
+		if valid_targets.size() > 0:
+			usable_skills.append(skill)
+	return usable_skills

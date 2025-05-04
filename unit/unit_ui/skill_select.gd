@@ -8,7 +8,7 @@ class_name SkillSelect
 
 @onready var test_icon = $HBoxContainer/SkillIcon
 
-var buttons : Array = []
+var buttons : Array[SkillIcon] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,21 +16,22 @@ func _ready() -> void:
 	unit = get_parent()
 	init()	
 
-func init(wait_only: bool = false):
+func init(valid_skills: Array[SkillInfo] = []):
 	for child in hbox.get_children():
 		hbox.remove_child(child)
 	buttons.clear()
 	
+	# instantiate all skills, but disable those that are not valid
 	for skill in unit.skills:
 		var a: SkillIcon = icon.instantiate()
-		if wait_only and skill.name != "Wait":
-			continue
 		a.skill = skill
 		hbox.add_child(a)
 		buttons.append(a)
 		a.connect("pressed", _on_button_pressed)
 		a.connect("mouse_entered", _on_mouse_entered.bind(a)) #bind() is a useful function
 		a.connect("mouse_exited", _on_mouse_exit)
+		if !(valid_skills.has(skill)):
+			a.disabled = true
 	
 func _on_button_pressed():
 	for button in buttons:
@@ -52,3 +53,6 @@ func _on_mouse_entered(icon_hovered: SkillIcon):
 
 func _on_mouse_exit():
 	EventBus.emit_signal("remove_cell_highlights", name)
+
+func toggle_button_display(state: bool):
+	pass

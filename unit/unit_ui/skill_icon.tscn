@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://kmkcpxlo5atd"]
+[gd_scene load_steps=3 format=3 uid="uid://kmkcpxlo5atd"]
 
 [ext_resource type="Script" uid="uid://d2lvjgi1la2xy" path="res://unit/unit_ui/skill_icon.gd" id="1_a1oet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dime"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [node name="SkillIcon" type="Button"]
 custom_minimum_size = Vector2(25, 12)
@@ -9,6 +15,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0.118581, 0.118581, 0.118581, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3dime")
 toggle_mode = true
 text = "Sample Attack"
 script = ExtResource("1_a1oet")

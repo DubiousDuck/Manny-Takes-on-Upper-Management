@@ -5,7 +5,7 @@ class_name Unit
 const UNIT_PREVIEW = preload("res://ui/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 const MASH_ACTION_COMMAND = preload("res://skills/action_commands/mash_action_command.tscn")
-const OUTLINE_WIDTH := 0.75
+const OUTLINE_WIDTH := 1
 
 signal movement_complete
 signal attack_point
@@ -113,7 +113,7 @@ func init():
 	cell = HexNavi.global_to_cell(global_position)
 	#global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
-	toggle_skill_ui(false)
+	toggle_skill_ui(false, [])
 	
 	#resets damage reduction
 	damage_reduction = 0
@@ -271,9 +271,9 @@ func tile_action():
 		_:
 			return
 
-func toggle_skill_ui(state: bool, wait_only: bool = false):
+func toggle_skill_ui(state: bool, valid_skills: Array[SkillInfo]):
 	if state:
-		$SkillSelect.init(wait_only)
+		$SkillSelect.init(valid_skills)
 		if global_position.y >= Global.camera_low:
 			$SkillSelect.position.y = -14.159 #TODO Turn this into constant
 		else: $SkillSelect.position.y = 14.159
