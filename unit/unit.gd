@@ -62,6 +62,7 @@ var selected: bool = false
 var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 var is_held: bool = false
 var is_dead: bool = false
+var container: UnitContainer
 
 var damage_reduction: float = 0;
 
@@ -272,6 +273,7 @@ func tile_action():
 			return
 
 func toggle_skill_ui(state: bool, valid_skills: Array[SkillInfo]):
+	$SkillSelect.container = container
 	if state:
 		$SkillSelect.init(valid_skills)
 		if global_position.y >= Global.camera_low:

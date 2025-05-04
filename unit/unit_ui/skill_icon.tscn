@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://d2lvjgi1la2xy" path="res://unit/unit_ui/skill_icon.gd" id="1_a1oet"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dime"]
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_detail = 1
 
 [node name="SkillIcon" type="Button"]
 custom_minimum_size = Vector2(25, 12)

@@ -9,6 +9,7 @@ class_name SkillSelect
 @onready var test_icon = $HBoxContainer/SkillIcon
 
 var buttons : Array[SkillIcon] = []
+var container: UnitContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,12 +48,18 @@ func _on_mouse_entered(icon_hovered: SkillIcon):
 	#print(icon_hovered.name + str(" is being hovered over!"))
 	#Prob unoptimal but convenient implmentation
 	EventBus.emit_signal("remove_cell_highlights", name)
+	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 	
 	var all_neighbors := HexNavi.get_all_neighbors_in_range(HexNavi.global_to_cell(unit.global_position), icon_hovered.skill.range, 999)
 	EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.ATTACK_HIGHLIGHT, name)
+	if container:
+		var valid_targets = container.get_targets_of_type(all_neighbors, icon_hovered.skill.targets, unit)
+		if valid_targets.size() > 0:
+			EventBus.emit_signal("show_cell_highlights", valid_targets, CellHighlight.VALID_TARGET_HIGHLIGHT, name+"_valid_targets")
 
 func _on_mouse_exit():
 	EventBus.emit_signal("remove_cell_highlights", name)
+	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 
 func toggle_button_display(state: bool):
 	pass

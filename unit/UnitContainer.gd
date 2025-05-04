@@ -80,6 +80,7 @@ func _ready() -> void:
 func init():
 	for unit in units:
 		if unit is Unit:
+			unit.container = self
 			unit.init()
 	
 func round_start():
@@ -585,7 +586,7 @@ func highlight_handle():
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
-				EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_HIGHLIGHT, name)
+				EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.VALID_TARGET_HIGHLIGHT, name)
 			_:
 				pass
 
