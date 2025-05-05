@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd3d177pj6u48" path="res://ui/tutorial/tutorial.gd" id="1_ty1wa"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_104xa"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="2_hkj85"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_hkj85"]
 
 [node name="Tutorial" type="Control"]
 process_mode = 3

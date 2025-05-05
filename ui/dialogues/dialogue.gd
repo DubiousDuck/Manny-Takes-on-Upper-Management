@@ -4,7 +4,7 @@ class_name Dialogue extends Control
 @onready var anim_player = $AnimationPlayer
 @onready var choice_container = $Choices
 
-const CHOICE = preload("res://ui/dialogue_choice.tscn")
+const CHOICE = preload("res://ui/dialogues/dialogue_choice.tscn")
 var chosen:String = ""
 var question_given = false
 		

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvj480s01tuxn"]
 
-[ext_resource type="Script" uid="uid://byvwlxi75l2aq" path="res://dialogue.gd" id="1_sirea"]
+[ext_resource type="Script" uid="uid://byvwlxi75l2aq" path="res://ui/dialogues/dialogue.gd" id="1_qhn4j"]
 
 [sub_resource type="Animation" id="Animation_xq45a"]
 resource_name = "BarsDown"
@@ -42,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sirea")
+script = ExtResource("1_qhn4j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

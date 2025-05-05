@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_d7ahf"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_pi0iu"]
 [ext_resource type="PackedScene" uid="uid://b65vkeagk8n6r" path="res://overworld/skill_tree/talents/talent_node.tscn" id="2_sbq3o"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="4_hwbid"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="4_hwbid"]
 [ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="5_l4wp0"]
 [ext_resource type="Texture2D" uid="uid://ch6hxe0bivswa" path="res://assets/ui/swap_tree_icon.png" id="6_d7ahf"]
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://10itgf8qtmm7" path="res://overworld/party_comp/member_draggable.gd" id="1_e0v4q"]
 [ext_resource type="PackedScene" uid="uid://k72ihh2m8ggt" path="res://overworld/party_comp/base_draggable.tscn" id="1_fvf3a"]
-[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/front_idle.png" id="1_o2cwy"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_po6nx"]
+[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="1_o2cwy"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_po6nx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2sir"]
 radius = 37.0

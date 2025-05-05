@@ -33,7 +33,7 @@ enabled=PackedStringArray("res://addons/hex_grid_nav/plugin.cfg")
 
 [gui]
 
-theme/custom="res://ui/default.tres"
+theme/custom="res://ui/themes/default.tres"
 theme/custom_font="res://assets/ui/m5x7.ttf"
 
 [input]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://k72ihh2m8ggt" path="res://overworld/party_comp/base_draggable.tscn" id="1_y45db"]
 [ext_resource type="Texture2D" uid="uid://b72ioykwqhufk" path="res://icon.svg" id="2_l8xyj"]
 [ext_resource type="Script" uid="uid://d1gr2dqm8libo" path="res://overworld/party_comp/item_draggable.gd" id="2_t1gi2"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="4_t1gi2"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="4_t1gi2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8xyj"]
 radius = 42.0

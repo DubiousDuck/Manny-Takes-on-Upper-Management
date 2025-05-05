@@ -149,9 +149,10 @@ func verify_directory(path : String):
 	
 ## UI
 
-const DIALOGUE = preload("res://ui/dialogue.tscn")
+const DIALOGUE = preload("res://ui/dialogues/dialogue.tscn")
 const TUTORIAL = preload("res://ui/tutorial/tutorial.tscn")
-const SCREEN_WIPE = preload("res://ui/screen_wipe.tscn")
+const SCREEN_WIPE = preload("res://ui/screen_effects/screen_wipe.tscn")
+const LABEL_PASS = preload("uid://db1uopvokjy1o")
 const SAVE_UI = preload("res://ui/save_and_load/save_ui.tscn")
 const LOAD_UI = preload("res://ui/save_and_load/load_ui.tscn")
 
@@ -209,6 +210,15 @@ func load_screen():
 	var a = LOAD_UI.instantiate()
 	GlobalUI.add_child(a)
 	await EventBus.ui_element_ended
+
+func play_label_slide_from_left(text: String):
+	EventBus.ui_element_started.emit()
+	var a = LABEL_PASS.instantiate()
+	GlobalUI.add_child(a)
+	a.play_run_in_from_left(text)
+	await a.get_node("AnimationPlayer").animation_finished
+	a.queue_free()
+	EventBus.ui_element_ended.emit()
 	
 ## Save and load #####################################################
 

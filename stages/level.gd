@@ -46,6 +46,8 @@ func battle_start():
 		Global.start_tutorial(tutorial_queue)
 		await EventBus.ui_element_ended
 	
+	await Global.play_label_slide_from_left("Battle!")
+	
 	pause_canvas_layer.battle_box.visible = true
 	unit_group_control.battle_start()
 

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Unit
 
-const UNIT_PREVIEW = preload("res://ui/unit_preview.tscn")
+const UNIT_PREVIEW = preload("res://ui/battle_related/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 const MASH_ACTION_COMMAND = preload("res://skills/action_commands/mash_action_command.tscn")
 const OUTLINE_WIDTH := 1

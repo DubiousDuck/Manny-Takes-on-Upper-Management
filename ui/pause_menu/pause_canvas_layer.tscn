@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://rljuks17biw4" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
 [ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 [ext_resource type="Texture2D" uid="uid://b5npyleamaofs" path="res://assets/ui/pause_icon.png" id="6_b6mne"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="6_erp37"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="6_erp37"]
 
 [sub_resource type="Animation" id="Animation_0u3dg"]
 length = 0.001

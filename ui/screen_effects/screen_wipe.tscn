@@ -1,20 +1,5 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp2rymmbewjrq"]
 
-[sub_resource type="Animation" id="Animation_uhjyk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ScreenWipe/ColorRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -656)]
-}
-
 [sub_resource type="Animation" id="Animation_xi8y8"]
 resource_name = "In"
 length = 0.6
@@ -47,6 +32,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 656)]
+}
+
+[sub_resource type="Animation" id="Animation_uhjyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenWipe/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -656)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sxbra"]

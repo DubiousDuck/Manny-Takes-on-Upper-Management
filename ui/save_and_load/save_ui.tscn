@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfmig8tj0kcu4" path="res://ui/save_and_load/save_ui.gd" id="1_wlsta"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_nsye5"]
 [ext_resource type="Texture2D" uid="uid://cfahyusqmlmqo" path="res://assets/ui/exit_icon.png" id="2_w8ink"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_b88av"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_b88av"]
 
 [node name="SaveUI" type="Control"]
 layout_mode = 3

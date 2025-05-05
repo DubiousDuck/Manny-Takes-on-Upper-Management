@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://do7ou2t2cnoup" path="res://overworld/party_comp/droppable.gd" id="2_dynxh"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_xqlrn"]
 [ext_resource type="Script" uid="uid://d3grc03j4eh61" path="res://overworld/party_comp/max_num.gd" id="3_o86wr"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_xqlrn"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_xqlrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85k4d"]
 size = Vector2(995, 203)

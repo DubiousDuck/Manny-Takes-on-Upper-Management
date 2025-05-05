@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kphtflp4sb25"]
 
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="1_ylypa"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="1_ylypa"]
 
 [node name="DialogueChoice" type="Button"]
 custom_minimum_size = Vector2(128, 64)

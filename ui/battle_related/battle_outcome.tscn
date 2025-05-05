@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct4t683r6jn78"]
 
-[ext_resource type="Script" uid="uid://uljqfllywrdw" path="res://ui/battle_outcome.gd" id="1_revyg"]
+[ext_resource type="Script" uid="uid://uljqfllywrdw" path="res://ui/battle_related/battle_outcome.gd" id="1_revyg"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_bh2jv"]
-[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/general_ui_theme.tres" id="3_qftn7"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_qftn7"]
 
 [node name="BattleOutcome" type="Control"]
 process_mode = 3
