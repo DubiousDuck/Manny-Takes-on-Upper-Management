@@ -1,5 +1,8 @@
 shader_type canvas_item;
 
+// Sprite Modulate (to be controlled by Parent node)
+uniform vec4 sprite_modulate : source_color = vec4(1.0);
+
 // Controlling effect mode
 uniform int effect_mode = 0; //0 = outline, 1 = flash, 2 = teleport
 
@@ -79,4 +82,5 @@ void fragment() {
 
 		COLOR = tex;
 	}
+	COLOR *= sprite_modulate;
 }

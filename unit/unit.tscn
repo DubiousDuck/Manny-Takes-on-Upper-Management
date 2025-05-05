@@ -21,6 +21,7 @@ size = Vector2(12.9032, 16.2162)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcacr"]
 resource_local_to_scene = true
 shader = ExtResource("1_ipbkg")
+shader_parameter/sprite_modulate = Color(1, 1, 1, 1)
 shader_parameter/effect_mode = 0
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0.0
@@ -153,7 +154,6 @@ shape = SubResource("RectangleShape2D_7kobe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gcacr")
-scale = Vector2(1, 1.06437)
 texture = ExtResource("3_a2j7n")
 hframes = 4
 

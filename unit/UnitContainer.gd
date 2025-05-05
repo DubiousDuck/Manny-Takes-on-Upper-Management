@@ -130,6 +130,11 @@ func select_unit(unit: Unit):
 func deselect_current_unit():
 	if current_unit == null:
 		return
+	# Set modulate before deselecting
+	if current_unit.actions_avail.is_empty():
+		current_unit.set_unit_modulate(Color.DARK_GRAY)
+	else: current_unit.set_unit_modulate(Color.WHITE)
+	
 	current_unit.toggle_skill_ui(false, [])
 	current_unit.selected = false
 	current_unit.toggle_outline(false)
@@ -450,7 +455,7 @@ func _step_enemy():
 		push_warning("Enemy turn called even when it's not in battle! Something's wrong w the code... -- UnitContainer.gd")
 		return
 	if get_available_unit_count() <= 0:
-		all_units_moved.emit()
+		all_unit_moved_func()
 		return
 	
 	var initial_state := construct_state()
@@ -475,7 +480,7 @@ func _step_enemy():
 		return
 	else:
 		print("No valid sequence found.")
-		all_units_moved.emit()
+		all_unit_moved_func()
 		return
 	
 ## Helper function to determine which enemy unit to move; prioritize furtherest unit
@@ -569,7 +574,7 @@ func _unhandled_input(event):
 				deselect_current_unit()
 			
 			if get_available_unit_count() <= 0:
-				all_units_moved.emit()
+				all_unit_moved_func()
 			
 
 func highlight_handle():
@@ -717,7 +722,7 @@ func unit_wait(): #special case for when WAIT is chosen
 	deselect_current_unit()
 	
 	if get_available_unit_count() <= 0:
-		all_units_moved.emit()
+		all_unit_moved_func()
 
 func _on_turn_passed():
 	if !is_player_controlled:
@@ -727,7 +732,7 @@ func _on_turn_passed():
 		func(unit: Unit):
 			unit.actions_avail.clear()
 	)
-	all_units_moved.emit()
+	all_unit_moved_func()
 	
 	print("passing turn")
 
@@ -754,3 +759,9 @@ func get_usable_skills(unit: Unit):
 		if valid_targets.size() > 0:
 			usable_skills.append(skill)
 	return usable_skills
+
+func all_unit_moved_func():
+	await get_tree().create_timer(0.25).timeout
+	for unit in units:
+		unit.set_unit_modulate(Color.WHITE)
+	all_units_moved.emit()

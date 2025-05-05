@@ -95,12 +95,8 @@ func load_unit_data():
 	_set_anim_lib()
 
 func _process(_delta):
-	if actions_avail.is_empty(): #if there are no available actions left
-		modulate = Color(0.5, 0.5, 0.5)
-	else:
-		modulate = Color(1, 1, 1)
 	if damage_reduction > 0:
-		modulate = Color(0, 0.35, 1)
+		set_unit_modulate(Color(0, 0.35, 1))
 	
 	unit_held.map(
 		func(unit):
@@ -108,6 +104,13 @@ func _process(_delta):
 				return
 			unit.global_position = global_position + Vector2(0, -30)
 	)
+
+func set_unit_modulate(tint: Color):
+	modulate = tint
+	# manually set sprite shader parameter to reflect modulate change
+	var sprite_shader = $Sprite2D.material
+	if sprite_shader and sprite_shader is ShaderMaterial:
+		sprite_shader.set_shader_parameter("sprite_modulate", tint)
 		
 func init():
 	animation_state("front_idle")

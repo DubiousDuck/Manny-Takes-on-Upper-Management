@@ -24,6 +24,9 @@ func init(valid_skills: Array[SkillInfo] = []):
 	
 	# instantiate all skills, but disable those that are not valid
 	for skill in unit.skills:
+		# only spawns WAIT if the unit has no attack token
+		if skill.name != "Wait" and !unit.actions_avail.has(Unit.Action.ATTACK):
+			continue
 		var a: SkillIcon = icon.instantiate()
 		a.skill = skill
 		hbox.add_child(a)
