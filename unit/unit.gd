@@ -46,6 +46,8 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 @export var move_speed_per_cell := 0.2
 @export var all_actions: Array[Action] = [Action.MOVE, Action.ATTACK] #Master attribute of all available actions this unit can take in one turn
 
+@onready var status_icon = $StatusIcon
+
 #unit battle attributes
 var attack_power: int = 1
 var magic_power: int = 1
@@ -367,3 +369,18 @@ func toggle_outline(state: bool):
 		$Sprite2D.material.set_shader_parameter("line_thickness", OUTLINE_WIDTH)
 	else:
 		$Sprite2D.material.set_shader_parameter("line_thickness", 0)
+
+## Status icon display
+func set_icon_state(state: String):
+	match state:
+		"can_trigger":
+			status_icon.show()
+			status_icon.find_child("AnimationPlayer").play("hover_up_down")
+		"already_triggered":
+			status_icon.show()
+			status_icon.find_child("AnimationPlayer").play("repeating_dizzy")
+		"none":
+			status_icon.hide()
+		_:
+			status_icon.hide()
+	return

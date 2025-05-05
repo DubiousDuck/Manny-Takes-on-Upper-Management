@@ -76,6 +76,9 @@ func _on_status_update_complete():
 func start_next_turn():
 	turn_attack_log.clear()
 	pof_triggered_on.clear()
+	for unit in all_units:
+		unit.set_icon_state("none")
+	
 	if is_player_turn:
 		player_group.round_start()
 	else: enemy_group.round_start()
@@ -103,7 +106,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	# Log victims and attackers
 	affected_units.map(
 		func(victim: Unit):
-			log_attack(victim, attacker)
+			if victim.is_player_controlled != attacker.is_player_controlled:
+				log_attack(victim, attacker)
 	)
 	# use for loop here and break at the first trigger since we only want one PoF trigger per attack
 	for victim in affected_units:
@@ -305,6 +309,14 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 						#for some reason keeping the tween time to 0.1 is very important in not causing visual bug
 						if !unit.is_held: displace_tween.tween_property(unit, 'global_position', HexNavi.cell_to_global(cell), 0.1)
 				)
+	# Update status icon
+	for unit in all_units:
+		if unit in turn_attack_log.keys() and unit not in pof_triggered_on:
+			unit.set_icon_state("can_trigger")
+		elif unit in pof_triggered_on:
+			unit.set_icon_state("already_triggered")
+		else:
+			unit.set_icon_state("none")
 
 	status_update_complete.emit()
 
