@@ -168,6 +168,16 @@ theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 56
 text = "PASS TURN"
 
+[node name="UnitCount" type="Label" parent="BattleBox"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 532.0
+offset_right = 269.0
+offset_bottom = 561.0
+theme = ExtResource("6_erp37")
+theme_override_font_sizes/font_size = 35
+text = "Units left to move: X"
+
 [node name="PreBattleBox" type="HBoxContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5

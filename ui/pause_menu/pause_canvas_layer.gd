@@ -14,6 +14,7 @@ var menuIsDisplayed: bool = false
 @onready var pass_button = $BattleBox/PassButton
 @onready var battle_box = $BattleBox
 @onready var pre_battle_box = $PreBattleBox
+@onready var unit_count = $BattleBox/UnitCount
 
 @export var isBattleScene: bool
 
@@ -34,6 +35,9 @@ func _ready():
 		pre_battle_box.visible = false
 	else:
 		to_main_menu.visible = false
+		
+	# Battle related
+	EventBus.connect("units_left_changed", _on_units_left_changed)
 
 func other_ui_started():
 	pass
@@ -136,3 +140,6 @@ func play_both_bar_slide_out(reversed: bool = false):
 	$AnimationPlayer.play("both_bars_slide_out",-1, 1.0, reversed)
 	await $AnimationPlayer.animation_finished
 	return
+
+func _on_units_left_changed():
+	unit_count.text = "Units left to move: " + str(Global.player_units_to_move)

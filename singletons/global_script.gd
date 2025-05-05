@@ -21,6 +21,10 @@ var is_attack_resolved: bool = true:
 var brightness_val: float = 100.0
 ## Three possible values: "win", "lose", "none"
 var battle_result: String = "none"
+var player_units_to_move: int = 0:
+	set(new_value):
+		player_units_to_move = new_value
+		EventBus.emit_signal("units_left_changed")
 
 func start():
 	brightness_val = 100.0
