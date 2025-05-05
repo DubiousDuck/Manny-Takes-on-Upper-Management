@@ -18,6 +18,9 @@ var attack_processing: bool = false
 var is_waiting_for_turn_switch: bool = false
 var is_battle_over: bool = false
 
+var turn_attack_log: Dictionary[Unit, Array] = {} #Key: Unit (target), value: Array[Unit] (attackers)
+var pof_triggered_on: Array[Unit] = []
+
 func _ready():
 	EventBus.connect("update_cell_status", _on_update_cell_status)
 	EventBus.connect("attack_used", _on_attack_used)
@@ -71,6 +74,8 @@ func _on_status_update_complete():
 
 ## Called by Level.gd to start next turn
 func start_next_turn():
+	turn_attack_log.clear()
+	pof_triggered_on.clear()
 	if is_player_turn:
 		player_group.round_start()
 	else: enemy_group.round_start()
@@ -94,6 +99,17 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				pass
 			else:
 				affected_units.append(unit)
+				
+	# Log victims and attackers
+	affected_units.map(
+		func(victim: Unit):
+			log_attack(victim, attacker)
+	)
+	# use for loop here and break at the first trigger since we only want one PoF trigger per attack
+	for victim in affected_units:
+		if try_trigger_pof(victim, attacker):
+			break
+
 	#for each skill effect, apply it on every affected units
 	for effect in attack.skill_effects: 
 		match effect.x: #Skill effect translator
@@ -220,12 +236,12 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			_:
 				print("nothing happens yet")
 				
-	# print("# AFFECTED UNITS: " + str(affected_units) + " (UnitGroupController.gd)")
 	if !all_units.is_empty():
 		all_units.map(
 			func(unit : Unit): 
 				unit.check_if_dead()
-		) # TODO: rare bug here? trying to call on already freed node
+		)
+	
 	_on_update_cell_status(true)
 	Global.is_attack_resolved = true
 	attack_complete.emit()
@@ -346,3 +362,31 @@ func round_end_actions():
 				_on_update_cell_status(true)
 			_:
 				pass
+
+# For Power of Friendship mechanic
+
+func log_attack(target: Unit, attacker: Unit):
+	if !turn_attack_log.has(target):
+		turn_attack_log[target] = []
+	turn_attack_log[target].append(attacker)
+
+func try_trigger_pof(target: Unit, attacker: Unit) -> bool:
+	var result: bool = false
+	if target in pof_triggered_on:
+		return result
+		
+	var previous_attackers = turn_attack_log.get(target, [])
+	for unit in previous_attackers:
+		if unit.is_player_controlled == attacker.is_player_controlled and unit != attacker:
+			grant_extra_turn(attacker)
+			result = true
+			pof_triggered_on.append(target)
+			break
+	return result
+
+func grant_extra_turn(unit: Unit):
+	if !unit.actions_avail.has(Unit.Action.MOVE):
+		unit.actions_avail.append(Unit.Action.MOVE)
+	if !unit.actions_avail.has(Unit.Action.ATTACK):
+		unit.actions_avail.append(Unit.Action.ATTACK)
+	Global.play_label_slide_from_left("Power of Friendship!")
