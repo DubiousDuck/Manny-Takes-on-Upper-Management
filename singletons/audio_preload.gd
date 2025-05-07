@@ -34,3 +34,12 @@ func _on_start_battle():
 func _on_back_to_overworld():
 	if stream == _battle_music:
 		_on_finished()
+
+# Sound effects
+const pof_sfx = preload("res://assets/sfx/sword_clash_pof.mp3")
+
+func play_sfx(name: String):
+	match name:
+		"pof":
+			$SfxPlayer.stream = pof_sfx
+			$SfxPlayer.play()

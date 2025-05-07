@@ -103,12 +103,13 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			else:
 				affected_units.append(unit)
 				
-	# Log victims and attackers
-	affected_units.map(
-		func(victim: Unit):
-			if victim.is_player_controlled != attacker.is_player_controlled:
-				log_attack(victim, attacker)
-	)
+	# Log victims and attackers (only triggers if the attacker's team has more than 1 unit)
+	if attacker.container.units.size() > 1:
+		affected_units.map(
+			func(victim: Unit):
+				if victim.is_player_controlled != attacker.is_player_controlled:
+					log_attack(victim, attacker)
+		)
 	# use for loop here and break at the first trigger since we only want one PoF trigger per attack
 	for victim in affected_units:
 		if try_trigger_pof(victim, attacker):
@@ -390,6 +391,7 @@ func try_trigger_pof(target: Unit, attacker: Unit) -> bool:
 	var previous_attackers = turn_attack_log.get(target, [])
 	for unit in previous_attackers:
 		if unit.is_player_controlled == attacker.is_player_controlled and unit != attacker:
+			AudioPreload.play_sfx("pof")
 			grant_extra_turn(attacker)
 			result = true
 			pof_triggered_on.append(target)
