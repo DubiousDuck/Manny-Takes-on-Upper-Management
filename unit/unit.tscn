@@ -315,7 +315,6 @@ hframes = 4
 visible = false
 show_behind_parent = true
 position = Vector2(0, -2.02703)
-scale = Vector2(1, 1)
 sprite_frames = ExtResource("2_syn0d")
 autoplay = "default"
 frame_progress = 0.924048

@@ -17,7 +17,6 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 
 #unit attributes (interface)
 @export var unit_id: int
-@export var max_health: int = 2
 @export var health: int = 2 :
 	set(new_health):
 		$BackupHealth.modulate = Color(0,0,0,0)
@@ -51,9 +50,37 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 
 
 #unit battle attributes
-var attack_power: int = 1
-var magic_power: int = 1
-var movement_range: int = 2
+
+## Base stats dictionary
+@export var base_stats: Dictionary[String, Variant] = {
+	"max_health": 2,
+	"attack_power": 1,
+	"magic_power": 1,
+	"movement_range": 2,
+	"damage_reduction": 0
+}
+
+## Bonus stats dictionary
+@export var bonus_stat: Array[BonusStat] = []
+# custom getter function to help with the custom getter variables
+func get_stat(stat_name: String):
+	var total = base_stats.get(stat_name, 0)
+	for bonus in bonus_stat:
+		if bonus.stat == stat_name:
+			total += bonus.value
+	return total
+# custom getter variables to reduce the need to change other scripts
+var max_health: int:
+	get(): return get_stat("max_health")
+var attack_power: int:
+	get(): return get_stat("attack_power")
+var magic_power: int:
+	get(): return get_stat("magic_power")
+var movement_range: int:
+	get(): return get_stat("movement_range")
+var damage_reduction: int:
+	get(): return get_stat("damage_reduction")
+
 var skills: Array[SkillInfo] = []
 
 #unit internal information
@@ -68,7 +95,6 @@ var is_held: bool = false
 var is_dead: bool = false
 var container: UnitContainer
 
-var damage_reduction: float = 0
 var in_pof: bool = false:
 	set(new_state):
 		in_pof = new_state
@@ -79,26 +105,24 @@ func _ready():
 	
 ## read unit_data and set attributes
 func load_unit_data():
-	#read unit data and set attributes
-	max_health = unit_data.get_attribute("HP")
-	health = max_health
-	attack_power = unit_data.get_attribute("ATK")
-	magic_power = unit_data.get_attribute("MAG")
-	movement_range = unit_data.get_attribute("MOV")
+	#read unit data and set base attributes
+	base_stats.max_health = unit_data.get_attribute("HP")
+	health = base_stats.max_health
+	base_stats.attack_power = unit_data.get_attribute("ATK")
+	base_stats.magic_power = unit_data.get_attribute("MAG")
+	base_stats.movement_range = unit_data.get_attribute("MOV")
 	
 	skills = unit_data.skill_list
 	
 	#read from item list and apply effects
 	#delegates to the ItemReader to make organization cleaner
 	for item in unit_data.item_list:
-		var effects: Dictionary = $ItemReader.get_item_effects(item)
-		max_health += effects["HP"]
-		health = max_health
-		attack_power += effects["ATK"]
-		magic_power += effects["MAG"]
-		movement_range += effects["MOV"]
-		if effects["NEW_SKILL"] and !skills.has(effects["NEW_SKILL"]):
-			skills.append(effects["NEW_SKILL"])
+		var effects: Array = $ItemReader.get_item_effects(item)
+		for effect in effects:
+			if effect is BonusStat:
+				bonus_stat.append(effect)
+			elif effect is SkillInfo and !skills.has(effect):
+				skills.append(effect)
 	
 	_set_anim_lib()
 
@@ -231,7 +255,7 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 	animation_state("side_idle")
 
 func highlight_emit():
-	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, movement_range)
+	var all_neighbors = HexNavi.get_all_neighbors_in_range(cell, base_stats.movement_range)
 	EventBus.emit_signal("show_cell_highlights", all_neighbors, move_range_highlight, name)
 	
 func _on_hurtbox_mouse_entered():
