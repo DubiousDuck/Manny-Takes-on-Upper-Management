@@ -8,5 +8,5 @@ class_name BonusStat
 ## Source of the stat buff
 @export var source: String
 
-## Duration of the buff in turns
+## Duration of the buff in turns; negative duration means permanent
 @export var duration: int

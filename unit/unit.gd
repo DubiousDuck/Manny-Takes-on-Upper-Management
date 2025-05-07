@@ -49,8 +49,7 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 @onready var background_icon = $Sprite2D/BackgroundIcon
 
 
-#unit battle attributes
-
+# -- Unit Stats Related Variables and Functions -- #
 ## Base stats dictionary
 @export var base_stats: Dictionary[String, Variant] = {
 	"max_health": 2,
@@ -59,7 +58,6 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 	"movement_range": 2,
 	"damage_reduction": 0
 }
-
 ## Bonus stats dictionary
 @export var bonus_stat: Array[BonusStat] = []
 # custom getter function to help with the custom getter variables
@@ -81,7 +79,12 @@ var movement_range: int:
 var damage_reduction: int:
 	get(): return get_stat("damage_reduction")
 
-var skills: Array[SkillInfo] = []
+func update_modifiers():
+	for i in range(bonus_stat.size()):
+		if bonus_stat[i].duration > 0:
+			bonus_stat[i].duration -= 1
+			if bonus_stat[i].duration <= 0:
+				bonus_stat.remove_at(i)
 
 #unit internal information
 var cell: Vector2i
@@ -94,6 +97,7 @@ var unit_held: Array[Unit] = [] #array of all units that this unit has picked up
 var is_held: bool = false
 var is_dead: bool = false
 var container: UnitContainer
+var skills: Array[SkillInfo] = []
 
 var in_pof: bool = false:
 	set(new_state):
@@ -151,9 +155,6 @@ func init():
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false, [])
 	
-	#resets damage reduction
-	damage_reduction = 0
-	
 	#check and remove dead held units
 	var valid_children: Array[Unit] = []
 	for child in unit_held:
@@ -163,6 +164,7 @@ func init():
 	unit_held = valid_children
 	
 	in_pof = false
+	update_modifiers()
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
