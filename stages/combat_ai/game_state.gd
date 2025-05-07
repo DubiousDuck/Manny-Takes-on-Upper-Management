@@ -4,6 +4,7 @@ class_name GameState
 
 var position: Dictionary[Unit, Vector2i] = {}
 var health: Dictionary[Unit, int] = {}
+var stat_bonuses: Dictionary[Unit, Array] = {}  # {Unit: Array of BonusStats}
 var cell_effects: Dictionary[Vector2i, String] = {}
 
 func set_state(units: Array[Unit], pos: Array[Vector2i], hp: Array[int]):
@@ -11,6 +12,7 @@ func set_state(units: Array[Unit], pos: Array[Vector2i], hp: Array[int]):
 		var unit: Unit = units[id]
 		position[unit] = pos[id]
 		health[unit] = hp[id]
+		stat_bonuses[unit] = unit.bonus_stat.duplicate(true)
 	init_cell_effects()
 
 func init_cell_effects():

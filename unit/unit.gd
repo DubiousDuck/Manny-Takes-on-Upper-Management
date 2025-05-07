@@ -76,8 +76,11 @@ var magic_power: int:
 	get(): return get_stat("magic_power")
 var movement_range: int:
 	get(): return get_stat("movement_range")
-var damage_reduction: int:
+var damage_reduction: float:
 	get(): return get_stat("damage_reduction")
+
+func apply_stat_modifer(stat_mod: BonusStat):
+	bonus_stat.append(stat_mod)
 
 func update_modifiers():
 	for i in range(bonus_stat.size()):

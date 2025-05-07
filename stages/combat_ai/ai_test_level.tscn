@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://4ogvcx7eikbx"]
+[gd_scene load_steps=34 format=4 uid="uid://4ogvcx7eikbx"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_ouqya"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_882xt"]
@@ -21,10 +21,12 @@
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="19_jq2tt"]
 [ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="20_7yy47"]
 [ext_resource type="Resource" uid="uid://djy537r81hp18" path="res://skills/whirlwind.tres" id="21_07al5"]
+[ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="22_882xt"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="22_b8300"]
 [ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="23_akpdo"]
 [ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="24_h8k3v"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="25_hu5no"]
+[ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="25_omqha"]
 
 [sub_resource type="Resource" id="Resource_cebpp"]
 script = ExtResource("14_b7xyy")
@@ -50,7 +52,7 @@ attributes = {
 2: 1,
 3: 2
 }
-skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("20_7yy47"), ExtResource("21_07al5"), ExtResource("18_2h2f7")])
+skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("20_7yy47"), ExtResource("21_07al5"), ExtResource("22_882xt"), ExtResource("18_2h2f7")])
 item_list = Array[ExtResource("13_1te03")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
@@ -64,7 +66,7 @@ attributes = {
 2: 1,
 3: 1
 }
-skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("16_n4u5o"), ExtResource("23_akpdo"), ExtResource("18_2h2f7")])
+skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("16_n4u5o"), ExtResource("23_akpdo"), ExtResource("25_omqha"), ExtResource("18_2h2f7")])
 item_list = Array[ExtResource("13_1te03")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
@@ -78,7 +80,7 @@ attributes = {
 2: 1,
 3: 2
 }
-skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("20_7yy47"), ExtResource("18_2h2f7")])
+skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("20_7yy47"), ExtResource("25_omqha"), ExtResource("18_2h2f7")])
 item_list = Array[ExtResource("13_1te03")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
@@ -92,7 +94,7 @@ attributes = {
 2: 1,
 3: 2
 }
-skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("24_h8k3v"), ExtResource("18_2h2f7")])
+skill_list = Array[ExtResource("15_ou4wy")]([ExtResource("19_jq2tt"), ExtResource("24_h8k3v"), ExtResource("22_882xt"), ExtResource("18_2h2f7")])
 item_list = Array[ExtResource("13_1te03")]([])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
 

@@ -233,6 +233,12 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						for tile in targets:
 							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.PIT)
 						await EventBus.set_cell_done
+			SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
+				if effects[key] is BonusStat:
+					for unit in affected_units:
+						unit.apply_stat_modifer(effects[key])
+				else:
+					print(effects[key].name + " of " + attack.name + " is not a BonusStat! -- UnitGroupContainer.gd")
 			_:
 				print("nothing happens yet")
 				

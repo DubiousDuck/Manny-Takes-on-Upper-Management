@@ -9,13 +9,13 @@ func get_item_effects(item: ItemData) -> Array:
 		print(key)
 		match key:
 			ItemData.EffectType.ATTACK_UP:
-				output.append(BonusStatManager.create_bonus_stat("attack_power", effects[key], item.item_name, -1))
+				output.append(BonusStat.new("attack_power", effects[key], item.item_name, -1))
 			ItemData.EffectType.HP_UP:
-				output.append(BonusStatManager.create_bonus_stat("max_health", effects[key], item.item_name, -1))
+				output.append(BonusStat.new("max_health", effects[key], item.item_name, -1))
 			ItemData.EffectType.DEFENSE_UP:
-				output.append(BonusStatManager.create_bonus_stat("damage_reduction", effects[key], item.item_name, -1))
+				output.append(BonusStat.new("damage_reduction", effects[key], item.item_name, -1))
 			ItemData.EffectType.MOV_UP:
-				output.append(BonusStatManager.create_bonus_stat("movement_range", effects[key], item.item_name, -1))
+				output.append(BonusStat.new("movement_range", effects[key], item.item_name, -1))
 			ItemData.EffectType.UNLOCK_SKILL:
 				output.append(effects[key])
 			_:

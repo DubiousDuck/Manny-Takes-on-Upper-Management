@@ -186,11 +186,19 @@ func estimate_knockback(attacker, target: Vector2i, skill: SkillInfo, kb_distanc
 	)
 	return dict
 
-func estimate_damage(attacker: Unit, skill: SkillInfo, damage: int = 1, reversed: bool = false) -> int:
+func estimate_damage(attacker: Unit, skill: SkillInfo, damage: int = 1, stats_bonus: Array[BonusStat] = []) -> int:
+	var bonuses = 0
+	if skill.affinity == 0:
+		for buff in stats_bonus:
+			if buff.stat == "attack_power": bonuses += buff.value
+	else:
+		for buff in stats_bonus:
+			if buff.stat == "magic_power": bonuses += buff.value
+	
 	var attack_power = 0
 	if skill.affinity == 0:
-		attack_power = attacker.attack_power * damage
-	else: attack_power = attacker.magic_power * damage
+		attack_power = (attacker.attack_power + bonuses) * damage
+	else: attack_power = (attacker.magic_power + bonuses) * damage
 	
 	return attack_power
 
@@ -214,6 +222,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	var new_state := GameState.new()
 	new_state.position = state.position.duplicate(true)
 	new_state.health = state.health.duplicate(true)
+	new_state.stat_bonuses = state.stat_bonuses.duplicate(true)
 	new_state.cell_effects = state.cell_effects.duplicate(true)
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
@@ -224,11 +233,11 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 			return new_state
 		#Go through all of the skill's effect and calculate score
 		var effects := skill.skill_effects
+		var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
 		for key in effects.keys():
 			match key:
 				SkillInfo.EffectType.DAMAGE:
-					var damage = estimate_damage(unit, skill, effects[key])
-					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+					var damage = estimate_damage(unit, skill, effects[key], new_state.stat_bonuses[unit])
 					for victim in new_state.position.keys():
 						if affected_area.has(new_state.position[victim]):
 							new_state.health[victim] -= damage
@@ -238,15 +247,16 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 						new_state.position[victim] = displacement[victim]
 				SkillInfo.EffectType.HEAL:
 					var healing = estimate_damage(unit, skill, effects[key])
-					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
 					for healed in new_state.position.keys():
 						if affected_area.has(new_state.position[healed]):
 							new_state.health[healed] += healing
-				#SkillInfo.EffectType.DAMAGE_REDUCTION:
-					#var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
-					#for buffed in new_state.position.keys():
-						#if affected_area.has(new_state.position[buffed]):
-							#new_state.health[buffed] = int(float(new_state.health[buffed]) * 1.5)
+				SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
+					for buffed in new_state.position.keys():
+						if affected_area.has(new_state.position[buffed]):
+							if not new_state.stat_bonuses.has(buffed):
+								new_state.stat_bonuses[buffed] = []
+							var bonus: BonusStat = effects[key]  # Assume this is a BonusStat object
+							new_state.stat_bonuses[buffed].append(bonus)
 				SkillInfo.EffectType.SET_TILE:
 					match effects[key]:
 						"death":
@@ -315,11 +325,17 @@ func evaluate_state(state: GameState) -> int:
 						if cell == state.position[unit]: score += 1
 				_:
 					score += 0
-		#print("Evaluating ", unit.name)
-		#print("  Pos delta score:", distance_score)
-		#print("  HP delta:", unit.health - state.health[unit])
-		#print("  Death tile effect:", cell_effect_bonus)
 
+	## Buff/Debuff Related Score
+	const ENEMY_BUFF_PENALTY = 1
+	const ALLY_BUFF_PENALTY = 2
+	for unit in state.stat_bonuses.keys():
+		var buffs = state.stat_bonuses[unit]
+		for buff in buffs:
+			if enemy_container.units.has(unit):
+				score -= buff.value * ENEMY_BUFF_PENALTY
+			else:
+				score += buff.value * ALLY_BUFF_PENALTY
 	return score
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]

@@ -10,3 +10,9 @@ class_name BonusStat
 
 ## Duration of the buff in turns; negative duration means permanent
 @export var duration: int
+
+func _init(_stat: String = "", _value: int = 0, _source: String = "", _duration: int = 0):
+	stat = _stat
+	value = _value
+	source = _source
+	duration = _duration
