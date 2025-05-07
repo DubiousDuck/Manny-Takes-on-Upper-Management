@@ -116,14 +116,15 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			break
 
 	#for each skill effect, apply it on every affected units
-	for effect in attack.skill_effects: 
-		match effect.x: #Skill effect translator
+	var effects := attack.skill_effects
+	for key in effects.keys(): 
+		match key: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
 				if affected_units.is_empty(): break
 				
 				affected_units.map(
 					func(unit : Unit):
-						unit.health -= floor((effect.y * attacker_power) * (1-unit.damage_reduction))
+						unit.health -= floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
 						if !unit.unit_held.is_empty():
 							for held in unit.unit_held:
 								held.is_held = false
@@ -148,7 +149,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						#calculate the direction of knockback
 						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - knockback_origin
 						#apply the direction by strength of knockback
-						var new_location: Vector2 = unit.global_position + dir*effect.y
+						var new_location: Vector2 = unit.global_position + dir*effects[key]
 						if HexNavi.global_to_cell(new_location) == Vector2i(-999, -999): ## pretends there's a wall
 							new_location = HexNavi.cell_to_global(HexNavi.get_closest_cell_by_global_pos(new_location))
 						move_tween.tween_property(
@@ -172,17 +173,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
 					func(unit : Unit):
-						if unit.health + effect.y * attacker_power >= unit.max_health:
+						if unit.health + effects[key] * attacker_power >= unit.max_health:
 							unit.health = unit.max_health
 						else:
-							unit.health += (effect.y * attacker_power)
+							unit.health += (effects[key] * attacker_power)
 						#TODO: needs animation
-				)
-				
-			SkillInfo.EffectType.DAMAGE_REDUCTION:
-				affected_units.map(
-					func(unit: Unit):
-						unit.damage_reduction = 0.5
 				)
 			
 			SkillInfo.EffectType.WAIT:
@@ -190,7 +185,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				attacker.actions_avail.erase(Unit.Action.ATTACK)
 			
 			SkillInfo.EffectType.DISPLACE:
-				match effect.y:
+				match effects[key]:
 					0: #displace to attacker position (pick up)
 						var v_offset: int = -30
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
@@ -233,8 +228,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						print("nothing to displace yet")
 				attacker.check_if_can_throw()
 			SkillInfo.EffectType.SET_TILE:
-				match effect.y:
-					1:
+				match effects[key]:
+					"death":
 						for tile in targets:
 							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.PIT)
 						await EventBus.set_cell_done

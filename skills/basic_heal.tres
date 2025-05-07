@@ -10,4 +10,6 @@ targets = 0
 affinity = 1
 range = 2
 area = 0
-skill_effects = Array[Vector2i]([Vector2i(2, 1)])
+skill_effects = Dictionary[int, Variant]({
+2: 1
+})

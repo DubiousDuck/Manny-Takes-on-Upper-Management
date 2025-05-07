@@ -223,32 +223,33 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 		if skill == null:
 			return new_state
 		#Go through all of the skill's effect and calculate score
-		for effect in skill.skill_effects:
-			match effect.x:
+		var effects := skill.skill_effects
+		for key in effects.keys():
+			match key:
 				SkillInfo.EffectType.DAMAGE:
-					var damage = estimate_damage(unit, skill, effect.y)
+					var damage = estimate_damage(unit, skill, effects[key])
 					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
 					for victim in new_state.position.keys():
 						if affected_area.has(new_state.position[victim]):
 							new_state.health[victim] -= damage
 				SkillInfo.EffectType.KNOCKBACK:
-					var displacement := estimate_knockback(unit, target_cell, skill, effect.y)
+					var displacement := estimate_knockback(unit, target_cell, skill, effects[key])
 					for victim in displacement.keys():
 						new_state.position[victim] = displacement[victim]
 				SkillInfo.EffectType.HEAL:
-					var healing = estimate_damage(unit, skill, effect.y)
+					var healing = estimate_damage(unit, skill, effects[key])
 					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
 					for healed in new_state.position.keys():
 						if affected_area.has(new_state.position[healed]):
 							new_state.health[healed] += healing
-				SkillInfo.EffectType.DAMAGE_REDUCTION:
-					var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
-					for buffed in new_state.position.keys():
-						if affected_area.has(new_state.position[buffed]):
-							new_state.health[buffed] = int(float(new_state.health[buffed]) * 1.5)
+				#SkillInfo.EffectType.DAMAGE_REDUCTION:
+					#var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+					#for buffed in new_state.position.keys():
+						#if affected_area.has(new_state.position[buffed]):
+							#new_state.health[buffed] = int(float(new_state.health[buffed]) * 1.5)
 				SkillInfo.EffectType.SET_TILE:
-					match effect.y:
-						1:
+					match effects[key]:
+						"death":
 							new_state.cell_effects[target_cell] = "death"
 						_:
 							pass
