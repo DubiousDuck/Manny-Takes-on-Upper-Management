@@ -402,3 +402,4 @@ func grant_extra_turn(unit: Unit):
 	if !unit.actions_avail.has(Unit.Action.ATTACK):
 		unit.actions_avail.append(Unit.Action.ATTACK)
 	Global.play_label_slide_from_left("Power of Friendship!")
+	unit.in_pof = true

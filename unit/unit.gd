@@ -47,6 +47,8 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 @export var all_actions: Array[Action] = [Action.MOVE, Action.ATTACK] #Master attribute of all available actions this unit can take in one turn
 
 @onready var status_icon = $StatusIcon
+@onready var background_icon = $Sprite2D/BackgroundIcon
+
 
 #unit battle attributes
 var attack_power: int = 1
@@ -66,7 +68,11 @@ var is_held: bool = false
 var is_dead: bool = false
 var container: UnitContainer
 
-var damage_reduction: float = 0;
+var damage_reduction: float = 0
+var in_pof: bool = false:
+	set(new_state):
+		in_pof = new_state
+		toggle_backgroun_aura(in_pof)
 
 func _ready():
 	pass
@@ -131,6 +137,8 @@ func init():
 			valid_children.append(child)
 			print(child)
 	unit_held = valid_children
+	
+	in_pof = false
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
@@ -384,3 +392,12 @@ func set_icon_state(state: String):
 		_:
 			status_icon.hide()
 	return
+
+## Background icon display
+func toggle_backgroun_aura(state: bool):
+	if state:
+		background_icon.show()
+		background_icon.play("default")
+	else:
+		background_icon.hide()
+		background_icon.stop()

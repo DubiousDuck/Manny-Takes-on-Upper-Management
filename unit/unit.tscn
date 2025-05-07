@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=24 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
+[ext_resource type="SpriteFrames" uid="uid://bxspxjg3wgv07" path="res://unit/unit_ui/ally_aura.tres" id="2_syn0d"]
 [ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="3_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="AnimationLibrary" uid="uid://bvd8i4afxw3kl" path="res://unit/Fighter.res" id="4_a2j7n"]
@@ -139,46 +140,6 @@ _data = {
 &"RESET": SubResource("Animation_j0e0d")
 }
 
-[sub_resource type="Animation" id="Animation_eras8"]
-resource_name = "hover_up_down"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -8.44595), Vector2(0, -12)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_eras8")]
-}
-
 [sub_resource type="Animation" id="Animation_syn0d"]
 length = 0.001
 tracks/0/type = "value"
@@ -228,6 +189,46 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("12_5dfwp")]
+}
+
+[sub_resource type="Animation" id="Animation_eras8"]
+resource_name = "hover_up_down"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -8.44595), Vector2(0, -12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_eras8")]
 }
 
 [sub_resource type="Animation" id="Animation_1quw1"]
@@ -309,6 +310,15 @@ shape = SubResource("RectangleShape2D_7kobe")
 material = SubResource("ShaderMaterial_gcacr")
 texture = ExtResource("3_a2j7n")
 hframes = 4
+
+[node name="BackgroundIcon" type="AnimatedSprite2D" parent="Sprite2D"]
+visible = false
+show_behind_parent = true
+position = Vector2(0, -2.02703)
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("2_syn0d")
+autoplay = "default"
+frame_progress = 0.838197
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

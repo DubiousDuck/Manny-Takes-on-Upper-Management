@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bxspxjg3wgv07"]
+
+[ext_resource type="Texture2D" uid="uid://cjn7bw1burosi" path="res://assets/unit_ui/PoF_Aura.png" id="1_igkud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syn0d"]
+atlas = ExtResource("1_igkud")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1quw1"]
+atlas = ExtResource("1_igkud")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bqrp"]
+atlas = ExtResource("1_igkud")
+region = Rect2(56, 0, 28, 24)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syn0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1quw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bqrp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]

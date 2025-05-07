@@ -99,6 +99,7 @@ func get_available_unit_count() -> int:
 	for unit in units:
 		if !unit.actions_avail.is_empty():
 			count += 1
+		else: unit.in_pof = false
 	if is_player_controlled: Global.player_units_to_move = count
 	return count
 

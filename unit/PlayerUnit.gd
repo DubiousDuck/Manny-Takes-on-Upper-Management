@@ -7,3 +7,4 @@ func _ready():
 	is_player_controlled = true
 	move_range_highlight = CellHighlight.MOVE_RANGE_HIGHLIGHT
 	outline_col = Color(0, 0, 1, 1)
+	background_icon.sprite_frames = preload("res://unit/unit_ui/ally_aura.tres")
