@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=26 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -7,7 +7,9 @@
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="AnimationLibrary" uid="uid://bvd8i4afxw3kl" path="res://unit/Fighter.res" id="4_a2j7n"]
 [ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
+[ext_resource type="PackedScene" uid="uid://bpix5ed7cqcnu" path="res://unit/unit_ui/buff_particles.tscn" id="5_1quw1"]
 [ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_a3q01"]
+[ext_resource type="PackedScene" uid="uid://bo37ncj2m8hrp" path="res://unit/unit_ui/debuff_particles.tscn" id="6_5bqrp"]
 [ext_resource type="AnimationLibrary" uid="uid://dm5jvuhr1opyh" path="res://unit/Ranger.res" id="7_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 [ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="8_j0e0d"]
@@ -35,110 +37,6 @@ shader_parameter/progress = 0.0
 shader_parameter/noise_desnity = 60.0
 shader_parameter/beam_size = 0.15
 shader_parameter/teleport_color = Color(0, 1.02, 1.2, 1)
-
-[sub_resource type="Animation" id="Animation_j0e0d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_a2j7n")]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AudioStreamPlayer:stream")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AudioStreamPlayer:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:offset")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dfwp"]
-_data = {
-&"RESET": SubResource("Animation_j0e0d")
-}
 
 [sub_resource type="Animation" id="Animation_syn0d"]
 length = 0.001
@@ -291,6 +189,110 @@ _data = {
 &"repeating_dizzy": SubResource("Animation_1quw1")
 }
 
+[sub_resource type="Animation" id="Animation_j0e0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_a2j7n")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dfwp"]
+_data = {
+&"RESET": SubResource("Animation_j0e0d")
+}
+
 [node name="Unit" type="CharacterBody2D"]
 scale = Vector2(2.48, 2.96)
 script = ExtResource("1_5ne20")
@@ -318,6 +320,26 @@ position = Vector2(0, -2.02703)
 sprite_frames = ExtResource("2_syn0d")
 autoplay = "default"
 frame_progress = 0.924048
+
+[node name="BuffParticles" parent="Sprite2D" instance=ExtResource("5_1quw1")]
+position = Vector2(0, 9.7973)
+emitting = false
+
+[node name="DebuffParticles" parent="Sprite2D" instance=ExtResource("6_5bqrp")]
+position = Vector2(0, -6.75676)
+emitting = false
+
+[node name="StatusIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8.44595)
+scale = Vector2(0.723538, 0.646395)
+texture = ExtResource("12_5dfwp")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StatusIcon"]
+libraries = {
+&"": SubResource("AnimationLibrary_5bqrp")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -385,18 +407,6 @@ unit = NodePath("..")
 
 [node name="ItemReader" type="Node2D" parent="."]
 script = ExtResource("11_j0e0d")
-
-[node name="StatusIcon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -8.44595)
-scale = Vector2(0.723538, 0.646395)
-texture = ExtResource("12_5dfwp")
-hframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StatusIcon"]
-libraries = {
-&"": SubResource("AnimationLibrary_5bqrp")
-}
 
 [connection signal="anim_complete" from="." to="." method="_on_anim_complete"]
 [connection signal="attack_point" from="." to="." method="_on_attack_point"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpix5ed7cqcnu"]
+
+[ext_resource type="Texture2D" uid="uid://dnvbhin24e81k" path="res://assets/unit_ui/particles.png" id="1_eyqm4"]
+
+[node name="BuffParticles" type="CPUParticles2D"]
+texture_filter = 1
+texture = ExtResource("1_eyqm4")
+lifetime = 0.45
+speed_scale = 0.8
+explosiveness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, -490)
+color = Color(1, 0.662745, 0, 1)

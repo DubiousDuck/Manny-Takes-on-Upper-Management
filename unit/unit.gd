@@ -89,6 +89,18 @@ func update_modifiers():
 			if bonus_stat[i].duration <= 0:
 				bonus_stat.remove_at(i)
 
+func has_temporary_buffs() -> bool:
+	for i in range(bonus_stat.size()):
+		if bonus_stat[i].duration > 0 and bonus_stat[i].value > 0:
+			return true
+	return false
+
+func has_temporary_debuffs() -> bool:
+	for i in range(bonus_stat.size()):
+		if bonus_stat[i].duration > 0 and bonus_stat[i].value < 0:
+			return true
+	return false
+
 #unit internal information
 var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn
@@ -143,6 +155,13 @@ func _process(_delta):
 				return
 			unit.global_position = global_position + Vector2(0, -30)
 	)
+	
+	if has_temporary_buffs():
+		$Sprite2D/BuffParticles.emitting = true
+	else: $Sprite2D/BuffParticles.emitting = false
+	if has_temporary_debuffs():
+		$Sprite2D/DebuffParticles.emitting = true
+	else: $Sprite2D/DebuffParticles.emitting = false
 
 func set_unit_modulate(tint: Color):
 	modulate = tint
