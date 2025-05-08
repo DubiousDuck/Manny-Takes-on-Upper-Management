@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bldlhtrkyt567"
-valid=false
+uid="uid://c5bcvbuyf47kb"
+path="res://.godot/imported/cubicles.png-637e7c6ccc1723dd086f7edc18029f63.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/overworld/office_tiles.png"
+source_file="res://assets/overworld/area_2/cubicles.png"
+dest_files=["res://.godot/imported/cubicles.png-637e7c6ccc1723dd086f7edc18029f63.ctex"]
 
 [params]
 

@@ -235,6 +235,10 @@ remote_path = NodePath("../../Camera2D")
 position = Vector2(632, 295)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = -126
+limit_right = 1153
+limit_bottom = 660
 position_smoothing_enabled = true
 
 [node name="Elevator2" parent="." instance=ExtResource("10_v73oa")]
@@ -315,6 +319,9 @@ animations = Array[String](["area1_elevator1", "Dialogue(multiple): You don't ha
 libraries = {
 &"Cutscenes": ExtResource("15_ba6uy")
 }
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2, 118)
 
 [connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
