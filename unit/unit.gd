@@ -80,14 +80,17 @@ var damage_reduction: float:
 	get(): return get_stat("damage_reduction")
 
 func apply_stat_modifer(stat_mod: BonusStat):
-	bonus_stat.append(stat_mod)
+	bonus_stat.append(stat_mod.duplicate())
 
 func update_modifiers():
+	var new_array: Array[BonusStat] = []
 	for i in range(bonus_stat.size()):
-		if bonus_stat[i].duration > 0:
+		if bonus_stat[i].duration >= 0:
 			bonus_stat[i].duration -= 1
-			if bonus_stat[i].duration <= 0:
-				bonus_stat.remove_at(i)
+			if bonus_stat[i].duration > 0:
+				new_array.append(bonus_stat[i])
+		else: new_array.append(bonus_stat[i])
+	bonus_stat = new_array.duplicate()
 
 func has_temporary_buffs() -> bool:
 	for i in range(bonus_stat.size()):
