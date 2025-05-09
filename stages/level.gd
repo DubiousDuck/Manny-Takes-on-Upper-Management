@@ -38,6 +38,7 @@ func _ready():
 	Global.set_last_battle_scene(get_tree().current_scene.scene_file_path)
 
 func battle_start():
+	EventBus.clear_preview.emit()
 	await pause_canvas_layer.play_both_bar_slide_out()
 	
 	if !tutorial_queue.is_empty():

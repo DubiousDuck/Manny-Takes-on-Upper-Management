@@ -287,18 +287,17 @@ func highlight_emit():
 	
 func _on_hurtbox_mouse_entered():
 	toggle_outline(true)
-	var a = UNIT_PREVIEW.instantiate()
-	add_child(a)
-	a.global_position = Vector2(global_position.x + 50, global_position.y - 50)
-	a.init(self)
+	EventBus.unit_hovered.emit(self)
 
 func _on_hurtbox_mouse_exited():
 	if !selected:
 		toggle_outline(false)
-	
-	#TODO: Lazy implementation
-	for node in get_children():
-		if node is UnitPreview: node.queue_free()
+	EventBus.unit_unhovered.emit(self)
+
+func _on_hurtbox_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			EventBus.unit_right_clicked.emit(self)
 
 func check_if_dead():
 	if health <= 0 || cell == Vector2i(-999, -999) || HexNavi.get_cell_custom_data(cell, "effect") == "death": #if no health or out of bounds

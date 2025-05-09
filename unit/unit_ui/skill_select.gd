@@ -48,8 +48,6 @@ func _on_button_pressed():
 
 ## display highlights of skill range when hovered over
 func _on_mouse_entered(icon_hovered: SkillIcon):
-	#print(icon_hovered.name + str(" is being hovered over!"))
-	#Prob unoptimal but convenient implmentation
 	EventBus.emit_signal("remove_cell_highlights", name)
 	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 	
@@ -58,7 +56,7 @@ func _on_mouse_entered(icon_hovered: SkillIcon):
 	if container:
 		var valid_targets = container.get_targets_of_type(all_neighbors, icon_hovered.skill.targets, unit)
 		if valid_targets.size() > 0:
-			if icon_hovered.skill.targets in [SkillInfo.TargetType.ENEMIES, SkillInfo.TargetType.ANY_UNIT, SkillInfo.TargetType.ALLIES, SkillInfo.TargetType.EXCEPT_SELF, SkillInfo.TargetType.ALLIES_EXCEPT_SELF]:
+			if icon_hovered.skill.targets in [SkillInfo.TargetType.ENEMIES, SkillInfo.TargetType.ANY_UNIT, SkillInfo.TargetType.ALLIES, SkillInfo.TargetType.EXCEPT_SELF, SkillInfo.TargetType.ALLIES_EXCEPT_SELF, SkillInfo.TargetType.SELF]:
 				EventBus.emit_signal("show_cell_highlights", valid_targets, CellHighlight.ATTACK_HIGHLIGHT, name+"_valid_targets")
 
 func _on_mouse_exit():

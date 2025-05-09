@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=4 uid="uid://4ogvcx7eikbx"]
+[gd_scene load_steps=35 format=4 uid="uid://4ogvcx7eikbx"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_ouqya"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_882xt"]
+[ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="3_4kjfa"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="3_omqha"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="4_4kjfa"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="5_ddqr5"]
@@ -123,7 +124,10 @@ offset_left = -720.0
 offset_top = -290.0
 offset_right = 3120.0
 offset_bottom = 790.0
+mouse_filter = 2
 texture = ExtResource("2_882xt")
+
+[node name="UnitPreview" parent="." instance=ExtResource("3_4kjfa")]
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("3_omqha")]
 isBattleScene = true

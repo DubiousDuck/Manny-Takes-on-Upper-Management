@@ -1,80 +1,171 @@
-[gd_scene load_steps=3 format=3 uid="uid://pk22c3kx6qrk"]
+[gd_scene load_steps=7 format=3 uid="uid://pk22c3kx6qrk"]
 
 [ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="1_dwm5a"]
 [ext_resource type="Script" uid="uid://c3mudrsrs436n" path="res://ui/battle_related/unit_preview.gd" id="1_l3n3g"]
+[ext_resource type="Texture2D" uid="uid://clnlowwc7od8y" path="res://assets/ui/blank_tab.png" id="2_546ua"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_gxqd5"]
+[ext_resource type="PackedScene" uid="uid://cb2ai0mktgl6d" path="res://ui/battle_related/skill_preview.tscn" id="5_i30d4"]
 
-[node name="UnitPreview" type="Control"]
-top_level = true
-layout_mode = 3
+[sub_resource type="AtlasTexture" id="AtlasTexture_546ua"]
+atlas = ExtResource("1_dwm5a")
+region = Rect2(0, 3.5, 16, 16)
+
+[node name="UnitPreview" type="CanvasLayer"]
+script = ExtResource("1_l3n3g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_l3n3g")
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45098)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 83.0
-offset_bottom = 103.0
-color = Color(0, 0, 0, 1)
-
-[node name="Class" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.037
-anchor_right = 0.037
-offset_left = -13.624
-offset_top = 5.0
-offset_right = 13.376
-offset_bottom = 18.0
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -399.0
+offset_top = -191.5
+offset_right = -138.0
+offset_bottom = 191.5
 grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_546ua")
+expand_mode = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -181.0
+offset_right = 121.5
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("3_gxqd5")
+
+[node name="Class" type="Label" parent="TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
 text = "Class"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(42, 37)
-scale = Vector2(2.1875, 2.1875)
-texture = ExtResource("1_dwm5a")
-hframes = 4
+[node name="TextureRect" type="TextureRect" parent="TextureRect/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = SubResource("AtlasTexture_546ua")
+stretch_mode = 5
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 64.0
-offset_right = 97.0
-offset_bottom = 98.0
+[node name="CenterContainer" type="CenterContainer" parent="TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
 columns = 4
 
-[node name="HP2" type="Label" parent="GridContainer"]
+[node name="HP2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "MHP:"
 
-[node name="HP" type="Label" parent="GridContainer"]
+[node name="HP" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 
-[node name="MOV2" type="Label" parent="GridContainer"]
+[node name="MOV2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "MOV:"
 
-[node name="MOV" type="Label" parent="GridContainer"]
+[node name="MOV" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 
-[node name="ATK2" type="Label" parent="GridContainer"]
+[node name="ATK2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "ATK:"
 
-[node name="ATK" type="Label" parent="GridContainer"]
+[node name="ATK" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 
-[node name="MAG2" type="Label" parent="GridContainer"]
+[node name="MAG2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "MAG:"
 
-[node name="MAG" type="Label" parent="GridContainer"]
+[node name="MAG" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
+
+[node name="SkillListLabel" type="Label" parent="TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skill List:"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+horizontal_scroll_mode = 0
+
+[node name="SkillList" type="VBoxContainer" parent="TextureRect/CenterContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SkillPreview" parent="TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList" instance=ExtResource("5_i30d4")]
+layout_mode = 2
+
+[node name="SkillPreview2" parent="TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList" instance=ExtResource("5_i30d4")]
+layout_mode = 2
+
+[node name="LeftAnchor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -191.5
+offset_right = -404.0
+offset_bottom = -151.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightAnchor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 205.0
+offset_top = -191.5
+offset_right = 245.0
+offset_bottom = -151.5
+grow_horizontal = 2
+grow_vertical = 2

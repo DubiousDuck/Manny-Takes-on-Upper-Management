@@ -527,7 +527,10 @@ func _unhandled_input(event):
 	else: EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
 	
 	if event is InputEventMouseButton and event.is_pressed():
-		EventBus.emit_signal("remove_all_cell_highlights")
+		if event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
+			EventBus.clear_preview.emit()
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			EventBus.emit_signal("remove_all_cell_highlights")
 		if event.button_index == MOUSE_BUTTON_LEFT and is_waiting_unit_selection:
 			# if no units have been selected
 			var clicked_cell = HexNavi.global_to_cell(get_global_mouse_position())
@@ -782,4 +785,5 @@ func all_unit_moved_func():
 	await get_tree().create_timer(0.25).timeout
 	for unit in units:
 		unit.set_unit_modulate(Color.WHITE)
+		unit.toggle_backgroun_aura(false)
 	all_units_moved.emit()

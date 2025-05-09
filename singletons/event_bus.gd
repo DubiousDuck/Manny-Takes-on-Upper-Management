@@ -29,6 +29,12 @@ signal pass_turn()
 signal battle_started()
 signal units_left_changed
 
+# Unit Preview
+signal unit_hovered(unit: Unit)
+signal unit_unhovered(unit: Unit)
+signal unit_right_clicked(unit: Unit)
+signal clear_preview()
+
 #Party management
 signal dragging_start(type: String)
 signal dragging_stop(type: String)

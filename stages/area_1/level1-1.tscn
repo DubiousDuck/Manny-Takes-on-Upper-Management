@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=25 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="8_ken88"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="9_kyd2c"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="11_s4umw"]
+[ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="12_hvujv"]
 [ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="14_s6bh2"]
 
 [node name="Level1-1" type="Node2D" node_paths=PackedStringArray("tile_map")]
@@ -38,6 +39,8 @@ offset_top = -290.0
 offset_right = 3120.0
 offset_bottom = 790.0
 texture = ExtResource("7_desty")
+
+[node name="UnitPreview" parent="." instance=ExtResource("12_hvujv")]
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_jumuj")]
 isBattleScene = true
