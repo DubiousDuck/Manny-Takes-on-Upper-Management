@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://b76w3pm0de8rg"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_1sfjm"]
+
+[resource]
+script = ExtResource("1_1sfjm")
+name = "Lower Magic"
+type = 1
+targets = 1
+affinity = null
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({})
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

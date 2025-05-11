@@ -8,6 +8,6 @@ script = ExtResource("1_a4nqi")
 item_name = "Golden Bow"
 description = "Grants the Ranger the skill: Arrow Rain"
 effect_dict = Dictionary[int, Variant]({
-4: ExtResource("1_f8y1m")
+5: ExtResource("1_f8y1m")
 })
 metadata/_custom_type_script = "uid://djvdtgfogyblr"

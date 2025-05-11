@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_es5ut")
 item_name = "Sword"
-description = "This is a normal sword. Raises attack power by 1."
+description = "This is a normal sword. Grants +1 ATK to the wearer."
 effect_dict = Dictionary[int, Variant]({
 0: 1
 })

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=22 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_uip54"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
+[ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="6_cje7n"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_jkwc2"]
 [ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="8_gakst"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="9_3pueo"]
@@ -34,6 +35,8 @@ offset_top = -290.0
 offset_right = 3120.0
 offset_bottom = 790.0
 texture = ExtResource("5_uip54")
+
+[node name="UnitPreview" parent="." instance=ExtResource("6_cje7n")]
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_cje7n")]
 isBattleScene = true

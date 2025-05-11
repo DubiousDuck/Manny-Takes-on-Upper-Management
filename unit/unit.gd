@@ -129,7 +129,6 @@ func _ready():
 func load_unit_data():
 	#read unit data and set base attributes
 	base_stats.max_health = unit_data.get_stat("HP")
-	health = base_stats.max_health
 	base_stats.attack_power = unit_data.get_stat("ATK")
 	base_stats.magic_power = unit_data.get_stat("MAG")
 	base_stats.movement_range = unit_data.get_stat("MOV")
@@ -145,7 +144,7 @@ func load_unit_data():
 				bonus_stat.append(effect)
 			elif effect is SkillInfo and !skills.has(effect):
 				skills.append(effect)
-	
+	health = max_health
 	_set_anim_lib()
 
 func _process(_delta):

@@ -11,9 +11,9 @@
 [ext_resource type="Resource" uid="uid://d2oeemu5nubl2" path="res://ui/tutorial/contents/taking_turn.tres" id="4_baid3"]
 [ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_hvujv"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="4_rygkc"]
+[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="5_hvujv"]
 [ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="5_k6pgt"]
 [ext_resource type="Resource" uid="uid://ghwb608wl1i2" path="res://ui/tutorial/contents/attacking.tres" id="5_kp1jm"]
-[ext_resource type="Resource" uid="uid://cc83k8b4im4d" path="res://items/golden_bow.tres" id="5_umfdv"]
 [ext_resource type="Resource" uid="uid://8r502q2im3jc" path="res://ui/tutorial/contents/healing_tile.tres" id="6_2paab"]
 [ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="6_axwgq"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="6_mkisl"]
@@ -30,7 +30,7 @@ script = ExtResource("1_fta11")
 tile_map = NodePath("TileMapTest")
 inital_exp = 4
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_qadan")]([ExtResource("3_umfdv"), ExtResource("4_hvujv"), ExtResource("5_umfdv")])
+dropped_items = Array[ExtResource("2_qadan")]([ExtResource("3_umfdv"), ExtResource("4_hvujv"), ExtResource("5_hvujv")])
 tutorial_queue = Array[ExtResource("2_drabk")]([ExtResource("3_uvm5h"), ExtResource("4_baid3"), ExtResource("5_kp1jm"), ExtResource("6_2paab")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -86,4 +86,3 @@ script = ExtResource("9_kyd2c")
 unit_data = ExtResource("14_s6bh2")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
-[connection signal="switch_turn" from="Units" to="." method="_on_units_switch_turn"]

@@ -26,6 +26,7 @@ const INTRAVERSABLE_WEIGHT: float = 999
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	EventBus.connect("battle_started", _on_battle_started)
+	$Units.connect("switch_turn", _on_units_switch_turn)
 	
 	HexNavi.set_current_map(tile_map)
 	HexNavi.set_weight_of_layer("traversable", false, INTRAVERSABLE_WEIGHT)
@@ -63,7 +64,6 @@ func _on_battle_ended(result: int):
 	var init_level : int = Global.level
 	if result == EventBus.BattleResult.PLAYER_VICTORY:
 		Global.finished_level()
-		pause_canvas_layer.add_in_background(a)
 		
 		# gain exp points
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
@@ -74,8 +74,11 @@ func _on_battle_ended(result: int):
 			Global.recruit_token += 1
 		a.update_xp_label(xp_gained)
 		
-		# drop loot
-		Global.unequipped_items.append_array(dropped_items)
+		# drop random loot
+		var random_loot: ItemData = dropped_items.pick_random()
+		if random_loot: Global.unequipped_items.append(random_loot)
+		var item_name = random_loot.item_name if random_loot else ""
+		a.update_item_label(item_name)
 	else:
 		a.update_xp_label(0)
 	#$PauseCanvasLayer.add_child(a)

@@ -10,6 +10,8 @@ func get_item_effects(item: ItemData) -> Array:
 		match key:
 			ItemData.EffectType.ATTACK_UP:
 				output.append(BonusStat.new("attack_power", effects[key], item.item_name, -1))
+			ItemData.EffectType.MAG_UP:
+				output.append(BonusStat.new("magic_power", effects[key], item.item_name, -1))
 			ItemData.EffectType.HP_UP:
 				output.append(BonusStat.new("max_health", effects[key], item.item_name, -1))
 			ItemData.EffectType.DEFENSE_UP:

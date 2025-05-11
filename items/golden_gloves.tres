@@ -1,13 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bokt53sha513s"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bokt53sha513s"]
 
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_4bdcj"]
-[ext_resource type="Resource" uid="uid://djy537r81hp18" path="res://skills/whirlwind.tres" id="1_81c2d"]
 
 [resource]
 script = ExtResource("1_4bdcj")
 item_name = "Golden Gloves"
 description = "A shiny, golden pair of boxing gloves. Grants the skill Whirlwind to the Fighter."
-effect_dict = Dictionary[int, Variant]({
-4: ExtResource("1_81c2d")
-})
+effect_dict = Dictionary[int, Variant]({})
 metadata/_custom_type_script = "uid://djvdtgfogyblr"

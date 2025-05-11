@@ -325,4 +325,3 @@ script = ExtResource("22_b8300")
 unit_data = SubResource("Resource_jlb2c")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
-[connection signal="switch_turn" from="Units" to="." method="_on_units_switch_turn"]

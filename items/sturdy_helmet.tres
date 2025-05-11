@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cmir8fmxx6qcf"]
+
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_6w35t"]
+
+[resource]
+script = ExtResource("1_6w35t")
+item_name = "Sturdy Helmet"
+description = "A good old reliable helmet. Grants +2 HP to the wearer."
+effect_dict = Dictionary[int, Variant]({
+3: 2
+})
+metadata/_custom_type_script = "uid://djvdtgfogyblr"
