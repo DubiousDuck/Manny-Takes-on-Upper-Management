@@ -33,25 +33,25 @@ func create_character(character_data):
 	return character_data
 
 func _on_mage_pressed():
-	var mage = preload("res://unit/params/mage.tres").duplicate()
+	var mage = preload("res://unit/params/mage.tres").duplicate(true)
 	mage = create_character(mage)  # Assign a unique ID
 	party_add_logic(mage)
 	back_to_overworld()
 
 func _on_fighter_pressed():
-	var fighter = preload("res://unit/params/fighter.tres").duplicate()
+	var fighter = preload("res://unit/params/fighter.tres").duplicate(true)
 	fighter = create_character(fighter)  # Assign a unique ID
 	party_add_logic(fighter)
 	back_to_overworld()
 
 func _on_ranger_pressed():
-	var ranger = preload("res://unit/params/ranger.tres").duplicate()
+	var ranger = preload("res://unit/params/ranger.tres").duplicate(true)
 	ranger = create_character(ranger)  # Assign a unique ID
 	party_add_logic(ranger)
 	back_to_overworld()
 
 func _on_healer_pressed():
-	var healer = preload("res://unit/params/healer.tres").duplicate()
+	var healer = preload("res://unit/params/healer.tres").duplicate(true)
 	healer = create_character(healer)  # Assign a unique ID
 	party_add_logic(healer)
 	back_to_overworld()

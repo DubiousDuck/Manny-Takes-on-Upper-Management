@@ -77,9 +77,9 @@ func set_label_color(stat: STAT, value: int):
 			label = mag_label
 			attr_string = "MAG"
 	if label:
-		if value > cur_unit.unit_data.get_attribute(attr_string):
+		if value > cur_unit.unit_data.get_stat(attr_string):
 			label.add_theme_color_override("font_color", BUFF_COLOR)
-		elif value < cur_unit.unit_data.get_attribute(attr_string):
+		elif value < cur_unit.unit_data.get_stat(attr_string):
 			label.add_theme_color_override("font_color", DEBUFF_COLOR)
 		else:
 			label.remove_theme_color_override("font_color")

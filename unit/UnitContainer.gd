@@ -72,8 +72,8 @@ func _ready() -> void:
 				valid_units.append(unit)
 		units = valid_units
 	else:
-		#TODO: Dynamically set enemies based on parameters
 		for unit in units:
+			unit.unit_data.set_self_level(unit.unit_data.level)
 			unit.load_unit_data()
 		
 

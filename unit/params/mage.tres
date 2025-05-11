@@ -1,20 +1,41 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://k5gy8n00eull"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://k5gy8n00eull"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_tf2ja"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_xfc42"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_voedd"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="3_e1a4x"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_k42ak"]
 
 [resource]
 script = ExtResource("1_tf2ja")
+id = 0
+level = 1
+exp = 0
 unit_class = "Mage"
-attributes = {
+stat = Dictionary[int, int]({
 0: 4,
 1: 1,
 2: 3,
 3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
 }
+})
 skill_list = Array[ExtResource("2_voedd")]([ExtResource("3_e1a4x"), ExtResource("4_k42ak")])
-rel = ""
-mood = 50
-money = 5
+skill_table = Dictionary[int, ExtResource("2_voedd")]({})
+item_list = Array[ExtResource("1_xfc42")]([])

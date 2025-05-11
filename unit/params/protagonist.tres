@@ -11,12 +11,36 @@
 [resource]
 script = ExtResource("1_g3jub")
 id = 0
+level = 1
+exp = 0
 unit_class = "Protagonist"
-attributes = {
+stat = Dictionary[int, int]({
 0: 4,
 1: 2,
 2: 2,
 3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
 }
-skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("5_a8aaf"), ExtResource("6_d31hx"), ExtResource("6_rlm2a")])
+})
+skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("6_rlm2a")])
+skill_table = Dictionary[int, ExtResource("2_0r8qq")]({
+2: ExtResource("5_a8aaf"),
+4: ExtResource("6_d31hx")
+})
 item_list = Array[ExtResource("1_xflac")]([])
