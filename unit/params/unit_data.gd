@@ -32,6 +32,9 @@ enum STAT {HP, ATK, MAG, MOV}
 ## Skill unlock table of a unit; should be set manually for each base class resource
 @export var skill_table: Dictionary[int, SkillInfo] = {}
 
+## Variable to prevent repeated level ups when reloading a battle scene
+var leveled_up: bool = false
+
 func get_stat(name):
 	match name:
 		"HP": return stat[STAT.HP]
@@ -39,7 +42,7 @@ func get_stat(name):
 		"MAG": return stat[STAT.MAG]
 		"MOV": return stat[STAT.MOV]
 
-func _set_stat(delta: Array[int]):
+func _set_stat(delta: Array[int] = [4, 2, 2, 2]):
 	stat[STAT.HP] = delta[STAT.HP]
 	stat[STAT.ATK] = delta[STAT.ATK]
 	stat[STAT.MAG] = delta[STAT.MAG]
@@ -66,9 +69,12 @@ func level_up():
 
 ## Set the unit data to a preset level; assumes the UnitData was originally at level 1
 func set_self_level(num: int):
-	level = 1
-	while level < num:
-		level_up()
+	if !leveled_up:
+		level = 1
+		while level < num:
+			level_up()
+		leveled_up = true
+	else: print("No need to level up as  this resource has already been leveled up before. -- UnitData.gd")
 
 # Item related
 @export var item_list: Array[ItemData] = []

@@ -3,10 +3,10 @@ extends Control
 class_name SkillSelect
 
 @export var unit: Unit
-@onready var hbox = $HBoxContainer
+@onready var hbox = $ScrollContainer/HBoxContainer
 @onready var icon = preload("res://unit/unit_ui/skill_icon.tscn")
 
-@onready var test_icon = $HBoxContainer/SkillIcon
+@onready var test_icon = $ScrollContainer/HBoxContainer/SkillIcon
 
 var buttons : Array[SkillIcon] = []
 var container: UnitContainer

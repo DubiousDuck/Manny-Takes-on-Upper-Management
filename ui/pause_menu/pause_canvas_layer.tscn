@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cgqpt5abxnbl1" path="res://ui/pause_menu/pause_canvas_layer.gd" id="1_pg7py"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_711h1"]
-[ext_resource type="Texture2D" uid="uid://dnulwrqu2hfki" path="res://assets/ui/window_tab_empty.png" id="2_fb1yo"]
+[ext_resource type="Texture2D" uid="uid://cqri7x448ts6m" path="res://assets/ui/new_blank_window.png" id="2_h3q8i"]
 [ext_resource type="Script" uid="uid://c15wrh0vsu7ie" path="res://ui/pause_menu/volume_slider.gd" id="2_k60nf"]
-[ext_resource type="Texture2D" uid="uid://dmsydhfjideb7" path="res://assets/ui/window_tab_top.png" id="3_h3q8i"]
+[ext_resource type="Texture2D" uid="uid://b3nkjpgk3ec8i" path="res://assets/ui/top_bar_no_line.png" id="3_h3q8i"]
 [ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
 [ext_resource type="Script" uid="uid://rljuks17biw4" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
 [ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
@@ -117,7 +117,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-texture = ExtResource("2_fb1yo")
+texture = ExtResource("2_h3q8i")
 
 [node name="BackgroundTopBar" type="TextureRect" parent="BackgroundRect"]
 layout_mode = 1
