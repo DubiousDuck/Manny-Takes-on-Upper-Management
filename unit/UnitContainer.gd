@@ -83,7 +83,7 @@ func init():
 			unit.container = self
 			unit.init()
 	
-func round_start():
+func round_start(): # TODO: need to wait for unit init complete
 	in_battle = true
 	for unit in units:
 		unit.init()
@@ -224,6 +224,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	new_state.health = state.health.duplicate(true)
 	new_state.stat_bonuses = state.stat_bonuses.duplicate(true)
 	new_state.cell_effects = state.cell_effects.duplicate(true)
+	new_state.status_effects = state.status_effects.duplicate(true)
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
@@ -263,6 +264,10 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 							new_state.cell_effects[target_cell] = "death"
 						_:
 							pass
+				SkillInfo.EffectType.STATUS:
+					for affected in new_state.position.keys():
+						if affected_area.has(new_state.position[affected]):
+							new_state.status_effects[affected] = effects[key]
 	
 	return new_state
 
@@ -314,10 +319,9 @@ func evaluate_state(state: GameState) -> int:
 				"death":
 					if enemy_container.units.has(unit): 
 						if cell == state.position[unit]: score += 10
-						else: score += 3
+						else: score += 2
 					else:
 						if cell == state.position[unit]: score -= 10
-						else: score -= 3
 				"heal":
 					if enemy_container.units.has(unit): 
 						if cell == state.position[unit]: score -= 1
@@ -332,10 +336,29 @@ func evaluate_state(state: GameState) -> int:
 	for unit in state.stat_bonuses.keys():
 		var buffs = state.stat_bonuses[unit]
 		for buff in buffs:
+			# Already takes into account of buffs or debuffs
 			if enemy_container.units.has(unit):
 				score -= buff.value * ENEMY_BUFF_PENALTY
 			else:
 				score += buff.value * ALLY_BUFF_PENALTY
+	
+	## Status effect related score
+	const SLEEP_MULTIPLIER = 3
+	const POISON_MULTIPLIER = 2
+	const FORGET_MULTIPLER = 3
+	for unit in state.status_effects.keys():
+		var effect = state.status_effects[unit]
+		var multiplier: int = 1
+		match effect.type:
+			StatusEffect.Effect.SLEEP:
+				multiplier = SLEEP_MULTIPLIER
+			StatusEffect.Effect.POISON:
+				multiplier = POISON_MULTIPLIER
+			StatusEffect.Effect.FORGET:
+				multiplier = FORGET_MULTIPLER
+		if enemy_container.units.has(unit):
+			score += effect.duration * multiplier
+	
 	return score
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
@@ -785,5 +808,5 @@ func all_unit_moved_func():
 	await get_tree().create_timer(0.25).timeout
 	for unit in units:
 		unit.set_unit_modulate(Color.WHITE)
-		unit.toggle_backgroun_aura(false)
+		unit.in_pof = false
 	all_units_moved.emit()

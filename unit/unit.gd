@@ -45,7 +45,8 @@ enum Action {NONE, MOVE, ATTACK, ITEM}
 @export var move_speed_per_cell := 0.2
 @export var all_actions: Array[Action] = [Action.MOVE, Action.ATTACK] #Master attribute of all available actions this unit can take in one turn
 
-@onready var status_icon = $StatusIcon
+@onready var pof_icon = $IconAnchor/PoFIcon
+@onready var status_icon = $IconAnchor/StatusIcon
 @onready var background_icon = $Sprite2D/BackgroundIcon
 
 
@@ -104,6 +105,26 @@ func has_temporary_debuffs() -> bool:
 			return true
 	return false
 
+# Status Effects Related
+var active_status_effect: StatusEffect
+
+func apply_status(status: StatusEffect):
+	if active_status_effect:
+		active_status_effect.on_expire(self)
+	active_status_effect = status.duplicate()
+	active_status_effect.on_apply(self)
+	set_status_effect_icon(true)
+
+func update_status_effect():
+	if active_status_effect:
+		active_status_effect.duration -= 1
+		if active_status_effect.duration < 0:
+			active_status_effect.on_expire(self)
+			active_status_effect = null
+			set_status_effect_icon(false)
+		else: active_status_effect.tick(self)
+	else: set_status_effect_icon(false)
+	
 #unit internal information
 var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn
@@ -120,7 +141,7 @@ var skills: Array[SkillInfo] = []
 var in_pof: bool = false:
 	set(new_state):
 		in_pof = new_state
-		toggle_backgroun_aura(in_pof)
+		toggle_background_aura(in_pof)
 
 func _ready():
 	pass
@@ -175,7 +196,6 @@ func set_unit_modulate(tint: Color):
 func init():
 	animation_state("front_idle")
 	cell = HexNavi.global_to_cell(global_position)
-	#global_position = HexNavi.cell_to_global(cell)
 	actions_avail.assign(all_actions)
 	toggle_skill_ui(false, [])
 	
@@ -189,6 +209,7 @@ func init():
 	
 	in_pof = false
 	update_modifiers()
+	update_status_effect()
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
@@ -249,7 +270,7 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 		"Pick Up":
 			animation_state("hold_prep")
 			await $AnimationPlayer.animation_finished
-		"Basic Punch":
+		"Basic Punch", "Forgetful Hammer":
 			animation_state("punch")
 			await $AnimationPlayer.animation_finished
 		"Rubber Band Shoot":
@@ -270,7 +291,7 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 		"Defend":
 			animation_state("defend")
 			await $AnimationPlayer.animation_finished
-		"Give Milk":
+		"Give Milk", "Raise Attack", "Lower Attack":
 			animation_state("heal")
 			await $AnimationPlayer.animation_finished
 		_:
@@ -428,25 +449,67 @@ func toggle_outline(state: bool):
 		$Sprite2D.material.set_shader_parameter("line_thickness", 0)
 
 ## Status icon display
-func set_icon_state(state: String):
+func set_pof_icon_state(state: String):
 	match state:
 		"can_trigger":
-			status_icon.show()
-			status_icon.find_child("AnimationPlayer").play("hover_up_down")
+			pof_icon.show()
+			pof_icon.find_child("AnimationPlayer").play("target")
 		"already_triggered":
-			status_icon.show()
-			status_icon.find_child("AnimationPlayer").play("repeating_dizzy")
+			pof_icon.show()
+			pof_icon.find_child("AnimationPlayer").play("repeating_dizzy")
 		"none":
-			status_icon.hide()
+			pof_icon.hide()
 		_:
-			status_icon.hide()
+			pof_icon.hide()
+	update_status_icon_layout()
 	return
 
+func set_status_effect_icon(visible: bool):
+	if visible:
+		status_icon.show()
+	else:
+		status_icon.hide()
+	update_status_icon_layout()
+	return
+
+func update_status_icon_layout():
+	var icons: Array[Sprite2D] = []
+	if pof_icon.visible:
+		icons.append(pof_icon)
+	if status_icon.visible:
+		icons.append(status_icon)
+	
+	if icons.is_empty():
+		return
+	
+	var gap = 64  # Adjust pixel spacing to taste
+	var displacement = gap/icons.size()
+	for i in range(icons.size()):
+		var offset = Vector2(displacement/2 + displacement*i-gap/2, 0)
+		icons[i].global_position = $IconAnchor.global_position + offset
+
 ## Background icon display
-func toggle_backgroun_aura(state: bool):
+func toggle_background_aura(state: bool):
 	if state:
 		background_icon.show()
 		background_icon.play("default")
 	else:
 		background_icon.hide()
 		background_icon.stop()
+
+## Take damage
+func take_damage(amount: int, attacker: Unit, check_dead: bool = true):
+	health -= amount
+	if !unit_held.is_empty():
+		for held in unit_held:
+			held.is_held = false
+	unit_held.clear()
+	if self != attacker:
+		animation_state("hurt_initial")
+	if check_dead:
+		check_if_dead()
+
+func regain_health(amount: int):
+	if health + amount > max_health:
+		health = max_health
+	else: health += amount

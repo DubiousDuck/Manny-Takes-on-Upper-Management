@@ -31,6 +31,15 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/hex_grid_nav/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://overworld/": "purple",
+"res://skills/": "orange",
+"res://ui/": "green",
+"res://unit/": "blue"
+}
+
 [gui]
 
 theme/custom="res://ui/themes/default.tres"

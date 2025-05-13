@@ -57,7 +57,7 @@ func exp_to_next_level() -> int:
 
 func level_up():
 	level += 1
-	print("Level up! The unit is now level %d." % level)
+	#print("Level up! The unit is now level %d." % level)
 	if stat_growth_table.has(level):
 		for stat_enum in stat_growth_table[level].keys():
 			stat[stat_enum] += stat_growth_table[level][stat_enum]

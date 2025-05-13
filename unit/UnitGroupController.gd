@@ -77,7 +77,7 @@ func start_next_turn():
 	turn_attack_log.clear()
 	pof_triggered_on.clear()
 	for unit in all_units:
-		unit.set_icon_state("none")
+		unit.set_pof_icon_state("none")
 	
 	if is_player_turn:
 		player_group.round_start()
@@ -121,17 +121,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 		match key: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
 				if affected_units.is_empty(): break
-				
-				affected_units.map(
-					func(unit : Unit):
-						unit.health -= floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
-						if !unit.unit_held.is_empty():
-							for held in unit.unit_held:
-								held.is_held = false
-						unit.unit_held.clear()
-						if unit != attacker:
-							unit.animation_state("hurt_initial")
-				)
+				for unit in affected_units:
+					var damage: int = floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
+					unit.take_damage(damage, attacker, false)
 				
 			SkillInfo.EffectType.KNOCKBACK:
 				if affected_units.is_empty(): break
@@ -168,15 +160,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 						await unit.tile_action()
 				)
-				# FIXME: when knockback is the last action before player turn ends, weird things happen
 				
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
 					func(unit : Unit):
-						if unit.health + effects[key] * attacker_power >= unit.max_health:
-							unit.health = unit.max_health
-						else:
-							unit.health += (effects[key] * attacker_power)
+							unit.regain_health(effects[key] * attacker_power)
 						#TODO: needs animation
 				)
 			
@@ -239,6 +227,12 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.apply_stat_modifer(effects[key])
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a BonusStat! -- UnitGroupContainer.gd")
+			SkillInfo.EffectType.STATUS:
+				if effects[key] is StatusEffect:
+					for unit in affected_units:
+						unit.apply_status(effects[key])
+				else:
+					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
 			_:
 				print("nothing happens yet")
 				
@@ -314,11 +308,11 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 	# Update status icon
 	for unit in all_units:
 		if unit in turn_attack_log.keys() and unit not in pof_triggered_on:
-			unit.set_icon_state("can_trigger")
+			unit.set_pof_icon_state("can_trigger")
 		elif unit in pof_triggered_on:
-			unit.set_icon_state("already_triggered")
+			unit.set_pof_icon_state("already_triggered")
 		else:
-			unit.set_icon_state("none")
+			unit.set_pof_icon_state("none")
 
 	status_update_complete.emit()
 
@@ -366,7 +360,7 @@ func round_end_actions():
 		var cell_effect: String = HexNavi.get_cell_custom_data(unit.cell, "effect")
 		match cell_effect:
 			"heal":
-				if unit.health < unit.max_health: unit.health += 1
+				unit.regain_health(1)
 				var new_cell := HexNavi.get_random_tile_pos()
 				while Vector2i(new_cell) == unit.cell:
 					new_cell = HexNavi.get_random_tile_pos()
