@@ -29,7 +29,7 @@ func init(result: int):
 	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
 
 func update_xp_label(xp: int):
-	xp_label.text = "You gained " + str(xp) + " XP!"
+	xp_label.text = "All party members gained " + str(xp) + " XP!"
 
 func update_item_label(item_name: String):
 	if item_name != "":

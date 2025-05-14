@@ -67,7 +67,9 @@ func _on_battle_ended(result: int):
 		
 		# gain exp points
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
-		Global.gain_exp(xp_gained)
+		#Global.gain_exp(xp_gained)
+		for unit in Global.current_party:
+			grant_exp(unit, xp_gained)
 		
 		# gain token
 		if give_token:
@@ -92,3 +94,7 @@ func _on_units_switch_turn(is_player):
 	await get_tree().create_timer(0.75).timeout
 	await pause_canvas_layer.play_top_bar_slide_in(true, is_player)
 	unit_group_control.start_next_turn()
+
+func grant_exp(unit_data: UnitData, amount: int):
+	unit_data.gain_exp(amount)
+	#handles display logic here

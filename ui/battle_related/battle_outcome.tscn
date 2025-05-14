@@ -58,6 +58,65 @@ text = "Result Here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -87.0
+offset_right = 322.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -87.0
+offset_right = 322.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+dragging_enabled = false
+
+[node name="ExpLabel1" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qftn7")
+theme_override_font_sizes/font_size = 30
+text = "Exp"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ExpBar" type="ProgressBar" parent="HSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+
+[node name="LevelLabel" type="Label" parent="HSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_qftn7")
+theme_override_font_sizes/font_size = 30
+text = "+0"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -127,45 +186,6 @@ layout_mode = 2
 theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 45
 text = "Return"
-
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -322.0
-offset_top = -87.0
-offset_right = 322.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ExpLabel1" type="Label" parent="HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("3_qftn7")
-theme_override_font_sizes/font_size = 30
-text = "Exp"
-
-[node name="HSplitContainer" type="HSplitContainer" parent="HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="ExpBar" type="ProgressBar" parent="HSplitContainer/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 30
-
-[node name="LevelLabel" type="Label" parent="HSplitContainer/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("3_qftn7")
-theme_override_font_sizes/font_size = 30
-text = "+0"
 
 [connection signal="pressed" from="HBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="HBoxContainer/PreviousScene" to="." method="_on_previous_scene_pressed"]

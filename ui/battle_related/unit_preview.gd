@@ -10,12 +10,13 @@ enum STAT{HP, MOV, ATK, MAG}
 
 @onready var preview_window = $TextureRect
 @onready var class_label = $TextureRect/CenterContainer/VBoxContainer/Class
+@onready var class_sprite = $TextureRect/CenterContainer/VBoxContainer/ClassSprite
 @onready var hp_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/HP
 @onready var mov_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/MOV
 @onready var atk_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/ATK
 @onready var mag_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/MAG
 @onready var skill_list = $TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList
-
+@onready var level_label = $TextureRect/CenterContainer/VBoxContainer/LevelLabel
 
 
 var cur_unit : Unit
@@ -48,6 +49,9 @@ func init(unit: Unit):
 	cur_unit = unit
 	#set sprite 2d to corresponding class
 	class_label.text = unit.unit_data.unit_class
+	set_class_sprite(unit.unit_data.unit_class)
+	level_label.text = "Level: %d" %unit.unit_data.level
+	
 	hp = unit.max_health
 	mov = unit.movement_range
 	atk = unit.attack_power
@@ -124,3 +128,22 @@ func show_preview(unit: Unit):
 	else:
 		# Unit is on right → show preview on left
 		preview_window.position = $LeftAnchor.position
+
+func set_class_sprite(name: String):
+	var texture: AtlasTexture
+	match name:
+		"Protagonist":
+			texture = preload("res://ui/single_sprite_atlus/base_sprite.atlastex")
+		"Ranger":
+			texture = preload("res://ui/single_sprite_atlus/ranger_sprite.atlastex")
+		"Fighter":
+			texture = preload("res://ui/single_sprite_atlus/fighter_sprite.atlastex")
+		"Mage":
+			texture = preload("res://ui/single_sprite_atlus/mage_sprite.atlastex")
+		"Healer":
+			texture = preload("res://ui/single_sprite_atlus/healer_sprite.atlastex")
+		"Tank":
+			texture = preload("res://ui/single_sprite_atlus/tank_sprite.atlastex")
+		_:
+			texture = preload("res://ui/single_sprite_atlus/base_sprite.atlastex")
+	class_sprite.texture = texture

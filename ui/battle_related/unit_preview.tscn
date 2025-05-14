@@ -1,14 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pk22c3kx6qrk"]
+[gd_scene load_steps=6 format=3 uid="uid://pk22c3kx6qrk"]
 
-[ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="1_dwm5a"]
 [ext_resource type="Script" uid="uid://c3mudrsrs436n" path="res://ui/battle_related/unit_preview.gd" id="1_l3n3g"]
 [ext_resource type="Texture2D" uid="uid://clnlowwc7od8y" path="res://assets/ui/blank_tab.png" id="2_546ua"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_gxqd5"]
+[ext_resource type="Texture2D" uid="uid://bq3pwi5ru7y67" path="res://ui/single_sprite_atlus/base_sprite.atlastex" id="4_i30d4"]
 [ext_resource type="PackedScene" uid="uid://cb2ai0mktgl6d" path="res://ui/battle_related/skill_preview.tscn" id="5_i30d4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_546ua"]
-atlas = ExtResource("1_dwm5a")
-region = Rect2(0, 3.5, 16, 16)
 
 [node name="UnitPreview" type="CanvasLayer"]
 script = ExtResource("1_l3n3g")
@@ -24,17 +20,13 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.45098)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -399.0
-offset_top = -191.5
-offset_right = -138.0
-offset_bottom = 191.5
-grow_horizontal = 2
+offset_left = 132.0
+offset_top = -210.0
+offset_right = 393.0
+offset_bottom = 210.0
 grow_vertical = 2
 texture = ExtResource("2_546ua")
 expand_mode = 5
@@ -47,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.5
-offset_top = -181.0
+offset_top = -199.0
 offset_right = 121.5
-offset_bottom = 180.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -66,11 +58,18 @@ text = "Class"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/CenterContainer/VBoxContainer"]
+[node name="ClassSprite" type="TextureRect" parent="TextureRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture = SubResource("AtlasTexture_546ua")
+texture = ExtResource("4_i30d4")
 stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Level: X"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="TextureRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -151,9 +150,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -444.0
-offset_top = -191.5
+offset_top = -210.0
 offset_right = -404.0
-offset_bottom = -151.5
+offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -165,8 +164,8 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 205.0
-offset_top = -191.5
+offset_top = -210.0
 offset_right = 245.0
-offset_bottom = -151.5
+offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2

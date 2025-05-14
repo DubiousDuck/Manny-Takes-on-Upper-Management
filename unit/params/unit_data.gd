@@ -50,6 +50,7 @@ func _set_stat(delta: Array[int] = [4, 2, 2, 2]):
 
 # level related
 func gain_exp(amount: int):
+	print("gaining %d exp... -- UnitData.gd" %amount)
 	exp += amount
 	while exp >= exp_to_next_level():
 		exp -= exp_to_next_level()
