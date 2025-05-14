@@ -23,6 +23,7 @@ func party_add_logic(ally_type):
 	else:
 		print("adding to reserves")
 		Global.reserves.append(ally_type)
+	Global.recruit_token -= 1
 
 # Function to assign a unique ID and return the character with that ID
 static var next_id=0
@@ -54,4 +55,7 @@ func _on_healer_pressed():
 	var healer = preload("res://unit/params/healer.tres").duplicate(true)
 	healer = create_character(healer)  # Assign a unique ID
 	party_add_logic(healer)
+	back_to_overworld()
+
+func _on_cancel_pressed():
 	back_to_overworld()

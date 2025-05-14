@@ -33,6 +33,7 @@ func _ready():
 		to_main_menu.visible = true
 		background_rect.visible = false
 		pre_battle_box.visible = false
+		unit_count.visible = false
 	else:
 		to_main_menu.visible = false
 		

@@ -19,12 +19,11 @@ func _process(delta):
 
 func _interact_call_back():
 	if Global.recruit_token <= 0:
-		Global.start_dialogue(["I'm sorry, you don't have enough recruit tokens."])
+		Global.start_dialogue(["I'm sorry, you don't have enough Recruit Tokens.", "Come back when you got one."])
 		await EventBus.ui_element_ended
 	else:
-		Global.start_dialogue(["Hi there!", "In exchange for one recruit token,", "who do you like to recruit?"])
+		Global.start_dialogue(["Hey there soldier!", "I see that you have a Recruit Token,", "Who would you like to add to your party?"])
 		await EventBus.ui_element_ended
-		Global.recruit_token -= 1
 		Global.set_last_overworld_scene(get_tree().current_scene)
 		Global.scene_transition(scene_to_go)
 		

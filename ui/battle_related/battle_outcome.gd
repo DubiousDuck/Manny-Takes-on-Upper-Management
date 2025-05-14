@@ -5,8 +5,9 @@ class_name BattleOutcome
 @onready var label = $Label #Not ready yet when init() is called
 @onready var exp_bar : ProgressBar = $HSplitContainer/HSplitContainer/ExpBar
 @onready var level_label : Label = $HSplitContainer/HSplitContainer/LevelLabel
-@onready var xp_label = $Label2
-@onready var item_drop_label = $ItemDropLabel
+@onready var xp_label = $VBoxContainer/XpLabel
+@onready var item_drop_label = $VBoxContainer/ItemDropLabel
+@onready var token_label = $VBoxContainer/TokenLabel
 
 func _ready() -> void:
 	exp_bar = $HSplitContainer/HSplitContainer/ExpBar
@@ -36,6 +37,11 @@ func update_item_label(item_name: String):
 		item_drop_label.show()
 	else:
 		item_drop_label.hide()
+
+func update_token_label(state: bool):
+	if state:
+		token_label.show()
+	else: token_label.hide()
 
 func animate_exp(final_exp : int, initial_level : int, final_level: int):
 	var exp_req = Global.get_exp_requirment(Global.level);

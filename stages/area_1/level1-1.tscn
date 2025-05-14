@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=29 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
@@ -23,7 +23,45 @@
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="9_kyd2c"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="11_s4umw"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="12_hvujv"]
-[ext_resource type="Resource" uid="uid://khrwg3mnex64" path="res://unit/params/fighter.tres" id="14_s6bh2"]
+[ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="24_ln1wa"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="25_rbclk"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="26_svu88"]
+[ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="27_bmmxp"]
+
+[sub_resource type="Resource" id="Resource_4fu5k"]
+script = ExtResource("24_ln1wa")
+id = 0
+level = 1
+exp = 0
+unit_class = "Fighter"
+stat = Dictionary[int, int]({
+0: 4,
+1: 2,
+2: 1,
+3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("25_rbclk")]([ExtResource("26_svu88"), ExtResource("27_bmmxp")])
+skill_table = Dictionary[int, ExtResource("25_rbclk")]({})
+item_list = Array[ExtResource("2_qadan")]([])
+metadata/_custom_type_script = "uid://d2mnyc15434nn"
 
 [node name="Level1-1" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_fta11")
@@ -46,7 +84,7 @@ texture = ExtResource("7_desty")
 isBattleScene = true
 
 [node name="TileMapTest" parent="." instance=ExtResource("3_hq3re")]
-tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAQABAAMAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAADAAAAAAADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAQAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAADAAAAAAADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAA=")
 tile_set = ExtResource("4_rygkc")
 
 [node name="CellHighlights" type="Node2D" parent="."]
@@ -72,7 +110,7 @@ is_player_controlled = true
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("7_vmn3i")]
-position = Vector2(61, 365)
+position = Vector2(257, 264)
 script = ExtResource("8_ken88")
 unit_data = ExtResource("11_s4umw")
 
@@ -81,8 +119,8 @@ script = ExtResource("6_axwgq")
 enemy_container = NodePath("../PlayerGroup")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("7_vmn3i")]
-position = Vector2(640, 152)
+position = Vector2(449, 264)
 script = ExtResource("9_kyd2c")
-unit_data = ExtResource("14_s6bh2")
+unit_data = SubResource("Resource_4fu5k")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

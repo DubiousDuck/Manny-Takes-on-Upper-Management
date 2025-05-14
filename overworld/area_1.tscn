@@ -258,16 +258,19 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://dmiskhfx3cmdg"
 level_name = "level1-2"
 req = Array[String](["level1-1"])
-locked_dialogue = Array[String](["Don't bother me.", "You're still too weak."])
-interact_dialogue = Array[String](["You look like a worthy opponent!", "Let's ddddddduel!", "[Come on!][No thanks]"])
-correct_choice = "Come on!"
+locked_dialogue = Array[String](["What are you doing here?", "You should go talk to the Receptionist."])
+interact_dialogue = Array[String](["<name>, I know what you’re trying to do, and it’s noble.", "But it’s pointless…", "You’ll have to fight your way through floors of Infant Inc employees…", "Stop now while you’re not hurt!", "[At least let me try!][Hmm, ok bye.]"])
+repeat_dialogue = Array[String](["You still want to do this?", "I guess I have no choice but to defeat you again...", "[At least let me try!][Hmm, ok bye.]"])
+correct_choice = "At least let me try!"
+win_dialogue = Array[String](["(This baby has skills...)", "(Can this baby actually do it?)", "(But no one’s taken on the management since the Revolt of '95.)", "(Hmm...)", "Listen, you have the potential,", "but it's far from enough.", "Keep on challenging the other employees here.", "Then MAYBE you will stand a chance against the higher ups.", "Good luck. You will need it."])
+lose_dialogue = Array[String](["See? Now you've gotten yourself hurt.", "Don't do this again."])
 
 [node name="Sollicitor2" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(508, 29)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
-req = Array[String](["level1-1"])
+req = Array[String](["level1-1", "level1-2"])
 locked_dialogue = Array[String](["Why are you here?", "Can't you see I'm busy standing here doing nothing?", "Now move along."])
 interact_dialogue = Array[String](["I cannot let you pass.", "Or else my boss will think I'm slacking off.", "Let's just get this over with, OK?", "[Alright!][Uh nope]"])
 correct_choice = "Alright!"
@@ -288,18 +291,18 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cwvvpfius26vd"
 level_name = "level1-1"
 locked_dialogue = Array[String](["Sorry sir, the desk is closed."])
-interact_dialogue = Array[String](["Oh hi, <name>...", "welcome back to work...", "Sorry, this place is awful,", "but I don't think anyone can stand up againt THAT MAN...", "Wait, you're trying to fight your way up to the company?", "That's ruthless...", "THAT MAN and his lackeys are far more powerful than you think.", "What? You're still willing to fight?", "You sure are interesting, huh?", "Well in that case, let me teach you some basics,", "so at least you will have a chance defending yourself.", "[Let's do this][Give me a sec...]"])
-repeat_dialogue = Array[String](["You're back...", "Ready to learn the basics?", "[Let's do this][Gimme a sec]"])
-correct_choice = "Let's do this"
-win_dialogue = Array[String](["Not bad...", "You have the potential.", "Seek other employees on this floor...", "They will teach you even more things.", "I'm sure they will be more than happy to help you."])
-lose_dialogue = Array[String](["This seems pretty hard for you...", "Maybe try again?"])
+interact_dialogue = Array[String](["Oh hi, <name>...", "Sorry, the boss told me I can’t let you pass…", "We’re just doing our jobs!", "Can’t get fired now, not in this economy!", "[Fight!][Ok bye]"])
+repeat_dialogue = Array[String](["You're back...", "I still cannot let you pass!", "[Fight!][Ok bye]"])
+correct_choice = "Fight!"
+win_dialogue = Array[String](["I don’t get paid enough for this.", "I heard about what happened with <best friend>...", "If you are set to help him,", "Seek other employees on the floor.", "Let them help you. They can teach you other things.", "Though you might have to fight them first...", "Good luck. I think you can do this."])
+lose_dialogue = Array[String](["<name>, we’re just babies!", "What can we do?"])
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="NPC_Folder/Receptionist/Area2D" index="0"]
 shape = SubResource("CircleShape2D_ujynv")
 
 [node name="Recruit" parent="NPC_Folder" instance=ExtResource("7_hq1u4")]
-position = Vector2(547, 249)
+position = Vector2(721, 241)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://bqklkavqa6tyq"
 

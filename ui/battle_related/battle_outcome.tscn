@@ -58,41 +58,44 @@ text = "Result Here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -238.0
-offset_top = 11.0
-offset_right = 238.0
-offset_bottom = 35.0
+offset_left = -274.0
+offset_top = -20.0
+offset_right = 283.0
+offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="XpLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 30
 text = "You've gained X HP!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ItemDropLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -238.0
-offset_top = 52.0
-offset_right = 238.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ItemDropLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 30
 text = "You got the item X!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TokenLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_qftn7")
+theme_override_font_sizes/font_size = 30
+text = "Yout got a Recruit Token!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

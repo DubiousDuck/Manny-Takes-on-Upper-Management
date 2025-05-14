@@ -58,7 +58,7 @@ func _on_battle_started():
 	
 func _on_battle_ended(result: int):
 	##exp gain
-	var a = battle_outcome.instantiate()
+	var a = battle_outcome.instantiate() as BattleOutcome
 	a.init(result)
 	GlobalUI.add_child(a)
 	var init_level : int = Global.level
@@ -72,6 +72,8 @@ func _on_battle_ended(result: int):
 		# gain token
 		if give_token:
 			Global.recruit_token += 1
+			a.update_token_label(true)
+		else: a.update_token_label(false)
 		a.update_xp_label(xp_gained)
 		
 		# drop random loot

@@ -68,7 +68,25 @@ theme = ExtResource("3_jot76")
 theme_override_font_sizes/font_size = 116
 text = "Healer"
 
+[node name="Cancel" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -130.0
+offset_right = 89.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_jot76")
+theme_override_font_sizes/font_size = 48
+text = "Cancel"
+
 [connection signal="pressed" from="TextureRect/VSplitContainer/HBoxContainer/Mage" to="." method="_on_mage_pressed"]
 [connection signal="pressed" from="TextureRect/VSplitContainer/HBoxContainer/Fighter" to="." method="_on_fighter_pressed"]
 [connection signal="pressed" from="TextureRect/VSplitContainer/HBoxContainer/Ranger" to="." method="_on_ranger_pressed"]
 [connection signal="pressed" from="TextureRect/VSplitContainer/HBoxContainer/Healer" to="." method="_on_healer_pressed"]
+[connection signal="pressed" from="TextureRect/Cancel" to="." method="_on_cancel_pressed"]
