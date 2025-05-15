@@ -106,6 +106,7 @@ var max_party_num: int = 3
 
 var current_party: Array[UnitData] = []
 var reserves: Array[UnitData] = []
+var eaten_units: Array[UnitData] = []
 var unequipped_items: Array[ItemData] = []
 
 var events: Array[String] = []
@@ -242,6 +243,7 @@ func load_player_data(save : int):
 	recruit_token = player_data.recruit_token
 	max_party_num = player_data.max_party_num
 	current_party = player_data.current_party.duplicate(true)
+	eaten_units = player_data.eaten_units.duplicate(true)
 	reserves = player_data.reserves.duplicate(true)
 	unequipped_items = player_data.unequipped_items.duplicate(true)
 	
@@ -281,6 +283,7 @@ func save_player_data(save : int):
 	player_data.recruit_token = recruit_token
 	player_data.max_party_num = max_party_num
 	player_data.current_party = current_party.duplicate(true)
+	player_data.eaten_units = eaten_units.duplicate(true)
 	player_data.reserves = reserves.duplicate(true)
 	player_data.unequipped_items = unequipped_items.duplicate(true)
 	

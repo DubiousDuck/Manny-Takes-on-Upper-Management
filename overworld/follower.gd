@@ -39,7 +39,10 @@ var anim_lib: String = "ow_anim"
 #var death_in_progress = false
 # Kill function, initiates death sequence
 func kill():
+	if is_dying:
+		return
 	get_parent().followers.erase(unit_data)
+	Global.eaten_units.append(unit_data)
 	Global.current_party.erase(unit_data)
 	is_dying = true
 

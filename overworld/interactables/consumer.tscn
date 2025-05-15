@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://iaap6ny25co2"]
 
 [ext_resource type="Script" uid="uid://n76j7oujhisq" path="res://overworld/interactables/consumer.gd" id="1_jj77m"]
-[ext_resource type="Texture2D" uid="uid://cwlmqsjma1p7i" path="res://assets/overworld/Sprite-0001-Sheet.png" id="2_jj77m"]
+[ext_resource type="Texture2D" uid="uid://cwlmqsjma1p7i" path="res://assets/overworld/Consumer.png" id="2_jj77m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jj77m"]
 radius = 5.75876
@@ -11,7 +11,7 @@ radius = 78.0
 height = 182.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8ypg"]
-radius = 66.0
+radius = 68.015
 
 [node name="Consumer" type="Area2D"]
 z_index = -1
@@ -25,8 +25,8 @@ scale = Vector2(1, 0.7)
 shape = SubResource("CircleShape2D_jj77m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(2.30938, 1.73125)
+position = Vector2(1, 2.50001)
+scale = Vector2(2.40625, 1.85938)
 texture = ExtResource("2_jj77m")
 
 [node name="Control" type="Control" parent="."]

@@ -15,6 +15,7 @@ class_name PlayerData extends Resource
 @export var max_party_num: int = 3
 @export var current_party: Array[UnitData] = [preload("res://unit/params/protagonist.tres")]
 @export var reserves: Array[UnitData] = []
+@export var eaten_units: Array[UnitData] = []
 @export var unequipped_items: Array[ItemData] = []
 
 ## Level Progess
