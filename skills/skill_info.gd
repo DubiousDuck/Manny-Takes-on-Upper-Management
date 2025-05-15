@@ -18,3 +18,4 @@ enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SEL
 
 @export_category("Skill Detail")
 @export var skill_effects: Dictionary[EffectType, Variant] = {}
+@export var effect_execution_order: Array[EffectType] = []

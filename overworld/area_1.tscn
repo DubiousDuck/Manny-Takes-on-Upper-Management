@@ -271,9 +271,12 @@ scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1", "level1-2"])
-locked_dialogue = Array[String](["Why are you here?", "Can't you see I'm busy standing here doing nothing?", "Now move along."])
-interact_dialogue = Array[String](["I cannot let you pass.", "Or else my boss will think I'm slacking off.", "Let's just get this over with, OK?", "[Alright!][Uh nope]"])
-correct_choice = "Alright!"
+locked_dialogue = Array[String](["I don't think you are ready to challenge me yet.", "Go defeat the baby to my right first.", "I'll be waiting."])
+interact_dialogue = Array[String](["If you’re serious about taking on Management,", "you’re gonna have to punch harder than before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[I'm ready!][Gimme a sec...]"])
+repeat_dialogue = Array[String](["Ready to see how the Pros do it?", "[I'm ready!][Gimme a sec...]"])
+correct_choice = "I'm ready!"
+win_dialogue = Array[String](["Yes, that’s the way to do it!", "Upper management won’t give an inch,", "so you have to give it all that you got.", "Your final task is to convince the Head Security Baby to let you pass.", "He's by the Elevator to the left.", "Just know, he's not gonna give you any slack.", "So be prepared!"])
+lose_dialogue = Array[String](["You punch like a baby!", "Well, I guess that makes sense…", "Go train elsewhere and come back again."])
 
 [node name="Sollicitor3" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(336, 71)

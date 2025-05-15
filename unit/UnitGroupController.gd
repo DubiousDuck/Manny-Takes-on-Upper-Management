@@ -117,7 +117,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 
 	#for each skill effect, apply it on every affected units
 	var effects := attack.skill_effects
-	for key in effects.keys(): 
+	var execution_order: Array = attack.effect_execution_order if !attack.effect_execution_order.is_empty() else effects.keys()
+	for key in execution_order: 
 		match key: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
 				if affected_units.is_empty(): break

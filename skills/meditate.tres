@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://dilc2xhbogfv0"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_ndt6k"]
+
+[resource]
+script = ExtResource("1_ndt6k")
+name = "Meditate"
+type = 1
+targets = 2
+affinity = 1
+range = 1
+area = 0
+skill_effects = Array[Dictionary]([{
+2: 1
+}])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

@@ -13,3 +13,4 @@ area = 0
 skill_effects = Dictionary[int, Variant]({
 1: 1
 })
+effect_execution_order = Array[int]([])

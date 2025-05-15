@@ -111,6 +111,17 @@ var unequipped_items: Array[ItemData] = []
 
 var events: Array[String] = []
 
+## Function to return the lowest level across reserves and party; useful for creating new characters without having their levels being too low
+func get_lowest_unit_level() -> int:
+	var lowest_level: int = INF
+	for unit in current_party:
+		if unit.level < lowest_level:
+			lowest_level = unit.level
+	for unit in reserves:
+		if unit.level < lowest_level:
+			lowest_level = unit.level
+	return lowest_level
+
 ## Player input signals
 
 func _unhandled_input(event):

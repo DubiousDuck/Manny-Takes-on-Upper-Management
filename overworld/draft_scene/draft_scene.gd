@@ -27,8 +27,11 @@ func party_add_logic(ally_type):
 
 # Function to assign a unique ID and return the character with that ID
 static var next_id=0
-func create_character(character_data):
+func create_character(character_data: UnitData):
 	character_data.id = next_id
+	# Make sure that the new recruit doesn't start at level 1
+	while character_data.level < Global.get_lowest_unit_level():
+		character_data.level_up()
 	next_id += 1
 	print(next_id)
 	return character_data
