@@ -28,7 +28,7 @@
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="25_k22tc"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="26_o05ok"]
 [ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="27_4u6l4"]
-[ext_resource type="Resource" path="res://skills/meditate.tres" id="27_iigxo"]
+[ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="27_iigxo"]
 [ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="29_iigxo"]
 
 [sub_resource type="Resource" id="Resource_0cykx"]

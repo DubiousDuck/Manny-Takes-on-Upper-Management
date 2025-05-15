@@ -332,7 +332,6 @@ emitting = false
 
 [node name="IconAnchor" type="Marker2D" parent="."]
 position = Vector2(0, -8)
-scale = Vector2(1, 1)
 gizmo_extents = 0.0
 
 [node name="PoFIcon" type="Sprite2D" parent="IconAnchor"]

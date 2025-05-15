@@ -291,14 +291,16 @@ func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where
 		"Defend":
 			animation_state("defend")
 			await $AnimationPlayer.animation_finished
-		"Give Milk", "Raise Attack", "Lower Attack":
+		"Give Milk":
 			animation_state("heal")
 			await $AnimationPlayer.animation_finished
-		_:
-			print("Failed to match skill name " + skill.name + " (unit.gd)")
+		"Wait":
 			await get_tree().create_timer(0.2).timeout
 			emit_attack_point()
 			emit_anim_comlete()
+		_:
+			animation_state("default")
+			await $AnimationPlayer.animation_finished
 	animation_state("side_idle")
 
 func highlight_emit():
