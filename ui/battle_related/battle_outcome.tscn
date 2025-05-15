@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct4t683r6jn78"]
+[gd_scene load_steps=5 format=3 uid="uid://ct4t683r6jn78"]
 
 [ext_resource type="Script" uid="uid://uljqfllywrdw" path="res://ui/battle_related/battle_outcome.gd" id="1_revyg"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_bh2jv"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_qftn7"]
+[ext_resource type="PackedScene" uid="uid://bigog5qjgtyr0" path="res://ui/battle_related/exp_bar.tscn" id="4_yec3y"]
 
 [node name="BattleOutcome" type="Control"]
 process_mode = 3
@@ -59,7 +60,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-visible = false
+custom_minimum_size = Vector2(350, 75)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,17 +68,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -322.0
-offset_top = -87.0
+offset_top = -111.0
 offset_right = 322.0
-offset_bottom = -8.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="ExpBarContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_constants/separation = 35
 alignment = 1
 
+[node name="ExpBar" parent="ScrollContainer/ExpBarContainer" instance=ExtResource("4_yec3y")]
+visible = false
+layout_mode = 2
+
+[node name="ExpBar2" parent="ScrollContainer/ExpBarContainer" instance=ExtResource("4_yec3y")]
+visible = false
+layout_mode = 2
+
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

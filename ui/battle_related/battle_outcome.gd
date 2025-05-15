@@ -2,12 +2,15 @@ extends Control
 
 class_name BattleOutcome
 
+const EXP_BAR = preload("res://ui/battle_related/exp_bar.tscn")
+
 @onready var label = $Label #Not ready yet when init() is called
 @onready var exp_bar : ProgressBar = $HSplitContainer/HSplitContainer/ExpBar
 @onready var level_label : Label = $HSplitContainer/HSplitContainer/LevelLabel
 @onready var xp_label = $VBoxContainer/XpLabel
 @onready var item_drop_label = $VBoxContainer/ItemDropLabel
 @onready var token_label = $VBoxContainer/TokenLabel
+@onready var exp_bar_container = $ScrollContainer/ExpBarContainer
 
 func _ready() -> void:
 	exp_bar = $HSplitContainer/HSplitContainer/ExpBar
@@ -43,23 +46,33 @@ func update_token_label(state: bool):
 		token_label.show()
 	else: token_label.hide()
 
-func animate_exp(final_exp : int, initial_level : int, final_level: int):
-	var exp_req = Global.get_exp_requirment(Global.level);
-	for i in range(initial_level, final_level):
-		var exp_tween = create_tween()
-		exp_tween.set_ease(Tween.EASE_IN)
-		exp_tween.set_trans(Tween.TRANS_QUAD)
-		exp_tween.tween_property(exp_bar, "value", exp_bar.max_value, 0.5).set_delay(0.1)
-		exp_tween.tween_property(level_label, "text" , "+" + str(int(level_label.text.substr(1))+1), 0.05).set_delay(0.1)
-		exp_tween.tween_property(exp_bar, "value", 0, 0.01)
-		await exp_tween.finished
-		
-		exp_bar.max_value = Global.get_exp_requirment(i+1)
-	
-	##animation for exp gain
-	var exp_tween = create_tween()
-	exp_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	exp_tween.tween_property(exp_bar, "value", final_exp, 0.5)
+
+func add_exp_bar(unit: UnitData):
+	var a = EXP_BAR.instantiate() as ExpBar
+	exp_bar_container.add_child(a)
+	a.init(unit)
+
+func animate_exp_bar(unit: UnitData):
+	for bar: ExpBar in exp_bar_container.get_children():
+		if bar.current_unit_data == unit:
+			bar.animate_exp(unit.level, unit.exp)
+			break
+	#var exp_req = Global.get_exp_requirment(Global.level);
+	#for i in range(initial_level, final_level):
+		#var exp_tween = create_tween()
+		#exp_tween.set_ease(Tween.EASE_IN)
+		#exp_tween.set_trans(Tween.TRANS_QUAD)
+		#exp_tween.tween_property(exp_bar, "value", exp_bar.max_value, 0.5).set_delay(0.1)
+		#exp_tween.tween_property(level_label, "text" , "+" + str(int(level_label.text.substr(1))+1), 0.05).set_delay(0.1)
+		#exp_tween.tween_property(exp_bar, "value", 0, 0.01)
+		#await exp_tween.finished
+		#
+		#exp_bar.max_value = Global.get_exp_requirment(i+1)
+	#
+	###animation for exp gain
+	#var exp_tween = create_tween()
+	#exp_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	#exp_tween.tween_property(exp_bar, "value", final_exp, 0.5)
  
 
 func display():

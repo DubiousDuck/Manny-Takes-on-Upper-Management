@@ -69,7 +69,9 @@ func _on_battle_ended(result: int):
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
 		#Global.gain_exp(xp_gained)
 		for unit in Global.current_party:
+			a.add_exp_bar(unit)
 			grant_exp(unit, xp_gained)
+			a.animate_exp_bar(unit)
 		
 		# gain token
 		if give_token:
@@ -87,7 +89,7 @@ func _on_battle_ended(result: int):
 		a.update_xp_label(0)
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
-	a.animate_exp(Global.current_exp, init_level, Global.level)
+	#a.animate_exp(Global.current_exp, init_level, Global.level)
 
 func _on_units_switch_turn(is_player):
 	await pause_canvas_layer.play_top_bar_slide_in(false, is_player)

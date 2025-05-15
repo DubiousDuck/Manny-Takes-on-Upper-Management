@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bigog5qjgtyr0"]
+
+[ext_resource type="Script" uid="uid://dcay6ujf7y01f" path="res://ui/battle_related/exp_bar.gd" id="1_msibr"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="1_xb6uf"]
+
+[node name="ExpBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_msibr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -15.0
+offset_right = 272.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="ClassName" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("1_xb6uf")
+theme_override_font_sizes/font_size = 30
+text = "Class Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+theme = ExtResource("1_xb6uf")
+theme_override_font_sizes/font_size = 30
+max_value = 5.0
+
+[node name="ExpLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xb6uf")
+theme_override_font_sizes/font_size = 30
+text = "+0 Lv"
