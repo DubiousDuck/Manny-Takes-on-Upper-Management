@@ -143,10 +143,10 @@ func start_battle(overworld_rid, classes : Array[UnitData]):
 	
 ## Save and load
 
-var save_path = "user://hr_saves/"
-var player_save_file = "player"
-var global_save_file = "global"
-var save_extension = ".tres"
+var save_path: String = "user://hr_saves/"
+var player_save_file: String = "player"
+var global_save_file: String = "global"
+var save_extension: String = ".tres"
 
 func _ready():
 	verify_directory(save_path)
@@ -238,72 +238,88 @@ const DEBUG_INT := 28
 
 var player_data = PlayerData.new()
 
-func load_player_data(save : int):
-	var data = ResourceLoader.load(save_path + player_save_file + str(save) + save_extension)
-	if !data:
-		push_warning("no valid data found. initializing a new save... -- Global.gd")
-		load_new_save()
-		return
-	player_data = data.duplicate(true)
+func load_player_data(save: int) -> bool:
+	var file_path = save_path + player_save_file + str(save) + ".json"
+	if not FileAccess.file_exists(file_path):
+		print("Save file not found.")
+		return false
+
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+
+	var result = JSON.parse_string(json_string)
+	if result is Dictionary:
+		player_data = PlayerData.new()
+		player_data.from_dict(result)
+		print("- Loaded player data from JSON index ", str(save))
+		
+		#load player level
+		current_exp = player_data.current_exp
+		level = player_data.level
+		
+		#copy current_party
+		recruit_token = player_data.recruit_token
+		max_party_num = player_data.max_party_num
+		current_party = player_data.current_party.duplicate(true)
+		eaten_units = player_data.eaten_units.duplicate(true)
+		reserves = player_data.reserves.duplicate(true)
+		unequipped_items = player_data.unequipped_items.duplicate(true)
+		
+		#load level progress
+		finished_levels = player_data.finished_levels
+		events = player_data.events
+
+		return true
+	else:
+		push_error("Failed to parse JSON save file.")
+		return false
 	
-	#load player level
-	current_exp = player_data.current_exp
-	level = player_data.level
-	
-	#copy current_party
-	recruit_token = player_data.recruit_token
-	max_party_num = player_data.max_party_num
-	current_party = player_data.current_party.duplicate(true)
-	eaten_units = player_data.eaten_units.duplicate(true)
-	reserves = player_data.reserves.duplicate(true)
-	unequipped_items = player_data.unequipped_items.duplicate(true)
-	
-	#load level progress
-	finished_levels = player_data.finished_levels
-	events = player_data.events
-	
-	print(OS.get_user_data_dir())
-	print("- Loaded player data from index ", str(save))
-	
-func find_all_saves():
-	var resources := Array()
-	resources.resize(30)
-	
-	var dir = DirAccess.open(save_path)
+func find_all_saves() -> Array:
+	var saves := []
+	saves.resize(30)
+
+	var dir := DirAccess.open(save_path)
 	if dir:
 		dir.list_dir_begin()
-		var file_name = dir.get_next()
+		var file_name := dir.get_next()
 		while file_name != "":
-			if file_name.ends_with(".tres") or file_name.ends_with(".res"):
-				var resource = ResourceLoader.load(save_path + file_name)
-				if resource and resource.has_method("get") and resource.get("index") != null:
-					resources[resource.get("index")] = resource
+			if file_name.ends_with(".json"):
+				var file_path := save_path + file_name
+				var file := FileAccess.open(file_path, FileAccess.READ)
+				if file:
+					var content := file.get_as_text()
+					var data = JSON.parse_string(content)
+					if typeof(data) == TYPE_DICTIONARY and data.has("index"):
+						var index = data["index"]
+						if index >= 0 and index < saves.size():
+							saves[index] = data
 			file_name = dir.get_next()
 		dir.list_dir_end()
-			
-	return resources
 	
-func save_player_data(save : int):
+	return saves
+	
+func save_player_data(save: int):
 	player_data.index = save
-	
-	#save player level
 	player_data.current_exp = current_exp
 	player_data.level = level
-	
-	#save current party
 	player_data.recruit_token = recruit_token
 	player_data.max_party_num = max_party_num
 	player_data.current_party = current_party.duplicate(true)
 	player_data.eaten_units = eaten_units.duplicate(true)
 	player_data.reserves = reserves.duplicate(true)
 	player_data.unequipped_items = unequipped_items.duplicate(true)
-	
-	#save level progress
 	player_data.finished_levels = finished_levels
 	player_data.events = events
-	
-	ResourceSaver.save(player_data, save_path + player_save_file + str(save) + save_extension)
-	print("- Saved player data to index ", str(save))
+
+	var json_string = JSON.stringify(player_data.to_dict(), "\t")  # Pretty print with tabs
+	var file_path = save_path + player_save_file + str(save) + ".json"
+
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
+	file.store_string(json_string)
+	file.close()
+
+	print("- Saved player data to JSON index ", str(save))
 
 ## Set parameters of a new save file
 func load_new_save():

@@ -2,12 +2,14 @@ extends Resource
 
 class_name UnitData
 
+## a unit's ID is assigned at runtime and is used to identify a specific Unit throughout saves
 @export var id:int
 
 @export var level: int = 1
 @export var exp: int = 0
 
 # Battle related
+## Identifer of the Class; each Class corresponds to a unique UnitData template
 @export_enum("Protagonist", "Tank", "Fighter", 
 	"Ranger", "Healer", "Mage", "Boss") var unit_class: String
 
@@ -85,3 +87,41 @@ func add_item(item: ItemData):
 
 func remove_item(item: ItemData):
 	item_list.erase(item)
+
+# Saving and loading related
+func to_dict() -> Dictionary:
+	return {
+		"id": id,
+		"level": level,
+		"exp": exp,
+		"unit_class": unit_class,
+		"stat": stat,
+		"skill_list": skill_list.map(func(skill): return skill.name), # or skill ID
+		"item_list": item_list.map(func(item): return item.item_name),     # or item ID
+		"leveled_up": leveled_up,
+	}
+
+static func new_from_dict(data: Dictionary) -> UnitData:
+	var unit = UnitDatabase.get_by_class(data.get("unit_class", "Fighter"))
+	unit.id = data.get("id", 0)
+	unit.unit_class = data.get("unit_class", "Fighter")
+	unit.level = data.get("level", 1)
+	unit.exp = data.get("exp", 0)
+	
+	# Rebuilding the stat dictionary in a careful way
+	var raw_stat = data.get("stat", {})
+	for key in raw_stat.keys():
+		unit.stat[int(key)] = int(raw_stat[key])
+	print("The rebuilt unit stat is: " + str(unit.stat) + " -- unit_data.gd")
+
+	unit.leveled_up = data.get("leveled_up", false)
+
+	unit.skill_list.clear()
+	for skill_name in data.get("skill_list", []):
+		unit.skill_list.append(SkillInfobase.get_by_name(skill_name))
+
+	unit.item_list.clear()
+	for item_name in data.get("item_list", []):
+		unit.item_list.append(ItemDatabase.get_by_name(item_name))
+
+	return unit

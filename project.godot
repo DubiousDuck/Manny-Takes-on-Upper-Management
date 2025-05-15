@@ -22,6 +22,9 @@ Global="*res://singletons/global_script.gd"
 HexNavi="*res://addons/hex_grid_nav/hexagon_navigation.gd"
 AudioPreload="*res://singletons/audio_preload.tscn"
 GlobalUI="*res://singletons/ui_layer.tscn"
+UnitDatabase="*res://singletons/unit_database.gd"
+SkillInfobase="*res://singletons/skill_infobase.gd"
+ItemDatabase="*res://singletons/item_database.gd"
 
 [display]
 

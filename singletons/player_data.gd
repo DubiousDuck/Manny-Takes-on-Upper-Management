@@ -21,3 +21,52 @@ class_name PlayerData extends Resource
 ## Level Progess
 @export var finished_levels := {}
 @export var events : Array[String] = []
+
+func to_dict() -> Dictionary:
+	return {
+		"index": index,
+		"player_name": player_name,
+		"current_exp": current_exp,
+		"level": level,
+		"recruit_token": recruit_token,
+		"max_party_num": max_party_num,
+		"current_party": current_party.map(func(unit): return unit.to_dict()),
+		"reserves": reserves.map(func(unit): return unit.to_dict()),
+		"eaten_units": eaten_units.map(func(unit): return unit.to_dict()),
+		"unequipped_items": unequipped_items.map(func(item): return item.to_dict()),
+		"finished_levels": finished_levels,
+		"events": events
+	}
+
+func from_dict(data: Dictionary) -> void:
+	index = data.get("index", -99)
+	player_name = data.get("player_name", "A")
+	current_exp = data.get("current_exp", 0)
+	level = data.get("level", 1)
+	recruit_token = data.get("recruit_token", 0)
+	max_party_num = data.get("max_party_num", 3)
+
+	current_party = parse_unitdata_array(data.get("current_party", []))
+	reserves = parse_unitdata_array(data.get("reserves", []))
+	eaten_units = parse_unitdata_array(data.get("eaten_units", []))
+	unequipped_items = pare_itemdata_array(data.get("unequipped_items", []))
+
+	finished_levels = data.get("finished_levels", {})
+	
+	# recasting from Array to Array[String]
+	events.clear()
+	var raw_events = data.get("events", [])
+	for event in raw_events:
+		events.append(event)
+
+static func parse_unitdata_array(data_array: Array) -> Array[UnitData]:
+	var result: Array[UnitData] = []
+	for d in data_array:
+		result.append(UnitData.new_from_dict(d))
+	return result
+
+static func pare_itemdata_array(data_array: Array) -> Array[ItemData]:
+	var result: Array[ItemData] = []
+	for d in data_array:
+		result.append(ItemData.new_from_dict(d))
+	return result

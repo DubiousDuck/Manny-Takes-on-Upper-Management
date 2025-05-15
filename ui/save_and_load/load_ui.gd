@@ -15,7 +15,9 @@ func _ready():
 		a.connect("save_pressed", loader)
 
 func loader(index : int):
-	Global.load_player_data(index)
+	if Global.load_player_data(index):
+		Global.scene_transition("res://overworld/area_1.tscn")
+		queue_free()
 	for i in save_container.get_children(): i.queue_free()
 	_ready()
 
