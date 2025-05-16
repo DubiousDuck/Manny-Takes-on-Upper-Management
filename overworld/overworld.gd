@@ -91,11 +91,6 @@ func _ready():
 		Global.lose_dialogue.clear()
 	Global.battle_result = "none"
 
-func _on_to_talent_page_pressed():
-	Global.set_last_overworld_scene(get_tree().current_scene)
-	var talent_scene = preload("res://overworld/skill_tree/skill_tree.tscn")
-	get_tree().change_scene_to_packed(talent_scene)
-
 func _on_save_pressed():
 	Global.save_screen()
 
