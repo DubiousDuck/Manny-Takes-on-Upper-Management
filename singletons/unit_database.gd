@@ -18,6 +18,7 @@ func _ready():
 	unit_templates[healer.unit_class] = healer
 	unit_templates[mage.unit_class] = mage
 	unit_templates[healer.unit_class] = healer
+	unit_templates[ranger.unit_class] = ranger
 
 	print("UnitDatabase loaded with %d unit classes" % unit_templates.size())
 

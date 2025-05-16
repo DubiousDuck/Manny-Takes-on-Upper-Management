@@ -535,7 +535,12 @@ func unit_pos_score(unit: Unit):
 
 # ---- Player Input ----
 func _unhandled_input(event):
-	if !is_player_controlled or !Global.is_attack_resolved or !in_battle:
+	if !is_player_controlled or !Global.is_attack_resolved:
+		return
+	if !in_battle:
+		if event is InputEventMouseButton and event.is_pressed():
+			if event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
+				EventBus.clear_preview.emit()
 		return
 	
 	if is_aoe_skill and skill_chosen != null:

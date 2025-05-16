@@ -33,6 +33,10 @@ func start():
 var current_scene : String
 var current_level : String
 var finished_levels := {}  # Acts as a HashSet
+## a dictionary that maps events that should be recorded with a certain level clear
+var level_event_table: Dictionary[String, String] = {
+	"level1-4": "area1-cleared"
+}
 ## Dialogue that plays automatically upon scene ready; good for scene transitions
 var dialogue_on_scene_ready: Array[String]
 var win_dialogue: Array[String]
@@ -40,6 +44,9 @@ var lose_dialogue: Array[String]
 
 func finished_level():
 	finished_levels[current_level]=true
+	# check level_event_table to see if should add events
+	if level_event_table.keys().has(current_level):
+		events.append(level_event_table[current_level])
 	current_level=""
 
 var _last_overworld_scene: PackedScene = PackedScene.new()

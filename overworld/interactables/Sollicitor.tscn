@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6nrjbhhd5ol7" path="res://overworld/interactables/solliciter.gd" id="1_7bwdx"]
 [ext_resource type="AnimationLibrary" uid="uid://s3xw8d5uc4r0" path="res://overworld/ow_sollicitor.res" id="2_pw375"]
 [ext_resource type="Script" uid="uid://burx81vw74rhs" path="res://overworld/interactables/sollicitor_interact.gd" id="4_0etf6"]
-[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/side_idle.png" id="4_pw375"]
+[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/base/side_idle.png" id="4_pw375"]
 [ext_resource type="Texture2D" uid="uid://cs31vo1sargm2" path="res://assets/ui/notice.png" id="13_4h0lf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]

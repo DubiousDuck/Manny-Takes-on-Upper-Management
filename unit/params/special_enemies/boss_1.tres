@@ -1,22 +1,46 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://dxxemof4tvpsa"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://dxxemof4tvpsa"]
 
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_5jn2n"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_dtjrn"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_71wds"]
-[ext_resource type="Resource" uid="uid://bjt330wi86rkh" path="res://skills/boss_skills/random_death_tile.tres" id="3_1u4rb"]
+[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="2_l4kes"]
 [ext_resource type="Resource" uid="uid://bao7vfdy1qt2i" path="res://skills/basic_heal.tres" id="4_5jn2n"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_el7v1"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="5_fj1hj"]
+[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="6_uv8yt"]
+[ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="8_epnp3"]
 
 [resource]
 script = ExtResource("1_dtjrn")
 id = 0
+level = 8
+exp = 0
 unit_class = "Boss"
-attributes = {
-0: 10,
+stat = Dictionary[int, int]({
+0: 4,
 1: 2,
 2: 2,
 3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
 }
-skill_list = Array[ExtResource("2_71wds")]([ExtResource("3_1u4rb"), ExtResource("4_5jn2n"), ExtResource("4_el7v1")])
-item_list = Array[ExtResource("1_5jn2n")]([])
+})
+skill_list = Array[ExtResource("2_71wds")]([ExtResource("5_fj1hj"), ExtResource("6_uv8yt"), ExtResource("4_5jn2n"), ExtResource("8_epnp3"), ExtResource("4_el7v1")])
+skill_table = Dictionary[int, ExtResource("2_71wds")]({})
+item_list = Array[ExtResource("1_5jn2n")]([ExtResource("2_l4kes")])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"
