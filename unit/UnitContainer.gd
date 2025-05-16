@@ -127,6 +127,7 @@ func select_unit(unit: Unit):
 	skill_chosen = null
 	current_unit.toggle_outline(true)
 	connect_current_unit_signals()
+	EventBus.tutorial_trigger.emit("unit_selected")
 	
 func deselect_current_unit():
 	if current_unit == null:

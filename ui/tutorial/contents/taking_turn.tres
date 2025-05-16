@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_w61jc")
+trigger = "battle_start"
+only_once = true
+triggered = false
 title = "Taking Your Turn"
 body_text = "For each turn, each of your units can [color=yellow]move once[/color] and [color=yellow]attack once[/color].
 

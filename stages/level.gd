@@ -26,6 +26,7 @@ const INTRAVERSABLE_WEIGHT: float = 999
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	EventBus.connect("battle_started", _on_battle_started)
+	EventBus.connect("tutorial_trigger", _on_tutorial_triggered)
 	$Units.connect("switch_turn", _on_units_switch_turn)
 	
 	HexNavi.set_current_map(tile_map)
@@ -37,21 +38,20 @@ func _ready():
 	pause_canvas_layer.pre_battle_box.visible = true
 	
 	Global.set_last_battle_scene(get_tree().current_scene.scene_file_path)
+	
+	# Reset all tutorial in queue
+	for tutorial in tutorial_queue:
+		tutorial.triggered = false
 
 func battle_start():
 	EventBus.clear_preview.emit()
 	await pause_canvas_layer.play_both_bar_slide_out()
 	
-	if !tutorial_queue.is_empty():
-		if Global.ui_busy:
-			await EventBus.ui_element_ended # wait for fade
-		Global.start_tutorial(tutorial_queue)
-		await EventBus.ui_element_ended
-	
 	await Global.play_label_slide_from_left("Battle!")
 	
 	pause_canvas_layer.battle_box.visible = true
 	unit_group_control.battle_start()
+	EventBus.tutorial_trigger.emit("battle_start")
 
 func _on_battle_started():
 	battle_start()
@@ -64,6 +64,7 @@ func _on_battle_ended(result: int):
 	var init_level : int = Global.level
 	if result == EventBus.BattleResult.PLAYER_VICTORY:
 		Global.finished_level()
+		EventBus.tutorial_trigger.emit("player_win")
 		
 		# gain exp points
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
@@ -100,3 +101,12 @@ func _on_units_switch_turn(is_player):
 func grant_exp(unit_data: UnitData, amount: int):
 	unit_data.gain_exp(amount)
 	#handles display logic here
+
+func _on_tutorial_triggered(trigger: String):
+	var queue_to_play: Array[TutorialContent]
+	for tutorial in tutorial_queue:
+		if tutorial.trigger == trigger and (!tutorial.triggered or !tutorial.only_once):
+			queue_to_play.append(tutorial)
+			tutorial.triggered = true
+	if queue_to_play.size() > 0:
+		Global.start_tutorial(queue_to_play)

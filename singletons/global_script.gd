@@ -212,6 +212,8 @@ func start_dialogue(text : Array[String], in_cutscene : bool = false):
 	a.queue_free()
 
 func start_tutorial(page_queue: Array[TutorialContent]):
+	if page_queue.size() <= 0:
+		return
 	var a = TUTORIAL.instantiate()
 	GlobalUI.add_child(a)
 	a.init(page_queue)

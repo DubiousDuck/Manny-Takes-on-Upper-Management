@@ -44,6 +44,7 @@ func _on_button_pressed():
 			print("# SKILL CHOSEN: " + button.skill.name + " (skill_select.gd)")
 			EventBus.emit_signal("skill_chosen", button.skill)
 			button.button_pressed = false
+			EventBus.tutorial_trigger.emit("attack_chosen")
 			return
 
 ## display highlights of skill range when hovered over

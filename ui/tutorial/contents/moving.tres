@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_0saiy")
+trigger = "unit_selected"
+only_once = true
+triggered = false
 title = "Moving Your Units"
 body_text = "Click on a unit to see where they can move to (tiles in [color=blue]blue[/color]).
 

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://y8fy1w1vsmjw"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_bhwfm"]
+
+[resource]
+script = ExtResource("1_bhwfm")
+trigger = "player_win"
+only_once = true
+triggered = false
+title = "Victory"
+body_text = "Congratulations! You have won your first battle.
+
+Winning a battle will give all your members EXP points, which can make them level up and learn new skills.
+
+You will also get a random item that can boost you units even further.
+
+For certain levels, you will also get a Recruit Token that will allow you to recruit new members to your team."
+image_file = ""
+image_param = {}

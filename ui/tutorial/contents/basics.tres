@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_agqo6")
+trigger = "battle_start"
+only_once = true
+triggered = false
 title = "Basics"
 body_text = "Defeat [color=red]all enemies[/color] by making their health drop below 0!
 

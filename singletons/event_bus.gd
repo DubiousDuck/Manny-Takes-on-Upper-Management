@@ -56,3 +56,6 @@ signal input_back
 #Transition
 signal start_battle
 signal back_to_overworld
+
+# Tutorial triggers
+signal tutorial_trigger(trigger: String)
