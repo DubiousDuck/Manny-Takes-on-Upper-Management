@@ -24,13 +24,13 @@ stat = Dictionary[int, int]({
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
-0: 1
+0: 2
 },
 3: {
-1: 1
+1: 2
 },
 4: {
-2: 1
+2: 2
 },
 5: {
 0: 2

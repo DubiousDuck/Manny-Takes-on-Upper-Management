@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://bwq20icvgd2sw"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_0saiy"]
+
+[resource]
+script = ExtResource("1_0saiy")
+title = "Moving Your Units"
+body_text = "Click on a unit to see where they can move to (tiles in [color=blue]blue[/color]).
+
+Then click on the tile you want your unit to move to!
+
+"
+image_file = "uid://deecwx5aksxu2"
+image_param = {}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

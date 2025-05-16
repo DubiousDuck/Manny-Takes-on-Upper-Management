@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource("1_agqo6")
 title = "Basics"
-body_text = "Defeat your enemies by damaging them and make their health point [color=yellow]drop below 0![/color]
+body_text = "Defeat [color=red]all enemies[/color] by making their health drop below 0!
 
-But watch out. You lose if [color=yellow]all your units[/color] run out of health points!
+But watch out. You lose if [color=blue]all your units[/color] run out of health points!
 
-Plan your actions carefully to outsmart your opponent!"
-image_file = ""
+"
+image_file = "uid://cxfdkajrgb2uv"
 image_param = {}
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"

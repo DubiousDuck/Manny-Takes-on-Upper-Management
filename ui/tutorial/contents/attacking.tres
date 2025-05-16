@@ -5,18 +5,11 @@
 [resource]
 script = ExtResource("1_0ge5i")
 title = "Attacking"
-body_text = "Using attacks and skills can damage your enemies (along with other effects)
+body_text = "To use an attack, choose one on the list and select a valid target (highlighted in [color=darkorange]organge[/color]).
 
-Click on the unit to see what attacks are available. When you hover over them, you can see the range that each attack can be used in.
-
-To use an attack, choose one on the list and select a valid target (highlighted in [color=yellow]YELLOW[/color]).
-If you don't see any yellow highlights, that means there are no valid targets yet. Consider moving the unit to a closer square or select another skill.
+If you don't see any [color=darkorange]orange[/color] highlights, that means there are no valid targets yet.
 
 "
-image_file = "uid://noad2rcbno0d"
-image_param = {
-"height": 30,
-"size_in_percent": true,
-"width": 30
-}
+image_file = "uid://dx4fiu6acv7hs"
+image_param = {}
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"

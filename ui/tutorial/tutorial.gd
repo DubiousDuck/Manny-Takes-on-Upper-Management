@@ -27,9 +27,9 @@ func init(page_queue: Array[TutorialContent]):
 			var image = load(page.image_file)
 			#TODO: Read and apply image parameters
 			if page.image_param.size() != 0:
-				var img_width: int = page.image_param["width"]
-				var img_height: int = page.image_param["height"]
-				var size_in_percent: bool = page.image_param["size_in_percent"]
+				var img_width: int = page.image_param.get("width", 50)
+				var img_height: int = page.image_param.get("height", 30)
+				var size_in_percent: bool = page.image_param.get("size_in_percent", true)
 				content.add_image(image, img_width, img_height,Color(1, 1, 1, 1),5,Rect2(0,0,0,0),null,false,"",size_in_percent)
 			else:
 				content.add_image(image)

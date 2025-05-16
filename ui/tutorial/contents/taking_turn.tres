@@ -9,13 +9,7 @@ body_text = "For each turn, each of your units can [color=yellow]move once[/colo
 
 When all of your units have moved and attacked, your turn ends.
 
-When you click on a unit, the [color=blue]BLUE highlights[/color] are the tiles that the unit can go to. Click on any of them to move the unit to that tile.
-
 "
-image_file = "uid://ccfrsf6p2hpq6"
-image_param = {
-"height": 28,
-"size_in_percent": true,
-"width": 25
-}
+image_file = ""
+image_param = {}
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"
