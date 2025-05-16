@@ -4,8 +4,11 @@
 
 [resource]
 script = ExtResource("1_0ge5i")
+trigger = "ready_to_attack"
+only_once = true
+triggered = false
 title = "Attacking"
-body_text = "To use an attack, choose one on the list and select a valid target (highlighted in [color=darkorange]organge[/color]).
+body_text = "To use an attack, choose one on the list and select a valid target (highlighted in [color=darkorange]orange[/color]).
 
 If you don't see any [color=darkorange]orange[/color] highlights, that means there are no valid targets yet.
 

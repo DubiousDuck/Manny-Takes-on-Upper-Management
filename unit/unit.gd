@@ -252,6 +252,7 @@ func move_along_path(full_path : Array[Vector2i]):
 	
 	EventBus.emit_signal("update_cell_status", true)
 	movement_complete.emit()
+	EventBus.emit_signal("tutorial_trigger", "ready_to_attack")
 
 func take_action(skill: SkillInfo, target_cell: Vector2i = Vector2i.MIN): #where animations are handled
 	actions_avail.erase(Action.ATTACK)
