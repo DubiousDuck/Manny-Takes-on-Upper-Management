@@ -6,6 +6,7 @@ var multiple_lines: Array[String] = []
 
 func _on_body_entered(body):
 	$CollisionShape2D.disabled = true
+	print("Body entered...")
 	if body is Player:
 		if has_node("AnimationPlayer"):
 			multiple_lines.clear()
