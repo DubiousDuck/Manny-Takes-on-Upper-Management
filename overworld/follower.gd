@@ -8,7 +8,7 @@ const FOLLOW_D = 45
 const DISPERSE_D = 30
 const hold_offset = Vector2(0, -15)
 
-const SPEED = 80
+const SPEED = 100
 const SCALE := 3
 const TURN_COOLDOWN = 0.15  # seconds between allowed steps
 
