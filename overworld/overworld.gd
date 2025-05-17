@@ -6,6 +6,7 @@ class_name Overworld
 var follower_spawn_radius: float = 50
 
 @export var followers = {}
+@export var tutorial_queue: Array[TutorialContent] = []
 
 ## Deprecated for now since we're respawning followers every time (not saving them into the packed scene)
 func _set_owner_recursive(node : Node, new_owner : Node):
@@ -90,6 +91,14 @@ func _ready():
 		await EventBus.ui_element_ended
 		Global.lose_dialogue.clear()
 	Global.battle_result = "none"
+	
+	TutorialManager.set_tutorial_queue(tutorial_queue)
+	# check if player has recruit token and call tutorial if needed
+	if Global.recruit_token >= 1:
+		EventBus.emit_signal("tutorial_trigger", "recruit_tutorial")
+	
+	HintManager.pause_idle_timer()
+	
 
 func _on_save_pressed():
 	Global.save_screen()

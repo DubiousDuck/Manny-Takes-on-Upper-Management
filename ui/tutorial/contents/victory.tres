@@ -10,10 +10,10 @@ triggered = false
 title = "Victory"
 body_text = "Congratulations! You have won your first battle.
 
-Winning a battle will give all your members EXP points, which can make them level up and learn new skills.
+Winning a battle will give all your members [color=darkgreen]EXP points[/color], which can make them level up and learn new skills.
 
-You will also get a random item that can boost you units even further.
+You will also get a random [color=darkred]item[/color] that can boost you units even further.
 
-For certain levels, you will also get a Recruit Token that will allow you to recruit new members to your team."
+For certain levels, you will also get a [color=darkred]Recruit Token[/color] that will allow you to recruit new members to your team."
 image_file = ""
 image_param = {}

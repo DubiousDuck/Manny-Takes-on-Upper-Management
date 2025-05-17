@@ -25,6 +25,8 @@ GlobalUI="*res://singletons/ui_layer.tscn"
 UnitDatabase="*res://singletons/unit_database.gd"
 SkillInfobase="*res://singletons/skill_infobase.gd"
 ItemDatabase="*res://singletons/item_database.gd"
+TutorialManager="*res://singletons/tutorial_manager.gd"
+HintManager="*res://singletons/hint_manager.gd"
 
 [display]
 

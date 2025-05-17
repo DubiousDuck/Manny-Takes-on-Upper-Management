@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgmix3fxts3qo"]
+
+[ext_resource type="Script" uid="uid://rb3oegjhd3ws" path="res://ui/hint/hint_ui.gd" id="1_mbh8s"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_7pe8w"]
+
+[node name="HintUi" type="CanvasLayer"]
+script = ExtResource("1_mbh8s")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.5
+offset_top = 101.0
+offset_right = 109.5
+offset_bottom = 139.0
+grow_horizontal = 2
+theme = ExtResource("2_7pe8w")
+theme_override_colors/font_outline_color = Color(0.697517, 0.600565, 0.507253, 1)
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 48
+text = "This is a hint!"
+horizontal_alignment = 1

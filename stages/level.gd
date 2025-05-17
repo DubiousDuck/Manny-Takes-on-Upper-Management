@@ -26,7 +26,6 @@ const INTRAVERSABLE_WEIGHT: float = 999
 func _ready():
 	EventBus.connect("battle_ended", _on_battle_ended)
 	EventBus.connect("battle_started", _on_battle_started)
-	EventBus.connect("tutorial_trigger", _on_tutorial_triggered)
 	$Units.connect("switch_turn", _on_units_switch_turn)
 	
 	HexNavi.set_current_map(tile_map)
@@ -39,9 +38,8 @@ func _ready():
 	
 	Global.set_last_battle_scene(get_tree().current_scene.scene_file_path)
 	
-	# Reset all tutorial in queue
-	for tutorial in tutorial_queue:
-		tutorial.triggered = false
+	TutorialManager.set_tutorial_queue(tutorial_queue)
+	TutorialManager.reset_tutorial_queue()
 
 func battle_start():
 	EventBus.clear_preview.emit()
@@ -52,6 +50,10 @@ func battle_start():
 	pause_canvas_layer.battle_box.visible = true
 	unit_group_control.battle_start()
 	EventBus.tutorial_trigger.emit("battle_start")
+	await EventBus.ui_element_ended
+	
+	HintManager.trigger_hint("level_1_intro", "Click on your unit (in blue) to continue!")
+	HintManager.continue_idle_timer()
 
 func _on_battle_started():
 	battle_start()
@@ -97,16 +99,11 @@ func _on_units_switch_turn(is_player):
 	await get_tree().create_timer(0.75).timeout
 	await pause_canvas_layer.play_top_bar_slide_in(true, is_player)
 	unit_group_control.start_next_turn()
+	
+	if is_player:
+		HintManager.continue_idle_timer()
+	else: HintManager.pause_idle_timer()
 
 func grant_exp(unit_data: UnitData, amount: int):
 	unit_data.gain_exp(amount)
 	#handles display logic here
-
-func _on_tutorial_triggered(trigger: String):
-	var queue_to_play: Array[TutorialContent]
-	for tutorial in tutorial_queue:
-		if tutorial.trigger == trigger and (!tutorial.triggered or !tutorial.only_once):
-			queue_to_play.append(tutorial)
-			tutorial.triggered = true
-	if queue_to_play.size() > 0:
-		Global.start_tutorial(queue_to_play)

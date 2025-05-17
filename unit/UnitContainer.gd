@@ -558,6 +558,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
 			EventBus.clear_preview.emit()
+			HintManager.reset_idle_timer()
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			EventBus.emit_signal("remove_all_cell_highlights")
 		if event.button_index == MOUSE_BUTTON_LEFT and is_waiting_unit_selection:

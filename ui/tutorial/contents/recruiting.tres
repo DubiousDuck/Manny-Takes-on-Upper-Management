@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://wak6x8iotnve"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_r6gq8"]
+
+[resource]
+script = ExtResource("1_r6gq8")
+trigger = "recruit_tutorial"
+only_once = true
+triggered = false
+title = "Recruiting"
+body_text = "With [color=darkred]Recruit Tokens[/color], you can talk to the Recruiter to add a new member to your team.
+
+Note that you can only recruit units that you have defeated, so go fight everyone to collect them all!
+
+"
+image_file = "uid://dt4pj8il2t4pm"
+image_param = {}
