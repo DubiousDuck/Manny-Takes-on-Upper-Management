@@ -13,7 +13,7 @@ class_name PlayerData extends Resource
 ## Current party
 @export var recruit_token: int = 0
 @export var max_party_num: int = 3
-@export var current_party: Array[UnitData] = [preload("res://unit/params/protagonist.tres")]
+@export var current_party: Array[UnitData] = [preload("res://unit/params/protagonist.tres").duplicate(true)]
 @export var reserves: Array[UnitData] = []
 @export var eaten_units: Array[UnitData] = []
 @export var unequipped_items: Array[ItemData] = []
@@ -21,6 +21,9 @@ class_name PlayerData extends Resource
 ## Level Progess
 @export var finished_levels := {}
 @export var events : Array[String] = []
+
+## Tutorial seen
+@export var tutorial_seen: Dictionary[String, bool] = {}
 
 func to_dict() -> Dictionary:
 	return {
@@ -35,7 +38,8 @@ func to_dict() -> Dictionary:
 		"eaten_units": eaten_units.map(func(unit): return unit.to_dict()),
 		"unequipped_items": unequipped_items.map(func(item): return item.to_dict()),
 		"finished_levels": finished_levels,
-		"events": events
+		"events": events,
+		"tutorial_seen": tutorial_seen,
 	}
 
 func from_dict(data: Dictionary) -> void:
@@ -58,6 +62,12 @@ func from_dict(data: Dictionary) -> void:
 	var raw_events = data.get("events", [])
 	for event in raw_events:
 		events.append(event)
+	
+	# recasting from Dictionary to Dictionary[String, bool]
+	tutorial_seen.clear()
+	var raw_tutorial_seen = data.get("tutorial_seen", {})
+	for title in raw_tutorial_seen.keys():
+		tutorial_seen[title] = raw_tutorial_seen[title]
 
 static func parse_unitdata_array(data_array: Array) -> Array[UnitData]:
 	var result: Array[UnitData] = []

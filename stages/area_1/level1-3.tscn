@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=35 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
-[ext_resource type="Resource" uid="uid://pqfv7v3eumv8" path="res://ui/tutorial/contents/pit.tres" id="3_t8occ"]
-[ext_resource type="Resource" uid="uid://c0gsrldtwajs2" path="res://ui/tutorial/contents/defend.tres" id="4_7nx3r"]
+[ext_resource type="Resource" uid="uid://bb24666vw4wd0" path="res://ui/tutorial/contents/buffs.tres" id="3_iigxo"]
+[ext_resource type="Resource" uid="uid://dsp6ftn0d0m3e" path="res://ui/tutorial/contents/debuffs.tres" id="4_fa8xf"]
+[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_phfro"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_uip54"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
@@ -146,7 +147,8 @@ script = ExtResource("1_t8occ")
 tile_map = NodePath("TileMapTest")
 inital_exp = 9
 repeat_exp = 2
-tutorial_queue = Array[ExtResource("2_7nx3r")]([ExtResource("3_t8occ"), ExtResource("4_7nx3r")])
+dropped_items = Array[ExtResource("18_t610e")]([ExtResource("25_k22tc"), ExtResource("4_phfro")])
+tutorial_queue = Array[ExtResource("2_7nx3r")]([ExtResource("3_iigxo"), ExtResource("4_fa8xf")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -720.0

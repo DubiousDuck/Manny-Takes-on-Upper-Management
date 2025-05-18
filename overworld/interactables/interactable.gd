@@ -21,7 +21,8 @@ func _input(_event):
 
 func _on_body_entered(body):
 	# highlight sprite when player entered
-	if body is Player:
+	if body is Player and !Global.ui_busy and !Global.in_cutscene:
+		HintManager.trigger_hint("interactable_approached", "Press SPACE to interact with NPCs!")
 		$Sprite2D.modulate = Color(0.5, 0.5, 0.5)
 		is_in_range = true
 

@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_yrkhx")
+trigger = ""
+only_once = true
+triggered = false
 title = "The Pit"
 body_text = "[color=firebrick]The Pit[/color] is a dangerous tile. Units that got pushed into it is removed from the battle immediately.
 

@@ -180,7 +180,7 @@ var dialogue_choice: String = ""
 var can_actors_move : bool = true:
 	set(new_value):
 		can_actors_move = new_value
-		print("can_actors_move is now: " + str(new_value))
+		#print("can_actors_move is now: " + str(new_value))
 var ui_busy : bool = false
 ## boolean used to stop other inputs other than Global to prevent accidental interactions
 var in_cutscene: bool = false
@@ -277,22 +277,7 @@ func load_player_data(save: int) -> bool:
 		player_data.from_dict(result)
 		print("- Loaded player data from JSON index ", str(save))
 		
-		#load player level
-		current_exp = player_data.current_exp
-		level = player_data.level
-		
-		#copy current_party
-		recruit_token = player_data.recruit_token
-		max_party_num = player_data.max_party_num
-		current_party = player_data.current_party.duplicate(true)
-		eaten_units = player_data.eaten_units.duplicate(true)
-		reserves = player_data.reserves.duplicate(true)
-		unequipped_items = player_data.unequipped_items.duplicate(true)
-		
-		#load level progress
-		finished_levels = player_data.finished_levels
-		events = player_data.events
-
+		load_player_data_to_global(player_data)
 		return true
 	else:
 		push_error("Failed to parse JSON save file.")
@@ -334,6 +319,7 @@ func save_player_data(save: int):
 	player_data.unequipped_items = unequipped_items.duplicate(true)
 	player_data.finished_levels = finished_levels
 	player_data.events = events
+	player_data.tutorial_seen = TutorialManager.tutorial_seen
 
 	var json_string = JSON.stringify(player_data.to_dict(), "\t")  # Pretty print with tabs
 	var file_path = save_path + player_save_file + str(save) + ".json"
@@ -346,10 +332,27 @@ func save_player_data(save: int):
 
 ## Set parameters of a new save file
 func load_new_save():
-	recruit_token = 0
+	player_data = PlayerData.new()
+	load_player_data_to_global(player_data)
+
+## Helper function that converts all variables in player_data to Global
+func load_player_data_to_global(player_data: PlayerData):
+	#load player level
+	current_exp = player_data.current_exp
+	level = player_data.level
 	
-	current_exp = 0
-	level = 1
+	#copy current_party
+	recruit_token = player_data.recruit_token
+	max_party_num = player_data.max_party_num
+	current_party = player_data.current_party.duplicate(true)
+	eaten_units = player_data.eaten_units.duplicate(true)
+	reserves = player_data.reserves.duplicate(true)
+	unequipped_items = player_data.unequipped_items.duplicate(true)
 	
-	var protag = preload("res://unit/params/protagonist.tres")
-	current_party.append_array([protag.duplicate(true)])
+	#load level progress
+	finished_levels = player_data.finished_levels
+	events = player_data.events
+	
+	#load tutorial seen
+	TutorialManager.tutorial_seen = player_data.tutorial_seen
+	TutorialManager.update_tutorial_seen()

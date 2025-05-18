@@ -14,5 +14,9 @@ If you don't see any [color=darkorange]orange[/color] highlights, that means the
 
 "
 image_file = "uid://dx4fiu6acv7hs"
-image_param = {}
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 100
+}
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"

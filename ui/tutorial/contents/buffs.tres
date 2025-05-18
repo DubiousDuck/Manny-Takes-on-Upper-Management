@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://bb24666vw4wd0"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_tvrg2"]
+
+[resource]
+script = ExtResource("1_tvrg2")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Buffs"
+body_text = "Skills such as [i]Raise Attack[/i] are BUFF skills, which boosts the target's stats for a few turns.
+
+Buffed stat is displayed in [color=green]green[/color] in the Unit Preview Window.
+
+"
+image_file = "uid://o8kady285t37"
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 100
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

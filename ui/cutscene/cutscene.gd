@@ -15,7 +15,7 @@ func _on_body_entered(body):
 		if has_node("AnimationPlayer"):
 			# Wait till previous UI to finish
 			if Global.ui_busy:
-				print("Global UI busy now, waiting for other UI to finish -- cutscene.gd")
+				#print("Global UI busy now, waiting for other UI to finish -- cutscene.gd")
 				await EventBus.ui_element_ended
 			multiple_lines.clear()
 			for i in animations:

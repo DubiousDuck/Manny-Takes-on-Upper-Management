@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://dsp6ftn0d0m3e"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_0smbj"]
+
+[resource]
+script = ExtResource("1_0smbj")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Debuffs"
+body_text = "Skills such as [i]Lower Attack[/i] are DEBUFF skills, which lowers the target's stats for a few turns.
+
+Debuffed stat is displayed in [color=red]red[/color] in the Unit Preview Window.
+
+"
+image_file = "uid://d3b6j4ct64103"
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 100
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

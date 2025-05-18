@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_shuqy")
+trigger = ""
+only_once = true
+triggered = false
 title = "Tank and Defend"
 body_text = "The [color=medium_blue]Tank[/color] is a class that focuses on taking hits from the enemy while reducing damage taken.
 

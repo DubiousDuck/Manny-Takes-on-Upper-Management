@@ -4,6 +4,7 @@ func _ready():
 	$AnimationPlayer.play("looping_background")
 
 func _on_start_pressed() -> void:
+	Global.load_new_save()
 	Global.scene_transition("res://overworld/area_1.tscn")
 
 func _on_load_pressed() -> void:
