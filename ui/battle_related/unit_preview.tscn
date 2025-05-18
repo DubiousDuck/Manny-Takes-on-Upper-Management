@@ -20,7 +20,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.45098)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -142,6 +141,21 @@ layout_mode = 2
 
 [node name="SkillPreview2" parent="TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList" instance=ExtResource("5_i30d4")]
 layout_mode = 2
+
+[node name="Hint" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.5
+offset_top = -20.0
+offset_right = 130.5
+offset_bottom = -1.0
+grow_horizontal = 2
+theme = ExtResource("3_gxqd5")
+theme_override_font_sizes/font_size = 24
+text = "Right Click to Lock/Unlock Window"
+horizontal_alignment = 1
 
 [node name="LeftAnchor" type="Control" parent="."]
 layout_mode = 3

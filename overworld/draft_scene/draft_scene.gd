@@ -1,10 +1,10 @@
 extends Node2D
 
+@export var tutorial_queue: Array[TutorialContent] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	TutorialManager.set_tutorial_queue(tutorial_queue)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -14,6 +14,7 @@ func _process(delta):
 const MEMBER = preload("res://overworld/party_comp/member_draggable.tscn")
 
 func back_to_overworld():
+	EventBus.tutorial_trigger.emit("first_time_recruit")
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 func party_add_logic(ally_type):

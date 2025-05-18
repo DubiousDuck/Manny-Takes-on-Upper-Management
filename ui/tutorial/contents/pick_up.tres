@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_yqj5i")
+trigger = ""
+only_once = true
+triggered = false
 title = "Pick Up and Throw"
 body_text = "[color=khaki]Pick Up[/color] is a special skill that only [color=khaki]the Protag[/color] can use.
 

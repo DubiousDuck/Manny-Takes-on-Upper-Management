@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqklkavqa6tyq"]
+[gd_scene load_steps=6 format=3 uid="uid://bqklkavqa6tyq"]
 
 [ext_resource type="Script" uid="uid://bvgd3anb82ts6" path="res://overworld/draft_scene/draft_scene.gd" id="1_qn7a5"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_cxd4b"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_hynep"]
+[ext_resource type="Resource" uid="uid://cb5xoho7r6m3v" path="res://ui/tutorial/contents/party_managing.tres" id="3_i652p"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_jot76"]
 
 [node name="draft_scene" type="Node2D"]
 script = ExtResource("1_qn7a5")
+tutorial_queue = Array[ExtResource("2_cxd4b")]([ExtResource("3_i652p")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 41.0

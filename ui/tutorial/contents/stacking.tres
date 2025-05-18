@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_r0wdv")
+trigger = ""
+only_once = true
+triggered = false
 title = "Stacking Units"
 body_text = "Units can stand on the same tile through different means (ex: [color=tomato]Fighter's Shove[/color] or [color=khaki]Protag's Throw[/color]).
 

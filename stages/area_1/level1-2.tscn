@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_imwcb"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_0p6ia"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_d7y36"]
-[ext_resource type="Resource" uid="uid://ckgubaajjft1p" path="res://ui/tutorial/contents/stacking.tres" id="3_hpvmt"]
 [ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="3_iynos"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_5wd2o"]
-[ext_resource type="Resource" uid="uid://dv6hkequ4au45" path="res://ui/tutorial/contents/pick_up.tres" id="4_hpvmt"]
 [ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="5_eiuv0"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_imwcb"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="6_6cqhd"]
+[ext_resource type="Resource" uid="uid://rq4gmb4trdnv" path="res://ui/tutorial/contents/PoF_1.tres" id="7_5tsjb"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="7_iynos"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="8_5wd2o"]
+[ext_resource type="Resource" uid="uid://16yrp6gsk1nq" path="res://ui/tutorial/contents/PoF_2.tres" id="8_bp7lx"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="9_eiuv0"]
 [ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="10_5tsjb"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="11_bp7lx"]
@@ -105,7 +105,7 @@ tile_map = NodePath("TileMapTest")
 inital_exp = 6
 repeat_exp = 2
 dropped_items = Array[ExtResource("2_0p6ia")]([ExtResource("3_iynos"), ExtResource("4_5wd2o"), ExtResource("5_eiuv0")])
-tutorial_queue = Array[ExtResource("2_d7y36")]([ExtResource("3_hpvmt"), ExtResource("4_hpvmt")])
+tutorial_queue = Array[ExtResource("2_d7y36")]([ExtResource("7_5tsjb"), ExtResource("8_bp7lx")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -720.0

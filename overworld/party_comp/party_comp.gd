@@ -5,6 +5,8 @@ class_name PartyComp
 const MEMBER = preload("res://overworld/party_comp/member_draggable.tscn")
 const ITEM = preload("res://overworld/party_comp/item_draggable.tscn")
 
+@export var tutorial_queue: Array[TutorialContent] = []
+
 @onready var member_folder = $MemberFolder
 @onready var item_folder = $ItemFolder
 
@@ -50,6 +52,9 @@ func _ready():
 			randi_range(item_folder.global_position.y - 100, item_folder.global_position.y + 100))
 		a.global_position = random_pos
 		a.update_original_pos(random_pos)
+	
+	TutorialManager.set_tutorial_queue(tutorial_queue)
+	EventBus.tutorial_trigger.emit("first_time_party_manage")
 
 func _process(_delta):
 	#default all members that are not in CurrParty to reserves

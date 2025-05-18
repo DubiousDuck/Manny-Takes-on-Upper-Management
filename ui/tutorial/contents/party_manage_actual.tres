@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://dihtbdtq6phob"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_1oyw2"]
+
+[resource]
+script = ExtResource("1_1oyw2")
+trigger = "first_time_party_manage"
+only_once = true
+triggered = false
+title = "Party Manage Detail"
+body_text = "In the Party Manage tab, you can arrange who should be fighting with you and who should be on standby.
+
+You can also equip [color=gold]Items[/color] by dragging them to your units.
+
+"
+image_file = "uid://1jsksqfispve"
+image_param = {}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

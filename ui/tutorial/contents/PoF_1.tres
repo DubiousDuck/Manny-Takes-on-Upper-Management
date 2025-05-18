@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://rq4gmb4trdnv"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_axeet"]
+
+[resource]
+script = ExtResource("1_axeet")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Power of Friendship"
+body_text = "When you have two or more units in your team. You will be able to perform [color=darkviolet]Power of Friendship[/color].
+
+When you hit an enemy for the first time, they will be marked.
+
+"
+image_file = "uid://d3sgnjlq8pe1e"
+image_param = {
+"height": 284,
+"size_in_percent": false,
+"width": 410
+}

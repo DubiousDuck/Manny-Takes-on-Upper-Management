@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://cb5xoho7r6m3v"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_ogxu6"]
+
+[resource]
+script = ExtResource("1_ogxu6")
+trigger = "first_time_recruit"
+only_once = true
+triggered = false
+title = "Managing Your Party"
+body_text = "Congratulation on recruiting your first party member!
+
+You can manage your party through the \"Party Manage\" button both in the Overworld and before battle.
+
+"
+image_file = "uid://81fmpxqno311"
+image_param = {}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

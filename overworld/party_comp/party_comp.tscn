@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwbm8ftgxtwma"]
+[gd_scene load_steps=14 format=3 uid="uid://bwbm8ftgxtwma"]
 
 [ext_resource type="Script" uid="uid://qpe6h30h7oxq" path="res://overworld/party_comp/party_comp.gd" id="1_2gams"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_bnlj8"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_dwnhv"]
 [ext_resource type="Script" uid="uid://do7ou2t2cnoup" path="res://overworld/party_comp/droppable.gd" id="2_dynxh"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_xqlrn"]
 [ext_resource type="Script" uid="uid://d3grc03j4eh61" path="res://overworld/party_comp/max_num.gd" id="3_o86wr"]
+[ext_resource type="Resource" uid="uid://dihtbdtq6phob" path="res://ui/tutorial/contents/party_manage_actual.tres" id="3_tp2wy"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="3_xqlrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85k4d"]
@@ -53,6 +55,7 @@ _data = {
 
 [node name="PartyComp" type="Node2D"]
 script = ExtResource("1_2gams")
+tutorial_queue = Array[ExtResource("2_bnlj8")]([ExtResource("3_tp2wy")])
 
 [node name="MovingBackground" type="TextureRect" parent="."]
 z_index = -1
