@@ -14,6 +14,7 @@ func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
 		locked=false
 func _interact_call_back():
+	super()
 	if locked:
 		check_locked()
 	if locked:

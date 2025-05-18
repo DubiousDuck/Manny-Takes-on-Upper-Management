@@ -5,9 +5,11 @@ class_name Interactable
 
 var is_in_range: bool = false
 var mouse_selected: bool = false
+var hint_message: String = "Press SPACE or Left Click to interact with NPCs/objects!"
 
 ## virtual function that should be customized by each inherited class
 func _interact_call_back():
+	HintManager.hide_hint(hint_message)
 	pass
 
 func _input(_event):
@@ -22,7 +24,7 @@ func _input(_event):
 func _on_body_entered(body):
 	# highlight sprite when player entered
 	if body is Player and !Global.ui_busy and !Global.in_cutscene:
-		HintManager.trigger_hint("interactable_approached", "Press SPACE to interact with NPCs!")
+		HintManager.trigger_hint("interactable_approached", hint_message)
 		$Sprite2D.modulate = Color(0.5, 0.5, 0.5)
 		is_in_range = true
 

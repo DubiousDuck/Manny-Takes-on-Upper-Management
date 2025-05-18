@@ -7,6 +7,7 @@ var idle_timer := Timer.new()
 var current_hint_id := ""
 
 signal hint_requested(text: String)
+signal hint_hide(text: String)
 
 func _ready():
 	var ui = HINT_UI.instantiate()
@@ -37,3 +38,6 @@ func pause_idle_timer():
 func continue_idle_timer():
 	idle_timer.paused = false
 	reset_idle_timer()
+
+func hide_hint(message: String):
+	hint_hide.emit(message)

@@ -18,6 +18,7 @@ func _process(delta):
 			$AnimationPlayer.play("idle")
 
 func _interact_call_back():
+	super()
 	if Global.recruit_token <= 0:
 		Global.start_dialogue(["I'm sorry, you don't have enough Recruit Tokens.", "Come back when you got one."])
 		await EventBus.ui_element_ended

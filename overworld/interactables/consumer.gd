@@ -14,6 +14,7 @@ func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
 		locked=false
 func _interact_call_back():
+	super()
 	Global.start_dialogue(["...."])
 	await EventBus.ui_element_ended
 

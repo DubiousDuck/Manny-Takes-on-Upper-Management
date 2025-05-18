@@ -26,6 +26,7 @@ func check_completed():
 		completed = true
 
 func _interact_call_back():
+	super()
 	if locked:
 		check_locked()
 	if locked:
