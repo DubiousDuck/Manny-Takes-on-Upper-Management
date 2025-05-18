@@ -103,6 +103,12 @@ Back={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Interaction"
+2d_physics/layer_2="Physics"
+2d_physics/layer_3="Cutscenes"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

@@ -1,10 +1,10 @@
 class_name Actor extends CharacterBody2D
 
 func start_cutscene():
-	Global.can_actors_move = false
+	Global.cutscene_start()
 
 func end_cutscene():
-	Global.can_actors_move = true
+	Global.cutscene_end()
 
 func face_right():
 	get_node("Sprite2D").flip_h = 0

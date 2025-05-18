@@ -177,9 +177,22 @@ const LOAD_UI = preload("res://ui/save_and_load/load_ui.tscn")
 
 var dialogue_choice: String = ""
 
-var can_actors_move : bool = true
+var can_actors_move : bool = true:
+	set(new_value):
+		can_actors_move = new_value
+		print("can_actors_move is now: " + str(new_value))
 var ui_busy : bool = false
+## boolean used to stop other inputs other than Global to prevent accidental interactions
+var in_cutscene: bool = false
 
+func cutscene_start():
+	in_cutscene = true
+	can_actors_move = false
+
+func cutscene_end():
+	in_cutscene = false
+	can_actors_move = true
+	
 func ui_element_start():
 	ui_busy = true ## prevent accidental freeze when launching a specific scene from the editor
 	can_actors_move = false
@@ -187,6 +200,7 @@ func ui_element_start():
 
 func ui_element_end():
 	ui_busy = false
+	#print("beep beep making player move true -- ui_element_end of Global.gd")
 	can_actors_move = true
 	get_tree().current_scene.process_mode = Node.PROCESS_MODE_INHERIT
 

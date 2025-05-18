@@ -118,8 +118,8 @@ texture = ExtResource("3_pwake")
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, -1.7806, 8, -1.7806, -8)
 
 [sub_resource type="TileSet" id="TileSet_hq1u4"]
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_6ihvn")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujynv"]
@@ -224,13 +224,12 @@ justification_flags = 35
 [node name="Player" parent="." instance=ExtResource("4_pwake")]
 position = Vector2(626, 464)
 scale = Vector2(0.5, 0.5)
-collision_mask = 3
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(626, 464)
+position = Vector2(626, 480)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -241,6 +240,7 @@ position_smoothing_enabled = true
 
 [node name="IntroDoor" parent="." instance=ExtResource("10_v73oa")]
 position = Vector2(629, 480)
+collision_mask = 1
 scene_to_go = "uid://b6pye0w0cqmw7"
 
 [node name="Elevator" parent="." instance=ExtResource("10_v73oa")]
@@ -337,6 +337,7 @@ metadata/_custom_type_script = "uid://dwofpqt7bueu1"
 [node name="InitialScene" parent="AreaFlags/IntroFlag" instance=ExtResource("14_hq1u4")]
 position = Vector2(561, 384)
 animations = Array[String](["intro_anim1", "intro_anim2", "Dialogue(multiple): This is it... I've decided. I'm standing up against Infant Inc.", "Dialogue(multiple): It's time to save my friend.", "Dialogue(multiple): No matter what it takes!", "intro_anim_end"])
+one_shot = true
 
 [node name="CollisionShape2D" parent="AreaFlags/IntroFlag/InitialScene" index="0"]
 position = Vector2(64, 117.5)

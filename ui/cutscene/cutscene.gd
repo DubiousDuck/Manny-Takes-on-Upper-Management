@@ -1,14 +1,22 @@
 class_name Cutscene extends Area2D
 
 @export_multiline var animations : Array[String]
+@export var one_shot: bool = false
+
+@onready var collision_shape_2d = $CollisionShape2D
+
 
 var multiple_lines: Array[String] = []
 
 func _on_body_entered(body):
-	$CollisionShape2D.disabled = true
-	print("Body entered...")
+	collision_shape_2d.set_deferred("disabled", true)
+	print("Body entered " + str(name))
 	if body is Player:
 		if has_node("AnimationPlayer"):
+			# Wait till previous UI to finish
+			if Global.ui_busy:
+				print("Global UI busy now, waiting for other UI to finish -- cutscene.gd")
+				await EventBus.ui_element_ended
 			multiple_lines.clear()
 			for i in animations:
 				if i.contains("Dialogue(multiple): "): #multiple dialogue lines
@@ -26,7 +34,9 @@ func _on_body_entered(body):
 					else:
 						get_node("AnimationPlayer").play("Cutscenes/" + i)
 						await get_node("AnimationPlayer").animation_finished
-	# If statement to prevent multiple instance of the same events
-	if !Global.events.has(self.name):
-		Global.events.append(self.name)
-		print(Global.events)
+		if !one_shot:
+			collision_shape_2d.set_deferred("disabled", false)
+		# If statement to prevent multiple instance of the same events
+		if !Global.events.has(self.name):
+			Global.events.append(self.name)
+			print(Global.events)
