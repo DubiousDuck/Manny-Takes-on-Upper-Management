@@ -59,10 +59,13 @@ func init(unit: Unit):
 	
 	for child in skill_list.get_children():
 		child.queue_free()
+	
+	# Read and set skill list information
 	for skill in cur_unit.skills:
 		var a = SKILL_PREVIEW.instantiate()
 		skill_list.add_child(a)
 		a.label.text = skill.name
+		a.set_tooltip(skill.description)
 
 func set_label_color(stat: STAT, value: int):
 	var label: Label

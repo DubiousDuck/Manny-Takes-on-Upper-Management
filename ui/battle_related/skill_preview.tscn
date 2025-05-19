@@ -17,6 +17,7 @@ offset_right = 75.0
 offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ov3wf")
 script = ExtResource("1_g4jru")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "This is another tool tip"
 color = Color(0.6, 0.458824, 0.392157, 1)
 
 [node name="Label" type="Label" parent="."]

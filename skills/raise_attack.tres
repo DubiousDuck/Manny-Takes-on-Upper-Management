@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://dda521hi48f5d"
 [resource]
 script = ExtResource("1_v3qds")
 name = "Raise Attack"
+description = "Casually flexing. Boosts the ATK of the target for 2 turns."
 type = 1
 targets = 0
 affinity = null

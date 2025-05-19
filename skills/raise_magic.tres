@@ -14,6 +14,7 @@ metadata/_custom_type_script = "uid://dda521hi48f5d"
 [resource]
 script = ExtResource("1_tmfvc")
 name = "Raise Magic"
+description = "Have the target eat Omega-3-rich fish. Raises the target MAG for 2 turns."
 type = 1
 targets = 0
 affinity = null
@@ -22,4 +23,5 @@ area = 0
 skill_effects = Dictionary[int, Variant]({
 3: SubResource("Resource_hoa8q")
 })
+effect_execution_order = Array[int]([])
 metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

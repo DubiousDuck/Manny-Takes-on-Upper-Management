@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_j4sim")
 name = "Give Milk"
+description = "Throw a milk bottle. Reestores some HP to the target."
 type = 1
 targets = 0
 affinity = 1

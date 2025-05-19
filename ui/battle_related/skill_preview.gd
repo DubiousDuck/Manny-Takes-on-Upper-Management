@@ -2,4 +2,8 @@ extends Control
 
 class_name SkillPreview
 
+@onready var color_rect = $ColorRect
 @onready var label = $Label
+
+func set_tooltip(text: String):
+	color_rect.tooltip_text = text

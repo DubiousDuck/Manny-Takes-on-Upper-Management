@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_8vdav")
 name = "Wait"
+description = "Do nothing and ends your turn."
 type = 1
 targets = 2
 affinity = null

@@ -29,6 +29,7 @@ func init(valid_skills: Array[SkillInfo] = []):
 			continue
 		var a: SkillIcon = icon.instantiate()
 		a.skill = skill
+		a.set_tooltip(skill.description)
 		hbox.add_child(a)
 		buttons.append(a)
 		a.connect("pressed", _on_button_pressed)

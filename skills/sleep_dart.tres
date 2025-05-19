@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_hmb3r")
 name = "Sleep Dart"
+description = "Shoots a sleeping dart. Inflicts Sleep on the target for 2 turns."
 type = 0
 targets = 1
 affinity = 0
@@ -14,4 +15,5 @@ area = 0
 skill_effects = Dictionary[int, Variant]({
 5: ExtResource("2_4apae")
 })
+effect_execution_order = Array[int]([])
 metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

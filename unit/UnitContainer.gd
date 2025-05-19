@@ -144,6 +144,7 @@ func deselect_current_unit():
 	is_waiting_unit_selection = true
 	skill_chosen = null
 	EventBus.emit_signal("remove_cell_highlights", name)
+	HintManager.hide_hint("")
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -593,8 +594,11 @@ func _unhandled_input(event):
 				deselect_current_unit()
 				return
 			
-			#FIXME: attack won't be carried out if enemy and ally are stacked on the same cell
+			#TODO: Make it so that if a skill is chosen the unit can't move when click on a blue cell?
 			if action_type == Unit.Action.MOVE:
+				if skill_chosen != null:
+					deselect_current_unit()
+					return
 				check_and_remove_unit_from_being_held(current_unit)
 				
 				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
@@ -609,6 +613,7 @@ func _unhandled_input(event):
 					in_progress = false
 					deselect_current_unit()
 					return
+				HintManager.hide_hint("Select a target")
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
 				current_unit.take_action(skill_chosen, clicked_cell)
@@ -633,8 +638,10 @@ func highlight_handle():
 	for ac in current_unit.actions_avail:
 		match ac:
 			Unit.Action.MOVE:
-				var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
-				EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.MOVE_RANGE_HIGHLIGHT, name)
+				# Only shows movement highlight if no skill is chosen
+				if skill_chosen == null:
+					var all_neighbors := HexNavi.get_all_neighbors_in_range(current_unit.cell, current_unit.movement_range)
+					EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.MOVE_RANGE_HIGHLIGHT, name)
 			Unit.Action.ATTACK:
 				#TODO: Highlights the range of attack when hovering over Skill Select
 				if skill_chosen == null:
@@ -756,6 +763,7 @@ func _on_skill_chosen(skill: SkillInfo):
 	else: is_aoe_skill = false
 	highlight_handle()
 	update_actionnable_cells(current_unit, skill_chosen)
+	HintManager.trigger_hint("skill_selected", "Select a target", false)
 	
 func get_next_unit_of_same_cell(curr_unit: Unit):
 	for unit in units:

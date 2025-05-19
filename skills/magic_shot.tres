@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_obn1n")
 name = "Magical Shot"
+description = "Shoots an orb of energy. Deals some magic damage to the target."
 type = 0
 targets = 1
 affinity = 1
@@ -13,3 +14,4 @@ area = 0
 skill_effects = Dictionary[int, Variant]({
 0: 1
 })
+effect_execution_order = Array[int]([])
