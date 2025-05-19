@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_ptiey")
-name = "Random Pits"
+name = "Dig a Pit"
+description = "Place a Pit tile at the target location."
 type = 1
 targets = 8
 affinity = 1

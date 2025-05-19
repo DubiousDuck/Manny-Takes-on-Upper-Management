@@ -18,7 +18,7 @@ enum STAT{HP, MOV, ATK, MAG}
 @onready var skill_list = $TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList
 @onready var level_label = $TextureRect/CenterContainer/VBoxContainer/LevelLabel
 
-
+var stat_to_label: Dictionary[String, Label] = {}
 var cur_unit : Unit
 
 var hp: int:
@@ -66,6 +66,9 @@ func init(unit: Unit):
 		skill_list.add_child(a)
 		a.label.text = skill.name
 		a.set_tooltip(skill.description)
+	
+	# Set up tooltips for stats buffs
+	set_tooltip(cur_unit)
 
 func set_label_color(stat: STAT, value: int):
 	var label: Label
@@ -97,6 +100,13 @@ func _ready():
 	EventBus.connect("unit_right_clicked", _unit_right_clicked)
 	EventBus.connect("clear_preview", _clear_preview)
 	preview_window.hide()
+	
+	stat_to_label = {
+		"max_health": hp_label,
+		"attack_power": atk_label,
+		"magic_power": mag_label,
+		"movement_range": mov_label
+	}
 
 func _unit_hovered(unit: Unit):
 	if !locked_unit:
@@ -150,3 +160,16 @@ func set_class_sprite(name: String):
 		_:
 			texture = preload("res://ui/single_sprite_atlus/base_sprite.atlastex")
 	class_sprite.texture = texture
+
+func set_tooltip(unit: Unit):
+	var tooltip_dict: Dictionary[String, String] = {
+		"max_health": "",
+		"attack_power": "",
+		"magic_power": "",
+		"movement_range": ""
+	}
+	for buff in unit.bonus_stat:
+		tooltip_dict[buff.stat] += "+%s from %s" %[int(buff.value),buff.source]
+
+	for key in tooltip_dict.keys():
+		stat_to_label[key].tooltip_text = tooltip_dict[key]
