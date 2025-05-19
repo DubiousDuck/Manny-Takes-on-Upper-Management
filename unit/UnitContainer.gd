@@ -571,6 +571,7 @@ func _unhandled_input(event):
 					select_unit(unit)
 					highlight_handle()
 					update_actionnable_cells(current_unit)
+					HintManager.hide_hint("level_1_intro")
 					return
 		
 		if event.button_index == MOUSE_BUTTON_LEFT and current_unit != null and !in_progress:
@@ -613,7 +614,7 @@ func _unhandled_input(event):
 					in_progress = false
 					deselect_current_unit()
 					return
-				HintManager.hide_hint("Select a target")
+				HintManager.hide_hint("skill_selected")
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
 				current_unit.take_action(skill_chosen, clicked_cell)

@@ -9,7 +9,7 @@ var hint_message: String = "Press SPACE or Left Click to interact with NPCs/obje
 
 ## virtual function that should be customized by each inherited class
 func _interact_call_back():
-	HintManager.hide_hint(hint_message)
+	HintManager.hide_hint("interactable_approached")
 	pass
 
 func _input(_event):

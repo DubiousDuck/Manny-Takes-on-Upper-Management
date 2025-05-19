@@ -39,5 +39,6 @@ func continue_idle_timer():
 	idle_timer.paused = false
 	reset_idle_timer()
 
-func hide_hint(message: String):
-	hint_hide.emit(message)
+func hide_hint(id: String = ""):
+	if current_hint_id == id or id == "":
+		hint_hide.emit()

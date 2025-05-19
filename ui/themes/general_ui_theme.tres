@@ -79,7 +79,9 @@ base_font = ExtResource("1_igkra")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3ih2"]
-bg_color = Color(0.669155, 0.572032, 0.478393, 1)
+bg_color = Color(0.670588, 0.572549, 0.478431, 0.862745)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
 
 [resource]
 Button/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
@@ -150,4 +152,5 @@ RichTextLabel/fonts/bold_italics_font = SubResource("FontVariation_s0s25")
 RichTextLabel/fonts/italics_font = SubResource("FontVariation_wmxsi")
 RichTextLabel/fonts/mono_font = ExtResource("1_igkra")
 RichTextLabel/fonts/normal_font = ExtResource("1_igkra")
+TooltipLabel/font_sizes/font_size = 24
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_o3ih2")

@@ -4,6 +4,7 @@ class_name DraggableItem
 
 @export var item_data: ItemData
 
+@onready var icon = $Icon
 @onready var remove_button : Button = $Remove
 
 var original_pos: Vector2
@@ -12,6 +13,7 @@ var equipper: DraggableMember
 func _ready():
 	if item_data:
 		$Label.text = item_data.item_name
+		icon.tooltip_text = item_data.description
 	original_pos = global_position
 
 func _on_remove_pressed():
