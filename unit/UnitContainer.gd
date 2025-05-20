@@ -258,7 +258,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 						if affected_area.has(new_state.position[buffed]):
 							if not new_state.stat_bonuses.has(buffed):
 								new_state.stat_bonuses[buffed] = []
-							var bonus: BonusStat = effects[key]  # Assume this is a BonusStat object
+							var bonus: BonusStat = load(effects[key]) as BonusStat  # Assume this is a BonusStat object
 							new_state.stat_bonuses[buffed].append(bonus)
 				SkillInfo.EffectType.SET_TILE:
 					match effects[key]:

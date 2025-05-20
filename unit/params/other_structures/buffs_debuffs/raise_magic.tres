@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://boksyrraaj4u8"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_4312n"]
+
+[resource]
+script = ExtResource("1_4312n")
+stat = "magic_power"
+value = 1.0
+source = "Raise Magic"
+duration = 2
+metadata/_custom_type_script = "uid://dda521hi48f5d"

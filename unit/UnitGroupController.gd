@@ -223,11 +223,12 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.PIT)
 						await EventBus.set_cell_done
 			SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
-				if effects[key] is BonusStat:
+				var buff = load(effects[key])
+				if buff is BonusStat:
 					for unit in affected_units:
-						unit.apply_stat_modifer(effects[key])
+						unit.apply_stat_modifer(buff)
 				else:
-					print(effects[key].name + " of " + attack.name + " is not a BonusStat! -- UnitGroupContainer.gd")
+					print(buff.name + " of " + attack.name + " is not a BonusStat! -- UnitGroupContainer.gd")
 			SkillInfo.EffectType.STATUS:
 				if effects[key] is StatusEffect:
 					for unit in affected_units:
