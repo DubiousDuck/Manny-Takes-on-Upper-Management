@@ -21,4 +21,5 @@ func set_state(units: Array[Unit], pos: Array[Vector2i], hp: Array[int]):
 func init_cell_effects():
 	var all_cells := HexNavi.get_all_tiles()
 	for cell in all_cells:
-		cell_effects[cell] = HexNavi.get_cell_custom_data(cell, "effect")
+		var cell_effect = HexNavi.get_cell_custom_data(cell, "effect")
+		cell_effects[cell] = cell_effect if cell_effect is String else ""

@@ -359,19 +359,13 @@ func check_if_win() -> bool:
 func round_end_actions():
 	#examine the cells occupied by each unit and execute the cell passives
 	for unit in all_units:
-		var cell_effect: String = HexNavi.get_cell_custom_data(unit.cell, "effect")
+		var effect = HexNavi.get_cell_custom_data(unit.cell, "effect")
+		var cell_effect: String = effect if effect is String else ""
 		match cell_effect:
 			"heal":
-				unit.regain_health(1)
-				var new_cell := HexNavi.get_random_tile_pos()
-				while Vector2i(new_cell) == unit.cell:
-					new_cell = HexNavi.get_random_tile_pos()
-				EventBus.emit_signal("set_cell", new_cell, MyMapLayer.CELL_TYPE.HEAL)
-				await EventBus.set_cell_done
-				EventBus.emit_signal("set_cell", unit.cell, MyMapLayer.CELL_TYPE.WHITE)
-				_on_update_cell_status(true)
+				MyMapLayer.set_random_heal_tile(unit)
 			_:
-				pass
+				continue
 
 # For Power of Friendship mechanic
 

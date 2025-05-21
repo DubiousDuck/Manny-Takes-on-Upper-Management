@@ -99,6 +99,7 @@ func _ready():
 	EventBus.connect("unit_unhovered", _unit_unhovered)
 	EventBus.connect("unit_right_clicked", _unit_right_clicked)
 	EventBus.connect("clear_preview", _clear_preview)
+	self.show()
 	preview_window.hide()
 	
 	stat_to_label = {

@@ -19,6 +19,9 @@ const HEAL_ID: int = 2
 
 enum CELL_TYPE {WHITE, RED, BLUE, HEAL, PIT, TELEPORT}
 
+## prevents multiple set cell function called at once
+static var is_busy: bool = false
+
 func _ready():
 	EventBus.connect("occupy_cell", _on_occupy_cell)
 	EventBus.connect("clear_cells", _on_clear_cells)
@@ -78,13 +81,16 @@ func _on_set_cell(pos: Vector2i, id: int):
 func single_tile_appear(pos: Vector2i, tile_ID: int):
 	set_cell(pos, SCENE_COLLECTION_ID, SCENE_COORDS, tile_ID)
 
-#func _input(event):
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			#clear_path()
-			#var pos_clicked = local_to_map(get_local_mouse_position())
-			#show_path(pos_clicked)
-			#var cur_cell_atlas_coords = get_cell_atlas_coords(pos_clicked)
-			#var cur_cell_alt_id = get_cell_alternative_tile(pos_clicked)
-			#var alt_counts = tile_set.get_source(MAIN_ATLAS_ID).get_alternative_tiles_count(cur_cell_atlas_coords)
-			#set_cell(pos_clicked, MAIN_ATLAS_ID, cur_cell_atlas_coords, (cur_cell_alt_id+1)%alt_counts)
+static func set_random_heal_tile(unit: Unit):
+	if is_busy:
+		return
+	is_busy = true
+	unit.regain_health(1, true)
+	var new_cell := HexNavi.get_random_tile_pos()
+	while Vector2i(new_cell) == unit.cell:
+		new_cell = HexNavi.get_random_tile_pos()
+	EventBus.emit_signal("set_cell", new_cell, MyMapLayer.CELL_TYPE.HEAL)
+	await EventBus.set_cell_done
+	EventBus.emit_signal("set_cell", unit.cell, MyMapLayer.CELL_TYPE.WHITE)
+	EventBus.emit_signal("update_cell_status", true)
+	is_busy = false

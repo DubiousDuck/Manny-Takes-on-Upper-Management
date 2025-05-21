@@ -104,6 +104,7 @@ script = ExtResource("1_dv56f")
 tile_map = NodePath("TileMapTest")
 inital_exp = 11
 repeat_exp = 2
+give_token = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -720.0

@@ -333,7 +333,8 @@ func check_if_dead():
 
 ## check and execute effect of the tile that the unit lands on
 func tile_action():
-	var cell_effect: String =  HexNavi.get_cell_custom_data(cell, "effect")
+	var effect = HexNavi.get_cell_custom_data(cell, "effect")
+	var cell_effect: String = effect if effect is String else ""
 	match cell_effect:
 		"teleport":
 			var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
@@ -351,6 +352,9 @@ func tile_action():
 			animation_state("teleported_reversed")
 			await anim_complete
 			animation_state("front_idle")
+		"heal": # allows for overheal
+			animation_state("front_idle")
+			MyMapLayer.set_random_heal_tile(self)
 		_:
 			return
 
@@ -512,7 +516,7 @@ func take_damage(amount: int, attacker: Unit, check_dead: bool = true):
 	if check_dead:
 		check_if_dead()
 
-func regain_health(amount: int):
-	if health + amount > max_health:
+func regain_health(amount: int, overheal: bool = false):
+	if health + amount > max_health and !overheal:
 		health = max_health
 	else: health += amount

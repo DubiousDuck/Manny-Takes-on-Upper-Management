@@ -1,0 +1,122 @@
+[gd_scene load_steps=24 format=4 uid="uid://88ystu1ke546"]
+
+[ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_f7axc"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_vkpfi"]
+[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="3_f2u74"]
+[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_muhda"]
+[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="5_htttu"]
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="12_6e5ut"]
+[ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="13_4v2ha"]
+[ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="14_vy04m"]
+[ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="15_b11d6"]
+[ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="16_m2lln"]
+[ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="17_lfkpi"]
+[ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="18_pe63t"]
+[ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="19_a4rwi"]
+[ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="20_anw2g"]
+[ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="21_t5etj"]
+[ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="22_pjx11"]
+[ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="23_5yyxn"]
+[ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="24_3ocmm"]
+[ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="25_1r51o"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="26_b43iv"]
+[ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="27_efanb"]
+[ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="28_x6xud"]
+
+[sub_resource type="Resource" id="Resource_4fu5k"]
+script = ExtResource("25_1r51o")
+id = 0
+level = 1
+exp = 0
+unit_class = "Fighter"
+stat = Dictionary[int, int]({
+0: 4,
+1: 2,
+2: 1,
+3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("26_b43iv")]([ExtResource("27_efanb"), ExtResource("28_x6xud")])
+skill_table = Dictionary[int, ExtResource("26_b43iv")]({})
+item_list = Array[ExtResource("2_vkpfi")]([])
+metadata/_custom_type_script = "uid://d2mnyc15434nn"
+
+[node name="Level2-1" type="Node2D" node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_f7axc")
+tile_map = NodePath("TileMapTest")
+inital_exp = 5
+repeat_exp = 1
+dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("3_f2u74"), ExtResource("4_muhda"), ExtResource("5_htttu")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 0.898039, 1)
+offset_left = -720.0
+offset_top = -290.0
+offset_right = 3120.0
+offset_bottom = 790.0
+texture = ExtResource("12_6e5ut")
+
+[node name="UnitPreview" parent="." instance=ExtResource("13_4v2ha")]
+visible = false
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("14_vy04m")]
+isBattleScene = true
+
+[node name="TileMapTest" parent="." instance=ExtResource("15_b11d6")]
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAADAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
+tile_set = ExtResource("16_m2lln")
+
+[node name="CellHighlights" type="Node2D" parent="."]
+script = ExtResource("17_lfkpi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(347, 277)
+zoom = Vector2(1.25, 1.25)
+script = ExtResource("18_pe63t")
+
+[node name="top_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, -146)
+
+[node name="low_margin" type="Marker2D" parent="Camera2D"]
+position = Vector2(0, 146)
+
+[node name="Units" type="Node2D" parent="."]
+script = ExtResource("19_a4rwi")
+
+[node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("20_anw2g")
+is_player_controlled = true
+enemy_container = NodePath("../EnemyGroup")
+
+[node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("21_t5etj")]
+position = Vector2(161, 210)
+script = ExtResource("22_pjx11")
+unit_data = ExtResource("23_5yyxn")
+
+[node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
+script = ExtResource("20_anw2g")
+enemy_container = NodePath("../PlayerGroup")
+
+[node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("21_t5etj")]
+position = Vector2(544, 209)
+script = ExtResource("24_3ocmm")
+unit_data = SubResource("Resource_4fu5k")
+
+[connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
