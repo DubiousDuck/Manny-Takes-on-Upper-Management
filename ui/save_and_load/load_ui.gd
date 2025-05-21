@@ -16,7 +16,7 @@ func _ready():
 
 func loader(index : int):
 	if Global.load_player_data(index):
-		Global.scene_transition("res://overworld/area_1.tscn")
+		Global.scene_transition(Global.last_overworld_path)
 		queue_free()
 	for i in save_container.get_children(): i.queue_free()
 	_ready()

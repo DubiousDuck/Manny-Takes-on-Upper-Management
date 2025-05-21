@@ -18,5 +18,8 @@ enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SEL
 @export_range(-10, 10) var area: int = 0 #negative area covers the same as positive but excludes origin
 
 @export_category("Skill Detail")
+# special skill effect structure:
+# buff, debuffs: path to BonusStat resource (aka String)
+# status effect: status effect object
 @export var skill_effects: Dictionary[EffectType, Variant] = {}
 @export var effect_execution_order: Array[EffectType] = []

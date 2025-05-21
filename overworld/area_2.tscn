@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bognra8xq838a"]
+[gd_scene load_steps=29 format=4 uid="uid://bognra8xq838a"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_cbm2g"]
 [ext_resource type="Texture2D" uid="uid://daewkn42on7gw" path="res://assets/overworld/area_2/ground_tiles.png" id="2_ay40q"]
@@ -10,9 +10,11 @@
 [ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="5_n71iy"]
 [ext_resource type="Texture2D" uid="uid://c5bcvbuyf47kb" path="res://assets/overworld/area_2/cubicles.png" id="5_o88bp"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="6_o88bp"]
+[ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="8_rt1we"]
 [ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="10_rt1we"]
 [ext_resource type="PackedScene" uid="uid://dldkxju4niopg" path="res://overworld/interactables/elevator.tscn" id="10_tbaiv"]
 [ext_resource type="PackedScene" uid="uid://iaap6ny25co2" path="res://overworld/interactables/consumer.tscn" id="11_tbaiv"]
+[ext_resource type="PackedScene" uid="uid://dg4a4sd0edp4f" path="res://overworld/interactables/recruit.tscn" id="12_56es5"]
 [ext_resource type="Script" uid="uid://dwofpqt7bueu1" path="res://overworld/flag.gd" id="14_7en5a"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="15_rt1we"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="16_56es5"]
@@ -191,6 +193,7 @@ size = Vector2(84.25, 82.75)
 [node name="Area2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cbm2g")
+max_party_num = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -216,27 +219,19 @@ position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAAsABMAAQAJAAEAAAAsABQAAQAJAAEAAAAsABUAAQAJAAEAAAAsABYAAQAJAAEAAAAsABcAAQAJAAEAAAAsABgAAQAJAAEAAAAsABkAAQAJAAEAAAAsABoAAQAJAAEAAAAsABsAAQAJAAEAAAAsABwAAQAJAAEAAAAsAB0AAQAJAAEAAAAsAB4AAQAJAAEAAAAsAB8AAQAJAAEAAAAsACAAAQAJAAEAAAAsACEAAQAJAAEAAAAsACIAAQAJAAEAAAAsACMAAQAJAAEAAAAsACQAAQAJAAEAAAAsACUAAQAIAAAAAAAsACYAAQAIAAAAAAAsACcAAQAJAAEAAAAsACgAAQAJAAEAAAA0ABIAAQAJAAEAAGAzABIAAQAJAAEAAGAyABIAAQAJAAEAAGAxABIAAQAJAAEAAGAwABIAAQAJAAEAAGAvABIAAQAJAAEAAGAuABIAAQAJAAEAAGAtABIAAQAJAAEAAGA1ABIAAQAEAAEAAAAYAAwAAQACAAIAAAAYAA0AAQACAAIAAAAYAA4AAQACAAIAAAAYAA8AAQACAAIAAAAYABAAAQACAAIAAAAYABEAAQACAAIAAAAYABIAAQAFAAAAADAZABIAAQAJAAEAAGAaABIAAQAJAAEAAGAbABIAAQAJAAEAAGAcABIAAQAJAAEAAGAdABIAAQAJAAEAAGAeABIAAQAJAAEAAGAfABIAAQAJAAEAAGAgABIAAQAJAAEAAGAhABoAAQAJAAEAADAhABsAAQAJAAEAADAhABwAAQAJAAEAADAhAB0AAQAJAAEAADAhAB4AAQAJAAEAADAhAB8AAQAJAAEAADAhACAAAQAJAAEAADAhACEAAQAJAAEAADAhACIAAQAJAAEAADAhACMAAQAJAAEAADAhACQAAQAJAAEAADAhACUAAQAJAAEAADAhACYAAQAJAAEAADAhACcAAQAJAAEAADAhACgAAQAJAAEAADAsABIAAQADAAEAAFAYAPz/AQAGAAAAAAAYAP3/AQACAAAAAAAYAAoAAQACAAIAAAAYAAsAAQACAAIAAAA1AAoAAQAJAAEAAAA1AAsAAQAJAAEAAAA1AAwAAQAJAAEAAAA1AA0AAQAJAAEAAAA1AA4AAQAJAAEAAAA1AA8AAQAJAAEAAAA1ABAAAQAJAAEAAAA1ABEAAQAJAAEAAAAhABIAAQAEAAEAAGAhABQAAQAJAAEAADAhABUAAQAJAAEAADAhABYAAQAJAAEAADAhABcAAQAJAAEAADAhABgAAQAJAAEAADAhABkAAQAJAAEAADAhABMAAQAJAAEAADAAAP3/AQAAAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAALAP3/AQABAAAAAAAMAP3/AQABAAAAAAANAP3/AQABAAAAAAAOAP3/AQABAAAAAAAPAP3/AQABAAAAAAAQAP3/AQABAAAAAAARAP3/AQABAAAAAAASAP3/AQABAAAAAAATAP3/AQABAAAAAAAUAP3/AQABAAAAAAAVAP3/AQABAAAAAAAWAP3/AQABAAAAAAAXAP3/AQABAAAAAAAZAPz/AQABAAAAAAAaAPz/AQABAAAAAAAbAPz/AQABAAAAAAAcAPz/AQABAAAAAAAdAPz/AQABAAAAAAAeAPz/AQABAAAAAAAfAPz/AQABAAAAAAAgAPz/AQABAAAAAAAhAPz/AQABAAAAAAAiAPz/AQABAAAAAAAjAPz/AQABAAAAAAAkAPz/AQABAAAAAAAlAPz/AQABAAAAAAAmAPz/AQAFAAAAAAAmAP3/AQACAAIAAAAmAP7/AQACAAIAAAAmAP//AQACAAIAAAAmAAAAAQACAAIAAAAmAAEAAQACAAIAAAAmAAIAAQACAAIAAAAmAAMAAQACAAIAAAAmAAQAAQACAAIAAAAmAAUAAQACAAIAAAAmAAYAAQACAAIAAAAmAAcAAQACAAIAAAAmAAgAAQACAAIAAAAeAAkAAQAGAAAAAAAfAAkAAQAJAAEAAFAgAAkAAQAJAAEAAFAhAAkAAQAJAAEAAFAiAAkAAQAJAAEAAFAjAAkAAQAJAAEAAFAkAAkAAQAJAAEAAFAlAAkAAQAJAAEAAFAmAAkAAQAAAAEAAAAeAAoAAQACAAIAAAAeAAsAAQACAAIAAAAeAAwAAQACAAIAAAAeAA0AAQACAAIAAAAeAA4AAQACAAIAAAAeAA8AAQACAAIAAAAeABAAAQACAAIAAAAAAAcAAQAJAAEAAFABAAcAAQAJAAEAAFACAAcAAQAJAAEAAFADAAcAAQAJAAEAAFAEAAcAAQAJAAEAAFAFAAcAAQAJAAEAAFAGAAcAAQAJAAEAAFAHAAcAAQAJAAEAAFAIAAcAAQAJAAEAAFAJAAcAAQAJAAEAAFAKAAcAAQAJAAEAAFALAAcAAQAJAAEAAFAMAAcAAQAJAAEAAFANAAcAAQAJAAEAAFAOAAcAAQAJAAEAAFAPAAcAAQAJAAEAAFAQAAcAAQAJAAEAAFARAAcAAQAJAAEAAFASAAcAAQAJAAEAAFATAAcAAQAJAAEAAFAUAAcAAQAJAAEAAFAVAAcAAQAJAAEAAFAWAAcAAQAJAAEAAFAXAAcAAQAJAAEAAFAYAAcAAQAEAAAAADAYAAgAAQACAAIAAAAYAAkAAQACAAIAAAAeABEAAQAEAAIAAAAfABEAAQAJAAEAAGAgABEAAQAJAAEAAGAhABEAAQAJAAEAAGAiABEAAQAJAAEAAGAjABEAAQAJAAEAAGAkABEAAQAJAAEAAGAlABEAAQAJAAEAAGD///3/AQADAAAAAAD///7/AQACAAIAAAD/////AQACAAIAAAD//wAAAQACAAIAAAD//wEAAQACAAIAAAD//wIAAQACAAIAAAD//wMAAQACAAIAAAD//wQAAQACAAIAAAD//wUAAQACAAIAAAD//wYAAQADAAAAACA=")
 tile_set = SubResource("TileSet_56es5")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MainInterface" type="CanvasLayer" parent="."]
 
-[node name="ToTalentPage" type="Button" parent="CanvasLayer"]
-offset_left = 906.0
-offset_top = 565.0
-offset_right = 1133.0
-offset_bottom = 628.0
-theme = ExtResource("4_ivycp")
-theme_override_font_sizes/font_size = 45
-text = "To Skill Tree"
-
-[node name="Save" type="Button" parent="CanvasLayer"]
-offset_left = 940.0
-offset_top = 506.0
+[node name="Save" type="Button" parent="MainInterface"]
+offset_left = 1044.0
+offset_top = 503.0
 offset_right = 1131.0
-offset_bottom = 556.0
+offset_bottom = 567.0
 theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
-text = "Save Game"
+icon = ExtResource("8_rt1we")
+icon_alignment = 1
 
-[node name="PartyManage" type="Button" parent="CanvasLayer"]
+[node name="PartyManage" type="Button" parent="MainInterface"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -250,7 +245,7 @@ theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
-[node name="PlayerInfo" type="RichTextLabel" parent="CanvasLayer"]
+[node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
 offset_left = 25.0
 offset_top = 16.0
 offset_right = 231.0
@@ -269,9 +264,16 @@ justification_flags = 35
 [node name="Worker1" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(351, 35)
 scale = Vector2(0.5, 0.5)
+scene_to_go = "uid://88ystu1ke546"
+interact_dialogue = Array[String](["Let's fight!", "[Yes][No]"])
+correct_choice = "Yes"
 
 [node name="Worker2" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(449, 98)
+scale = Vector2(0.5, 0.5)
+
+[node name="Recruit" parent="NPC_Folder" instance=ExtResource("12_56es5")]
+position = Vector2(526, -7)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("6_o88bp")]
@@ -326,8 +328,7 @@ libraries = {
 &"Cutscenes": ExtResource("16_56es5")
 }
 
-[connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
-[connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
+[connection signal="pressed" from="MainInterface/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MainInterface/PartyManage" to="." method="_on_party_manage_pressed"]
 
 [editable path="AreaFlags/ConsumerFlag/ConsumerInfo"]

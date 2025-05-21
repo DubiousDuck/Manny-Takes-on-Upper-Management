@@ -324,6 +324,7 @@ func _on_unit_died():
 		# if the level should end, disable all children processing to prevent bugs
 		for child in get_children():
 			child.process_mode = Node.PROCESS_MODE_DISABLED
+	else: _on_update_cell_status(true)
 
 func check_if_win() -> bool:
 	if is_battle_over:

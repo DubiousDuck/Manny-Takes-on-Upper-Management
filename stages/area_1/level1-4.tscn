@@ -27,9 +27,9 @@
 
 [sub_resource type="Resource" id="Resource_1qk5m"]
 script = ExtResource("13_6i534")
-id = null
+id = 0
 level = 6
-exp = null
+exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, int]({
 0: 4,
@@ -64,9 +64,9 @@ item_list = Array[ExtResource("14_sshki")]([])
 
 [sub_resource type="Resource" id="Resource_16hu4"]
 script = ExtResource("13_6i534")
-id = null
+id = 0
 level = 6
-exp = null
+exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, int]({
 0: 5,

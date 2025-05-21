@@ -53,8 +53,11 @@ var _last_overworld_scene: PackedScene = PackedScene.new()
 var _last_battle_scene: String
 ## Two values: "overworld", "battle"
 var last_scene_type: String
+var last_overworld_path: String
 
 func set_last_overworld_scene(scene: Node):
+	last_overworld_path = scene.scene_file_path
+	#print("last overworld path is: " + last_overworld_path)
 	return _last_overworld_scene.pack(scene)
 
 func get_last_overworld_scene() -> PackedScene:
@@ -128,6 +131,13 @@ func get_lowest_unit_level() -> int:
 		if unit.level < lowest_level:
 			lowest_level = unit.level
 	return lowest_level
+
+## Function that sets the maximum number of party members depending on current Area
+func set_max_party_num(value: int):
+	# failsafe
+	if value < 3:
+		return
+	else: max_party_num = value
 
 ## Player input signals
 
@@ -320,6 +330,7 @@ func save_player_data(save: int):
 	player_data.finished_levels = finished_levels
 	player_data.events = events
 	player_data.tutorial_seen = TutorialManager.tutorial_seen
+	player_data.last_overworld_path = last_overworld_path
 
 	var json_string = JSON.stringify(player_data.to_dict(), "\t")  # Pretty print with tabs
 	var file_path = save_path + player_save_file + str(save) + ".json"
@@ -356,3 +367,5 @@ func load_player_data_to_global(player_data: PlayerData):
 	#load tutorial seen
 	TutorialManager.tutorial_seen = player_data.tutorial_seen
 	TutorialManager.update_tutorial_seen()
+	
+	last_overworld_path = player_data.last_overworld_path

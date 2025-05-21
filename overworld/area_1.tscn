@@ -124,9 +124,9 @@ z_index = 1
 tile_map_data = PackedByteArray("AAAYAPr/AAAJAAAAAAAYAPv/AAAJAAAAAAAYAPz/AAAJAAAAAAAYAP3/AAAJAAAAAAAYAP7/AAAJAAAAAAAYAP//AAAJAAAAAAAYAAAAAAAJAAEAAAAYAPn/AAAJAAAAAAAYAPj/AAAJAAAAAAAYAAkAAAAJAAAAAAA=")
 tile_set = ExtResource("6_33pqf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MainInterface" type="CanvasLayer" parent="."]
 
-[node name="ToTalentPage" type="Button" parent="CanvasLayer"]
+[node name="ToTalentPage" type="Button" parent="MainInterface"]
 visible = false
 offset_left = 906.0
 offset_top = 565.0
@@ -136,7 +136,7 @@ theme = ExtResource("2_xmci8")
 theme_override_font_sizes/font_size = 45
 text = "To Skill Tree"
 
-[node name="Save" type="Button" parent="CanvasLayer"]
+[node name="Save" type="Button" parent="MainInterface"]
 offset_left = 1044.0
 offset_top = 503.0
 offset_right = 1131.0
@@ -146,7 +146,7 @@ theme_override_font_sizes/font_size = 40
 icon = ExtResource("6_6ihvn")
 icon_alignment = 1
 
-[node name="PartyManage" type="Button" parent="CanvasLayer"]
+[node name="PartyManage" type="Button" parent="MainInterface"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -160,7 +160,7 @@ theme = ExtResource("2_xmci8")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
-[node name="PlayerInfo" type="RichTextLabel" parent="CanvasLayer"]
+[node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
 offset_left = 25.0
 offset_top = 16.0
 offset_right = 231.0
@@ -305,9 +305,9 @@ libraries = {
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(2, 118)
 
-[connection signal="pressed" from="CanvasLayer/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
-[connection signal="pressed" from="CanvasLayer/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="CanvasLayer/PartyManage" to="." method="_on_party_manage_pressed"]
+[connection signal="pressed" from="MainInterface/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
+[connection signal="pressed" from="MainInterface/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MainInterface/PartyManage" to="." method="_on_party_manage_pressed"]
 
 [editable path="NPC_Folder/HR1"]
 [editable path="AreaFlags/IntroFlag/InitialScene"]

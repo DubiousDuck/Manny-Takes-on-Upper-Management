@@ -7,6 +7,7 @@ var follower_spawn_radius: float = 50
 
 @export var followers = {}
 @export var tutorial_queue: Array[TutorialContent] = []
+@export var max_party_num: int = 3
 
 ## Deprecated for now since we're respawning followers every time (not saving them into the packed scene)
 func _set_owner_recursive(node : Node, new_owner : Node):
@@ -69,6 +70,7 @@ func _ready():
 	EventBus.emit_signal("back_to_overworld")
 	#make the game remember this is the last overworld loaded
 	Global.set_last_overworld_scene(get_tree().current_scene)
+	Global.set_max_party_num(max_party_num)
 	
 	##update player info
 	#TODO replace A with player name when able to access

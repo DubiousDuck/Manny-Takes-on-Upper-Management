@@ -5,7 +5,7 @@ func _ready():
 
 func _on_start_pressed() -> void:
 	Global.load_new_save()
-	Global.scene_transition("res://overworld/area_1.tscn")
+	Global.scene_transition(Global.last_overworld_path)
 
 func _on_load_pressed() -> void:
 	Global.load_screen()

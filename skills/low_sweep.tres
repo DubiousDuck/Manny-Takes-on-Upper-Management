@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://cwb3n75y1egow"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_qrwef"]
+
+[resource]
+script = ExtResource("1_qrwef")
+name = "Low Sweep"
+description = "Go down and sweep your enemy's leg shamelessly, hurting their ankle. Damage the enemy a little and reduce their movement for 1 turn."
+type = 0
+targets = 1
+affinity = 0
+range = 1
+area = 0
+skill_effects = Dictionary[int, Variant]({
+0: 0.5,
+4: "uid://dt13uwp8b5q20"
+})
+effect_execution_order = Array[int]([])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

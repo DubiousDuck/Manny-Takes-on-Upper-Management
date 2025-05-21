@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=3 format=3 uid="uid://wd8lggmbwcl1"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_or8i6"]
+[ext_resource type="Resource" uid="uid://bpv5a6ue7h3uo" path="res://unit/params/other_structures/status_effects/regular_sleep.tres" id="2_k1dib"]
+
+[resource]
+script = ExtResource("1_or8i6")
+name = "Lullaby"
+description = "Sing a smoothing lullaby. Inflicts Sleep on the target for 2 turns."
+type = 1
+targets = 1
+affinity = 1
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({
+5: ExtResource("2_k1dib")
+})
+effect_execution_order = Array[int]([])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

@@ -170,6 +170,8 @@ func set_tooltip(unit: Unit):
 		"movement_range": ""
 	}
 	for buff in unit.bonus_stat:
+		if buff.stat == "damage_reduction":
+			continue
 		tooltip_dict[buff.stat] += "+%s from %s" %[int(buff.value),buff.source]
 
 	for key in tooltip_dict.keys():

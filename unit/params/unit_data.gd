@@ -26,7 +26,18 @@ enum STAT {HP, ATK, MAG, MOV}
 	3: {STAT.ATK: 1},
 	4: {STAT.MAG: 1},
 	5: {STAT.HP: 2},
-	7: {STAT.ATK: 1, STAT.MAG: 1}
+	7: {STAT.ATK: 1, STAT.MAG: 1},
+	8: {STAT.HP: 1},
+	9: {STAT.ATK: 1, STAT.MAG: 1},
+	10: {STAT.HP: 2},
+	12: {STAT.ATK: 2},
+	13: {STAT.MAG: 2},
+	15: {STAT.HP: 1, STAT.ATK: 1, STAT.MAG: 1},
+	16: {STAT.ATK: 1, STAT.MAG: 1},
+	17: {STAT.HP: 2},
+	18: {STAT.MAG: 2},
+	19: {STAT.ATK: 2},
+	20: {STAT.HP: 1, STAT.ATK: 1, STAT.MAG: 1}
 }
 
 @export var skill_list: Array[SkillInfo] = []

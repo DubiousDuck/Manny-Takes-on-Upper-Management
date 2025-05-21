@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=6 format=3 uid="uid://d35bvyq0lgfdj"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://d35bvyq0lgfdj"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_osffr"]
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_ws2kx"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_rynq0"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="3_0ahh6"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_rqhq4"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="6_lvb8j"]
+[ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_dart.tres" id="7_q3a2x"]
+[ext_resource type="Resource" uid="uid://bdt6lnq72ku8y" path="res://skills/giant_arrow.tres" id="8_q3a2x"]
 
 [resource]
 script = ExtResource("1_osffr")
-id = null
-level = null
-exp = null
+id = 0
+level = 1
+exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, int]({
 0: 4,
@@ -35,10 +38,18 @@ stat_growth_table = Dictionary[int, Dictionary]({
 7: {
 1: 1,
 2: 1
+},
+9: {
+1: 1
+},
+10: {
+0: 1
 }
 })
 skill_list = Array[ExtResource("2_rynq0")]([ExtResource("3_0ahh6"), ExtResource("4_rqhq4")])
 skill_table = Dictionary[int, ExtResource("2_rynq0")]({
-3: ExtResource("6_lvb8j")
+3: ExtResource("6_lvb8j"),
+7: ExtResource("7_q3a2x"),
+10: ExtResource("8_q3a2x")
 })
-item_list = null
+item_list = Array[ExtResource("1_ws2kx")]([])

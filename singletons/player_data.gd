@@ -25,6 +25,9 @@ class_name PlayerData extends Resource
 ## Tutorial seen
 @export var tutorial_seen: Dictionary[String, bool] = {}
 
+## Last overworld path; default to Area 1
+@export var last_overworld_path: String = "uid://c8qibn8b170i0"
+
 func to_dict() -> Dictionary:
 	return {
 		"index": index,
@@ -40,6 +43,7 @@ func to_dict() -> Dictionary:
 		"finished_levels": finished_levels,
 		"events": events,
 		"tutorial_seen": tutorial_seen,
+		"last_overworld_path": last_overworld_path
 	}
 
 func from_dict(data: Dictionary) -> void:
@@ -68,6 +72,8 @@ func from_dict(data: Dictionary) -> void:
 	var raw_tutorial_seen = data.get("tutorial_seen", {})
 	for title in raw_tutorial_seen.keys():
 		tutorial_seen[title] = raw_tutorial_seen[title]
+	
+	last_overworld_path = data.get("last_overworld_path", "res://overworld/area_1.tscn")
 
 static func parse_unitdata_array(data_array: Array) -> Array[UnitData]:
 	var result: Array[UnitData] = []
