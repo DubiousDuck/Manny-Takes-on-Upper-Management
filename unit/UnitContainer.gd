@@ -345,9 +345,10 @@ func evaluate_state(state: GameState) -> int:
 				score += buff.value * ALLY_BUFF_PENALTY
 	
 	## Status effect related score
-	const SLEEP_MULTIPLIER = 3
+	const SLEEP_MULTIPLIER = 2
 	const POISON_MULTIPLIER = 2
 	const FORGET_MULTIPLER = 3
+	const OTHER_MULTIPLIER = 3
 	for unit in state.status_effects.keys():
 		var effect = state.status_effects[unit]
 		var multiplier: int = 1
@@ -358,6 +359,8 @@ func evaluate_state(state: GameState) -> int:
 				multiplier = POISON_MULTIPLIER
 			StatusEffect.Effect.FORGET:
 				multiplier = FORGET_MULTIPLER
+			_:
+				multiplier = OTHER_MULTIPLIER
 		if enemy_container.units.has(unit):
 			score += effect.duration * multiplier
 	

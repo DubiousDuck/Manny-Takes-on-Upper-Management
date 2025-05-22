@@ -141,8 +141,15 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					func(unit : Unit): #NOTICE: Use global position directly here since hex grid coords is less intuitive
 						#calculate the direction of knockback
 						var dir: Vector2 = HexNavi.cell_to_global(unit.cell) - knockback_origin
+						# get all (if any) knockback modifiers
+						var knockback_multiplier: float = 1
+						var knockback_increment: int = 0
+						## If unit has the unsteady status effect
+						if unit.active_status_effect != null:
+							if unit.active_status_effect.type == StatusEffect.Effect.UNSTEADY:
+								knockback_increment += 1
 						#apply the direction by strength of knockback
-						var new_location: Vector2 = unit.global_position + dir*effects[key]
+						var new_location: Vector2 = unit.global_position + dir*effects[key]*knockback_multiplier + dir*knockback_increment 
 						if HexNavi.global_to_cell(new_location) == Vector2i(-999, -999): ## pretends there's a wall
 							new_location = HexNavi.cell_to_global(HexNavi.get_closest_cell_by_global_pos(new_location))
 						move_tween.tween_property(
@@ -364,7 +371,8 @@ func round_end_actions():
 		var cell_effect: String = effect if effect is String else ""
 		match cell_effect:
 			"heal":
-				MyMapLayer.set_random_heal_tile(unit)
+				unit.regain_health(1, true)
+				#MyMapLayer.set_random_heal_tile(unit)
 			_:
 				continue
 

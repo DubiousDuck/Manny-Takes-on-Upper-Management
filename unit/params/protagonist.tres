@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=8 format=3 uid="uid://b2xolay11juv8"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=9 format=3 uid="uid://b2xolay11juv8"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_g3jub"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_xflac"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="5_a8aaf"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="6_d31hx"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="6_rlm2a"]
+[ext_resource type="Resource" uid="uid://ipuxhkgcm6c8" path="res://skills/banana_peel.tres" id="8_sbt3l"]
 
 [resource]
 script = ExtResource("1_g3jub")
@@ -36,11 +37,51 @@ stat_growth_table = Dictionary[int, Dictionary]({
 7: {
 1: 1,
 2: 1
+},
+8: {
+0: 1
+},
+9: {
+1: 1,
+2: 1
+},
+10: {
+0: 2
+},
+12: {
+1: 2
+},
+13: {
+2: 2
+},
+15: {
+0: 1,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 1,
+1: 1,
+2: 1
 }
 })
 skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("6_rlm2a")])
 skill_table = Dictionary[int, ExtResource("2_0r8qq")]({
 2: ExtResource("5_a8aaf"),
-4: ExtResource("6_d31hx")
+4: ExtResource("6_d31hx"),
+8: ExtResource("8_sbt3l")
 })
 item_list = Array[ExtResource("1_xflac")]([])

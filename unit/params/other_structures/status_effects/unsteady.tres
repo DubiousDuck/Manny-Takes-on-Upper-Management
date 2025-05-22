@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bw775kis6kevb"]
+
+[ext_resource type="Texture2D" uid="uid://c6c3cc3xhjowu" path="res://assets/unit_ui/unsteady_icon.png" id="1_b7pxg"]
+[ext_resource type="Script" uid="uid://blagjb0w2vx7a" path="res://unit/params/other_structures/status_effects/status_effect.gd" id="1_wppr0"]
+
+[resource]
+script = ExtResource("1_wppr0")
+icon = ExtResource("1_b7pxg")
+name = "Unsteady"
+type = 3
+duration = 1
+magnitude = 1
+metadata/_custom_type_script = "uid://blagjb0w2vx7a"

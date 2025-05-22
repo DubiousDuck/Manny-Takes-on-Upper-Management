@@ -354,7 +354,8 @@ func tile_action():
 			animation_state("front_idle")
 		"heal": # allows for overheal
 			animation_state("front_idle")
-			MyMapLayer.set_random_heal_tile(self)
+			regain_health(1, true)
+			#MyMapLayer.set_random_heal_tile(self)
 		_:
 			return
 

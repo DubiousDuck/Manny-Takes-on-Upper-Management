@@ -2,7 +2,7 @@ extends Resource
 
 class_name StatusEffect
 
-enum Effect{SLEEP, POISON, FORGET}
+enum Effect{SLEEP, POISON, FORGET, UNSTEADY}
 
 @export var icon: Texture2D
 
@@ -20,6 +20,8 @@ func tick(unit: Unit):
 			poison_tick(unit)
 		Effect.FORGET:
 			forget_tick(unit)
+		_:
+			return
 
 func sleep_tick(unit: Unit):
 	unit.actions_avail.clear()
