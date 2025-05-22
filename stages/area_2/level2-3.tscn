@@ -1,10 +1,12 @@
-[gd_scene load_steps=49 format=4 uid="uid://b87w8v6lp7rv5"]
+[gd_scene load_steps=50 format=4 uid="uid://b87w8v6lp7rv5"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_xr771"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_2bj7h"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_kke8y"]
 [ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_e5mcv"]
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_0ddd3"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_r02op"]
+[ext_resource type="Resource" uid="uid://1d6s6drowde" path="res://ui/tutorial/contents/sleep.tres" id="7_2bj7h"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="9_bbqnb"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="10_w1a5j"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="11_hd584"]
@@ -18,7 +20,6 @@
 [ext_resource type="Script" uid="uid://csbdrgblw3276" path="res://unit/PlayerUnit.gd" id="19_vscv0"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="20_duqju"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="21_3we1k"]
-[ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="22_kfw3d"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="23_w2ibr"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="24_6l4p4"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="25_p4tfs"]
@@ -41,16 +42,16 @@
 [ext_resource type="Resource" uid="uid://rk42x6t20aw5" path="res://skills/magic_boulder.tres" id="40_jinbp"]
 [ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="41_r02op"]
 
-[sub_resource type="Resource" id="Resource_4v2ha"]
+[sub_resource type="Resource" id="Resource_5xu2t"]
 script = ExtResource("20_duqju")
 id = 0
 level = 8
 exp = 0
-unit_class = "Tank"
+unit_class = "Healer"
 stat = Dictionary[int, int]({
-0: 6,
-1: 1,
-2: 1,
+0: 5,
+1: 2,
+2: 2,
 3: 2
 })
 stat_growth_table = Dictionary[int, Dictionary]({
@@ -110,12 +111,12 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 }
 })
-skill_list = Array[ExtResource("21_3we1k")]([ExtResource("22_kfw3d"), ExtResource("23_w2ibr"), ExtResource("24_6l4p4")])
+skill_list = Array[ExtResource("21_3we1k")]([ExtResource("39_e5mcv"), ExtResource("23_w2ibr"), ExtResource("24_6l4p4")])
 skill_table = Dictionary[int, ExtResource("21_3we1k")]({
-3: ExtResource("25_p4tfs"),
-5: ExtResource("26_c2bjg"),
-8: ExtResource("27_cy0yx"),
-9: ExtResource("28_sy48b")
+3: ExtResource("27_cy0yx"),
+5: ExtResource("25_p4tfs"),
+8: ExtResource("40_0ddd3"),
+10: ExtResource("41_r02op")
 })
 item_list = Array[ExtResource("2_2bj7h")]([])
 
@@ -550,6 +551,7 @@ tile_map = NodePath("TileMapTest")
 inital_exp = 20
 repeat_exp = 1
 dropped_items = Array[ExtResource("2_2bj7h")]([ExtResource("3_kke8y"), ExtResource("4_e5mcv"), ExtResource("5_0ddd3")])
+tutorial_queue = Array[ExtResource("6_r02op")]([ExtResource("7_2bj7h")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 0.898039, 1)
@@ -595,7 +597,7 @@ enemy_container = NodePath("../EnemyGroup")
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("18_o0aum")]
 position = Vector2(64, 263)
 script = ExtResource("19_vscv0")
-unit_data = SubResource("Resource_4v2ha")
+unit_data = SubResource("Resource_5xu2t")
 
 [node name="Protag2" parent="Units/PlayerGroup" instance=ExtResource("18_o0aum")]
 position = Vector2(65, 155)

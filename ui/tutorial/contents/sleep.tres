@@ -15,10 +15,10 @@ Units with [color=slate_gray]Sleep[/color] will be unable to take their turn, bu
 Damaging asleep units will wake them up immediately.
 
 "
-image_file = ""
+image_file = "uid://c0t00r4v8iau3"
 image_param = {
 "height": 0,
-"size_in_percent": false,
-"width": 0
+"size_in_percent": true,
+"width": 60
 }
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"
