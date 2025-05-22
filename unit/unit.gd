@@ -113,18 +113,19 @@ func apply_status(status: StatusEffect):
 		active_status_effect.on_expire(self)
 	active_status_effect = status.duplicate()
 	active_status_effect.on_apply(self)
-	set_status_effect_icon(true)
 
 func update_status_effect():
 	if active_status_effect:
 		active_status_effect.duration -= 1
 		if active_status_effect.duration < 0:
-			active_status_effect.on_expire(self)
-			active_status_effect = null
-			set_status_effect_icon(false)
+			remove_status_effect()
 		else: active_status_effect.tick(self)
 	else: set_status_effect_icon(false)
-	
+
+func remove_status_effect():
+	if active_status_effect:
+		active_status_effect.on_expire(self)
+
 #unit internal information
 var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn

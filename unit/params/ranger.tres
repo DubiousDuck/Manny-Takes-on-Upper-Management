@@ -49,7 +49,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 skill_list = Array[ExtResource("2_rynq0")]([ExtResource("3_0ahh6"), ExtResource("4_rqhq4")])
 skill_table = Dictionary[int, ExtResource("2_rynq0")]({
 3: ExtResource("6_lvb8j"),
-7: ExtResource("7_q3a2x"),
+5: ExtResource("7_q3a2x"),
 10: ExtResource("8_q3a2x")
 })
 item_list = Array[ExtResource("1_ws2kx")]([])

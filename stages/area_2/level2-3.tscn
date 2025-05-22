@@ -1,13 +1,10 @@
-[gd_scene load_steps=52 format=4 uid="uid://b87w8v6lp7rv5"]
+[gd_scene load_steps=49 format=4 uid="uid://b87w8v6lp7rv5"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_xr771"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_2bj7h"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_kke8y"]
 [ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_e5mcv"]
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_0ddd3"]
-[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_r02op"]
-[ext_resource type="Resource" uid="uid://pqfv7v3eumv8" path="res://ui/tutorial/contents/pit.tres" id="7_aac8u"]
-[ext_resource type="Resource" uid="uid://j0jaujduxk0u" path="res://ui/tutorial/contents/unsteady.tres" id="8_nilvn"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="9_bbqnb"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="10_w1a5j"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="11_hd584"]
@@ -553,7 +550,6 @@ tile_map = NodePath("TileMapTest")
 inital_exp = 20
 repeat_exp = 1
 dropped_items = Array[ExtResource("2_2bj7h")]([ExtResource("3_kke8y"), ExtResource("4_e5mcv"), ExtResource("5_0ddd3")])
-tutorial_queue = Array[ExtResource("6_r02op")]([ExtResource("7_aac8u"), ExtResource("8_nilvn")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 0.898039, 1)

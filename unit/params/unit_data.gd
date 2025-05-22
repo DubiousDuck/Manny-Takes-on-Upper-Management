@@ -116,20 +116,14 @@ static func new_from_dict(data: Dictionary) -> UnitData:
 	var unit = UnitDatabase.get_by_class(data.get("unit_class", "Fighter"))
 	unit.id = data.get("id", 0)
 	unit.unit_class = data.get("unit_class", "Fighter")
-	unit.level = data.get("level", 1)
 	unit.exp = data.get("exp", 0)
 	
-	# Rebuilding the stat dictionary in a careful way
-	var raw_stat = data.get("stat", {})
-	for key in raw_stat.keys():
-		unit.stat[int(key)] = int(raw_stat[key])
-	print("The rebuilt unit stat is: " + str(unit.stat) + " -- unit_data.gd")
+	# Handles the stat growth and skill learned through leveling up
+	var target_level = data.get("level", 1)
+	while unit.level < target_level: # assumes unit.level == 1 when init
+		unit.level_up()
 
 	unit.leveled_up = data.get("leveled_up", false)
-
-	unit.skill_list.clear()
-	for skill_name in data.get("skill_list", []):
-		unit.skill_list.append(SkillInfobase.get_by_name(skill_name))
 
 	unit.item_list.clear()
 	for item_name in data.get("item_list", []):

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://1d6s6drowde"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_28ugb"]
+
+[resource]
+script = ExtResource("1_28ugb")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Status Effect - Sleep"
+body_text = "Skills such as Healer's [i]Lullaby[/i] will inflict the status [color=slate_gray]Sleep[/color] for a few turns.
+
+Units with [color=slate_gray]Sleep[/color] will be unable to take their turn, but they will regain some HP when asleep.
+
+Damaging asleep units will wake them up immediately.
+
+"
+image_file = ""
+image_param = {
+"height": 0,
+"size_in_percent": false,
+"width": 0
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

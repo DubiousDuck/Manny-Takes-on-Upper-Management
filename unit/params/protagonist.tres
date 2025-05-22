@@ -82,6 +82,6 @@ skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource(
 skill_table = Dictionary[int, ExtResource("2_0r8qq")]({
 2: ExtResource("5_a8aaf"),
 4: ExtResource("6_d31hx"),
-8: ExtResource("8_sbt3l")
+6: ExtResource("8_sbt3l")
 })
 item_list = Array[ExtResource("1_xflac")]([])

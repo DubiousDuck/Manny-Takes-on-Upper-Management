@@ -36,7 +36,10 @@ func forget_tick(unit: Unit):
 # function that is called when status is first applied
 func on_apply(unit: Unit):
 	unit.status_icon.texture = icon
+	unit.set_status_effect_icon(true)
 
 # function that is called when status has expired
 func on_expire(unit: Unit):
-	pass
+	unit.status_icon.texture = null
+	unit.set_status_effect_icon(false)
+	unit.active_status_effect = null
