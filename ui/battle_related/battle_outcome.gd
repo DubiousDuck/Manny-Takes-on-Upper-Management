@@ -57,22 +57,6 @@ func animate_exp_bar(unit: UnitData):
 		if bar.current_unit_data == unit:
 			bar.animate_exp(unit.level, unit.exp)
 			break
-	#var exp_req = Global.get_exp_requirment(Global.level);
-	#for i in range(initial_level, final_level):
-		#var exp_tween = create_tween()
-		#exp_tween.set_ease(Tween.EASE_IN)
-		#exp_tween.set_trans(Tween.TRANS_QUAD)
-		#exp_tween.tween_property(exp_bar, "value", exp_bar.max_value, 0.5).set_delay(0.1)
-		#exp_tween.tween_property(level_label, "text" , "+" + str(int(level_label.text.substr(1))+1), 0.05).set_delay(0.1)
-		#exp_tween.tween_property(exp_bar, "value", 0, 0.01)
-		#await exp_tween.finished
-		#
-		#exp_bar.max_value = Global.get_exp_requirment(i+1)
-	#
-	###animation for exp gain
-	#var exp_tween = create_tween()
-	#exp_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	#exp_tween.tween_property(exp_bar, "value", final_exp, 0.5)
  
 
 func display():

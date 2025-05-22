@@ -502,7 +502,7 @@ item_list = Array[ExtResource("2_b7vte")]([])
 [sub_resource type="Resource" id="Resource_jvglk"]
 script = ExtResource("20_2xvrk")
 id = 0
-level = 8
+level = 7
 exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, int]({

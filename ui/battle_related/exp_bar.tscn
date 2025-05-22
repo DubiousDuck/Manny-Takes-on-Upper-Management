@@ -45,4 +45,4 @@ max_value = 5.0
 layout_mode = 2
 theme = ExtResource("1_xb6uf")
 theme_override_font_sizes/font_size = 30
-text = "+0 Lv"
+text = "Lv. X"

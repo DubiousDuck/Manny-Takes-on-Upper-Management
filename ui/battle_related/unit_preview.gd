@@ -172,7 +172,9 @@ func set_tooltip(unit: Unit):
 	for buff in unit.bonus_stat:
 		if buff.stat == "damage_reduction":
 			continue
-		tooltip_dict[buff.stat] += "+%s from %s" %[int(buff.value),buff.source]
+		if int(buff.value) > 0:
+			tooltip_dict[buff.stat] += "+%s from %s\n" %[int(buff.value),buff.source]
+		else: tooltip_dict[buff.stat] += "%s from %s\n" %[int(buff.value),buff.source]
 
 	for key in tooltip_dict.keys():
 		stat_to_label[key].tooltip_text = tooltip_dict[key]
