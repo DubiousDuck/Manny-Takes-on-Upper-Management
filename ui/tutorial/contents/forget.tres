@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://b07ig0qu4x06l"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_xurxs"]
+
+[resource]
+script = ExtResource("1_xurxs")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Status Effect - Forget"
+body_text = "[color=steel_blue]Forget[/color] is a Status Effect.
+
+Units with [color=steel_blue]Forget[/color] can't do any attacks or skills but can still move.
+
+"
+image_file = "uid://calasbi07gjel"
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 50
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

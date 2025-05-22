@@ -223,9 +223,9 @@ tile_set = SubResource("TileSet_56es5")
 
 [node name="Save" type="Button" parent="MainInterface"]
 offset_left = 1044.0
-offset_top = 503.0
+offset_top = 565.0
 offset_right = 1131.0
-offset_bottom = 567.0
+offset_bottom = 629.0
 theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
 icon = ExtResource("8_rt1we")
@@ -265,12 +265,25 @@ justification_flags = 35
 position = Vector2(351, 35)
 scale = Vector2(0.5, 0.5)
 scene_to_go = "uid://88ystu1ke546"
-interact_dialogue = Array[String](["Let's fight!", "[Yes][No]"])
-correct_choice = "Yes"
+level_name = "level2-1"
+locked_dialogue = Array[String](["I'm not available right now. Come back later."])
+interact_dialogue = Array[String](["I had to go through 10 rounds of interviews to get this internship!", "I won’t let some nobody from Wail University stop me,", "a Massachoosetts Institute of Tantrumology graduate!", "[I could care less][Ok you win I'll walk away]"])
+repeat_dialogue = Array[String](["You again?", "I must keep grinding!", "[I could care less][Um ok?]"])
+correct_choice = "I could care less"
+win_dialogue = Array[String](["I grinded so hard for this internship.", "You can’t do this to me!", "I don't wanna play with you anymore wah...."])
+lose_dialogue = Array[String](["See? I know I'm better.", "Now, back to my grind..."])
 
 [node name="Worker2" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(449, 98)
 scale = Vector2(0.5, 0.5)
+level_name = "level2-2"
+req = Array[String](["level2-1"])
+locked_dialogue = Array[String](["As a junior analyst, I'm quite busy.", "I don't have time to deal with people like you,", "who can't even reach their sales goal."])
+interact_dialogue = Array[String](["I LOVE INFANT INC.!", "SURE THEY DON’T GIVE US ANY DAYS OF LEAVE,", "BUT THAT’S EXPECTED FOR A JUNIOR ANALYST.", "I’M SURE WHEN WE BECOME TEENAGE ANALYSTS, LIFE GETS BETTER, RIGHT?", "[Not if I defeat you here!][Chill bro I'll come back later]"])
+repeat_dialogue = Array[String](["I’M SURE WHEN WE BECOME TEENAGE ANALYSTS, LIFE GETS BETTER, RIGHT?", "[Not if I defeat you here!][Chill bro I'll come back later]"])
+correct_choice = "Not if I defeat you here!"
+win_dialogue = Array[String](["MY WORK IS MY LIFE!", "WORKING IS ALL I KNOW!", "WHAT AM I WITHOUT MY WORK..."])
+lose_dialogue = Array[String](["TV SHOWS? I OUTGREW THEM WHEN I WAS 4 MONTHS OLD", "I CAN’T WAIT TO BE A TEENAGE ANALYST!", "I HEAR THEY GET CANDY IN THEIR BREAK ROOM."])
 
 [node name="Recruit" parent="NPC_Folder" instance=ExtResource("12_56es5")]
 position = Vector2(526, -7)

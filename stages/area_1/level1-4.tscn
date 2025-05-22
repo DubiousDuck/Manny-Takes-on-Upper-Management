@@ -102,7 +102,7 @@ item_list = Array[ExtResource("14_sshki")]([])
 [node name="Level1-4" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_dv56f")
 tile_map = NodePath("TileMapTest")
-inital_exp = 11
+inital_exp = 12
 repeat_exp = 2
 give_token = false
 

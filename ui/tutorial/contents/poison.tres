@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://82khh2id8a40"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_1eqrg"]
+
+[resource]
+script = ExtResource("1_1eqrg")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Status Effect - Poison"
+body_text = "[color=purple]Poison[/color] is a Status Effect.
+
+Poisoned units will take damage at the start of their turn.
+
+"
+image_file = "uid://b3iqa0psgt7hf"
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 50
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

@@ -74,6 +74,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
 
 [node name="ExpBarContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2

@@ -126,21 +126,11 @@ tile_set = ExtResource("6_33pqf")
 
 [node name="MainInterface" type="CanvasLayer" parent="."]
 
-[node name="ToTalentPage" type="Button" parent="MainInterface"]
-visible = false
-offset_left = 906.0
-offset_top = 565.0
-offset_right = 1133.0
-offset_bottom = 628.0
-theme = ExtResource("2_xmci8")
-theme_override_font_sizes/font_size = 45
-text = "To Skill Tree"
-
 [node name="Save" type="Button" parent="MainInterface"]
 offset_left = 1044.0
-offset_top = 503.0
+offset_top = 565.0
 offset_right = 1131.0
-offset_bottom = 567.0
+offset_bottom = 629.0
 theme = ExtResource("2_xmci8")
 theme_override_font_sizes/font_size = 40
 icon = ExtResource("6_6ihvn")
@@ -305,7 +295,6 @@ libraries = {
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(2, 118)
 
-[connection signal="pressed" from="MainInterface/ToTalentPage" to="." method="_on_to_talent_page_pressed"]
 [connection signal="pressed" from="MainInterface/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MainInterface/PartyManage" to="." method="_on_party_manage_pressed"]
 

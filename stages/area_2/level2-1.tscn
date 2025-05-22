@@ -1,10 +1,13 @@
-[gd_scene load_steps=45 format=4 uid="uid://88ystu1ke546"]
+[gd_scene load_steps=48 format=4 uid="uid://88ystu1ke546"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_f7axc"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_vkpfi"]
-[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="3_f2u74"]
 [ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_muhda"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="5_htttu"]
+[ext_resource type="Resource" uid="uid://hfngvcslhf5j" path="res://ui/tutorial/contents/status_effect.tres" id="6_6e5ut"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_cpxuf"]
+[ext_resource type="Resource" uid="uid://82khh2id8a40" path="res://ui/tutorial/contents/poison.tres" id="7_4v2ha"]
+[ext_resource type="Resource" uid="uid://b07ig0qu4x06l" path="res://ui/tutorial/contents/forget.tres" id="8_vy04m"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="12_6e5ut"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="13_4v2ha"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="14_vy04m"]
@@ -291,7 +294,7 @@ item_list = Array[ExtResource("2_vkpfi")]([])
 [sub_resource type="Resource" id="Resource_f2u74"]
 script = ExtResource("25_1r51o")
 id = 0
-level = 10
+level = 8
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, int]({
@@ -395,14 +398,14 @@ item_list = Array[ExtResource("2_vkpfi")]([])
 [sub_resource type="Resource" id="Resource_3fhvm"]
 script = ExtResource("25_1r51o")
 id = 0
-level = 8
+level = 7
 exp = 0
 unit_class = "Mage"
 stat = Dictionary[int, int]({
 0: 4,
 1: 1,
 2: 3,
-3: 2
+3: 1
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -516,9 +519,10 @@ item_list = Array[ExtResource("2_vkpfi")]([])
 [node name="Level2-1" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_f7axc")
 tile_map = NodePath("TileMapTest")
-inital_exp = 5
+inital_exp = 15
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("3_f2u74"), ExtResource("4_muhda"), ExtResource("5_htttu")])
+dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("4_muhda"), ExtResource("5_htttu")])
+tutorial_queue = Array[ExtResource("6_cpxuf")]([ExtResource("6_6e5ut"), ExtResource("7_4v2ha"), ExtResource("8_vy04m")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 0.898039, 1)
@@ -558,6 +562,7 @@ script = ExtResource("19_a4rwi")
 [node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("20_anw2g")
 is_player_controlled = true
+read_class_from_data = false
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("21_t5etj")]

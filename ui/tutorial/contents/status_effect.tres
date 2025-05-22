@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://hfngvcslhf5j"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_4aa2q"]
+
+[resource]
+script = ExtResource("1_4aa2q")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Status Effect"
+body_text = "Some skills, such as [i]Poison Dart[/i] inflicts a [color=cyan]Status Effect[/color] on the target.
+
+These effects triggers every time at the start of a turn, and each of them have different effects.
+
+[color=cyan]Status Effects[/color] will be removed after a set number of turns or by removing them with specific skills.
+
+"
+image_file = ""
+image_param = {
+"height": 0,
+"size_in_percent": false,
+"width": 0
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"
