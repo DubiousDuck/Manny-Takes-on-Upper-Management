@@ -276,6 +276,7 @@ lose_dialogue = Array[String](["See? I know I'm better.", "Now, back to my grind
 [node name="Worker2" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(449, 98)
 scale = Vector2(0.5, 0.5)
+scene_to_go = "uid://bda5uv8kdcc0m"
 level_name = "level2-2"
 req = Array[String](["level2-1"])
 locked_dialogue = Array[String](["As a junior analyst, I'm quite busy.", "I don't have time to deal with people like you,", "who can't even reach their sales goal."])

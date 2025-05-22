@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=2 format=3 uid="uid://j0jaujduxk0u"]
+
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="1_xrlvi"]
+
+[resource]
+script = ExtResource("1_xrlvi")
+trigger = "battle_start"
+only_once = true
+triggered = false
+title = "Status Effect - Unsteady"
+body_text = "[color=sienna]Unsteady[/color] is a Status Effect.
+
+When pushed, units with [color=sienna]unsteady[/color] will be pushed one block further.
+
+"
+image_file = "uid://xdjwbwdvamhj"
+image_param = {
+"height": 0,
+"size_in_percent": true,
+"width": 60
+}
+metadata/_custom_type_script = "uid://tngs0ek6h4aa"

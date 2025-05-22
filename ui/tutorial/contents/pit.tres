@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_yrkhx")
-trigger = ""
+trigger = "battle_start"
 only_once = true
 triggered = false
 title = "The Pit"
@@ -12,13 +12,11 @@ body_text = "[color=firebrick]The Pit[/color] is a dangerous tile. Units that go
 
 You cannot directly step on it, but you can use different skills and attacks to push enemies into [color=firebrick]the Pit[/color]
 
-If an enemy has a very high health, consider pushing them into [color=firebrick]the Pit[/color]
-
 "
-image_file = "uid://xkorf5dpk23f"
+image_file = "uid://dabty22nhn41k"
 image_param = {
-"height": 30,
+"height": 0,
 "size_in_percent": true,
-"width": 40
+"width": 50
 }
 metadata/_custom_type_script = "uid://tngs0ek6h4aa"

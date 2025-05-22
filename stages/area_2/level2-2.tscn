@@ -1,9 +1,13 @@
-[gd_scene load_steps=45 format=4 uid="uid://bda5uv8kdcc0m"]
+[gd_scene load_steps=49 format=4 uid="uid://bda5uv8kdcc0m"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_q25p2"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_b7vte"]
-[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="3_40trc"]
+[ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_q25p2"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_r1ygc"]
+[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_b7vte"]
+[ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_40trc"]
+[ext_resource type="Resource" uid="uid://pqfv7v3eumv8" path="res://ui/tutorial/contents/pit.tres" id="7_r1ygc"]
+[ext_resource type="Resource" uid="uid://j0jaujduxk0u" path="res://ui/tutorial/contents/unsteady.tres" id="8_b7vte"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="9_3wwws"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="10_nywe0"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="11_ytt64"]
@@ -545,7 +549,8 @@ script = ExtResource("1_q25p2")
 tile_map = NodePath("TileMapTest")
 inital_exp = 20
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_b7vte")]([ExtResource("3_40trc"), ExtResource("4_r1ygc")])
+dropped_items = Array[ExtResource("2_b7vte")]([ExtResource("4_r1ygc"), ExtResource("4_q25p2"), ExtResource("5_b7vte")])
+tutorial_queue = Array[ExtResource("6_40trc")]([ExtResource("7_r1ygc"), ExtResource("8_b7vte")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 0.898039, 1)
@@ -585,21 +590,20 @@ script = ExtResource("16_qumnf")
 [node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("17_uexu2")
 is_player_controlled = true
-read_class_from_data = false
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("18_11kuc")]
-position = Vector2(63, 157)
+position = Vector2(64, 263)
 script = ExtResource("19_svofc")
 unit_data = SubResource("Resource_4v2ha")
 
 [node name="Protag2" parent="Units/PlayerGroup" instance=ExtResource("18_11kuc")]
-position = Vector2(542, 314)
+position = Vector2(65, 155)
 script = ExtResource("19_svofc")
 unit_data = SubResource("Resource_cpxuf")
 
 [node name="Protag3" parent="Units/PlayerGroup" instance=ExtResource("18_11kuc")]
-position = Vector2(253, 263)
+position = Vector2(-35, 317)
 script = ExtResource("19_svofc")
 unit_data = SubResource("Resource_p055q")
 
@@ -618,12 +622,12 @@ script = ExtResource("37_mtd0c")
 unit_data = SubResource("Resource_f2u74")
 
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("18_11kuc")]
-position = Vector2(633, 264)
+position = Vector2(639, 261)
 script = ExtResource("37_mtd0c")
 unit_data = SubResource("Resource_un02p")
 
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("18_11kuc")]
-position = Vector2(443, 257)
+position = Vector2(734, 96)
 script = ExtResource("37_mtd0c")
 unit_data = SubResource("Resource_3fhvm")
 
