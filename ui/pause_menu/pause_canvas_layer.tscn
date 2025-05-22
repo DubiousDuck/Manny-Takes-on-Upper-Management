@@ -290,6 +290,8 @@ offset_top = 10.0
 offset_right = 218.0
 offset_bottom = 26.0
 scale = Vector2(1.24538, 1.24538)
+max_value = 1.2
+step = 0.1
 
 [node name="BrightnessSlider" type="Control" parent="BattleMenuControl"]
 layout_mode = 1

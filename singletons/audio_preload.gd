@@ -4,8 +4,10 @@ const _BATTLE_1_MUSIC = preload("res://assets/music/HR Level 1.ogg")
 const _BATTLE_2_MUSIC = preload("res://assets/music/HR Level 2.ogg")
 const _OW_ONE_MUSIC = preload("res://assets/music/HR Overworld 1.ogg")
 
-var lastTrack: int = 99
-var volValue: int = 60
+var volValue: int = 0:
+	set(new_val):
+		volValue = new_val
+		volume_db = volValue
 
 ## Dictionary that matches overworld to its theme
 var overworld_themes: Dictionary = {
@@ -29,11 +31,9 @@ var battle_theme: Dictionary = {
 func _ready():
 	EventBus.connect("start_battle", _on_start_battle)
 	EventBus.connect("back_to_overworld", _on_back_to_overworld)
+	volume_db = volValue
 	stream = _OW_ONE_MUSIC
 	play()
-
-func volChange(vol):
-	volume_db = vol
 
 func _on_start_battle():
 	stream = battle_theme.get(Global.current_level, _BATTLE_1_MUSIC)
