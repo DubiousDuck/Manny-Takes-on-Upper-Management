@@ -3,6 +3,7 @@ extends Control
 @onready var save_container : VBoxContainer = $VScrollBar/VBoxContainer
 
 const SAVE_FILE = preload("res://ui/save_and_load/save_file.tscn")
+const OVERWORLD1 = "res://overworld/area_1.tscn"
 
 func _ready():
 	var loaded_saves = Global.find_all_saves()
@@ -16,7 +17,12 @@ func _ready():
 
 func loader(index : int):
 	if Global.load_player_data(index):
-		Global.scene_transition(Global.last_overworld_path)
+		var overworld_path: String
+		if Global.last_overworld_path == "":
+			overworld_path = OVERWORLD1
+			push_warning("overworld path is empty; defaulting to Area 1! -- load_ui.gd")
+		else: overworld_path = Global.last_overworld_path
+		Global.scene_transition(overworld_path)
 		queue_free()
 	for i in save_container.get_children(): i.queue_free()
 	_ready()

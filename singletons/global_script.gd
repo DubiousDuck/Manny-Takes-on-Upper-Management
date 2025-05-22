@@ -56,8 +56,9 @@ var last_scene_type: String
 var last_overworld_path: String
 
 func set_last_overworld_scene(scene: Node):
-	last_overworld_path = scene.scene_file_path
-	#print("last overworld path is: " + last_overworld_path)
+	if scene.scene_file_path != "":
+		last_overworld_path = scene.scene_file_path
+	print("last overworld path is: " + last_overworld_path + " and scene is: " + scene.name)
 	return _last_overworld_scene.pack(scene)
 
 func get_last_overworld_scene() -> PackedScene:

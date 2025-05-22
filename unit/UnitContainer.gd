@@ -264,6 +264,8 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 					match effects[key]:
 						"death":
 							new_state.cell_effects[target_cell] = "death"
+						"heal":
+							new_state.cell_effects[target_cell] = "heal"
 						_:
 							pass
 				SkillInfo.EffectType.STATUS:
@@ -326,9 +328,9 @@ func evaluate_state(state: GameState) -> int:
 						if cell == state.position[unit]: score -= 10
 				"heal":
 					if enemy_container.units.has(unit): 
-						if cell == state.position[unit]: score -= 1
+						if cell == state.position[unit]: score -= 5
 					else:
-						if cell == state.position[unit]: score += 1
+						if cell == state.position[unit]: score += 5
 				_:
 					score += 0
 
