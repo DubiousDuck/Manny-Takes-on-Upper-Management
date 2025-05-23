@@ -325,14 +325,14 @@ position = Vector2(526, -7)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("6_o88bp")]
-position = Vector2(822, 273)
+position = Vector2(66, 28)
 scale = Vector2(0.5, 0.5)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(822, 273)
+position = Vector2(66, 28)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
