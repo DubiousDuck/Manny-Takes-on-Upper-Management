@@ -12,6 +12,7 @@ var player
 var spawn_position = Vector2.ZERO  # Initial spawn position
 
 @export_category("Character Parameters")
+@export var npc_name: String = ""
 @export var unit_data: UnitData
 @export var move_timer = 0.0
 @export var turning = false

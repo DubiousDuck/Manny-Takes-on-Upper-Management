@@ -172,7 +172,7 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(626, 464)
+position = Vector2(626, 480)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -196,37 +196,40 @@ req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 [node name="HR2" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(736, 29)
 scale = Vector2(0.5, 0.5)
+npc_name = "Sarah"
 scene_to_go = "uid://dmiskhfx3cmdg"
 level_name = "level1-2"
 req = Array[String](["level1-1"])
 locked_dialogue = Array[String](["What are you doing here?", "You should go talk to the Receptionist."])
-interact_dialogue = Array[String](["<name>, I know what you’re trying to do, and it’s noble.", "But it’s pointless…", "You’ll have to fight your way through floors of Infant Inc employees…", "Stop now before you get yourself hurt!", "[At least let me try!] [I'm not ready]"])
-repeat_dialogue = Array[String](["You still want to do this?", "Get out of here (name)!", "[At least let me try!] [I'm not ready]"])
+interact_dialogue = Array[String](["Manny, I know what you’re trying to do, and it’s noble.", "But it’s pointless…", "You’ll have to fight your way through floors of Infant Inc employees…", "Stop now before you get yourself hurt!", "[At least let me try!] [I'm not ready]"])
+repeat_dialogue = Array[String](["You still want to do this? ", "Get out of here Manny!", "[At least let me try!] [I'm not ready]"])
 correct_choice = "At least let me try!"
-win_dialogue = Array[String](["(This guy actually has skills...)", "(Can he actually do it?)", "(But no one’s taken on the management since the Revolt of '95.)", "(Hmm...)", "Listen, you have the potential,", "but it's far from enough.", "Keep fighting your way through.", "MAYBE you stand a chance against the higher ups.", "Good luck. You'll need it."])
+win_dialogue = Array[String](["(This guy actually has skills...)", "(Can he actually do it?)", "(But no one’s taken on the management since the Revolt of '95.)", "(Hmm...)", "Listen, you have the potential.", "But it's far from enough.", "Keep fighting your way through.", "MAYBE you stand a chance against the higher ups.", "Good luck. You'll need it."])
 lose_dialogue = Array[String](["See? Now you've gotten yourself hurt.", "Don't do this again."])
 
 [node name="HR3" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(508, 29)
 scale = Vector2(0.5, 0.5)
+npc_name = "Dylan"
 scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1", "level1-2"])
 locked_dialogue = Array[String](["I don't think you are ready for a fight with me yet.", "Move along, squirt."])
-interact_dialogue = Array[String](["If you’re serious about taking on Management,", "you’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
+interact_dialogue = Array[String](["If you’re serious about taking on Management, you’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Focus up! Watch and learn...", "[Let's do it!] [I'm not ready]"])
 correct_choice = "Let's do it!"
-win_dialogue = Array[String](["Yes, that’s the way to do it!", "Upper management won’t give an inch,", "so you have to give it all that you got.", "You'll have to get past the Head Security Baby if you want to move up the floors.", "He's by the Elevator to the left.", "Just know, he will not go easy on you.", "So be prepared!"])
+win_dialogue = Array[String](["Yes, that’s the way to do it!", "Upper management won’t give an inch.", "So you have to give it all that you got.", "You'll have to get past the Head Security Baby if you want to move up the floors.", "He's by the Elevator to the left.", "Just know, he will not go easy on you.", "So be prepared!"])
 lose_dialogue = Array[String](["You punch like a baby!", "Well, I guess that makes sense…", "Come back when you're actually ready to take me on."])
 
 [node name="HR4" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(336, 71)
 scale = Vector2(0.5, 0.5)
+npc_name = "Head of Security Baby"
 scene_to_go = "uid://ci1jr6gkdbdkw"
 level_name = "level1-4"
 req = Array[String](["level1-2", "level1-3"])
-locked_dialogue = Array[String](["I've been hearing you want to take on the Upper Management.", "As the Head of Security,", "I cannot let you pass...", "Demonstrate your strength by defeating everyone else here.", "Then I'll let you challenge me."])
-interact_dialogue = Array[String](["Alright, <name>.", "The elevator to Management is just ahead.", "I will not just let you pass. If you're serious about this...", "You'll have to get through me FIRST.", "Let's see if you have what it takes.", "[I'm ready!] [I'm not ready]"])
+locked_dialogue = Array[String](["I've been hearing you want to take on the Upper Management.", "As the Head of Security, I cannot let you pass...", "Demonstrate your strength by defeating everyone else here.", "Then I'll let you challenge me."])
+interact_dialogue = Array[String](["Alright, Manny.", "The elevator to Management is just ahead.", "I will not just let you pass. If you're serious about this...", "You'll have to get through me FIRST.", "Let's see if you have what it takes.", "[I'm ready!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[I'm ready!] [I'm not ready]"])
 correct_choice = "I'm ready!"
 win_dialogue = Array[String](["Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "and I’ve seen how things have changed for the worse.", "Good luck, <name>. Give it your all!"])
@@ -235,14 +238,15 @@ lose_dialogue = Array[String](["I didn’t become Head of Security for nothing!"
 [node name="HR1" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
 position = Vector2(624, 216)
 scale = Vector2(0.5, 0.5)
+npc_name = "Bob"
 scene_to_go = "uid://cwvvpfius26vd"
 level_name = "level1-1"
 locked_dialogue = Array[String](["Sorry sir, the desk is closed."])
 interact_dialogue = Array[String](["HEY YOU! Stop right there.", "Sorry, boss told me I can’t let you pass…", "I'm just doing my job!", "I can’t get fired now, not in this economy!", "[Fight!]"])
-repeat_dialogue = Array[String](["You're still here?", "Cmon (name), get out of here before my boss sees you still around... ", "[Fight!]"])
+repeat_dialogue = Array[String](["You're still here?", "Cmon Manny, get out of here before my boss sees you still around... ", "[Fight!]"])
 correct_choice = "Fight!"
-win_dialogue = Array[String](["I heard about what happened with <best friend>...", "You got skills. I heard you're planning on taking on Upper Management.", "I hear there are others that are frustrated, just like you.", "They might also be willing to fight alongside you.", "Talk to Steve. He can help you recruit them in your quest.", "Though you might have to fight them to win them over..."])
-lose_dialogue = Array[String](["<name>, we’re just babies!", "How can we possibly go against the bosses? "])
+win_dialogue = Array[String](["I heard about what happened with Kelly...", "You got skills. I heard you're planning on taking on Upper Management.", "I hear there are others that are frustrated, just like you.", "They might also be willing to fight alongside you.", "Talk to Steve. He can help you recruit them in your quest.", "Though you might have to fight them to win them over..."])
+lose_dialogue = Array[String](["Manny, we’re just babies!", "How can we possibly go against the bosses? "])
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="NPC_Folder/HR1/Area2D" index="0"]
