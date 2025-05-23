@@ -545,7 +545,7 @@ skill_table = Dictionary[int, ExtResource("21_3we1k")]({
 })
 item_list = Array[ExtResource("2_2bj7h")]([])
 
-[node name="level2-2" type="Node2D" node_paths=PackedStringArray("tile_map")]
+[node name="level2-3" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_xr771")
 tile_map = NodePath("TileMapTest")
 inital_exp = 20

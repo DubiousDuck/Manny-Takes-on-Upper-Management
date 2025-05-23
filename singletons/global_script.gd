@@ -35,7 +35,8 @@ var current_level : String
 var finished_levels := {}  # Acts as a HashSet
 ## a dictionary that maps events that should be recorded with a certain level clear
 var level_event_table: Dictionary[String, String] = {
-	"level1-4": "area1-cleared"
+	"level1-4": "area1-cleared",
+	"level2-4": "area2-cleared"
 }
 ## Dialogue that plays automatically upon scene ready; good for scene transitions
 var dialogue_on_scene_ready: Array[String]

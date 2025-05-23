@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bognra8xq838a"]
+[gd_scene load_steps=31 format=4 uid="uid://bognra8xq838a"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_cbm2g"]
 [ext_resource type="Texture2D" uid="uid://daewkn42on7gw" path="res://assets/overworld/area_2/ground_tiles.png" id="2_ay40q"]
@@ -190,6 +190,14 @@ sources/0 = SubResource("TileSetAtlasSource_7en5a")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7en5a"]
 size = Vector2(84.25, 82.75)
 
+[sub_resource type="Animation" id="Animation_56es5"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5ngv"]
+_data = {
+&"RESET": SubResource("Animation_56es5")
+}
+
 [node name="Area2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cbm2g")
@@ -210,7 +218,7 @@ tile_set = SubResource("TileSet_7en5a")
 
 [node name="Cubicles" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AADp//n/AQAGAAAAAAAGAP7/AQADAAAAAAAGAP//AQADAAAAAAAGAP3/AQAEAAAAACAKAP3/AQAEAAAAACAKAP7/AQADAAAAAAAKAP//AQADAAAAAAAOAP3/AQAEAAAAACAOAP7/AQADAAAAAAAOAP//AQADAAAAAAASAP3/AQAEAAAAACASAP7/AQADAAAAAAASAP//AQADAAAAAAAWAP3/AQAEAAAAACAWAP7/AQADAAAAAAAWAP//AQADAAAAAAAcAPz/AQAEAAAAACAcAP3/AQADAAAAAAAcAP7/AQADAAAAAAAfAPz/AQAEAAAAACAfAP3/AQADAAAAAAAfAP7/AQADAAAAAAAiAPz/AQAEAAAAACAiAP3/AQADAAAAAAAiAP7/AQADAAAAAAAfAAYAAQAEAAAAACAfAAcAAQADAAAAAAAfAAgAAQADAAAAAAAiAAYAAQAEAAAAACAiAAcAAQADAAAAAAAiAAgAAQADAAAAAAAjAP//AQABAAAAAAAjAAIAAQABAAAAAAAkAP//AQAAAAAAAAAkAAIAAQAAAAAAAAAlAP//AQAAAAAAAAAlAAIAAQAAAAAAAAAjAAUAAQABAAAAAAAkAAUAAQAAAAAAAAAlAAUAAQAAAAAAAAAGAAUAAQADAAAAAAAGAAYAAQADAAAAAAAGAAQAAQADAAAAAAAKAAUAAQADAAAAAAAKAAYAAQADAAAAAAAKAAQAAQADAAAAAAAOAAUAAQADAAAAAAAOAAYAAQADAAAAAAAOAAQAAQADAAAAAAASAAUAAQADAAAAAAASAAYAAQADAAAAAAASAAQAAQADAAAAAAAWAAUAAQADAAAAAAAWAAYAAQADAAAAAAAWAAQAAQADAAAAAAAGAAAAAQADAAAAAAAKAAAAAQADAAAAAAAOAAAAAQADAAAAAAASAAAAAQADAAAAAAAWAAAAAQADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGAP7/AQADAAAAAAAGAP//AQADAAAAAAAGAP3/AQAEAAAAACAKAP3/AQAEAAAAACAKAP7/AQADAAAAAAAKAP//AQADAAAAAAAOAP3/AQAEAAAAACAOAP7/AQADAAAAAAAOAP//AQADAAAAAAASAP3/AQAEAAAAACASAP7/AQADAAAAAAASAP//AQADAAAAAAAWAP3/AQAEAAAAACAWAP7/AQADAAAAAAAWAP//AQADAAAAAAAcAPz/AQAEAAAAACAcAP3/AQADAAAAAAAcAP7/AQADAAAAAAAfAPz/AQAEAAAAACAfAP3/AQADAAAAAAAfAP7/AQADAAAAAAAiAPz/AQAEAAAAACAiAP3/AQADAAAAAAAiAP7/AQADAAAAAAAfAAYAAQAEAAAAACAfAAcAAQADAAAAAAAfAAgAAQADAAAAAAAiAAYAAQAEAAAAACAiAAcAAQADAAAAAAAiAAgAAQADAAAAAAAjAP//AQABAAAAAAAjAAIAAQABAAAAAAAkAP//AQAAAAAAAAAkAAIAAQAAAAAAAAAlAP//AQAAAAAAAAAlAAIAAQAAAAAAAAAjAAUAAQABAAAAAAAkAAUAAQAAAAAAAAAlAAUAAQAAAAAAAAAGAAUAAQADAAAAAAAGAAYAAQADAAAAAAAGAAQAAQADAAAAAAAKAAUAAQADAAAAAAAKAAYAAQADAAAAAAAKAAQAAQADAAAAAAAOAAUAAQADAAAAAAAOAAYAAQADAAAAAAAOAAQAAQADAAAAAAASAAUAAQADAAAAAAASAAYAAQADAAAAAAASAAQAAQADAAAAAAAWAAUAAQADAAAAAAAWAAYAAQADAAAAAAAWAAQAAQADAAAAAAAGAAAAAQADAAAAAAAKAAAAAQADAAAAAAAOAAAAAQADAAAAAAASAAAAAQADAAAAAAAWAAAAAQADAAAAAAA=")
 tile_set = SubResource("TileSet_hq1u4")
 
 [node name="Border" type="TileMapLayer" parent="."]
@@ -299,19 +307,32 @@ correct_choice = "Not today!"
 win_dialogue = Array[String](["Mr Manager Is Good To Us.", "Mr CEO Is Good To Us..", "Infant Inc. Is Good To Us...", "Sorry Mr Manager, I have failed..."])
 lose_dialogue = Array[String](["I think we have learned our lesson today.", "It's time for you get go back and work, Manny."])
 
+[node name="Worker4" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
+position = Vector2(823, 136)
+scale = Vector2(0.5, 0.5)
+scene_to_go = "uid://dyqq8spffp8vh"
+level_name = "level2-4"
+req = Array[String](["level2-3"])
+locked_dialogue = Array[String](["Why are you here?", "You should go back to work.", "You have to face the consequences of being WEAK!"])
+interact_dialogue = Array[String](["Alright, BRAT. Enough fooling around.", "I’ve worked my baby butt off for too long to have some Wail graduate ruin my plans.", "I’m next in line to be on the exe-cute-ive board,", "so why don’t you be a good baby and go back to your crib?", "[No can do!][Ok bye]"])
+repeat_dialogue = Array[String](["I’m next in line to be on the exe-cute-ive board, so why don’t you be a good baby and go back to your crib?", "No can do!"])
+correct_choice = "No can do!"
+win_dialogue = Array[String](["… You’re right. They were never going to promote me.", "I’ve been here almost all my life, and they still treat me like I’m second-rate.", "They never intended to bring me onto the exe-cute-ive board. But I just held on to the hope that maybe they would.", "The only way things change is if you topple them from the top.", "Take the elevator behind me to reach the top floor. There, you’ll reach the exe-cute-ive level."])
+lose_dialogue = Array[String](["Why’d you have to come and shake things up?", "I’m next in line for promotion!"])
+
 [node name="Recruit" parent="NPC_Folder" instance=ExtResource("12_56es5")]
 position = Vector2(526, -7)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("6_o88bp")]
-position = Vector2(54, 32)
+position = Vector2(822, 273)
 scale = Vector2(0.5, 0.5)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(54, 32)
+position = Vector2(822, 273)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -322,8 +343,9 @@ position_smoothing_enabled = true
 
 [node name="Elevator" parent="." instance=ExtResource("10_tbaiv")]
 position = Vector2(829, 33)
-scene_to_go = ""
-req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+scene_to_go = "uid://7m1c105fe0kl"
+req = Array[String](["level2-4"])
+interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
 
 [node name="CollisionShape2D" parent="Elevator" index="0"]
 position = Vector2(2, -4)
@@ -364,6 +386,22 @@ shape = SubResource("RectangleShape2D_7en5a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/ConsumerFlag/ConsumerInfo"]
 libraries = {
+&"Cutscenes": ExtResource("16_56es5")
+}
+
+[node name="ElevatorFlag" type="Node" parent="AreaFlags"]
+script = ExtResource("14_7en5a")
+event = "area2-cleared"
+trigger = 0
+frequency = 1
+
+[node name="ElevatorGate" parent="AreaFlags/ElevatorFlag" instance=ExtResource("15_rt1we")]
+position = Vector2(762, -32)
+animations = Array[String](["area2_elevator1", "Dialogue(multiple): You don't have the access to this elevator yet.", "Dialogue(multiple): Try again later.", "area2_elevator2", "area2_elevator3"])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/ElevatorFlag/ElevatorGate"]
+libraries = {
+&"": SubResource("AnimationLibrary_c5ngv"),
 &"Cutscenes": ExtResource("16_56es5")
 }
 
