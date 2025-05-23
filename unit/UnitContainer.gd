@@ -188,7 +188,7 @@ func estimate_knockback(attacker, target: Vector2i, skill: SkillInfo, kb_distanc
 	)
 	return dict
 
-func estimate_damage(attacker: Unit, skill: SkillInfo, damage: int = 1, stats_bonus: Array[BonusStat] = []) -> int:
+func estimate_damage(attacker: Unit, skill: SkillInfo, damage: float = 1, stats_bonus: Array[BonusStat] = []) -> int:
 	var bonuses = 0
 	if skill.affinity == 0:
 		for buff in stats_bonus:
@@ -276,6 +276,11 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	return new_state
 
 func evaluate_state(state: GameState) -> int:
+	var dist_score = 0
+	var damage_score = 0
+	var tile_score = 0
+	var buff_score = 0
+	var status_score = 0
 	var score = 0
 	
 	for unit in state.position.keys():
@@ -286,27 +291,34 @@ func evaluate_state(state: GameState) -> int:
 		var enemy := get_closest_enemy(unit)
 		var distance_score = 0
 		if is_instance_valid(enemy):
+			# encourages unit to move close to enemies if have the attack token
 			if unit.actions_avail.has(Unit.Action.ATTACK):
-				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()
+				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()*1.5
+			# else if the unit health is too low, encourage them to move away
 			elif state.health[unit] <= unit.max_health/3:
 				distance_score = (state.position[unit] - enemy.cell).length() - (unit.cell - enemy.cell).length()
-			else: distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length() * 0.5
+			# if nothing else, still encourages to move in (by a moderate amount)
+			else: distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()
 			
 			#clamping distance score
 			distance_score = clamp(distance_score, -5, 5)
 			
 			if enemy_container.units.has(unit):
-				score -= distance_score
-			else: score += distance_score
+				dist_score -= distance_score
+			else:
+				dist_score += distance_score
 		
 		# HP related score
 		if enemy_container.units.has(unit):
-			if unit.health <= 0:
-				score += 25
+			# encourages dealing the killing blow
+			if state.health[unit] <= 0:
+				damage_score += 40
 			else:
-				score += (unit.health - state.health[unit]) * 5
+				# calculates score based on damage dealth
+				damage_score += (unit.health - state.health[unit]) * 4
 		else:
-			score -= (unit.health - state.health[unit]) * 2
+			# avoid hurting teammates (just a bit)
+			damage_score -= (unit.health - state.health[unit]) * 2
 		
 		var nearby_cell := HexNavi.get_all_neighbors_in_range(state.position[unit], 1, 999)
 		for cell in nearby_cell:
@@ -319,38 +331,46 @@ func evaluate_state(state: GameState) -> int:
 			if target_key == Vector2i(-999, -999): continue
 			
 			var effect = state.cell_effects[Vector2i(target_key)]
+			# check if the units are standing on special tiles
 			match effect:
 				"death":
+					# encourages pushing enemies into pits
 					if enemy_container.units.has(unit): 
-						if cell == state.position[unit]: score += 10
-						else: score += 2
-					else:
-						if cell == state.position[unit]: score -= 10
+						if cell == state.position[unit]:
+							tile_score += 30
+					else: # avoids hitting teammates into the pits
+						if cell == state.position[unit]:
+							tile_score -= 30
 				"heal":
+					# encourages standing inside healing tiles and keeping enemies away from the healing
 					if enemy_container.units.has(unit): 
-						if cell == state.position[unit]: score -= 5
+						if cell == state.position[unit]:
+							tile_score -= 10
 					else:
-						if cell == state.position[unit]: score += 5
+						if cell == state.position[unit]:
+							tile_score += 20
 				_:
-					score += 0
+					tile_score += 0
 
 	## Buff/Debuff Related Score
-	const ENEMY_BUFF_PENALTY = 1
-	const ALLY_BUFF_PENALTY = 2
+	const ENEMY_BUFF_PENALTY = 5
+	const ALLY_BUFF_PENALTY = 5
 	for unit in state.stat_bonuses.keys():
 		var buffs = state.stat_bonuses[unit]
 		for buff in buffs:
 			# Already takes into account of buffs or debuffs
+			# encourages buffing allies and debuffing enemies
 			if enemy_container.units.has(unit):
-				score -= buff.value * ENEMY_BUFF_PENALTY
+				buff_score -= buff.value * ENEMY_BUFF_PENALTY
 			else:
-				score += buff.value * ALLY_BUFF_PENALTY
+				buff_score += buff.value * ALLY_BUFF_PENALTY
 	
 	## Status effect related score
-	const SLEEP_MULTIPLIER = 2
-	const POISON_MULTIPLIER = 2
-	const FORGET_MULTIPLER = 3
-	const OTHER_MULTIPLIER = 3
+	# generally, all status effects should have roughly the same score at base power * duration
+	const SLEEP_MULTIPLIER = 6
+	const POISON_MULTIPLIER = 6
+	const FORGET_MULTIPLER = 10
+	const OTHER_MULTIPLIER = 10
 	for unit in state.status_effects.keys():
 		var effect = state.status_effects[unit]
 		var multiplier: int = 1
@@ -364,8 +384,10 @@ func evaluate_state(state: GameState) -> int:
 			_:
 				multiplier = OTHER_MULTIPLIER
 		if enemy_container.units.has(unit):
-			score += effect.duration * multiplier
+			status_score += effect.duration * multiplier
 	
+	score = dist_score + damage_score + tile_score + buff_score + status_score
+	#print("final score is %d, with distance: %d, damage: %d, tile: %d, buff: %d, status: %d" %[score, dist_score, damage_score, tile_score, buff_score, status_score])
 	return score
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]

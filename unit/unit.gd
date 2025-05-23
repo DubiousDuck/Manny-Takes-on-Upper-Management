@@ -126,6 +126,12 @@ func remove_status_effect():
 	if active_status_effect:
 		active_status_effect.on_expire(self)
 
+func find_and_remove_status_effect(type: StatusEffect.Effect):
+	if active_status_effect and active_status_effect.type == type:
+		remove_status_effect()
+	else:
+		return
+
 #unit internal information
 var cell: Vector2i
 var actions_avail: Array[Action] = all_actions #list of actions this unit hasn't taken this turn
@@ -509,16 +515,28 @@ func toggle_background_aura(state: bool):
 ## Take damage
 func take_damage(amount: int, attacker: Unit, check_dead: bool = true):
 	health -= amount
+	
+	# wakes up from sleep if hurt
+	find_and_remove_status_effect(StatusEffect.Effect.SLEEP)
+	
+	# drops unit held
 	if !unit_held.is_empty():
 		for held in unit_held:
 			held.is_held = false
 	unit_held.clear()
+	
+	# prevents animation self lock
 	if self != attacker:
 		animation_state("hurt_initial")
+	
 	if check_dead:
 		check_if_dead()
 
 func regain_health(amount: int, overheal: bool = false):
-	if health + amount > max_health and !overheal:
+	# if health already greater than max_health and no overheal, keep it current
+	if health > max_health and !overheal:
+		health = health
+	#else if the amount added will go over max health and no overheal, heal it to max only
+	elif health + amount > max_health and !overheal:
 		health = max_health
 	else: health += amount

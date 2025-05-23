@@ -258,7 +258,6 @@ Level 1"
 justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
-visible = false
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 
