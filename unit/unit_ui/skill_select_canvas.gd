@@ -41,6 +41,7 @@ func init(new_unit: Unit, valid_skills: Array[SkillInfo] = []):
 			a.disabled = true
 	
 	visible = true
+	$HBoxContainer/Hide.button_pressed = false
 
 func _on_hide():
 	visible = false
@@ -80,3 +81,11 @@ func _on_mouse_exit():
 
 func _on_cancel_pressed():
 	EventBus.emit_signal("cancel_select_unit")
+
+func _on_hide_toggled(toggled_on):
+	if toggled_on:
+		$Panel.hide()
+		$HBoxContainer/Hide.text = "Show"
+	else:
+		$Panel.show()
+		$HBoxContainer/Hide.text = "Hide"
