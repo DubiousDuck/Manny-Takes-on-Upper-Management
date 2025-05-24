@@ -21,6 +21,7 @@ class_name PlayerData extends Resource
 ## Level Progess
 @export var finished_levels := {}
 @export var events : Array[String] = []
+@export var recruitable_classes: Array[String] = []
 
 ## Tutorial seen
 @export var tutorial_seen: Dictionary[String, bool] = {}
@@ -43,7 +44,8 @@ func to_dict() -> Dictionary:
 		"finished_levels": finished_levels,
 		"events": events,
 		"tutorial_seen": tutorial_seen,
-		"last_overworld_path": last_overworld_path
+		"last_overworld_path": last_overworld_path,
+		"recruitable_classes": recruitable_classes
 	}
 
 func from_dict(data: Dictionary) -> void:
@@ -74,6 +76,10 @@ func from_dict(data: Dictionary) -> void:
 		tutorial_seen[title] = raw_tutorial_seen[title]
 	
 	last_overworld_path = data.get("last_overworld_path", "res://overworld/area_1.tscn")
+	
+	var raw_array: Array = data.get("recruitable_classes", [])
+	for element in raw_array:
+		recruitable_classes.append(element)
 
 static func parse_unitdata_array(data_array: Array) -> Array[UnitData]:
 	var result: Array[UnitData] = []

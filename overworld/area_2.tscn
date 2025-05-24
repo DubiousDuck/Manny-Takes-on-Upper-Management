@@ -240,7 +240,6 @@ tile_map_data = PackedByteArray("AAAYAAwAAQACAAIAAAAYAA0AAQACAAIAAAAYAA4AAQACAAI
 tile_set = SubResource("TileSet_56es5")
 
 [node name="MainInterface" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Save" type="Button" parent="MainInterface"]
 offset_left = 1044.0
@@ -279,7 +278,6 @@ Level 1"
 justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
-visible = false
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 

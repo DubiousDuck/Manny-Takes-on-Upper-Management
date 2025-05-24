@@ -32,12 +32,20 @@ func start():
 # Overworld
 var current_scene : String
 var current_level : String
-var finished_levels := {}  # Acts as a HashSet
+var finished_levels := {}  # Acts as a HashSet key (String): value (bool)
 ## a dictionary that maps events that should be recorded with a certain level clear
 var level_event_table: Dictionary[String, String] = {
 	"level1-4": "area1-cleared",
 	"level2-4": "area2-cleared"
 }
+var class_recruit_table: Dictionary[String, String] = {
+	"level1-1": "Fighter",
+	"level1-2": "Ranger",
+	"level1-3": "Tank",
+	"level2-1": "Mage",
+	"level2-2": "Healer"
+}
+var recruitable_classes: Array[String] = []
 ## Dialogue that plays automatically upon scene ready; good for scene transitions
 var dialogue_on_scene_ready: Array[String]
 var win_dialogue: Array[String]
@@ -48,8 +56,18 @@ func finished_level():
 	# check level_event_table to see if should add events
 	if level_event_table.keys().has(current_level):
 		events.append(level_event_table[current_level])
+	if class_recruit_table.keys().has(current_level):
+		recruitable_classes.append(class_recruit_table.get(current_level, ""))
 	current_level=""
 
+## calls after loading data to keep finished level-dependent data up-to-date
+func refresh_finished_levels():
+	for level in finished_levels.keys():
+		if level_event_table.keys().has(level) and !events.has(level_event_table[level]):
+			events.append(level_event_table[level])
+		if class_recruit_table.keys().has(level) and !recruitable_classes.has(class_recruit_table.get(level, "")):
+			recruitable_classes.append(class_recruit_table.get(level, ""))
+	
 var _last_overworld_scene: PackedScene = PackedScene.new()
 var _last_battle_scene: String
 ## Two values: "overworld", "battle"
@@ -333,6 +351,7 @@ func save_player_data(save: int):
 	player_data.events = events
 	player_data.tutorial_seen = TutorialManager.tutorial_seen
 	player_data.last_overworld_path = last_overworld_path
+	player_data.recruitable_classes = recruitable_classes
 
 	var json_string = JSON.stringify(player_data.to_dict(), "\t")  # Pretty print with tabs
 	var file_path = save_path + player_save_file + str(save) + ".json"
@@ -371,3 +390,6 @@ func load_player_data_to_global(player_data: PlayerData):
 	TutorialManager.update_tutorial_seen()
 	
 	last_overworld_path = player_data.last_overworld_path
+	recruitable_classes = player_data.recruitable_classes
+	
+	refresh_finished_levels()
