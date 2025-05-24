@@ -67,10 +67,10 @@ func update_followers() -> void:
 	#print(str(followers) + " -- overworld.gd")
 
 func _ready():
-	EventBus.emit_signal("back_to_overworld")
 	#make the game remember this is the last overworld loaded
 	Global.set_last_overworld_scene(get_tree().current_scene)
 	Global.set_max_party_num(max_party_num)
+	EventBus.emit_signal("back_to_overworld")
 	
 	##update player info
 	#TODO replace A with player name when able to access

@@ -11,9 +11,9 @@ var volValue: int = 0:
 
 ## Dictionary that matches overworld to its theme
 var overworld_themes: Dictionary = {
-	"res://overworld/area_1.tscn": _OW_ONE_MUSIC,
-	"res://overworld/area_2.tscn": _OW_ONE_MUSIC,
-	"res://overworld/area_3.tscn": _OW_ONE_MUSIC
+	"res://overworld/area_1.tscn": [_OW_ONE_MUSIC, 1.0],
+	"res://overworld/area_2.tscn": [_OW_ONE_MUSIC, 0.9],
+	"res://overworld/area_3.tscn": [_OW_ONE_MUSIC, 0.8]
 }
 
 ## Dictionary that matches battle level to its music
@@ -40,8 +40,13 @@ func _on_start_battle():
 	play()
 
 func _on_back_to_overworld():
-	var overworld_music: AudioStream = overworld_themes.get(Global.last_overworld_path, _OW_ONE_MUSIC)
-	if stream != overworld_music:
+	var theme_info: Array = overworld_themes.get(Global.last_overworld_path, [_OW_ONE_MUSIC, 1.0])
+	var overworld_music: AudioStream = theme_info[0]
+	# pause for a bit if the stream or pitch_scale is different
+	if theme_info[1] != pitch_scale or stream != overworld_music:
+		stop()
+		await get_tree().create_timer(0.2).timeout
+		pitch_scale = theme_info[1]
 		stream = overworld_music
 		play()
 
