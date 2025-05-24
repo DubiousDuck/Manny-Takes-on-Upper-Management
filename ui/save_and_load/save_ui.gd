@@ -15,10 +15,12 @@ func _ready():
 		a.connect("save_pressed", save)
 
 func save(index : int):
+	AudioPreload.play_sfx("menu_click")
 	Global.save_player_data(index)
 	for i in save_container.get_children(): i.queue_free()
 	_ready()
 
 func _on_close_pressed():
+	AudioPreload.play_sfx("menu_click")
 	EventBus.ui_element_ended.emit()
 	queue_free()

@@ -93,6 +93,7 @@ func _on_battle_ended(result: int):
 	#$PauseCanvasLayer.add_child(a)
 	a.display()
 	#a.animate_exp(Global.current_exp, init_level, Global.level)
+	HintManager.pause_idle_timer()
 
 func _on_units_switch_turn(is_player):
 	await pause_canvas_layer.play_top_bar_slide_in(false, is_player)

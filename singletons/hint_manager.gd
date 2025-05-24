@@ -17,7 +17,7 @@ func _ready():
 	idle_timer.wait_time = 25
 	idle_timer.one_shot = false
 	idle_timer.timeout.connect(_on_idle_timeout)
-	idle_timer.start()
+	#idle_timer.start()
 
 func trigger_hint(id: String, message: String, only_once := true):
 	if only_once and id in shown_once_ids:

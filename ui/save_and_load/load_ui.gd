@@ -16,6 +16,7 @@ func _ready():
 		a.connect("save_pressed", loader)
 
 func loader(index : int):
+	AudioPreload.play_sfx("menu_click")
 	if Global.load_player_data(index):
 		var overworld_path: String
 		if Global.last_overworld_path == "":
@@ -28,5 +29,6 @@ func loader(index : int):
 	_ready()
 
 func _on_close_pressed():
+	AudioPreload.play_sfx("menu_click")
 	EventBus.ui_element_ended.emit()
 	queue_free()

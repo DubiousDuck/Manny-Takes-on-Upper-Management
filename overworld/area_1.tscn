@@ -172,7 +172,7 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(626, 480)
+position = Vector2(626, 464)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -215,7 +215,7 @@ scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1", "level1-2"])
 locked_dialogue = Array[String](["I don't think you are ready for a fight with me yet.", "Move along, squirt."])
-interact_dialogue = Array[String](["If you’re serious about taking on Management, you’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
+interact_dialogue = Array[String](["If you’re serious about taking on Management, ", "you’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Focus up! Watch and learn...", "[Let's do it!] [I'm not ready]"])
 correct_choice = "Let's do it!"
 win_dialogue = Array[String](["Yes, that’s the way to do it!", "Upper management won’t give an inch.", "So you have to give it all that you got.", "You'll have to get past the Head Security Baby if you want to move up the floors.", "He's by the Elevator to the left.", "Just know, he will not go easy on you.", "So be prepared!"])

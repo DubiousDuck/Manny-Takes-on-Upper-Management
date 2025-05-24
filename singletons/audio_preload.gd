@@ -47,9 +47,14 @@ func _on_back_to_overworld():
 
 # Sound effects
 const pof_sfx = preload("res://assets/sfx/sword_clash_pof.mp3")
+const BUTTON_CLICK_SFX = preload("res://assets/sfx/menu_click.mp3")
 
 func play_sfx(name: String):
 	match name:
 		"pof":
 			$SfxPlayer.stream = pof_sfx
 			$SfxPlayer.play()
+		"menu_click":
+			$SfxPlayer.stream = BUTTON_CLICK_SFX
+			$SfxPlayer.play()
+		

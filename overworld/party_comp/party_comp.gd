@@ -63,6 +63,7 @@ func _process(_delta):
 			member.global_position = $Reserves.anchor.global_position
 
 func _on_button_pressed():
+	AudioPreload.play_sfx("menu_click")
 	#save member item data
 	for member in member_folder.get_children():
 		if member is DraggableMember:

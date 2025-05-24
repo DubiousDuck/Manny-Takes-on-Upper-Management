@@ -63,6 +63,7 @@ theme_override_constants/margin_bottom = 5
 [node name="ProfileBox" type="HBoxContainer" parent="TextureRect/MarginContainer"]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
+alignment = 1
 
 [node name="ClassProfile" parent="TextureRect/MarginContainer/ProfileBox" instance=ExtResource("6_i652p")]
 layout_mode = 2

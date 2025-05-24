@@ -4,6 +4,7 @@ class_name Player
 
 const SPEED = 100
 const SCALE := 3
+const FOOTSTEP_SFX = preload("res://assets/sfx/footstep_sfx.mp3")
 
 @export var dir = Vector2.RIGHT
 @export var turning = false
@@ -62,15 +63,33 @@ func anim_handler():
 	if abs(velocity.y) >= abs(velocity.x):
 		if velocity.y > 0:
 			$AnimationPlayer.play("ow_anim/front_walk")
+			footstep_sfx_handle(true)
 		elif velocity.y < 0:
 			$AnimationPlayer.play("ow_anim/back_walk")
+			footstep_sfx_handle(true)
 		else:
+			footstep_sfx_handle(false)
 			$AnimationPlayer.play("ow_anim/front_idle")
 	elif velocity != Vector2.ZERO:
+		footstep_sfx_handle(true)
 		$AnimationPlayer.play("ow_anim/side_walk")
 	else:
+		footstep_sfx_handle(false)
 		$AnimationPlayer.play("ow_anim/front_idle")
 
+func footstep_sfx_handle(state: bool):
+	if state:
+		footstep_sfx_play()
+	else:
+		$SfxPlayer.stop()
+
+func footstep_sfx_play():
+	if $SfxPlayer.stream != FOOTSTEP_SFX or !$SfxPlayer.playing:
+		$SfxPlayer.stream = FOOTSTEP_SFX
+		$SfxPlayer.play()
+
+func sfx_stop():
+	$SfxPlayer.stop()
 
 func _throwing_done() -> void:
 	throwing=false

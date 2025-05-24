@@ -81,9 +81,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_mu8pm")
 theme_override_font_sizes/font_size = 150
-text = "BABIES BATTLE BOSS"
+text = "Manny Take on Upper Management"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

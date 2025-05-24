@@ -103,9 +103,11 @@ func _ready():
 	
 
 func _on_save_pressed():
+	AudioPreload.play_sfx("menu_click")
 	Global.save_screen()
 
 func _on_party_manage_pressed():
+	AudioPreload.play_sfx("menu_click")
 	Global.set_last_overworld_scene(get_tree().current_scene)
 	Global.last_scene_type = "overworld"
 	var party_manage = preload("res://overworld/party_comp/party_comp.tscn")
