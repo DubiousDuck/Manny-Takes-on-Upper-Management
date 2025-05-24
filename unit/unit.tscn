@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=26 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://61aw7q134xxa" path="res://assets/unit_sprites/base/front_idle.png" id="3_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://b5v8gy2wwixwa" path="res://unit/Healer.res" id="4_4xbu7"]
 [ext_resource type="AnimationLibrary" uid="uid://bvd8i4afxw3kl" path="res://unit/Fighter.res" id="4_a2j7n"]
+[ext_resource type="PackedScene" uid="uid://bn48gasoxpaks" path="res://unit/unit_ui/skill_select.tscn" id="4_j4em8"]
 [ext_resource type="PackedScene" uid="uid://bpix5ed7cqcnu" path="res://unit/unit_ui/buff_particles.tscn" id="5_1quw1"]
 [ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_a3q01"]
 [ext_resource type="PackedScene" uid="uid://bo37ncj2m8hrp" path="res://unit/unit_ui/debuff_particles.tscn" id="6_5bqrp"]
@@ -395,6 +396,20 @@ theme_override_font_sizes/font_size = 16
 text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SkillSelect" parent="." node_paths=PackedStringArray("unit") instance=ExtResource("4_j4em8")]
+z_index = 99
+z_as_relative = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 14.1892
+offset_bottom = 14.1892
+scale = Vector2(0.5, 0.5)
+mouse_default_cursor_shape = 2
+unit = NodePath("..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

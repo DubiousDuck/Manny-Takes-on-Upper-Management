@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://ci1jr6gkdbdkw"]
+[gd_scene load_steps=27 format=4 uid="uid://ci1jr6gkdbdkw"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_dv56f"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_4un2p"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="3_lv8x0"]
-[ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="4_grulp"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_sshki"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_lv8x0"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_rpv7r"]
@@ -115,9 +114,6 @@ offset_bottom = 790.0
 texture = ExtResource("2_4un2p")
 
 [node name="UnitPreview" parent="." instance=ExtResource("3_lv8x0")]
-
-[node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("4_grulp")]
-container = NodePath("../Units/PlayerGroup")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_sshki")]
 isBattleScene = true

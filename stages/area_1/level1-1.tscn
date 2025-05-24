@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cwvvpfius26vd"]
+[gd_scene load_steps=30 format=4 uid="uid://cwvvpfius26vd"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_fta11"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_drabk"]
@@ -24,7 +24,6 @@
 [ext_resource type="Resource" uid="uid://y8fy1w1vsmjw" path="res://ui/tutorial/contents/victory.tres" id="11_rbclk"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="11_s4umw"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="12_hvujv"]
-[ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="14_svu88"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="24_ln1wa"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="25_rbclk"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="26_svu88"]
@@ -81,10 +80,6 @@ offset_bottom = 790.0
 texture = ExtResource("7_desty")
 
 [node name="UnitPreview" parent="." instance=ExtResource("12_hvujv")]
-visible = false
-
-[node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("14_svu88")]
-container = NodePath("../Units/PlayerGroup")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("2_jumuj")]
 isBattleScene = true

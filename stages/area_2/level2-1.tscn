@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://88ystu1ke546"]
+[gd_scene load_steps=48 format=4 uid="uid://88ystu1ke546"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_f7axc"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_vkpfi"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_cpxuf"]
 [ext_resource type="Resource" uid="uid://82khh2id8a40" path="res://ui/tutorial/contents/poison.tres" id="7_4v2ha"]
 [ext_resource type="Resource" uid="uid://b07ig0qu4x06l" path="res://ui/tutorial/contents/forget.tres" id="8_vy04m"]
-[ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="11_4v2ha"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="12_6e5ut"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="13_4v2ha"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="14_vy04m"]
@@ -535,9 +534,6 @@ texture = ExtResource("12_6e5ut")
 
 [node name="UnitPreview" parent="." instance=ExtResource("13_4v2ha")]
 visible = false
-
-[node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("11_4v2ha")]
-container = NodePath("../Units/PlayerGroup")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("14_vy04m")]
 isBattleScene = true

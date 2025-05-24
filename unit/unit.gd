@@ -367,10 +367,13 @@ func tile_action():
 			return
 
 func toggle_skill_ui(state: bool, valid_skills: Array[SkillInfo]):
+	$SkillSelect.container = container
 	if state:
-		EventBus.show_skill_select.emit(self, valid_skills)
-	else:
-		EventBus.hide_skill_select.emit()
+		$SkillSelect.init(valid_skills)
+		if global_position.y >= Global.camera_low:
+			$SkillSelect.position.y = -14.159 #TODO Turn this into constant
+		else: $SkillSelect.position.y = 14.159
+	$SkillSelect.visible = state
 
 func check_if_can_throw():
 	var throw_skill = load("res://skills/throw.tres")

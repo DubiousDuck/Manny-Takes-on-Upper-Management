@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://b87w8v6lp7rv5"]
+[gd_scene load_steps=50 format=4 uid="uid://b87w8v6lp7rv5"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_xr771"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_2bj7h"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_r02op"]
 [ext_resource type="Resource" uid="uid://1d6s6drowde" path="res://ui/tutorial/contents/sleep.tres" id="7_2bj7h"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="9_bbqnb"]
-[ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="10_kke8y"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="10_w1a5j"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="11_hd584"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="12_6q385"]
@@ -564,9 +563,6 @@ texture = ExtResource("9_bbqnb")
 
 [node name="UnitPreview" parent="." instance=ExtResource("10_w1a5j")]
 visible = false
-
-[node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("10_kke8y")]
-container = NodePath("../Units/PlayerGroup")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("11_hd584")]
 isBattleScene = true
