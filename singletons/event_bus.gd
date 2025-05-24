@@ -35,6 +35,10 @@ signal unit_unhovered(unit: Unit)
 signal unit_right_clicked(unit: Unit)
 signal clear_preview()
 
+signal show_skill_select(unit: Unit, valid_skills: Array[SkillInfo])
+signal hide_skill_select()
+signal cancel_select_unit()
+
 #Party management
 signal dragging_start(type: String)
 signal dragging_stop(type: String)

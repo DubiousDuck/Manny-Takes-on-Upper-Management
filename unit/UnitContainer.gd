@@ -40,6 +40,7 @@ func _ready() -> void:
 	EventBus.connect("unit_died", _on_unit_died)
 	if is_player_controlled:
 		EventBus.connect("skill_chosen", _on_skill_chosen)
+		EventBus.connect("cancel_select_unit", _on_cancel_button_pressed)
 	
 	if !tile_map_test: # Always check for null!
 		push_warning("TileMap not found at path: " + str(tilemap_path)) # More informative warning
@@ -853,3 +854,6 @@ func all_unit_moved_func():
 		unit.set_unit_modulate(Color.WHITE)
 		unit.in_pof = false
 	all_units_moved.emit()
+
+func _on_cancel_button_pressed():
+	deselect_current_unit()

@@ -10,3 +10,9 @@ func _ready():
 
 func set_tooltip(text: String):
 	tooltip_text = text
+
+func _process(delta):
+	if disabled:
+		$DisabledClickCatcher.show()
+	else:
+		$DisabledClickCatcher.hide()

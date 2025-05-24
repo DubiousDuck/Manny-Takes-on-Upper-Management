@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dgmt8ko4oq3ew"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://dgmt8ko4oq3ew"]
 
 [ext_resource type="Texture2D" uid="uid://t4dmyddyewlg" path="res://assets/ui/base_button.png" id="1_af56d"]
 [ext_resource type="FontFile" uid="uid://ew14e5fetvtx" path="res://assets/ui/m5x7.ttf" id="1_igkra"]
@@ -49,6 +49,13 @@ border_width_right = 8
 border_color = Color(0.647059, 0.541176, 0.478431, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sow78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro4c2"]
+bg_color = Color(0.247059, 0.215686, 0.2, 0.588235)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53bcs"]
 bg_color = Color(0.689468, 0.59237, 0.49887, 1)
@@ -124,6 +131,7 @@ Label/fonts/font = ExtResource("1_igkra")
 Label/styles/normal = SubResource("StyleBoxEmpty_sow78")
 OutlinedLabel/colors/font_outline_color = Color(1, 0.898039, 0.737255, 1)
 OutlinedLabel/constants/outline_size = 24
+Panel/styles/panel = SubResource("StyleBoxFlat_ro4c2")
 ProgressBar/colors/font_color = Color(0.203922, 0.14902, 0.141176, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_53bcs")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_e1d3m")

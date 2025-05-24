@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dmiskhfx3cmdg"]
+[gd_scene load_steps=31 format=4 uid="uid://dmiskhfx3cmdg"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_imwcb"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_0p6ia"]
@@ -15,6 +15,7 @@
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="9_eiuv0"]
 [ext_resource type="Script" uid="uid://8i8kpg1j5tm3" path="res://other_map_components/cell_highlights.gd" id="10_5tsjb"]
 [ext_resource type="Script" uid="uid://m4va30p723ef" path="res://stages/camera_2d.gd" id="11_bp7lx"]
+[ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="11_xckln"]
 [ext_resource type="Script" uid="uid://bfxxedn2yy5f1" path="res://unit/UnitGroupController.gd" id="12_xckln"]
 [ext_resource type="Script" uid="uid://bbill7nmmgdwt" path="res://unit/UnitContainer.gd" id="13_xu228"]
 [ext_resource type="PackedScene" uid="uid://s6hbciun8a1p" path="res://unit/unit.tscn" id="14_anbpg"]
@@ -115,6 +116,9 @@ offset_bottom = 790.0
 texture = ExtResource("5_imwcb")
 
 [node name="UnitPreview" parent="." instance=ExtResource("6_6cqhd")]
+
+[node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("11_xckln")]
+container = NodePath("../Units/PlayerGroup")
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("7_iynos")]
 isBattleScene = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kmkcpxlo5atd"]
+[gd_scene load_steps=4 format=3 uid="uid://kmkcpxlo5atd"]
 
 [ext_resource type="Script" uid="uid://d2lvjgi1la2xy" path="res://unit/unit_ui/skill_icon.gd" id="1_a1oet"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="1_bvv36"]
+[ext_resource type="Script" uid="uid://dwoc2dbwok178" path="res://unit/unit_ui/disabled_click_catcher.gd" id="3_nawu4"]
 
 [node name="SkillIcon" type="Button"]
 custom_minimum_size = Vector2(25, 12)
@@ -12,6 +13,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_bvv36")
 theme_override_colors/font_disabled_color = Color(0.118581, 0.118581, 0.118581, 1)
+theme_override_font_sizes/font_size = 48
 toggle_mode = true
 text = "Sample Attack"
 script = ExtResource("1_a1oet")
+
+[node name="DisabledClickCatcher" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_nawu4")
+
+[connection signal="gui_input" from="DisabledClickCatcher" to="DisabledClickCatcher" method="_on_gui_input"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccyqfgjflvtm5"]
+
+[ext_resource type="Script" uid="uid://1jnv6bfbqshg" path="res://unit/unit_ui/skill_select_canvas.gd" id="1_ikcp0"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_miql8"]
+[ext_resource type="PackedScene" uid="uid://kmkcpxlo5atd" path="res://unit/unit_ui/skill_icon.tscn" id="2_xcdi7"]
+
+[node name="SkillSelectCanvas" type="CanvasLayer"]
+script = ExtResource("1_ikcp0")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -195.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_miql8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -14.5
+offset_right = 44.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="SkillIcon" parent="Panel/HBoxContainer" instance=ExtResource("2_xcdi7")]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.5
+offset_top = -63.0
+offset_right = 52.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_miql8")
+theme_override_font_sizes/font_size = 32
+text = "Cancel"
+
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
