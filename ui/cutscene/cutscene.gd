@@ -38,5 +38,12 @@ func _on_body_entered(body):
 			collision_shape_2d.set_deferred("disabled", false)
 		# If statement to prevent multiple instance of the same events
 		if !Global.events.has(self.name):
+			post_cutscene_callback(self.name)
 			Global.events.append(self.name)
 			print(Global.events)
+
+## Helper function that does different things based on what cutscenes have just finished
+func post_cutscene_callback(cutscene_name: String):
+	match cutscene_name:
+		"InitialScene":
+			HintManager.trigger_hint("initial_cutscene", "Use WASD to move around!")

@@ -10,7 +10,7 @@ func _ready():
 	hide()
 
 func _on_hint_requested(message: String):
-	if is_busy:
+	if is_busy and message == label.text:
 		return
 	is_busy = true
 	label.text = message
