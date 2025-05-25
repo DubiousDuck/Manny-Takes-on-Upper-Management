@@ -217,6 +217,7 @@ func init():
 	in_pof = false
 	update_modifiers()
 	update_status_effect()
+	tile_action()
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]

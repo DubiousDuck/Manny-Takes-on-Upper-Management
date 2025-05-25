@@ -374,9 +374,6 @@ func round_end_actions():
 		var effect = HexNavi.get_cell_custom_data(unit.cell, "effect")
 		var cell_effect: String = effect if effect is String else ""
 		match cell_effect:
-			"heal":
-				unit.regain_health(1, true)
-				#MyMapLayer.set_random_heal_tile(unit)
 			_:
 				continue
 
