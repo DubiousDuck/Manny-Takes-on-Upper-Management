@@ -43,6 +43,8 @@ func _on_start_battle():
 func _on_back_to_overworld():
 	var theme_info: Array = overworld_themes.get(Global.last_overworld_path, [_OW_ONE_MUSIC, 1.0])
 	var overworld_music: AudioStream = theme_info[0]
+	if !playing: play()
+	music_fade_in()
 	# pause for a bit if the stream or pitch_scale is different
 	if theme_info[1] != pitch_scale or stream != overworld_music:
 		stop()
@@ -54,6 +56,7 @@ func _on_back_to_overworld():
 # Sound effects
 const pof_sfx = preload("res://assets/sfx/sword_clash_pof.mp3")
 const BUTTON_CLICK_SFX = preload("res://assets/sfx/menu_click.mp3")
+const VICTORY_SFX = preload("res://assets/sfx/victory_sfx.mp3")
 
 func play_sfx(name: String):
 	match name:
@@ -63,4 +66,18 @@ func play_sfx(name: String):
 		"menu_click":
 			$SfxPlayer.stream = BUTTON_CLICK_SFX
 			$SfxPlayer.play()
+		"victory":
+			music_fade_out()
+			$SfxPlayer.stream = VICTORY_SFX
+			$SfxPlayer.play()
 		
+func music_fade_out():
+	stop()
+	#var a = get_tree().create_tween()
+	#a.tween_property(self, "volume_linear", 0, 0.3)
+	#await a.finished
+
+func music_fade_in():
+	var a = get_tree().create_tween()
+	a.tween_property(self, "volume_linear", 1, 0.3)
+	await a.finished

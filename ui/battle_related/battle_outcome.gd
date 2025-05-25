@@ -23,11 +23,13 @@ func init(result: int):
 		EventBus.BattleResult.PLAYER_VICTORY:
 			$Label.text = "You won!"
 			Global.battle_result = "win"
+			AudioPreload.play_sfx("victory")
 		EventBus.BattleResult.TIE:
-			$Label.text = "It's a tie."
+			$Label.text = "It's a tie."        
 			Global.battle_result = "none"
 		EventBus.BattleResult.ENEMY_VICTORY:
 			$Label.text = "You lost..."
+			item_drop_label.hide()
 			Global.battle_result = "lose"
 	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
 
@@ -45,7 +47,6 @@ func update_token_label(state: bool):
 	if state:
 		token_label.show()
 	else: token_label.hide()
-
 
 func add_exp_bar(unit: UnitData):
 	var a = EXP_BAR.instantiate() as ExpBar
@@ -66,6 +67,7 @@ func _on_play_again_pressed():
 	EventBus.ui_element_ended.emit()
 	get_tree().paused = false
 	queue_free()
+	EventBus.start_battle.emit()
 	get_tree().reload_current_scene()
 
 func _on_previous_scene_pressed():
