@@ -393,7 +393,7 @@ func evaluate_state(state: GameState) -> int:
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]
 func unit_action(skill: SkillInfo, target_cell: Vector2i):
-	
+	print("action ", target_cell)
 	var skill_chosen := skill
 	var clicked_cell: Vector2i = target_cell
 	update_actionnable_cells(current_unit, skill_chosen)

@@ -144,3 +144,6 @@ func play_both_bar_slide_out(reversed: bool = false):
 
 func _on_units_left_changed():
 	unit_count.text = "Units left to move: " + str(Global.player_units_to_move)
+
+func _on_log_button_pressed():
+	print(Global.battle_log)

@@ -141,6 +141,9 @@ var unequipped_items: Array[ItemData] = []
 
 var events: Array[String] = []
 
+## Current Battle
+var battle_log: Array[String] = []
+
 ## Function to return the lowest level across reserves and party; useful for creating new characters without having their levels being too low
 func get_lowest_unit_level() -> int:
 	var lowest_level: int = INF

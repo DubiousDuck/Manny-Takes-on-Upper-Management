@@ -110,6 +110,15 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				if victim.is_player_controlled != attacker.is_player_controlled:
 					log_attack(victim, attacker)
 		)
+		
+	
+	var affected_names = []
+	for i in affected_units:
+		affected_names.append(i.name)
+	affected_names = ", ".join(PackedStringArray(affected_names))
+	var log_entry = attacker.name + " used " + attack.name + " on " + affected_names + "!"
+	Global.battle_log.append(log_entry)
+		
 	# use for loop here and break at the first trigger since we only want one PoF trigger per attack
 	for victim in affected_units:
 		if try_trigger_pof(victim, attacker):

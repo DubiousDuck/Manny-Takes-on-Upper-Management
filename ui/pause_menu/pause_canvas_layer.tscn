@@ -168,6 +168,16 @@ theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 56
 text = "PASS TURN"
 
+[node name="LogButton" type="Button" parent="BattleBox"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 560.0
+offset_right = 1131.0
+offset_bottom = 627.0
+theme = ExtResource("6_erp37")
+theme_override_font_sizes/font_size = 56
+text = "LOG"
+
 [node name="UnitCount" type="Label" parent="BattleBox"]
 layout_mode = 0
 offset_left = 28.0
@@ -416,6 +426,7 @@ libraries = {
 
 [connection signal="pressed" from="BattleBox/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="BattleBox/PassButton" to="." method="_on_pass_button_pressed"]
+[connection signal="pressed" from="BattleBox/LogButton" to="." method="_on_log_button_pressed"]
 [connection signal="pressed" from="PreBattleBox/BattleStart" to="." method="_on_battle_start_pressed"]
 [connection signal="pressed" from="PreBattleBox/PartyComp" to="." method="_on_party_comp_pressed"]
 [connection signal="value_changed" from="BattleMenuControl/VolumeSlider/HSlider" to="BattleMenuControl/VolumeSlider" method="_on_h_slider_value_changed"]
