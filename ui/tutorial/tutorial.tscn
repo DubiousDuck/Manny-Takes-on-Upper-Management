@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://0gpyr8s0fvf7"]
+[gd_scene load_steps=6 format=3 uid="uid://0gpyr8s0fvf7"]
 
 [ext_resource type="Script" uid="uid://cd3d177pj6u48" path="res://ui/tutorial/tutorial.gd" id="1_ty1wa"]
 [ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_104xa"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_hkj85"]
+
+[sub_resource type="Gradient" id="Gradient_104xa"]
+offsets = PackedFloat32Array(0, 0.521084, 1)
+colors = PackedColorArray(0.796078, 0.709804, 0.623529, 1, 0.796078, 0.709804, 0.623529, 0.627451, 0.796078, 0.709804, 0.623529, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xip1d"]
+gradient = SubResource("Gradient_104xa")
+height = 48
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="Tutorial" type="Control"]
 process_mode = 3
@@ -76,18 +86,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
 offset_top = 82.0
-offset_right = -57.0
+offset_right = -35.0
 offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 15
 
 [node name="Content" type="RichTextLabel" parent="Window/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 325)
@@ -107,3 +117,12 @@ size_flags_horizontal = 4
 theme = ExtResource("2_hkj85")
 theme_override_font_sizes/font_size = 30
 text = "Next Page"
+
+[node name="Fade" type="TextureRect" parent="Window"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+offset_left = 45.0
+offset_top = 379.0
+offset_right = 683.0
+offset_bottom = 427.0
+texture = SubResource("GradientTexture2D_xip1d")

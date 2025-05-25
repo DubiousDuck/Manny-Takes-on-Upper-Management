@@ -7,6 +7,7 @@ class_name Tutorial
 @onready var title = $Window/Title
 @onready var content = $Window/MarginContainer/VBoxContainer/Content
 @onready var next = $Window/MarginContainer/VBoxContainer/Next
+@onready var fade = $Window/Fade
 
 const NORMAL_PAGE: String = "Next Page"
 const LAST_PAGE: String = "Done"
@@ -46,3 +47,14 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		content.clear()
 		EventBus.ui_element_ended.emit()
+
+func _process(_delta):
+	var visible_height = content.custom_minimum_size.y
+	var total_height = content.get_v_scroll_bar().max_value
+	var scroll_value = content.get_v_scroll_bar().value
+
+	# If we can scroll and we haven't reached the bottom
+	if total_height > visible_height and scroll_value < total_height - visible_height - 1:
+		fade.visible = true
+	else:
+		fade.visible = false

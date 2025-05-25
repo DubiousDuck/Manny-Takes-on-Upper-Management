@@ -8,7 +8,7 @@ trigger = "battle_start"
 only_once = true
 triggered = false
 title = "Power of Friendship - Continued"
-body_text = "If you attack the marked enemy with [i]another[/i] ally, the second unit will receive the [color=darkviolet]Power of Friendship[/color]
+body_text = "If you attack the marked enemy with [i]another[/i] ally, the last attacking ally will receive the [color=darkviolet]Power of Friendship[/color]
 
 The unit that receives the [color=darkviolet]Power of Friendship[/color] will be able to move AND attack again.
 
