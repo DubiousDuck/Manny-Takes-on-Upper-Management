@@ -116,7 +116,6 @@ offset_bottom = 790.0
 texture = ExtResource("5_imwcb")
 
 [node name="UnitPreview" parent="." instance=ExtResource("6_6cqhd")]
-script = null
 
 [node name="SkillSelectCanvas" parent="." node_paths=PackedStringArray("container") instance=ExtResource("11_xckln")]
 container = NodePath("../Units/PlayerGroup")

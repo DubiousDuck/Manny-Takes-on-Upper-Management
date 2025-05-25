@@ -335,7 +335,7 @@ func check_if_dead():
 		is_dead = true
 		animation_state("vanish")
 		await $AnimationPlayer.animation_finished
-		EventBus.emit_signal("unit_died")
+		EventBus.emit_signal("unit_died", self)
 		all_complete.emit()
 		queue_free.call_deferred()
 

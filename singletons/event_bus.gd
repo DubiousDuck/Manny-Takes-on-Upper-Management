@@ -22,7 +22,7 @@ signal camera_done()
 signal attack_resolved()
 
 #Battle Information
-signal unit_died()
+signal unit_died(unit: Unit)
 signal battle_ended(result: int)  #0 is win, 1 is lose
 signal unit_on_standby()
 signal pass_turn()

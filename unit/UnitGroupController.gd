@@ -81,7 +81,10 @@ func start_next_turn():
 	
 	if is_player_turn:
 		player_group.round_start()
-	else: enemy_group.round_start()
+		Global.battle_log.append("Player's Turn")
+	else:
+		enemy_group.round_start()
+		Global.battle_log.append("Enemy's Turn")
 
 func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]):
 	Global.is_attack_resolved = false
@@ -110,27 +113,6 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				if victim.is_player_controlled != attacker.is_player_controlled:
 					log_attack(victim, attacker)
 		)
-		
-	
-	var affected_names_arr = []
-	for i in affected_units:
-		if i.is_player_controlled:
-			affected_names_arr.append(str("[color=blue]", i.unit_data.unit_class, "[/color]"))
-		else:
-			affected_names_arr.append(str("[color=red]", i.unit_data.unit_class, "[/color]"))
-			
-	var affected_names = ", ".join(PackedStringArray(affected_names_arr))
-	
-	var target_color = ""
-	if attacker.is_player_controlled: target_color = "blue"
-	else: target_color = "red"
-	
-	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color][color=342624] used " + attack.name + " on [/color]" + affected_names + "[color=342624]!"
-	
-	if affected_names_arr[0] == str("[color=red]", attacker.unit_data.unit_class, "[/color]") or affected_names_arr[0] == str("[color=blue]", attacker.unit_data.unit_class, "[/color]"):
-		log_entry = affected_names_arr[0] + "[color=342624] used " + attack.name + "!"
-		
-	Global.battle_log.append(log_entry)
 		
 	# use for loop here and break at the first trigger since we only want one PoF trigger per attack
 	for victim in affected_units:
@@ -270,6 +252,8 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
 			_:
 				print("nothing happens yet")
+	
+	process_battle_log(attacker, affected_units, attack)
 				
 	if !all_units.is_empty():
 		all_units.map(
@@ -351,7 +335,11 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 
 	status_update_complete.emit()
 
-func _on_unit_died():
+func _on_unit_died(unit: Unit):
+	if unit.is_player_controlled:
+		Global.battle_log.append("[color=blue]" + unit.unit_data.unit_class + "[/color] has retreated from the battle.")
+	else:
+		Global.battle_log.append("[color=red]" + unit.unit_data.unit_class + "[/color] has retreated from the battle.")
 	var should_cont := check_if_win()
 	if !should_cont:
 		# if the level should end, disable all children processing to prevent bugs
@@ -428,3 +416,25 @@ func grant_extra_turn(unit: Unit):
 		unit.actions_avail.append(Unit.Action.ATTACK)
 	Global.play_label_slide_from_left("Power of Friendship!")
 	unit.in_pof = true
+
+func process_battle_log(attacker: Unit, affected_units: Array[Unit], attack: SkillInfo):
+	# Battle log
+	var affected_names_arr = []
+	for i in affected_units:
+		if i.is_player_controlled:
+			affected_names_arr.append(str("[color=blue]", i.unit_data.unit_class, "[/color]"))
+		else:
+			affected_names_arr.append(str("[color=red]", i.unit_data.unit_class, "[/color]"))
+			
+	var affected_names = ", ".join(PackedStringArray(affected_names_arr))
+	
+	var target_color = ""
+	if attacker.is_player_controlled: target_color = "blue"
+	else: target_color = "red"
+	
+	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color] used " + attack.name + " on " + affected_names + "!"
+	
+	if affected_names_arr[0] == str("[color=red]", attacker.unit_data.unit_class, "[/color]") or affected_names_arr[0] == str("[color=blue]", attacker.unit_data.unit_class, "[/color]"):
+		log_entry = affected_names_arr[0] + " used " + attack.name + " on themselves!"
+		
+	Global.battle_log.append(log_entry)

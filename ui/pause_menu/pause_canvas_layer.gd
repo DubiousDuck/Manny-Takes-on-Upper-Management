@@ -24,6 +24,7 @@ func _ready():
 	EventBus.connect("ui_element_started", other_ui_started)
 	EventBus.connect("ui_element_ended", other_ui_ended)
 	$BattleMenuControl.visible = false
+	$LogControl.visible = false
 	dev_button.visible = Global.dev_mode
 	brightness_slider.setBrightness(Global.brightness_val)
 	updateLabelText()

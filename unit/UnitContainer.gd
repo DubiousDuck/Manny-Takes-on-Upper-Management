@@ -778,7 +778,7 @@ func get_targets_of_type(targets: Array[Vector2i], type: int, unit: Unit = curre
 	
 	return correct_targets
 	
-func _on_unit_died():
+func _on_unit_died(unit: Unit):
 	refresh_units()
 
 func _on_skill_chosen(skill: SkillInfo):
