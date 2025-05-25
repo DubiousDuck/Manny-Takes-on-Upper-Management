@@ -102,7 +102,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				pass
 			else:
 				affected_units.append(unit)
-				
+
 	# Log victims and attackers (only triggers if the attacker's team has more than 1 unit)
 	if attacker.container.units.size() > 1:
 		affected_units.map(
@@ -112,11 +112,24 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 		)
 		
 	
-	var affected_names = []
+	var affected_names_arr = []
 	for i in affected_units:
-		affected_names.append(i.name)
-	affected_names = ", ".join(PackedStringArray(affected_names))
-	var log_entry = attacker.name + " used " + attack.name + " on " + affected_names + "!"
+		if i.is_player_controlled:
+			affected_names_arr.append(str("[color=blue]", i.unit_data.unit_class, "[/color]"))
+		else:
+			affected_names_arr.append(str("[color=red]", i.unit_data.unit_class, "[/color]"))
+			
+	var affected_names = ", ".join(PackedStringArray(affected_names_arr))
+	
+	var target_color = ""
+	if attacker.is_player_controlled: target_color = "blue"
+	else: target_color = "red"
+	
+	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color][color=342624] used " + attack.name + " on [/color]" + affected_names + "[color=342624]!"
+	
+	if affected_names_arr[0] == str("[color=red]", attacker.unit_data.unit_class, "[/color]") or affected_names_arr[0] == str("[color=blue]", attacker.unit_data.unit_class, "[/color]"):
+		log_entry = affected_names_arr[0] + "[color=342624] used " + attack.name + "!"
+		
 	Global.battle_log.append(log_entry)
 		
 	# use for loop here and break at the first trigger since we only want one PoF trigger per attack

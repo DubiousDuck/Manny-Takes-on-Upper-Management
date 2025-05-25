@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var menuIsDisplayed: bool = false
+var logDisplayed:bool = false
 @onready var battle_menu_control = $BattleMenuControl
 @onready var label = $BattleMenuControl/Label
 @onready var exit_level = $BattleMenuControl/HBoxContainer/ExitLevel
@@ -30,6 +31,7 @@ func _ready():
 		exit_level.visible = false
 		restart_level.visible = false
 		pass_button.visible = false
+		$BattleBox/LogButton.visible = false
 		to_main_menu.visible = true
 		background_rect.visible = false
 		pre_battle_box.visible = false
@@ -52,6 +54,7 @@ func flipMenuDisplay():
 	pause_button.visible = !menuIsDisplayed
 	if isBattleScene:
 		pass_button.visible = !menuIsDisplayed
+		$BattleBox/LogButton.visible = !menuIsDisplayed
 	if menuIsDisplayed:
 		get_tree().paused = true
 	else:
@@ -146,4 +149,15 @@ func _on_units_left_changed():
 	unit_count.text = "Units left to move: " + str(Global.player_units_to_move)
 
 func _on_log_button_pressed():
-	print(Global.battle_log)
+	if logDisplayed:
+		$LogControl.hide()
+		get_tree().paused = false
+		logDisplayed = false
+	else:
+		$LogControl/Log.text = "\n".join(PackedStringArray(Global.battle_log))
+		$LogControl.show()
+		get_tree().paused = true
+		logDisplayed = true
+
+func _on_log_resume_pressed():
+	_on_log_button_pressed()
