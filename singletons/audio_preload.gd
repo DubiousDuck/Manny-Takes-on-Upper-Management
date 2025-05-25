@@ -37,6 +37,7 @@ func _ready():
 
 func _on_start_battle():
 	stream = battle_theme.get(Global.current_level, _BATTLE_1_MUSIC)
+	pitch_scale = 1
 	play()
 
 func _on_back_to_overworld():

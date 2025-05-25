@@ -36,11 +36,10 @@ func back_to_overworld():
 
 func party_add_logic(ally_type):
 	if Global.max_party_num > Global.current_party.size():
-		print("adding to party")
 		Global.current_party.append(ally_type)
 	else:
-		print("adding to reserves")
 		Global.reserves.append(ally_type)
+		HintManager.trigger_hint("reserve_added", "Your new recruit is in the Reserves", false)
 	Global.recruit_token -= 1
 
 # Function to assign a unique ID and return the character with that ID

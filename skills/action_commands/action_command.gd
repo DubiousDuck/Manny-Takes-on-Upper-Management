@@ -31,7 +31,7 @@ func _process(_delta):
 func _input(_event):
 	match action_command_type:
 		"throw":
-			if Input.is_action_just_pressed("LMB"):
+			if Input.is_action_just_pressed("ui_select"):
 				$AnimationPlayer.pause() #stop will make value = 0
 				if $ProgressBar.value >= 70:
 					finished.emit(true)
@@ -46,7 +46,7 @@ func _input(_event):
 					timer = get_tree().create_timer(mashing_time)
 					$TimeLeft.text = str(mashing_time) + "s"
 					timer_started = true
-				$ProgressBar.value += 5;
+				$ProgressBar.value += 15;
 				if($ProgressBar.value >= 100):
 					action_command_completed(true)
 		_:
