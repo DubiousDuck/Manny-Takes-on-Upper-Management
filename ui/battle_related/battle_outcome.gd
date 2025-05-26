@@ -29,7 +29,7 @@ func init(result: int):
 			Global.battle_result = "none"
 		EventBus.BattleResult.ENEMY_VICTORY:
 			$Label.text = "You lost..."
-			item_drop_label.hide()
+			$VBoxContainer/ItemDropLabel.hide()
 			Global.battle_result = "lose"
 	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
 

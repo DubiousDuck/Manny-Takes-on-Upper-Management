@@ -40,6 +40,8 @@ func _ready():
 	
 	TutorialManager.set_tutorial_queue(tutorial_queue)
 	TutorialManager.reset_tutorial_queue()
+	
+	Global.battle_log.clear()
 
 func battle_start():
 	EventBus.clear_preview.emit()
