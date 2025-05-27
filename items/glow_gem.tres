@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cmbuwcas04j4x"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cmbuwcas04j4x"]
 
+[ext_resource type="Texture2D" uid="uid://bkbxcy1xnpe0k" path="res://assets/items/gem.png" id="1_7qspa"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_seq1q"]
 
 [resource]
 script = ExtResource("1_seq1q")
 item_name = "Glowing Gem"
 description = "A magically shining stone. Grants +1 MAG to the wearer."
+icon = ExtResource("1_7qspa")
 effect_dict = Dictionary[int, Variant]({
 1: 1
 })

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://dk2bl33thf8vf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dk2bl33thf8vf"]
 
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_edbl6"]
+[ext_resource type="Texture2D" uid="uid://b8ma3rgepm3v1" path="res://assets/items/boots.png" id="1_m7ud6"]
 
 [resource]
 script = ExtResource("1_edbl6")
 item_name = "Boots"
 description = "A pair of trusty boots. Grants the unit +1 movement range."
+icon = ExtResource("1_m7ud6")
 effect_dict = Dictionary[int, Variant]({
 4: 1
 })

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cmir8fmxx6qcf"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cmir8fmxx6qcf"]
 
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_6w35t"]
+[ext_resource type="Texture2D" uid="uid://dri4pjd8igxgo" path="res://assets/items/helmet.png" id="1_upk8j"]
 
 [resource]
 script = ExtResource("1_6w35t")
 item_name = "Sturdy Helmet"
 description = "A good old reliable helmet. Grants +2 HP to the wearer."
+icon = ExtResource("1_upk8j")
 effect_dict = Dictionary[int, Variant]({
 3: 2
 })

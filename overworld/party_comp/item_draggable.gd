@@ -14,6 +14,7 @@ func _ready():
 	if item_data:
 		$Label.text = item_data.item_name
 		icon.tooltip_text = item_data.description
+		icon.texture = item_data.icon
 	original_pos = global_position
 
 func _on_remove_pressed():

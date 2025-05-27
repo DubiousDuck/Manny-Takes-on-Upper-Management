@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://t0inmfkk5ymh"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://t0inmfkk5ymh"]
 
+[ext_resource type="Texture2D" uid="uid://b675b5ofiqecn" path="res://assets/items/sword.png" id="1_bikib"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_es5ut"]
 
 [resource]
 script = ExtResource("1_es5ut")
 item_name = "Sword"
 description = "This is a normal sword. Grants +1 ATK to the wearer."
+icon = ExtResource("1_bikib")
 effect_dict = Dictionary[int, Variant]({
 0: 1
 })
