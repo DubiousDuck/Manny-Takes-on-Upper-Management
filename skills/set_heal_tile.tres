@@ -6,7 +6,7 @@
 script = ExtResource("1_vdj0q")
 name = "Milk Station"
 description = "Set up a milk station. Place a Healing tile at the target location."
-type = 1
+type = "Skill"
 targets = 7
 affinity = 1
 range = 1

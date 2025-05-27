@@ -6,7 +6,7 @@
 script = ExtResource("1_u08bw")
 name = "Whirlwind"
 description = "Leaps into the air and do a fancy spin. Damages and knocks back all units around you."
-type = 0
+type = "attack"
 targets = 2
 affinity = 0
 range = 0

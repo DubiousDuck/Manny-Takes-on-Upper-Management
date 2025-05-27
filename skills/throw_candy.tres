@@ -6,7 +6,7 @@
 script = ExtResource("1_m71aa")
 name = "Throw Candy"
 description = "Toss a yummy candy that is impossible to resist. Lures all units around the target area to that tile."
-type = 0
+type = "Skill"
 targets = 7
 affinity = 0
 range = 2

@@ -7,7 +7,7 @@
 script = ExtResource("1_ajp2j")
 name = "Forgetful Hammer"
 description = "BONK the enemy very hard with a balloon hammer. Inflicts Forget on the target."
-type = 0
+type = ""
 targets = 1
 affinity = 0
 range = 1

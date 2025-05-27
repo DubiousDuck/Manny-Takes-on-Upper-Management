@@ -6,7 +6,7 @@
 script = ExtResource("1_lq8if")
 name = "Stink bomb"
 description = "Throw a stinky blob wrapped in a diaper. Knocking back all units around the target cell."
-type = 0
+type = "Skill"
 targets = 6
 affinity = 1
 range = 2

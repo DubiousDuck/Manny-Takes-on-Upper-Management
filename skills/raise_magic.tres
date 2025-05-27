@@ -6,7 +6,7 @@
 script = ExtResource("1_tmfvc")
 name = "Raise Magic"
 description = "Have the target eat Omega-3-rich fish. Raises the target MAG for 2 turns."
-type = 1
+type = "Skill"
 targets = 0
 affinity = null
 range = 2

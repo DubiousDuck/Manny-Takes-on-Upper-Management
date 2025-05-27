@@ -6,7 +6,7 @@
 script = ExtResource("1_a8upa")
 name = "Pick Up"
 description = "Pick an ally up and carry them on your shoulder. Unlocks the follow up skill \"Throw\""
-type = 1
+type = "Skill"
 targets = 5
 affinity = null
 range = 1

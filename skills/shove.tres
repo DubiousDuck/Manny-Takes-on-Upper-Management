@@ -6,7 +6,7 @@
 script = ExtResource("1_274dk")
 name = "Shove"
 description = "Shove others with your baby hands. Push the target away from you."
-type = 0
+type = "attack"
 targets = 4
 affinity = 0
 range = 1

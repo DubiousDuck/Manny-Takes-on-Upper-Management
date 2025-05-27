@@ -6,7 +6,7 @@
 script = ExtResource("1_v6cwk")
 name = "Lower Attack"
 description = "Let out a loud \"Boooo\", making them feel not as confident. Lowers the ATK of the target for 2 turns."
-type = 1
+type = "Skill"
 targets = 1
 affinity = null
 range = 2

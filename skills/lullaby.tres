@@ -7,7 +7,7 @@
 script = ExtResource("1_or8i6")
 name = "Lullaby"
 description = "Sing a smoothing lullaby. Inflicts Sleep on the target for 2 turns."
-type = 1
+type = "Skill"
 targets = 1
 affinity = 1
 range = 2

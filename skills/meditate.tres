@@ -6,7 +6,7 @@
 script = ExtResource("1_ndt6k")
 name = "Meditate"
 description = "Enters a meditative state. Restores some HP and ends the unit's turn."
-type = 1
+type = "Skill"
 targets = 2
 affinity = 1
 range = 1

@@ -7,7 +7,7 @@
 script = ExtResource("1_y8jwx")
 name = "Banana Peel"
 description = "Throw a Banana peel at the enemy. Inflicts Unsteady to the target for 1 turn."
-type = 0
+type = "attack"
 targets = 1
 affinity = 1
 range = 2

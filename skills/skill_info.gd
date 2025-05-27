@@ -11,7 +11,7 @@ enum TargetType {ALLIES, ENEMIES, SELF, ANY_UNIT, EXCEPT_SELF, ALLIES_EXCEPT_SEL
 @export_category("Basic Info")
 @export var name: String
 @export_multiline var description: String = ""
-@export_enum("attack", "skill", "passive") var type
+@export_enum("Attack", "Skill", "Other") var type: String = "Attack"
 @export var targets: TargetType
 @export_enum("physical", "magic") var affinity
 @export_range(0, 10) var range: int

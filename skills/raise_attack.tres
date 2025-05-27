@@ -6,7 +6,7 @@
 script = ExtResource("1_v3qds")
 name = "Raise Attack"
 description = "Casually flexing. Boosts the ATK of the target for 2 turns."
-type = 1
+type = "Skill"
 targets = 0
 affinity = null
 range = 2

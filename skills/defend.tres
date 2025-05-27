@@ -6,7 +6,7 @@
 script = ExtResource("1_a5sad")
 name = "Defend"
 description = "Assumes a steady stance. Reduces damage taken by half next turn."
-type = 1
+type = "Skill"
 targets = 2
 affinity = null
 range = 0
