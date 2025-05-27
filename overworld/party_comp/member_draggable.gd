@@ -14,7 +14,7 @@ var equipped_items: Array[DraggableItem]
 var in_curr_party: bool = false
 
 func _ready():
-	$Label.text = unit_data.unit_class
+	$Label.text = "%s\nLv.%d" %[unit_data.unit_class, unit_data.level]
 	EventBus.connect("dragging_stop", _on_dragging_stop)
 	EventBus.connect("remove_item", _on_remove_item)
 

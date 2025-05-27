@@ -15,6 +15,7 @@ var last_scene_type: String = "overworld"
 
 func _ready():
 	var reserves: Array[DraggableMember] = []
+	# Spawning reserves
 	for unit_data in Global.reserves:
 		var a = MEMBER.instantiate()
 		a.unit_data = unit_data
@@ -22,6 +23,7 @@ func _ready():
 		reserves.append(a)
 		member_folder.add_child(a)
 	
+	# spawning current party members
 	var party: Array[DraggableMember] = []
 	for unit_data in Global.current_party:
 		var	a = MEMBER.instantiate()

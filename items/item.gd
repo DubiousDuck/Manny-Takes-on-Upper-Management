@@ -21,15 +21,15 @@ func to_dict() -> Dictionary:
 	}
 
 static func new_from_dict(data: Dictionary) -> ItemData:
-	var item := ItemData.new()
-	item.item_name = data.get("item_name", "")
-	item.description = data.get("description", "")
-	item.icon = data.get("icon", null)
-	
-	# Rebuilding the effect dictionary in a careful way
-	var raw_effect = data.get("effect_dict", {})
-	for key in raw_effect.keys():
-		item.effect_dict[int(key)] = int(raw_effect[key])
-	print("The rebuilt item effects are: " + str(item.effect_dict) + " -- item.gd")
+	var item := ItemDatabase.get_by_name(data.get("item_name", ""))
+	#item.item_name = data.get("item_name", "")
+	#item.description = data.get("description", "")
+	#item.icon = data.get("icon", null)
+	#
+	## Rebuilding the effect dictionary in a careful way
+	#var raw_effect = data.get("effect_dict", {})
+	#for key in raw_effect.keys():
+		#item.effect_dict[int(key)] = int(raw_effect[key])
+	#print("The rebuilt item effects are: " + str(item.effect_dict) + " -- item.gd")
 
 	return item

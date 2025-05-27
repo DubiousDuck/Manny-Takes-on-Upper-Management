@@ -21,9 +21,9 @@ hframes = 4
 
 [node name="Label" type="Label" parent="." index="2"]
 offset_left = -39.0
-offset_top = -46.0
+offset_top = -64.0
 offset_right = 39.0
-offset_bottom = -23.0
+offset_bottom = -41.0
 theme = ExtResource("3_po6nx")
 horizontal_alignment = 1
 
