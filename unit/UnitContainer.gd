@@ -32,6 +32,8 @@ var in_battle: bool = false
 
 #flags
 var is_waiting_unit_selection: bool = true
+## flag that indicates whether the player has chosen the actio "Move" or not
+var unit_moving: bool = false
 var in_progress: bool = false
 var is_aoe_skill: bool = false
 
@@ -146,6 +148,7 @@ func deselect_current_unit():
 	skill_chosen = null
 	EventBus.emit_signal("remove_cell_highlights", name)
 	HintManager.hide_hint("")
+	unit_moving = false
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -625,7 +628,8 @@ func _unhandled_input(event):
 			
 			#TODO: Make it so that if a skill is chosen the unit can't move when click on a blue cell?
 			if action_type == Unit.Action.MOVE:
-				if skill_chosen != null:
+				# only moves the unit if no skill is chosen AND player has chosen the "Move" action
+				if !unit_moving:
 					deselect_current_unit()
 					return
 				check_and_remove_unit_from_being_held(current_unit)
@@ -787,6 +791,11 @@ func _on_skill_chosen(skill: SkillInfo):
 	if skill_chosen.name == "Wait":
 		unit_wait()
 		return
+	if skill_chosen.name == "Move":
+		unit_moving = true
+		return
+	else:
+		unit_moving = false
 	if abs(skill_chosen.area) > 0:
 		is_aoe_skill = true
 	else: is_aoe_skill = false

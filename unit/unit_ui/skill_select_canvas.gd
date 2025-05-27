@@ -3,6 +3,7 @@ extends CanvasLayer
 class_name SkillSelectCanvas
 
 const WAIT = preload("res://skills/wait.tres")
+const MOVE = preload("res://skills/move.tres")
 const skill_icon = preload("res://unit/unit_ui/skill_icon.tscn")
 const action_icon = preload("res://unit/unit_ui/action_icon.tscn")
 const BACK_BUTTON = preload("res://unit/unit_ui/back_button.tscn")
@@ -95,10 +96,11 @@ func _on_action_button_pressed(type: String):
 			show_skill_of_type(type)
 		"Move":
 			HintManager.trigger_hint("move_pressed", "Choose a tile to move to", false)
+			EventBus.emit_signal("skill_chosen", MOVE)
 			visible = false
+			return
 		"Wait":
 			EventBus.emit_signal("skill_chosen", WAIT)
-			EventBus.tutorial_trigger.emit("attack_chosen")
 			visible = false
 			return
 	
