@@ -5,6 +5,8 @@
 [node name="AudioPreload" type="AudioStreamPlayer"]
 process_mode = 3
 autoplay = true
+bus = &"Music"
 script = ExtResource("1_bgm7c")
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"

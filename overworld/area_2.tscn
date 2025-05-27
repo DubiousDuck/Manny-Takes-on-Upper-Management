@@ -266,6 +266,7 @@ theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
 [node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
+visible = false
 offset_left = 25.0
 offset_top = 16.0
 offset_right = 231.0

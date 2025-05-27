@@ -32,5 +32,6 @@ autoplay = "overworld_anim/holding_empty"
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -2.0
 pitch_scale = 1.75
+bus = &"Sfx"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

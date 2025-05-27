@@ -4,10 +4,14 @@ const _BATTLE_1_MUSIC = preload("res://assets/music/HR Level 1.ogg")
 const _BATTLE_2_MUSIC = preload("res://assets/music/HR Level 2.ogg")
 const _OW_ONE_MUSIC = preload("res://assets/music/HR Overworld 1.ogg")
 
+@onready var sfx_player = $SfxPlayer
+
 var volValue: int = 0:
 	set(new_val):
 		volValue = new_val
-		volume_db = volValue
+		# Currently only one unified volumne for both sfx and music
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), volValue)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), volValue)
 
 ## Dictionary that matches overworld to its theme
 var overworld_themes: Dictionary = {
@@ -44,7 +48,6 @@ func _on_back_to_overworld():
 	var theme_info: Array = overworld_themes.get(Global.last_overworld_path, [_OW_ONE_MUSIC, 1.0])
 	var overworld_music: AudioStream = theme_info[0]
 	if !playing: play()
-	music_fade_in()
 	# pause for a bit if the stream or pitch_scale is different
 	if theme_info[1] != pitch_scale or stream != overworld_music:
 		stop()
@@ -67,15 +70,10 @@ func play_sfx(name: String):
 			$SfxPlayer.stream = BUTTON_CLICK_SFX
 			$SfxPlayer.play()
 		"victory":
-			music_fade_out()
+			# stop music and play victory sfx
+			stop()
 			$SfxPlayer.stream = VICTORY_SFX
 			$SfxPlayer.play()
-		
-func music_fade_out():
-	stop()
-	#var a = get_tree().create_tween()
-	#a.tween_property(self, "volume_linear", 0, 0.3)
-	#await a.finished
 
 func music_fade_in():
 	var a = get_tree().create_tween()
