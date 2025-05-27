@@ -160,9 +160,9 @@ stretch_mode = 5
 
 [node name="PassButton" type="Button" parent="BattleBox"]
 layout_mode = 0
-offset_left = 27.0
+offset_left = 794.0
 offset_top = 562.0
-offset_right = 246.0
+offset_right = 1013.0
 offset_bottom = 629.0
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 56
@@ -171,22 +171,23 @@ text = "PASS TURN"
 [node name="LogButton" type="Button" parent="BattleBox"]
 layout_mode = 0
 offset_left = 1024.0
-offset_top = 560.0
+offset_top = 562.0
 offset_right = 1131.0
-offset_bottom = 627.0
+offset_bottom = 629.0
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 56
 text = "LOG"
 
 [node name="UnitCount" type="Label" parent="BattleBox"]
 layout_mode = 0
-offset_left = 28.0
+offset_left = 889.0
 offset_top = 532.0
-offset_right = 269.0
+offset_right = 1130.0
 offset_bottom = 561.0
 theme = ExtResource("6_erp37")
 theme_override_font_sizes/font_size = 35
 text = "Units left to move: X"
+horizontal_alignment = 2
 
 [node name="PreBattleBox" type="HBoxContainer" parent="."]
 anchors_preset = 7
@@ -411,6 +412,7 @@ theme_override_font_sizes/font_size = 45
 text = "Dev Button"
 
 [node name="LogControl" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

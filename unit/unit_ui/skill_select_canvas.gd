@@ -91,6 +91,7 @@ func _on_action_button_pressed(type: String):
 	action_container.hide()
 	match type:
 		"Attack", "Skill":
+			HintManager.trigger_hint("second_layer_needed", "Choose a valid %s" %type, false)
 			show_skill_of_type(type)
 		"Move":
 			HintManager.trigger_hint("move_pressed", "Choose a tile to move to", false)
