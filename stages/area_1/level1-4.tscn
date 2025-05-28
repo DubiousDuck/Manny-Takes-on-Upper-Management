@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="18_grulp"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="20_rpv7r"]
 [ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="22_grulp"]
-[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="23_26ose"]
+[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="23_26ose"]
 
 [sub_resource type="Resource" id="Resource_1qk5m"]
 script = ExtResource("13_6i534")

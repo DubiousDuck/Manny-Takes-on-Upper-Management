@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_hwe18")
 name = "Basic Punch"
-description = "Punch the enemy with baby fists. Deals some physical damage to the target."
+description = "Punch the enemy with baby fists. Deals physical damage to the target."
 type = "attack"
 targets = 1
 affinity = 0

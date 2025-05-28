@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://khrwg3mnex64"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=12 format=3 uid="uid://khrwg3mnex64"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_fc3tt"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_la6c2"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_ve8l4"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="3_ye2rj"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_5ll2x"]
-[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="4_iwujq"]
 [ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="6_la6c2"]
+[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="7_dxt1t"]
 [ext_resource type="Resource" uid="uid://bw52nj7xy3w4y" path="res://skills/forgetful_hammer.tres" id="8_o8xow"]
-[ext_resource type="Resource" uid="uid://cwb3n75y1egow" path="res://skills/low_sweep.tres" id="9_edbqs"]
+[ext_resource type="Resource" uid="uid://dneydg46sytpb" path="res://skills/deadline_grip.tres" id="9_dxt1t"]
 [ext_resource type="Resource" uid="uid://djy537r81hp18" path="res://skills/whirlwind.tres" id="10_dxt1t"]
+[ext_resource type="Resource" uid="uid://get0lriapb2v" path="res://skills/cubicle_slap.tres" id="11_gjrlp"]
 
 [resource]
 script = ExtResource("1_fc3tt")
@@ -56,10 +57,11 @@ stat_growth_table = Dictionary[int, Dictionary]({
 })
 skill_list = Array[ExtResource("2_ve8l4")]([ExtResource("3_ye2rj"), ExtResource("4_5ll2x")])
 skill_table = Dictionary[int, ExtResource("2_ve8l4")]({
-3: ExtResource("6_la6c2"),
-5: ExtResource("4_iwujq"),
-7: ExtResource("8_o8xow"),
-10: ExtResource("9_edbqs"),
+2: ExtResource("7_dxt1t"),
+4: ExtResource("6_la6c2"),
+6: ExtResource("8_o8xow"),
+8: ExtResource("9_dxt1t"),
+10: ExtResource("11_gjrlp"),
 11: ExtResource("10_dxt1t")
 })
 item_list = Array[ExtResource("1_la6c2")]([])

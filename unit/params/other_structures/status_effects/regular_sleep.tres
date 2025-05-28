@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bpv5a6ue7h3uo"]
+[gd_resource type="Resource" script_class="SleepStatus" load_steps=3 format=3 uid="uid://bpv5a6ue7h3uo"]
 
 [ext_resource type="Texture2D" uid="uid://cba43lft5036n" path="res://assets/unit_ui/sleep_icon.png" id="1_542m3"]
-[ext_resource type="Script" uid="uid://blagjb0w2vx7a" path="res://unit/params/other_structures/status_effects/status_effect.gd" id="1_nvgn3"]
+[ext_resource type="Script" uid="uid://b6eg517fq60sa" path="res://unit/params/other_structures/status_effects/sleep.gd" id="2_542m3"]
 
 [resource]
-script = ExtResource("1_nvgn3")
+script = ExtResource("2_542m3")
 icon = ExtResource("1_542m3")
 name = "Regular Sleep"
 type = 0

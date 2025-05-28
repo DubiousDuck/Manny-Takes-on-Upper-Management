@@ -31,7 +31,7 @@
 [ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="28_pmpg8"]
 [ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="29_ch5tg"]
 [ext_resource type="Resource" uid="uid://ipuxhkgcm6c8" path="res://skills/banana_peel.tres" id="30_2510a"]
-[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="30_iwwt5"]
+[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="30_iwwt5"]
 [ext_resource type="Resource" uid="uid://bw52nj7xy3w4y" path="res://skills/forgetful_hammer.tres" id="31_7liit"]
 [ext_resource type="Resource" uid="uid://cwb3n75y1egow" path="res://skills/low_sweep.tres" id="32_vcjw5"]
 [ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="33_hw7xb"]

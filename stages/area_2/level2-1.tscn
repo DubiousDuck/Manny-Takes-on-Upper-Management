@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://b76w3pm0de8rg" path="res://skills/lower_magic.tres" id="23_6e5ut"]
 [ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="23_hilwe"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="24_3ocmm"]
-[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="24_b6yt8"]
+[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="24_b6yt8"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="25_1r51o"]
 [ext_resource type="Resource" uid="uid://bw52nj7xy3w4y" path="res://skills/forgetful_hammer.tres" id="25_f7axc"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="26_b43iv"]

@@ -30,7 +30,7 @@
 [ext_resource type="Resource" uid="uid://wd8lggmbwcl1" path="res://skills/lullaby.tres" id="29_usvta"]
 [ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="30_1x7uv"]
 [ext_resource type="Resource" uid="uid://dilc2xhbogfv0" path="res://skills/meditate.tres" id="31_kdja5"]
-[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/shove.tres" id="32_xfy3p"]
+[ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="32_xfy3p"]
 [ext_resource type="Resource" uid="uid://bw52nj7xy3w4y" path="res://skills/forgetful_hammer.tres" id="33_tw5p0"]
 [ext_resource type="Resource" uid="uid://cwb3n75y1egow" path="res://skills/low_sweep.tres" id="34_2vlol"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="35_cftik"]
