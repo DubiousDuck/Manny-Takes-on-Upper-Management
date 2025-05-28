@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://cm83nrkaqbp3d"]
+
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_fdff0"]
+[ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="2_bqlgi"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="3_wv217"]
+[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="4_i7wdi"]
+[ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="5_ae1qp"]
+[ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="6_h1ckf"]
+
+[resource]
+script = ExtResource("2_bqlgi")
+id = 0
+level = 10
+exp = 0
+unit_class = "Turret"
+stat = Dictionary[int, int]({
+0: 4,
+1: 2,
+2: 2,
+3: 0
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
+},
+8: {
+0: 1
+},
+9: {
+1: 1,
+2: 1
+},
+10: {
+0: 2
+},
+12: {
+1: 2
+},
+13: {
+2: 2
+},
+15: {
+0: 1,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 1,
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("3_wv217")]([ExtResource("4_i7wdi"), ExtResource("5_ae1qp"), ExtResource("6_h1ckf")])
+skill_table = Dictionary[int, ExtResource("3_wv217")]({})
+item_list = Array[ExtResource("1_fdff0")]([])
+metadata/_custom_type_script = "uid://d2mnyc15434nn"

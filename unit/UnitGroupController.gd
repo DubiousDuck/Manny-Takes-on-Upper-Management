@@ -411,7 +411,9 @@ func try_trigger_pof(target: Unit, attacker: Unit) -> bool:
 
 func grant_extra_turn(unit: Unit):
 	if !unit.actions_avail.has(Unit.Action.MOVE):
-		unit.actions_avail.append(Unit.Action.MOVE)
+		# only grants Move token if not inflicted with Forget
+		if !unit.active_status_effect or unit.active_status_effect.type != StatusEffect.Effect.FORGET:
+			unit.actions_avail.append(Unit.Action.MOVE)
 	if !unit.actions_avail.has(Unit.Action.ATTACK):
 		unit.actions_avail.append(Unit.Action.ATTACK)
 	Global.play_label_slide_from_left("Power of Friendship!")

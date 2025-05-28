@@ -11,7 +11,7 @@ class_name UnitData
 # Battle related
 ## Identifer of the Class; each Class corresponds to a unique UnitData template
 @export_enum("Protagonist", "Tank", "Fighter", 
-	"Ranger", "Healer", "Mage", "Boss") var unit_class: String
+	"Ranger", "Healer", "Mage", "Boss", "Turret") var unit_class: String
 
 enum STAT {HP, ATK, MAG, MOV}
 @export var stat: Dictionary[STAT, int] = {

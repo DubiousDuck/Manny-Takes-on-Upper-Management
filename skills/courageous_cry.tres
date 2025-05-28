@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://dw3vrw7r5fpm6"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_7aqki"]
+
+[resource]
+script = ExtResource("1_7aqki")
+name = "Courageous Cry"
+description = "Let out a courageous cry that inspires nearby allies. Reduces the damage taken by allies around by half for the next turn."
+type = "Skill"
+targets = 2
+affinity = null
+range = 0
+area = 1
+skill_effects = Dictionary[int, Variant]({
+3: "uid://4jak0nm0bll"
+})
+effect_execution_order = Array[int]([])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

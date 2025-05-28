@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_m7tql"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="5_8kc7s"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="7_q843e"]
-[ext_resource type="Resource" uid="uid://b76w3pm0de8rg" path="res://skills/lower_magic.tres" id="8_frwjs"]
-[ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="9_4humw"]
+[ext_resource type="Resource" uid="uid://vdbmy1yf5qs" path="res://skills/pep_talk.tres" id="9_ng8bt"]
+[ext_resource type="Resource" uid="uid://dw3vrw7r5fpm6" path="res://skills/courageous_cry.tres" id="10_frwjs"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="10_lsvis"]
 
 [resource]
@@ -84,7 +84,7 @@ skill_list = Array[ExtResource("2_r35iw")]([ExtResource("3_goe2f"), ExtResource(
 skill_table = Dictionary[int, ExtResource("2_r35iw")]({
 3: ExtResource("7_q843e"),
 5: ExtResource("10_lsvis"),
-8: ExtResource("8_frwjs"),
-9: ExtResource("9_4humw")
+8: ExtResource("9_ng8bt"),
+10: ExtResource("10_frwjs")
 })
 item_list = Array[ExtResource("2_ryw5y")]([])

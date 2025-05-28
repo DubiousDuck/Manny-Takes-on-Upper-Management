@@ -425,6 +425,7 @@ func unit_action(skill: SkillInfo, target_cell: Vector2i):
 		#print("# " + str(current_unit.name) + " USED: " + str(skill_chosen.name) + " (UnitContainer.gd)")
 		var outbound_array: Array[Vector2i] = [clicked_cell]
 		outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
+		EventBus.emit_signal("show_cell_highlights", outbound_array, CellHighlight.ATTACK_HIGHLIGHT, name)
 		current_unit.take_action(skill_chosen, clicked_cell)
 		#print("# Awaiting attack point (UnitContainer.gd)")
 		in_progress = true
@@ -649,6 +650,8 @@ func _unhandled_input(event):
 				HintManager.hide_hint("skill_selected")
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
+				# highlight target cells
+				EventBus.emit_signal("show_cell_highlights", outbound_array, CellHighlight.ATTACK_HIGHLIGHT, name)
 				current_unit.take_action(skill_chosen, clicked_cell)
 				#print("# Awaiting attack point (UnitContainer.gd)")
 				in_progress = true

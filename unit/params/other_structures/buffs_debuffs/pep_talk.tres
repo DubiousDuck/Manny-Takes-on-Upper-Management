@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://jmtuswrkmh4r"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_jfk3y"]
+
+[resource]
+script = ExtResource("1_jfk3y")
+stat = "damage_reduction"
+value = 0.5
+source = "Defend"
+duration = 1
+metadata/_custom_type_script = "uid://dda521hi48f5d"

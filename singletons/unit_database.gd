@@ -4,7 +4,7 @@ extends Node
 var unit_templates: Dictionary = {}
 
 func _ready():
-	# Preload templates and map by unit_class
+	# Preload templates (excluding special enemies) and map by unit_class
 	var protagonist = preload("res://unit/params/protagonist.tres")
 	var fighter = preload("res://unit/params/fighter.tres")
 	var tank = preload("res://unit/params/tank.tres")

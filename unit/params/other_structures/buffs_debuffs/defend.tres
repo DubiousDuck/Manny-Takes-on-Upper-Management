@@ -6,6 +6,6 @@
 script = ExtResource("1_wottm")
 stat = "damage_reduction"
 value = 0.5
-source = "Defend"
+source = "Pep Talk"
 duration = 1
 metadata/_custom_type_script = "uid://dda521hi48f5d"

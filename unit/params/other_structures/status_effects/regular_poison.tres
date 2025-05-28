@@ -9,5 +9,5 @@ icon = ExtResource("1_gr1ux")
 name = "Regular Poison"
 type = 1
 duration = 2
-magnitude = 1
+magnitude = 2
 metadata/_custom_type_script = "uid://blagjb0w2vx7a"

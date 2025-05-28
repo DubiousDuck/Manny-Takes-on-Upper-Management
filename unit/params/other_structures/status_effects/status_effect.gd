@@ -31,7 +31,7 @@ func poison_tick(unit: Unit):
 	unit.take_damage(magnitude, null)
 
 func forget_tick(unit: Unit):
-	unit.actions_avail.erase(Unit.Action.ATTACK)
+	unit.actions_avail.erase(Unit.Action.MOVE)
 
 # function that is called when status is first applied
 func on_apply(unit: Unit):

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://4jak0nm0bll"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_4rrqk"]
+
+[resource]
+script = ExtResource("1_4rrqk")
+stat = "damage_reduction"
+value = 0.5
+source = "Courageous Cry"
+duration = 1
+metadata/_custom_type_script = "uid://dda521hi48f5d"

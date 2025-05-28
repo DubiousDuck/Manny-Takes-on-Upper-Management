@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="3_2rf0d"]
 [ext_resource type="Resource" uid="uid://djy537r81hp18" path="res://skills/whirlwind.tres" id="5_1mvcv"]
 [ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="5_ktysd"]
-[ext_resource type="Resource" path="res://skills/random_death_tile.tres" id="6_ktysd"]
+[ext_resource type="Resource" uid="uid://dbtbbw7agjtsp" path="res://skills/random_death_tile.tres" id="6_ktysd"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="7_7052l"]
 
 [resource]
