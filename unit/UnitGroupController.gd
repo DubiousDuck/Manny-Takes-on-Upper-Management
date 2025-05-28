@@ -434,7 +434,8 @@ func process_battle_log(attacker: Unit, affected_units: Array[Unit], attack: Ski
 	
 	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color] used " + attack.name + " on " + affected_names + "!"
 	
-	if affected_names_arr[0] == str("[color=red]", attacker.unit_data.unit_class, "[/color]") or affected_names_arr[0] == str("[color=blue]", attacker.unit_data.unit_class, "[/color]"):
+	# if only affecting the attacker themselves
+	if affected_units.size() == 1 and affected_units.front() == attacker:
 		log_entry = affected_names_arr[0] + " used " + attack.name + " on themselves!"
 		
 	Global.battle_log.append(log_entry)

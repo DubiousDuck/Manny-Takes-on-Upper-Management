@@ -386,8 +386,17 @@ var two_signals: Array[bool] = [false, false]
 
 func animation_state(animation : String):
 	$Sprite2D.hframes = 4
-	#print("# NEW ANIMATION: " + animation + " (unit.gd)")
-	$AnimationPlayer.play("%s/%s" %[anim_lib, animation])
+	var full_anim_name = "%s/%s" % [anim_lib, animation]
+	
+	if $AnimationPlayer.has_animation(full_anim_name):
+		$AnimationPlayer.play(full_anim_name)
+	else:
+		# Play fallback/default animation
+		var default_anim = "%s/default" % anim_lib
+		if $AnimationPlayer.has_animation(default_anim):
+			$AnimationPlayer.play(default_anim)
+		else:
+			print("Missing animation: %s and default %s" % [full_anim_name, default_anim])
 
 #in the animation player
 func emit_attack_point():
