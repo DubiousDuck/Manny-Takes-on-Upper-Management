@@ -5,14 +5,15 @@
 [resource]
 script = ExtResource("1_iw6dl")
 name = "Magic Boulder"
-description = "Hurl a magical boulder at the enemy. Deals great damage to the enemy."
-type = 0
+description = "Hurl a magical boulder at the enemy. Deals a little damage and push back the target by 1 block"
+type = "Attack"
 targets = 1
 affinity = 1
-range = 1
+range = 2
 area = 0
 skill_effects = Dictionary[int, Variant]({
-0: 1.5
+0: 0.5,
+1: 1
 })
-effect_execution_order = Array[int]([])
+effect_execution_order = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

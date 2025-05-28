@@ -237,6 +237,11 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						for tile in targets:
 							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.HEAL)
 						await EventBus.set_cell_done
+					"spike":
+						for tile in targets:
+							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.SPIKE)
+						# no need to wait as there are no animation
+					
 			SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
 				var buff = load(effects[key])
 				if buff is BonusStat:

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_7aqki")
 name = "Courageous Cry"
-description = "Let out a courageous cry that inspires nearby allies. Reduces the damage taken by allies around by half for the next turn."
+description = "Let out a courageous cry that inspires nearby babies. Reduces the damage taken by surrounding babies by half for the next turn."
 type = "Skill"
 targets = 2
 affinity = null

@@ -2,7 +2,7 @@ extends Resource
 
 class_name BonusStat
 
-@export var stat: String
+@export_enum("max_health", "attack_power", "magic_power", "movement_range", "damage_reduction") var stat: String
 @export var value: float
 
 ## Source of the stat buff

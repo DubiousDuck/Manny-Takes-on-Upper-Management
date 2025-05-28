@@ -136,9 +136,8 @@ func deselect_current_unit():
 	if current_unit == null:
 		return
 	# Set modulate before deselecting
-	if current_unit.actions_avail.is_empty():
+	if current_unit.actions_avail.is_empty() and current_unit.modulate == Color.WHITE:
 		current_unit.set_unit_modulate(Color.DARK_GRAY)
-	else: current_unit.set_unit_modulate(Color.WHITE)
 	
 	current_unit.toggle_skill_ui(false, [])
 	current_unit.selected = false
@@ -270,6 +269,8 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 							new_state.cell_effects[target_cell] = "death"
 						"heal":
 							new_state.cell_effects[target_cell] = "heal"
+						"spike":
+							new_state.cell_effects[target_cell] = "spike"
 						_:
 							pass
 				SkillInfo.EffectType.STATUS:
@@ -353,6 +354,13 @@ func evaluate_state(state: GameState) -> int:
 					else:
 						if cell == state.position[unit]:
 							tile_score += 20
+				"spike":
+					if enemy_container.units.has(unit): 
+						if cell == state.position[unit]:
+							tile_score -= 5
+					else:
+						if cell == state.position[unit]:
+							tile_score += 10
 				_:
 					tile_score += 0
 
@@ -863,7 +871,9 @@ func get_usable_skills(unit: Unit):
 func all_unit_moved_func():
 	await get_tree().create_timer(0.25).timeout
 	for unit in units:
-		unit.set_unit_modulate(Color.WHITE)
+		# set it back when unit modualte is dark gray
+		if unit.modulate == Color.DARK_GRAY:
+			unit.set_unit_modulate(Color.WHITE)
 		unit.in_pof = false
 	all_units_moved.emit()
 

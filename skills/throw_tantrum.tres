@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://bch56yrcacr1o"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_egd7g"]
+
+[resource]
+script = ExtResource("1_egd7g")
+name = "Throw Tantrum"
+description = "Cries aggressively and annoyingly before the enemy. Deals a little damage to the target and reduces their attack for 2 turns."
+type = "Attack"
+targets = 1
+affinity = 1
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({
+0: 0.5,
+4: "uid://dvd512oirab6d"
+})
+effect_execution_order = Array[int]([])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

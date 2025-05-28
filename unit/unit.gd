@@ -6,6 +6,7 @@ const UNIT_PREVIEW = preload("res://ui/battle_related/unit_preview.tscn")
 const THROW_ACTION_COMMAND = preload("res://skills/action_commands/throw_action_command.tscn")
 const MASH_ACTION_COMMAND = preload("res://skills/action_commands/mash_action_command.tscn")
 const OUTLINE_WIDTH := 1
+const DMG_RED_COLOR = Color(0.156, 0.475, 1.0)
 
 signal movement_complete
 signal attack_point
@@ -82,6 +83,9 @@ var damage_reduction: float:
 
 func apply_stat_modifer(stat_mod: BonusStat):
 	bonus_stat.append(stat_mod.duplicate())
+	# applies modulate value for visual indication
+	if stat_mod.stat == "damage_reduction" and stat_mod.value > 0:
+		set_unit_modulate(DMG_RED_COLOR)
 
 func update_modifiers():
 	var new_array: Array[BonusStat] = []
@@ -92,6 +96,10 @@ func update_modifiers():
 				new_array.append(bonus_stat[i])
 		else: new_array.append(bonus_stat[i])
 	bonus_stat = new_array.duplicate()
+	
+	# removes modulate if necessary
+	if abs(damage_reduction) <= 0:
+		set_unit_modulate(Color.WHITE)
 
 func has_temporary_buffs() -> bool:
 	for i in range(bonus_stat.size()):
@@ -176,9 +184,6 @@ func load_unit_data():
 	_set_anim_lib()
 
 func _process(_delta):
-	if damage_reduction > 0:
-		set_unit_modulate(Color(0, 0.35, 1))
-	
 	unit_held.map(
 		func(unit):
 			if !unit:
@@ -217,7 +222,7 @@ func init():
 	in_pof = false
 	update_modifiers()
 	update_status_effect()
-	tile_action()
+	tile_action(true)
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
@@ -340,11 +345,14 @@ func check_if_dead():
 		queue_free.call_deferred()
 
 ## check and execute effect of the tile that the unit lands on
-func tile_action():
+func tile_action(round_start: bool = false):
 	var effect = HexNavi.get_cell_custom_data(cell, "effect")
 	var cell_effect: String = effect if effect is String else ""
 	match cell_effect:
 		"teleport":
+			# Do not teleport at round start
+			if round_start:
+				return
 			var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
 			#print(end_points)
 			if end_points.size() <= 1:
@@ -364,6 +372,8 @@ func tile_action():
 			animation_state("front_idle")
 			regain_health(1, true)
 			#MyMapLayer.set_random_heal_tile(self)
+		"spike":
+			take_damage(1, self)
 		_:
 			return
 

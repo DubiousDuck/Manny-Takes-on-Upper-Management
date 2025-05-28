@@ -9,13 +9,17 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_prhk1"]
 texture = ExtResource("1_gl8xq")
 texture_region_size = Vector2i(128, 128)
-0:0/next_alternative_id = 2
+0:0/next_alternative_id = 3
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 0:0/1 = 1
 0:0/1/modulate = Color(0.501961, 1, 1, 1)
 0:0/1/custom_data_0 = true
 0:0/1/custom_data_2 = "teleport"
+0:0/2 = 2
+0:0/2/modulate = Color(0.803922, 0.560784, 0.85098, 1)
+0:0/2/custom_data_0 = true
+0:0/2/custom_data_2 = "spike"
 1:0/0 = 0
 1:0/0/custom_data_0 = true
 1:0/0/custom_data_1 = true

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://d35bvyq0lgfdj"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://d35bvyq0lgfdj"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_osffr"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_ws2kx"]
@@ -6,9 +6,10 @@
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="3_0ahh6"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_rqhq4"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="6_lvb8j"]
-[ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_dart.tres" id="7_q3a2x"]
-[ext_resource type="Resource" uid="uid://bdt6lnq72ku8y" path="res://skills/giant_arrow.tres" id="8_q3a2x"]
-[ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="9_jqb77"]
+[ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_bubble.tres" id="7_jqb77"]
+[ext_resource type="Resource" uid="uid://p577kdiq1x8g" path="res://skills/mop_swipe.tres" id="8_q3a2x"]
+[ext_resource type="Resource" uid="uid://bv5dwvd6v0vh0" path="res://skills/boot_dash.tres" id="9_jqb77"]
+[ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="10_c0d0u"]
 
 [resource]
 script = ExtResource("1_osffr")
@@ -82,8 +83,9 @@ stat_growth_table = Dictionary[int, Dictionary]({
 skill_list = Array[ExtResource("2_rynq0")]([ExtResource("3_0ahh6"), ExtResource("4_rqhq4")])
 skill_table = Dictionary[int, ExtResource("2_rynq0")]({
 3: ExtResource("6_lvb8j"),
-5: ExtResource("7_q3a2x"),
-10: ExtResource("8_q3a2x"),
-12: ExtResource("9_jqb77")
+5: ExtResource("7_jqb77"),
+7: ExtResource("8_q3a2x"),
+9: ExtResource("9_jqb77"),
+11: ExtResource("10_c0d0u")
 })
 item_list = Array[ExtResource("1_ws2kx")]([])

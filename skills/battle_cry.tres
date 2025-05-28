@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://bnvgg27wo1d4d"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_o2j34"]
+
+[resource]
+script = ExtResource("1_o2j34")
+name = "Battle Cry"
+description = "Let out an annoying but inpsiring battle cry. Raises ATK and MAG of nearby babies by 1 for 2 turns."
+type = "Skill"
+targets = 2
+affinity = null
+range = 1
+area = 0
+skill_effects = Dictionary[int, Variant]({
+3: "uid://cs268p8kj1njw",
+4: "uid://b3o1nghj37c7w"
+})
+effect_execution_order = Array[int]([])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

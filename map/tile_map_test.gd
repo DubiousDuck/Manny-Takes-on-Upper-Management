@@ -17,7 +17,7 @@ const SCENE_COORDS := Vector2i(0, 0)
 const PIT_ID: int = 1
 const HEAL_ID: int = 2
 
-enum CELL_TYPE {WHITE, RED, BLUE, HEAL, PIT, TELEPORT}
+enum CELL_TYPE {WHITE, RED, BLUE, HEAL, PIT, TELEPORT, SPIKE}
 
 ## prevents multiple set cell function called at once
 static var is_busy: bool = false
@@ -39,6 +39,9 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 		CELL_TYPE.TELEPORT:
 			cell_variant = WHITE_CELL
 			alternative = 1
+		CELL_TYPE.SPIKE:
+			cell_variant = WHITE_CELL
+			alternative = 2
 	set_cell(cell, MAIN_ATLAS_ID, cell_variant, alternative)
 	#Update cell weights
 	HexNavi.set_weight_of_layer("traversable", true, 1)
