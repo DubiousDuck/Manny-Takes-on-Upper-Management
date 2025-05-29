@@ -276,7 +276,10 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 				SkillInfo.EffectType.STATUS:
 					for affected in new_state.position.keys():
 						if affected_area.has(new_state.position[affected]):
-							new_state.status_effects[affected] = effects[key]
+							if effects[key] and effects[key] is StatusEffect:
+								new_state.status_effects[affected] = effects[key]
+							else:
+								new_state.status_effects.erase(affected)
 	
 	return new_state
 

@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://co64yberyx03a"]
+[gd_resource type="Resource" script_class="ForgetStatus" load_steps=3 format=3 uid="uid://co64yberyx03a"]
 
 [ext_resource type="Texture2D" uid="uid://cn14ln807uqhj" path="res://assets/unit_ui/forget_icon.png" id="1_mx1v3"]
-[ext_resource type="Script" uid="uid://blagjb0w2vx7a" path="res://unit/params/other_structures/status_effects/status_effect.gd" id="1_tvluh"]
+[ext_resource type="Script" uid="uid://cv3y8u7wllrdm" path="res://unit/params/other_structures/status_effects/forget.gd" id="2_mx1v3"]
 
 [resource]
-script = ExtResource("1_tvluh")
+script = ExtResource("2_mx1v3")
 icon = ExtResource("1_mx1v3")
 name = "Short Forget"
 type = 2

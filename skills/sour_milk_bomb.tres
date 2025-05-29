@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=3 format=3 uid="uid://dkkx2y4t15rpe"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_5n7tj"]
+[ext_resource type="Resource" uid="uid://bm5obtxo157fo" path="res://unit/params/other_structures/status_effects/regular_poison.tres" id="2_uqdfa"]
+
+[resource]
+script = ExtResource("1_5n7tj")
+name = "Toxic Milk Bomb"
+description = "Throws a bottle of expired milk at the target location. Deals a little damage to all targets and apply Poison for 2 turns"
+type = "Attack"
+targets = 1
+affinity = 1
+range = 2
+area = 1
+skill_effects = Dictionary[int, Variant]({
+0: 0.5,
+5: ExtResource("2_uqdfa")
+})
+effect_execution_order = Array[int]([0, 5])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

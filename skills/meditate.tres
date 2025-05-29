@@ -8,11 +8,11 @@ name = "Meditate"
 description = "Enters a meditative state. Restores some HP and raises ATK for 2 turns."
 type = "Skill"
 targets = 2
-affinity = 1
+affinity = 0
 range = 1
 area = 0
 skill_effects = Dictionary[int, Variant]({
-2: 3,
+2: 1,
 3: "uid://cf4mnbjn37r81"
 })
 effect_execution_order = Array[int]([])

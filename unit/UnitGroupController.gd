@@ -253,6 +253,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				if effects[key] is StatusEffect:
 					for unit in affected_units:
 						unit.apply_status(effects[key])
+				elif effects[key] == null:
+					for unit in affected_units:
+						unit.remove_status_effect()
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
 			_:
