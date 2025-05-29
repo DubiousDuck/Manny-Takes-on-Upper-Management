@@ -9,8 +9,8 @@ description = "Let out an annoying but inpsiring battle cry. Raises ATK and MAG 
 type = "Skill"
 targets = 2
 affinity = null
-range = 1
-area = 0
+range = 0
+area = 1
 skill_effects = Dictionary[int, Variant]({
 3: "uid://cs268p8kj1njw",
 4: "uid://b3o1nghj37c7w"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://c5sm6ebrjifdp"]
+[gd_scene load_steps=68 format=4 uid="uid://c5sm6ebrjifdp"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_vu32t"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_eng40"]
@@ -23,13 +23,17 @@
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="21_vubsb"]
 [ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="22_d02b4"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="23_1rip2"]
+[ext_resource type="Resource" uid="uid://djdvj5a6lkpfk" path="res://skills/stink_bomb.tres" id="23_x5y4n"]
 [ext_resource type="Resource" uid="uid://ipuxhkgcm6c8" path="res://skills/banana_peel.tres" id="24_8f1eo"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="25_66k5i"]
 [ext_resource type="Resource" uid="uid://bao7vfdy1qt2i" path="res://skills/basic_heal.tres" id="25_e4f18"]
+[ext_resource type="Resource" uid="uid://bnvgg27wo1d4d" path="res://skills/battle_cry.tres" id="25_e38n8"]
+[ext_resource type="Resource" uid="uid://dih6jk7pagjwy" path="res://skills/lunch_break.tres" id="26_7171i"]
 [ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_bubble.tres" id="26_o8325"]
 [ext_resource type="Resource" uid="uid://b76w3pm0de8rg" path="res://skills/lower_magic.tres" id="26_ombt0"]
 [ext_resource type="Resource" uid="uid://p577kdiq1x8g" path="res://skills/mop_swipe.tres" id="27_cnq1q"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="27_pqmuw"]
+[ext_resource type="Resource" uid="uid://vj8f7rj2pqua" path="res://skills/throw_candy.tres" id="27_sov6c"]
 [ext_resource type="Resource" uid="uid://wd8lggmbwcl1" path="res://skills/lullaby.tres" id="28_p7xlb"]
 [ext_resource type="Resource" uid="uid://bv5dwvd6v0vh0" path="res://skills/boot_dash.tres" id="28_va45j"]
 [ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="29_d81wo"]
@@ -50,8 +54,14 @@
 [ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="40_ors1s"]
 [ext_resource type="Resource" uid="uid://rk42x6t20aw5" path="res://skills/magic_boulder.tres" id="40_wq0dc"]
 [ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="42_vpdah"]
+[ext_resource type="Resource" uid="uid://dfa5rlde0qqaf" path="res://skills/milk_giveaway.tres" id="43_o3vbw"]
+[ext_resource type="Resource" uid="uid://kpjcve1h0liv" path="res://skills/status_cleanse.tres" id="45_smsen"]
+[ext_resource type="Resource" uid="uid://dkkx2y4t15rpe" path="res://skills/sour_milk_bomb.tres" id="48_08rre"]
+[ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="50_uj50k"]
+[ext_resource type="Resource" uid="uid://ce2x4vy4yg5b6" path="res://skills/perfect_defense.tres" id="54_x5y4n"]
+[ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="55_e38n8"]
 
-[sub_resource type="Resource" id="Resource_p055q"]
+[sub_resource type="Resource" id="Resource_713if"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 9
@@ -123,12 +133,15 @@ stat_growth_table = Dictionary[int, Dictionary]({
 skill_list = Array[ExtResource("19_s6m30")]([ExtResource("20_f5p7n"), ExtResource("21_vubsb")])
 skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 2: ExtResource("22_d02b4"),
-4: ExtResource("23_1rip2"),
-8: ExtResource("24_8f1eo")
+4: ExtResource("24_8f1eo"),
+6: ExtResource("25_e38n8"),
+8: ExtResource("26_7171i"),
+10: ExtResource("23_x5y4n"),
+11: ExtResource("27_sov6c")
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_xbvbr"]
+[sub_resource type="Resource" id="Resource_f3cwl"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 9
@@ -207,10 +220,10 @@ skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_o3vbw"]
+[sub_resource type="Resource" id="Resource_tomj6"]
 script = ExtResource("18_78xb3")
 id = 0
-level = 10
+level = 9
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, int]({
@@ -261,7 +274,7 @@ skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_e0dfs"]
+[sub_resource type="Resource" id="Resource_53dgv"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 9
@@ -335,11 +348,12 @@ skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 3: ExtResource("40_ors1s"),
 5: ExtResource("40_wq0dc"),
 7: ExtResource("36_vr3xm"),
-9: ExtResource("37_4fpe5")
+9: ExtResource("37_4fpe5"),
+11: ExtResource("50_uj50k")
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_e5mcv"]
+[sub_resource type="Resource" id="Resource_7171i"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 8
@@ -410,14 +424,16 @@ stat_growth_table = Dictionary[int, Dictionary]({
 })
 skill_list = Array[ExtResource("19_s6m30")]([ExtResource("25_e4f18"), ExtResource("20_f5p7n"), ExtResource("21_vubsb")])
 skill_table = Dictionary[int, ExtResource("19_s6m30")]({
-3: ExtResource("26_ombt0"),
-5: ExtResource("27_pqmuw"),
-8: ExtResource("28_p7xlb"),
-10: ExtResource("29_d81wo")
+2: ExtResource("26_ombt0"),
+4: ExtResource("45_smsen"),
+6: ExtResource("28_p7xlb"),
+8: ExtResource("43_o3vbw"),
+10: ExtResource("29_d81wo"),
+12: ExtResource("48_08rre")
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_vr3xm"]
+[sub_resource type="Resource" id="Resource_sov6c"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 9
@@ -491,11 +507,12 @@ skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 3: ExtResource("40_ors1s"),
 5: ExtResource("40_wq0dc"),
 7: ExtResource("36_vr3xm"),
-9: ExtResource("37_4fpe5")
+9: ExtResource("37_4fpe5"),
+11: ExtResource("50_uj50k")
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
-[sub_resource type="Resource" id="Resource_6ybky"]
+[sub_resource type="Resource" id="Resource_1kky8"]
 script = ExtResource("18_78xb3")
 id = 0
 level = 10
@@ -564,12 +581,14 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 }
 })
-skill_list = Array[ExtResource("19_s6m30")]([ExtResource("42_vpdah"), ExtResource("20_f5p7n"), ExtResource("21_vubsb")])
+skill_list = Array[ExtResource("19_s6m30")]([ExtResource("20_f5p7n"), ExtResource("42_vpdah"), ExtResource("21_vubsb")])
 skill_table = Dictionary[int, ExtResource("19_s6m30")]({
 3: ExtResource("27_pqmuw"),
 5: ExtResource("23_1rip2"),
-8: ExtResource("31_6ybky"),
-10: ExtResource("32_vr3xm")
+7: ExtResource("55_e38n8"),
+9: ExtResource("31_6ybky"),
+10: ExtResource("32_vr3xm"),
+12: ExtResource("54_x5y4n")
 })
 item_list = Array[ExtResource("2_eng40")]([])
 
@@ -627,22 +646,22 @@ enemy_container = NodePath("../EnemyGroup")
 [node name="Protag3" parent="Units/PlayerGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(161, 318)
 script = ExtResource("17_sqisy")
-unit_data = SubResource("Resource_p055q")
+unit_data = SubResource("Resource_713if")
 
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(64, 263)
 script = ExtResource("17_sqisy")
-unit_data = SubResource("Resource_xbvbr")
+unit_data = SubResource("Resource_f3cwl")
 
 [node name="Protag2" parent="Units/PlayerGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(65, 155)
 script = ExtResource("17_sqisy")
-unit_data = SubResource("Resource_o3vbw")
+unit_data = SubResource("Resource_tomj6")
 
 [node name="Protag4" parent="Units/PlayerGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(160, 101)
 script = ExtResource("17_sqisy")
-unit_data = SubResource("Resource_e0dfs")
+unit_data = SubResource("Resource_53dgv")
 
 [node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("15_k5p88")
@@ -651,7 +670,7 @@ enemy_container = NodePath("../PlayerGroup")
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(541, 99)
 script = ExtResource("37_gucv0")
-unit_data = SubResource("Resource_e5mcv")
+unit_data = SubResource("Resource_7171i")
 
 [node name="EnemyUnit5" parent="Units/EnemyGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(446, 46)
@@ -666,11 +685,11 @@ unit_data = ExtResource("38_4fpe5")
 [node name="EnemyUnit4" parent="Units/EnemyGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(542, 317)
 script = ExtResource("37_gucv0")
-unit_data = SubResource("Resource_vr3xm")
+unit_data = SubResource("Resource_sov6c")
 
 [node name="EnemyUnit6" parent="Units/EnemyGroup" instance=ExtResource("16_5btw8")]
 position = Vector2(734, 207)
 script = ExtResource("37_gucv0")
-unit_data = SubResource("Resource_6ybky")
+unit_data = SubResource("Resource_1kky8")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]
