@@ -17,7 +17,7 @@ func tick(unit: Unit):
 		Effect.SLEEP:
 			sleep_tick(unit)
 		Effect.POISON:
-			poison_tick(unit)
+			await poison_tick(unit)
 		Effect.FORGET:
 			forget_tick(unit)
 		_:
@@ -25,10 +25,10 @@ func tick(unit: Unit):
 
 func sleep_tick(unit: Unit):
 	unit.actions_avail.clear()
-	unit.regain_health(magnitude)
+	await unit.regain_health(magnitude)
 
 func poison_tick(unit: Unit):
-	unit.take_damage(magnitude, null)
+	await unit.take_damage(magnitude, null)
 
 func forget_tick(unit: Unit):
 	unit.actions_avail.erase(Unit.Action.MOVE)

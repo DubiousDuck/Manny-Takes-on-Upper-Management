@@ -12,6 +12,9 @@ signal movement_complete
 signal attack_point
 signal anim_complete
 signal all_complete
+signal status_updated(successful: bool)
+signal tile_action_done
+signal init_finished
 
 #unit constants
 enum Action {NONE, MOVE, ATTACK, ITEM}
@@ -125,10 +128,20 @@ func apply_status(status: StatusEffect):
 func update_status_effect():
 	if active_status_effect:
 		active_status_effect.duration -= 1
+
 		if active_status_effect.duration < 0:
 			remove_status_effect()
-		else: active_status_effect.tick(self)
-	else: set_status_effect_icon(false)
+			print("Status expired, unit still alive:", !is_dead)
+			status_updated.emit(!is_dead)
+		else:
+			await active_status_effect.tick(self)
+			print("Status tick finished, unit dead?", is_dead)
+			status_updated.emit(!is_dead)
+	else:
+		set_status_effect_icon(false)
+		print("No active status, unit still alive:", !is_dead)
+		status_updated.emit(!is_dead)
+
 
 func remove_status_effect():
 	if active_status_effect:
@@ -221,8 +234,27 @@ func init():
 	
 	in_pof = false
 	update_modifiers()
+	
+	# Await status update
 	update_status_effect()
+	print("status updated!")
+	var is_alive: bool = await status_updated
+	
+	if !is_alive:
+		print("unit died during status effect")
+		emit_signal("init_finished")
+		return
+	else:
+		print("unit did not die during status effect")
+
+	# Await tile action (especially teleport animation)
 	tile_action(true)
+	print("tile actioned!")
+	await tile_action_done
+	
+	await get_tree().process_frame
+	print("init finished")
+	emit_signal("init_finished")
 
 func move_along_path(full_path : Array[Vector2i]):	
 	var start_pos = full_path[0]
@@ -343,6 +375,7 @@ func check_if_dead():
 		EventBus.emit_signal("unit_died", self)
 		all_complete.emit()
 		queue_free.call_deferred()
+	return
 
 ## check and execute effect of the tile that the unit lands on
 func tile_action(round_start: bool = false):
@@ -351,31 +384,31 @@ func tile_action(round_start: bool = false):
 	match cell_effect:
 		"teleport":
 			# Do not teleport at round start
-			if round_start:
-				return
-			var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
-			#print(end_points)
-			if end_points.size() <= 1:
-				return #if there are no other teleport tiles
-			var random_tile: Vector2i = end_points.pick_random()
-			while random_tile == cell:
-				random_tile = end_points.pick_random()
-			#transport unit
-			animation_state("teleported")
-			await anim_complete
-			cell = random_tile
-			global_position = HexNavi.cell_to_global(cell)
-			animation_state("teleported_reversed")
-			await anim_complete
-			animation_state("front_idle")
+			if !round_start:
+				var end_points := HexNavi.get_all_tile_with_layer("effect", "teleport")
+				#print(end_points)
+				if end_points.size() <= 1:
+					return #if there are no other teleport tiles
+				var random_tile: Vector2i = end_points.pick_random()
+				while random_tile == cell:
+					random_tile = end_points.pick_random()
+				#transport unit
+				animation_state("teleported")
+				await anim_complete
+				cell = random_tile
+				global_position = HexNavi.cell_to_global(cell)
+				animation_state("teleported_reversed")
+				await anim_complete
+				animation_state("front_idle")
 		"heal": # allows for overheal
 			animation_state("front_idle")
 			regain_health(1, true)
 			#MyMapLayer.set_random_heal_tile(self)
 		"spike":
 			take_damage(1, self)
-		_:
-			return
+	
+	await get_tree().process_frame
+	emit_signal("tile_action_done")
 
 func toggle_skill_ui(state: bool, valid_skills: Array[SkillInfo]):
 	if state:
@@ -547,7 +580,8 @@ func take_damage(amount: int, attacker: Unit, check_dead: bool = true):
 		animation_state("hurt_initial")
 	
 	if check_dead:
-		check_if_dead()
+		await check_if_dead()
+	return
 
 func regain_health(amount: int, overheal: bool = false):
 	# if health already greater than max_health and no overheal, keep it current

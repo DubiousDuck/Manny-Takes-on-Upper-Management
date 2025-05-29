@@ -88,9 +88,16 @@ func init():
 	
 func round_start(): # TODO: need to wait for unit init complete
 	in_battle = true
+	
+	var init_waits = []
 	for unit in units:
-		await unit.init()
-	# TODO: make sure all units have finished init before starting agin
+		print("initializing " + str(unit.unit_data.unit_class))
+		unit.init()
+		await unit.init_finished
+	
+	# Filter dead units now
+	units = units.filter(func(u): return not u.is_dead)
+		
 	if is_player_controlled:
 		Global.isPlayerTurn = true
 		get_available_unit_count()

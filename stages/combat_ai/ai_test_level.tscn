@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://4ogvcx7eikbx"]
+[gd_scene load_steps=36 format=4 uid="uid://bdacoiix0bpqv"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_ouqya"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_882xt"]
@@ -255,6 +255,7 @@ mouse_filter = 2
 texture = ExtResource("2_882xt")
 
 [node name="UnitPreview" parent="." instance=ExtResource("3_4kjfa")]
+visible = false
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("3_omqha")]
 isBattleScene = true
