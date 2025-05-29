@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=10 format=3 uid="uid://dxxemof4tvpsa"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://dxxemof4tvpsa"]
 
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_5jn2n"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_dtjrn"]
@@ -7,13 +7,14 @@
 [ext_resource type="Resource" uid="uid://bao7vfdy1qt2i" path="res://skills/basic_heal.tres" id="4_5jn2n"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="4_el7v1"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="5_fj1hj"]
-[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="6_uv8yt"]
+[ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="7_fj1hj"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="8_epnp3"]
+[ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="9_uv8yt"]
 
 [resource]
 script = ExtResource("1_dtjrn")
 id = 0
-level = 8
+level = 5
 exp = 0
 unit_class = "Boss"
 stat = Dictionary[int, int]({
@@ -40,7 +41,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 }
 })
-skill_list = Array[ExtResource("2_71wds")]([ExtResource("5_fj1hj"), ExtResource("6_uv8yt"), ExtResource("4_5jn2n"), ExtResource("8_epnp3"), ExtResource("4_el7v1")])
+skill_list = Array[ExtResource("2_71wds")]([ExtResource("5_fj1hj"), ExtResource("4_5jn2n"), ExtResource("7_fj1hj"), ExtResource("8_epnp3"), ExtResource("9_uv8yt"), ExtResource("4_el7v1")])
 skill_table = Dictionary[int, ExtResource("2_71wds")]({})
 item_list = Array[ExtResource("1_5jn2n")]([ExtResource("2_l4kes")])
 metadata/_custom_type_script = "uid://d2mnyc15434nn"

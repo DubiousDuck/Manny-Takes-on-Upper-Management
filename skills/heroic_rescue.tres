@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://d1y5n3fvcjm0t"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_44q68"]
+
+[resource]
+script = ExtResource("1_44q68")
+name = "Heroic Rescue"
+description = "Rush to an ally and heal them. Heals the target a little."
+type = "Skill"
+targets = 0
+affinity = 1
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({
+2: 0.5,
+8: 3
+})
+effect_execution_order = Array[int]([8, 2])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

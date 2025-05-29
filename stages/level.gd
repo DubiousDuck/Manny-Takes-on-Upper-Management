@@ -77,6 +77,8 @@ func _on_battle_ended(result: int):
 			a.add_exp_bar(unit)
 			grant_exp(unit, xp_gained)
 			a.animate_exp_bar(unit)
+		for unit in Global.reserves:
+			grant_exp(unit, xp_gained)
 		
 		# gain token
 		if give_token:

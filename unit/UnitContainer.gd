@@ -280,6 +280,16 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 								new_state.status_effects[affected] = effects[key]
 							else:
 								new_state.status_effects.erase(affected)
+				SkillInfo.EffectType.DISPLACE:
+					match effects[key]:
+						2: 
+							var displace_origin: Vector2 = new_state.position[unit]
+							if abs(skill.area) > 0:
+								displace_origin = target_cell
+							for affected in new_state.position.keys():
+								new_state.position[affected] = displace_origin
+						3:
+							new_state.position[unit] = target_cell
 	
 	return new_state
 

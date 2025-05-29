@@ -4,14 +4,15 @@
 
 [resource]
 script = ExtResource("1_lq8if")
-name = "Stink bomb"
-description = "Throw a stinky blob wrapped in a diaper. Knocking back all units around the target cell."
+name = "Diaper bomb"
+description = "Throw a stinky blob wrapped in a diaper. Deals tiny damage and knock back all units around the target cell."
 type = "Skill"
 targets = 6
 affinity = 1
 range = 2
 area = 1
 skill_effects = Dictionary[int, Variant]({
+0: 0.25,
 1: 1
 })
-effect_execution_order = Array[int]([])
+effect_execution_order = Array[int]([0, 1])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ForgetStatus" load_steps=3 format=3 uid="uid://cw86p1cc2880"]
+
+[ext_resource type="Texture2D" uid="uid://cn14ln807uqhj" path="res://assets/unit_ui/forget_icon.png" id="1_8tf4p"]
+[ext_resource type="Script" uid="uid://cv3y8u7wllrdm" path="res://unit/params/other_structures/status_effects/forget.gd" id="2_ni3es"]
+
+[resource]
+script = ExtResource("2_ni3es")
+icon = ExtResource("1_8tf4p")
+name = "Long Forget"
+type = 2
+duration = 2
+magnitude = 1
+metadata/_custom_type_script = "uid://blagjb0w2vx7a"

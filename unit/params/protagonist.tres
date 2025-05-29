@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://b2xolay11juv8"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=12 format=3 uid="uid://b2xolay11juv8"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_g3jub"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_xflac"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_0r8qq"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="3_7l4pl"]
 [ext_resource type="Resource" uid="uid://b1f1rc00m4al5" path="res://skills/pick_up.tres" id="5_a8aaf"]
-[ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="6_d31hx"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="6_rlm2a"]
+[ext_resource type="Resource" uid="uid://djdvj5a6lkpfk" path="res://skills/stink_bomb.tres" id="7_lbjm2"]
 [ext_resource type="Resource" uid="uid://ipuxhkgcm6c8" path="res://skills/banana_peel.tres" id="8_sbt3l"]
-[ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="9_lbjm2"]
 [ext_resource type="Resource" uid="uid://bnvgg27wo1d4d" path="res://skills/battle_cry.tres" id="10_e5074"]
+[ext_resource type="Resource" uid="uid://dih6jk7pagjwy" path="res://skills/lunch_break.tres" id="10_n0r8n"]
+[ext_resource type="Resource" uid="uid://vj8f7rj2pqua" path="res://skills/throw_candy.tres" id="11_n0r8n"]
 
 [resource]
 script = ExtResource("1_g3jub")
@@ -83,9 +84,10 @@ stat_growth_table = Dictionary[int, Dictionary]({
 skill_list = Array[ExtResource("2_0r8qq")]([ExtResource("3_7l4pl"), ExtResource("6_rlm2a")])
 skill_table = Dictionary[int, ExtResource("2_0r8qq")]({
 2: ExtResource("5_a8aaf"),
-4: ExtResource("6_d31hx"),
-6: ExtResource("8_sbt3l"),
-8: ExtResource("9_lbjm2"),
-10: ExtResource("10_e5074")
+4: ExtResource("8_sbt3l"),
+6: ExtResource("10_e5074"),
+8: ExtResource("10_n0r8n"),
+10: ExtResource("7_lbjm2"),
+11: ExtResource("11_n0r8n")
 })
 item_list = Array[ExtResource("1_xflac")]([])

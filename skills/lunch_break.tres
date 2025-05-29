@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://dih6jk7pagjwy"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_5nb1d"]
+
+[resource]
+script = ExtResource("1_5nb1d")
+name = "Lunch Break"
+description = "Gives an ally your lunch. Heals them for a little and remove their Status Effect."
+type = "Skill"
+targets = 0
+affinity = 1
+range = 1
+area = 0
+skill_effects = Dictionary[int, Variant]({
+2: 0.5,
+5: null
+})
+effect_execution_order = Array[int]([2, 5])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

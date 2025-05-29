@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=11 format=3 uid="uid://dj115e2fbsle6"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=13 format=3 uid="uid://dj115e2fbsle6"]
 
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="1_ur7bd"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="2_r35iw"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://vdbmy1yf5qs" path="res://skills/pep_talk.tres" id="9_ng8bt"]
 [ext_resource type="Resource" uid="uid://dw3vrw7r5fpm6" path="res://skills/courageous_cry.tres" id="10_frwjs"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="10_lsvis"]
+[ext_resource type="Resource" uid="uid://ce2x4vy4yg5b6" path="res://skills/perfect_defense.tres" id="11_4humw"]
+[ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="11_lsvis"]
 
 [resource]
 script = ExtResource("1_ur7bd")
@@ -80,11 +82,13 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 }
 })
-skill_list = Array[ExtResource("2_r35iw")]([ExtResource("3_goe2f"), ExtResource("5_8kc7s"), ExtResource("4_m7tql")])
+skill_list = Array[ExtResource("2_r35iw")]([ExtResource("5_8kc7s"), ExtResource("3_goe2f"), ExtResource("4_m7tql")])
 skill_table = Dictionary[int, ExtResource("2_r35iw")]({
 3: ExtResource("7_q843e"),
 5: ExtResource("10_lsvis"),
-8: ExtResource("9_ng8bt"),
-10: ExtResource("10_frwjs")
+7: ExtResource("11_lsvis"),
+9: ExtResource("9_ng8bt"),
+10: ExtResource("10_frwjs"),
+12: ExtResource("11_4humw")
 })
 item_list = Array[ExtResource("2_ryw5y")]([])

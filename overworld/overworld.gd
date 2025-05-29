@@ -54,17 +54,6 @@ func update_followers() -> void:
 		
 		followers[unit_data] = follower
 	
-	#TODO: Remove this section once we confirm the new approach is stable
-	## Clean up followers who are no longer in the current party
-	#for child in get_children():
-		#if child is Follower:
-			## Check if the follower's unit_data is still in the current party
-			#if !(child.unit_data in Global.current_party):
-				#var unit_data = child.unit_data
-				#followers.erase(unit_data)  # Remove from dictionary
-				#print("removing child... -- overworld.gd")
-				#child.queue_free()  # Properly delete the follower
-	#print(str(followers) + " -- overworld.gd")
 
 func _ready():
 	#make the game remember this is the last overworld loaded
@@ -98,6 +87,7 @@ func _ready():
 	# check if player has recruit token and call tutorial if needed
 	if Global.recruit_token >= 1:
 		EventBus.emit_signal("tutorial_trigger", "recruit_tutorial")
+		HintManager.trigger_hint("recruit_token", "Don't forget to recruit a new Ally!", false)
 	
 	HintManager.pause_idle_timer()
 	

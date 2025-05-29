@@ -219,10 +219,17 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
 						affected_units.map(
-							func(unit : Unit): #TODO: Handle holding multiple units properly
+							func(unit : Unit):
 								a.tween_property(unit, 'global_position', displace_origin, 0.4)
 								unit.cell = HexNavi.global_to_cell(displace_origin)
 						)
+						await a.finished
+					3: # attacker displace to target location (teleport-like effect)
+						if affected_units.is_empty(): break
+						var displace_origin: Vector2 = affected_units.front().global_position
+						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
+						a.tween_property(attacker, 'global_position', displace_origin, 0.4)
+						attacker.cell = HexNavi.global_to_cell(displace_origin)
 						await a.finished
 					_:
 						print("nothing to displace yet")
