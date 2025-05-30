@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cqri7x448ts6m" path="res://assets/ui/new_blank_window.png" id="2_h3q8i"]
 [ext_resource type="Script" uid="uid://c15wrh0vsu7ie" path="res://ui/pause_menu/volume_slider.gd" id="2_k60nf"]
 [ext_resource type="Texture2D" uid="uid://b3nkjpgk3ec8i" path="res://assets/ui/top_bar_no_line.png" id="3_h3q8i"]
-[ext_resource type="Texture2D" uid="uid://cva3wsbyec1c2" path="res://ui/VolumeSprites/Splatcho Volume Slider (1).png" id="3_y3cgx"]
 [ext_resource type="Script" uid="uid://rljuks17biw4" path="res://ui/pause_menu/brightness_slider.gd" id="4_kvqm7"]
-[ext_resource type="Texture2D" uid="uid://dh2vtp2hnsf1m" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
+[ext_resource type="Texture2D" uid="uid://btudbmjp7ptx0" path="res://ui/BrightnessSprites/BrightnessIconBig.png" id="5_xfvr8"]
 [ext_resource type="Texture2D" uid="uid://b5npyleamaofs" path="res://assets/ui/pause_icon.png" id="6_b6mne"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="6_erp37"]
+[ext_resource type="Texture2D" uid="uid://lrqqlmbhj8if" path="res://ui/VolumeSprites/Splatcho Volume Slider (3).png" id="8_h3q8i"]
 
 [sub_resource type="Animation" id="Animation_0u3dg"]
 length = 0.001
@@ -225,7 +225,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BattleMenuControl" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -290,9 +289,9 @@ grow_vertical = 2
 script = ExtResource("2_k60nf")
 
 [node name="SpeakerImage" type="Sprite2D" parent="BattleMenuControl/VolumeSlider"]
-position = Vector2(170, -50)
-scale = Vector2(0.170892, 0.170892)
-texture = ExtResource("3_y3cgx")
+position = Vector2(146, -53)
+scale = Vector2(7, 7)
+texture = ExtResource("8_h3q8i")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/VolumeSlider"]
 layout_mode = 0
@@ -318,8 +317,8 @@ grow_vertical = 2
 script = ExtResource("4_kvqm7")
 
 [node name="SunImage" type="Sprite2D" parent="BattleMenuControl/BrightnessSlider"]
-position = Vector2(118, -53)
-scale = Vector2(0.170892, 0.170892)
+position = Vector2(119, -53)
+scale = Vector2(8, 8)
 texture = ExtResource("5_xfvr8")
 
 [node name="HSlider" type="HSlider" parent="BattleMenuControl/BrightnessSlider"]
