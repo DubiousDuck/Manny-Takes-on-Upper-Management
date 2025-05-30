@@ -164,6 +164,7 @@ Level 1"
 justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("3_v73oa")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("4_pwake")]
 position = Vector2(626, 464)
@@ -173,7 +174,7 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(626, 464)
+position = Vector2(251, 72)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -189,7 +190,7 @@ scene_to_go = "uid://b6pye0w0cqmw7"
 
 [node name="Elevator" parent="." instance=ExtResource("10_v73oa")]
 position = Vector2(-2, 71)
-scene_to_go = "uid://bognra8xq838a"
+scene_to_go = "uid://b142f2nvd1bmw"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 
 [node name="NPC_Folder" type="Node2D" parent="."]

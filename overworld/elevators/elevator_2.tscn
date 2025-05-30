@@ -1,81 +1,81 @@
-[gd_scene load_steps=25 format=3 uid="uid://b142f2nvd1bmw"]
+[gd_scene load_steps=25 format=3 uid="uid://d03fuw2qm413i"]
 
-[ext_resource type="Script" uid="uid://c2gm8esh6hwrh" path="res://overworld/elevators/elevator.gd" id="1_648bi"]
-[ext_resource type="Texture2D" uid="uid://bsnulbysiko0m" path="res://assets/overworld/elevator_1/Elevator.png" id="1_wg6fq"]
-[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="2_ii7oj"]
-[ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="3_cm4v8"]
-[ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="4_648bi"]
+[ext_resource type="Script" uid="uid://c2gm8esh6hwrh" path="res://overworld/elevators/elevator.gd" id="1_fsd26"]
+[ext_resource type="Texture2D" uid="uid://bsnulbysiko0m" path="res://assets/overworld/elevator_1/Elevator.png" id="2_3nnxb"]
+[ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="3_7jnkf"]
+[ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="4_aud6y"]
+[ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="5_g3vy5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkeo2"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(256, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm4v8"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(320, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_648bi"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ws0j8"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(64, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb6rq"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(128, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nk2tx"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(192, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ll22"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkscv"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b1jor"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4b5bq"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uukkr"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8s2m"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mle36"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(192, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gtad"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(256, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kytq"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(320, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kub7y"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(0, 256, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6nql"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(64, 256, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vw3hu"]
-atlas = ExtResource("1_wg6fq")
+atlas = ExtResource("2_3nnxb")
 region = Rect2(128, 256, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_isbj5"]
@@ -158,9 +158,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Elevator1" type="Node2D"]
-script = ExtResource("1_648bi")
-scene_to_go = "uid://bognra8xq838a"
+[node name="Elevator2" type="Node2D"]
+script = ExtResource("1_fsd26")
+scene_to_go = "uid://7m1c105fe0kl"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 163.0
@@ -179,7 +179,7 @@ autoplay = "default"
 frame = 5
 frame_progress = 1.0
 
-[node name="Player" parent="." instance=ExtResource("2_ii7oj")]
+[node name="Player" parent="." instance=ExtResource("3_7jnkf")]
 position = Vector2(489, 516)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -187,12 +187,12 @@ position = Vector2(489, 308)
 scale = Vector2(-30.6222, -86.4355)
 zoom = Vector2(2, 2)
 
-[node name="ElevatorGate" parent="." instance=ExtResource("3_cm4v8")]
+[node name="ElevatorGate" parent="." instance=ExtResource("4_aud6y")]
 position = Vector2(424, 470)
 animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): So that softie security baby let you through huh… ", "Dialogue(multiple): I knew I should have fired him months ago. ", "Dialogue(multiple): The naive fool has the IQ of a fetus.", "Dialogue(multiple): I’ve built a legacy in Infant Inc. and I will not have it destroyed by the likes", "Dialogue(multiple): Of some insolent idiot who thinks FRIENDSHIP is of any value.", "speaker_off", "door_open", "walk_out_elevator", "door_close"])
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ElevatorGate"]
 libraries = {
-&"Cutscenes": ExtResource("4_648bi")
+&"Cutscenes": ExtResource("5_g3vy5")
 }
