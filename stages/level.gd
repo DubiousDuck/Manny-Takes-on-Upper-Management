@@ -69,16 +69,10 @@ func _on_battle_ended(result: int):
 	if result == EventBus.BattleResult.PLAYER_VICTORY:
 		Global.finished_level()
 		EventBus.tutorial_trigger.emit("player_win")
+		await EventBus.tutorial_finished
 		
-		# gain exp points
+		# set xp_gained
 		var xp_gained = inital_exp #TODO: gain repeat exp if level already beaten
-		#Global.gain_exp(xp_gained)
-		for unit in Global.current_party:
-			a.add_exp_bar(unit)
-			grant_exp(unit, xp_gained)
-			a.animate_exp_bar(unit)
-		for unit in Global.reserves:
-			grant_exp(unit, xp_gained)
 		
 		# gain token
 		if give_token:
@@ -92,11 +86,24 @@ func _on_battle_ended(result: int):
 		if random_loot: Global.unequipped_items.append(random_loot)
 		var item_name = random_loot.item_name if random_loot else ""
 		a.update_item_label(item_name)
+		
+		# granting and animating experience
+		var newly_learned_skills: Dictionary[UnitData, SkillInfo] = {}
+		for unit in Global.current_party:
+			a.add_exp_bar(unit)
+			newly_learned_skills[unit] = grant_exp(unit, xp_gained)
+		for unit in Global.reserves:
+			newly_learned_skills[unit] = grant_exp(unit, xp_gained)
+		await a.animate_exp_bar_of_party(Global.current_party)
+		#print("animation complete")
+		
+		# display new learned skills
+		for unit in newly_learned_skills.keys():
+			await show_skill_unlock(unit, newly_learned_skills[unit])
 	else:
 		a.update_xp_label(0)
-	#$PauseCanvasLayer.add_child(a)
 	a.display()
-	#a.animate_exp(Global.current_exp, init_level, Global.level)
+
 	HintManager.pause_idle_timer()
 
 func _on_units_switch_turn(is_player):
@@ -109,6 +116,23 @@ func _on_units_switch_turn(is_player):
 		HintManager.continue_idle_timer()
 	else: HintManager.pause_idle_timer()
 
-func grant_exp(unit_data: UnitData, amount: int):
-	unit_data.gain_exp(amount)
-	#handles display logic here
+func grant_exp(unit: UnitData, xp: int) -> SkillInfo:
+	var newly_unlocked_skill: SkillInfo = null
+	var old_level = unit.level
+	
+	unit.gain_exp(xp) # assume this handles level ups
+	
+	if unit.level > old_level:
+		for level in range(old_level + 1, unit.level + 1):
+			var unlocked = unit.check_skill_unlock(level)
+			if unlocked:
+				newly_unlocked_skill = unlocked
+	return newly_unlocked_skill
+
+func show_skill_unlock(unit: UnitData, skill: SkillInfo):
+	if !skill:
+		return
+	var popup = preload("res://ui/battle_related/skill_unlock_popup.tscn").instantiate() as SkillUnlockPopup
+	popup.set_skill_info(unit, skill)
+	GlobalUI.add_child(popup)
+	await EventBus.ui_element_ended

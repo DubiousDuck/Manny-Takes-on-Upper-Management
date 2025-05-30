@@ -90,6 +90,9 @@ func set_self_level(num: int):
 		leveled_up = true
 	else: print("No need to level up as  this resource has already been leveled up before. -- UnitData.gd")
 
+func check_skill_unlock(level: int):
+	return skill_table.get(level, null)
+
 # Item related
 @export var item_list: Array[ItemData] = []
 

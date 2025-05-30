@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqhyc6w586for"]
+
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="1_rgoav"]
+[ext_resource type="Texture2D" uid="uid://clnlowwc7od8y" path="res://assets/ui/blank_tab.png" id="2_d8del"]
+[ext_resource type="Script" uid="uid://b5d84gjbtknlo" path="res://ui/battle_related/skill_unlock_popup.gd" id="2_durpk"]
+
+[node name="SkillUnlockPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rgoav")
+script = ExtResource("2_durpk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Panel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = -151.5
+offset_right = 290.5
+offset_bottom = 151.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d8del")
+expand_mode = 3
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 7.5
+offset_right = 94.0
+offset_bottom = 58.5
+grow_horizontal = 2
+theme = ExtResource("1_rgoav")
+theme_override_font_sizes/font_size = 64
+text = "New Skill!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -81.5
+offset_right = -16.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Unit has learned a new [Attack]: [Attack name]!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.5
+offset_top = -56.5
+offset_right = 74.5
+offset_bottom = -11.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Got it!"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

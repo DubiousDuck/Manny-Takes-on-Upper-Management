@@ -63,3 +63,4 @@ signal back_to_overworld
 
 # Tutorial triggers
 signal tutorial_trigger(trigger: String)
+signal tutorial_finished

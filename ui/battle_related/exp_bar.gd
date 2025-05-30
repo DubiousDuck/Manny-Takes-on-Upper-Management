@@ -2,6 +2,8 @@ extends Control
 
 class_name ExpBar
 
+signal bar_done
+
 var current_unit_data: UnitData
 var unit_prev_level: int
 
@@ -22,7 +24,7 @@ func animate_exp(new_level: int, new_exp: int):
 		var exp_tween = create_tween()
 		exp_tween.set_ease(Tween.EASE_IN)
 		exp_tween.set_trans(Tween.TRANS_QUAD)
-		exp_tween.tween_property(progress_bar, "value", progress_bar.max_value, 0.5).set_delay(0.1)
+		exp_tween.tween_property(progress_bar, "value", progress_bar.max_value, 0.3).set_delay(0.1)
 		exp_tween.tween_property(exp_label, "text" , "Lv. %d" %new_level, 0.05).set_delay(0.1)
 		exp_tween.tween_property(progress_bar, "value", 0, 0.01)
 		await exp_tween.finished
@@ -34,3 +36,6 @@ func animate_exp(new_level: int, new_exp: int):
 		var exp_tween = create_tween()
 		exp_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 		exp_tween.tween_property(progress_bar, "value", new_exp, 0.5)
+		await exp_tween.finished
+	
+	bar_done.emit()

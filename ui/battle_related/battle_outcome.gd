@@ -2,20 +2,19 @@ extends Control
 
 class_name BattleOutcome
 
+signal all_bars_done
+
 const EXP_BAR = preload("res://ui/battle_related/exp_bar.tscn")
 
 @onready var label = $Label #Not ready yet when init() is called
-@onready var exp_bar : ProgressBar = $HSplitContainer/HSplitContainer/ExpBar
-@onready var level_label : Label = $HSplitContainer/HSplitContainer/LevelLabel
 @onready var xp_label = $VBoxContainer/XpLabel
 @onready var item_drop_label = $VBoxContainer/ItemDropLabel
 @onready var token_label = $VBoxContainer/TokenLabel
 @onready var exp_bar_container = $ScrollContainer/ExpBarContainer
 
-func _ready() -> void:
-	exp_bar = $HSplitContainer/HSplitContainer/ExpBar
-	exp_bar.max_value = Global.get_exp_requirment(Global.level)
-	pass
+var unit_to_bar: Dictionary[UnitData, ExpBar] = {}
+var bars_done: int = 0
+
 
 func init(result: int):
 	EventBus.ui_element_started.emit()
@@ -31,7 +30,8 @@ func init(result: int):
 			$Label.text = "You lost..."
 			$VBoxContainer/ItemDropLabel.hide()
 			Global.battle_result = "lose"
-	$HSplitContainer/HSplitContainer/ExpBar.set_value_no_signal(Global.current_exp) 
+	button_toggle(false)
+	
 
 func update_xp_label(xp: int):
 	xp_label.text = "All party members gained " + str(xp) + " XP!"
@@ -51,16 +51,32 @@ func update_token_label(state: bool):
 func add_exp_bar(unit: UnitData):
 	var a = EXP_BAR.instantiate() as ExpBar
 	exp_bar_container.add_child(a)
+	unit_to_bar[unit] = a
+	a.connect("bar_done", _on_bar_done)
 	a.init(unit)
 
 func animate_exp_bar(unit: UnitData):
 	for bar: ExpBar in exp_bar_container.get_children():
 		if bar.current_unit_data == unit:
-			bar.animate_exp(unit.level, unit.exp)
+			await bar.animate_exp(unit.level, unit.exp)
 			break
+
+func animate_exp_bar_of_party(party: Array[UnitData]):
+	bars_done = 0
+	for unit in party:
+		var bar: ExpBar = unit_to_bar.get(unit, null)
+		if bar:
+			bar.animate_exp(unit.level, unit.exp)
+	await all_bars_done
+	#print("all bars done")
  
+func _on_bar_done():
+	bars_done += 1
+	if bars_done == exp_bar_container.get_child_count():
+		all_bars_done.emit()
 
 func display():
+	button_toggle(true)
 	get_tree().paused = true
 
 func _on_play_again_pressed():
@@ -76,3 +92,10 @@ func _on_previous_scene_pressed():
 	queue_free()
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 	
+func button_toggle(state: bool):
+	if state:
+		$HBoxContainer/PlayAgain.show()
+		$HBoxContainer/PreviousScene.show()
+	else:
+		$HBoxContainer/PlayAgain.hide()
+		$HBoxContainer/PreviousScene.hide()

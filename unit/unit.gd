@@ -237,23 +237,24 @@ func init():
 	
 	# Await status update
 	update_status_effect()
-	print("status updated!")
+	#print("status updated!")
 	var is_alive: bool = await status_updated
 	
 	if !is_alive:
-		print("unit died during status effect")
+		#print("unit died during status effect")
 		emit_signal("init_finished")
 		return
 	else:
-		print("unit did not die during status effect")
+		pass
+		#print("unit did not die during status effect")
 
 	# Await tile action (especially teleport animation)
 	tile_action(true)
-	print("tile actioned!")
+	#print("tile actioned!")
 	await tile_action_done
 	
 	await get_tree().process_frame
-	print("init finished")
+	#print("init finished")
 	emit_signal("init_finished")
 
 func move_along_path(full_path : Array[Vector2i]):	

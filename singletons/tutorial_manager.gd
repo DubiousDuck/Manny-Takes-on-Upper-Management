@@ -16,7 +16,12 @@ func _on_tutorial_triggered(trigger: String):
 			tutorial.triggered = true
 			tutorial_seen[tutorial.title] = true
 	if queue_to_play.size() > 0:
-		Global.start_tutorial(queue_to_play)		
+		Global.start_tutorial(queue_to_play)
+		await EventBus.ui_element_ended
+	
+	await get_tree().process_frame
+	EventBus.emit_signal("tutorial_finished")
+	print("tutorial finished!")
 
 func set_tutorial_queue(queue: Array[TutorialContent]):
 	tutorial_queue = queue
