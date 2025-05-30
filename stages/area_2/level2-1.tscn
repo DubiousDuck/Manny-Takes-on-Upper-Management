@@ -271,7 +271,7 @@ dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("4_muhda"), ExtResour
 tutorial_queue = Array[ExtResource("6_cpxuf")]([ExtResource("6_6e5ut"), ExtResource("7_4v2ha"), ExtResource("8_vy04m")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 0.898039, 1)
+modulate = Color(0.999999, 0.835139, 0.214806, 1)
 offset_left = -720.0
 offset_top = -290.0
 offset_right = 3120.0

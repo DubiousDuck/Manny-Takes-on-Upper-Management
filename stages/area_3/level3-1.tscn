@@ -601,7 +601,7 @@ dropped_items = Array[ExtResource("2_eng40")]([ExtResource("3_t8jqq"), ExtResour
 give_token = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 0.711625, 0.665331, 1)
+modulate = Color(0.990903, 0.387356, 0.40913, 1)
 offset_left = -720.0
 offset_top = -290.0
 offset_right = 3120.0
