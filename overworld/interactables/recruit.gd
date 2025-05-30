@@ -3,6 +3,7 @@ extends Interactable
 class_name Recruit
 
 @export_file("*.tscn") var scene_to_go
+@export var speaker_name: String = "Steve"
 
 @onready var warning = $Warning
 
@@ -20,10 +21,10 @@ func _process(delta):
 func _interact_call_back():
 	super()
 	if Global.recruit_token <= 0:
-		Global.start_dialogue(["I'm sorry, you don't have enough Recruit Tokens.", "Come back when you got one."])
+		Global.start_dialogue(["I'm sorry, you don't have enough Recruit Tokens.", "Come back when you got one."], false, speaker_name)
 		await EventBus.ui_element_ended
 	else:
-		Global.start_dialogue(["Hey there soldier!", "I see that you have a Recruit Token,", "Who would you like to add to your party?"])
+		Global.start_dialogue(["Hey there soldier!", "I see that you have a Recruit Token,", "Who would you like to add to your party?"], false, speaker_name)
 		await EventBus.ui_element_ended
 		Global.set_last_overworld_scene(get_tree().current_scene)
 		Global.scene_transition(scene_to_go)

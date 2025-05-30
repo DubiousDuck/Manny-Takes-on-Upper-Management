@@ -57,6 +57,8 @@ func _ready():
 		$Area2D.win_dialogue = win_dialogue
 	if lose_dialogue:
 		$Area2D.lose_dialogue = lose_dialogue
+	if npc_name:
+		$Area2D.speaker_name = npc_name
 
 func _process(delta):
 	if player == null:

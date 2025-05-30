@@ -1,6 +1,7 @@
 class_name Dialogue extends Control
 
 @onready var label = $Label
+@onready var speaker_name_tag = $Name
 @onready var anim_player = $AnimationPlayer
 @onready var choice_container = $Choices
 
@@ -14,6 +15,9 @@ func _input(_event):
 			EventBus.input_advance.emit()
 			get_viewport().set_input_as_handled()
 
+func set_speaker_name(speaker_name: String):
+	speaker_name_tag.text = speaker_name
+
 func read_text(text : Array[String], in_cutscene : bool = false):
 	# check if text is empty
 	if text.size() <= 0:
@@ -24,6 +28,7 @@ func read_text(text : Array[String], in_cutscene : bool = false):
 	if !in_cutscene: EventBus.ui_element_started.emit()
 	anim_player.play("BarsDown")
 	await anim_player.animation_finished
+	speaker_name_tag.show()
 	for i : String in text:
 		if i.contains("["):
 			label.hide()
@@ -49,6 +54,7 @@ func read_text(text : Array[String], in_cutscene : bool = false):
 			label.visible_ratio = 1
 			await EventBus.input_advance
 	label.queue_free()
+	speaker_name_tag.hide()
 	anim_player.play_backwards("BarsDown")
 	await anim_player.animation_finished
 	if !in_cutscene: EventBus.ui_element_ended.emit()

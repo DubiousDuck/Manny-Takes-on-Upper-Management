@@ -16,6 +16,7 @@ class_name SollicitorInteract
 @export var correct_choice: String = "NO"
 @export var win_dialogue: Array[String] = []
 @export var lose_dialogue: Array[String] = []
+@export var speaker_name: String = ""
 
 func check_locked():
 	if req.all(func(x): return Global.finished_levels.has(x)):
@@ -30,13 +31,13 @@ func _interact_call_back():
 	if locked:
 		check_locked()
 	if locked:
-		Global.start_dialogue(locked_dialogue)
+		Global.start_dialogue(locked_dialogue, false, speaker_name)
 		await EventBus.ui_element_ended
 	else:
 		if interact_count <= 0:
-			Global.start_dialogue(interact_dialogue)
+			Global.start_dialogue(interact_dialogue, false, speaker_name)
 		else:
-			Global.start_dialogue(repeat_dialogue)
+			Global.start_dialogue(repeat_dialogue, false, speaker_name)
 		await EventBus.ui_element_ended
 		var choice = Global.dialogue_choice
 		print("choice: " + str(choice))

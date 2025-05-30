@@ -249,9 +249,10 @@ func scene_transition(scene : String):
 	a.queue_free()
 	EventBus.ui_element_ended.emit()
 
-func start_dialogue(text : Array[String], in_cutscene : bool = false): 
+func start_dialogue(text : Array[String], in_cutscene : bool = false, speaker_name: String = ""): 
 	var a = DIALOGUE.instantiate()
 	GlobalUI.add_child(a)
+	a.set_speaker_name(speaker_name)
 	a.read_text(text, in_cutscene)
 	if in_cutscene:
 		await EventBus.dialogue_finished
