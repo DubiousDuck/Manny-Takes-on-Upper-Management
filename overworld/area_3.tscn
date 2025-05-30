@@ -239,10 +239,10 @@ npc_name = "CEO"
 level_name = "level3-3"
 req = Array[String](["level3-2"])
 locked_dialogue = Array[String](["..."])
-interact_dialogue = Array[String](["I’m impressed you made your way up here. ", "But playtime’s over. It’s naptime, and I’m here to put you to sleep.", "[Fight CEO] [I'm not ready]"])
-repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[Fight CEO] [I'm not ready]"])
+interact_dialogue = Array[String](["I’m impressed you made your way up here. ", "But playtime’s over. It’s past your naptime, and I’m here to put you to sleep.", "[Fight CEO] [I'm not ready]"])
+repeat_dialogue = Array[String](["Playtime’s over.", "Let's put you to sleep.", "[Fight CEO] [I'm not ready]"])
 correct_choice = "Fight CEO"
-win_dialogue = Array[String](["In all my years as CEO...", "I never thought I'd be beaten by a lowly Sales Rep.", "I'm a failure.", "The company is yours. I quit as CEO.", "*Quiet Baby Crying*"])
+win_dialogue = Array[String](["In all my years as CEO...", "I never thought I'd be beaten by a lowly Sales Rep.", "I started out as an intern in this company. We were taught to be ruthless.", "The other babies were not colleagues. They were competition.", "All this time, I ran this company with that same mindset.", "But now I see... You've managed to rally everyone against me.", "As a team. Together, as friends.", "The company is yours. I'm done being CEO.", "*Quiet Baby Crying*"])
 lose_dialogue = Array[String](["You're gonna cry?", "MUAHAHAHAHA"])
 
 [node name="CTO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
@@ -288,7 +288,7 @@ metadata/_custom_type_script = "uid://dwofpqt7bueu1"
 
 [node name="InitialScene" parent="AreaFlags/IntroFlag" instance=ExtResource("17_ys45x")]
 position = Vector2(561, 384)
-animations = Array[String](["intro_anim1", "intro_anim2", "Dialogue(multiple): This is it... I've decided. I'm standing up against Infant Inc.", "Dialogue(multiple): It's time to save my friend.", "Dialogue(multiple): No matter what it takes!", "intro_anim_end"])
+animations = Array[String](["intro_anim1", "intro_anim2", "Dialogue(multiple): Here we go...", "Dialogue(multiple): Exe-cute-ive Floor", "Dialogue(multiple): I'm coming Kelly!", "intro_anim_end"])
 one_shot = true
 
 [node name="CollisionShape2D" parent="AreaFlags/IntroFlag/InitialScene" index="0"]

@@ -96,7 +96,7 @@ _data = {
 &"RESET": SubResource("Animation_hq1u4")
 }
 
-[node name="Area1" type="Node2D"]
+[node name="Area2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_emvcp")
 tutorial_queue = Array[ExtResource("2_3ix3q")]([ExtResource("3_33pqf")])
