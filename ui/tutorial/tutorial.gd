@@ -58,3 +58,6 @@ func _process(_delta):
 		fade.visible = true
 	else:
 		fade.visible = false
+
+func _on_next_pressed():
+	AudioPreload.play_sfx("select")

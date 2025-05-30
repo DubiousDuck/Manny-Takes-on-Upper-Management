@@ -82,25 +82,30 @@ func add_in_background(object):
 	background_control.add_child(object)
 
 func _on_restart_level_pressed():
+	AudioPreload.play_sfx("menu_click")
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func _on_exit_level_pressed():
+	AudioPreload.play_sfx("menu_click")
 	get_tree().paused = false
 	Global.battle_result = "lose"
 	get_tree().change_scene_to_packed(Global.get_last_overworld_scene())
 
 
 func _on_quit_game_pressed():
+	AudioPreload.play_sfx("menu_click")
 	get_tree().quit()
 
 
 func _on_resume_pressed():
+	AudioPreload.play_sfx("menu_click")
 	flipMenuDisplay()
 
 
 func _on_pause_button_pressed():
+	AudioPreload.play_sfx("menu_click")
 	flipMenuDisplay()
 
 func _on_dev_button_pressed():
@@ -108,22 +113,26 @@ func _on_dev_button_pressed():
 	flipMenuDisplay()
 
 func _on_pass_button_pressed():
-	print("---------------------- : " + str(Global.isPlayerTurn))
+	AudioPreload.play_sfx("select")
+	#print("---------------------- : " + str(Global.isPlayerTurn))
 	if Global.isPlayerTurn:
-		print("hitting the button")
+		#print("hitting the button")
 		EventBus.pass_turn.emit()
 
 func _on_to_main_menu_pressed():
+	AudioPreload.play_sfx("menu_click")
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
 
 # -- Prebattle related functions -- #
 func _on_battle_start_pressed():
+	AudioPreload.play_sfx("select")
 	for child in pre_battle_box.get_children():
 		child.disabled = true
 	EventBus.emit_signal("battle_started")
 
 func _on_party_comp_pressed():
+	AudioPreload.play_sfx("select")
 	var a = preload("res://overworld/party_comp/party_comp.tscn")
 	Global.last_scene_type = "battle"
 	get_tree().change_scene_to_packed(a)
@@ -150,6 +159,7 @@ func _on_units_left_changed():
 	unit_count.text = "Units left to move: " + str(Global.player_units_to_move)
 
 func _on_log_button_pressed():
+	AudioPreload.play_sfx("select")
 	if logDisplayed:
 		$LogControl.hide()
 		get_tree().paused = false
@@ -161,4 +171,5 @@ func _on_log_button_pressed():
 		logDisplayed = true
 
 func _on_log_resume_pressed():
+	AudioPreload.play_sfx("menu_click")
 	_on_log_button_pressed()

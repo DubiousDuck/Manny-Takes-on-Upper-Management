@@ -125,7 +125,7 @@ func show_skill_of_type(type: String):
 		if !(valid_skills.has(skill)):
 			a.disabled = true
 	
-	# ✅ Add the Back button last so it appears at the bottom
+	# Add the Back button last so it appears at the bottom
 	var back = BACK_BUTTON.instantiate() as Button
 	skill_container.add_child(back)
 	back.connect("pressed", _on_back_pressed)
@@ -143,7 +143,6 @@ func clear_all_skill_button():
 func _on_button_pressed():
 	for button in buttons:
 		if button.button_pressed:
-			#do something
 			print("# SKILL CHOSEN: " + button.skill.name + " (skill_select.gd)")
 			EventBus.emit_signal("skill_chosen", button.skill)
 			button.button_pressed = false
@@ -170,9 +169,11 @@ func _on_mouse_exit():
 
 
 func _on_cancel_pressed():
+	AudioPreload.play_sfx("select")
 	EventBus.emit_signal("cancel_select_unit")
 
 func _on_hide_toggled(toggled_on):
+	AudioPreload.play_sfx("select")
 	if toggled_on:
 		$Panel.hide()
 		$HBoxContainer/Hide.text = "Show"
@@ -181,5 +182,6 @@ func _on_hide_toggled(toggled_on):
 		$HBoxContainer/Hide.text = "Hide"
 
 func _on_back_pressed():
+	AudioPreload.play_sfx("select")
 	skill_container.hide()
 	action_container.show()

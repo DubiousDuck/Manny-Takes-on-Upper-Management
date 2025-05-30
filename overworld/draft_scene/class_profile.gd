@@ -22,6 +22,7 @@ func _on_mouse_box_mouse_exited():
 func _on_mouse_box_gui_input(event):
 	if event is InputEventMouseButton and event.is_pressed() and can_be_selected:
 		emit_signal("pressed", unit_name)
+		AudioPreload.play_sfx("confirm")
 
 func set_locked(state: bool):
 	if state:

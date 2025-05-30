@@ -60,4 +60,5 @@ func _on_character_pressed(unit_name: String):
 	back_to_overworld()
 
 func _on_cancel_pressed():
+	AudioPreload.play_sfx("click")
 	back_to_overworld()

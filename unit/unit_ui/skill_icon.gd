@@ -16,3 +16,6 @@ func _process(delta):
 		$DisabledClickCatcher.show()
 	else:
 		$DisabledClickCatcher.hide()
+
+func _on_pressed():
+	AudioPreload.play_sfx("select")

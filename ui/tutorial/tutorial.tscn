@@ -126,3 +126,5 @@ offset_top = 379.0
 offset_right = 683.0
 offset_bottom = 427.0
 texture = SubResource("GradientTexture2D_xip1d")
+
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/Next" to="." method="_on_next_pressed"]

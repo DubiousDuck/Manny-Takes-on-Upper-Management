@@ -28,4 +28,5 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_wv0nh")
 
+[connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="gui_input" from="DisabledClickCatcher" to="DisabledClickCatcher" method="_on_gui_input"]

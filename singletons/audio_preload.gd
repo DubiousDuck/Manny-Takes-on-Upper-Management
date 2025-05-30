@@ -60,6 +60,9 @@ func _on_back_to_overworld():
 const pof_sfx = preload("res://assets/sfx/sword_clash_pof.mp3")
 const BUTTON_CLICK_SFX = preload("res://assets/sfx/menu_click.mp3")
 const VICTORY_SFX = preload("res://assets/sfx/victory_sfx.mp3")
+const ERROR_SFX = preload("res://assets/sfx/Take Ur Meds SFX Level Fail.wav")
+const SELECT_SFX = preload("res://assets/sfx/hitHurt.wav")
+const CONFIRM_SFX = preload("res://assets/sfx/click.wav")
 
 func play_sfx(name: String):
 	match name:
@@ -73,6 +76,15 @@ func play_sfx(name: String):
 			# stop music and play victory sfx
 			stop()
 			$SfxPlayer.stream = VICTORY_SFX
+			$SfxPlayer.play()
+		"error":
+			$SfxPlayer.stream = ERROR_SFX
+			$SfxPlayer.play()
+		"select":
+			$SfxPlayer.stream = SELECT_SFX
+			$SfxPlayer.play()
+		"confirm":
+			$SfxPlayer.stream = CONFIRM_SFX
 			$SfxPlayer.play()
 
 func music_fade_in():

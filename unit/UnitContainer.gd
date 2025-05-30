@@ -664,6 +664,8 @@ func _unhandled_input(event):
 					return
 				check_and_remove_unit_from_being_held(current_unit)
 				
+				AudioPreload.play_sfx("confirm")
+				
 				var full_path = HexNavi.get_navi_path(current_unit.cell, clicked_cell)
 				current_unit.move_along_path(full_path)
 				in_progress = true
@@ -677,6 +679,9 @@ func _unhandled_input(event):
 					deselect_current_unit()
 					return
 				HintManager.hide_hint("skill_selected")
+				
+				AudioPreload.play_sfx("confirm")
+				
 				var outbound_array: Array[Vector2i] = [clicked_cell]
 				outbound_array.append_array(HexNavi.get_all_neighbors_in_range(clicked_cell, abs(skill_chosen.area), 999))
 				# highlight target cells
