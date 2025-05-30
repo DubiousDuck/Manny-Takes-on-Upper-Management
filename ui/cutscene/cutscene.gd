@@ -2,6 +2,7 @@ class_name Cutscene extends Area2D
 
 @export_multiline var animations : Array[String]
 @export var one_shot: bool = false
+@export var speaker_name: String = "Manny"
 
 @onready var collision_shape_2d = $CollisionShape2D
 
@@ -24,12 +25,12 @@ func _on_body_entered(body):
 				else:
 					#plays the stored multiple lines before parsing the next instruction
 					if multiple_lines.size() > 0:
-						Global.start_dialogue(multiple_lines, true)
+						Global.start_dialogue(multiple_lines, true, speaker_name)
 						await EventBus.dialogue_finished
 						multiple_lines.clear()
 					
 					if i.contains("Dialogue: "): #single dialogue line
-						Global.start_dialogue([i.right(-10)], true)
+						Global.start_dialogue([i.right(-10)], true, speaker_name)
 						await EventBus.dialogue_finished
 					else:
 						get_node("AnimationPlayer").play("Cutscenes/" + i)

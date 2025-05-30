@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="14_hq1u4"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="15_ba6uy"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwake"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33pqf"]
 texture = ExtResource("2_v73oa")
 0:0/0 = 0
 1:0/0 = 0
@@ -37,7 +37,7 @@ texture = ExtResource("2_v73oa")
 2:3/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_goldk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8oc1u"]
 texture = ExtResource("3_pwake")
 0:0/0 = 0
 1:0/0 = 0
@@ -67,8 +67,8 @@ texture = ExtResource("3_pwake")
 2:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_v73oa"]
-sources/1 = SubResource("TileSetAtlasSource_pwake")
-sources/2 = SubResource("TileSetAtlasSource_goldk")
+sources/1 = SubResource("TileSetAtlasSource_33pqf")
+sources/2 = SubResource("TileSetAtlasSource_8oc1u")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujynv"]
 radius = 60.9007
@@ -174,7 +174,7 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(251, 72)
+position = Vector2(626, 464)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -270,6 +270,7 @@ frequency = 1
 [node name="ElevatorGate" parent="AreaFlags/ElevatorFlag" instance=ExtResource("14_hq1u4")]
 position = Vector2(16, 22)
 animations = Array[String](["area1_elevator1", "Dialogue(multiple): You don't have the access to the elevator yet.", "Dialogue(multiple): Come back again later.", "area1_elevator2", "area1_end"])
+speaker_name = "*System*"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/ElevatorFlag/ElevatorGate"]
 libraries = {
