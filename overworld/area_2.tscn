@@ -343,7 +343,7 @@ lose_dialogue = Array[String](["TV SHOWS? I OUTGREW THEM WHEN I WAS 4 MONTHS OLD
 [node name="Secretary (3)" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(647, 313)
 scale = Vector2(0.5, 0.5)
-npc_name = "Secretary Sue"
+npc_name = "Secretary Susan"
 scene_to_go = "uid://b87w8v6lp7rv5"
 level_name = "level2-3"
 req = Array[String](["level2-2"])
@@ -379,7 +379,6 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 36)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -408,6 +407,7 @@ offset_bottom = 5.0
 position = Vector2(-1, 39)
 scene_to_go = ""
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
 
 [node name="Consumer" parent="." instance=ExtResource("11_tbaiv")]
 position = Vector2(577, 125)

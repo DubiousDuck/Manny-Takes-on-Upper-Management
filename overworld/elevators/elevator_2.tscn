@@ -168,7 +168,7 @@ offset_top = 82.0
 offset_right = 203.0
 offset_bottom = 122.0
 scale = Vector2(16.2306, 11.4702)
-color = Color(0.149475, 0.149475, 0.149474, 1)
+color = Color(0.180564, 0.151822, 0.0416617, 1)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(488, 281)
@@ -189,7 +189,7 @@ zoom = Vector2(2, 2)
 
 [node name="ElevatorGate" parent="." instance=ExtResource("4_aud6y")]
 position = Vector2(424, 470)
-animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): So that softie security baby let you through huh… ", "Dialogue(multiple): I knew I should have fired him months ago. ", "Dialogue(multiple): The naive fool has the IQ of a fetus.", "Dialogue(multiple): I’ve built a legacy in Infant Inc. and I will not have it destroyed by the likes", "Dialogue(multiple): Of some insolent idiot who thinks FRIENDSHIP is of any value.", "speaker_off", "door_open", "walk_out_elevator", "door_close"])
+animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): Weak. That’s why he could never be part of the exe-cute-ive board.", "Dialogue(multiple): I have to thank you Manny.", "Dialogue(multiple): Because of your actions, I now know who needs to be fixed in this company.", "Dialogue(multiple): You have shown me the ones that need to go through “special training”.", "Dialogue(multiple): Just like your friend, Kelly.", "Dialogue(multiple): See you soon, Manny. I hope you know what you’ve signed up for.", "speaker_off", "door_open", "walk_out_elevator", "door_close"])
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ElevatorGate"]

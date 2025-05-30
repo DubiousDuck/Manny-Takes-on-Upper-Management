@@ -151,7 +151,6 @@ theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
 [node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
-visible = false
 offset_left = 25.0
 offset_top = 16.0
 offset_right = 231.0
@@ -164,7 +163,6 @@ Level 1"
 justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("3_v73oa")]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("4_pwake")]
 position = Vector2(626, 464)
@@ -187,11 +185,13 @@ position_smoothing_enabled = true
 position = Vector2(629, 480)
 collision_mask = 1
 scene_to_go = "uid://b6pye0w0cqmw7"
+interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
 
 [node name="Elevator" parent="." instance=ExtResource("10_v73oa")]
 position = Vector2(-2, 71)
 scene_to_go = "uid://b142f2nvd1bmw"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 
@@ -234,7 +234,7 @@ locked_dialogue = Array[String](["I've been hearing you want to take on the Uppe
 interact_dialogue = Array[String](["Alright, Manny.", "The elevator to Management is just ahead.", "I will not just let you pass. If you're serious about this...", "You'll have to get through me FIRST.", "Let's see if you have what it takes.", "[I'm ready!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[I'm ready!] [I'm not ready]"])
 correct_choice = "I'm ready!"
-win_dialogue = Array[String](["Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "and I’ve seen how things have changed for the worse.", "Good luck, <name>. Give it your all!"])
+win_dialogue = Array[String](["Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "and I’ve seen how things have changed for the worse.", "Good luck, Manny. Give it your all!"])
 lose_dialogue = Array[String](["I didn’t become Head of Security for nothing!", "You are not ready for this. Come back later."])
 
 [node name="HR1" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]

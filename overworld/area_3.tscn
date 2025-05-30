@@ -1,11 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://dcd8323f27nfp"]
+[gd_scene load_steps=24 format=4 uid="uid://7m1c105fe0kl"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_xpyea"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_s5heq"]
 [ext_resource type="Resource" uid="uid://wak6x8iotnve" path="res://ui/tutorial/contents/recruiting.tres" id="3_g4noi"]
 [ext_resource type="Texture2D" uid="uid://b5ecd2rtcw5d6" path="res://assets/overworld/area_2/ground_tiles2.png" id="3_svv4n"]
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="4_g4noi"]
-[ext_resource type="TileSet" uid="uid://duryov6ynlrsn" path="res://map/overworld3_walls_tres.tres" id="6_850pu"]
+[ext_resource type="TileSet" uid="uid://caxl4men3nxsf" path="res://map/overworld3_walls_tres.tres" id="6_850pu"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="7_r80yh"]
 [ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="8_r80yh"]
 [ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="8_ugq44"]
@@ -196,7 +196,7 @@ scale = Vector2(0.5, 0.5)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(629, 336)
+position = Vector2(626, 464)
 scale = Vector2(0.5, 0.5)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -209,49 +209,54 @@ position_smoothing_enabled = true
 position = Vector2(629, 480)
 collision_mask = 1
 scene_to_go = "uid://b6pye0w0cqmw7"
+interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
 
 [node name="Elevator" parent="." instance=ExtResource("14_qlkuo")]
 position = Vector2(623, -481)
 scene_to_go = "uid://bognra8xq838a"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+interact_dialogue = Array[String](["Play Final Cutscene?", "[Yes][No]"])
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 
 [node name="CFO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
 position = Vector2(628, -68)
 scale = Vector2(0.5, 0.5)
+npc_name = "CFO"
 level_name = "level3-2"
 req = Array[String](["level3-1"])
-locked_dialogue = Array[String](["What are you doing here?", "You should go talk to the Receptionist."])
-interact_dialogue = Array[String](["Manny, I know what you’re trying to do, and it’s noble.", "But it’s pointless…", "You’ll have to fight your way through floors of Infant Inc employees…", "Stop now before you get yourself hurt!", "[At least let me try!] [I'm not ready]"])
-repeat_dialogue = Array[String](["You still want to do this? ", "Get out of here Manny!", "[At least let me try!] [I'm not ready]"])
-correct_choice = "At least let me try!"
-win_dialogue = Array[String](["(This guy actually has skills...)", "(Can he actually do it?)", "(But no one’s taken on the management since the Revolt of '95.)", "(Hmm...)", "Listen, you have the potential.", "But it's far from enough.", "Keep fighting your way through.", "MAYBE you stand a chance against the higher ups.", "Good luck. You'll need it."])
-lose_dialogue = Array[String](["See? Now you've gotten yourself hurt.", "Don't do this again."])
+locked_dialogue = Array[String](["What makes you think you have the right to talk to me?", "I'm a gazillionaire!"])
+interact_dialogue = Array[String](["Manny… You understand nothing about the real world.", "Companies don’t grow because of teamwork or friendship.", "They grow because of competition.", "Such is the nature of a capitalist society.", "And we live in a society...", "You’ve yet to mature. Surprising for a baby your age, still so naive.", "Come. Let me teach you a lesson in finance.", "[Fight CFO] [I'm not ready]"])
+repeat_dialogue = Array[String](["Come. Let me teach you a lesson in finance.", "[Fight CFO] [I'm not ready]"])
+correct_choice = "Fight CFO"
+win_dialogue = Array[String](["(What the flip?!)", "(I lost to this loser who's not even a millionaire?)", "(It's almost as if having money doesn't mean you're stronger or better than others)", "(Have I been the loser all along?)"])
+lose_dialogue = Array[String](["I started my first business before you made said your first word!", "There's no way you can beat me."])
 
 [node name="CEO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
 position = Vector2(624, -368)
 scale = Vector2(0.5, 0.5)
+npc_name = "CEO"
 level_name = "level3-3"
 req = Array[String](["level3-2"])
-locked_dialogue = Array[String](["I've been hearing you want to take on the Upper Management.", "As the Head of Security, I cannot let you pass...", "Demonstrate your strength by defeating everyone else here.", "Then I'll let you challenge me."])
-interact_dialogue = Array[String](["Alright, Manny.", "The elevator to Management is just ahead.", "I will not just let you pass. If you're serious about this...", "You'll have to get through me FIRST.", "Let's see if you have what it takes.", "[I'm ready!] [I'm not ready]"])
-repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[I'm ready!] [I'm not ready]"])
-correct_choice = "I'm ready!"
-win_dialogue = Array[String](["Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "and I’ve seen how things have changed for the worse.", "Good luck, <name>. Give it your all!"])
-lose_dialogue = Array[String](["I didn’t become Head of Security for nothing!", "You are not ready for this. Come back later."])
+locked_dialogue = Array[String](["..."])
+interact_dialogue = Array[String](["I’m impressed you made your way up here. ", "But playtime’s over. It’s naptime, and I’m here to put you to sleep.", "[Fight CEO] [I'm not ready]"])
+repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[Fight CEO] [I'm not ready]"])
+correct_choice = "Fight CEO"
+win_dialogue = Array[String](["In all my years as CEO...", "I never thought I'd be beaten by a lowly Sales Rep.", "I'm a failure.", "The company is yours. I quit as CEO.", "*Quiet Baby Crying*"])
+lose_dialogue = Array[String](["You're gonna cry?", "MUAHAHAHAHA"])
 
 [node name="CTO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
 position = Vector2(624, 216)
 scale = Vector2(0.5, 0.5)
+npc_name = "CTO"
 scene_to_go = "uid://c5sm6ebrjifdp"
 level_name = "level3-1"
-locked_dialogue = Array[String](["Sorry sir, the desk is closed."])
-interact_dialogue = Array[String](["HEY YOU! Stop right there.", "Sorry, boss told me I can’t let you pass…", "I'm just doing my job!", "I can’t get fired now, not in this economy!", "[Fight!]"])
-repeat_dialogue = Array[String](["You're still here?", "Cmon Manny, get out of here before my boss sees you still around... ", "[Fight!]"])
-correct_choice = "Fight!"
-win_dialogue = Array[String](["I heard about what happened with Kelly...", "You got skills. I heard you're planning on taking on Upper Management.", "I hear there are others that are frustrated, just like you.", "They might also be willing to fight alongside you.", "Talk to Steve. He can help you recruit them in your quest.", "Though you might have to fight them to win them over..."])
-lose_dialogue = Array[String](["Manny, we’re just babies!", "How can we possibly go against the bosses? "])
+locked_dialogue = Array[String](["You're on the wrong level, worker. Get back to your floor."])
+interact_dialogue = Array[String](["Babies like you need to be put in place.", "I’ve used my genius to create the technology that Infant Inc. runs on.", "You instead waste it on useless concepts like FRIENDSHIP.", "The only friend I need is TECHNOLOGY.", "[Fight CTO] [I'm not ready]"])
+repeat_dialogue = Array[String](["Babies like you need to be put in place.", "[Fight CTO] [I'm not ready]"])
+correct_choice = "Fight CTO"
+win_dialogue = Array[String](["My inventions earned me fame and fortune.", "Then you had to come in and ruin everything.", "Waah *Crying Baby Noises*", "You know nothing about the real world!"])
+lose_dialogue = Array[String](["I’m the youngest graduate of Massachoosetts Institute of Tantrumology.", "To be fair, you have to have a very high IQ - over 200IQ - to be able to beat me.", "You’re just a nobody!"])
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="NPC_Folder/CTO/Area2D" index="0"]

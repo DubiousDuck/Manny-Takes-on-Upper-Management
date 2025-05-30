@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://duryov6ynlrsn"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://caxl4men3nxsf"]
 
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="1_o7u2o"]
 [ext_resource type="Texture2D" uid="uid://c5wcpr6p10wbb" path="res://assets/overworld/area_2/walls_adjusted.png" id="2_dtxmj"]
