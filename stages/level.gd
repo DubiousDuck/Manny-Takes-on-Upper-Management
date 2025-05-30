@@ -89,11 +89,14 @@ func _on_battle_ended(result: int):
 		
 		# granting and animating experience
 		var newly_learned_skills: Dictionary[UnitData, SkillInfo] = {}
+		# creat a exp bar for each current party member and record their new skills
 		for unit in Global.current_party:
 			a.add_exp_bar(unit)
 			newly_learned_skills[unit] = grant_exp(unit, xp_gained)
+		# grants exp to reserve members too
 		for unit in Global.reserves:
 			newly_learned_skills[unit] = grant_exp(unit, xp_gained)
+		# animate all exp bars at once
 		await a.animate_exp_bar_of_party(Global.current_party)
 		#print("animation complete")
 		
@@ -102,6 +105,7 @@ func _on_battle_ended(result: int):
 			await show_skill_unlock(unit, newly_learned_skills[unit])
 	else:
 		a.update_xp_label(0)
+	# enables other buttons when all animation done
 	a.display()
 
 	HintManager.pause_idle_timer()
