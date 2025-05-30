@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bognra8xq838a"]
+[gd_scene load_steps=31 format=4 uid="uid://bognra8xq838a"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_cbm2g"]
 [ext_resource type="Texture2D" uid="uid://daewkn42on7gw" path="res://assets/overworld/area_2/ground_tiles.png" id="2_ay40q"]
@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="4_ivycp"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_ay40q"]
 [ext_resource type="Texture2D" uid="uid://c5wcpr6p10wbb" path="res://assets/overworld/area_2/walls_adjusted.png" id="5_ivycp"]
-[ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="5_n71iy"]
 [ext_resource type="Texture2D" uid="uid://c5bcvbuyf47kb" path="res://assets/overworld/area_2/cubicles.png" id="5_o88bp"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="6_o88bp"]
 [ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="8_rt1we"]
@@ -294,19 +293,6 @@ mouse_filter = 1
 theme = ExtResource("4_ivycp")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
-
-[node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
-visible = false
-offset_left = 25.0
-offset_top = 16.0
-offset_right = 231.0
-offset_bottom = 98.0
-theme = ExtResource("4_ivycp")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("5_n71iy")
-text = "Player 1
-Level 1"
-justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
 

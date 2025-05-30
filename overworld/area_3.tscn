@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://7m1c105fe0kl"]
+[gd_scene load_steps=23 format=4 uid="uid://dcd8323f27nfp"]
 
 [ext_resource type="Script" uid="uid://cb3ogc6vigehx" path="res://overworld/overworld.gd" id="1_xpyea"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_s5heq"]
@@ -8,7 +8,6 @@
 [ext_resource type="TileSet" uid="uid://caxl4men3nxsf" path="res://map/overworld3_walls_tres.tres" id="6_850pu"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="7_r80yh"]
 [ext_resource type="Texture2D" uid="uid://qt768xttro3s" path="res://assets/ui/save_icon.png" id="8_r80yh"]
-[ext_resource type="StyleBox" uid="uid://3aj4q3ah3w7h" path="res://assets/ui/button_texture.tres" id="8_ugq44"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="9_ofgf5"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="10_qlkuo"]
 [ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="11_ugq44"]
@@ -117,7 +116,7 @@ _data = {
 &"RESET": SubResource("Animation_hq1u4")
 }
 
-[node name="Area1" type="Node2D"]
+[node name="Area3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xpyea")
 tutorial_queue = Array[ExtResource("2_s5heq")]([ExtResource("3_g4noi")])
@@ -172,21 +171,7 @@ theme = ExtResource("7_r80yh")
 theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
-[node name="PlayerInfo" type="RichTextLabel" parent="MainInterface"]
-visible = false
-offset_left = 25.0
-offset_top = 16.0
-offset_right = 231.0
-offset_bottom = 98.0
-theme = ExtResource("7_r80yh")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_styles/normal = ExtResource("8_ugq44")
-text = "Player 1
-Level 1"
-justification_flags = 35
-
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("9_ofgf5")]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("10_qlkuo")]
 position = Vector2(626, 464)
@@ -229,8 +214,8 @@ locked_dialogue = Array[String](["What makes you think you have the right to tal
 interact_dialogue = Array[String](["Manny… You understand nothing about the real world.", "Companies don’t grow because of teamwork or friendship.", "They grow because of competition.", "Such is the nature of a capitalist society.", "And we live in a society...", "You’ve yet to mature. Surprising for a baby your age, still so naive.", "Come. Let me teach you a lesson in finance.", "[Fight CFO] [I'm not ready]"])
 repeat_dialogue = Array[String](["Come. Let me teach you a lesson in finance.", "[Fight CFO] [I'm not ready]"])
 correct_choice = "Fight CFO"
-win_dialogue = Array[String](["(What the flip?!)", "(I lost to this loser who's not even a millionaire?)", "(It's almost as if having money doesn't mean you're stronger or better than others)", "(Have I been the loser all along?)"])
-lose_dialogue = Array[String](["I started my first business before you made said your first word!", "There's no way you can beat me."])
+win_dialogue = Array[String](["[SPEAKER:CFO](What the flip?!)", "(I lost to this loser who's not even a millionaire?)", "(It's almost as if having money doesn't mean you're stronger or better than others)", "(Have I been the loser all along?)"])
+lose_dialogue = Array[String](["[SPEAKER:CFO]I started my first business before you made said your first word!", "There's no way you can beat me."])
 
 [node name="CEO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
 position = Vector2(624, -368)
@@ -242,8 +227,8 @@ locked_dialogue = Array[String](["..."])
 interact_dialogue = Array[String](["I’m impressed you made your way up here. ", "But playtime’s over. It’s past your naptime, and I’m here to put you to sleep.", "[Fight CEO] [I'm not ready]"])
 repeat_dialogue = Array[String](["Playtime’s over.", "Let's put you to sleep.", "[Fight CEO] [I'm not ready]"])
 correct_choice = "Fight CEO"
-win_dialogue = Array[String](["In all my years as CEO...", "I never thought I'd be beaten by a lowly Sales Rep.", "I started out as an intern in this company. We were taught to be ruthless.", "The other babies were not colleagues. They were competition.", "All this time, I ran this company with that same mindset.", "But now I see... You've managed to rally everyone against me.", "As a team. Together, as friends.", "The company is yours. I'm done being CEO.", "*Quiet Baby Crying*"])
-lose_dialogue = Array[String](["You're gonna cry?", "MUAHAHAHAHA"])
+win_dialogue = Array[String](["[SPEAKER:CEO]In all my years as CEO...", "I never thought I'd be beaten by a lowly Sales Rep.", "I started out as an intern in this company. We were taught to be ruthless.", "The other babies were not colleagues. They were competition.", "All this time, I ran this company with that same mindset.", "But now I see... You've managed to rally everyone against me.", "As a team. Together, as friends.", "The company is yours. I'm done being CEO.", "*Quiet Baby Crying*"])
+lose_dialogue = Array[String](["[SPEAKER:CEO]You're gonna cry?", "MUAHAHAHAHA"])
 
 [node name="CTO" parent="NPC_Folder" instance=ExtResource("11_ugq44")]
 position = Vector2(624, 216)
@@ -255,8 +240,8 @@ locked_dialogue = Array[String](["You're on the wrong level, worker. Get back to
 interact_dialogue = Array[String](["Babies like you need to be put in place.", "I’ve used my genius to create the technology that Infant Inc. runs on.", "You instead waste it on useless concepts like FRIENDSHIP.", "The only friend I need is TECHNOLOGY.", "[Fight CTO] [I'm not ready]"])
 repeat_dialogue = Array[String](["Babies like you need to be put in place.", "[Fight CTO] [I'm not ready]"])
 correct_choice = "Fight CTO"
-win_dialogue = Array[String](["My inventions earned me fame and fortune.", "Then you had to come in and ruin everything.", "Waah *Crying Baby Noises*", "You know nothing about the real world!"])
-lose_dialogue = Array[String](["I’m the youngest graduate of Massachoosetts Institute of Tantrumology.", "To be fair, you have to have a very high IQ - over 200IQ - to be able to beat me.", "You’re just a nobody!"])
+win_dialogue = Array[String](["[SPEAKER:CTO]My inventions earned me fame and fortune.", "Then you had to come in and ruin everything.", "Waah *Crying Baby Noises*", "You know nothing about the real world!"])
+lose_dialogue = Array[String](["[SPEAKER:CTO]I’m the youngest graduate of Massachoosetts Institute of Tantrumology.", "To be fair, you have to have a very high IQ - over 200IQ - to be able to beat me.", "You’re just a nobody!"])
 metadata/_edit_group_ = true
 
 [node name="InteractiveArea" parent="NPC_Folder/CTO/Area2D" index="0"]
