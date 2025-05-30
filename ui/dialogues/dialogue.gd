@@ -30,6 +30,16 @@ func read_text(text : Array[String], in_cutscene : bool = false):
 	await anim_player.animation_finished
 	speaker_name_tag.show()
 	for i : String in text:
+		# Detect inline speaker tag like [SPEAKER:Alice]
+		if i.begins_with("[SPEAKER:"):
+			var regex = RegEx.new()
+			regex.compile("^\\[SPEAKER:(.*?)\\](.*)")
+			var result = regex.search(i)
+			if result:
+				var new_speaker = result.get_string(1)
+				i = result.get_string(2)
+				set_speaker_name(new_speaker)
+
 		if i.contains("["):
 			label.hide()
 			question_given=true

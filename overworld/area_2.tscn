@@ -309,7 +309,6 @@ Level 1"
 justification_flags = 35
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
-visible = false
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 
@@ -323,13 +322,13 @@ locked_dialogue = Array[String](["Who are you? Get out of here..."])
 interact_dialogue = Array[String](["I had to go through 10 rounds of interviews to get this internship!", "I won’t let some nobody from Wail University stop me.", "I'm a Massachoosetts Institute of Tantrumology graduate!", "[Fight] [I'm not ready]"])
 repeat_dialogue = Array[String](["You again?", "Go away before you ruin my intern project!", "[Fight] [I'm not ready]"])
 correct_choice = "Fight"
-win_dialogue = Array[String](["So many applications, so many interviews... You can’t do this to me!", "Honestly, I miss college...", "My Braterinity Bros in Mu Alpha Mu Alpha are the best.", "Maybe I'll just quit this internship and enjoy the summer with them. I don't even like it here."])
-lose_dialogue = Array[String](["I grinded so hard for this internship.", "Nothing will get in my way."])
+win_dialogue = Array[String](["[SPEAKER:Intern Alex]So many applications, so many interviews... You can’t do this to me!", "Honestly, I miss college...", "My Braterinity Bros in Mu Alpha Mu Alpha are the best.", "Maybe I'll just quit this internship and enjoy the summer with them. I don't even like it here."])
+lose_dialogue = Array[String](["[SPEAKER:Intern Alex]I grinded so hard for this internship.", "Nothing will get in my way."])
 
 [node name="Junior Analyst (2)" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(449, 98)
 scale = Vector2(0.5, 0.5)
-npc_name = "Junior Analyst Candy"
+npc_name = "Junior Analyst Candice"
 scene_to_go = "uid://bda5uv8kdcc0m"
 level_name = "level2-2"
 req = Array[String](["level2-1"])
@@ -337,8 +336,8 @@ locked_dialogue = Array[String](["As a junior analyst, I'm quite busy.", "I don'
 interact_dialogue = Array[String](["I LOVE INFANT INC.!", "SURE THEY DON’T GIVE US ANY DAYS OF LEAVE", "BUT THAT’S EXPECTED FOR A JUNIOR ANALYST.", "I’M SURE WHEN WE BECOME TEENAGE ANALYSTS, LIFE GETS BETTER, RIGHT?", "[Fight] [I'm not ready]"])
 repeat_dialogue = Array[String](["I’M SURE WHEN WE BECOME TEENAGE ANALYSTS, LIFE GETS BETTER, RIGHT?", "[Fight] [I'm not ready]"])
 correct_choice = "Fight"
-win_dialogue = Array[String](["MY WORK IS MY LIFE!", "WORKING IS ALL I KNOW!", "WHAT AM I WITHOUT MY WORK..."])
-lose_dialogue = Array[String](["TV SHOWS? I OUTGREW THEM WHEN I WAS 4 MONTHS OLD", "I CAN’T WAIT TO BE A TEENAGE ANALYST!", "I HEAR THEY GET CANDY IN THEIR BREAK ROOM."])
+win_dialogue = Array[String](["[SPEAKER:Junior Analyst Candice]MY WORK IS MY LIFE!", "WORKING IS ALL I KNOW!", "WHAT AM I WITHOUT MY WORK..."])
+lose_dialogue = Array[String](["[SPEAKER:Junior Analyst Candice]TV SHOWS? I OUTGREW THEM WHEN I WAS 4 MONTHS OLD", "I CAN’T WAIT TO BE A TEENAGE ANALYST!", "I HEAR THEY GET CANDY IN THEIR BREAK ROOM."])
 
 [node name="Secretary (3)" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(647, 313)
@@ -351,8 +350,8 @@ locked_dialogue = Array[String](["Hmm? Are you here to see the General Manager?"
 interact_dialogue = Array[String](["I’m Sorry, Manny. We Can’t Let You Pass.", "Ms General Manager Wouldn’t Like That Very Much.", "It’s Time You Quit Acting Like A Baby, And Get Back To Work.", "[I'm ready!] [I'm not ready]"])
 repeat_dialogue = Array[String](["It’s Time You Quit Acting Like A Baby, And Get Back To Work.", "[I'm ready!] [I'm not ready]"])
 correct_choice = "I'm ready!"
-win_dialogue = Array[String](["Ms Manager Is Good To Us.", "Mr CEO Is Good To Us..", "Infant Inc. Is Good To Us...", "Sorry Ms Manager, We Have Failed You..."])
-lose_dialogue = Array[String](["Leave, Manny.", "You Will Never Beat Us."])
+win_dialogue = Array[String](["[SPEAKER:Secretary Susan]Ms Manager Is Good To Us.", "Mr CEO Is Good To Us..", "Infant Inc. Is Good To Us...", "Sorry Ms Manager, We Have Failed You..."])
+lose_dialogue = Array[String](["[SPEAKER:Secretary Susan]Leave, Manny.", "You Will Never Beat Us."])
 
 [node name="General Manager (4)" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(823, 136)
@@ -365,8 +364,8 @@ locked_dialogue = Array[String](["Why are you here?", "You should go back to wor
 interact_dialogue = Array[String](["Alright, BRAT. Enough fooling around.", "I’ve worked my baby butt off for too long to have some Wail graduate ruin my plans.", "I’m next in line to be on the exe-cute-ive board", "So why don’t you be a good baby and go back to your crib?", "[Let's do this!] [I'm not ready]"])
 repeat_dialogue = Array[String](["I’m next in line to be on the exe-cute-ive board", "So why don’t you be a good baby and go back to your crib?", "[Let's do this!] [I'm not ready]"])
 correct_choice = "Let's do this!"
-win_dialogue = Array[String](["… ", "You’re right. They were never going to promote me.", "I’ve been here almost all my life, and they still treat me like I’m second-rate.", "They never intended to bring me onto the exe-cute-ive board. But I just held on to the hope that maybe they would.", "The only way things change is if you topple them from the top.", "Take the elevator behind me to reach the top floor. There, you’ll reach the exe-cute-ive level."])
-lose_dialogue = Array[String](["Get back to your cubicle, and get to work!", "I don't want to see you on this level again."])
+win_dialogue = Array[String](["[SPEAKER:General Manager]… ", "You’re right. They were never going to promote me.", "I’ve been here almost all my life, and they still treat me like I’m second-rate.", "They never intended to bring me onto the exe-cute-ive board. But I just held on to the hope that maybe they would.", "The only way things change is if you topple them from the top.", "Take the elevator behind me to reach the top floor. There, you’ll reach the exe-cute-ive level."])
+lose_dialogue = Array[String](["[SPEAKER:General Manager]Get back to your cubicle, and get to work!", "I don't want to see you on this level again."])
 
 [node name="Recruit" parent="NPC_Folder" instance=ExtResource("12_56es5")]
 position = Vector2(526, -7)
