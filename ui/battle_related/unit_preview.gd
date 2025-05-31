@@ -20,6 +20,7 @@ enum STAT{HP, MOV, ATK, MAG}
 
 var stat_to_label: Dictionary[String, Label] = {}
 var cur_unit : Unit
+var cur_unit_container: UnitContainer
 
 var hp: int:
 	set(value):
@@ -47,6 +48,7 @@ var hovered_unit: Unit
 
 func init(unit: Unit):
 	cur_unit = unit
+	cur_unit_container = unit.container
 	#set sprite 2d to corresponding class
 	class_label.text = unit.unit_data.unit_class
 	set_class_sprite(unit.unit_data.unit_class)
@@ -62,13 +64,33 @@ func init(unit: Unit):
 	
 	# Read and set skill list information
 	for skill in cur_unit.skills:
-		var a = SKILL_PREVIEW.instantiate()
+		var a = SKILL_PREVIEW.instantiate() as SkillPreview
 		skill_list.add_child(a)
+		a.skill = skill
 		a.label.text = skill.name
 		a.set_tooltip(skill.description)
+		a.connect("mouse_entered", _on_mouse_entered.bind(a))
+		a.connect("mouse_exited", _on_mouse_exited)
 	
 	# Set up tooltips for stats buffs
 	set_tooltip(cur_unit)
+
+## display highlights of skill range when hovered over
+func _on_mouse_entered(icon_hovered: SkillPreview):
+	EventBus.emit_signal("remove_cell_highlights", name)
+	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
+	
+	var all_neighbors := HexNavi.get_all_neighbors_in_range(HexNavi.global_to_cell(cur_unit.global_position), icon_hovered.skill.range, 999)
+	EventBus.emit_signal("show_cell_highlights", all_neighbors, CellHighlight.ATTACK_PREVIEW_HIGHLIGHT, name)
+	if cur_unit_container:
+		var valid_targets = cur_unit_container.get_targets_of_type(all_neighbors, icon_hovered.skill.targets, cur_unit)
+		if valid_targets.size() > 0:
+			if icon_hovered.skill.targets in [SkillInfo.TargetType.ENEMIES, SkillInfo.TargetType.ANY_UNIT, SkillInfo.TargetType.ALLIES, SkillInfo.TargetType.EXCEPT_SELF, SkillInfo.TargetType.ALLIES_EXCEPT_SELF, SkillInfo.TargetType.SELF]:
+				EventBus.emit_signal("show_cell_highlights", valid_targets, CellHighlight.ATTACK_HIGHLIGHT, name+"_valid_targets")
+
+func _on_mouse_exited():
+	EventBus.emit_signal("remove_cell_highlights", name)
+	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 
 func set_label_color(stat: STAT, value: int):
 	var label: Label

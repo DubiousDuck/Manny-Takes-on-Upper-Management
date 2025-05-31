@@ -28,6 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "This is another tool tip"
+mouse_filter = 1
 color = Color(0.6, 0.458824, 0.392157, 1)
 
 [node name="Label" type="Label" parent="."]
@@ -42,3 +43,5 @@ theme_override_font_sizes/font_size = 36
 text = "Skill Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
