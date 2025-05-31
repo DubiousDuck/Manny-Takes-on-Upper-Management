@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://cuka5djp1cvwp"]
+
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_5nujv"]
+[ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="2_dv1ra"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="3_4yabw"]
+[ext_resource type="Resource" uid="uid://c2ew6nhif72ek" path="res://skills/power_overload.tres" id="4_hgo5o"]
+[ext_resource type="Resource" uid="uid://bt1h6pyxli0lv" path="res://skills/throw_lego_ex.tres" id="5_hgo5o"]
+[ext_resource type="Resource" uid="uid://j03hb7jrau8a" path="res://skills/zap.tres" id="6_13sxg"]
+
+[resource]
+script = ExtResource("2_dv1ra")
+id = 0
+level = 10
+exp = 0
+unit_class = "Boss"
+stat = Dictionary[int, int]({
+0: 5,
+1: 1,
+2: 2,
+3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
+},
+8: {
+0: 1
+},
+9: {
+1: 1,
+2: 1
+},
+10: {
+0: 2
+},
+12: {
+1: 2
+},
+13: {
+2: 2
+},
+15: {
+0: 1,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 1,
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("3_4yabw")]([ExtResource("4_hgo5o"), ExtResource("5_hgo5o"), ExtResource("6_13sxg")])
+skill_table = Dictionary[int, ExtResource("3_4yabw")]({})
+item_list = Array[ExtResource("1_5nujv")]([])
+metadata/_custom_type_script = "uid://d2mnyc15434nn"

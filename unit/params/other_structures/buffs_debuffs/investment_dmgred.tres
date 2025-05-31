@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://dn4pk4ahk2ixl"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_5uyc7"]
+
+[resource]
+script = ExtResource("1_5uyc7")
+stat = "damage_reduction"
+value = 1.0
+source = "Investment"
+duration = 1
+metadata/_custom_type_script = "uid://dda521hi48f5d"

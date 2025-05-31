@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://ck3s1egtptxat"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_2ij4v"]
+
+[resource]
+script = ExtResource("1_2ij4v")
+stat = "attack_power"
+value = 2.0
+source = "Overload"
+duration = 1
+metadata/_custom_type_script = "uid://dda521hi48f5d"

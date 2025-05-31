@@ -42,7 +42,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 },
 9: {
-0: 1
+0: 2
 },
 10: {
 1: 1,

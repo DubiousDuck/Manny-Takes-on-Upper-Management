@@ -2,7 +2,7 @@ extends Resource
 
 class_name StatusEffect
 
-enum Effect{SLEEP, POISON, FORGET, UNSTEADY}
+enum Effect{SLEEP, POISON, FORGET, UNSTEADY, AUDITTED}
 
 @export var icon: Texture2D
 
@@ -20,6 +20,8 @@ func tick(unit: Unit):
 			await poison_tick(unit)
 		Effect.FORGET:
 			forget_tick(unit)
+		Effect.AUDITTED:
+			audit_tick(unit)
 		_:
 			return
 
@@ -32,6 +34,9 @@ func poison_tick(unit: Unit):
 
 func forget_tick(unit: Unit):
 	unit.actions_avail.erase(Unit.Action.MOVE)
+
+func audit_tick(unit: Unit):
+	unit.actions_avail.erase(Unit.Action.ATTACK)
 
 # function that is called when status is first applied
 func on_apply(unit: Unit):

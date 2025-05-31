@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_fdff0"]
 [ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="2_bqlgi"]
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="3_wv217"]
-[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="4_i7wdi"]
+[ext_resource type="Resource" uid="uid://bdt6lnq72ku8y" path="res://skills/giant_arrow.tres" id="4_i7wdi"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="5_ae1qp"]
 [ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="6_h1ckf"]
 
@@ -15,8 +15,8 @@ exp = 0
 unit_class = "Turret"
 stat = Dictionary[int, int]({
 0: 4,
-1: 2,
-2: 2,
+1: 3,
+2: 1,
 3: 0
 })
 stat_growth_table = Dictionary[int, Dictionary]({

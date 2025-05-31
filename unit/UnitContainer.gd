@@ -291,7 +291,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 				SkillInfo.EffectType.DISPLACE:
 					match effects[key]:
 						2: 
-							var displace_origin: Vector2 = new_state.position[unit]
+							var displace_origin: Vector2i = new_state.position[unit]
 							if abs(skill.area) > 0:
 								displace_origin = target_cell
 							for affected in new_state.position.keys():
@@ -346,6 +346,7 @@ func evaluate_state(state: GameState) -> int:
 			# avoid hurting teammates (just a bit)
 			damage_score -= (unit.health - state.health[unit]) * 2
 		
+		# cell effect related score
 		var nearby_cell := HexNavi.get_all_neighbors_in_range(state.position[unit], 1, 999)
 		for cell in nearby_cell:
 			# Instead of looking at the current board, look at the simulated board state
@@ -378,16 +379,17 @@ func evaluate_state(state: GameState) -> int:
 				"spike":
 					if enemy_container.units.has(unit): 
 						if cell == state.position[unit]:
-							tile_score -= 5
+							tile_score += 5
 					else:
 						if cell == state.position[unit]:
-							tile_score += 10
+							tile_score -= 10
 				_:
 					tile_score += 0
 
 	## Buff/Debuff Related Score
 	const ENEMY_BUFF_PENALTY = 5
 	const ALLY_BUFF_PENALTY = 5
+	const MAX_REASONABLE_BUFF_COUNT = 1
 	for unit in state.stat_bonuses.keys():
 		var buffs = state.stat_bonuses[unit]
 		for buff in buffs:
@@ -403,6 +405,7 @@ func evaluate_state(state: GameState) -> int:
 	const SLEEP_MULTIPLIER = 6
 	const POISON_MULTIPLIER = 6
 	const FORGET_MULTIPLER = 10
+	const AUDIT_MULTIPLIER = 20
 	const OTHER_MULTIPLIER = 10
 	for unit in state.status_effects.keys():
 		var effect = state.status_effects[unit]
@@ -414,6 +417,8 @@ func evaluate_state(state: GameState) -> int:
 				multiplier = POISON_MULTIPLIER
 			StatusEffect.Effect.FORGET:
 				multiplier = FORGET_MULTIPLER
+			StatusEffect.Effect.AUDITTED:
+				multiplier = AUDIT_MULTIPLIER
 			_:
 				multiplier = OTHER_MULTIPLIER
 		if enemy_container.units.has(unit):
@@ -494,6 +499,20 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 						best_score = combo_score
 						best_cell = move_cell
 						best_skill = WAIT_SKILL
+						best_state = final_state
+	
+	# Test for attack and move
+	if unit.actions_avail.has(Unit.Action.MOVE) and unit.actions_avail.has(Unit.Action.ATTACK):
+		for skill in valid_skills:
+			for attack_cell in get_actionnable_cells(unit, Unit.Action.ATTACK, skill):
+				var attacked_state = simulate_action(current_state, unit, attack_cell, Unit.Action.ATTACK, skill)
+				for move_cell in get_actionnable_cells(unit, Unit.Action.MOVE):
+					var final_state = simulate_action(attacked_state, unit, move_cell, Unit.Action.MOVE)
+					var combo_score = evaluate_state(final_state)
+					if combo_score > best_score:
+						best_score = combo_score
+						best_cell = attack_cell
+						best_skill = skill
 						best_state = final_state
 	
 	# Test for only attacking

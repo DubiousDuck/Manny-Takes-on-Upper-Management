@@ -120,6 +120,7 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_xpyea")
 tutorial_queue = Array[ExtResource("2_s5heq")]([ExtResource("3_g4noi")])
+max_party_num = 5
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2

@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=7 format=3 uid="uid://8syvvxoawlvu"]
+
+[ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="1_c7d2l"]
+[ext_resource type="Script" uid="uid://d2mnyc15434nn" path="res://unit/params/unit_data.gd" id="2_y7y6s"]
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="3_qn876"]
+[ext_resource type="Resource" uid="uid://gnigovlciw4v" path="res://skills/highrisk_investment.tres" id="4_v4nij"]
+[ext_resource type="Resource" uid="uid://b8kltc1ipdhgj" path="res://skills/surprise_audit.tres" id="5_arxof"]
+[ext_resource type="Resource" uid="uid://c1dv1eapxobet" path="res://skills/penny_punch.tres" id="6_np0dg"]
+
+[resource]
+script = ExtResource("2_y7y6s")
+id = 0
+level = 11
+exp = 0
+unit_class = "Boss"
+stat = Dictionary[int, int]({
+0: 6,
+1: 2,
+2: 2,
+3: 2
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 1
+},
+3: {
+1: 1
+},
+4: {
+2: 1
+},
+5: {
+0: 2
+},
+7: {
+1: 1,
+2: 1
+},
+8: {
+0: 1
+},
+9: {
+1: 1,
+2: 1
+},
+10: {
+0: 2
+},
+12: {
+1: 2
+},
+13: {
+2: 2
+},
+15: {
+0: 1,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 1,
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("3_qn876")]([ExtResource("4_v4nij"), ExtResource("5_arxof"), ExtResource("6_np0dg")])
+skill_table = Dictionary[int, ExtResource("3_qn876")]({})
+item_list = Array[ExtResource("1_c7d2l")]([])
+metadata/_custom_type_script = "uid://d2mnyc15434nn"

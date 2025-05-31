@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://c4lfdpdymi0ei"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_lnnhw"]
+
+[resource]
+script = ExtResource("1_lnnhw")
+name = "Teleport"
+description = "Teleport to any tile and raises the MAG of the babies at the target tile by 1 turn."
+type = "Skill"
+targets = 7
+affinity = 1
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({
+3: "uid://boksyrraaj4u8",
+8: 3
+})
+effect_execution_order = Array[int]([8, 3])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

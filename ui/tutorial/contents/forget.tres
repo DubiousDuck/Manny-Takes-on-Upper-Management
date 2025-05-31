@@ -10,7 +10,7 @@ triggered = false
 title = "Status Effect - Forget"
 body_text = "[color=steel_blue]Forget[/color] is a Status Effect.
 
-Units with [color=steel_blue]Forget[/color] forget how to walk, so they can't move but can still attack.
+Units with [color=steel_blue]Forget[/color] cannot perform any attacks or skills, but they can still move.
 
 "
 image_file = "uid://calasbi07gjel"
