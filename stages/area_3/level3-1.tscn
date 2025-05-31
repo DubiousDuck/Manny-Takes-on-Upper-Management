@@ -721,7 +721,6 @@ script = ExtResource("14_lx84q")
 [node name="PlayerGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("15_k5p88")
 is_player_controlled = true
-read_class_from_data = false
 enemy_container = NodePath("../EnemyGroup")
 
 [node name="Protag3" parent="Units/PlayerGroup" instance=ExtResource("16_5btw8")]
