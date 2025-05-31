@@ -266,8 +266,22 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.remove_status_effect()
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
+			# exclusively for attacker gaining token
+			SkillInfo.EffectType.ACTION_TOKEN:
+				match effects[key]:
+					Unit.Action.MOVE:
+						attacker.actions_avail.append(Unit.Action.MOVE)
+					Unit.Action.ATTACK:
+						attacker.actions_avail.append(Unit.Action.ATTACK)
+			SkillInfo.EffectType.SELF_BUFF:
+				var buff = load(effects[key])
+				if buff is BonusStat:
+					attacker.apply_stat_modifer(buff)
+			SkillInfo.EffectType.SELF_HEAL:
+				attacker.regain_health(effects[key] * attacker_power)
 			_:
 				print("nothing happens yet")
+						
 	
 	process_battle_log(attacker, affected_units, attack)
 				

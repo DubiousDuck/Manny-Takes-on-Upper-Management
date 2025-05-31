@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://bpk6u0vlqafp0"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_hwoit"]
+
+[resource]
+script = ExtResource("1_hwoit")
+name = "Severance Package"
+description = "Delivers a severance package to an ally. Deals damage to an ally and raise ATK for itself for 2 turns."
+type = "Attack"
+targets = 5
+affinity = 0
+range = 2
+area = 0
+skill_effects = Dictionary[int, Variant]({
+0: 0.5,
+11: "uid://d0xhip4ja1mns"
+})
+effect_execution_order = Array[int]([0, 11])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

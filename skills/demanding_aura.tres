@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SkillInfo" load_steps=2 format=3 uid="uid://dtnyglqsgahp8"]
+
+[ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_r62tk"]
+
+[resource]
+script = ExtResource("1_r62tk")
+name = "Demanding Aura"
+description = "Release a dense and scary aura. Deals a little damage to all nearby babies and lowers their damage reduction for 1 turn."
+type = "Attack"
+targets = 2
+affinity = 0
+range = 0
+area = -1
+skill_effects = Dictionary[int, Variant]({
+0: 0.5,
+4: "uid://bp7fysjgwtig2"
+})
+effect_execution_order = Array[int]([0, 4])
+metadata/_custom_type_script = "uid://cupoy0ff6a5jr"

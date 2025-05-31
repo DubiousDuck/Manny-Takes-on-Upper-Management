@@ -238,13 +238,16 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	new_state.stat_bonuses = state.stat_bonuses.duplicate(true)
 	new_state.cell_effects = state.cell_effects.duplicate(true)
 	new_state.status_effects = state.status_effects.duplicate(true)
+	new_state.action_tokens = state.action_tokens.duplicate()
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
 		new_state.position[unit] = target_cell
+		new_state.action_tokens[unit].erase(Unit.Action.MOVE)
 	if action_type == Unit.Action.ATTACK:
 		if skill == null:
 			return new_state
+		new_state.action_tokens[unit].erase(Unit.Action.ATTACK)
 		#Go through all of the skill's effect and calculate score
 		var effects := skill.skill_effects
 		var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
@@ -295,9 +298,22 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 							if abs(skill.area) > 0:
 								displace_origin = target_cell
 							for affected in new_state.position.keys():
-								new_state.position[affected] = displace_origin
+								if affected_area.has(new_state.position[affected]):
+									new_state.position[affected] = displace_origin
 						3:
 							new_state.position[unit] = target_cell
+				SkillInfo.EffectType.ACTION_TOKEN:
+					match effects[key]:
+						Unit.Action.MOVE:
+							new_state.action_tokens[unit].append(Unit.Action.MOVE)
+						Unit.Action.ATTACK:
+							new_state.action_tokens[unit].append(Unit.Action.ATTACK)
+				SkillInfo.EffectType.SELF_BUFF:
+					var bonus: BonusStat = load(effects[key]) as BonusStat  # Assume this is a BonusStat object
+					new_state.stat_bonuses[unit].append(bonus)
+				SkillInfo.EffectType.SELF_HEAL:
+					var healing = estimate_damage(unit, skill, effects[key])
+					new_state.health[unit] += healing
 	
 	return new_state
 
@@ -307,6 +323,7 @@ func evaluate_state(state: GameState) -> int:
 	var tile_score = 0
 	var buff_score = 0
 	var status_score = 0
+	var token_score = 0
 	var score = 0
 	
 	for unit in state.position.keys():
@@ -382,7 +399,7 @@ func evaluate_state(state: GameState) -> int:
 							tile_score += 5
 					else:
 						if cell == state.position[unit]:
-							tile_score -= 10
+							tile_score -= 7
 				_:
 					tile_score += 0
 
@@ -424,7 +441,24 @@ func evaluate_state(state: GameState) -> int:
 		if enemy_container.units.has(unit):
 			status_score += effect.duration * multiplier
 	
-	score = dist_score + damage_score + tile_score + buff_score + status_score
+	## Token related score
+	const ATTACK_TOKEN_MULTIPLIER = 20
+	const MOVE_TOKEN_MULTIPLER = 10
+	const BASE_TOKEN_COUNT = 1
+	# gives points if unit has extra move/attack tokens
+	for unit in state.action_tokens.keys():
+		var unit_token_score = 0
+		var unit_move_count: int = state.action_tokens[unit].count(Unit.Action.MOVE)
+		if unit_move_count > BASE_TOKEN_COUNT:
+			unit_token_score += (unit_move_count - BASE_TOKEN_COUNT) * MOVE_TOKEN_MULTIPLER
+		var unit_atk_count: int = state.action_tokens[unit].count(Unit.Action.ATTACK)
+		if unit_atk_count > BASE_TOKEN_COUNT:
+			unit_token_score += (unit_atk_count - BASE_TOKEN_COUNT) * MOVE_TOKEN_MULTIPLER
+		if enemy_container.units.has(unit):
+			unit_token_score = -unit_token_score
+		token_score += unit_token_score
+	
+	score = dist_score + damage_score + tile_score + buff_score + status_score + token_score
 	#print("final score is %d, with distance: %d, damage: %d, tile: %d, buff: %d, status: %d" %[score, dist_score, damage_score, tile_score, buff_score, status_score])
 	return score
 

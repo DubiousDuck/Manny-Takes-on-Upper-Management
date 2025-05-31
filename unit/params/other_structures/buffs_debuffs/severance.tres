@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://d0xhip4ja1mns"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_w5xiv"]
+
+[resource]
+script = ExtResource("1_w5xiv")
+stat = "attack_power"
+value = 2.0
+source = "Severance Package"
+duration = 2
+metadata/_custom_type_script = "uid://dda521hi48f5d"

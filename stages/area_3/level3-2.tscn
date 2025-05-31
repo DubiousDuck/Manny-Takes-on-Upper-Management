@@ -695,7 +695,7 @@ item_list = Array[ExtResource("2_efaq1")]([])
 [node name="level3-2" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_4n6rh")
 tile_map = NodePath("TileMapTest")
-inital_exp = 30
+inital_exp = 35
 repeat_exp = 1
 dropped_items = Array[ExtResource("2_efaq1")]([ExtResource("3_rptcr"), ExtResource("4_v1y1k"), ExtResource("5_iu2mb")])
 give_token = false

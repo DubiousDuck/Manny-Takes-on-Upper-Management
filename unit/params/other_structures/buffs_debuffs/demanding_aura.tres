@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BonusStat" load_steps=2 format=3 uid="uid://bp7fysjgwtig2"]
+
+[ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="1_qf0kx"]
+
+[resource]
+script = ExtResource("1_qf0kx")
+stat = "damage_reduction"
+value = -0.5
+source = "Demanding Aura"
+duration = 1
+metadata/_custom_type_script = "uid://dda521hi48f5d"
