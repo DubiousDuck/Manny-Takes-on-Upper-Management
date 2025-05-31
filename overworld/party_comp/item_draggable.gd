@@ -11,6 +11,7 @@ var original_pos: Vector2
 var equipper: DraggableMember
 
 func _ready():
+	super()
 	if item_data:
 		$Label.text = item_data.item_name
 		icon.tooltip_text = item_data.description

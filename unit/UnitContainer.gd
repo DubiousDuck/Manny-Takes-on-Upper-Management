@@ -671,6 +671,8 @@ func _unhandled_input(event):
 	else: EventBus.emit_signal("remove_cell_highlights", name+"_AOE")
 	
 	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index in [MOUSE_BUTTON_RIGHT]:
+			deselect_current_unit()
 		if event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
 			EventBus.clear_preview.emit()
 			HintManager.reset_idle_timer()

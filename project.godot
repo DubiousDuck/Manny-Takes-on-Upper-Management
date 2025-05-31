@@ -49,6 +49,10 @@ folder_colors={
 "res://unit/": "blue"
 }
 
+[global_group]
+
+draggables=""
+
 [gui]
 
 theme/custom="res://ui/themes/default.tres"

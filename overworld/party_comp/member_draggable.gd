@@ -14,6 +14,7 @@ var equipped_items: Array[DraggableItem]
 var in_curr_party: bool = false
 
 func _ready():
+	super()
 	$Label.text = "%s\nLv.%d" %[unit_data.unit_class, unit_data.level]
 	EventBus.connect("dragging_stop", _on_dragging_stop)
 	EventBus.connect("remove_item", _on_remove_item)
@@ -47,7 +48,7 @@ func update_status_and_items(new_state: bool):
 			item.clear_equipper_and_reset()
 	
 func add_item_to_equipped(item: DraggableItem):
-	if equipped_items.has(item):
+	if equipped_items.has(item) or equipped_items.size() >= 1:
 		return
 	else:
 		equipped_items.append(item)
