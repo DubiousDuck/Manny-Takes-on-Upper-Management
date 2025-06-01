@@ -3,6 +3,14 @@ extends Draggable
 class_name DraggableMember
 
 const GAP = 150
+const CLASS_TEXTURE: Dictionary[String, String] = {
+	"Protagonist": "res://ui/single_sprite_atlus/base_sprite.atlastex",
+	"Fighter": "res://ui/single_sprite_atlus/fighter_sprite.atlastex",
+	"Ranger": "res://ui/single_sprite_atlus/ranger_sprite.atlastex",
+	"Tank": "res://ui/single_sprite_atlus/tank_sprite.atlastex",
+	"Mage": "res://ui/single_sprite_atlus/mage_sprite.atlastex",
+	"Healer": "res://ui/single_sprite_atlus/healer_sprite.atlastex"
+}
 
 @onready var item_folder = $ItemFolder
 
@@ -18,6 +26,8 @@ func _ready():
 	$Label.text = "%s\nLv.%d" %[unit_data.unit_class, unit_data.level]
 	EventBus.connect("dragging_stop", _on_dragging_stop)
 	EventBus.connect("remove_item", _on_remove_item)
+	
+	$Sprite2D.texture = load(CLASS_TEXTURE.get(unit_data.unit_class, "res://ui/single_sprite_atlus/base_sprite.atlastex"))
 
 func init(items: Array[DraggableItem]):
 	equipped_items.append_array(items)
