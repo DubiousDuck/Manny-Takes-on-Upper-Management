@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://b142f2nvd1bmw"]
+[gd_scene load_steps=27 format=3 uid="uid://b142f2nvd1bmw"]
 
 [ext_resource type="Script" uid="uid://c2gm8esh6hwrh" path="res://overworld/elevators/elevator.gd" id="1_648bi"]
 [ext_resource type="Texture2D" uid="uid://bsnulbysiko0m" path="res://assets/overworld/elevator_1/Elevator.png" id="1_wg6fq"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="2_ii7oj"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="3_cm4v8"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="4_648bi"]
+[ext_resource type="AudioStream" uid="uid://dti62dw5v5hgq" path="res://assets/sfx/elevator_speaker.wav" id="6_ws0j8"]
+[ext_resource type="AudioStream" uid="uid://b1j0ymw1sc5ud" path="res://assets/sfx/elevator_humming.mp3" id="7_nb6rq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkeo2"]
 atlas = ExtResource("1_wg6fq")
@@ -181,7 +183,7 @@ frame = 5
 frame_progress = 1.0
 
 [node name="Player" parent="." instance=ExtResource("2_ii7oj")]
-position = Vector2(489, 516)
+position = Vector2(489, 511.872)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(489, 308)
@@ -190,10 +192,20 @@ zoom = Vector2(2, 2)
 
 [node name="ElevatorGate" parent="." instance=ExtResource("3_cm4v8")]
 position = Vector2(424, 470)
-animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): So that softie security baby let you through huh… ", "Dialogue(multiple): I knew I should have fired him months ago. ", "Dialogue(multiple): The naive fool has the IQ of a fetus.", "Dialogue(multiple): I’ve built a legacy in Infant Inc. and I will not have it destroyed by the likes", "Dialogue(multiple): Of some insolent idiot who thinks FRIENDSHIP is of any value.", "Dialogue(multiple): No matter. You will not get past my managers. ", "Dialogue(multiple): They understand what this company crawls for. ", "Dialogue(multiple): This is where your journey ends.", "speaker_off", "door_open", "walk_out_elevator", "door_close"])
+animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): So that softie security baby let you through huh… ", "Dialogue(multiple): I knew I should have fired him months ago. ", "Dialogue(multiple): The naive fool has the IQ of a fetus.", "Dialogue(multiple): I’ve built a legacy in Infant Inc. and I will not have it destroyed by the likes", "Dialogue(multiple): Of some insolent idiot who thinks FRIENDSHIP is of any value.", "Dialogue(multiple): No matter. You will not get past my managers. ", "Dialogue(multiple): They understand what this company crawls for. ", "Dialogue(multiple): This is where your journey ends.", "speaker_off", "elevator_wait_till_arrive", "door_open", "walk_out_elevator", "door_close"])
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ElevatorGate"]
 libraries = {
 &"Cutscenes": ExtResource("4_648bi")
 }
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ws0j8")
+volume_db = -1.0
+bus = &"Sfx"
+
+[node name="ElevatorHumming" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nb6rq")
+volume_db = 20.0
+bus = &"Sfx"

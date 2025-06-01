@@ -1,10 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://d03fuw2qm413i"]
+[gd_scene load_steps=27 format=3 uid="uid://d03fuw2qm413i"]
 
 [ext_resource type="Script" uid="uid://c2gm8esh6hwrh" path="res://overworld/elevators/elevator.gd" id="1_fsd26"]
 [ext_resource type="Texture2D" uid="uid://bsnulbysiko0m" path="res://assets/overworld/elevator_1/Elevator.png" id="2_3nnxb"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="3_7jnkf"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="4_aud6y"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="5_g3vy5"]
+[ext_resource type="AudioStream" uid="uid://dti62dw5v5hgq" path="res://assets/sfx/elevator_speaker.wav" id="6_7jnkf"]
+[ext_resource type="AudioStream" uid="uid://b1j0ymw1sc5ud" path="res://assets/sfx/elevator_humming.mp3" id="7_aud6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkeo2"]
 atlas = ExtResource("2_3nnxb")
@@ -189,10 +191,20 @@ zoom = Vector2(2, 2)
 
 [node name="ElevatorGate" parent="." instance=ExtResource("4_aud6y")]
 position = Vector2(424, 470)
-animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): Weak. That’s why he could never be part of the exe-cute-ive board.", "Dialogue(multiple): I have to thank you Manny.", "Dialogue(multiple): Because of your actions, I now know who needs to be fixed in this company.", "Dialogue(multiple): You have shown me the ones that need to go through “special training”.", "Dialogue(multiple): Just like your friend, Kelly.", "Dialogue(multiple): See you soon, Manny. I hope you know what you’ve signed up for.", "speaker_off", "door_open", "walk_out_elevator", "door_close"])
+animations = Array[String](["door_open", "walk_into_elevator", "door_close", "speaker_on", "Dialogue(multiple): [SPEAKER:CEO]Weak. That’s why he could never be part of the exe-cute-ive board.", "Dialogue(multiple): I have to thank you Manny.", "Dialogue(multiple): Because of your actions, I now know who needs to be fixed in this company.", "Dialogue(multiple): You have shown me the ones that need to go through “special training”.", "Dialogue(multiple): Just like your friend, Kelly.", "Dialogue(multiple): See you soon, Manny. I hope you know what you’ve signed up for.", "speaker_off", "elevator_wait_till_arrive", "door_open", "walk_out_elevator", "door_close"])
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ElevatorGate"]
 libraries = {
 &"Cutscenes": ExtResource("5_g3vy5")
 }
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7jnkf")
+volume_db = -1.0
+bus = &"Sfx"
+
+[node name="ElevatorHumming" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_aud6y")
+volume_db = 20.0
+bus = &"Sfx"

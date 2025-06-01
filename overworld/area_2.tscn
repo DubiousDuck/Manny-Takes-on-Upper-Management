@@ -390,7 +390,7 @@ offset_top = -35.0
 offset_bottom = 5.0
 
 [node name="Elevator2" parent="." instance=ExtResource("10_tbaiv")]
-position = Vector2(9, 35)
+position = Vector2(9, 38)
 scene_to_go = "uid://c8qibn8b170i0"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
