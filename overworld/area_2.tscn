@@ -333,11 +333,11 @@ scene_to_go = "uid://b87w8v6lp7rv5"
 level_name = "level2-3"
 req = Array[String](["level2-2"])
 locked_dialogue = Array[String](["Hmm? Are you here to see the General Manager?", "I'm afraid she's busy right now. Come back later."])
-interact_dialogue = Array[String](["I’m Sorry, Manny. We Can’t Let You Pass.", "Ms General Manager Wouldn’t Like That Very Much.", "It’s Time You Quit Acting Like A Baby, And Get Back To Work.", "[I'm ready!] [I'm not ready]"])
-repeat_dialogue = Array[String](["It’s Time You Quit Acting Like A Baby, And Get Back To Work.", "[I'm ready!] [I'm not ready]"])
+interact_dialogue = Array[String](["I’m sorry, Manny. I can’t let you pass.", "Ms General Manager wouldn’t like that very much.", "It’s time you quit acting like a Baby, and get back to work.", "[I'm ready!] [I'm not ready]"])
+repeat_dialogue = Array[String](["It’s time you quit acting like a Baby, and get back to work.", "[I'm ready!] [I'm not ready]"])
 correct_choice = "I'm ready!"
-win_dialogue = Array[String](["[SPEAKER:Secretary Susan]Ms Manager Is Good To Us.", "Mr CEO Is Good To Us..", "Infant Inc. Is Good To Us...", "Sorry Ms Manager, We Have Failed You..."])
-lose_dialogue = Array[String](["[SPEAKER:Secretary Susan]Leave, Manny.", "You Will Never Beat Us."])
+win_dialogue = Array[String](["[SPEAKER:Secretary Susan]Ms Manager is good to us...", "Mr CEO is good to us...", "Infant Inc. is good to us...", "Sorry Ms Manager, We have failed you..."])
+lose_dialogue = Array[String](["[SPEAKER:Secretary Susan]Leave, Manny.", "You will never beat them."])
 
 [node name="General Manager (4)" parent="NPC_Folder" instance=ExtResource("10_rt1we")]
 position = Vector2(823, 136)

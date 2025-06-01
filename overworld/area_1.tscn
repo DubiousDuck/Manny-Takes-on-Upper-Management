@@ -204,7 +204,7 @@ scene_to_go = "uid://cjp0ijwpjsn8r"
 level_name = "level1-3"
 req = Array[String](["level1-1", "level1-2"])
 locked_dialogue = Array[String](["I don't think you are ready for a fight with me yet.", "Move along, squirt."])
-interact_dialogue = Array[String](["If you’re serious about taking on Management, ", "you’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
+interact_dialogue = Array[String](["If you’re serious about taking on Management, ", "You’re gonna have to punch harder than you have before.", "(Sigh) Let me show you the ropes.", "Just so you don’t get yourself killed.", "[Let's do it!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Focus up! Watch and learn...", "[Let's do it!] [I'm not ready]"])
 correct_choice = "Let's do it!"
 win_dialogue = Array[String](["[SPEAKER:Dylan]Yes, that’s the way to do it!", "Upper management won’t give an inch.", "So you have to give it all that you got.", "You'll have to get past the Head Security Baby if you want to move up the floors.", "He's by the Elevator to the left.", "Just know, he will not go easy on you.", "So be prepared!"])
@@ -221,7 +221,7 @@ locked_dialogue = Array[String](["I've been hearing you want to take on the Uppe
 interact_dialogue = Array[String](["Alright, Manny.", "The elevator to Management is just ahead.", "I will not just let you pass. If you're serious about this...", "You'll have to get through me FIRST.", "Let's see if you have what it takes.", "[I'm ready!] [I'm not ready]"])
 repeat_dialogue = Array[String](["Back again already?", "Well let's test your strength!", "[I'm ready!] [I'm not ready]"])
 correct_choice = "I'm ready!"
-win_dialogue = Array[String](["[SPEAKER:Head of Security Baby]Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "and I’ve seen how things have changed for the worse.", "Good luck, Manny. Give it your all!"])
+win_dialogue = Array[String](["[SPEAKER:Head of Security Baby]Heh. Looks like you’re not just a brat after all.", "It’s time someone stood up to them up there.", "This company used to stand, uh… crawl for something.", "I’ve been here for years,", "And I’ve seen how things have changed for the worse.", "Good luck, Manny. Give it your all!"])
 lose_dialogue = Array[String](["[SPEAKER:Head of Security Baby]I didn’t become Head of Security for nothing!", "You are not ready for this. Come back later."])
 
 [node name="HR1" parent="NPC_Folder" instance=ExtResource("8_ba6uy")]
