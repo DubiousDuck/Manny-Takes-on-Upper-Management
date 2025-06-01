@@ -17,7 +17,7 @@ warnings/check_invalid_track_paths=false
 config/name="Manny Takes on Upper Management"
 run/main_scene="uid://b6pye0w0cqmw7"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cm2oxxc6rsur6"
 
 [autoload]
 
@@ -120,3 +120,4 @@ Back={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
