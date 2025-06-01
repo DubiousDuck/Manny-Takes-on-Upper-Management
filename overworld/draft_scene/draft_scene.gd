@@ -47,7 +47,7 @@ static var next_id=0
 func create_character(character_data: UnitData):
 	character_data.id = next_id
 	# Make sure that the new recruit doesn't start at level 1
-	while character_data.level < Global.get_lowest_unit_level():
+	while character_data.level < Global.get_protag_unit_level():
 		character_data.level_up()
 	next_id += 1
 	print(next_id)

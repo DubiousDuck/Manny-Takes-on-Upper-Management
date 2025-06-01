@@ -155,6 +155,13 @@ func get_lowest_unit_level() -> int:
 			lowest_level = unit.level
 	return lowest_level
 
+## Function to return the protag's level; useful for creating new characters without having their levels being too low
+func get_protag_unit_level() -> int:
+	for unit in current_party:
+		if unit.unit_class == "Protagonist":
+			return unit.level
+	return 1
+
 ## Function that sets the maximum number of party members depending on current Area
 func set_max_party_num(value: int):
 	# failsafe
