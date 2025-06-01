@@ -13,12 +13,13 @@ class_name UnitData
 @export_enum("Protagonist", "Tank", "Fighter", 
 	"Ranger", "Healer", "Mage", "Boss", "Turret") var unit_class: String
 
-enum STAT {HP, ATK, MAG, MOV}
-@export var stat: Dictionary[STAT, int] = {
+enum STAT {HP, ATK, MAG, MOV, DMG_RED}
+@export var stat: Dictionary[STAT, float] = {
 	STAT.HP: 4,
 	STAT.ATK: 2,
 	STAT.MAG: 2,
-	STAT.MOV: 2
+	STAT.MOV: 2,
+	STAT.DMG_RED: 0
 }
 ## Stat grwoth table of a unit; should be set manually for each base class resource; format-- level: stats gained
 @export var stat_growth_table: Dictionary[int, Dictionary] = {
@@ -54,12 +55,14 @@ func get_stat(name):
 		"ATK": return stat[STAT.ATK]
 		"MAG": return stat[STAT.MAG]
 		"MOV": return stat[STAT.MOV]
+		"DMG_RED": return stat[STAT.DMG_RED]
 
-func _set_stat(delta: Array[int] = [4, 2, 2, 2]):
+func _set_stat(delta: Array[float] = [4, 2, 2, 2, 0]):
 	stat[STAT.HP] = delta[STAT.HP]
 	stat[STAT.ATK] = delta[STAT.ATK]
 	stat[STAT.MAG] = delta[STAT.MAG]
 	stat[STAT.MOV] = delta[STAT.MOV]
+	stat[STAT.DMG_RED] = delta[STAT.DMG_RED]
 
 # level related
 func gain_exp(amount: int):

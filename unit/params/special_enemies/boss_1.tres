@@ -17,11 +17,12 @@ id = 0
 level = 5
 exp = 0
 unit_class = "Boss"
-stat = Dictionary[int, int]({
-0: 4,
-1: 2,
-2: 2,
-3: 2
+stat = Dictionary[int, float]({
+0: 4.0,
+1: 2.0,
+2: 2.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {

@@ -29,7 +29,10 @@ var battle_theme: Dictionary = {
 	"level2-1": _BATTLE_2_MUSIC,
 	"level2-2": _BATTLE_2_MUSIC,
 	"level2-3": _BATTLE_2_MUSIC,
-	"level2-4": _BATTLE_2_MUSIC
+	"level2-4": _BATTLE_2_MUSIC,
+	"level3-1": _BATTLE_2_MUSIC,
+	"level3-2": _BATTLE_2_MUSIC,
+	"level3-3": _BATTLE_2_MUSIC
 }
 
 func _ready():

@@ -386,10 +386,12 @@ frame_progress = 0.924048
 [node name="BuffParticles" parent="Sprite2D" instance=ExtResource("5_1quw1")]
 position = Vector2(0, 9.7973)
 emitting = false
+amount = 3
 
 [node name="DebuffParticles" parent="Sprite2D" instance=ExtResource("6_5bqrp")]
 position = Vector2(0, -6.75676)
 emitting = false
+amount = 3
 
 [node name="IconAnchor" type="Marker2D" parent="."]
 position = Vector2(0, -8)

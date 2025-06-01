@@ -181,6 +181,7 @@ func load_unit_data():
 	base_stats.attack_power = unit_data.get_stat("ATK")
 	base_stats.magic_power = unit_data.get_stat("MAG")
 	base_stats.movement_range = unit_data.get_stat("MOV")
+	base_stats.damage_reduction = unit_data.get_stat("DMG_RED")
 	
 	skills = unit_data.skill_list
 	

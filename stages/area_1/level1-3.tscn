@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=48 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_phfro"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_uip54"]
+[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="5_vfwer"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="6_cje7n"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_jkwc2"]
@@ -50,11 +51,12 @@ id = 0
 level = 3
 exp = 0
 unit_class = "Ranger"
-stat = Dictionary[int, int]({
-0: 4,
-1: 3,
-2: 1,
-3: 1
+stat = Dictionary[int, float]({
+0: 4.0,
+1: 3.0,
+2: 1.0,
+3: 1.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -129,11 +131,12 @@ id = 0
 level = 3
 exp = 0
 unit_class = "Fighter"
-stat = Dictionary[int, int]({
-0: 5,
-1: 2,
-2: 1,
-3: 2
+stat = Dictionary[int, float]({
+0: 5.0,
+1: 2.0,
+2: 1.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -183,11 +186,12 @@ id = 0
 level = 5
 exp = 0
 unit_class = "Tank"
-stat = Dictionary[int, int]({
-0: 6,
-1: 1,
-2: 1,
-3: 2
+stat = Dictionary[int, float]({
+0: 6.0,
+1: 1.0,
+2: 1.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -262,7 +266,7 @@ script = ExtResource("1_t8occ")
 tile_map = NodePath("TileMapTest")
 inital_exp = 9
 repeat_exp = 2
-dropped_items = Array[ExtResource("18_t610e")]([ExtResource("25_k22tc"), ExtResource("4_phfro")])
+dropped_items = Array[ExtResource("18_t610e")]([ExtResource("25_k22tc"), ExtResource("4_phfro"), ExtResource("5_vfwer")])
 tutorial_queue = Array[ExtResource("2_7nx3r")]([ExtResource("3_iigxo"), ExtResource("4_fa8xf")])
 
 [node name="TextureRect" type="TextureRect" parent="."]

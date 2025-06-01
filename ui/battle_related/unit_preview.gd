@@ -2,46 +2,47 @@ extends CanvasLayer
 
 class_name UnitPreview
 
-const BUFF_COLOR: Color = Color("#2c9c3e")
-const DEBUFF_COLOR: Color = Color.CRIMSON
+const BUFF_COLOR: String = "dark_green"
+const DEBUFF_COLOR: String = "crimson"
 const SKILL_PREVIEW = preload("res://ui/battle_related/skill_preview.tscn")
 
-enum STAT{HP, MOV, ATK, MAG}
+enum STAT{HP, MOV, ATK, MAG, DMG_RED}
 
 @onready var preview_window = $TextureRect
 @onready var class_label = $TextureRect/CenterContainer/VBoxContainer/Class
 @onready var class_sprite = $TextureRect/CenterContainer/VBoxContainer/ClassSprite
-@onready var hp_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/HP
-@onready var mov_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/MOV
-@onready var atk_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/ATK
-@onready var mag_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer/MAG
+@onready var hp_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer/HP
+@onready var mov_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer/MOV
+@onready var atk_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer/ATK
+@onready var mag_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer/MAG
+@onready var dr_label = $TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer/DR
 @onready var skill_list = $TextureRect/CenterContainer/VBoxContainer/ScrollContainer/SkillList
 @onready var level_label = $TextureRect/CenterContainer/VBoxContainer/LevelLabel
 
-var stat_to_label: Dictionary[String, Label] = {}
+var stat_to_label: Dictionary[String, RichTextLabel] = {}
 var cur_unit : Unit
 var cur_unit_container: UnitContainer
 
 var hp: int:
 	set(value):
 		hp = value
-		hp_label.text = str(hp)
-		set_label_color(STAT.HP, hp)
+		set_label_text_and_color(STAT.HP, hp)
 var mov: int:
 	set(value):
 		mov = value
-		mov_label.text = str(mov)
-		set_label_color(STAT.MOV, mov)
+		set_label_text_and_color(STAT.MOV, mov)
 var atk: int:
 	set(value):
 		atk = value
-		atk_label.text = str(atk)
-		set_label_color(STAT.ATK, atk)
+		set_label_text_and_color(STAT.ATK, atk)
 var mag: int:
 	set(value):
 		mag = value
-		mag_label.text = str(mag)
-		set_label_color(STAT.MAG, mag)
+		set_label_text_and_color(STAT.MAG, mag)
+var dmg_red: float:
+	set(value):
+		dmg_red = value
+		set_label_text_and_color(STAT.DMG_RED, dmg_red)
 
 var locked_unit: Unit
 var hovered_unit: Unit
@@ -58,6 +59,7 @@ func init(unit: Unit):
 	mov = unit.movement_range
 	atk = unit.attack_power
 	mag = unit.magic_power
+	dmg_red = unit.damage_reduction
 	
 	for child in skill_list.get_children():
 		child.queue_free()
@@ -92,29 +94,42 @@ func _on_mouse_exited():
 	EventBus.emit_signal("remove_cell_highlights", name)
 	EventBus.emit_signal("remove_cell_highlights", name+"_valid_targets")
 
-func set_label_color(stat: STAT, value: int):
-	var label: Label
+func set_label_text_and_color(stat: STAT, value: float):
+	var label: RichTextLabel
 	var attr_string: String
+	var label_text: String
 	match stat:
 		STAT.HP:
 			label = hp_label
 			attr_string = "HP"
+			label_text = "Max Health: "
 		STAT.MOV:
 			label = mov_label
 			attr_string = "MOV"
+			label_text = "Movement Range: "
 		STAT.ATK:
 			label = atk_label
 			attr_string = "ATK"
+			label_text = "Attack Power: "
 		STAT.MAG:
 			label = mag_label
 			attr_string = "MAG"
+			label_text = "Magic Power: "
+		STAT.DMG_RED:
+			label = dr_label
+			attr_string = "DMG_RED"
+			label_text = "Damage Reduction: "
 	if label:
-		if value > cur_unit.unit_data.get_stat(attr_string):
-			label.add_theme_color_override("font_color", BUFF_COLOR)
-		elif value < cur_unit.unit_data.get_stat(attr_string):
-			label.add_theme_color_override("font_color", DEBUFF_COLOR)
+		if (label == dr_label and value > 0) or value > cur_unit.unit_data.get_stat(attr_string):
+			if value != int(value):
+				label.text = label_text + "[color=%s]%.1f[/color]" %[BUFF_COLOR, value]
+			else: label.text = label_text + "[color=%s]%d[/color]" %[BUFF_COLOR, value]
+		elif (label == dr_label and value < 0) or value < cur_unit.unit_data.get_stat(attr_string):
+			if value != int(value):
+				label.text = label_text + "[color=%s]%.1f[/color]" %[DEBUFF_COLOR, value]
+			else: label.text = label_text + "[color=%s]%d[/color]" %[DEBUFF_COLOR, value]
 		else:
-			label.remove_theme_color_override("font_color")
+			label.text = label_text + "%d" %value
 
 func _ready():
 	EventBus.connect("unit_hovered", _unit_hovered)
@@ -128,7 +143,8 @@ func _ready():
 		"max_health": hp_label,
 		"attack_power": atk_label,
 		"magic_power": mag_label,
-		"movement_range": mov_label
+		"movement_range": mov_label,
+		"damage_reduction": dr_label
 	}
 
 func _unit_hovered(unit: Unit):
@@ -189,14 +205,13 @@ func set_tooltip(unit: Unit):
 		"max_health": "",
 		"attack_power": "",
 		"magic_power": "",
-		"movement_range": ""
+		"movement_range": "",
+		"damage_reduction": ""
 	}
 	for buff in unit.bonus_stat:
-		if buff.stat == "damage_reduction":
-			continue
-		if int(buff.value) > 0:
-			tooltip_dict[buff.stat] += "+%s from %s\n" %[int(buff.value),buff.source]
-		else: tooltip_dict[buff.stat] += "%s from %s\n" %[int(buff.value),buff.source]
+		if buff.value > 0:
+			tooltip_dict[buff.stat] += "+%s from %s\n" %[buff.value,buff.source]
+		else: tooltip_dict[buff.stat] += "%s from %s\n" %[buff.value,buff.source]
 
 	for key in tooltip_dict.keys():
 		stat_to_label[key].tooltip_text = tooltip_dict[key]

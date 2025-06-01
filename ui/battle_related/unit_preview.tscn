@@ -26,7 +26,7 @@ anchor_bottom = 0.5
 offset_left = 132.0
 offset_top = -210.0
 offset_right = 393.0
-offset_bottom = 210.0
+offset_bottom = 226.0
 grow_vertical = 2
 texture = ExtResource("2_546ua")
 expand_mode = 5
@@ -39,21 +39,22 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.5
-offset_top = -199.0
+offset_top = -201.0
 offset_right = 121.5
-offset_bottom = 202.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/CenterContainer"]
 layout_mode = 2
 theme = ExtResource("3_gxqd5")
+theme_override_constants/separation = 5
 
 [node name="Class" type="Label" parent="TextureRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Class"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -74,61 +75,60 @@ vertical_alignment = 1
 [node name="CenterContainer" type="CenterContainer" parent="TextureRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer"]
+[node name="StatsContainer" type="VBoxContainer" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
-columns = 4
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="HP2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+[node name="HP" type="RichTextLabel" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer"]
+custom_minimum_size = Vector2(225, 30)
 layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
-text = "MHP:"
-
-[node name="HP" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Max Health: X"
+scroll_active = false
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MOV2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+[node name="ATK" type="RichTextLabel" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer"]
+custom_minimum_size = Vector2(225, 30)
 layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
-text = "MOV:"
-
-[node name="MOV" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Attack Power: X"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ATK2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+[node name="MAG" type="RichTextLabel" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer"]
+custom_minimum_size = Vector2(225, 30)
 layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
-text = "ATK:"
-
-[node name="ATK" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Magic Power: X"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MAG2" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
+[node name="MOV" type="RichTextLabel" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer"]
+custom_minimum_size = Vector2(225, 30)
 layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
-text = "MAG:"
-
-[node name="MAG" type="Label" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/GridContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Movement Range: X"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DR" type="RichTextLabel" parent="TextureRect/CenterContainer/VBoxContainer/CenterContainer/StatsContainer"]
+custom_minimum_size = Vector2(225, 30)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Damage Reduction: X"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SkillListLabel" type="Label" parent="TextureRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 30
 text = "Skill List:"
 horizontal_alignment = 1
 

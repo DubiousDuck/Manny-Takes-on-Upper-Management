@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://ctemwa520wi7v"]
+[gd_scene load_steps=53 format=4 uid="uid://ctemwa520wi7v"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_4n6rh"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_efaq1"]
@@ -47,12 +47,6 @@
 [ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="45_kd3v1"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="46_ikuoc"]
 [ext_resource type="Resource" uid="uid://8syvvxoawlvu" path="res://unit/params/special_enemies/CFO.tres" id="47_rna1a"]
-[ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="55_pi32h"]
-[ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="56_j5sbq"]
-[ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="57_fot12"]
-[ext_resource type="Resource" uid="uid://vdbmy1yf5qs" path="res://skills/pep_talk.tres" id="58_s3yg1"]
-[ext_resource type="Resource" uid="uid://dw3vrw7r5fpm6" path="res://skills/courageous_cry.tres" id="59_2h77h"]
-[ext_resource type="Resource" uid="uid://ce2x4vy4yg5b6" path="res://skills/perfect_defense.tres" id="60_j7wv5"]
 
 [sub_resource type="Resource" id="Resource_713if"]
 script = ExtResource("18_1i4s7")
@@ -60,11 +54,12 @@ id = 0
 level = 10
 exp = 0
 unit_class = "Protagonist"
-stat = Dictionary[int, int]({
-0: 4,
-1: 2,
-2: 2,
-3: 2
+stat = Dictionary[int, float]({
+0: 4.0,
+1: 2.0,
+2: 2.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -134,309 +129,18 @@ skill_table = Dictionary[int, ExtResource("19_l0cvd")]({
 })
 item_list = Array[ExtResource("2_efaq1")]([])
 
-[sub_resource type="Resource" id="Resource_f3cwl"]
-script = ExtResource("18_1i4s7")
-id = 0
-level = 10
-exp = 0
-unit_class = "Ranger"
-stat = Dictionary[int, int]({
-0: 4,
-1: 3,
-2: 1,
-3: 1
-})
-stat_growth_table = Dictionary[int, Dictionary]({
-2: {
-0: 1
-},
-3: {
-1: 1
-},
-4: {
-1: 1
-},
-5: {
-0: 2
-},
-7: {
-1: 1,
-2: 1
-},
-8: {
-0: 1
-},
-9: {
-1: 1,
-2: 1
-},
-10: {
-0: 2
-},
-12: {
-1: 2
-},
-13: {
-2: 1
-},
-15: {
-0: 1,
-1: 1,
-2: 1
-},
-16: {
-1: 1,
-2: 1
-},
-17: {
-0: 2
-},
-18: {
-2: 2
-},
-19: {
-1: 2
-},
-20: {
-0: 1,
-1: 1,
-2: 1
-}
-})
-skill_list = Array[ExtResource("19_l0cvd")]([ExtResource("28_mct80"), ExtResource("21_p4j0f")])
-skill_table = Dictionary[int, ExtResource("19_l0cvd")]({
-3: ExtResource("29_vrd2s"),
-5: ExtResource("30_idqv4"),
-7: ExtResource("31_qi25h"),
-9: ExtResource("32_w188n"),
-11: ExtResource("33_exuti")
-})
-item_list = Array[ExtResource("2_efaq1")]([])
-
-[sub_resource type="Resource" id="Resource_tomj6"]
-script = ExtResource("18_1i4s7")
-id = 0
-level = 10
-exp = 0
-unit_class = "Fighter"
-stat = Dictionary[int, int]({
-0: 5,
-1: 2,
-2: 1,
-3: 2
-})
-stat_growth_table = Dictionary[int, Dictionary]({
-2: {
-0: 1
-},
-3: {
-1: 1
-},
-4: {
-0: 1
-},
-5: {
-0: 2
-},
-7: {
-1: 1,
-2: 1
-},
-9: {
-0: 2
-},
-10: {
-1: 1,
-2: 1
-},
-12: {
-1: 2
-},
-13: {
-2: 2
-}
-})
-skill_list = Array[ExtResource("19_l0cvd")]([ExtResource("20_dpry7"), ExtResource("21_p4j0f")])
-skill_table = Dictionary[int, ExtResource("19_l0cvd")]({
-2: ExtResource("34_lpxq7"),
-4: ExtResource("35_phov2"),
-6: ExtResource("36_elscj"),
-8: ExtResource("37_m5daw"),
-10: ExtResource("38_t3na6"),
-11: ExtResource("39_a4dba")
-})
-item_list = Array[ExtResource("2_efaq1")]([])
-
-[sub_resource type="Resource" id="Resource_4d0rg"]
-script = ExtResource("18_1i4s7")
-id = 0
-level = 10
-exp = 0
-unit_class = "Tank"
-stat = Dictionary[int, int]({
-0: 6,
-1: 1,
-2: 1,
-3: 2
-})
-stat_growth_table = Dictionary[int, Dictionary]({
-2: {
-0: 1
-},
-3: {
-1: 1
-},
-4: {
-2: 1
-},
-5: {
-0: 2
-},
-7: {
-1: 1,
-2: 1
-},
-8: {
-0: 1
-},
-9: {
-1: 1,
-2: 1
-},
-10: {
-0: 2
-},
-12: {
-1: 2
-},
-13: {
-2: 2
-},
-15: {
-0: 1,
-1: 1,
-2: 1
-},
-16: {
-1: 1,
-2: 1
-},
-17: {
-0: 2
-},
-18: {
-2: 2
-},
-19: {
-1: 2
-},
-20: {
-0: 1,
-1: 1,
-2: 1
-}
-})
-skill_list = Array[ExtResource("19_l0cvd")]([ExtResource("20_dpry7"), ExtResource("55_pi32h"), ExtResource("21_p4j0f")])
-skill_table = Dictionary[int, ExtResource("19_l0cvd")]({
-3: ExtResource("56_j5sbq"),
-5: ExtResource("29_vrd2s"),
-7: ExtResource("57_fot12"),
-9: ExtResource("58_s3yg1"),
-10: ExtResource("59_2h77h"),
-12: ExtResource("60_j7wv5")
-})
-item_list = Array[ExtResource("2_efaq1")]([])
-
-[sub_resource type="Resource" id="Resource_53dgv"]
-script = ExtResource("18_1i4s7")
-id = 0
-level = 10
-exp = 0
-unit_class = "Mage"
-stat = Dictionary[int, int]({
-0: 4,
-1: 1,
-2: 3,
-3: 1
-})
-stat_growth_table = Dictionary[int, Dictionary]({
-2: {
-0: 1
-},
-3: {
-1: 1
-},
-4: {
-2: 1
-},
-5: {
-0: 2
-},
-7: {
-1: 1,
-2: 1
-},
-8: {
-0: 1
-},
-9: {
-1: 1,
-2: 1
-},
-10: {
-0: 2
-},
-12: {
-1: 2
-},
-13: {
-2: 2
-},
-15: {
-0: 1,
-1: 1,
-2: 1
-},
-16: {
-1: 1,
-2: 1
-},
-17: {
-0: 2
-},
-18: {
-2: 2
-},
-19: {
-1: 2
-},
-20: {
-0: 1,
-1: 1,
-2: 1
-}
-})
-skill_list = Array[ExtResource("19_l0cvd")]([ExtResource("40_8mq8t"), ExtResource("21_p4j0f")])
-skill_table = Dictionary[int, ExtResource("19_l0cvd")]({
-3: ExtResource("41_6kxte"),
-5: ExtResource("42_s1buq"),
-7: ExtResource("43_dmbhe"),
-9: ExtResource("44_qbvsm"),
-11: ExtResource("45_kd3v1")
-})
-item_list = Array[ExtResource("2_efaq1")]([])
-
 [sub_resource type="Resource" id="Resource_aqjs0"]
 script = ExtResource("18_1i4s7")
 id = 0
 level = 10
 exp = 0
 unit_class = "Fighter"
-stat = Dictionary[int, int]({
-0: 5,
-1: 2,
-2: 1,
-3: 2
+stat = Dictionary[int, float]({
+0: 5.0,
+1: 2.0,
+2: 1.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -486,11 +190,12 @@ id = 0
 level = 10
 exp = 0
 unit_class = "Fighter"
-stat = Dictionary[int, int]({
-0: 5,
-1: 2,
-2: 1,
-3: 2
+stat = Dictionary[int, float]({
+0: 5.0,
+1: 2.0,
+2: 1.0,
+3: 2.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -540,11 +245,12 @@ id = 0
 level = 10
 exp = 0
 unit_class = "Mage"
-stat = Dictionary[int, int]({
-0: 4,
-1: 1,
-2: 3,
-3: 1
+stat = Dictionary[int, float]({
+0: 4.0,
+1: 1.0,
+2: 3.0,
+3: 1.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -619,11 +325,12 @@ id = 0
 level = 10
 exp = 0
 unit_class = "Ranger"
-stat = Dictionary[int, int]({
-0: 4,
-1: 3,
-2: 1,
-3: 1
+stat = Dictionary[int, float]({
+0: 4.0,
+1: 3.0,
+2: 1.0,
+3: 1.0,
+4: 0.0
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
@@ -750,22 +457,18 @@ unit_data = SubResource("Resource_713if")
 [node name="Protag" parent="Units/PlayerGroup" instance=ExtResource("16_rasbe")]
 position = Vector2(64, 263)
 script = ExtResource("17_duk0i")
-unit_data = SubResource("Resource_f3cwl")
 
 [node name="Protag2" parent="Units/PlayerGroup" instance=ExtResource("16_rasbe")]
 position = Vector2(65, 155)
 script = ExtResource("17_duk0i")
-unit_data = SubResource("Resource_tomj6")
 
 [node name="Protag5" parent="Units/PlayerGroup" instance=ExtResource("16_rasbe")]
 position = Vector2(-28, 205)
 script = ExtResource("17_duk0i")
-unit_data = SubResource("Resource_4d0rg")
 
 [node name="Protag4" parent="Units/PlayerGroup" instance=ExtResource("16_rasbe")]
 position = Vector2(64, 57)
 script = ExtResource("17_duk0i")
-unit_data = SubResource("Resource_53dgv")
 
 [node name="EnemyGroup" type="Node2D" parent="Units" node_paths=PackedStringArray("enemy_container")]
 script = ExtResource("15_arjru")
