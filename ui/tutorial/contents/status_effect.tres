@@ -14,7 +14,7 @@ These effects triggers every time at the start of a turn, and each of them have 
 
 [color=cyan]Status Effects[/color] will be removed after a set number of turns or by removing them with specific skills.
 
-"
+If you forget what each status do, just hover over the status effect icons above the units and see what it says."
 image_file = ""
 image_param = {
 "height": 0,

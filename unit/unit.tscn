@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=32 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -12,6 +12,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dm5jvuhr1opyh" path="res://unit/Ranger.res" id="7_a2j7n"]
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 [ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="8_j0e0d"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="9_4ruv6"]
 [ext_resource type="Script" uid="uid://bxa8n2ssfba55" path="res://unit/item_reader.gd" id="11_j0e0d"]
 [ext_resource type="Texture2D" uid="uid://bpp041qojj0ny" path="res://assets/unit_ui/dizzy_sheet.png" id="12_5dfwp"]
 [ext_resource type="Texture2D" uid="uid://cepmy2qw60fvx" path="res://assets/unit_ui/target_reticle_2png.png" id="13_eras8"]
@@ -396,6 +397,22 @@ amount = 3
 [node name="IconAnchor" type="Marker2D" parent="."]
 position = Vector2(0, -8)
 gizmo_extents = 0.0
+
+[node name="TooltipBox" type="Control" parent="IconAnchor"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -4.0
+offset_right = 8.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("9_4ruv6")
 
 [node name="PoFIcon" type="Sprite2D" parent="IconAnchor"]
 visible = false

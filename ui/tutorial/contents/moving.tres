@@ -10,7 +10,7 @@ triggered = false
 title = "Moving Your Units"
 body_text = "Click on a unit to see where they can move to (tiles in [color=blue]blue[/color]).
 
-Then click on the tile you want your unit to move to!
+Then click on \"Move\" and the tile you want your unit to move to!
 
 "
 image_file = "uid://deecwx5aksxu2"

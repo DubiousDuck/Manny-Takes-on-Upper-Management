@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_b7vte"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_40trc"]
 [ext_resource type="Resource" uid="uid://pqfv7v3eumv8" path="res://ui/tutorial/contents/pit.tres" id="7_r1ygc"]
-[ext_resource type="Resource" uid="uid://j0jaujduxk0u" path="res://ui/tutorial/contents/unsteady.tres" id="8_b7vte"]
+[ext_resource type="Resource" uid="uid://b07ig0qu4x06l" path="res://ui/tutorial/contents/forget.tres" id="8_q25p2"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="9_3wwws"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="10_nywe0"]
 [ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="11_40trc"]
@@ -301,7 +301,7 @@ tile_map = NodePath("TileMapTest")
 inital_exp = 20
 repeat_exp = 1
 dropped_items = Array[ExtResource("2_b7vte")]([ExtResource("4_r1ygc"), ExtResource("4_q25p2"), ExtResource("5_b7vte")])
-tutorial_queue = Array[ExtResource("6_40trc")]([ExtResource("7_r1ygc"), ExtResource("8_b7vte")])
+tutorial_queue = Array[ExtResource("6_40trc")]([ExtResource("7_r1ygc"), ExtResource("8_q25p2")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 0.835294, 0.215686, 1)

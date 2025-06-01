@@ -531,6 +531,9 @@ func set_pof_icon_state(state: String):
 	update_status_icon_layout()
 	return
 
+func set_status_icon_tooltip(tooltip: String):
+	$IconAnchor/TooltipBox.tooltip_text = tooltip
+
 func set_status_effect_icon(visible: bool):
 	if visible:
 		status_icon.show()
