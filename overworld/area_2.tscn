@@ -374,7 +374,7 @@ position_smoothing_enabled = true
 
 [node name="Elevator" parent="." instance=ExtResource("10_tbaiv")]
 position = Vector2(829, 33)
-scene_to_go = "uid://7m1c105fe0kl"
+scene_to_go = "uid://d03fuw2qm413i"
 req = Array[String](["level2-4"])
 interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
 
@@ -390,7 +390,7 @@ offset_bottom = 5.0
 
 [node name="Elevator2" parent="." instance=ExtResource("10_tbaiv")]
 position = Vector2(-1, 39)
-scene_to_go = ""
+scene_to_go = "uid://c8qibn8b170i0"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
 
