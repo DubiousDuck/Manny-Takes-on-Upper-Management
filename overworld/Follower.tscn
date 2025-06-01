@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cabi3s34sqtgq"]
+[gd_scene load_steps=11 format=3 uid="uid://cabi3s34sqtgq"]
 
 [ext_resource type="Script" uid="uid://b0gviuh3w6w0r" path="res://overworld/follower.gd" id="1_n8ld1"]
 [ext_resource type="Texture2D" uid="uid://bbiw38u5d8ggn" path="res://assets/unit_sprites/fighter/Fighter_Side_Lift.png" id="2_xhlmu"]
@@ -7,6 +7,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://ctp1y5m47nutg" path="res://overworld/Healer_ow.res" id="3_xhlmu"]
 [ext_resource type="AnimationLibrary" uid="uid://b77j25bac224f" path="res://unit/Mage.res" id="5_0ymn3"]
 [ext_resource type="AnimationLibrary" uid="uid://dm5jvuhr1opyh" path="res://unit/Ranger.res" id="5_j2knc"]
+[ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="7_8d4eb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
 radius = 15.0
@@ -38,6 +39,7 @@ libraries = {
 &"Healer_ow": ExtResource("3_xhlmu"),
 &"Mage": ExtResource("5_0ymn3"),
 &"Ranger": ExtResource("5_j2knc"),
+&"Tank": ExtResource("7_8d4eb"),
 &"ow_anim": ExtResource("3_w1yvo")
 }
 

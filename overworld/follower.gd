@@ -227,6 +227,8 @@ func set_anim_lib():
 				anim_lib = "Fighter"
 			"Ranger":
 				anim_lib = "Ranger"
+			"Tank":
+				anim_lib = "Tank"
 			"Mage":
 				anim_lib = "Mage"
 			_:
