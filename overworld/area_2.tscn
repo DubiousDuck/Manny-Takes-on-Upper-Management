@@ -295,6 +295,7 @@ theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
+visible = false
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 
@@ -373,7 +374,7 @@ limit_bottom = 500
 position_smoothing_enabled = true
 
 [node name="Elevator" parent="." instance=ExtResource("10_tbaiv")]
-position = Vector2(829, 33)
+position = Vector2(824, 37)
 scene_to_go = "uid://d03fuw2qm413i"
 req = Array[String](["level2-4"])
 interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
@@ -389,7 +390,7 @@ offset_top = -35.0
 offset_bottom = 5.0
 
 [node name="Elevator2" parent="." instance=ExtResource("10_tbaiv")]
-position = Vector2(-1, 39)
+position = Vector2(9, 35)
 scene_to_go = "uid://c8qibn8b170i0"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
@@ -430,6 +431,7 @@ frequency = 1
 [node name="ElevatorGate" parent="AreaFlags/ElevatorFlag" instance=ExtResource("15_rt1we")]
 position = Vector2(762, -32)
 animations = Array[String](["area2_elevator1", "Dialogue(multiple): You don't have the access to this elevator yet.", "Dialogue(multiple): Try again later.", "area2_elevator2", "area2_elevator3"])
+speaker_name = "*System*"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/ElevatorFlag/ElevatorGate"]
 libraries = {

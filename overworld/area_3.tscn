@@ -192,13 +192,13 @@ limit_bottom = 527
 position_smoothing_enabled = true
 
 [node name="IntroDoor" parent="." instance=ExtResource("14_qlkuo")]
-position = Vector2(629, 480)
+position = Vector2(625, 483)
 collision_mask = 1
 scene_to_go = "uid://b6pye0w0cqmw7"
 interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?", "[Yes][No]"])
 
 [node name="Elevator" parent="." instance=ExtResource("14_qlkuo")]
-position = Vector2(623, -481)
+position = Vector2(623, -493)
 scene_to_go = "uid://bognra8xq838a"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 interact_dialogue = Array[String](["Play Final Cutscene?", "[Yes][No]"])
