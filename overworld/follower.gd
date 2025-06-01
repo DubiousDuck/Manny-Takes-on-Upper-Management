@@ -224,6 +224,10 @@ func set_anim_lib():
 			"Healer":
 				anim_lib = "Healer_ow"
 			"Fighter":
-				anim_lib = "Fighter_ow"
+				anim_lib = "Fighter"
+			"Ranger":
+				anim_lib = "Ranger"
+			"Mage":
+				anim_lib = "Mage"
 			_:
 				anim_lib = "ow_anim"
