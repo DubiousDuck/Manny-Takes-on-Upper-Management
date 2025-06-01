@@ -38,13 +38,13 @@ func sleep_tick(unit: Unit):
 	await unit.regain_health(magnitude)
 
 func poison_tick(unit: Unit):
-	await unit.take_damage(magnitude, null)
+	await unit.take_damage(unit.max_health/2, null)
 
 func forget_tick(unit: Unit):
-	unit.actions_avail.erase(Unit.Action.MOVE)
+	unit.actions_avail.erase(Unit.Action.ATTACK)
 
 func audit_tick(unit: Unit):
-	unit.actions_avail.erase(Unit.Action.ATTACK)
+	unit.actions_avail.erase(Unit.Action.MOVE)
 
 # function that is called when status is first applied
 func on_apply(unit: Unit):

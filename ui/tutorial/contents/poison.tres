@@ -10,7 +10,7 @@ triggered = false
 title = "Status Effect - Poison"
 body_text = "[color=purple]Poison[/color] is a Status Effect.
 
-Poisoned units will take damage at the start of their turn.
+Poisoned units will take damage equal to half of their Max Health at the start of their turn.
 
 "
 image_file = "uid://b3iqa0psgt7hf"
