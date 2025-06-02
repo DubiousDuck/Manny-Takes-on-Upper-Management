@@ -24,9 +24,11 @@ func init(result: int):
 			Global.battle_result = "win"
 			AudioPreload.play_sfx("victory")
 		EventBus.BattleResult.TIE:
+			$CPUParticles2D.emitting = false
 			$Label.text = "It's a tie."        
 			Global.battle_result = "none"
 		EventBus.BattleResult.ENEMY_VICTORY:
+			$CPUParticles2D.emitting = false
 			$Label.text = "You lost..."
 			$VBoxContainer/ItemDropLabel.hide()
 			Global.battle_result = "lose"

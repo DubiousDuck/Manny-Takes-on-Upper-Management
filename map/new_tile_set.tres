@@ -1,10 +1,9 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://od08ebdovrmi"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://od08ebdovrmi"]
 
-[ext_resource type="Shader" uid="uid://cg1wrhxvd3pl8" path="res://stages/area_1/disappear.gdshader" id="1_2nufh"]
 [ext_resource type="Texture2D" uid="uid://eokknymieg0y" path="res://map/new_tiles.png" id="1_gl8xq"]
-[ext_resource type="Texture2D" uid="uid://n5lbjbo30p2q" path="res://map/basic_tiles.png" id="1_tre3t"]
 [ext_resource type="PackedScene" uid="uid://j3k37ayrcnr2" path="res://other_map_components/individual_tile/pit_tile.tscn" id="3_prhqk"]
 [ext_resource type="PackedScene" uid="uid://cx7yp45iqipwq" path="res://other_map_components/individual_tile/heal_tile.tscn" id="4_e02vg"]
+[ext_resource type="Texture2D" uid="uid://dixcdj0j7sb7j" path="res://map/Spike_tile.png" id="4_gl8xq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_prhk1"]
 texture = ExtResource("1_gl8xq")
@@ -43,45 +42,13 @@ texture_region_size = Vector2i(128, 128)
 scenes/1/scene = ExtResource("3_prhqk")
 scenes/2/scene = ExtResource("4_e02vg")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nufh"]
-shader = ExtResource("1_2nufh")
-shader_parameter/original_color = Color(0.705882, 0.0470588, 0.184314, 1)
-shader_parameter/progress = 0.0
-shader_parameter/noise_desnity = 15.0
-shader_parameter/beam_size = 0.05
-shader_parameter/color = Color(0.630183, 0.300069, 0.0618299, 1)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inqtn"]
-texture = ExtResource("1_tre3t")
-texture_region_size = Vector2i(128, 128)
-0:0/next_alternative_id = 2
-0:0/animation_separation = Vector2i(4, 0)
-0:0/animation_mode = 1
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mmbl"]
+texture = ExtResource("4_gl8xq")
+margins = Vector2i(0, 8)
+texture_region_size = Vector2i(128, 108)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
-0:0/1 = 1
-0:0/1/modulate = Color(0.0308664, 0.888827, 0.470958, 1)
-0:0/1/custom_data_0 = true
-0:0/1/custom_data_2 = "heal"
-1:0/0 = 0
-1:0/0/custom_data_0 = true
-1:0/0/custom_data_1 = true
-2:0/next_alternative_id = 4
-2:0/animation_columns = 2
-2:0/0 = 0
-2:0/0/custom_data_0 = true
-2:0/0/custom_data_1 = true
-2:0/1 = 1
-2:0/1/modulate = Color(0.704991, 0.0471962, 0.182532, 1)
-2:0/1/material = SubResource("ShaderMaterial_2nufh")
-2:0/1/custom_data_2 = "death"
-0:1/next_alternative_id = 2
-0:1/0 = 0
-0:1/0/custom_data_0 = true
-0:1/1 = 1
-0:1/1/modulate = Color(0.0117647, 0.72549, 1, 1)
-0:1/1/custom_data_0 = true
-0:1/1/custom_data_2 = "teleport"
+0:0/0/custom_data_2 = "spike"
 
 [resource]
 tile_shape = 3
@@ -94,5 +61,5 @@ custom_data_layer_1/type = 1
 custom_data_layer_2/name = "effect"
 custom_data_layer_2/type = 4
 sources/1 = SubResource("TileSetScenesCollectionSource_e02vg")
-sources/3 = SubResource("TileSetAtlasSource_inqtn")
 sources/0 = SubResource("TileSetAtlasSource_prhk1")
+sources/2 = SubResource("TileSetAtlasSource_7mmbl")

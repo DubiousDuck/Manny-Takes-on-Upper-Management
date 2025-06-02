@@ -6,6 +6,7 @@ class_name MyMapLayer
 
 const GRID_SIZE = 5
 const MAIN_ATLAS_ID = 0
+const SPIKE_ATLAS_ID = 2
 const BLUE_CELL := Vector2i(2, 0)
 const WHITE_CELL := Vector2i(0, 0)
 const RED_CELL := Vector2i(1, 0)
@@ -30,6 +31,7 @@ func _ready():
 func set_cell_to_variant(id : int, cell : Vector2i):
 	var cell_variant
 	var alternative: int = 0
+	var atlas_id := MAIN_ATLAS_ID
 	match id:
 		CELL_TYPE.WHITE: cell_variant = WHITE_CELL
 		CELL_TYPE.RED: cell_variant = RED_CELL
@@ -40,9 +42,10 @@ func set_cell_to_variant(id : int, cell : Vector2i):
 			cell_variant = WHITE_CELL
 			alternative = 1
 		CELL_TYPE.SPIKE:
+			atlas_id = SPIKE_ATLAS_ID
 			cell_variant = WHITE_CELL
-			alternative = 2
-	set_cell(cell, MAIN_ATLAS_ID, cell_variant, alternative)
+			alternative = 0
+	set_cell(cell, atlas_id, cell_variant, alternative)
 	#Update cell weights
 	HexNavi.set_weight_of_layer("traversable", true, 1)
 	HexNavi.set_weight_of_layer("traversable", false, 999)

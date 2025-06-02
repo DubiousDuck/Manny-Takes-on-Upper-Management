@@ -311,7 +311,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.remove_status_effect()
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
-				move_suffix.append("applying" + effects[key][name])
+				move_suffix.append("applying" + effects[key].name)
 			# exclusively for attacker gaining token
 			SkillInfo.EffectType.ACTION_TOKEN:
 				match effects[key]:
