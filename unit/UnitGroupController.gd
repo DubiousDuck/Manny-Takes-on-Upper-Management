@@ -118,6 +118,9 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	for victim in affected_units:
 		if try_trigger_pof(victim, attacker):
 			break
+			
+			
+	var move_suffix : Array[String] = []
 
 	#for each skill effect, apply it on every affected units
 	var effects := attack.skill_effects
@@ -125,10 +128,12 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 	for key in execution_order: 
 		match key: #Skill effect translator
 			SkillInfo.EffectType.DAMAGE:
+				var damage : int = 0
 				if affected_units.is_empty(): break
 				for unit in affected_units:
-					var damage: int = floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
+					damage = floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
 					unit.take_damage(damage, attacker, false)
+				move_suffix.append("dealing " + str(damage))
 				
 			SkillInfo.EffectType.KNOCKBACK:
 				if affected_units.is_empty(): break
@@ -172,6 +177,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
 						await unit.tile_action()
 				)
+				move_suffix.append("knocking them back")
 				
 			SkillInfo.EffectType.HEAL:
 				affected_units.map(
@@ -179,6 +185,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 							unit.regain_health(effects[key] * attacker_power)
 						#TODO: needs animation
 				)
+				move_suffix.append("healing them by " + str(effects[key] * attacker_power))
 			
 			SkillInfo.EffectType.WAIT:
 				attacker.actions_avail.erase(Unit.Action.MOVE)
@@ -249,6 +256,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						for tile in targets:
 							EventBus.emit_signal("set_cell", tile, MyMapLayer.CELL_TYPE.SPIKE)
 						# no need to wait as there are no animation
+				move_suffix.append("setting the tile to " + str(effects[key]))
 					
 			SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
 				var buff = load(effects[key])
@@ -257,6 +265,43 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.apply_stat_modifer(buff)
 				else:
 					print(buff.name + " of " + attack.name + " is not a BonusStat! -- UnitGroupContainer.gd")
+				match buff.stat:
+					"max_health":
+						if buff.value > 0:
+							move_suffix.append("boosting max health by " + str(buff.value))
+						elif buff.value < 0:
+							move_suffix.append("reducing max health by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"attack_power":
+						if buff.value > 0:
+							move_suffix.append("boosting attack power by " + str(buff.value))
+						elif buff.value < 0:
+							move_suffix.append("reducing attack power by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"magic_power":
+						if buff.value > 0:
+							move_suffix.append("boosting magic power by " + str(buff.value))
+						elif buff.value < 0:
+							move_suffix.append("reducing magic power by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"movement_range":
+						if buff.value > 0:
+							move_suffix.append("boosting movement range by " + str(buff.value))
+						elif buff.value < 0:
+							move_suffix.append("reducing movement range by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"damage_reduction":
+						if buff.value > 0:
+							move_suffix.append("boosting damage by " + str(buff.value))
+						elif buff.value < 0:
+							move_suffix.append("reducing damage by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+				#@export_enum("max_health", "attack_power", "magic_power", "movement_range", "damage_reduction")
 			SkillInfo.EffectType.STATUS:
 				if effects[key] is StatusEffect:
 					for unit in affected_units:
@@ -266,6 +311,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						unit.remove_status_effect()
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
+				move_suffix.append("applying" + effects[key][name])
 			# exclusively for attacker gaining token
 			SkillInfo.EffectType.ACTION_TOKEN:
 				match effects[key]:
@@ -277,13 +323,49 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				var buff = load(effects[key])
 				if buff is BonusStat:
 					attacker.apply_stat_modifer(buff)
+				match buff.stat:
+					"max_health":
+						if buff.stat > 0:
+							move_suffix.append("boosting max health by " + str(buff.value))
+						elif buff.stat < 0:
+							move_suffix.append("reducing max health by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"attack_power":
+						if buff.stat > 0:
+							move_suffix.append("boosting attack power by " + str(buff.value))
+						elif buff.stat < 0:
+							move_suffix.append("reducing attack power by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"magic_power":
+						if buff.stat > 0:
+							move_suffix.append("boosting magic power by " + str(buff.value))
+						elif buff.stat < 0:
+							move_suffix.append("reducing magic power by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"movement_range":
+						if buff.stat > 0:
+							move_suffix.append("boosting movement range by " + str(buff.value))
+						elif buff.stat < 0:
+							move_suffix.append("reducing movement range by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
+					"damage_reduction":
+						if buff.stat > 0:
+							move_suffix.append("boosting damage by " + str(buff.value))
+						elif buff.stat < 0:
+							move_suffix.append("reducing damage by " + str(buff.value))
+						else:
+							print("Stat buff/debuff is zero")
 			SkillInfo.EffectType.SELF_HEAL:
 				attacker.regain_health(effects[key] * attacker_power)
+				move_suffix.append("healing them by " + str(effects[key] * attacker_power))
 			_:
 				print("nothing happens yet")
-						
 	
-	process_battle_log(attacker, affected_units, attack)
+	process_battle_log(attacker, affected_units, attack, move_suffix)
 				
 	if !all_units.is_empty():
 		all_units.map(
@@ -449,8 +531,8 @@ func grant_extra_turn(unit: Unit):
 	Global.play_label_slide_from_left("Power of Friendship!")
 	unit.in_pof = true
 
-func process_battle_log(attacker: Unit, affected_units: Array[Unit], attack: SkillInfo):
-	# Battle log
+func process_battle_log(attacker: Unit, affected_units: Array[Unit], attack: SkillInfo, suffix : Array[String]):
+	print(attack)
 	var affected_names_arr = []
 	for i in affected_units:
 		if i.is_player_controlled:
@@ -464,10 +546,18 @@ func process_battle_log(attacker: Unit, affected_units: Array[Unit], attack: Ski
 	if attacker.is_player_controlled: target_color = "blue"
 	else: target_color = "red"
 	
-	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color] used " + attack.name + " on " + affected_names + "!"
+	var log_entry = "[color=" + target_color + "]" + attacker.unit_data.unit_class + "[/color] used " + attack.name + " on " + affected_names
 	
-	# if only affecting the attacker themselves
 	if affected_units.size() == 1 and affected_units.front() == attacker:
-		log_entry = affected_names_arr[0] + " used " + attack.name + " on themselves!"
-		
+		log_entry = affected_names_arr[0] + " used " + attack.name + " on themselves"
+	
+	if suffix.size() > 0:
+		if suffix.size() == 1:
+			log_entry += ", " + suffix[0] + "!"
+		else:
+			var last_effect = suffix.pop_back()
+			log_entry += ", " + ", ".join(PackedStringArray(suffix)) + " and " + last_effect + "!"
+	else:
+		log_entry += "!"
+
 	Global.battle_log.append(log_entry)
