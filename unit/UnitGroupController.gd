@@ -306,12 +306,13 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				if effects[key] is StatusEffect:
 					for unit in affected_units:
 						unit.apply_status(effects[key])
+						move_suffix.append("applying" + effects[key].name)
 				elif effects[key] == null:
 					for unit in affected_units:
 						unit.remove_status_effect()
+					move_suffix.append("removing their status effects")
 				else:
 					print(effects[key].name + " of " + attack.name + " is not a StatusEffect! -- UnitGroupContainer.gd")
-				move_suffix.append("applying" + effects[key].name)
 			# exclusively for attacker gaining token
 			SkillInfo.EffectType.ACTION_TOKEN:
 				match effects[key]:

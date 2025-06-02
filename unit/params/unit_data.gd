@@ -11,7 +11,7 @@ class_name UnitData
 # Battle related
 ## Identifer of the Class; each Class corresponds to a unique UnitData template
 @export_enum("Protagonist", "Tank", "Fighter", 
-	"Ranger", "Healer", "Mage", "Boss", "Turret") var unit_class: String
+	"Ranger", "Healer", "Mage", "Boss 1", "Boss 2", "CTO", "CFO", "CEO", "Turret") var unit_class: String
 
 enum STAT {HP, ATK, MAG, MOV, DMG_RED}
 @export var stat: Dictionary[STAT, float] = {
@@ -27,18 +27,20 @@ enum STAT {HP, ATK, MAG, MOV, DMG_RED}
 	3: {STAT.ATK: 1},
 	4: {STAT.MAG: 1},
 	5: {STAT.HP: 2},
+	6: {STAT.HP: 2},
 	7: {STAT.ATK: 1, STAT.MAG: 1},
-	8: {STAT.HP: 1},
+	8: {STAT.HP: 2},
 	9: {STAT.ATK: 1, STAT.MAG: 1},
 	10: {STAT.HP: 2},
+	11: {STAT.HP: 2},
 	12: {STAT.ATK: 2},
 	13: {STAT.MAG: 2},
-	15: {STAT.HP: 1, STAT.ATK: 1, STAT.MAG: 1},
+	15: {STAT.HP: 2, STAT.ATK: 1, STAT.MAG: 1},
 	16: {STAT.ATK: 1, STAT.MAG: 1},
 	17: {STAT.HP: 2},
 	18: {STAT.MAG: 2},
 	19: {STAT.ATK: 2},
-	20: {STAT.HP: 1, STAT.ATK: 1, STAT.MAG: 1}
+	20: {STAT.HP: 2, STAT.ATK: 1, STAT.MAG: 1}
 }
 
 @export var skill_list: Array[SkillInfo] = []

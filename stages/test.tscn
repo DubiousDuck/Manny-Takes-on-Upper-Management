@@ -53,7 +53,7 @@
 [ext_resource type="Resource" uid="uid://dfa5rlde0qqaf" path="res://skills/milk_giveaway.tres" id="51_ddwp4"]
 [ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="52_h7vy0"]
 [ext_resource type="Resource" uid="uid://dkkx2y4t15rpe" path="res://skills/sour_milk_bomb.tres" id="53_6sw3c"]
-[ext_resource type="Resource" uid="uid://cm83nrkaqbp3d" path="res://unit/params/special_enemies/turrets.tres" id="54_hl0kg"]
+[ext_resource type="Resource" uid="uid://cm83nrkaqbp3d" path="res://unit/params/turrets.tres" id="54_hl0kg"]
 [ext_resource type="Resource" uid="uid://cebsakqjxt46" path="res://skills/defend.tres" id="55_cjkfa"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="56_aafxo"]
 [ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="57_cadr7"]

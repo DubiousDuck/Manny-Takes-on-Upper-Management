@@ -38,7 +38,7 @@
 [ext_resource type="Resource" uid="uid://bch56yrcacr1o" path="res://skills/throw_tantrum.tres" id="36_vr3xm"]
 [ext_resource type="Resource" uid="uid://dp7wh6abi6nd2" path="res://skills/throw_lego.tres" id="37_4fpe5"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="37_gucv0"]
-[ext_resource type="Resource" uid="uid://cm83nrkaqbp3d" path="res://unit/params/special_enemies/turrets.tres" id="38_4fpe5"]
+[ext_resource type="Resource" uid="uid://cm83nrkaqbp3d" path="res://unit/params/turrets.tres" id="38_4fpe5"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="38_e0dfs"]
 [ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="40_ors1s"]
 [ext_resource type="Resource" uid="uid://rk42x6t20aw5" path="res://skills/magic_boulder.tres" id="40_wq0dc"]
@@ -47,7 +47,7 @@
 [ext_resource type="Resource" uid="uid://kpjcve1h0liv" path="res://skills/status_cleanse.tres" id="45_smsen"]
 [ext_resource type="Resource" uid="uid://dkkx2y4t15rpe" path="res://skills/sour_milk_bomb.tres" id="48_08rre"]
 [ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="50_uj50k"]
-[ext_resource type="Resource" uid="uid://cuka5djp1cvwp" path="res://unit/params/special_enemies/CTO.tres" id="54_e38n8"]
+[ext_resource type="Resource" uid="uid://cuka5djp1cvwp" path="res://unit/params/CTO.tres" id="54_e38n8"]
 [ext_resource type="Resource" uid="uid://ce2x4vy4yg5b6" path="res://skills/perfect_defense.tres" id="54_x5y4n"]
 [ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="55_e38n8"]
 
@@ -77,18 +77,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -98,7 +104,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -116,7 +122,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -135,7 +141,7 @@ item_list = Array[ExtResource("2_eng40")]([])
 [sub_resource type="Resource" id="Resource_7171i"]
 script = ExtResource("18_78xb3")
 id = 0
-level = 8
+level = 9
 exp = 0
 unit_class = "Healer"
 stat = Dictionary[int, float]({
@@ -158,18 +164,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -179,7 +191,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -197,7 +209,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -216,7 +228,7 @@ item_list = Array[ExtResource("2_eng40")]([])
 [sub_resource type="Resource" id="Resource_sov6c"]
 script = ExtResource("18_78xb3")
 id = 0
-level = 8
+level = 9
 exp = 0
 unit_class = "Mage"
 stat = Dictionary[int, float]({
@@ -239,18 +251,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -260,7 +278,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -278,7 +296,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -296,7 +314,7 @@ item_list = Array[ExtResource("2_eng40")]([])
 [sub_resource type="Resource" id="Resource_1kky8"]
 script = ExtResource("18_78xb3")
 id = 0
-level = 9
+level = 10
 exp = 0
 unit_class = "Tank"
 stat = Dictionary[int, float]({
@@ -319,18 +337,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -340,7 +364,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -358,7 +382,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }

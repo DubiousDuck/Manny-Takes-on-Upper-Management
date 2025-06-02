@@ -24,7 +24,7 @@
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="20_w4qmt"]
 [ext_resource type="Resource" uid="uid://te4wlyc81khx" path="res://skills/arrow_rain.tres" id="21_pv2qi"]
 [ext_resource type="Resource" uid="uid://djy537r81hp18" path="res://skills/whirlwind.tres" id="22_3gomi"]
-[ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/special_enemies/boss_1.tres" id="23_gvrc7"]
+[ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/boss_1.tres" id="23_gvrc7"]
 
 [sub_resource type="Resource" id="Resource_unpgq"]
 script = ExtResource("13_m2f2x")

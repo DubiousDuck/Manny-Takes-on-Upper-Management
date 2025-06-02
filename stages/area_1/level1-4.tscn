@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="14_4un2p"]
 [ext_resource type="Resource" uid="uid://b2xolay11juv8" path="res://unit/params/protagonist.tres" id="14_jkbq3"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="14_sshki"]
-[ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/special_enemies/boss_1.tres" id="15_5o3ts"]
+[ext_resource type="Resource" uid="uid://dxxemof4tvpsa" path="res://unit/params/boss_1.tres" id="15_5o3ts"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="15_jxpqp"]
 [ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="15_sshki"]
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="17_rpv7r"]

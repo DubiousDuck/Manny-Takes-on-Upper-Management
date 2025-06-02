@@ -52,7 +52,7 @@
 [ext_resource type="Resource" uid="uid://dp7wh6abi6nd2" path="res://skills/throw_lego.tres" id="50_66uxj"]
 [ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="51_kww66"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="52_7h3iv"]
-[ext_resource type="Resource" uid="uid://fd2mmkj0ry80" path="res://unit/params/special_enemies/CEO.tres" id="53_ned6s"]
+[ext_resource type="Resource" uid="uid://fd2mmkj0ry80" path="res://unit/params/CEO.tres" id="53_ned6s"]
 [ext_resource type="Script" uid="uid://dda521hi48f5d" path="res://unit/params/other_structures/bonus_stat.gd" id="54_sonre"]
 
 [sub_resource type="Resource" id="Resource_ned6s"]

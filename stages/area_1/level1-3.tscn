@@ -45,7 +45,7 @@
 [ext_resource type="Resource" uid="uid://ce2x4vy4yg5b6" path="res://skills/perfect_defense.tres" id="41_ii820"]
 [ext_resource type="Resource" uid="uid://d1y5n3fvcjm0t" path="res://skills/heroic_rescue.tres" id="42_vfwer"]
 
-[sub_resource type="Resource" id="Resource_hx862"]
+[sub_resource type="Resource" id="Resource_vfwer"]
 script = ExtResource("20_iigxo")
 id = 0
 level = 3
@@ -66,27 +66,59 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 1
 },
 4: {
-0: 1
+2: 1
 },
 5: {
+0: 2
+},
+6: {
 0: 2
 },
 7: {
 1: 1,
 2: 1
 },
-9: {
-0: 1
+8: {
+0: 2
 },
-10: {
+9: {
 1: 1,
 2: 1
+},
+10: {
+0: 2
+},
+11: {
+0: 2
 },
 12: {
 1: 2
 },
 13: {
 2: 2
+},
+15: {
+0: 2,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 2,
+1: 1,
+2: 1
 }
 })
 skill_list = Array[ExtResource("21_fa8xf")]([ExtResource("25_fslfx"), ExtResource("23_xmqv0")])
@@ -330,7 +362,7 @@ enemy_container = NodePath("../PlayerGroup")
 [node name="EnemyUnit2" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
 position = Vector2(542, 320)
 script = ExtResource("15_fa8xf")
-unit_data = SubResource("Resource_hx862")
+unit_data = SubResource("Resource_vfwer")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("12_t610e")]
 position = Vector2(547, 209)

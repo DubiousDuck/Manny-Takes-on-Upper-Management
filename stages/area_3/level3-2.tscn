@@ -46,7 +46,7 @@
 [ext_resource type="Resource" uid="uid://dp7wh6abi6nd2" path="res://skills/throw_lego.tres" id="44_qbvsm"]
 [ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="45_kd3v1"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="46_ikuoc"]
-[ext_resource type="Resource" uid="uid://8syvvxoawlvu" path="res://unit/params/special_enemies/CFO.tres" id="47_rna1a"]
+[ext_resource type="Resource" uid="uid://8syvvxoawlvu" path="res://unit/params/CFO.tres" id="47_rna1a"]
 
 [sub_resource type="Resource" id="Resource_713if"]
 script = ExtResource("18_1i4s7")
@@ -74,18 +74,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -95,7 +101,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -113,7 +119,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -265,18 +271,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -286,7 +298,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -304,7 +316,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }

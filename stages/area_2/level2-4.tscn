@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="28_5sxi7"]
 [ext_resource type="Resource" uid="uid://wd8lggmbwcl1" path="res://skills/lullaby.tres" id="29_usvta"]
 [ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="30_1x7uv"]
-[ext_resource type="Resource" uid="uid://cqvo5xlurkws" path="res://unit/params/special_enemies/boss_2.tres" id="37_wu28m"]
+[ext_resource type="Resource" uid="uid://cqvo5xlurkws" path="res://unit/params/boss_2.tres" id="37_wu28m"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="38_sahym"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="39_c75aw"]
 [ext_resource type="Resource" uid="uid://bxsa4bulom2b4" path="res://skills/raise_magic.tres" id="40_2tphl"]
@@ -58,18 +58,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -79,7 +85,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -97,7 +103,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -137,18 +143,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -158,7 +170,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -176,7 +188,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }
@@ -214,18 +226,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -235,7 +253,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -253,7 +271,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }

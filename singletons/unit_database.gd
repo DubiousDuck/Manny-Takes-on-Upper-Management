@@ -1,26 +1,29 @@
 extends Node
 
+const UNIT_DATA_FOLDER := "res://unit/params/"
 # Maps unit_class name (e.g., "Fighter") to the base UnitData resource
 var unit_templates: Dictionary = {}
 
 func _ready():
-	# Preload templates (excluding special enemies) and map by unit_class
-	var protagonist = preload("res://unit/params/protagonist.tres")
-	var fighter = preload("res://unit/params/fighter.tres")
-	var tank = preload("res://unit/params/tank.tres")
-	var healer = preload("res://unit/params/healer.tres")
-	var mage = preload("res://unit/params/mage.tres")
-	var ranger = preload("res://unit/params/ranger.tres")
-
-	unit_templates[protagonist.unit_class] = protagonist
-	unit_templates[fighter.unit_class] = fighter
-	unit_templates[tank.unit_class] = tank
-	unit_templates[healer.unit_class] = healer
-	unit_templates[mage.unit_class] = mage
-	unit_templates[healer.unit_class] = healer
-	unit_templates[ranger.unit_class] = ranger
-
+	load_unit_from_folder(UNIT_DATA_FOLDER)
 	print("UnitDatabase loaded with %d unit classes" % unit_templates.size())
+
+func load_unit_from_folder(path: String):
+	var dir := DirAccess.open(path)
+	if dir == null:
+		push_error("UnitDatabase: Could not open folder %s" % path)
+		return
+
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir() and file_name.ends_with(".tres"):
+			var file_path = path + file_name
+			var unit_data = load(file_path)
+			if unit_data != null and unit_data is UnitData:
+				unit_templates[unit_data.unit_class] = unit_data
+		file_name = dir.get_next()
+	dir.list_dir_end()
 
 # Returns a deep copy of the base UnitData for this class
 func get_by_class(unit_class: String) -> UnitData:

@@ -7,6 +7,7 @@ signal unit_action_done
 
 # Constants
 const WAIT_SKILL = preload("res://skills/wait.tres")
+const MOVE_SKILL = preload("res://skills/move.tres")
 
 @export_category("General Parameters")
 @export var is_player_controlled: bool
@@ -74,9 +75,17 @@ func _ready() -> void:
 				unit.load_unit_data()
 				valid_units.append(unit)
 		units = valid_units
+	## Enemy container unit assignment logic
 	else:
 		for unit in units:
-			unit.unit_data.set_self_level(unit.unit_data.level)
+			# get the correct data by name and apply level ups
+			var template: UnitData = UnitDatabase.get_by_class(unit.unit_data.unit_class)
+			for i in range(unit.unit_data.level-1):
+				template.level_up()
+			# set level label correctly
+			template.level = unit.unit_data.level
+			# assign the correct version back to the unit
+			unit.unit_data = template
 			unit.load_unit_data()
 		
 
@@ -242,6 +251,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
+		# TODO: simulate teleport effect
 		new_state.position[unit] = target_cell
 		new_state.action_tokens[unit].erase(Unit.Action.MOVE)
 	if action_type == Unit.Action.ATTACK:
@@ -336,11 +346,11 @@ func evaluate_state(state: GameState) -> int:
 		if is_instance_valid(enemy):
 			# encourages unit to move close to enemies if have the attack token
 			if unit.actions_avail.has(Unit.Action.ATTACK):
-				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()*1.5
-			# else if the unit health is too low, encourage them to move away
-			elif state.health[unit] <= unit.max_health/3:
+				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()*2
+			# else if the unit health is too low and no attack token, encourage them to move away
+			elif state.health[unit] <= unit.max_health / 3 and not unit.actions_avail.has(Unit.Action.ATTACK):
 				distance_score = (state.position[unit] - enemy.cell).length() - (unit.cell - enemy.cell).length()
-			# if nothing else, still encourages to move in (by a moderate amount)
+		# if nothing else, still encourages to move in (by a moderate amount)
 			else: distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()
 			
 			#clamping distance score
@@ -361,7 +371,7 @@ func evaluate_state(state: GameState) -> int:
 				damage_score += (unit.health - state.health[unit]) * 4
 		else:
 			# avoid hurting teammates (just a bit)
-			damage_score -= (unit.health - state.health[unit]) * 2
+			damage_score -= (unit.health - state.health[unit])
 		
 		# cell effect related score
 		var nearby_cell := HexNavi.get_all_neighbors_in_range(state.position[unit], 1, 999)
@@ -381,7 +391,7 @@ func evaluate_state(state: GameState) -> int:
 					# encourages pushing enemies into pits
 					if enemy_container.units.has(unit): 
 						if cell == state.position[unit]:
-							tile_score += 30
+							tile_score += 40
 					else: # avoids hitting teammates into the pits
 						if cell == state.position[unit]:
 							tile_score -= 30
@@ -392,7 +402,7 @@ func evaluate_state(state: GameState) -> int:
 							tile_score -= 10
 					else:
 						if cell == state.position[unit]:
-							tile_score += 20
+							tile_score += 15
 				"spike":
 					if enemy_container.units.has(unit): 
 						if cell == state.position[unit]:
@@ -419,7 +429,7 @@ func evaluate_state(state: GameState) -> int:
 	
 	## Status effect related score
 	# generally, all status effects should have roughly the same score at base power * duration
-	const SLEEP_MULTIPLIER = 6
+	const SLEEP_MULTIPLIER = 15
 	const POISON_MULTIPLIER = 6
 	const FORGET_MULTIPLER = 10
 	const AUDIT_MULTIPLIER = 20
@@ -518,7 +528,7 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 	#find the best skill
 	var best_score = -INF
 	var best_cell: Vector2i = unit.cell
-	var best_skill: SkillInfo = WAIT_SKILL
+	var best_skill: SkillInfo = MOVE_SKILL
 	var best_state: GameState = current_state
 	
 	# Test for move and attack
@@ -532,7 +542,7 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 					if combo_score > best_score:
 						best_score = combo_score
 						best_cell = move_cell
-						best_skill = WAIT_SKILL
+						best_skill = MOVE_SKILL
 						best_state = final_state
 	
 	# Test for attack and move
@@ -571,7 +581,7 @@ func find_best_move(current_state: GameState, unit: Unit) -> Dictionary:
 			if score > best_score:
 				best_score = score
 				best_cell = cell
-				best_skill = WAIT_SKILL
+				best_skill = MOVE_SKILL
 				best_state = new_state
 	return {"score": best_score, "cell": best_cell, "skill": best_skill, "state": best_state}
 

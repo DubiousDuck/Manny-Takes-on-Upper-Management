@@ -12,7 +12,7 @@ script = ExtResource("2_dv1ra")
 id = 0
 level = 10
 exp = 0
-unit_class = "Boss"
+unit_class = "CTO"
 stat = Dictionary[int, float]({
 0: 5.0,
 1: 1.0,
@@ -33,18 +33,24 @@ stat_growth_table = Dictionary[int, Dictionary]({
 5: {
 0: 2
 },
+6: {
+0: 2
+},
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 2
 },
 9: {
 1: 1,
 2: 1
 },
 10: {
+0: 2
+},
+11: {
 0: 2
 },
 12: {
@@ -54,7 +60,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 2
 },
 15: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 },
@@ -72,7 +78,7 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 2
 },
 20: {
-0: 1,
+0: 2,
 1: 1,
 2: 1
 }

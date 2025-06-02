@@ -131,15 +131,15 @@ func update_status_effect():
 
 		if active_status_effect.duration < 0:
 			remove_status_effect()
-			print("Status expired, unit still alive:", !is_dead)
+			#print("Status expired, unit still alive:", !is_dead)
 			status_updated.emit(!is_dead)
 		else:
 			await active_status_effect.tick(self)
-			print("Status tick finished, unit dead?", is_dead)
+			#print("Status tick finished, unit dead?", is_dead)
 			status_updated.emit(!is_dead)
 	else:
 		set_status_effect_icon(false)
-		print("No active status, unit still alive:", !is_dead)
+		#print("No active status, unit still alive:", !is_dead)
 		status_updated.emit(!is_dead)
 
 
@@ -230,7 +230,7 @@ func init():
 	for child in unit_held:
 		if !child.is_dead:
 			valid_children.append(child)
-			print(child)
+			print("held child: " + child.name + " is dead...")
 	unit_held = valid_children
 	
 	in_pof = false
@@ -445,7 +445,7 @@ func animation_state(animation : String):
 
 #in the animation player
 func emit_attack_point():
-	print("Attack point emitted!")
+	#print("Attack point emitted!")
 	attack_point.emit()
 	
 #in the animation player
@@ -474,7 +474,7 @@ func emit_action_command_point(game : String):
 
 #in the animation player
 func emit_anim_comlete():
-	print("anim complete emitted!")
+	#print("anim complete emitted!")
 	anim_complete.emit()
 	
 ## When receive the attack point signal, check to see if can emit "total_complete"
