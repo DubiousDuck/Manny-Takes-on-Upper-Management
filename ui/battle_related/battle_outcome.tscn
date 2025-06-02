@@ -28,20 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.342207, 0.342207, 0.342207, 0.475)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(576, -64)
-amount = 30
-lifetime = 2.0
-preprocess = 1.0
-speed_scale = 0.5
-emission_shape = 3
-emission_rect_extents = Vector2(1152, 20)
-linear_accel_min = -100.0
-linear_accel_max = -100.0
-scale_amount_min = 20.0
-scale_amount_max = 20.0
-color_ramp = SubResource("Gradient_hev1d")
-
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -169,6 +155,20 @@ layout_mode = 2
 theme = ExtResource("3_qftn7")
 theme_override_font_sizes/font_size = 45
 text = "Return"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(576, -64)
+amount = 20
+lifetime = 2.0
+preprocess = 1.0
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(500, 20)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+color_ramp = SubResource("Gradient_hev1d")
 
 [connection signal="pressed" from="HBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="HBoxContainer/PreviousScene" to="." method="_on_previous_scene_pressed"]
