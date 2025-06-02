@@ -15,11 +15,11 @@ const EXP_BAR = preload("res://ui/battle_related/exp_bar.tscn")
 var unit_to_bar: Dictionary[UnitData, ExpBar] = {}
 var bars_done: int = 0
 
-
 func init(result: int):
 	EventBus.ui_element_started.emit()
 	match result:
 		EventBus.BattleResult.PLAYER_VICTORY:
+			$CPUParticles2D.emitting = true
 			$Label.text = "You won!"
 			Global.battle_result = "win"
 			AudioPreload.play_sfx("victory")
