@@ -133,7 +133,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				for unit in affected_units:
 					damage = floor((effects[key] * attacker_power) * (1-unit.damage_reduction))
 					unit.take_damage(damage, attacker, false)
-				move_suffix.append("dealing " + str(damage))
+				move_suffix.append("dealing " + str(damage) + " damage")
 				
 			SkillInfo.EffectType.KNOCKBACK:
 				if affected_units.is_empty(): break
@@ -268,37 +268,37 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				match buff.stat:
 					"max_health":
 						if buff.value > 0:
-							move_suffix.append("boosting max health by " + str(buff.value))
+							move_suffix.append("boosting their max health by " + str(buff.value))
 						elif buff.value < 0:
-							move_suffix.append("reducing max health by " + str(buff.value))
+							move_suffix.append("reducing their max health by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"attack_power":
 						if buff.value > 0:
-							move_suffix.append("boosting attack power by " + str(buff.value))
+							move_suffix.append("boosting their attack power by " + str(buff.value))
 						elif buff.value < 0:
-							move_suffix.append("reducing attack power by " + str(buff.value))
+							move_suffix.append("reducing their attack power by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"magic_power":
 						if buff.value > 0:
-							move_suffix.append("boosting magic power by " + str(buff.value))
+							move_suffix.append("boosting their magic power by " + str(buff.value))
 						elif buff.value < 0:
-							move_suffix.append("reducing magic power by " + str(buff.value))
+							move_suffix.append("reducing their magic power by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"movement_range":
 						if buff.value > 0:
-							move_suffix.append("boosting movement range by " + str(buff.value))
+							move_suffix.append("boosting their movement range by " + str(buff.value))
 						elif buff.value < 0:
-							move_suffix.append("reducing movement range by " + str(buff.value))
+							move_suffix.append("reducing their movement range by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"damage_reduction":
 						if buff.value > 0:
-							move_suffix.append("boosting damage by " + str(buff.value))
+							move_suffix.append("boosting their damage by " + str(buff.value))
 						elif buff.value < 0:
-							move_suffix.append("reducing damage by " + str(buff.value))
+							move_suffix.append("reducing their damage by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 				#@export_enum("max_health", "attack_power", "magic_power", "movement_range", "damage_reduction")
@@ -326,37 +326,37 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				match buff.stat:
 					"max_health":
 						if buff.stat > 0:
-							move_suffix.append("boosting max health by " + str(buff.value))
+							move_suffix.append("boosting their max health by " + str(buff.value))
 						elif buff.stat < 0:
-							move_suffix.append("reducing max health by " + str(buff.value))
+							move_suffix.append("reducing their max health by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"attack_power":
 						if buff.stat > 0:
-							move_suffix.append("boosting attack power by " + str(buff.value))
+							move_suffix.append("boosting their attack power by " + str(buff.value))
 						elif buff.stat < 0:
-							move_suffix.append("reducing attack power by " + str(buff.value))
+							move_suffix.append("reducing their attack power by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"magic_power":
 						if buff.stat > 0:
-							move_suffix.append("boosting magic power by " + str(buff.value))
+							move_suffix.append("boosting their magic power by " + str(buff.value))
 						elif buff.stat < 0:
-							move_suffix.append("reducing magic power by " + str(buff.value))
+							move_suffix.append("reducing their magic power by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"movement_range":
 						if buff.stat > 0:
-							move_suffix.append("boosting movement range by " + str(buff.value))
+							move_suffix.append("boosting their movement range by " + str(buff.value))
 						elif buff.stat < 0:
-							move_suffix.append("reducing movement range by " + str(buff.value))
+							move_suffix.append("reducing their movement range by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 					"damage_reduction":
 						if buff.stat > 0:
-							move_suffix.append("boosting damage by " + str(buff.value))
+							move_suffix.append("boosting their damage by " + str(buff.value))
 						elif buff.stat < 0:
-							move_suffix.append("reducing damage by " + str(buff.value))
+							move_suffix.append("reducing their damage by " + str(buff.value))
 						else:
 							print("Stat buff/debuff is zero")
 			SkillInfo.EffectType.SELF_HEAL:
