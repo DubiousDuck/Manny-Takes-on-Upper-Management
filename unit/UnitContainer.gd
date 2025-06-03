@@ -80,10 +80,10 @@ func _ready() -> void:
 		for unit in units:
 			# get the correct data by name and apply level ups
 			var template: UnitData = UnitDatabase.get_by_class(unit.unit_data.unit_class)
+			if template.level != 1:
+				template.level = 1
 			for i in range(unit.unit_data.level-1):
 				template.level_up()
-			# set level label correctly
-			template.level = unit.unit_data.level
 			# assign the correct version back to the unit
 			unit.unit_data = template
 			unit.load_unit_data()

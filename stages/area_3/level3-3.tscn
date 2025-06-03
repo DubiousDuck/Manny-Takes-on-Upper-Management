@@ -225,7 +225,7 @@ skill_table = Dictionary[int, ExtResource("19_63433")]({
 })
 item_list = Array[ExtResource("2_ned6s")]([])
 
-[sub_resource type="Resource" id="Resource_purbc"]
+[sub_resource type="Resource" id="Resource_wnkk8"]
 script = ExtResource("18_vnpj4")
 id = 0
 level = 11
@@ -246,27 +246,59 @@ stat_growth_table = Dictionary[int, Dictionary]({
 1: 1
 },
 4: {
-0: 1
+2: 1
 },
 5: {
+0: 2
+},
+6: {
 0: 2
 },
 7: {
 1: 1,
 2: 1
 },
-9: {
+8: {
 0: 2
 },
-10: {
+9: {
 1: 1,
 2: 1
+},
+10: {
+0: 2
+},
+11: {
+0: 2
 },
 12: {
 1: 2
 },
 13: {
 2: 2
+},
+15: {
+0: 2,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 2
+},
+18: {
+2: 2
+},
+19: {
+1: 2
+},
+20: {
+0: 2,
+1: 1,
+2: 1
 }
 })
 skill_list = Array[ExtResource("19_63433")]([ExtResource("20_7kcih"), ExtResource("21_im3xb")])
@@ -529,7 +561,7 @@ unit_data = SubResource("Resource_sonre")
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("16_lkprc")]
 position = Vector2(545, 101)
 script = ExtResource("52_7h3iv")
-unit_data = SubResource("Resource_purbc")
+unit_data = SubResource("Resource_wnkk8")
 
 [node name="EnemyUnit" parent="Units/EnemyGroup" instance=ExtResource("16_lkprc")]
 position = Vector2(641, 157)
