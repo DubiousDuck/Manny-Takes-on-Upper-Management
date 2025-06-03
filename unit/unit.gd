@@ -128,15 +128,13 @@ func apply_status(status: StatusEffect):
 func update_status_effect():
 	if active_status_effect:
 		active_status_effect.duration -= 1
-
-		if active_status_effect.duration < 0:
+		
+		await active_status_effect.tick(self)
+		#print("Status tick finished, unit dead?", is_dead)
+		if active_status_effect.duration <= 0:
 			remove_status_effect()
 			#print("Status expired, unit still alive:", !is_dead)
-			status_updated.emit(!is_dead)
-		else:
-			await active_status_effect.tick(self)
-			#print("Status tick finished, unit dead?", is_dead)
-			status_updated.emit(!is_dead)
+		status_updated.emit(!is_dead)
 	else:
 		set_status_effect_icon(false)
 		#print("No active status, unit still alive:", !is_dead)

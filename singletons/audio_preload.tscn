@@ -9,4 +9,7 @@ bus = &"Music"
 script = ExtResource("1_bgm7c")
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 3
 bus = &"Sfx"
+
+[node name="SecondSfxPlayer" type="AudioStreamPlayer" parent="."]

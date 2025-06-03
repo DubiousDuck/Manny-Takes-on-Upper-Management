@@ -5,6 +5,7 @@ const _BATTLE_2_MUSIC = preload("res://assets/music/HR Level 2.ogg")
 const _OW_ONE_MUSIC = preload("res://assets/music/HR Overworld 1.ogg")
 
 @onready var sfx_player = $SfxPlayer
+@onready var second_sfx_player = $SecondSfxPlayer
 
 var volValue: int = 0:
 	set(new_val):
@@ -78,8 +79,8 @@ func play_sfx(name: String):
 		"victory":
 			# stop music and play victory sfx
 			stop()
-			$SfxPlayer.stream = VICTORY_SFX
-			$SfxPlayer.play()
+			second_sfx_player.stream = VICTORY_SFX
+			second_sfx_player.play()
 		"error":
 			$SfxPlayer.stream = ERROR_SFX
 			$SfxPlayer.play()

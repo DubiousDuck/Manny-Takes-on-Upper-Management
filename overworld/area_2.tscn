@@ -444,12 +444,12 @@ event = "area2-cleared"
 trigger = 0
 frequency = 1
 
-[node name="Activate Cutscene" parent="AreaFlags/IntroFlag" instance=ExtResource("15_rt1we")]
+[node name="Area2Intro" parent="AreaFlags/IntroFlag" instance=ExtResource("15_rt1we")]
 position = Vector2(-27, -23)
 animations = Array[String](["intro_lv2_anim1", "intro_lv2_anim2", "Dialogue(multiple): I can't believe I've made it to middle management...", "Dialogue(multiple): It's the highest floor I've been to.", "Dialogue(multiple): I better hurry up, Kelly's waiting for me.", "Dialogue(multiple): I hope she's doing alright.", "intro_lv2_anim_end"])
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/IntroFlag/Activate Cutscene"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/IntroFlag/Area2Intro"]
 libraries = {
 &"": SubResource("AnimationLibrary_c5ngv"),
 &"Cutscenes": ExtResource("16_56es5")

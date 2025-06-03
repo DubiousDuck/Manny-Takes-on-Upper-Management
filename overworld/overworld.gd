@@ -88,7 +88,7 @@ func _ready():
 	if Global.recruit_token >= 1:
 		EventBus.emit_signal("tutorial_trigger", "recruit_tutorial")
 		HintManager.trigger_hint("recruit_token", "Don't forget to recruit a new Ally!", false)
-	
+		
 	HintManager.pause_idle_timer()
 	
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqhyc6w586for"]
+[gd_scene load_steps=5 format=3 uid="uid://dqhyc6w586for"]
 
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="1_rgoav"]
 [ext_resource type="Texture2D" uid="uid://clnlowwc7od8y" path="res://assets/ui/blank_tab.png" id="2_d8del"]
 [ext_resource type="Script" uid="uid://b5d84gjbtknlo" path="res://ui/battle_related/skill_unlock_popup.gd" id="2_durpk"]
+[ext_resource type="AudioStream" uid="uid://c6qrtp62p0hmr" path="res://assets/sfx/Party Horn.mp3" id="4_durpk"]
 
 [node name="SkillUnlockPopup" type="Control"]
 layout_mode = 3
@@ -88,5 +89,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 36
 text = "Got it!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_durpk")
+autoplay = true
+bus = &"Sfx"
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
