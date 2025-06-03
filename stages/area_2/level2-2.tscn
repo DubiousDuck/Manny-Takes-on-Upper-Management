@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bda5uv8kdcc0m"]
+[gd_scene load_steps=50 format=4 uid="uid://bda5uv8kdcc0m"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_q25p2"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_b7vte"]
@@ -33,17 +33,23 @@
 [ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="30_iwwt5"]
 [ext_resource type="Resource" uid="uid://bw52nj7xy3w4y" path="res://skills/forgetful_hammer.tres" id="31_7liit"]
 [ext_resource type="Resource" uid="uid://cwb3n75y1egow" path="res://skills/low_sweep.tres" id="32_vcjw5"]
-[ext_resource type="Resource" uid="uid://b0eqr8p4qsvpi" path="res://skills/basic_shoot.tres" id="34_ofh6n"]
-[ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_bubble.tres" id="35_r80ng"]
-[ext_resource type="Resource" uid="uid://bdt6lnq72ku8y" path="res://skills/giant_arrow.tres" id="36_o7tnm"]
+[ext_resource type="Resource" uid="uid://bao7vfdy1qt2i" path="res://skills/basic_heal.tres" id="35_qtkv3"]
+[ext_resource type="Resource" uid="uid://kpjcve1h0liv" path="res://skills/status_cleanse.tres" id="36_dv7o4"]
 [ext_resource type="Script" uid="uid://skfirkbw22xf" path="res://unit/EnemyUnit.gd" id="37_mtd0c"]
+[ext_resource type="Resource" uid="uid://wd8lggmbwcl1" path="res://skills/lullaby.tres" id="37_s52bb"]
 [ext_resource type="Resource" uid="uid://csff25ylodec5" path="res://skills/magic_shot.tres" id="38_0dws1"]
+[ext_resource type="Resource" uid="uid://dfa5rlde0qqaf" path="res://skills/milk_giveaway.tres" id="38_rs0oc"]
+[ext_resource type="Resource" uid="uid://37mauvg60l8h" path="res://skills/set_heal_tile.tres" id="39_3wwws"]
 [ext_resource type="Resource" uid="uid://rk42x6t20aw5" path="res://skills/magic_boulder.tres" id="39_iukyt"]
+[ext_resource type="Resource" uid="uid://dkkx2y4t15rpe" path="res://skills/sour_milk_bomb.tres" id="40_nywe0"]
+[ext_resource type="Resource" uid="uid://bch56yrcacr1o" path="res://skills/throw_tantrum.tres" id="43_s52bb"]
+[ext_resource type="Resource" uid="uid://dp7wh6abi6nd2" path="res://skills/throw_lego.tres" id="44_rs0oc"]
+[ext_resource type="Resource" uid="uid://da8pyj7jt2g1" path="res://skills/lego_rain.tres" id="45_3wwws"]
 
 [sub_resource type="Resource" id="Resource_f2u74"]
 script = ExtResource("20_2xvrk")
 id = 0
-level = 8
+level = 7
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, float]({
@@ -96,7 +102,7 @@ item_list = Array[ExtResource("2_b7vte")]([])
 [sub_resource type="Resource" id="Resource_un02p"]
 script = ExtResource("20_2xvrk")
 id = 0
-level = 9
+level = 7
 exp = 0
 unit_class = "Tank"
 stat = Dictionary[int, float]({
@@ -172,10 +178,99 @@ skill_table = Dictionary[int, ExtResource("21_j51ms")]({
 })
 item_list = Array[ExtResource("2_b7vte")]([])
 
-[sub_resource type="Resource" id="Resource_3fhvm"]
+[sub_resource type="Resource" id="Resource_ytt64"]
 script = ExtResource("20_2xvrk")
 id = 0
-level = 8
+level = 7
+exp = 0
+unit_class = "Healer"
+stat = Dictionary[int, float]({
+0: 5.0,
+1: 2.0,
+2: 2.0,
+3: 2.0,
+4: 0.0
+})
+stat_growth_table = Dictionary[int, Dictionary]({
+2: {
+0: 2
+},
+3: {
+1: 1,
+2: 1
+},
+4: {
+0: 2
+},
+5: {
+0: 3
+},
+6: {
+0: 3
+},
+7: {
+1: 1,
+2: 1
+},
+8: {
+0: 3
+},
+9: {
+0: 4
+},
+10: {
+1: 1,
+2: 1
+},
+11: {
+0: 4
+},
+12: {
+1: 1,
+2: 1
+},
+13: {
+0: 4
+},
+15: {
+0: 4,
+1: 1,
+2: 1
+},
+16: {
+1: 1,
+2: 1
+},
+17: {
+0: 4
+},
+18: {
+2: 1
+},
+19: {
+1: 1
+},
+20: {
+0: 4,
+1: 1,
+2: 1
+}
+})
+skill_list = Array[ExtResource("21_j51ms")]([ExtResource("35_qtkv3"), ExtResource("23_at4et"), ExtResource("24_xbr24")])
+skill_table = Dictionary[int, ExtResource("21_j51ms")]({
+2: ExtResource("27_150cr"),
+4: ExtResource("36_dv7o4"),
+6: ExtResource("37_s52bb"),
+8: ExtResource("38_rs0oc"),
+10: ExtResource("39_3wwws"),
+12: ExtResource("40_nywe0")
+})
+item_list = Array[ExtResource("2_b7vte")]([])
+
+[sub_resource type="Resource" id="Resource_nywe0"]
+script = ExtResource("20_2xvrk")
+id = 0
+level = 7
 exp = 0
 unit_class = "Mage"
 stat = Dictionary[int, float]({
@@ -187,39 +282,47 @@ stat = Dictionary[int, float]({
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
-0: 1
+0: 2
 },
 3: {
-1: 1
-},
-4: {
+1: 1,
 2: 1
 },
-5: {
+4: {
 0: 2
+},
+5: {
+0: 3
+},
+6: {
+0: 3
 },
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 1
+0: 3
 },
 9: {
+0: 4
+},
+10: {
 1: 1,
 2: 1
 },
-10: {
-0: 2
+11: {
+0: 4
 },
 12: {
-1: 2
+1: 1,
+2: 1
 },
 13: {
-2: 2
+0: 4
 },
 15: {
-0: 1,
+0: 4,
 1: 1,
 2: 1
 },
@@ -228,16 +331,16 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 },
 17: {
-0: 2
+0: 4
 },
 18: {
-2: 2
+2: 1
 },
 19: {
-1: 2
+1: 1
 },
 20: {
-0: 1,
+0: 4,
 1: 1,
 2: 1
 }
@@ -245,53 +348,10 @@ stat_growth_table = Dictionary[int, Dictionary]({
 skill_list = Array[ExtResource("21_j51ms")]([ExtResource("38_0dws1"), ExtResource("24_xbr24")])
 skill_table = Dictionary[int, ExtResource("21_j51ms")]({
 3: ExtResource("28_pmpg8"),
-8: ExtResource("39_iukyt")
-})
-item_list = Array[ExtResource("2_b7vte")]([])
-
-[sub_resource type="Resource" id="Resource_jvglk"]
-script = ExtResource("20_2xvrk")
-id = 0
-level = 7
-exp = 0
-unit_class = "Ranger"
-stat = Dictionary[int, float]({
-0: 4.0,
-1: 3.0,
-2: 1.0,
-3: 1.0,
-4: 0.0
-})
-stat_growth_table = Dictionary[int, Dictionary]({
-2: {
-0: 1
-},
-3: {
-1: 1
-},
-4: {
-0: 1
-},
-5: {
-0: 1,
-1: 1
-},
-7: {
-1: 1,
-2: 1
-},
-9: {
-1: 1
-},
-10: {
-0: 1
-}
-})
-skill_list = Array[ExtResource("21_j51ms")]([ExtResource("34_ofh6n"), ExtResource("24_xbr24")])
-skill_table = Dictionary[int, ExtResource("21_j51ms")]({
-3: ExtResource("26_g0a6s"),
-7: ExtResource("35_r80ng"),
-10: ExtResource("36_o7tnm")
+5: ExtResource("39_iukyt"),
+7: ExtResource("43_s52bb"),
+9: ExtResource("44_rs0oc"),
+11: ExtResource("45_3wwws")
 })
 item_list = Array[ExtResource("2_b7vte")]([])
 
@@ -379,11 +439,11 @@ unit_data = SubResource("Resource_un02p")
 [node name="EnemyUnit3" parent="Units/EnemyGroup" instance=ExtResource("18_11kuc")]
 position = Vector2(734, 96)
 script = ExtResource("37_mtd0c")
-unit_data = SubResource("Resource_3fhvm")
+unit_data = SubResource("Resource_ytt64")
 
 [node name="EnemyUnit4" parent="Units/EnemyGroup" instance=ExtResource("18_11kuc")]
 position = Vector2(735, 316)
 script = ExtResource("37_mtd0c")
-unit_data = SubResource("Resource_jvglk")
+unit_data = SubResource("Resource_nywe0")
 
 [connection signal="status_update_complete" from="Units" to="Units" method="_on_status_update_complete"]

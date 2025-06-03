@@ -82,8 +82,9 @@ func _ready() -> void:
 			var template: UnitData = UnitDatabase.get_by_class(unit.unit_data.unit_class)
 			if template.level != 1:
 				template.level = 1
-			for i in range(unit.unit_data.level-1):
+			while template.level < unit.unit_data.level:
 				template.level_up()
+			template.item_list = unit.unit_data.item_list.duplicate()
 			# assign the correct version back to the unit
 			unit.unit_data = template
 			unit.load_unit_data()

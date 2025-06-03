@@ -295,7 +295,6 @@ theme_override_font_sizes/font_size = 40
 text = "Manage Party"
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("5_ay40q")]
-visible = false
 
 [node name="NPC_Folder" type="Node2D" parent="."]
 

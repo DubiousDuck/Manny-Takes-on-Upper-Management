@@ -56,45 +56,47 @@ stat = Dictionary[int, float]({
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
-0: 1
+0: 2
 },
 3: {
-1: 1
-},
-4: {
+1: 1,
 2: 1
 },
-5: {
+4: {
 0: 2
 },
+5: {
+0: 3
+},
 6: {
-0: 2
+0: 3
 },
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 2
+0: 3
 },
 9: {
+0: 4
+},
+10: {
 1: 1,
 2: 1
 },
-10: {
-0: 2
-},
 11: {
-0: 2
+0: 4
 },
 12: {
-1: 2
+1: 1,
+2: 1
 },
 13: {
-2: 2
+0: 4
 },
 15: {
-0: 2,
+0: 4,
 1: 1,
 2: 1
 },
@@ -103,16 +105,16 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 },
 17: {
-0: 2
+0: 4
 },
 18: {
-2: 2
+2: 1
 },
 19: {
-1: 2
+1: 1
 },
 20: {
-0: 2,
+0: 4,
 1: 1,
 2: 1
 }
@@ -129,7 +131,7 @@ item_list = Array[ExtResource("2_2bj7h")]([])
 [sub_resource type="Resource" id="Resource_nilvn"]
 script = ExtResource("20_duqju")
 id = 0
-level = 9
+level = 8
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, float]({
@@ -194,45 +196,47 @@ stat = Dictionary[int, float]({
 })
 stat_growth_table = Dictionary[int, Dictionary]({
 2: {
-0: 1
+0: 2
 },
 3: {
-1: 1
-},
-4: {
+1: 1,
 2: 1
 },
-5: {
+4: {
 0: 2
 },
+5: {
+0: 3
+},
 6: {
-0: 2
+0: 3
 },
 7: {
 1: 1,
 2: 1
 },
 8: {
-0: 2
+0: 3
 },
 9: {
+0: 4
+},
+10: {
 1: 1,
 2: 1
 },
-10: {
-0: 2
-},
 11: {
-0: 2
+0: 4
 },
 12: {
-1: 2
+1: 1,
+2: 1
 },
 13: {
-2: 2
+0: 4
 },
 15: {
-0: 2,
+0: 4,
 1: 1,
 2: 1
 },
@@ -241,16 +245,16 @@ stat_growth_table = Dictionary[int, Dictionary]({
 2: 1
 },
 17: {
-0: 2
+0: 4
 },
 18: {
-2: 2
+2: 1
 },
 19: {
-1: 2
+1: 1
 },
 20: {
-0: 2,
+0: 4,
 1: 1,
 2: 1
 }
@@ -265,7 +269,7 @@ item_list = Array[ExtResource("2_2bj7h")]([])
 [sub_resource type="Resource" id="Resource_bbqnb"]
 script = ExtResource("20_duqju")
 id = 0
-level = 9
+level = 8
 exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, float]({

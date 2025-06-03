@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_44q68")
 name = "Heroic Rescue"
-description = "Rush to an ally and heal them. Heals the target a little."
+description = "Rush to an ally and heal them. Heals the target by 1x Magic Power."
 type = "Skill"
 targets = 0
 affinity = 1

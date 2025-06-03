@@ -113,7 +113,7 @@ skill_table = Dictionary[int, ExtResource("14_4un2p")]({
 9: ExtResource("24_jkbq3"),
 11: ExtResource("25_jxpqp")
 })
-item_list = Array[ExtResource("14_sshki")]([])
+item_list = Array[ExtResource("14_sshki")]([ExtResource("3_m1pkm")])
 
 [sub_resource type="Resource" id="Resource_m1pkm"]
 script = ExtResource("13_6i534")
@@ -168,7 +168,7 @@ skill_table = Dictionary[int, ExtResource("14_4un2p")]({
 10: ExtResource("32_e4w0a"),
 11: ExtResource("27_s0xsk")
 })
-item_list = Array[ExtResource("14_sshki")]([])
+item_list = Array[ExtResource("14_sshki")]([ExtResource("3_m1pkm")])
 
 [node name="Level1-4" type="Node2D" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("1_dv56f")

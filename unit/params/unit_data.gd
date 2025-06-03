@@ -23,33 +23,30 @@ enum STAT {HP, ATK, MAG, MOV, DMG_RED}
 }
 ## Stat grwoth table of a unit; should be set manually for each base class resource; format-- level: stats gained
 @export var stat_growth_table: Dictionary[int, Dictionary] = {
-	2: {STAT.HP: 1},
-	3: {STAT.ATK: 1},
-	4: {STAT.MAG: 1},
-	5: {STAT.HP: 2},
-	6: {STAT.HP: 2},
+	2: {STAT.HP: 2},
+	3: {STAT.ATK: 1, STAT.MAG: 1},
+	4: {STAT.HP: 2},
+	5: {STAT.HP: 3},
+	6: {STAT.HP: 3},
 	7: {STAT.ATK: 1, STAT.MAG: 1},
-	8: {STAT.HP: 2},
-	9: {STAT.ATK: 1, STAT.MAG: 1},
-	10: {STAT.HP: 2},
-	11: {STAT.HP: 2},
-	12: {STAT.ATK: 2},
-	13: {STAT.MAG: 2},
-	15: {STAT.HP: 2, STAT.ATK: 1, STAT.MAG: 1},
+	8: {STAT.HP: 3},
+	9: {STAT.HP: 4},
+	10: {STAT.ATK: 1, STAT.MAG: 1},
+	11: {STAT.HP: 4},
+	12: {STAT.ATK: 1, STAT.MAG: 1},
+	13: {STAT.HP: 4},
+	15: {STAT.HP: 4, STAT.ATK: 1, STAT.MAG: 1},
 	16: {STAT.ATK: 1, STAT.MAG: 1},
-	17: {STAT.HP: 2},
-	18: {STAT.MAG: 2},
-	19: {STAT.ATK: 2},
-	20: {STAT.HP: 2, STAT.ATK: 1, STAT.MAG: 1}
+	17: {STAT.HP: 4},
+	18: {STAT.MAG: 1},
+	19: {STAT.ATK: 1},
+	20: {STAT.HP: 4, STAT.ATK: 1, STAT.MAG: 1}
 }
 
 @export var skill_list: Array[SkillInfo] = []
 
 ## Skill unlock table of a unit; should be set manually for each base class resource
 @export var skill_table: Dictionary[int, SkillInfo] = {}
-
-## Variable to prevent repeated level ups when reloading a battle scene
-var leveled_up: bool = false
 
 func get_stat(name):
 	match name:
@@ -79,21 +76,13 @@ func exp_to_next_level() -> int:
 
 func level_up():
 	level += 1
-	#print("Level up! The unit is now level %d." % level)
+	print("Level up! The unit is now level %d." % level)
 	if stat_growth_table.has(level):
 		for stat_enum in stat_growth_table[level].keys():
 			stat[stat_enum] += stat_growth_table[level][stat_enum]
+			print("unit gained %d in %d!" %[stat_growth_table[level][stat_enum], stat_enum])
 	if skill_table.has(level):
 		skill_list.append(skill_table[level])
-
-## Set the unit data to a preset level; assumes the UnitData was originally at level 1
-func set_self_level(num: int):
-	if !leveled_up:
-		level = 1
-		while level < num:
-			level_up()
-		leveled_up = true
-	else: print("No need to level up as  this resource has already been leveled up before. -- UnitData.gd")
 
 func check_skill_unlock(level: int):
 	return skill_table.get(level, null)
@@ -116,8 +105,7 @@ func to_dict() -> Dictionary:
 		"unit_class": unit_class,
 		"stat": stat,
 		"skill_list": skill_list.map(func(skill): return skill.name), # or skill ID
-		"item_list": item_list.map(func(item): return item.item_name),     # or item ID
-		"leveled_up": leveled_up,
+		"item_list": item_list.map(func(item): return item.item_name)     # or item ID
 	}
 
 static func new_from_dict(data: Dictionary) -> UnitData:
@@ -130,8 +118,6 @@ static func new_from_dict(data: Dictionary) -> UnitData:
 	var target_level = data.get("level", 1)
 	while unit.level < target_level: # assumes unit.level == 1 when init
 		unit.level_up()
-
-	unit.leveled_up = data.get("leveled_up", false)
 
 	unit.item_list.clear()
 	for item_name in data.get("item_list", []):
