@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SkillInfo" load_steps=3 format=3 uid="uid://ce2x4vy4yg5b6"]
 
 [ext_resource type="Script" uid="uid://cupoy0ff6a5jr" path="res://skills/skill_info.gd" id="1_stw1t"]
-[ext_resource type="Resource" uid="uid://cw86p1cc2880" path="res://unit/params/other_structures/status_effects/long_forget.tres" id="2_mhdfx"]
+[ext_resource type="Resource" uid="uid://cqkd32pwphrpk" path="res://unit/params/other_structures/status_effects/auditted.tres" id="2_mhdfx"]
 
 [resource]
 script = ExtResource("1_stw1t")
 name = "Perfect Defense"
-description = "Assumes the firmest stance possible. Inflicts Forget on self for 2 turns, but takes no damage for the next turn."
+description = "Assumes the firmest stance possible. Cannot move for the next turn, but also takes no damage next turn."
 type = "Skill"
 targets = 2
 affinity = 0

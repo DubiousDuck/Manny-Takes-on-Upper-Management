@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("1_v0tvr")
 name = "Power Overload"
-description = "Overload and overwork your ally. Deals some damage to them but boost their ATK and MAG greatly for the next turn."
+description = "Overload and overwork your ally. Deals 0.5x Magic damage to them but boost their Attack and Magic greatly for the next turn."
 type = "Attack"
 targets = 5
-affinity = 0
+affinity = 1
 range = 3
 area = 0
 skill_effects = Dictionary[int, Variant]({

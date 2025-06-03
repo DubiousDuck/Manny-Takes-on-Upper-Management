@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_obn1n")
 name = "Magical Shot"
-description = "Shoots an orb of energy. Deals some magic damage to the target."
-type = 0
+description = "Shoots an orb of energy. Deals 1x Magic damage to the target."
+type = "Attack"
 targets = 1
 affinity = 1
 range = 2

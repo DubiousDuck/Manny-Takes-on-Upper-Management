@@ -407,10 +407,10 @@ func tile_action(round_start: bool = false):
 				animation_state("front_idle")
 		"heal": # allows for overheal
 			animation_state("front_idle")
-			regain_health(1, true)
+			regain_health(max(max_health/4, 1), true)
 			#MyMapLayer.set_random_heal_tile(self)
 		"spike":
-			take_damage(1, self)
+			take_damage(max(max_health/4, 1), self)
 	
 	await get_tree().process_frame
 	emit_signal("tile_action_done")

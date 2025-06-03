@@ -5,14 +5,14 @@
 [resource]
 script = ExtResource("1_bcobh")
 name = "Throw Lego EX"
-description = "Throw a Lego brick at any cell. Babies that step on the brick will be damaged. Ouch!"
+description = "Throw a Lego brick at any cell and deals 0.75x Magic damage. Babies that step on the brick will be damaged. Ouch!"
 type = "Attack"
 targets = 8
 affinity = 1
 range = 2
 area = 0
 skill_effects = Dictionary[int, Variant]({
-0: 0.5,
+0: 0.75,
 9: "spike"
 })
 effect_execution_order = Array[int]([0, 9])

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ndt6k")
 name = "Meditate"
-description = "Enters a meditative state. Restores some HP and raises ATK for 2 turns."
+description = "Enters a meditative state. Restores 1x Attack of Health and raises Attack Power for 2 turns."
 type = "Skill"
 targets = 2
 affinity = 0

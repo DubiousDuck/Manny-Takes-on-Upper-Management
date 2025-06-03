@@ -6,14 +6,14 @@
 [resource]
 script = ExtResource("1_y8jwx")
 name = "Banana Peel"
-description = "Throw a Banana peel at the enemy. Inflicts Unsteady to the target for 1 turn."
+description = "Throw a Banana peel at the enemy. Deals 0.75x Magic damage and inflicts Unsteady to the target for 1 turn."
 type = "attack"
 targets = 1
 affinity = 1
 range = 2
 area = 0
 skill_effects = Dictionary[int, Variant]({
-0: 0.5,
+0: 0.75,
 5: ExtResource("2_ml7wk")
 })
 effect_execution_order = Array[int]([])

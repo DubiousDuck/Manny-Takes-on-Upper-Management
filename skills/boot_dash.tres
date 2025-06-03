@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_w46m6")
 name = "Boot Dash"
-description = "Wipe the dirt of the boots and make them really shiny. Gets +1 MOV for the next turn."
+description = "Wipe the dirt of the boots and make them really shiny. Gets +1 Movement Range for 1 turn."
 type = "Skill"
 targets = 2
 affinity = null

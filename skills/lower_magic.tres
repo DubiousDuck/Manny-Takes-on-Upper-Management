@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_1sfjm")
 name = "Lower Magic"
-description = "Say \"You're stupid!\" very loudly to make the enemy feeling not so smart. Lowers the MAG of the enemy for 2 turns."
+description = "Say \"You're stupid!\" very loudly to make the enemy feeling not so smart. Lowers the Magic Damage of the enemy for 2 turns."
 type = "Skill"
 targets = 1
 affinity = null

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_y5jom")
 name = "Giant Arrow"
-description = "Shoots (toss?) a HUGE arrow at the enemy. Deals some damage to the target and knock them back by 2 tiles."
+description = "Shoots (toss?) a HUGE arrow at the enemy. Deals 1x Attack damage to the target and knock them back by 2 tiles."
 type = "Attack"
 targets = 1
 affinity = 0

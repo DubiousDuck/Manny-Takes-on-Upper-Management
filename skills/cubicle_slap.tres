@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_s1xdx")
 name = "Cubicle Swing"
-description = "Grab a piece of the cubicle wall and swing it at the enemy. Deals a little damage and lowers the target's ATK and MAG for 2 turns."
+description = "Grab a piece of the cubicle wall and swing it at the enemy. Deals 0.75x Attack damage and lowers the target's Attack and Magic for 2 turns."
 type = "Attack"
 targets = 1
 affinity = 0

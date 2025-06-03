@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ct0uk")
 name = "Executive Smash"
-description = "Swings down the CEO's giant baby fist. Deals heavy damage to the target and knocks them back."
+description = "Swings down the CEO's giant baby fist. Deals 1.5x Attack damage to the target and knocks them back."
 type = "Attack"
 targets = 1
 affinity = 0

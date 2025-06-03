@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_hwoit")
 name = "Severance Package"
-description = "Delivers a severance package to an ally. Deals damage to an ally and raise ATK for itself for 2 turns."
+description = "Delivers a severance package to an ally. Deals 0.5x Attack damage to an ally and raise Attack for itself for 2 turns."
 type = "Attack"
 targets = 5
 affinity = 0

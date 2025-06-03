@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_gf6l7")
 name = "Penny Punch"
-description = "Punch with a penny in hand. Deals a little damage. It's only a penny after all."
+description = "Punch with a penny in hand. Deals 0.5x Attack damage. It's only a penny after all."
 type = "Attack"
 targets = 1
 affinity = 0

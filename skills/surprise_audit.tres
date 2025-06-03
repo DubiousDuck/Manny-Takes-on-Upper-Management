@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_gunu5")
 name = "Surprise Audit"
-description = "Leads an unexpected audit against the enemy. Lowers their damage reduction for 2 turns and apply Auditted for 1 turn."
+description = "Leads an unexpected audit against the enemy. Lowers their Damage Reduction for 2 turns and apply Auditted for 1 turn."
 type = "Skill"
 targets = 1
 affinity = 1

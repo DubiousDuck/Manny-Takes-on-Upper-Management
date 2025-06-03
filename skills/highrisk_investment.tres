@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_xv3ow")
 name = "High-Risk Investment"
-description = "Injects Capital into one minion, massively heals them and raise their MOV for one turn."
+description = "Injects Capital into one minion, heals them by 2x Magic of Health and raises their Movement Range for one turn."
 type = "Skill"
 targets = 5
 affinity = 1

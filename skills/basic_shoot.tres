@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_e5twa")
 name = "Rubber Band Shoot"
-description = "Shoot an elastic rubber band. Deals some physical damage to the target."
+description = "Shoot an elastic rubber band. Deals 1x Attack damage to the target."
 type = "attack"
 targets = 1
 affinity = 0

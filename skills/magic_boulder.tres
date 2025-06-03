@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_iw6dl")
 name = "Magic Boulder"
-description = "Hurl a magical boulder at the enemy. Deals a little damage and push back the target by 1 block"
+description = "Hurl a magical boulder at the enemy. Deals 0.5x Magic damage and push back the target by 1 block"
 type = "Attack"
 targets = 1
 affinity = 1

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_o2j34")
 name = "Battle Cry"
-description = "Let out an annoying but inpsiring battle cry. Raises ATK and MAG of nearby babies by 1 for 2 turns."
+description = "Let out an annoying but inpsiring battle cry. Raises Attack and Magic of nearby babies by 1 for 2 turns."
 type = "Skill"
 targets = 2
 affinity = null

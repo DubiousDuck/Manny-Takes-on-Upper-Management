@@ -38,7 +38,7 @@ func sleep_tick(unit: Unit):
 	await unit.regain_health(magnitude)
 
 func poison_tick(unit: Unit):
-	await unit.take_damage(unit.max_health/2, null)
+	await unit.take_damage(unit.max_health/3, null)
 
 func forget_tick(unit: Unit):
 	unit.actions_avail.erase(Unit.Action.ATTACK)

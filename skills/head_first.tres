@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_7reyg")
 name = "Head First"
-description = "Leap into the sky and strike head first to a target tile, dealing some damage to all babies in the area."
+description = "Leap into the sky and strike head first to a target tile, dealing 0.75x Attack damage to all babies in the area."
 type = "Attack"
 targets = 1
 affinity = 0
