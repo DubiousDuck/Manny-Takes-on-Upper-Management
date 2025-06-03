@@ -248,19 +248,30 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 	new_state.cell_effects = state.cell_effects.duplicate(true)
 	new_state.status_effects = state.status_effects.duplicate(true)
 	new_state.action_tokens = state.action_tokens.duplicate()
+	new_state.pof_states = state.pof_states.duplicate()
 	
 	# Scans each unit and evaluate score based on their position to each other and to other tiles
 	if action_type == Unit.Action.MOVE:
-		# TODO: simulate teleport effect
 		new_state.position[unit] = target_cell
+		if new_state.cell_effects[target_cell] == "teleport":
+			new_state.position[unit] = new_state.find_another_cell_of_effect(target_cell, "teleport")
 		new_state.action_tokens[unit].erase(Unit.Action.MOVE)
 	if action_type == Unit.Action.ATTACK:
 		if skill == null:
 			return new_state
 		new_state.action_tokens[unit].erase(Unit.Action.ATTACK)
-		#Go through all of the skill's effect and calculate score
+		#Go through all of the skill's effect
 		var effects := skill.skill_effects
 		var affected_area := HexNavi.get_all_neighbors_in_range(target_cell, abs(skill.area), 999)
+		
+		# change affected unit's pof_receive status
+		for target in new_state.position.keys():
+			if affected_area.has(new_state.position[target]) and target.container != unit.container:
+				if new_state.pof_states[target] == Unit.POF_RECEIVE_STATE.NONE:
+					new_state.pof_states[target] = Unit.POF_RECEIVE_STATE.READY
+				elif new_state.pof_states[target] == Unit.POF_RECEIVE_STATE.READY:
+					new_state.pof_states[target] = Unit.POF_RECEIVE_STATE.TRIGGERED
+		
 		for key in effects.keys():
 			match key:
 				SkillInfo.EffectType.DAMAGE:
@@ -276,7 +287,7 @@ func simulate_action(state: GameState, unit: Unit, target_cell: Vector2i, action
 					var healing = estimate_damage(unit, skill, effects[key])
 					for healed in new_state.position.keys():
 						if affected_area.has(new_state.position[healed]):
-							new_state.health[healed] += healing
+							new_state.health[healed] = min(new_state.health[healed] + healing, healed.max_health)
 				SkillInfo.EffectType.BUFF, SkillInfo.EffectType.DEBUFF:
 					for buffed in new_state.position.keys():
 						if affected_area.has(new_state.position[buffed]):
@@ -334,6 +345,7 @@ func evaluate_state(state: GameState) -> int:
 	var buff_score = 0
 	var status_score = 0
 	var token_score = 0
+	var pof_score = 0
 	var score = 0
 	
 	for unit in state.position.keys():
@@ -344,8 +356,8 @@ func evaluate_state(state: GameState) -> int:
 		var enemy := get_closest_enemy(unit)
 		var distance_score = 0
 		if is_instance_valid(enemy):
-			# encourages unit to move close to enemies if have the attack token
-			if unit.actions_avail.has(Unit.Action.ATTACK):
+			# encourages unit to move close to enemies if have the attack token OR if they have damage reduction
+			if unit.actions_avail.has(Unit.Action.ATTACK) or unit.damage_reduction > 0:
 				distance_score = (unit.cell - enemy.cell).length() - (state.position[unit] - enemy.cell).length()*2
 			# else if the unit health is too low and no attack token, encourage them to move away
 			elif state.health[unit] <= unit.max_health / 3 and not unit.actions_avail.has(Unit.Action.ATTACK):
@@ -362,6 +374,8 @@ func evaluate_state(state: GameState) -> int:
 				dist_score += distance_score
 		
 		# HP related score
+		const LOW_HEALTH_BONUS = 50
+		var enemy_damage_map := {}
 		if enemy_container.units.has(unit):
 			# encourages dealing the killing blow
 			if state.health[unit] <= 0:
@@ -467,9 +481,18 @@ func evaluate_state(state: GameState) -> int:
 		if enemy_container.units.has(unit):
 			unit_token_score = -unit_token_score
 		token_score += unit_token_score
+		
+	## POF related score
+	const READY_BONUS = 5
+	const TRIGGERED_BONUS = 20
+	for unit in state.pof_states.keys():
+		if state.pof_states[unit] == Unit.POF_RECEIVE_STATE.READY:
+			pof_score += READY_BONUS
+		elif state.pof_states[unit] == Unit.POF_RECEIVE_STATE.TRIGGERED:
+			pof_score += TRIGGERED_BONUS
 	
-	score = dist_score + damage_score + tile_score + buff_score + status_score + token_score
-	#print("final score is %d, with distance: %d, damage: %d, tile: %d, buff: %d, status: %d" %[score, dist_score, damage_score, tile_score, buff_score, status_score])
+	score = dist_score + damage_score + tile_score + buff_score + status_score + token_score + pof_score
+	#print("final score is %d, with distance: %d, damage: %d, tile: %d, buff: %d, status: %d, pof: %d" %[score, dist_score, damage_score, tile_score, buff_score, status_score, pof_score])
 	return score
 
 ## NPC movement and action logic; assumes that [member current_unit] is not [code]null[/code]

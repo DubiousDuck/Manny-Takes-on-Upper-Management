@@ -171,6 +171,9 @@ var in_pof: bool = false:
 		in_pof = new_state
 		toggle_background_aura(in_pof)
 
+enum POF_RECEIVE_STATE {NONE, READY, TRIGGERED}
+var pof_receive_state := POF_RECEIVE_STATE.NONE
+
 func _ready():
 	pass
 	
@@ -519,12 +522,15 @@ func toggle_outline(state: bool):
 func set_pof_icon_state(state: String):
 	match state:
 		"can_trigger":
+			pof_receive_state = POF_RECEIVE_STATE.READY
 			pof_icon.show()
 			pof_icon.find_child("AnimationPlayer").play("target")
 		"already_triggered":
+			pof_receive_state = POF_RECEIVE_STATE.TRIGGERED
 			pof_icon.show()
 			pof_icon.find_child("AnimationPlayer").play("repeating_dizzy")
 		"none":
+			pof_receive_state = POF_RECEIVE_STATE.NONE
 			pof_icon.hide()
 		_:
 			pof_icon.hide()

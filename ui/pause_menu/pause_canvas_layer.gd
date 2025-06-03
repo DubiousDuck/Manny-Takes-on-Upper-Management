@@ -23,6 +23,7 @@ var logDisplayed:bool = false
 func _ready():
 	EventBus.connect("ui_element_started", other_ui_started)
 	EventBus.connect("ui_element_ended", other_ui_ended)
+	visible = true
 	$BattleMenuControl.visible = false
 	$LogControl.visible = false
 	dev_button.visible = Global.dev_mode

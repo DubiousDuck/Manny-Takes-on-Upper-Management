@@ -23,6 +23,7 @@ config/icon="uid://cm2oxxc6rsur6"
 
 EventBus="*res://singletons/event_bus.gd"
 Global="*res://singletons/global_script.gd"
+ToolFunc="*res://singletons/tool_func.gd"
 HexNavi="*res://addons/hex_grid_nav/hexagon_navigation.gd"
 AudioPreload="*res://singletons/audio_preload.tscn"
 GlobalUI="*res://singletons/ui_layer.tscn"
