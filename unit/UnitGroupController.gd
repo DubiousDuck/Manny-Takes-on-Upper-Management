@@ -233,8 +233,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						await a.finished
 					3: # attacker displace to target location (teleport-like effect)
 						var displace_origin: Vector2 = Vector2.ZERO
-						if affected_units.is_empty(): displace_origin = HexNavi.cell_to_global(targets.front())
-						else: displace_origin = affected_units.front().global_position
+						displace_origin = HexNavi.cell_to_global(targets.front())
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
 						a.tween_property(attacker, 'global_position', displace_origin, 0.4)
 						attacker.cell = HexNavi.global_to_cell(displace_origin)
