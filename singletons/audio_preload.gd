@@ -53,7 +53,9 @@ func _on_back_to_overworld():
 	var overworld_music: AudioStream = theme_info[0]
 	if !playing: play()
 	# pause for a bit if the stream or pitch_scale is different
-	if theme_info[1] != pitch_scale or stream != overworld_music:
+	if abs(theme_info[1] - pitch_scale) > 0.001 or stream != overworld_music:
+		#print("pitch was: %f but target pitch is: %f!" %[pitch_scale, theme_info[1]])
+		#print("music was %s but target music is %s!" %[stream, overworld_music])
 		stop()
 		await get_tree().create_timer(0.2).timeout
 		pitch_scale = theme_info[1]

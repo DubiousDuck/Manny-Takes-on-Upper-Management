@@ -5,21 +5,11 @@ class_name Overworld
 
 var follower_spawn_radius: float = 50
 
+@onready var main_interface = $MainInterface
+
 @export var followers = {}
 @export var tutorial_queue: Array[TutorialContent] = []
 @export var max_party_num: int = 3
-
-## Deprecated for now since we're respawning followers every time (not saving them into the packed scene)
-func _set_owner_recursive(node : Node, new_owner : Node):
-	if new_owner == null:
-		return
-		
-	var should_set := new_owner.is_ancestor_of(node)
-	
-	if should_set:
-		node.owner = new_owner
-	for c in node.get_children():
-		_set_owner_recursive(c, new_owner)
 
 func update_followers() -> void:
 	# Get a reference to the player node. Adjust the node path as needed.
@@ -90,13 +80,16 @@ func _ready():
 		HintManager.trigger_hint("recruit_token", "Don't forget to recruit a new Ally!", false)
 		
 	HintManager.pause_idle_timer()
-	
 
 func _on_save_pressed():
+	if !Global.can_actors_move:
+		return
 	AudioPreload.play_sfx("menu_click")
 	Global.save_screen()
 
 func _on_party_manage_pressed():
+	if !Global.can_actors_move:
+		return
 	AudioPreload.play_sfx("menu_click")
 	Global.set_last_overworld_scene(get_tree().current_scene)
 	Global.last_scene_type = "overworld"

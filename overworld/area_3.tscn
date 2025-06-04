@@ -274,16 +274,16 @@ trigger = 0
 frequency = 0
 metadata/_custom_type_script = "uid://dwofpqt7bueu1"
 
-[node name="InitialScene" parent="AreaFlags/IntroFlag" instance=ExtResource("17_ys45x")]
+[node name="Area3Intro" parent="AreaFlags/IntroFlag" instance=ExtResource("17_ys45x")]
 position = Vector2(561, 384)
 animations = Array[String](["intro_anim1", "intro_anim2", "Dialogue(multiple): Here we go...", "Dialogue(multiple): Exe-cute-ive Floor", "Dialogue(multiple): I'm coming Kelly!", "intro_anim_end"])
 one_shot = true
 
-[node name="CollisionShape2D" parent="AreaFlags/IntroFlag/InitialScene" index="0"]
+[node name="CollisionShape2D" parent="AreaFlags/IntroFlag/Area3Intro" index="0"]
 position = Vector2(64, 117.5)
 shape = SubResource("RectangleShape2D_hq1u4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/IntroFlag/InitialScene"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AreaFlags/IntroFlag/Area3Intro"]
 libraries = {
 &"": SubResource("AnimationLibrary_ba6uy"),
 &"Cutscenes": ExtResource("18_adp5u")
@@ -296,4 +296,4 @@ position = Vector2(2, 118)
 [connection signal="pressed" from="MainInterface/PartyManage" to="." method="_on_party_manage_pressed"]
 
 [editable path="NPC_Folder/CTO"]
-[editable path="AreaFlags/IntroFlag/InitialScene"]
+[editable path="AreaFlags/IntroFlag/Area3Intro"]

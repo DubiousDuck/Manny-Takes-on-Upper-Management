@@ -48,6 +48,6 @@ func post_cutscene_callback(cutscene_name: String):
 	match cutscene_name:
 		"InitialScene":
 			HintManager.trigger_hint("initial_cutscene", "Use WASD to move around!")
-		"Area2Intro":
+		"Area2Intro", "Area3Intro":
 			if Global.current_party.size() < Global.max_party_num and Global.max_party_num > 3:
 				HintManager.trigger_hint("more_party_num", "You can now have %d babies on your team at once.\n Remember to add them in Party Manage!" %Global.max_party_num, false)

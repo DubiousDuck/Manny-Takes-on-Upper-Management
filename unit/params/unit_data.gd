@@ -65,7 +65,7 @@ func _set_stat(delta: Array[float] = [4, 2, 2, 2, 0]):
 
 # level related
 func gain_exp(amount: int):
-	print("gaining %d exp... -- UnitData.gd" %amount)
+	#print("gaining %d exp... -- UnitData.gd" %amount)
 	exp += amount
 	while exp >= exp_to_next_level():
 		exp -= exp_to_next_level()
@@ -76,11 +76,11 @@ func exp_to_next_level() -> int:
 
 func level_up():
 	level += 1
-	print("Level up! The unit is now level %d." % level)
+	#print("Level up! The unit is now level %d." % level)
 	if stat_growth_table.has(level):
 		for stat_enum in stat_growth_table[level].keys():
 			stat[stat_enum] += stat_growth_table[level][stat_enum]
-			print("unit gained %d in %d!" %[stat_growth_table[level][stat_enum], stat_enum])
+			#print("unit gained %d in %d!" %[stat_growth_table[level][stat_enum], stat_enum])
 	if skill_table.has(level):
 		skill_list.append(skill_table[level])
 
