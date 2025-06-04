@@ -131,9 +131,6 @@ func update_status_effect():
 		
 		await active_status_effect.tick(self)
 		#print("Status tick finished, unit dead?", is_dead)
-		if active_status_effect.duration <= 0:
-			remove_status_effect()
-			#print("Status expired, unit still alive:", !is_dead)
 		status_updated.emit(!is_dead)
 	else:
 		set_status_effect_icon(false)
@@ -199,12 +196,8 @@ func load_unit_data():
 	_set_anim_lib()
 
 func _process(_delta):
-	unit_held.map(
-		func(unit):
-			if !unit:
-				return
-			unit.global_position = global_position + Vector2(0, -30)
-	)
+	for i in unit_held.size():
+		unit_held[i].global_position = global_position + Vector2(0, -30*(i+1))
 	
 	if has_temporary_buffs():
 		$Sprite2D/BuffParticles.emitting = true
@@ -600,3 +593,13 @@ func regain_health(amount: int, overheal: bool = false):
 	elif health + amount > max_health and !overheal:
 		health = max_health
 	else: health += amount
+
+func turn_end_actions():
+	# remove icon at the end of round
+	if active_status_effect and active_status_effect.duration <= 0:
+		remove_status_effect()
+		#print("Status expired, unit still alive:", !is_dead)
+	# set it back when unit modualte is dark gray
+	if modulate == Color.DARK_GRAY:
+		set_unit_modulate(Color.WHITE)
+	in_pof = false

@@ -198,7 +198,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						var a = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
 						affected_units.map(
 							func(unit : Unit): #TODO: Handle holding multiple units properly
-								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset), 0.3)
+								a.tween_property(unit, 'global_position', attacker.global_position + Vector2(0, v_offset*(attacker.unit_held.size()+1)), 0.3)
 								unit.cell = attacker.cell
 								unit.animation_state("thrown")
 								unit.is_held = true
@@ -207,16 +207,17 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						attacker.unit_held.append_array(affected_units)
 						attacker.actions_avail.append(Unit.Action.ATTACK) #give back attack token
 						
-					1: #displace linearly target location (assumes only one affected target) (throw)
-						var projectile = attacker.unit_held.pop_front()
-						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-						if affected_units.is_empty(): #if thrown at an empty cell
+					1: #displace linearly target location (throw)
+						var projectiles = attacker.unit_held
+						var a = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).set_parallel()
+						for projectile in projectiles:
 							a.tween_property(projectile, "global_position", HexNavi.cell_to_global(targets.front()), 0.3) 
-						else: a.tween_property(projectile, "global_position", affected_units.front().global_position, 0.3) 
 						await a.finished
-						projectile.is_held = false
-						projectile.animation_state("side_idle")
-						projectile.cell = HexNavi.global_to_cell(projectile.global_position)
+						for projectile in projectiles:
+							projectile.is_held = false
+							projectile.animation_state("side_idle")
+							projectile.cell = targets.front()
+						attacker.unit_held.clear()
 						#print("shooting complete")
 					2: #displace to target location (blackhole)
 						if affected_units.is_empty(): break
@@ -305,7 +306,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 				if effects[key] is StatusEffect:
 					for unit in affected_units:
 						unit.apply_status(effects[key])
-						move_suffix.append("applying" + effects[key].name)
+						move_suffix.append("applying " + effects[key].name)
 				elif effects[key] == null:
 					for unit in affected_units:
 						unit.remove_status_effect()
@@ -410,8 +411,8 @@ func _on_update_cell_status(stacking: bool): #scan all units and update cell col
 				continue
 			var displacement = 100/(occupied_cells[cell].size())
 			var num_stacked = 0
-			for unit in occupied_cells[cell]:
-				if(unit.unit_held.is_empty()):
+			for unit: Unit in occupied_cells[cell]:
+				if !unit.is_held:
 					num_stacked += 1
 					
 			var displace_tween = get_tree().create_tween().set_parallel()

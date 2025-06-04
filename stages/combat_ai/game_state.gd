@@ -34,4 +34,5 @@ func find_another_cell_of_effect(cell: Vector2i, effect: String):
 	for tile in cell_effects.keys():
 		if cell_effects.get(tile, "") == effect and tile != cell:
 			return tile
-	return Vector2i.MIN
+	# if no cell with the effect found, return original cell
+	return cell

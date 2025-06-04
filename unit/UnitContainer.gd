@@ -986,10 +986,7 @@ func get_usable_skills(unit: Unit):
 func all_unit_moved_func():
 	await get_tree().create_timer(0.25).timeout
 	for unit in units:
-		# set it back when unit modualte is dark gray
-		if unit.modulate == Color.DARK_GRAY:
-			unit.set_unit_modulate(Color.WHITE)
-		unit.in_pof = false
+		unit.turn_end_actions()
 	all_units_moved.emit()
 
 func _on_cancel_button_pressed():
