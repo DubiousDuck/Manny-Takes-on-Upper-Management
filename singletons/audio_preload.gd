@@ -2,6 +2,7 @@ extends AudioStreamPlayer
 
 const _BATTLE_1_MUSIC = preload("res://assets/music/HR Level 1.ogg")
 const _BATTLE_2_MUSIC = preload("res://assets/music/HR Level 2.ogg")
+const _BATTLE_3_MUSIC = preload("res://assets/music/HR Level 3.ogg")
 const _OW_ONE_MUSIC = preload("res://assets/music/HR Overworld 1.ogg")
 
 @onready var sfx_player = $SfxPlayer
@@ -31,9 +32,9 @@ var battle_theme: Dictionary = {
 	"level2-2": _BATTLE_2_MUSIC,
 	"level2-3": _BATTLE_2_MUSIC,
 	"level2-4": _BATTLE_2_MUSIC,
-	"level3-1": _BATTLE_2_MUSIC,
-	"level3-2": _BATTLE_2_MUSIC,
-	"level3-3": _BATTLE_2_MUSIC
+	"level3-1": _BATTLE_3_MUSIC,
+	"level3-2": _BATTLE_3_MUSIC,
+	"level3-3": _BATTLE_3_MUSIC
 }
 
 func _ready():
