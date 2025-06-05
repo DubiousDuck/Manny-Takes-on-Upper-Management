@@ -1,0 +1,192 @@
+[gd_scene load_steps=14 format=3 uid="uid://bnkh5gmg470iw"]
+
+[ext_resource type="PackedScene" uid="uid://di0r5t51dnika" path="res://ui/cutscene/cutscene_slides.tscn" id="1_17g1k"]
+[ext_resource type="PackedScene" uid="uid://cd4g68eyparaw" path="res://ui/cutscene/cutscene_elements/cutscene_element.tscn" id="2_u2gny"]
+[ext_resource type="Texture2D" uid="uid://cavsdl0b148f1" path="res://assets/cutscenes/ending/ending_1-1.png" id="3_7qrrg"]
+[ext_resource type="Texture2D" uid="uid://cmxcl2t2mqd3o" path="res://assets/cutscenes/ending/ending_1-2.png" id="4_7qrrg"]
+[ext_resource type="Texture2D" uid="uid://b6ohin8gnjrq7" path="res://assets/unit_sprites/manny/Manny_Walk_Down.png" id="5_0t6k4"]
+[ext_resource type="Texture2D" uid="uid://bai4q68v0wjx2" path="res://assets/unit_sprites/fighter/Fighter_Walk_Down.png" id="6_fxbav"]
+[ext_resource type="Texture2D" uid="uid://cu03j0tc1ewxi" path="res://assets/unit_sprites/ranger/Ranger_Walk_Down.png" id="7_gwrsx"]
+[ext_resource type="Texture2D" uid="uid://daxffipjo3d1v" path="res://assets/unit_sprites/tank/Tank_Walk_Down.png" id="8_1fn60"]
+[ext_resource type="Texture2D" uid="uid://bmt73srghqhf1" path="res://assets/unit_sprites/mage/Mage_Walk_Down.png" id="9_qo3xc"]
+[ext_resource type="Texture2D" uid="uid://c7jlk70pfm0t7" path="res://assets/unit_sprites/healer/Healer_Walk_Down.png" id="10_miboy"]
+
+[sub_resource type="Animation" id="Animation_0t6k4"]
+resource_name = "walking_loop"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Manny:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fighter:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ranger:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tank:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mage:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Healer:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_fxbav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Manny:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwrsx"]
+_data = {
+&"RESET": SubResource("Animation_fxbav"),
+&"walking_loop": SubResource("Animation_0t6k4")
+}
+
+[node name="EndingSlide" node_paths=PackedStringArray("cutscene_elements") instance=ExtResource("1_17g1k")]
+level_to_go = "uid://b6pye0w0cqmw7"
+cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3")]
+
+[node name="CutsceneElement" parent="." index="1" instance=ExtResource("2_u2gny")]
+layout_mode = 1
+texture = ExtResource("3_7qrrg")
+fade_in_click = 1
+fade_out_click = 4
+
+[node name="CutsceneElement2" parent="." index="2" instance=ExtResource("2_u2gny")]
+layout_mode = 1
+texture = ExtResource("4_7qrrg")
+fade_in_click = 2
+fade_out_click = 4
+
+[node name="CutsceneElement3" parent="." index="3" instance=ExtResource("2_u2gny")]
+layout_mode = 1
+fade_in_click = 3
+fade_out_click = 4
+
+[node name="Manny" type="Sprite2D" parent="CutsceneElement3" index="0"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(351, 421)
+scale = Vector2(8, 8)
+texture = ExtResource("5_0t6k4")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 0, 72, 26)
+
+[node name="Fighter" type="Sprite2D" parent="CutsceneElement3" index="1"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(450, 431)
+scale = Vector2(6, 6)
+texture = ExtResource("6_fxbav")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 0, 72, 26)
+
+[node name="Ranger" type="Sprite2D" parent="CutsceneElement3" index="2"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(534, 421)
+scale = Vector2(6, 6)
+texture = ExtResource("7_gwrsx")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 21, 64, 21)
+
+[node name="Tank" type="Sprite2D" parent="CutsceneElement3" index="3"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(618, 436)
+scale = Vector2(6, 6)
+texture = ExtResource("8_1fn60")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 0, 72, 26)
+
+[node name="Mage" type="Sprite2D" parent="CutsceneElement3" index="4"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(702, 433)
+scale = Vector2(6, 6)
+texture = ExtResource("9_qo3xc")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 0, 72, 26)
+
+[node name="Healer" type="Sprite2D" parent="CutsceneElement3" index="5"]
+modulate = Color(1, 1, 1, 0.541176)
+position = Vector2(782, 436)
+scale = Vector2(6, 6)
+texture = ExtResource("10_miboy")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2, 0, 72, 26)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CutsceneElement3" index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_gwrsx")
+}
+autoplay = "walking_loop"
+speed_scale = 0.5

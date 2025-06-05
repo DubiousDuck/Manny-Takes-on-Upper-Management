@@ -16,94 +16,72 @@
 
 [node name="IntroSlides" node_paths=PackedStringArray("cutscene_elements") instance=ExtResource("1_21wo8")]
 level_to_go = "uid://c8qibn8b170i0"
-cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3"), NodePath("CutsceneElement4"), NodePath("CutsceneElement5"), NodePath("CutsceneElement5"), NodePath("CutsceneElement6"), NodePath("CutsceneElement7"), NodePath("CutsceneElement8"), NodePath("CutsceneElement9"), NodePath("CutsceneElement10"), NodePath("CutsceneElement11")]
+cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3"), NodePath("CutsceneElement4"), NodePath("CutsceneElement5"), NodePath("CutsceneElement6"), NodePath("CutsceneElement7"), NodePath("CutsceneElement8"), NodePath("CutsceneElement9"), NodePath("CutsceneElement10"), NodePath("CutsceneElement11")]
 
-[node name="ColorRect" type="ColorRect" parent="." index="0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.203922, 0.14902, 0.137255, 1)
-
-[node name="TextureRect" parent="." index="1"]
-expand_mode = 1
-
-[node name="CutsceneElement" parent="." index="2" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement" parent="." index="1" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("3_u4dme")
 fade_in_click = 1
 fade_out_click = 2
 
-[node name="CutsceneElement2" parent="." index="3" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement2" parent="." index="2" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("4_u4dme")
 fade_in_click = 2
 fade_out_click = 4
-duration = 0.8
 
-[node name="CutsceneElement3" parent="." index="4" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement3" parent="." index="3" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("5_hr3pq")
 fade_in_click = 3
 fade_out_click = 4
-duration = 0.8
 
-[node name="CutsceneElement4" parent="." index="5" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement4" parent="." index="4" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("6_ox2am")
 fade_in_click = 4
 fade_out_click = 6
-duration = 0.8
 
-[node name="CutsceneElement5" parent="." index="6" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement5" parent="." index="5" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("7_1mera")
 fade_in_click = 5
 fade_out_click = 6
-duration = 0.8
 
-[node name="CutsceneElement6" parent="." index="7" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement6" parent="." index="6" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("8_i7gx2")
 fade_in_click = 6
 fade_out_click = 10
-duration = 0.8
 
-[node name="CutsceneElement7" parent="." index="8" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement7" parent="." index="7" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("9_buu7i")
 fade_in_click = 7
 fade_out_click = 10
-duration = 0.8
 
-[node name="CutsceneElement8" parent="." index="9" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement8" parent="." index="8" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("10_3fofe")
 fade_in_click = 8
 fade_out_click = 10
-duration = 0.8
 
-[node name="CutsceneElement9" parent="." index="10" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement9" parent="." index="9" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("11_p4s8l")
 fade_in_click = 9
 fade_out_click = 10
-duration = 0.8
 
-[node name="CutsceneElement10" parent="." index="11" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement10" parent="." index="10" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 texture = ExtResource("12_50awr")
 fade_in_click = 10
 fade_out_click = 12
-duration = 0.8
 
-[node name="CutsceneElement11" parent="." index="12" instance=ExtResource("2_y7xuj")]
+[node name="CutsceneElement11" parent="." index="11" instance=ExtResource("2_y7xuj")]
 layout_mode = 1
 offset_top = 76.0
 offset_bottom = 76.0
 texture = ExtResource("13_buu7i")
 fade_in_click = 11
 fade_out_click = 12
-duration = 0.8

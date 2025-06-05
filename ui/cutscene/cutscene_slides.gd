@@ -7,7 +7,6 @@ var current_page: int = 0
 var is_playing: bool = false
 
 @export_file("*.tscn") var level_to_go: String
-@export var textures: Array[Texture2D]
 @export var cutscene_elements: Array[CutsceneElement] = []
 
 func _ready():
@@ -20,7 +19,7 @@ func _input(event):
 		if is_playing:
 			return
 		current_page += 1
-		if current_page < texture_len:
+		if current_page <= texture_len:
 			advance_cutscene()
 		else:
 			Global.scene_transition(level_to_go)
