@@ -1,20 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0s8fpct1qa0"]
+[gd_scene load_steps=14 format=3 uid="uid://b0s8fpct1qa0"]
 
 [ext_resource type="PackedScene" uid="uid://di0r5t51dnika" path="res://ui/cutscene/cutscene_slides.tscn" id="1_21wo8"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 1.png" id="2_cjuxj"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 2.png" id="3_i7gx2"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 3.png" id="4_buu7i"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 4.png" id="5_3fofe"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 5.png" id="6_p4s8l"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 6.png" id="7_50awr"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 7.png" id="8_3vxjc"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 8.png" id="9_ylruy"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 9.png" id="10_uclx1"]
-[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 10.png" id="11_5tkee"]
+[ext_resource type="PackedScene" uid="uid://cd4g68eyparaw" path="res://ui/cutscene/cutscene_elements/cutscene_element.tscn" id="2_y7xuj"]
+[ext_resource type="Texture2D" uid="uid://c8jcixqffmv4y" path="res://assets/cutscenes/intro/intro_1.png" id="3_u4dme"]
+[ext_resource type="Texture2D" uid="uid://bhngfbaas3ow6" path="res://assets/cutscenes/intro/intro_2-1.png" id="4_u4dme"]
+[ext_resource type="Texture2D" uid="uid://b4ncifnulvxay" path="res://assets/cutscenes/intro/intro_2-2.png" id="5_hr3pq"]
+[ext_resource type="Texture2D" uid="uid://2qpa88nkxebg" path="res://assets/cutscenes/intro/intro_3-1.png" id="6_ox2am"]
+[ext_resource type="Texture2D" uid="uid://egqlji6xuehq" path="res://assets/cutscenes/intro/intro_3-2.png" id="7_1mera"]
+[ext_resource type="Texture2D" uid="uid://cnqnp5r5881ds" path="res://assets/cutscenes/intro/intro_4-1.png" id="8_i7gx2"]
+[ext_resource type="Texture2D" uid="uid://dg2e8d1c8405j" path="res://assets/cutscenes/intro/intro_4-2.png" id="9_buu7i"]
+[ext_resource type="Texture2D" uid="uid://b26ecfcppt25q" path="res://assets/cutscenes/intro/intro_4-3.png" id="10_3fofe"]
+[ext_resource type="Texture2D" uid="uid://cgvha5f2r5rdi" path="res://assets/cutscenes/intro/intro_4-4.png" id="11_p4s8l"]
+[ext_resource type="Texture2D" uid="uid://y84c1ek1fj6c" path="res://assets/cutscenes/intro/intro_5.png" id="12_50awr"]
+[ext_resource type="Texture2D" uid="uid://dy7vcj3fopo5l" path="res://assets/title/MUTM Title Alt.png" id="13_buu7i"]
 
-[node name="IntroSlides" instance=ExtResource("1_21wo8")]
+[node name="IntroSlides" node_paths=PackedStringArray("cutscene_elements") instance=ExtResource("1_21wo8")]
 level_to_go = "uid://c8qibn8b170i0"
-textures = Array[Texture2D]([ExtResource("2_cjuxj"), ExtResource("3_i7gx2"), ExtResource("4_buu7i"), ExtResource("5_3fofe"), ExtResource("6_p4s8l"), ExtResource("7_50awr"), ExtResource("8_3vxjc"), ExtResource("9_ylruy"), ExtResource("10_uclx1"), ExtResource("11_5tkee")])
+cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3"), NodePath("CutsceneElement4"), NodePath("CutsceneElement5"), NodePath("CutsceneElement5"), NodePath("CutsceneElement6"), NodePath("CutsceneElement7"), NodePath("CutsceneElement8"), NodePath("CutsceneElement9"), NodePath("CutsceneElement10"), NodePath("CutsceneElement11")]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 layout_mode = 1
@@ -26,5 +28,82 @@ grow_vertical = 2
 color = Color(0.203922, 0.14902, 0.137255, 1)
 
 [node name="TextureRect" parent="." index="1"]
-texture = ExtResource("2_cjuxj")
 expand_mode = 1
+
+[node name="CutsceneElement" parent="." index="2" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("3_u4dme")
+fade_in_click = 1
+fade_out_click = 2
+
+[node name="CutsceneElement2" parent="." index="3" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("4_u4dme")
+fade_in_click = 2
+fade_out_click = 4
+duration = 0.8
+
+[node name="CutsceneElement3" parent="." index="4" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("5_hr3pq")
+fade_in_click = 3
+fade_out_click = 4
+duration = 0.8
+
+[node name="CutsceneElement4" parent="." index="5" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("6_ox2am")
+fade_in_click = 4
+fade_out_click = 6
+duration = 0.8
+
+[node name="CutsceneElement5" parent="." index="6" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("7_1mera")
+fade_in_click = 5
+fade_out_click = 6
+duration = 0.8
+
+[node name="CutsceneElement6" parent="." index="7" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("8_i7gx2")
+fade_in_click = 6
+fade_out_click = 10
+duration = 0.8
+
+[node name="CutsceneElement7" parent="." index="8" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("9_buu7i")
+fade_in_click = 7
+fade_out_click = 10
+duration = 0.8
+
+[node name="CutsceneElement8" parent="." index="9" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("10_3fofe")
+fade_in_click = 8
+fade_out_click = 10
+duration = 0.8
+
+[node name="CutsceneElement9" parent="." index="10" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("11_p4s8l")
+fade_in_click = 9
+fade_out_click = 10
+duration = 0.8
+
+[node name="CutsceneElement10" parent="." index="11" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+texture = ExtResource("12_50awr")
+fade_in_click = 10
+fade_out_click = 12
+duration = 0.8
+
+[node name="CutsceneElement11" parent="." index="12" instance=ExtResource("2_y7xuj")]
+layout_mode = 1
+offset_top = 76.0
+offset_bottom = 76.0
+texture = ExtResource("13_buu7i")
+fade_in_click = 11
+fade_out_click = 12
+duration = 0.8

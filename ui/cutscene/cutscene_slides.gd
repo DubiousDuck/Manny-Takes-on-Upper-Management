@@ -8,11 +8,12 @@ var is_playing: bool = false
 
 @export_file("*.tscn") var level_to_go: String
 @export var textures: Array[Texture2D]
+@export var cutscene_elements: Array[CutsceneElement] = []
 
 func _ready():
-	if !textures.is_empty():
-		$TextureRect.texture = textures[0]
-		texture_len = textures.size()
+	for element in cutscene_elements:
+		element.hide()
+	texture_len = cutscene_elements.size()
 
 func _input(event):
 	if Input.is_action_just_pressed("LMB") or Input.is_action_just_pressed("ui_accept"):
@@ -20,11 +21,23 @@ func _input(event):
 			return
 		current_page += 1
 		if current_page < texture_len:
-			var a = get_tree().create_tween()
-			a.tween_property($TextureRect, "modulate:a", 0.1, 0.5)
-			await a.finished
-			$TextureRect.texture = textures[current_page]
-			a.tween_property($TextureRect, "modulate:a", 1, 0.5)
-			await a.finished
+			advance_cutscene()
 		else:
 			Global.scene_transition(level_to_go)
+
+func advance_cutscene():
+	for element in cutscene_elements:
+		if current_page == element.fade_in_click:
+			#print("element %s is being fade in!" %element.name)
+			fade_node(element, true, element.duration)
+		elif current_page == element.fade_out_click:
+			fade_node(element, false, element.duration)
+
+func fade_node(node: CutsceneElement, fade_in: bool, duration: float):
+	var tween = get_tree().create_tween()
+	node.visible = true
+	node.modulate.a = 0 if fade_in else 1
+	tween.tween_property(node, "modulate:a", 1.0 if fade_in else 0.0, duration)
+
+	if !fade_in:
+		tween.tween_callback(Callable(node, "hide"))  # Optional: hide after fade-out
