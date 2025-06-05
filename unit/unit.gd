@@ -603,3 +603,20 @@ func turn_end_actions():
 	if modulate == Color.DARK_GRAY:
 		set_unit_modulate(Color.WHITE)
 	in_pof = false
+
+var last_anim := "front_idle"
+func set_targetted_anim(state: bool):
+	if state:
+		if pof_receive_state == POF_RECEIVE_STATE.READY:
+			var current = $AnimationPlayer.current_animation
+			if current.begins_with(anim_lib + "/"):
+				last_anim = current.substr(anim_lib.length() + 1)  # +1 for the slash
+			else:
+				last_anim = "front_idle"  # fallback if format is unexpected
+			animation_state("no_plz")
+	else:
+		# this entails they have been hurt before
+		if pof_receive_state != POF_RECEIVE_STATE.NONE:
+			animation_state("hurt")
+		else:
+			animation_state(last_anim)

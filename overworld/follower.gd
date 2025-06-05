@@ -222,7 +222,7 @@ func set_anim_lib():
 	if unit_data:
 		match unit_data.unit_class:
 			"Healer":
-				anim_lib = "Healer_ow"
+				anim_lib = "Healer"
 			"Fighter":
 				anim_lib = "Fighter"
 			"Ranger":

@@ -30,6 +30,8 @@ var current_unit: Unit
 var skill_chosen: SkillInfo = null
 var current_actionnable_cells: Dictionary = {}
 var in_battle: bool = false
+## stores unit in skill range to show animations
+var targetted_units: Array[Unit] = []
 
 #flags
 var is_waiting_unit_selection: bool = true
@@ -166,6 +168,11 @@ func deselect_current_unit():
 	EventBus.emit_signal("remove_cell_highlights", name)
 	HintManager.hide_hint("")
 	unit_moving = false
+	
+	# set targetted units anim back to normal
+	for unit in targetted_units:
+		unit.set_targetted_anim(false)
+	targetted_units.clear()
 	disconnect_current_unit_signals()
 
 func connect_current_unit_signals():
@@ -810,9 +817,17 @@ func highlight_handle():
 				#var all_targets: Array[Vector2i] = targets #this shows the range instead of valid targets
 				if all_targets.size() == 0:
 					return
+				else:
+					# set the no plz animation for targetted enemies
+					for unit in enemy_container.units:
+						if unit.cell in all_targets:
+							targetted_units.append(unit)
+							unit.set_targetted_anim(true)
+						
 				if abs(skill_chosen.area) > 0:
 					EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_PREVIEW_HIGHLIGHT, name)
-				else: EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_HIGHLIGHT, name)
+				else:
+					EventBus.emit_signal("show_cell_highlights", all_targets, CellHighlight.ATTACK_HIGHLIGHT, name)
 			_:
 				pass
 
