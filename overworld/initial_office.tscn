@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://c6ekt5w02g2i4"]
+[gd_scene load_steps=21 format=4 uid="uid://c6ekt5w02g2i4"]
 
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="1_hq18a"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="2_3220k"]
 [ext_resource type="TileSet" uid="uid://cnbkpyve6c2r8" path="res://map/overworld1_walls_tres.tres" id="3_25nhm"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_hetpg"]
-[ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="5_fffww"]
+[ext_resource type="PackedScene" uid="uid://p2mevrl4h30m" path="res://overworld/NPC_actor.tscn" id="5_fffww"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="5_p1o8j"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="6_yuaqs"]
 [ext_resource type="Texture2D" uid="uid://cvvw8m5rolqn5" path="res://assets/overworld/Tables - 2.png" id="8_byxol"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bhorvu87w405c" path="res://assets/overworld/Tables - 3.png" id="10_mi3xb"]
 [ext_resource type="Texture2D" uid="uid://hjfma12vsuo4" path="res://assets/overworld/Tables - 5.png" id="11_wayp4"]
 [ext_resource type="PackedScene" uid="uid://dldkxju4niopg" path="res://overworld/interactables/elevator.tscn" id="12_31tqa"]
+[ext_resource type="Texture2D" uid="uid://c8jcixqffmv4y" path="res://assets/cutscenes/intro/intro_1.png" id="13_byxol"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25nhm"]
 texture = ExtResource("1_hq18a")
@@ -68,24 +69,24 @@ sources/2 = SubResource("TileSetAtlasSource_hetpg")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4oplm"]
 size = Vector2(361, 386)
 
-[sub_resource type="Animation" id="Animation_hq1u4"]
+[sub_resource type="Animation" id="Animation_byxol"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../../Player:position")
+tracks/0/path = NodePath("../ColorRect2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(626, 464)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba6uy"]
 _data = {
-&"RESET": SubResource("Animation_hq1u4")
+&"RESET": SubResource("Animation_byxol")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bbcj"]
@@ -125,11 +126,11 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(80, 235)
 scale = Vector2(0.5, 0.5)
 
-[node name="actor1" parent="NPCfolder" instance=ExtResource("5_fffww")]
+[node name="Actor1" parent="NPCfolder" instance=ExtResource("5_fffww")]
 position = Vector2(80, 135)
 scale = Vector2(0.5, 0.5)
 
-[node name="actor2" parent="NPCfolder" instance=ExtResource("5_fffww")]
+[node name="Actor2" parent="NPCfolder" instance=ExtResource("5_fffww")]
 position = Vector2(274, 135)
 scale = Vector2(0.5, 0.5)
 
@@ -141,6 +142,7 @@ position_smoothing_enabled = true
 
 [node name="Cutscene" parent="." instance=ExtResource("5_p1o8j")]
 position = Vector2(122, 124)
+animations = Array[String](["cutscene_intro_start", "cutscene_intro_GM_1", "cutscene_intro_GM_2", "cutscene_intro_kelly_1", "cutscene_intro_text_1"])
 one_shot = true
 
 [node name="CollisionShape2D" parent="Cutscene" index="0"]
@@ -211,5 +213,28 @@ position = Vector2(177, -30)
 scene_to_go = "uid://b142f2nvd1bmw"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
 interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -138.0
+offset_right = 630.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.14902, 0.137255, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+offset_left = 92.0
+offset_top = 71.0
+offset_right = 769.0
+offset_bottom = 452.0
+texture = ExtResource("13_byxol")
+expand_mode = 1
 
 [editable path="Cutscene"]

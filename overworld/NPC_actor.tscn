@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://p2mevrl4h30m"]
 
 [ext_resource type="Script" uid="uid://icsj8hid8e18" path="res://overworld/actor.gd" id="1_82t73"]
-[ext_resource type="Texture2D" uid="uid://bnax5rw1xj36g" path="res://assets/unit_sprites/solliciter/front_idle.png" id="2_82t73"]
+[ext_resource type="Texture2D" uid="uid://d1vhh852154id" path="res://assets/unit_sprites/solliciter/side_walk.png" id="2_82t73"]
 [ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_ui16i"]
-[ext_resource type="AnimationLibrary" uid="uid://s3xw8d5uc4r0" path="res://overworld/ow_sollicitor.res" id="4_ui16i"]
+[ext_resource type="AnimationLibrary" uid="uid://cmjga6iienfc4" path="res://overworld/actor_anim.res" id="3_vsl7b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
 radius = 15.0
@@ -26,8 +26,8 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"ow_anim": ExtResource("3_ui16i"),
-&"ow_sollicitor": ExtResource("4_ui16i")
+&"actor_anim": ExtResource("3_vsl7b"),
+&"ow_anim": ExtResource("3_ui16i")
 }
 autoplay = "overworld_anim/holding_empty"
 

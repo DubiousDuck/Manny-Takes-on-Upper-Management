@@ -1,5 +1,7 @@
 class_name Actor extends CharacterBody2D
 
+const FOOTSTEP_SFX = preload("res://assets/sfx/footstep_sfx.mp3")
+
 func start_cutscene():
 	Global.cutscene_start()
 
@@ -20,3 +22,17 @@ func _process(delta):
 		get_node("CollisionShape2D").disabled = true
 	else:
 		get_node("CollisionShape2D").disabled = false
+
+func footstep_sfx_handle(state: bool):
+	if state:
+		footstep_sfx_play()
+	else:
+		$SfxPlayer.stop()
+
+func footstep_sfx_play():
+	if $SfxPlayer.stream != FOOTSTEP_SFX or !$SfxPlayer.playing:
+		$SfxPlayer.stream = FOOTSTEP_SFX
+		$SfxPlayer.play()
+
+func sfx_stop():
+	$SfxPlayer.stop()
