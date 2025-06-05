@@ -39,6 +39,7 @@ var is_waiting_unit_selection: bool = true
 var unit_moving: bool = false
 var in_progress: bool = false
 var is_aoe_skill: bool = false
+var turn_ended: bool = false
 
 func _ready() -> void:
 	EventBus.connect("pass_turn", _on_turn_passed)
@@ -101,6 +102,7 @@ func init():
 func round_start(): # TODO: need to wait for unit init complete
 	in_battle = true
 	
+	turn_ended = false
 	var init_waits = []
 	for unit in units:
 		print("initializing " + str(unit.unit_data.unit_class))
@@ -963,14 +965,15 @@ func unit_wait(): #special case for when WAIT is chosen
 		all_unit_moved_func()
 
 func _on_turn_passed():
-	if !is_player_controlled:
+	if !is_player_controlled or in_progress:
 		return
 	#Remove all tokens
-	units.map(
-		func(unit: Unit):
-			unit.actions_avail.clear()
-	)
-	all_unit_moved_func()
+	if get_available_unit_count() > 0:
+		units.map(
+			func(unit: Unit):
+				unit.actions_avail.clear()
+		)
+		all_unit_moved_func()
 	
 	print("passing turn")
 
@@ -999,10 +1002,13 @@ func get_usable_skills(unit: Unit):
 	return usable_skills
 
 func all_unit_moved_func():
+	if turn_ended: # prevents this func being called twice
+		return
 	await get_tree().create_timer(0.25).timeout
 	for unit in units:
 		unit.turn_end_actions()
 	all_units_moved.emit()
+	turn_ended = true
 
 func _on_cancel_button_pressed():
 	deselect_current_unit()
