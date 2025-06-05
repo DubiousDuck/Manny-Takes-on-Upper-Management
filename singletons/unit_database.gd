@@ -1,29 +1,21 @@
 extends Node
 
-const UNIT_DATA_FOLDER := "res://unit/params/"
+const UNIT_RESOURCE_PATHS = preload("res://unit/unit_resource_list.gd").UNIT_RESOURCE_PATHS
+
 # Maps unit_class name (e.g., "Fighter") to the base UnitData resource
 var unit_templates: Dictionary = {}
 
 func _ready():
-	load_unit_from_folder(UNIT_DATA_FOLDER)
+	load_units_from_list()
 	print("UnitDatabase loaded with %d unit classes" % unit_templates.size())
 
-func load_unit_from_folder(path: String):
-	var dir := DirAccess.open(path)
-	if dir == null:
-		push_error("UnitDatabase: Could not open folder %s" % path)
-		return
-
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tres"):
-			var file_path = path + file_name
-			var unit_data = load(file_path)
-			if unit_data != null and unit_data is UnitData:
-				unit_templates[unit_data.unit_class] = unit_data
-		file_name = dir.get_next()
-	dir.list_dir_end()
+func load_units_from_list():
+	for path in UNIT_RESOURCE_PATHS:
+		var unit_data = ResourceLoader.load(path)
+		if unit_data != null and unit_data is UnitData:
+			unit_templates[unit_data.unit_class] = unit_data
+		else:
+			push_error("UnitDatabase: Failed to load or cast unit at %s" % path)
 
 # Returns a deep copy of the base UnitData for this class
 func get_by_class(unit_class: String) -> UnitData:
