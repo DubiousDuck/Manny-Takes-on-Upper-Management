@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://vjjenmk6qvnq"]
 
 [ext_resource type="Script" uid="uid://bohejktnt7ory" path="res://overworld/player.gd" id="1_1evci"]
-[ext_resource type="Texture2D" uid="uid://3colr5os47jl" path="res://assets/unit_sprites/base/side_idle.png" id="2_aqryr"]
-[ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_408ea"]
+[ext_resource type="Texture2D" uid="uid://cpjdfajk2uknx" path="res://assets/unit_sprites/manny/Manny_Side_Idle.png" id="2_aqryr"]
+[ext_resource type="AnimationLibrary" uid="uid://bgp6kbleshd84" path="res://unit/Manny.res" id="3_2wtoj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
 radius = 15.0
@@ -22,10 +22,11 @@ position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(3, 3)
 texture = ExtResource("2_aqryr")
 hframes = 4
+region_rect = Rect2(3, 3, 69, 19)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"ow_anim": ExtResource("3_408ea")
+&"ow_anim": ExtResource("3_2wtoj")
 }
 autoplay = "overworld_anim/holding_empty"
 

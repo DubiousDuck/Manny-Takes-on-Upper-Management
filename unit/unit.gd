@@ -498,6 +498,8 @@ func _set_anim_lib():
 				anim_lib = "Ranger"
 			"Tank":
 				anim_lib = "Tank"
+			"Protagonist":
+				anim_lib = "Manny"
 			_:
 				anim_lib = "unit_anim"
 
