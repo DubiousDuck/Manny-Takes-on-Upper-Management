@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c6wbj4hdb1wkt"]
+[gd_scene load_steps=12 format=4 uid="uid://b51oygbxpvlc3"]
 
 [ext_resource type="Script" uid="uid://cqhplba6787ys" path="res://overworld/cutscene_offices.gd" id="1_cixrw"]
 [ext_resource type="TileSet" uid="uid://bcbtoiah135kj" path="res://map/area_3_floor_tiles.tres" id="1_gnnxw"]
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(177, 265)]
+"values": [Vector2(177, 311)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba6uy"]
@@ -46,7 +46,7 @@ _data = {
 
 [node name="EndingOffice" type="Node2D"]
 script = ExtResource("1_cixrw")
-scene_to_go = "uid://ddwdlmt5eolvp"
+scene_to_go = "uid://bnkh5gmg470iw"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -1
@@ -58,7 +58,7 @@ tile_map_data = PackedByteArray("AAAAAP7/AAAEAAAAAAAAAP//AAAEAAEAAAABAP7/AAAFAAA
 tile_set = ExtResource("2_cixrw")
 
 [node name="Player" parent="." instance=ExtResource("4_pm4c5")]
-position = Vector2(177, 265)
+position = Vector2(177, 311)
 scale = Vector2(0.5, 0.5)
 
 [node name="NPCfolder" type="Node2D" parent="."]
@@ -90,9 +90,9 @@ libraries = {
 
 [node name="Elevator" parent="." instance=ExtResource("12_7p8cx")]
 position = Vector2(177, -30)
-scene_to_go = "uid://b142f2nvd1bmw"
+scene_to_go = "uid://b6pye0w0cqmw7"
 req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
-interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
+interact_dialogue = Array[String](["Are you sure you want to go to the main menu?", "[Yes][No]"])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2

@@ -39,11 +39,15 @@ func _on_drag_stop(type: String):
 		return
 	$ColorRect.hide()
 	#print("dragging stopped!")
+	# NOT GOOD IMPLEMENTAION BUT CLOSE TO SHOWCASE SO EMERGENCY FIX
+	if !is_current_member:
+		get_parent().find_lone_members(self)
 	snap_to_queue()
 
 func _on_area_entered(area):
 	if area.get_parent() is DraggableMember and !members.has(area.get_parent()):
 		if is_current_member and members.size() >= Global.max_party_num:
+			HintManager.trigger_hint("max_party_num_reached", "Cannot add more members!", false)
 			return
 		members.append(area.get_parent())
 		#print(members)

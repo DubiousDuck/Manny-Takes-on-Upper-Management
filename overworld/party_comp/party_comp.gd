@@ -57,12 +57,12 @@ func _ready():
 	
 	TutorialManager.set_tutorial_queue(tutorial_queue)
 	EventBus.tutorial_trigger.emit("first_time_party_manage")
-
-func _process(_delta):
-	#default all members that are not in CurrParty to reserves
+			
+#default all members that are not in CurrParty to reserves
+func find_lone_members(container: Droppable):
 	for member in $MemberFolder.get_children():
 		if !$CurrParty.members.has(member) and !$Reserves.members.has(member):
-			$Reserves.members.append(member)
+			container.members.append(member)
 
 func _on_button_pressed():
 	AudioPreload.play_sfx("menu_click")

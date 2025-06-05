@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddwdlmt5eolvp"]
+[gd_scene load_steps=14 format=3 uid="uid://bnkh5gmg470iw"]
 
-[ext_resource type="PackedScene" path="res://ui/cutscene/cutscene_slides.tscn" id="1_17g1k"]
+[ext_resource type="PackedScene" uid="uid://di0r5t51dnika" path="res://ui/cutscene/cutscene_slides.tscn" id="1_17g1k"]
 [ext_resource type="PackedScene" uid="uid://cd4g68eyparaw" path="res://ui/cutscene/cutscene_elements/cutscene_element.tscn" id="2_u2gny"]
 [ext_resource type="Texture2D" uid="uid://cavsdl0b148f1" path="res://assets/cutscenes/ending/ending_1-1.png" id="3_7qrrg"]
 [ext_resource type="Texture2D" uid="uid://cmxcl2t2mqd3o" path="res://assets/cutscenes/ending/ending_1-2.png" id="4_7qrrg"]

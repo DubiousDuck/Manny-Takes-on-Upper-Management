@@ -125,8 +125,8 @@ interact_dialogue = Array[String](["Are you sure you want to exit to Main Menu?"
 
 [node name="Elevator" parent="." instance=ExtResource("14_qlkuo")]
 position = Vector2(623, -493)
-scene_to_go = "uid://c6wbj4hdb1wkt"
-req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+scene_to_go = "uid://b51oygbxpvlc3"
+req = Array[String](["level3-3"])
 interact_dialogue = Array[String](["Play Final Cutscene?", "[Yes][No]"])
 
 [node name="NPC_Folder" type="Node2D" parent="."]

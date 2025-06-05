@@ -10,6 +10,8 @@ triggered = false
 title = "Party Manage Detail"
 body_text = "In the Party Manage tab, you can arrange who should be fighting with you and who should be on standby.
 
+[u]Note:[/u] You cannot move Manny out of the party. Manny will always be on the Fighting Team.
+
 You can also equip [color=gold]Items[/color] by dragging them to your units.
 
 "
