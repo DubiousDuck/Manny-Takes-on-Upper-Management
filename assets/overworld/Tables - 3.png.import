@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coo3kjj350s8s"
-path="res://.godot/imported/Cutscenes - 8.png-40464c79c5ec7b0a8296fe1fd1d15923.ctex"
+uid="uid://bhorvu87w405c"
+path="res://.godot/imported/Tables - 3.png-9ddcfb9c67687fa61a840b8e0e79a0d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cutscenes/intro/Cutscenes - 8.png"
-dest_files=["res://.godot/imported/Cutscenes - 8.png-40464c79c5ec7b0a8296fe1fd1d15923.ctex"]
+source_file="res://assets/overworld/Tables - 3.png"
+dest_files=["res://.godot/imported/Tables - 3.png-9ddcfb9c67687fa61a840b8e0e79a0d1.ctex"]
 
 [params]
 

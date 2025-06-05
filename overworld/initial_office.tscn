@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c6ekt5w02g2i4"]
+[gd_scene load_steps=15 format=4 uid="uid://c6ekt5w02g2i4"]
 
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="1_hq18a"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="2_3220k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_hetpg"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="5_p1o8j"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="6_yuaqs"]
+[ext_resource type="Texture2D" uid="uid://cdk2itm5x7tqm" path="res://assets/overworld/Receptionst_Desk.png" id="7_yuaqs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25nhm"]
 texture = ExtResource("1_hq18a")
@@ -82,6 +83,9 @@ _data = {
 &"RESET": SubResource("Animation_hq1u4")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bbcj"]
+size = Vector2(55.2592, 22.9267)
+
 [node name="InitialOffice" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -125,5 +129,53 @@ libraries = {
 &"": SubResource("AnimationLibrary_ba6uy"),
 &"Cutscenes": ExtResource("6_yuaqs")
 }
+
+[node name="Desk1" type="StaticBody2D" parent="."]
+position = Vector2(74, 121)
+scale = Vector2(1.70108, 1.70108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desk1"]
+position = Vector2(2.9393, 6.76043)
+shape = SubResource("RectangleShape2D_8bbcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desk1"]
+position = Vector2(3.04739, -1.21896)
+texture = ExtResource("7_yuaqs")
+
+[node name="Desk2" type="StaticBody2D" parent="."]
+position = Vector2(155, 271)
+scale = Vector2(1.70108, 1.70108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desk2"]
+position = Vector2(2.9393, 6.76043)
+shape = SubResource("RectangleShape2D_8bbcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desk2"]
+position = Vector2(3.04739, -1.21896)
+texture = ExtResource("7_yuaqs")
+
+[node name="Desk3" type="StaticBody2D" parent="."]
+position = Vector2(155, 271)
+scale = Vector2(1.70108, 1.70108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desk3"]
+position = Vector2(2.9393, 6.76043)
+shape = SubResource("RectangleShape2D_8bbcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desk3"]
+position = Vector2(3.04739, -1.21896)
+texture = ExtResource("7_yuaqs")
+
+[node name="Desk4" type="StaticBody2D" parent="."]
+position = Vector2(155, 271)
+scale = Vector2(1.70108, 1.70108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desk4"]
+position = Vector2(2.9393, 6.76043)
+shape = SubResource("RectangleShape2D_8bbcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Desk4"]
+position = Vector2(3.04739, -1.21896)
+texture = ExtResource("7_yuaqs")
 
 [editable path="Cutscene"]
