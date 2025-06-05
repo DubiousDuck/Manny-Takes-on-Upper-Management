@@ -1,12 +1,17 @@
-[gd_scene load_steps=15 format=4 uid="uid://c6ekt5w02g2i4"]
+[gd_scene load_steps=20 format=4 uid="uid://c6ekt5w02g2i4"]
 
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="1_hq18a"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="2_3220k"]
 [ext_resource type="TileSet" uid="uid://cnbkpyve6c2r8" path="res://map/overworld1_walls_tres.tres" id="3_25nhm"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_hetpg"]
+[ext_resource type="PackedScene" uid="uid://dyplvjxqhq6y0" path="res://overworld/interactables/Sollicitor.tscn" id="5_fffww"]
 [ext_resource type="PackedScene" uid="uid://b8tv8rq4b81ud" path="res://ui/cutscene/cutscene.tscn" id="5_p1o8j"]
 [ext_resource type="AnimationLibrary" uid="uid://c3us6vd64tcei" path="res://ui/cutscene/animations/Cutscenes.res" id="6_yuaqs"]
-[ext_resource type="Texture2D" uid="uid://cdk2itm5x7tqm" path="res://assets/overworld/Receptionst_Desk.png" id="7_yuaqs"]
+[ext_resource type="Texture2D" uid="uid://cvvw8m5rolqn5" path="res://assets/overworld/Tables - 2.png" id="8_byxol"]
+[ext_resource type="Texture2D" uid="uid://bsi3jiyvgye6x" path="res://assets/overworld/Tables - 4.png" id="9_2rh4f"]
+[ext_resource type="Texture2D" uid="uid://bhorvu87w405c" path="res://assets/overworld/Tables - 3.png" id="10_mi3xb"]
+[ext_resource type="Texture2D" uid="uid://hjfma12vsuo4" path="res://assets/overworld/Tables - 5.png" id="11_wayp4"]
+[ext_resource type="PackedScene" uid="uid://dldkxju4niopg" path="res://overworld/interactables/elevator.tscn" id="12_31tqa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25nhm"]
 texture = ExtResource("1_hq18a")
@@ -84,7 +89,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bbcj"]
-size = Vector2(55.2592, 22.9267)
+size = Vector2(44.6775, 15.8723)
 
 [node name="InitialOffice" type="Node2D"]
 
@@ -107,7 +112,25 @@ tile_map_data = PackedByteArray("AAAAAP7/AAAEAAAAAAAAAP//AAAEAAEAAAABAP7/AAAFAAA
 tile_set = ExtResource("3_25nhm")
 
 [node name="Player" parent="." instance=ExtResource("4_hetpg")]
-position = Vector2(180, 191)
+position = Vector2(274, 235)
+scale = Vector2(0.5, 0.5)
+
+[node name="NPCfolder" type="Node2D" parent="."]
+
+[node name="GM" parent="NPCfolder" instance=ExtResource("5_fffww")]
+position = Vector2(177, 50)
+scale = Vector2(0.5, 0.5)
+
+[node name="Kelly" parent="NPCfolder" instance=ExtResource("5_fffww")]
+position = Vector2(80, 235)
+scale = Vector2(0.5, 0.5)
+
+[node name="actor1" parent="NPCfolder" instance=ExtResource("5_fffww")]
+position = Vector2(80, 135)
+scale = Vector2(0.5, 0.5)
+
+[node name="actor2" parent="NPCfolder" instance=ExtResource("5_fffww")]
+position = Vector2(274, 135)
 scale = Vector2(0.5, 0.5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -131,51 +154,62 @@ libraries = {
 }
 
 [node name="Desk1" type="StaticBody2D" parent="."]
-position = Vector2(74, 121)
+position = Vector2(80, 110)
 scale = Vector2(1.70108, 1.70108)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk1"]
-position = Vector2(2.9393, 6.76043)
+position = Vector2(4.05312e-06, 1.17573)
 shape = SubResource("RectangleShape2D_8bbcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk1"]
-position = Vector2(3.04739, -1.21896)
-texture = ExtResource("7_yuaqs")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("8_byxol")
 
 [node name="Desk2" type="StaticBody2D" parent="."]
-position = Vector2(155, 271)
+position = Vector2(274, 110)
 scale = Vector2(1.70108, 1.70108)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk2"]
-position = Vector2(2.9393, 6.76043)
+position = Vector2(0, 1.46966)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8bbcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk2"]
-position = Vector2(3.04739, -1.21896)
-texture = ExtResource("7_yuaqs")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("9_2rh4f")
 
 [node name="Desk3" type="StaticBody2D" parent="."]
-position = Vector2(155, 271)
+position = Vector2(80, 210)
 scale = Vector2(1.70108, 1.70108)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk3"]
-position = Vector2(2.9393, 6.76043)
+position = Vector2(8.58307e-06, 1.17572)
 shape = SubResource("RectangleShape2D_8bbcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk3"]
-position = Vector2(3.04739, -1.21896)
-texture = ExtResource("7_yuaqs")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("10_mi3xb")
 
 [node name="Desk4" type="StaticBody2D" parent="."]
-position = Vector2(155, 271)
+position = Vector2(274, 210)
 scale = Vector2(1.70108, 1.70108)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk4"]
-position = Vector2(2.9393, 6.76043)
+position = Vector2(8.34465e-06, 1.17572)
 shape = SubResource("RectangleShape2D_8bbcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk4"]
-position = Vector2(3.04739, -1.21896)
-texture = ExtResource("7_yuaqs")
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("11_wayp4")
+
+[node name="Elevator" parent="." instance=ExtResource("12_31tqa")]
+position = Vector2(177, -30)
+scene_to_go = "uid://b142f2nvd1bmw"
+req = Array[String](["level1-1", "level1-2", "level1-3", "level1-4"])
+interact_dialogue = Array[String](["Are you sure you want to go to the next floor?", "[Yes][No]"])
 
 [editable path="Cutscene"]

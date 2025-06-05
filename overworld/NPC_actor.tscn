@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://p2mevrl4h30m"]
+
+[ext_resource type="Script" uid="uid://icsj8hid8e18" path="res://overworld/actor.gd" id="1_82t73"]
+[ext_resource type="Texture2D" uid="uid://bnax5rw1xj36g" path="res://assets/unit_sprites/solliciter/front_idle.png" id="2_82t73"]
+[ext_resource type="AnimationLibrary" uid="uid://cod2cfunumv4b" path="res://overworld/ow_anim.res" id="3_ui16i"]
+[ext_resource type="AnimationLibrary" uid="uid://s3xw8d5uc4r0" path="res://overworld/ow_sollicitor.res" id="4_ui16i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
+radius = 15.0
+height = 34.0
+
+[node name="Actor" type="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 3
+script = ExtResource("1_82t73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_7mksb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-06, 2.6226e-06)
+scale = Vector2(3, 3)
+texture = ExtResource("2_82t73")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"ow_anim": ExtResource("3_ui16i"),
+&"ow_sollicitor": ExtResource("4_ui16i")
+}
+autoplay = "overworld_anim/holding_empty"
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -2.0
+pitch_scale = 1.75
+bus = &"Sfx"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
