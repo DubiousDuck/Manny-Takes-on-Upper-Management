@@ -16,6 +16,8 @@ func _ready():
 	texture_len = cutscene_elements.size()
 	
 	if autoplay:
+		if Global.ui_busy:
+			await EventBus.ui_element_ended
 		current_page += 1
 		if current_page <= texture_len:
 			advance_cutscene()

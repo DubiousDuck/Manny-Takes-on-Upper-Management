@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bni0jowv5nvtt"]
 
-[ext_resource type="PackedScene" uid="uid://di0r5t51dnika" path="res://ui/cutscene/cutscene_slides.tscn" id="1_21wo8"]
+[ext_resource type="PackedScene" path="res://ui/cutscene/cutscene_slides.tscn" id="1_21wo8"]
 [ext_resource type="PackedScene" uid="uid://cd4g68eyparaw" path="res://ui/cutscene/cutscene_elements/cutscene_element.tscn" id="2_y7xuj"]
 [ext_resource type="Texture2D" uid="uid://c8jcixqffmv4y" path="res://assets/cutscenes/intro/intro_1.png" id="3_u4dme"]
 [ext_resource type="Texture2D" uid="uid://bhngfbaas3ow6" path="res://assets/cutscenes/intro/intro_2-1.png" id="4_u4dme"]
@@ -18,6 +18,7 @@
 level_to_go = "uid://c8qibn8b170i0"
 cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3"), NodePath("CutsceneElement4"), NodePath("CutsceneElement5"), NodePath("CutsceneElement6"), NodePath("CutsceneElement7"), NodePath("CutsceneElement8"), NodePath("CutsceneElement9"), NodePath("CutsceneElement10"), NodePath("CutsceneElement11")]
 current_page = 1
+autoplay = true
 
 [node name="CutsceneElement" parent="." index="1" instance=ExtResource("2_y7xuj")]
 visible = false

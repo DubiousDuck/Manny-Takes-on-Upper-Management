@@ -1,6 +1,7 @@
 class_name MainMenu extends Control
 
 const OVERWORLD1 = "res://overworld/area_1.tscn"
+const START_CUTSCENE = "res://overworld/initial_office.tscn"
 const PAUSE_LAYER = preload("res://ui/pause_menu/pause_canvas_layer.tscn")
 const CREDIT_PAGE = "res://ui/main_menu/credits.tscn"
 
@@ -10,7 +11,7 @@ func _ready():
 func _on_start_pressed() -> void:
 	AudioPreload.play_sfx("menu_click")
 	Global.load_new_save()
-	Global.scene_transition(OVERWORLD1)
+	Global.scene_transition(START_CUTSCENE)
 
 func _on_load_pressed() -> void:
 	AudioPreload.play_sfx("menu_click")

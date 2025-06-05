@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://xsqjk53yce11"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bcbtoiah135kj"]
 
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="1_754wq"]
 [ext_resource type="Texture2D" uid="uid://b5ecd2rtcw5d6" path="res://assets/overworld/area_2/ground_tiles2.png" id="2_01t8r"]

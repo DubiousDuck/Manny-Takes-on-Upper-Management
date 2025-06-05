@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vjjenmk6qvnq"]
 
 [ext_resource type="Script" uid="uid://bohejktnt7ory" path="res://overworld/player.gd" id="1_1evci"]
-[ext_resource type="Texture2D" uid="uid://cpjdfajk2uknx" path="res://assets/unit_sprites/manny/Manny_Side_Idle.png" id="2_aqryr"]
+[ext_resource type="Texture2D" uid="uid://ce4mvd6au43o3" path="res://assets/unit_sprites/manny/Manny_Damage.png" id="2_aqryr"]
 [ext_resource type="AnimationLibrary" uid="uid://bgp6kbleshd84" path="res://unit/Manny.res" id="3_2wtoj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7mksb"]
@@ -22,7 +22,8 @@ position = Vector2(1.19209e-06, 2.6226e-06)
 scale = Vector2(3, 3)
 texture = ExtResource("2_aqryr")
 hframes = 4
-region_rect = Rect2(3, 3, 69, 19)
+region_enabled = true
+region_rect = Rect2(2, 3, 72, 18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -15,6 +15,8 @@ func face_left():
 	get_node("Sprite2D").flip_h = 1
 
 func set_anim(anim : String):
+	if anim == "set_anim/RESET":
+		return
 	get_node("AnimationPlayer").play(anim)
 
 func _process(delta):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=4 uid="uid://c6ekt5w02g2i4"]
+[gd_scene load_steps=22 format=4 uid="uid://c6ekt5w02g2i4"]
 
+[ext_resource type="Script" uid="uid://cqhplba6787ys" path="res://overworld/cutscene_offices.gd" id="1_2rh4f"]
 [ext_resource type="Texture2D" uid="uid://q2iigjx2p6om" path="res://assets/overworld/floo_tiles.jpg" id="1_hq18a"]
 [ext_resource type="Texture2D" uid="uid://bejcxvjh1jgyj" path="res://assets/overworld/Wall_tiles_adjusted.png" id="2_3220k"]
 [ext_resource type="TileSet" uid="uid://cnbkpyve6c2r8" path="res://map/overworld1_walls_tres.tres" id="3_25nhm"]
@@ -74,14 +75,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../ColorRect2:modulate")
+tracks/0/path = NodePath("../NPCfolder/GM:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(177, 50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NPCfolder/Kelly:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 235)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ba6uy"]
@@ -93,6 +106,8 @@ _data = {
 size = Vector2(44.6775, 15.8723)
 
 [node name="InitialOffice" type="Node2D"]
+script = ExtResource("1_2rh4f")
+scene_to_go = "uid://bni0jowv5nvtt"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -142,7 +157,11 @@ position_smoothing_enabled = true
 
 [node name="Cutscene" parent="." instance=ExtResource("5_p1o8j")]
 position = Vector2(122, 124)
-animations = Array[String](["cutscene_intro_start", "cutscene_intro_GM_1", "cutscene_intro_GM_2", "cutscene_intro_kelly_1", "cutscene_intro_text_1"])
+animations = Array[String](["cutscene_intro_start", "cutscene_intro_GM_1", "Dialogue(multiple): [SPEAKER:GM]Alright, workers. You know the drill. ", "Dialogue(multiple): I expect each of you to hit the monthly sales quota, or you’ll face my wrath.", "Dialogue(multiple): These diapers and baby bottles aren’t going to sell themselves!", "Dialogue(multiple): Back in my day, when I was just 10 months old, ", "Dialogue(multiple): I was the top salesbaby, outselling all of my colleagues.", "Dialogue(multiple): In this field of work, you need to push the limits.", "Dialogue(multiple): Remember our company motto: “Crawl over others to climb the ladder.”", "cutscene_intro_GM_2", "cutscene_intro_kelly_1", "Dialogue(multiple): [SPEAKER:Kelly]Geez, talk about the worst way to start the week, right Manny? ", "Dialogue(multiple): They keep bumping our sales quota up each month, too.", "Dialogue(multiple): I knew working at Infant Inc was going to be difficult, but not this tough.", "Dialogue(multiple): [SPEAKER:Manny]I don’t mean to sound like a crybaby, but I’m dead!", "Dialogue(multiple): I’ve hardly had any sales this month, and the deadline is the end of this week. ", "Dialogue(multiple): I wish we could just quit this company… I hate it here!", "Dialogue(multiple): [SPEAKER:Kelly]Hey, man. You know we can’t!", "Dialogue(multiple): It says in our contract that we are forbidden to quit our jobs here!", "Dialogue(multiple): It’s not our fault we can’t read the contracts. We’re just babies after all. ", "Dialogue(multiple): [SPEAKER:Manny]I can't do this Kelly...", "Dialogue(multiple): [SPEAKER:Kelly]Don’t worry about it. Let me help you close a few deals. We’ll get it done together.
+", "Dialogue(multiple): Let me help you close a few deals. We’ll get it done together.", "Dialogue(multiple): [SPEAKER:Manny]That goes against company policy! We both know that’s bad news. 
+", "Dialogue(multiple): Who knows what’ll happen to you…", "Dialogue(multiple): [SPEAKER:Kelly]Pshh, don’t be such a baby… As long as I don’t get caught, it’s fine.
+", "Dialogue(multiple): Having you around is the only good thing about this job anyway.", "Dialogue(multiple): Can’t have you getting fired, right?", "cutscene_intro_text_1", "Dialogue(multiple): [SPEAKER:GM]Workers… Even though all of you managed to reach your quota", "Dialogue(multiple): I’m disappointed.", "Dialogue(multiple): We’ve had reports of someone… HELPING others reach their monthly sales quota.", "Dialogue(multiple): Your colleagues are not your friends, they are COMPETITION.", "Dialogue(multiple): Kelly, you've defied the sacred motto of Infant Inc.", "Dialogue(multiple): You’ve been a NAUGHTY BABY. The boss wants to see you.
+", "Dialogue(multiple): [SPEAKER:Manny](I knew I shouldn’t have let her help me! This is all my fault…)", "cutscene_intro_GM3"])
 one_shot = true
 
 [node name="CollisionShape2D" parent="Cutscene" index="0"]
@@ -175,7 +194,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Desk2"]
 position = Vector2(0, 1.46966)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8bbcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="Desk2"]
@@ -230,6 +248,7 @@ grow_vertical = 2
 color = Color(0.203922, 0.14902, 0.137255, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+layout_mode = 0
 offset_left = 92.0
 offset_top = 71.0
 offset_right = 769.0

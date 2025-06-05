@@ -98,3 +98,10 @@ func music_fade_in():
 	var a = get_tree().create_tween()
 	a.tween_property(self, "volume_linear", 1, 0.3)
 	await a.finished
+
+func play_music(music_name:String):
+	match music_name:
+		"happy":
+			stream = _OW_ONE_MUSIC
+			pitch_scale = 1.0
+			play()

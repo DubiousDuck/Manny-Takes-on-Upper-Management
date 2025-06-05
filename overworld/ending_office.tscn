@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://b51oygbxpvlc3"]
+[gd_scene load_steps=12 format=4 uid="uid://c6wbj4hdb1wkt"]
 
 [ext_resource type="Script" uid="uid://cqhplba6787ys" path="res://overworld/cutscene_offices.gd" id="1_cixrw"]
-[ext_resource type="TileSet" uid="uid://xsqjk53yce11" path="res://map/area_3_floor_tiles.tres" id="1_gnnxw"]
+[ext_resource type="TileSet" uid="uid://bcbtoiah135kj" path="res://map/area_3_floor_tiles.tres" id="1_gnnxw"]
 [ext_resource type="TileSet" uid="uid://caxl4men3nxsf" path="res://map/overworld3_walls_tres.tres" id="2_cixrw"]
 [ext_resource type="PackedScene" uid="uid://p2mevrl4h30m" path="res://overworld/NPC_actor.tscn" id="4_gnnxw"]
 [ext_resource type="PackedScene" uid="uid://vjjenmk6qvnq" path="res://overworld/Player.tscn" id="4_pm4c5"]
@@ -46,7 +46,7 @@ _data = {
 
 [node name="EndingOffice" type="Node2D"]
 script = ExtResource("1_cixrw")
-scene_to_go = "uid://bnkh5gmg470iw"
+scene_to_go = "uid://ddwdlmt5eolvp"
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -1

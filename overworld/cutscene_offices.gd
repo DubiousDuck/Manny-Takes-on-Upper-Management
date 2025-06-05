@@ -6,3 +6,6 @@ class_name CutsceneOffice
 
 func end_cutscene_and_go():
 	Global.scene_transition(scene_to_go)
+
+func _ready():
+	AudioPreload.play_music("happy")
