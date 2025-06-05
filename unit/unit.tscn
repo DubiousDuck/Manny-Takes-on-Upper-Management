@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=33 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -15,6 +15,7 @@
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="9_4ruv6"]
 [ext_resource type="Script" uid="uid://bxa8n2ssfba55" path="res://unit/item_reader.gd" id="11_j0e0d"]
 [ext_resource type="Texture2D" uid="uid://bpp041qojj0ny" path="res://assets/unit_ui/dizzy_sheet.png" id="12_5dfwp"]
+[ext_resource type="AnimationLibrary" uid="uid://bgp6kbleshd84" path="res://unit/Manny.res" id="13_8g03q"]
 [ext_resource type="Texture2D" uid="uid://cepmy2qw60fvx" path="res://assets/unit_ui/target_reticle_2png.png" id="13_eras8"]
 [ext_resource type="Texture2D" uid="uid://b86kfxt83780d" path="res://assets/unit_sprites/fighter/Fighter_Idle.png" id="16_5bqrp"]
 
@@ -447,6 +448,7 @@ libraries = {
 &"Fighter": ExtResource("4_a2j7n"),
 &"Healer": ExtResource("4_4xbu7"),
 &"Mage": ExtResource("5_a3q01"),
+&"Manny": ExtResource("13_8g03q"),
 &"Ranger": ExtResource("7_a2j7n"),
 &"Tank": ExtResource("8_j0e0d"),
 &"unit_anim": ExtResource("8_4dskx")

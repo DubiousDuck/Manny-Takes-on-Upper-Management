@@ -1,0 +1,30 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0s8fpct1qa0"]
+
+[ext_resource type="PackedScene" uid="uid://di0r5t51dnika" path="res://ui/cutscene/cutscene_slides.tscn" id="1_21wo8"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 1.png" id="2_cjuxj"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 2.png" id="3_i7gx2"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 3.png" id="4_buu7i"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 4.png" id="5_3fofe"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 5.png" id="6_p4s8l"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 6.png" id="7_50awr"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 7.png" id="8_3vxjc"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 8.png" id="9_ylruy"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 9.png" id="10_uclx1"]
+[ext_resource type="Texture2D" path="res://assets/cutscenes/intro/Cutscenes - 10.png" id="11_5tkee"]
+
+[node name="IntroSlides" instance=ExtResource("1_21wo8")]
+level_to_go = "uid://c8qibn8b170i0"
+textures = Array[Texture2D]([ExtResource("2_cjuxj"), ExtResource("3_i7gx2"), ExtResource("4_buu7i"), ExtResource("5_3fofe"), ExtResource("6_p4s8l"), ExtResource("7_50awr"), ExtResource("8_3vxjc"), ExtResource("9_ylruy"), ExtResource("10_uclx1"), ExtResource("11_5tkee")])
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.14902, 0.137255, 1)
+
+[node name="TextureRect" parent="." index="1"]
+texture = ExtResource("2_cjuxj")
+expand_mode = 1
