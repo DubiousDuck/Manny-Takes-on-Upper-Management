@@ -195,7 +195,7 @@ item_list = Array[ExtResource("2_efaq1")]([])
 [sub_resource type="Resource" id="Resource_yu86r"]
 script = ExtResource("18_1i4s7")
 id = 0
-level = 10
+level = 11
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, float]({
@@ -250,7 +250,7 @@ item_list = Array[ExtResource("2_efaq1")]([])
 [sub_resource type="Resource" id="Resource_rna1a"]
 script = ExtResource("18_1i4s7")
 id = 0
-level = 10
+level = 11
 exp = 0
 unit_class = "Mage"
 stat = Dictionary[int, float]({
@@ -338,7 +338,7 @@ item_list = Array[ExtResource("2_efaq1")]([])
 [sub_resource type="Resource" id="Resource_64t4l"]
 script = ExtResource("18_1i4s7")
 id = 0
-level = 10
+level = 11
 exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, float]({

@@ -71,12 +71,13 @@ func init_skills(valids: Array[SkillInfo]):
 	for skill in unit.skills:
 		if skill.type == "Attack" or skill.type == "attack":
 			action_type_dict["Attack"].append(skill)
-			print(skill.name + " is being added to the Attack list")
+			#print(skill.name + " is being added to the Attack list")
 		elif skill.type == "Skill" or skill.type == "skill":
 			action_type_dict["Skill"].append(skill)
-			print(skill.name + " is being added to the Skill list")
+			#print(skill.name + " is being added to the Skill list")
 		else:
-			print(skill.name + " is not being added... and it is of type: " + str(skill.type))
+			pass
+			#print(skill.name + " is not being added... and it is of type: " + str(skill.type))
 
 func init(new_unit: Unit, valids: Array[SkillInfo] = []):
 	unit = new_unit
@@ -109,7 +110,7 @@ func show_skill_of_type(type: String):
 	skill_container.show()
 	
 	var skill_array: Array = action_type_dict.get(type, [])
-	print("There are %d skills in skill type: %s" %[skill_array.size(), type])
+	#print("There are %d skills in skill type: %s" %[skill_array.size(), type])
 	for skill in skill_array:
 		var a = skill_icon.instantiate() as SkillIcon
 		a.skill = skill
@@ -143,7 +144,7 @@ func clear_all_skill_button():
 func _on_button_pressed():
 	for button in buttons:
 		if button.button_pressed:
-			print("# SKILL CHOSEN: " + button.skill.name + " (skill_select.gd)")
+			#print("# SKILL CHOSEN: " + button.skill.name + " (skill_select.gd)")
 			EventBus.emit_signal("skill_chosen", button.skill)
 			button.button_pressed = false
 			EventBus.tutorial_trigger.emit("attack_chosen")

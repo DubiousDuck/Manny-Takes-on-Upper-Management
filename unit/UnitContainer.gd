@@ -173,7 +173,8 @@ func deselect_current_unit():
 	
 	# set targetted units anim back to normal
 	for unit in targetted_units:
-		unit.set_targetted_anim(false)
+		if unit:
+			unit.set_targetted_anim(false)
 	targetted_units.clear()
 	disconnect_current_unit_signals()
 

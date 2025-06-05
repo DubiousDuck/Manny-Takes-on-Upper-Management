@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("2_bqlgi")
 id = 0
-level = 9
+level = 10
 exp = 0
 unit_class = "Turret"
 stat = Dictionary[int, float]({

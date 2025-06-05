@@ -147,7 +147,7 @@ metadata/_custom_type_script = "uid://dda521hi48f5d"
 [sub_resource type="Resource" id="Resource_sonre"]
 script = ExtResource("18_vnpj4")
 id = 0
-level = 11
+level = 12
 exp = 0
 unit_class = "Tank"
 stat = Dictionary[int, float]({
@@ -228,7 +228,7 @@ item_list = Array[ExtResource("2_ned6s")]([])
 [sub_resource type="Resource" id="Resource_wnkk8"]
 script = ExtResource("18_vnpj4")
 id = 0
-level = 11
+level = 12
 exp = 0
 unit_class = "Fighter"
 stat = Dictionary[int, float]({
@@ -317,7 +317,7 @@ item_list = Array[ExtResource("2_ned6s")]([])
 [sub_resource type="Resource" id="Resource_dxr3n"]
 script = ExtResource("18_vnpj4")
 id = 0
-level = 11
+level = 12
 exp = 0
 unit_class = "Ranger"
 stat = Dictionary[int, float]({
@@ -397,7 +397,7 @@ item_list = Array[ExtResource("2_ned6s")]([])
 [sub_resource type="Resource" id="Resource_58i0i"]
 script = ExtResource("18_vnpj4")
 id = 0
-level = 11
+level = 12
 exp = 0
 unit_class = "Mage"
 stat = Dictionary[int, float]({
@@ -499,7 +499,7 @@ container = NodePath("../Units/PlayerGroup")
 isBattleScene = true
 
 [node name="TileMapTest" parent="." instance=ExtResource("10_kjunh")]
-tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAADAAAAAAACAAMAAAAAAAAAAAADAAAAAgAAAAAAAAADAAEAAAAAAAAAAAADAAIAAgAAAAAAAAAEAAEAAAADAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wIAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAIAAAAEAAAAAAAHAAAAAAAAAAAAAAD//wAAAAAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAADAAAAAAACAAMAAAAAAAAAAAADAAAAAgAAAAAAAAADAAEAAAAAAAAAAAADAAIAAgAAAAAAAAAEAAEAAAADAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wIAAAAEAAAAAAAGAAAAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAAAAAAAAAAAAAD//wAAAAAEAAAAAAA=")
 tile_set = ExtResource("11_58i0i")
 
 [node name="CellHighlights" type="Node2D" parent="."]

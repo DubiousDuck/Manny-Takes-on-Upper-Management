@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://s6hbciun8a1p"]
+[gd_scene load_steps=34 format=3 uid="uid://s6hbciun8a1p"]
 
 [ext_resource type="Script" uid="uid://bgmmj53cp01v0" path="res://unit/unit.gd" id="1_5ne20"]
 [ext_resource type="Shader" uid="uid://c8e0x2audjp4d" path="res://unit/unit_sprite.gdshader" id="1_ipbkg"]
@@ -13,6 +13,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bpqlfovrbqirm" path="res://unit/unit_anim.res" id="8_4dskx"]
 [ext_resource type="AnimationLibrary" uid="uid://cfr31fp2uqrvk" path="res://unit/Tank.res" id="8_j0e0d"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="9_4ruv6"]
+[ext_resource type="AnimationLibrary" uid="uid://t4jmrlqp744l" path="res://unit/CEO.res" id="10_lawvu"]
 [ext_resource type="Script" uid="uid://bxa8n2ssfba55" path="res://unit/item_reader.gd" id="11_j0e0d"]
 [ext_resource type="Texture2D" uid="uid://bpp041qojj0ny" path="res://assets/unit_ui/dizzy_sheet.png" id="12_5dfwp"]
 [ext_resource type="AnimationLibrary" uid="uid://bgp6kbleshd84" path="res://unit/Manny.res" id="13_8g03q"]
@@ -445,6 +446,7 @@ scale = Vector2(0.723538, 0.646395)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5dfwp"),
+&"CEO": ExtResource("10_lawvu"),
 &"Fighter": ExtResource("4_a2j7n"),
 &"Healer": ExtResource("4_4xbu7"),
 &"Mage": ExtResource("5_a3q01"),

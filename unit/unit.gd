@@ -279,12 +279,12 @@ func move_along_path(full_path : Array[Vector2i]):
 	await move_tween.finished
 	actions_avail.erase(Action.MOVE)
 	cell = HexNavi.global_to_cell(global_position)
-	await tile_action()
 	unit_held.map( #update held unit cell info
 		func(unit):
 			unit.global_position = HexNavi.cell_to_global(cell)
 			unit.cell = cell
 	)
+	await tile_action()
 	if diff.x == 0:
 		animation_state("front_idle")
 	else:
@@ -500,6 +500,8 @@ func _set_anim_lib():
 				anim_lib = "Tank"
 			"Protagonist":
 				anim_lib = "Manny"
+			"CEO":
+				anim_lib = "CEO"
 			_:
 				anim_lib = "unit_anim"
 
@@ -618,6 +620,8 @@ func set_targetted_anim(state: bool):
 			animation_state("no_plz")
 	else:
 		# this entails they have been hurt before
+		if is_dead:
+			return
 		if pof_receive_state != POF_RECEIVE_STATE.NONE:
 			animation_state("hurt")
 		else:

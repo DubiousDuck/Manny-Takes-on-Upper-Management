@@ -135,8 +135,17 @@ func anim_handler():
 	sprite_2d.hframes = 4
 	var idle = (vel_moving_average.length() < SPEED * 0.25)
 	if abs(vel_moving_average.y) > SPEED * sqrt(2) / 2 + 1e-2 and not idle:
-		$AnimationPlayer.play("ow_sollicitor/front_walk" if vel_moving_average.y >= 0 else "ow_sollicitor/back_walk")
+		if npc_name == "CEO":
+			$AnimationPlayer.play("CEO/front_walk" if vel_moving_average.y >= 0 else "CEO/back_walk")
+		else:
+			$AnimationPlayer.play("ow_sollicitor/front_walk" if vel_moving_average.y >= 0 else "ow_sollicitor/back_walk")
 	elif vel_moving_average != Vector2.ZERO and not idle:
-		$AnimationPlayer.play("ow_sollicitor/side_walk")
+		if npc_name == "CEO":
+			$AnimationPlayer.play("CEO/side_walk")
+		else:
+			$AnimationPlayer.play("ow_sollicitor/side_walk")
 	else:
-		$AnimationPlayer.play("ow_sollicitor/front_idle")
+		if npc_name == "CEO":
+			$AnimationPlayer.play("CEO/front_idle")
+		else:
+			$AnimationPlayer.play("ow_sollicitor/front_idle")

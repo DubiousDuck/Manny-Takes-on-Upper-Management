@@ -514,7 +514,7 @@ func try_trigger_pof(target: Unit, attacker: Unit) -> bool:
 		
 	var previous_attackers = turn_attack_log.get(target, [])
 	for unit in previous_attackers:
-		if unit.is_player_controlled == attacker.is_player_controlled and unit != attacker:
+		if unit and unit.is_player_controlled == attacker.is_player_controlled and unit != attacker:
 			AudioPreload.play_sfx("pof")
 			grant_extra_turn(attacker)
 			result = true
