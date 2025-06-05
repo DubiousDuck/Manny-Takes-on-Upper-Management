@@ -3,16 +3,22 @@ extends Control
 class_name CutsceneSlides
 
 var texture_len: int = 0
-var current_page: int = 0
 var is_playing: bool = false
 
 @export_file("*.tscn") var level_to_go: String
 @export var cutscene_elements: Array[CutsceneElement] = []
+@export var current_page: int = 0
+@export var autoplay: bool = false
 
 func _ready():
 	for element in cutscene_elements:
 		element.hide()
 	texture_len = cutscene_elements.size()
+	
+	if autoplay:
+		current_page += 1
+		if current_page <= texture_len:
+			advance_cutscene()
 
 func _input(event):
 	if Input.is_action_just_pressed("LMB") or Input.is_action_just_pressed("ui_accept"):

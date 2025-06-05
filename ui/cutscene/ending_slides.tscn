@@ -11,6 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://bmt73srghqhf1" path="res://assets/unit_sprites/mage/Mage_Walk_Down.png" id="9_qo3xc"]
 [ext_resource type="Texture2D" uid="uid://c7jlk70pfm0t7" path="res://assets/unit_sprites/healer/Healer_Walk_Down.png" id="10_miboy"]
 
+[sub_resource type="Animation" id="Animation_fxbav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Manny:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_0t6k4"]
 resource_name = "walking_loop"
 length = 0.4
@@ -88,21 +103,6 @@ tracks/5/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_fxbav"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Manny:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwrsx"]
 _data = {
 &"RESET": SubResource("Animation_fxbav"),
@@ -112,6 +112,7 @@ _data = {
 [node name="EndingSlide" node_paths=PackedStringArray("cutscene_elements") instance=ExtResource("1_17g1k")]
 level_to_go = "uid://b6pye0w0cqmw7"
 cutscene_elements = [NodePath("CutsceneElement"), NodePath("CutsceneElement2"), NodePath("CutsceneElement3")]
+autoplay = true
 
 [node name="CutsceneElement" parent="." index="1" instance=ExtResource("2_u2gny")]
 layout_mode = 1
@@ -150,7 +151,7 @@ region_rect = Rect2(2, 0, 72, 26)
 
 [node name="Ranger" type="Sprite2D" parent="CutsceneElement3" index="2"]
 modulate = Color(1, 1, 1, 0.541176)
-position = Vector2(534, 421)
+position = Vector2(534, 422)
 scale = Vector2(6, 6)
 texture = ExtResource("7_gwrsx")
 hframes = 4
