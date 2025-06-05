@@ -86,57 +86,48 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 260.0
-offset_top = 335.0
-offset_right = 910.0
-offset_bottom = 560.0
+[node name="TopBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 379.0
+offset_top = 336.0
+offset_right = 820.0
+offset_bottom = 616.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 50
-alignment = 1
+theme_override_constants/separation = 15
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="start" type="Button" parent="TopBox"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 86
+text = "Start Game"
+
+[node name="load" type="Button" parent="TopBox"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme = ExtResource("2_mu8pm")
+theme_override_font_sizes/font_size = 86
+text = "Load Save"
+
+[node name="LowBox" type="HBoxContainer" parent="TopBox"]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="start" type="Button" parent="HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(300, 100)
+[node name="options" type="Button" parent="TopBox/LowBox"]
+custom_minimum_size = Vector2(50, 80)
 layout_mode = 2
 theme = ExtResource("2_mu8pm")
-theme_override_font_sizes/font_size = 100
-text = "Start"
-
-[node name="options" type="Button" parent="HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme = ExtResource("2_mu8pm")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 64
 text = "Options"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="load" type="Button" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 100)
+[node name="credits" type="Button" parent="TopBox/LowBox"]
+custom_minimum_size = Vector2(1, 80)
 layout_mode = 2
 theme = ExtResource("2_mu8pm")
-theme_override_font_sizes/font_size = 100
-text = "Load"
-
-[node name="credits" type="Button" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1, 100)
-layout_mode = 2
-theme = ExtResource("2_mu8pm")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 64
 text = "Credits"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -145,5 +136,6 @@ libraries = {
 }
 autoplay = "looping_background"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer2/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="TopBox/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TopBox/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="TopBox/LowBox/options" to="." method="_on_options_pressed"]

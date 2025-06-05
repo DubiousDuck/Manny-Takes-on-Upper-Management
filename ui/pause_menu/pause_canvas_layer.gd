@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const MAIN_MENU = "res://ui/main_menu/main_menu.tscn"
+
 var menuIsDisplayed: bool = false
 var logDisplayed:bool = false
 @onready var battle_menu_control = $BattleMenuControl
@@ -102,7 +104,11 @@ func _on_quit_game_pressed():
 
 func _on_resume_pressed():
 	AudioPreload.play_sfx("menu_click")
-	flipMenuDisplay()
+	if get_tree().current_scene.scene_file_path != MAIN_MENU:
+		flipMenuDisplay()
+	else:
+		get_tree().paused = false
+		queue_free()
 
 
 func _on_pause_button_pressed():
@@ -123,7 +129,10 @@ func _on_pass_button_pressed():
 func _on_to_main_menu_pressed():
 	AudioPreload.play_sfx("menu_click")
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
+	if get_tree().current_scene.scene_file_path != MAIN_MENU:
+		get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
+	else:
+		queue_free()
 
 # -- Prebattle related functions -- #
 func _on_battle_start_pressed():
