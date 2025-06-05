@@ -130,7 +130,8 @@ Clark Peng - Programming
 Kevin Yang - Programming
 
 [font_size=36][u]Special Thanks[/u][/font_size]
-Jon Wake - SFX"
+Jon Wake - SFX
+pixabay - SFX"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Window/ContentBox"]
