@@ -147,3 +147,4 @@ autoplay = "looping_background"
 [connection signal="pressed" from="TopBox/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="TopBox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="TopBox/LowBox/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="TopBox/LowBox/credits" to="." method="_on_credits_pressed"]

@@ -1,0 +1,173 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjv0gufbyxvcb"]
+
+[ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="1_560gi"]
+[ext_resource type="Script" uid="uid://bem4kvimkqnqx" path="res://ui/main_menu/credits.gd" id="1_nlnh3"]
+[ext_resource type="Texture2D" uid="uid://crb25rhwwvkcr" path="res://assets/ui/window_tab.png" id="2_g65cv"]
+[ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_h5co8"]
+
+[sub_resource type="Animation" id="Animation_i5wg5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1150, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_omy8q"]
+resource_name = "looping_background"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1150, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3c04x"]
+_data = {
+&"RESET": SubResource("Animation_i5wg5"),
+&"looping_background": SubResource("Animation_omy8q")
+}
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nlnh3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.533333, 0.486275, 0.486275, 1)
+
+[node name="MovingBackground" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.356863)
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1150.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_560gi")
+expand_mode = 3
+
+[node name="Window" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = -320.0
+offset_right = 426.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_h5co8")
+texture = ExtResource("2_g65cv")
+
+[node name="ContentBox" type="Control" parent="Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 97.0
+offset_right = -69.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/ContentBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Window/ContentBox/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=36][u]Team Leads[/u][/font_size]
+Oscar Su - Director, Programmer, Battle System Engineer, UI/UX
+Lea Sioson - Art Director, UI Designer
+Branden Bohrnsen - Programmer, UI System Engineer
+
+[font_size=36][u]Team Members[/u][/font_size]
+John Tan - Writing, Game Design, Arts, Cutscenes
+Jeff Lee - Composing
+Julianna - Character design, character sprites
+Bill Situ - World and Level tiles
+Brendan Aeria - Programming, UI
+Clark Peng - Programming
+Kevin Yang - Programming
+
+[font_size=36][u]Special Thanks[/u][/font_size]
+Jon Wake - SFX"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Window/ContentBox"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -38.0
+offset_right = 60.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Back to Menu"
+
+[node name="Label" type="Label" parent="Window"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_top = 29.0
+offset_right = 74.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3c04x")
+}
+autoplay = "looping_background"
+
+[connection signal="pressed" from="Window/ContentBox/Button" to="." method="_on_button_pressed"]
