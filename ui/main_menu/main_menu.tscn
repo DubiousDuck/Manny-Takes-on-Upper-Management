@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6pye0w0cqmw7"]
+[gd_scene load_steps=8 format=3 uid="uid://b6pye0w0cqmw7"]
 
 [ext_resource type="Script" uid="uid://wg7e2yhwuc16" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 [ext_resource type="Theme" uid="uid://dgmt8ko4oq3ew" path="res://ui/themes/general_ui_theme.tres" id="2_mu8pm"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="2_omy8q"]
+[ext_resource type="Texture2D" uid="uid://2ddbeme0fpgp" path="res://assets/title/MUTM Title.png" id="4_i5wg5"]
 
 [sub_resource type="Animation" id="Animation_i5wg5"]
 length = 0.001
@@ -44,13 +45,20 @@ _data = {
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 640.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.533333, 0.486275, 0.486275, 1)
 
 [node name="MovingBackground" type="TextureRect" parent="."]
@@ -61,39 +69,39 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1150.0
-offset_right = 1154.0
-offset_bottom = 648.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_omy8q")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = 111.0
-offset_right = 1082.0
-offset_bottom = 230.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -435.0
+offset_top = -44.0
+offset_right = 435.0
+offset_bottom = 391.0
 grow_horizontal = 2
-grow_vertical = 2
 theme = ExtResource("2_mu8pm")
-theme_override_font_sizes/font_size = 150
-text = "Manny Takes on Upper Management"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+texture = ExtResource("4_i5wg5")
+expand_mode = 1
 
 [node name="TopBox" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 379.0
-offset_top = 336.0
-offset_right = 820.0
-offset_bottom = 616.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -302.0
+offset_right = 221.0
+offset_bottom = -22.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 15
 
