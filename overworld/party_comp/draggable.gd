@@ -10,21 +10,28 @@ func _ready():
 	add_to_group("draggables")
 	
 func _process(delta):
-	if is_draggable:
-		if Input.is_action_just_pressed("LMB"):
-			var topmost = get_topmost_draggable_at_mouse()
-			if topmost == self:
-				EventBus.emit_signal("dragging_start", type)
-				is_dragging = true
-		if Input.is_action_pressed("LMB") and is_dragging:
-			global_position = get_global_mouse_position()
-		elif Input.is_action_just_released("LMB"):
-			is_dragging = false
-			EventBus.emit_signal("dragging_stop", type)
-	if is_dragging:
-		z_index = 100  # Pull to top
-	else:
-		z_index = 0
+	z_index = 100 if is_dragging else 0
+
+func _unhandled_input(event):
+	if !is_draggable:
+		return
+
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				var topmost = get_topmost_draggable_at_mouse()
+				if topmost == self:
+					EventBus.emit_signal("dragging_start", type)
+					is_dragging = true
+					get_viewport().set_input_as_handled()
+			elif event.is_released():
+				if is_dragging:
+					is_dragging = false
+					EventBus.emit_signal("dragging_stop", type)
+
+	elif event is InputEventMouseMotion and is_dragging:
+		global_position = get_global_mouse_position()
+
 
 
 func _on_area_2d_mouse_entered():
@@ -45,7 +52,7 @@ func get_topmost_draggable_at_mouse() -> Draggable:
 				candidates.append(node)
 			elif area.get_overlapping_areas().has($Area2D):  # works if using Area2D-overlap
 				candidates.append(node)
-				print("added " + node.name)
+				#print("added " + node.name)
 	
 	# Sort by Z index descending
 	candidates.sort_custom(func(a, b): return a.z_index > b.z_index)

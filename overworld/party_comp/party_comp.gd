@@ -62,7 +62,7 @@ func _process(_delta):
 	#default all members that are not in CurrParty to reserves
 	for member in $MemberFolder.get_children():
 		if !$CurrParty.members.has(member) and !$Reserves.members.has(member):
-			member.global_position = $Reserves.anchor.global_position
+			$Reserves.members.append(member)
 
 func _on_button_pressed():
 	AudioPreload.play_sfx("menu_click")

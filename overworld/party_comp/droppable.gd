@@ -38,6 +38,7 @@ func _on_drag_stop(type: String):
 	if type != "Member":
 		return
 	$ColorRect.hide()
+	#print("dragging stopped!")
 	snap_to_queue()
 
 func _on_area_entered(area):

@@ -36,12 +36,11 @@ func init(items: Array[DraggableItem]):
 	)
 	snap_items()
 
-func _process(_delta):
-	#if unit is protanoist, can't be dragged out of current party
+func _unhandled_input(event):
 	if unit_data.unit_class == "Protagonist":
-		return	
-	super(_delta)
-
+		return
+	super(event)
+	
 func _on_dragging_stop(type: String):
 	if type != "Item":
 		return
