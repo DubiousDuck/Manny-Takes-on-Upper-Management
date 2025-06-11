@@ -6,7 +6,7 @@
 script = ExtResource("1_wy4d6")
 name = "Throw At"
 description = "Yeet the baby you're carrying to somewhere. Deals 0.75x Attack damage and knocks back targets if the baby thrown hits them."
-type = "attack"
+type = "Skill"
 targets = 7
 affinity = 0
 range = 2

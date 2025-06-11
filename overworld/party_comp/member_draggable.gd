@@ -4,7 +4,7 @@ class_name DraggableMember
 
 const GAP = 150
 const CLASS_TEXTURE: Dictionary[String, String] = {
-	"Protagonist": "res://ui/single_sprite_atlus/base_sprite.atlastex",
+	"Protagonist": "res://ui/single_sprite_atlus/manny_sprite.atlastex",
 	"Fighter": "res://ui/single_sprite_atlus/fighter_sprite.atlastex",
 	"Ranger": "res://ui/single_sprite_atlus/ranger_sprite.atlastex",
 	"Tank": "res://ui/single_sprite_atlus/tank_sprite.atlastex",

@@ -185,7 +185,7 @@ func set_class_sprite(name: String):
 	var texture: AtlasTexture
 	match name:
 		"Protagonist":
-			texture = preload("res://ui/single_sprite_atlus/base_sprite.atlastex")
+			texture = preload("res://ui/single_sprite_atlus/manny_sprite.atlastex")
 		"Ranger":
 			texture = preload("res://ui/single_sprite_atlus/ranger_sprite.atlastex")
 		"Fighter":

@@ -57,7 +57,7 @@ draggables=""
 [gui]
 
 theme/custom="res://ui/themes/default.tres"
-theme/custom_font="res://assets/ui/m5x7.ttf"
+theme/custom_font="uid://ew14e5fetvtx"
 
 [input]
 

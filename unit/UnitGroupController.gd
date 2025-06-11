@@ -175,7 +175,7 @@ func _on_attack_used(attack: SkillInfo, attacker: Unit, targets: Array[Vector2i]
 						if unit == null:
 							return
 						unit.cell = HexNavi.global_to_cell(unit.global_position)
-						await unit.tile_action()
+						#await unit.tile_action()
 				)
 				move_suffix.append("knocking them back")
 				
