@@ -1,9 +1,8 @@
-[gd_scene load_steps=55 format=4 uid="uid://c5sm6ebrjifdp"]
+[gd_scene load_steps=54 format=4 uid="uid://c5sm6ebrjifdp"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_vu32t"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_eng40"]
 [ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_t8jqq"]
-[ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_241jq"]
 [ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_1jyp8"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="6_at11b"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="7_nswts"]
@@ -411,8 +410,7 @@ script = ExtResource("1_vu32t")
 tile_map = NodePath("TileMapTest")
 inital_exp = 30
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_eng40")]([ExtResource("3_t8jqq"), ExtResource("4_241jq"), ExtResource("5_1jyp8")])
-give_token = false
+dropped_items = Array[ExtResource("2_eng40")]([ExtResource("3_t8jqq"), ExtResource("5_1jyp8")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.990903, 0.387356, 0.40913, 1)

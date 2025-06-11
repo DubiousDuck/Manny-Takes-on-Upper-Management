@@ -1,10 +1,7 @@
-[gd_scene load_steps=61 format=4 uid="uid://djm6vvof7v5n3"]
+[gd_scene load_steps=58 format=4 uid="uid://djm6vvof7v5n3"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_2gskb"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_ned6s"]
-[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_wnkk8"]
-[ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_sonre"]
-[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_purbc"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="6_dxr3n"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="7_epmcu"]
 [ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="8_dqg72"]
@@ -479,7 +476,6 @@ script = ExtResource("1_2gskb")
 tile_map = NodePath("TileMapTest")
 inital_exp = 40
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_ned6s")]([ExtResource("3_wnkk8"), ExtResource("4_sonre"), ExtResource("5_purbc")])
 give_token = false
 
 [node name="TextureRect" type="TextureRect" parent="."]

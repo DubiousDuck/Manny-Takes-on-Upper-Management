@@ -1,13 +1,12 @@
-[gd_scene load_steps=48 format=4 uid="uid://cjp0ijwpjsn8r"]
+[gd_scene load_steps=46 format=4 uid="uid://cjp0ijwpjsn8r"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_t8occ"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_7nx3r"]
+[ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="3_7wbmp"]
 [ext_resource type="Resource" uid="uid://bb24666vw4wd0" path="res://ui/tutorial/contents/buffs.tres" id="3_iigxo"]
 [ext_resource type="Resource" uid="uid://dsp6ftn0d0m3e" path="res://ui/tutorial/contents/debuffs.tres" id="4_fa8xf"]
-[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_phfro"]
 [ext_resource type="PackedScene" uid="uid://1ig65m78igxg" path="res://ui/pause_menu/pause_canvas_layer.tscn" id="5_cje7n"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_uip54"]
-[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="5_vfwer"]
 [ext_resource type="PackedScene" uid="uid://dfdd8xbpcid00" path="res://map/tile_map_test.tscn" id="6_5cycl"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="6_cje7n"]
 [ext_resource type="TileSet" uid="uid://od08ebdovrmi" path="res://map/new_tile_set.tres" id="7_jkwc2"]
@@ -27,7 +26,6 @@
 [ext_resource type="Resource" uid="uid://mgaahup4u5tt" path="res://skills/wait.tres" id="23_xmqv0"]
 [ext_resource type="Resource" uid="uid://du6pn6p8fxwnq" path="res://skills/raise_attack.tres" id="24_cwr36"]
 [ext_resource type="Resource" uid="uid://blts5vx256a3e" path="res://skills/basic_punch.tres" id="25_fslfx"]
-[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="25_k22tc"]
 [ext_resource type="Resource" uid="uid://prvfgn6uwghm" path="res://skills/lower_attack.tres" id="26_o05ok"]
 [ext_resource type="Resource" uid="uid://bi1f7lnbriwrk" path="res://skills/file_slam.tres" id="27_4u6l4"]
 [ext_resource type="Resource" uid="uid://cs7swlwlpc0ir" path="res://skills/poison_bubble.tres" id="27_barpc"]
@@ -300,7 +298,7 @@ script = ExtResource("1_t8occ")
 tile_map = NodePath("TileMapTest")
 inital_exp = 9
 repeat_exp = 2
-dropped_items = Array[ExtResource("18_t610e")]([ExtResource("25_k22tc"), ExtResource("4_phfro"), ExtResource("5_vfwer")])
+dropped_items = Array[ExtResource("18_t610e")]([ExtResource("3_7wbmp")])
 tutorial_queue = Array[ExtResource("2_7nx3r")]([ExtResource("3_iigxo"), ExtResource("4_fa8xf")])
 
 [node name="TextureRect" type="TextureRect" parent="."]

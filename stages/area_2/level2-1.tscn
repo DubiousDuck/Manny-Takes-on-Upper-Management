@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_f7axc"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_vkpfi"]
-[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_muhda"]
+[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_g4ews"]
 [ext_resource type="Resource" uid="uid://hfngvcslhf5j" path="res://ui/tutorial/contents/status_effect.tres" id="6_6e5ut"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="6_cpxuf"]
 [ext_resource type="Resource" uid="uid://82khh2id8a40" path="res://ui/tutorial/contents/poison.tres" id="7_4v2ha"]
@@ -270,7 +270,7 @@ script = ExtResource("1_f7axc")
 tile_map = NodePath("TileMapTest")
 inital_exp = 15
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("4_muhda")])
+dropped_items = Array[ExtResource("2_vkpfi")]([ExtResource("3_g4ews")])
 tutorial_queue = Array[ExtResource("6_cpxuf")]([ExtResource("6_6e5ut"), ExtResource("7_4v2ha"), ExtResource("7_g4ews")])
 
 [node name="TextureRect" type="TextureRect" parent="."]

@@ -1,11 +1,9 @@
-[gd_scene load_steps=41 format=4 uid="uid://dmiskhfx3cmdg"]
+[gd_scene load_steps=39 format=4 uid="uid://dmiskhfx3cmdg"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_imwcb"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_0p6ia"]
 [ext_resource type="Script" uid="uid://tngs0ek6h4aa" path="res://ui/tutorial/contents/content_template.gd" id="2_d7y36"]
 [ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="3_iynos"]
-[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="4_5wd2o"]
-[ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="5_eiuv0"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="5_imwcb"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="6_6cqhd"]
 [ext_resource type="Resource" uid="uid://rq4gmb4trdnv" path="res://ui/tutorial/contents/PoF_1.tres" id="7_5tsjb"]
@@ -179,7 +177,7 @@ script = ExtResource("1_imwcb")
 tile_map = NodePath("TileMapTest")
 inital_exp = 6
 repeat_exp = 2
-dropped_items = Array[ExtResource("2_0p6ia")]([ExtResource("3_iynos"), ExtResource("4_5wd2o"), ExtResource("5_eiuv0")])
+dropped_items = Array[ExtResource("2_0p6ia")]([ExtResource("3_iynos")])
 tutorial_queue = Array[ExtResource("2_d7y36")]([ExtResource("7_5tsjb"), ExtResource("8_bp7lx")])
 
 [node name="TextureRect" type="TextureRect" parent="."]

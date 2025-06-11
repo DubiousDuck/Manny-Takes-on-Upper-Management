@@ -1,10 +1,9 @@
-[gd_scene load_steps=53 format=4 uid="uid://ctemwa520wi7v"]
+[gd_scene load_steps=52 format=4 uid="uid://ctemwa520wi7v"]
 
 [ext_resource type="Script" uid="uid://cnhl17c64l7q3" path="res://stages/level.gd" id="1_4n6rh"]
 [ext_resource type="Script" uid="uid://djvdtgfogyblr" path="res://items/item.gd" id="2_efaq1"]
-[ext_resource type="Resource" uid="uid://cmbuwcas04j4x" path="res://items/glow_gem.tres" id="3_rptcr"]
+[ext_resource type="Resource" uid="uid://dk2bl33thf8vf" path="res://items/boots.tres" id="4_5otj2"]
 [ext_resource type="Resource" uid="uid://cmir8fmxx6qcf" path="res://items/sturdy_helmet.tres" id="4_v1y1k"]
-[ext_resource type="Resource" uid="uid://t0inmfkk5ymh" path="res://items/sword.tres" id="5_iu2mb"]
 [ext_resource type="Texture2D" uid="uid://poqgc4hh2x4k" path="res://assets/ui/backdrop.png" id="6_hd8d2"]
 [ext_resource type="PackedScene" uid="uid://pk22c3kx6qrk" path="res://ui/battle_related/unit_preview.tscn" id="7_8igro"]
 [ext_resource type="PackedScene" uid="uid://ccyqfgjflvtm5" path="res://unit/unit_ui/skill_select_canvas.tscn" id="8_81pml"]
@@ -420,7 +419,7 @@ script = ExtResource("1_4n6rh")
 tile_map = NodePath("TileMapTest")
 inital_exp = 35
 repeat_exp = 1
-dropped_items = Array[ExtResource("2_efaq1")]([ExtResource("3_rptcr"), ExtResource("4_v1y1k"), ExtResource("5_iu2mb")])
+dropped_items = Array[ExtResource("2_efaq1")]([ExtResource("4_v1y1k"), ExtResource("4_5otj2")])
 give_token = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
